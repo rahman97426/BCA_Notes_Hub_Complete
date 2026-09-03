@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BCA-205 OS & UNIX — Complete PYQ Q&A | AKU Patna</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--r:14px;--tr:.3s cubic-bezier(.4,0,.2,1)}
+body{font-family:'Nunito',sans-serif;background:#F0F2F5;color:#1a1a2e;overflow-x:hidden}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-thumb{background:#bbb;border-radius:4px}
+
+/* ── Progress ── */
+#prog{position:fixed;top:0;left:0;height:4px;z-index:1000;
+  background:linear-gradient(90deg,#1565C0,#6A1B9A,#C62828);
+  width:0%;transition:width .12s}
+
+/* ── Hero ── */
+.hero{
+  min-height:320px;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;padding:50px 20px;
+  background:linear-gradient(135deg,#0D47A1 0%,#4A148C 50%,#B71C1C 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.06) 0%,transparent 60%),
+             radial-gradient(circle at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+}
+.hero-particles span{
+  position:absolute;width:6px;height:6px;background:rgba(255,255,255,.3);
+  border-radius:50%;animation:float var(--d,4s) var(--delay,0s) ease-in-out infinite alternate;
+}
+@keyframes float{from{transform:translateY(0) scale(1)}to{transform:translateY(-30px) scale(1.4)}}
+.htag{
+  display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.78rem;font-weight:700;
+  padding:5px 18px;border-radius:50px;margin-bottom:16px;
+  animation:slidedown .5s ease both;
+}
+.hero h1{
+  font-family:'Caveat',cursive;font-size:clamp(2.5rem,8vw,4.5rem);
+  color:#fff;line-height:1;animation:slidedown .6s .08s ease both;
+}
+.hero h2{
+  font-size:clamp(.95rem,2.5vw,1.3rem);color:rgba(255,255,255,.82);
+  font-weight:400;margin:.5rem 0 1.5rem;animation:slidedown .6s .16s ease both;
+}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;animation:slidedown .6s .24s ease both}
+.hpill{
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  color:#fff;padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:700;
+}
+@keyframes slidedown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+
+/* ── Countdown ── */
+.countdown{
+  margin-top:20px;display:flex;gap:16px;justify-content:center;animation:slidedown .6s .32s ease both;
+}
+.cd-box{
+  background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;padding:10px 16px;text-align:center;min-width:68px;
+}
+.cd-num{font-family:'Caveat',cursive;font-size:1.8rem;color:#fff;line-height:1}
+.cd-lbl{font-size:.65rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:1px}
+
+/* ── Nav ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:#1a1a2e;display:flex;overflow-x:auto;
+  gap:4px;padding:8px 14px;box-shadow:0 3px 20px rgba(0,0,0,.4);
+}
+.nav::-webkit-scrollbar{height:3px}
+.nav a{
+  white-space:nowrap;color:rgba(255,255,255,.65);text-decoration:none;
+  font-size:.77rem;font-weight:700;padding:7px 16px;border-radius:50px;
+  border:2px solid transparent;transition:var(--tr);
+}
+.nav a:hover{color:#fff;border-color:var(--uc,#fff);background:rgba(255,255,255,.08)}
+
+/* ── Main ── */
+.main{max-width:960px;margin:0 auto;padding:28px 16px 80px}
+
+/* ── Unit section ── */
+.unit-sec{margin-bottom:36px;border-radius:var(--r);overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.12);background:#fff;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+
+.unit-hdr{
+  display:flex;align-items:center;gap:16px;padding:22px 24px;color:#fff;
+  position:relative;overflow:hidden;
+}
+.unit-hdr::after{
+  content:'';position:absolute;right:-30px;top:-30px;
+  width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.07);
+}
+.u-icon{font-size:2.6rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
+.u-num{font-size:.78rem;font-weight:800;letter-spacing:2px;opacity:.75;text-transform:uppercase}
+.u-title{font-family:'Caveat',cursive;font-size:1.55rem;font-weight:700}
+
+/* ── PYQ Alert ── */
+.pyq-alert{
+  display:flex;gap:12px;padding:14px 20px;font-size:.87rem;font-weight:600;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.alert-icon{font-size:1.3rem;flex-shrink:0}
+.alert-text{line-height:1.55;color:#333}
+
+/* ── Tabs ── */
+.tabs{display:flex;gap:0;border-bottom:2px solid #eee;background:#FAFAFA}
+.tab{
+  flex:1;padding:12px 8px;border:none;background:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;color:#888;
+  transition:var(--tr);border-bottom:3px solid transparent;margin-bottom:-2px;
+}
+.tab:hover{color:var(--tc,#333);background:rgba(0,0,0,.03)}
+.tab.active{color:var(--tc,#333);border-bottom-color:var(--tc,#333);background:#fff}
+
+.tab-pane{display:none;padding:18px 18px 22px}
+.tab-pane.active{display:block}
+.pane-title{font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;
+  margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid currentColor}
+
+/* ── MCQ ── */
+.mcq-card{
+  background:#FAFBFF;border:1px solid #E8ECF8;border-radius:10px;
+  padding:14px 16px;margin-bottom:10px;
+}
+.mcq-q{font-weight:700;font-size:.92rem;margin-bottom:10px;color:#1a1a2e}
+.mcq-num{
+  display:inline-block;background:#1a1a2e;color:#fff;
+  border-radius:50%;width:22px;height:22px;font-size:.72rem;
+  text-align:center;line-height:22px;margin-right:6px;flex-shrink:0;
+}
+.mcq-opts{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+@media(max-width:500px){.mcq-opts{grid-template-columns:1fr}}
+.opt{
+  display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;
+  border:2px solid #E0E0E0;cursor:pointer;font-size:.86rem;font-weight:600;
+  transition:var(--tr);background:#fff;
+}
+.opt:hover{border-color:#42A5F5;background:#E3F2FD}
+.opt-badge{
+  width:24px;height:24px;border-radius:50%;background:#E0E0E0;
+  color:#333;font-size:.72rem;font-weight:800;text-align:center;
+  line-height:24px;flex-shrink:0;transition:var(--tr);
+}
+.opt.correct{background:#E8F5E9;border-color:#4CAF50}
+.opt.correct .opt-badge{background:#4CAF50;color:#fff}
+.opt.wrong{background:#FFEBEE;border-color:#EF5350}
+.opt.wrong .opt-badge{background:#EF5350;color:#fff}
+.mcq-reveal{
+  margin-top:10px;padding:8px 12px;background:#FFF9C4;border-radius:8px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.83rem;
+}
+.correct-badge{background:#4CAF50;color:#fff;padding:3px 10px;border-radius:50px;font-weight:700}
+.exp-text{color:#555;font-style:italic}
+
+/* ── Q&A ── */
+.qa-wrap{margin-bottom:12px;border-radius:10px;overflow:hidden;
+  border:1px solid #E0E6F0;}
+.qa-q{
+  display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;
+  padding:14px 16px;cursor:pointer;background:#F8F9FE;
+  border-left:4px solid #42A5F5;transition:background var(--tr);
+}
+.qa-q:hover{background:#EEF3FF}
+.q-text{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;flex:1;min-width:200px;color:#1a1a2e}
+.tog-icon{color:#aaa;font-size:.9rem;margin-left:auto;align-self:center;transition:transform var(--tr)}
+.qa-q.open .tog-icon{transform:rotate(180deg)}
+.marks-badge{
+  padding:3px 10px;border-radius:50px;font-size:.72rem;font-weight:800;
+  color:#fff;flex-shrink:0;
+}
+.m4{background:#1565C0}.m12{background:#C62828}
+.pyq-pill{
+  background:#FFF3E0;color:#E65100;border:1px solid #FFB74D;
+  padding:2px 9px;border-radius:50px;font-size:.7rem;font-weight:700;
+}
+
+/* ── Exam paper ── */
+.qa-ans{display:none;animation:slidein .3s ease}
+@keyframes slidein{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.qa-ans.show{display:block}
+.exam-paper{
+  background:repeating-linear-gradient(
+    transparent, transparent 27px, #D0E4F5 27px, #D0E4F5 28px
+  ),#FFFEF8;
+  padding:20px 24px 20px 60px;
+  border-left:3px solid #E57373;
+  font-family:'Source Serif 4',serif;
+  font-size:.94rem;line-height:1.75;color:#222;
+  position:relative;
+}
+.exam-paper::before{
+  content:'';position:absolute;left:45px;top:0;bottom:0;
+  width:1px;background:#E57373;opacity:.4;
+}
+/* Exam paper content styles */
+.em-intro{
+  background:rgba(21,101,192,.07);border-left:4px solid #1565C0;
+  padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:12px;
+  font-size:.91rem;
+}
+.em-def{
+  background:rgba(230,81,0,.07);border-left:4px solid #E65100;
+  padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:12px;
+  font-size:.91rem;
+}
+.em-eg{
+  background:rgba(46,125,50,.07);border-left:4px solid #2E7D32;
+  padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;
+  font-size:.91rem;
+}
+.em-concl{
+  background:rgba(198,40,40,.07);border-left:4px solid #C62828;
+  padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px;
+  font-style:italic;font-size:.91rem;
+}
+.algo-box{
+  background:#F8F9FF;padding:12px 14px;border-radius:8px;
+  margin:8px 0;font-size:.88rem;line-height:1.6;
+}
+.exam-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.83rem}
+.exam-table th{background:#1a1a2e;color:#fff;padding:8px 10px;text-align:left}
+.exam-table td{padding:7px 10px;border-bottom:1px solid #e0e0e0}
+.exam-table tr:nth-child(even) td{background:#F5F7FF}
+.fault{color:#C62828;font-weight:800}.hit{color:#2E7D32;font-weight:800}
+.gantt-wrap{display:flex;height:52px;border-radius:8px;overflow:hidden;margin:10px 0}
+.gantt-bar{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:.78rem;
+}
+.state-diagram{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  background:#F0F4FF;padding:14px;border-radius:10px;margin:10px 0;
+  font-size:.85rem;
+}
+.state{padding:8px 16px;border-radius:8px;color:#fff;font-weight:700;font-size:.85rem}
+.state-arrow{color:#666;font-weight:600}
+.new{background:#546E7A}.ready{background:#1565C0}.running{background:#2E7D32}
+.term{background:#C62828}
+
+/* ── Back to top ── */
+#btt{
+  position:fixed;bottom:24px;right:24px;z-index:200;
+  width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#1565C0,#C62828);color:#fff;font-size:1.3rem;
+  box-shadow:0 4px 18px rgba(0,0,0,.3);transition:var(--tr);
+  opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;
+}
+#btt.show{opacity:1;pointer-events:auto}
+#btt:hover{transform:scale(1.12)}
+
+/* ── Expand all bar ── */
+.ctrl-bar{display:flex;gap:10px;justify-content:flex-end;margin-bottom:18px;flex-wrap:wrap}
+.ctrl-btn{
+  background:#1a1a2e;color:#fff;border:none;padding:9px 20px;
+  border-radius:50px;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:.8rem;font-weight:700;transition:var(--tr);
+}
+.ctrl-btn:hover{background:#2c3e6b;transform:scale(1.04)}
+.ctrl-btn.green{background:#2E7D32}.ctrl-btn.red{background:#C62828}
+
+/* ── Footer ── */
+footer{text-align:center;padding:24px;font-size:.8rem;color:#888;border-top:1px solid #e0e0e0}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  .exam-paper{padding:16px 16px 16px 20px}
+  .u-title{font-size:1.2rem}
+  .q-text{font-size:.97rem}
+  .gantt-wrap{height:44px}
+  .gantt-bar{font-size:.68rem}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-particles">
+    <span style="left:10%;top:20%;--d:5s;--delay:0s"></span>
+    <span style="left:25%;top:70%;--d:4s;--delay:.5s"></span>
+    <span style="left:70%;top:30%;--d:6s;--delay:1s"></span>
+    <span style="left:85%;top:65%;--d:3.5s;--delay:.3s"></span>
+    <span style="left:50%;top:10%;--d:4.5s;--delay:.8s"></span>
+    <span style="left:40%;top:85%;--d:5.5s;--delay:.2s"></span>
+  </div>
+  <div class="htag">📚 AKU Patna · BCA 2nd Sem · Code 303205</div>
+  <h1>BCA-205 OS &amp; UNIX</h1>
+  <h2>Complete PYQ Q&A · 12M + 4M Exam Answers · MCQ Solved · Unit-wise</h2>
+  <div class="hero-pills">
+    <span class="hpill">📅 Exam: 16 Sept 2026</span>
+    <span class="hpill">⏰ 10 AM – 1 PM</span>
+    <span class="hpill">📝 60 Marks</span>
+    <span class="hpill">✅ PYQ 2014–2025</span>
+    <span class="hpill">🔴 All Repeated Qs</span>
+  </div>
+  <div class="countdown" id="cd">
+    <div class="cd-box"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Days</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Hrs</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Sec</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav"><a href="#u1" style="--uc:#1565C0">🖥️ U1</a><a href="#u2" style="--uc:#2E7D32">⚙️ U2</a><a href="#u3" style="--uc:#C62828">💾 U3</a><a href="#u4" style="--uc:#6A1B9A">🐧 U4</a><a href="#u5" style="--uc:#00695C">📝 U5</a><a href="#u6" style="--uc:#5D4037">🔧 U6</a></nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="ctrl-bar">
+    <button class="ctrl-btn green" onclick="toggleAll(true)">▼ Expand All Answers</button>
+    <button class="ctrl-btn red" onclick="toggleAll(false)">▲ Collapse All</button>
+  </div>
+  
+        <section class="unit-sec reveal" id="u1">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#1565C0,#0D47A1)">
+            <div class="u-icon">🖥️</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 1</div>
+              <div class="u-title">Introduction, OS Services & CPU Scheduling</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #1565C0;background:#E3F2FD">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🔴 HIGH ALERT: CPU Scheduling asked in 2014, 2022, 2023 (12M). OS services asked in 2019, 2021. System calls in 2021, 2025. All are MUST STUDY!</div>
+          </div>
+
+          <div class="tabs" id="tabs1">
+            <button class="tab active" onclick="switchTab(this,'mcq1')"
+              style="--tc:#1565C0">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four1')"
+              style="--tc:#1565C0">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve1')"
+              style="--tc:#1565C0">12-Mark Q&A (3)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq1">
+            <div class="pane-title" style="color:#1565C0">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> UNIX is a _____ operating system.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_0_0" onclick="revealAns(this,'1_0','A')"><span class="opt-badge">A</span> Single-user</li><li class="opt" id="opt_1_0_1" onclick="revealAns(this,'1_0','B')"><span class="opt-badge">B</span> Multiuser and GUI</li><li class="opt" id="opt_1_0_2" onclick="revealAns(this,'1_0','C')"><span class="opt-badge">C</span> Multiuser and multitasking</li><li class="opt" id="opt_1_0_3" onclick="revealAns(this,'1_0','D')"><span class="opt-badge">D</span> Single-tasking</li></ul>
+              <div class="mcq-reveal" id="mcq_1_0" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2014 — Exact MCQ</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> How many types of schedulers are there?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_1_0" onclick="revealAns(this,'1_1','A')"><span class="opt-badge">A</span> Two</li><li class="opt" id="opt_1_1_1" onclick="revealAns(this,'1_1','B')"><span class="opt-badge">B</span> Three</li><li class="opt" id="opt_1_1_2" onclick="revealAns(this,'1_1','C')"><span class="opt-badge">C</span> Four</li><li class="opt" id="opt_1_1_3" onclick="revealAns(this,'1_1','D')"><span class="opt-badge">D</span> Five</li></ul>
+              <div class="mcq-reveal" id="mcq_1_1" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2014 — Three: Long-term, Short-term, Medium-term</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> SJF stands for ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_2_0" onclick="revealAns(this,'1_2','A')"><span class="opt-badge">A</span> Simple Job First</li><li class="opt" id="opt_1_2_1" onclick="revealAns(this,'1_2','B')"><span class="opt-badge">B</span> Shortest Job First</li><li class="opt" id="opt_1_2_2" onclick="revealAns(this,'1_2','C')"><span class="opt-badge">C</span> System Job First</li><li class="opt" id="opt_1_2_3" onclick="revealAns(this,'1_2','D')"><span class="opt-badge">D</span> Second Job First</li></ul>
+              <div class="mcq-reveal" id="mcq_1_2" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2014 — Shortest Job First</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> The layer between hardware and user program is ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_3_0" onclick="revealAns(this,'1_3','A')"><span class="opt-badge">A</span> Application Software</li><li class="opt" id="opt_1_3_1" onclick="revealAns(this,'1_3','B')"><span class="opt-badge">B</span> Operating System</li><li class="opt" id="opt_1_3_2" onclick="revealAns(this,'1_3','C')"><span class="opt-badge">C</span> Compiler</li><li class="opt" id="opt_1_3_3" onclick="revealAns(this,'1_3','D')"><span class="opt-badge">D</span> Device Driver</li></ul>
+              <div class="mcq-reveal" id="mcq_1_3" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2025 — Operating System</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> Multiprogramming of a computer system increases ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_4_0" onclick="revealAns(this,'1_4','A')"><span class="opt-badge">A</span> Memory</li><li class="opt" id="opt_1_4_1" onclick="revealAns(this,'1_4','B')"><span class="opt-badge">B</span> Storage</li><li class="opt" id="opt_1_4_2" onclick="revealAns(this,'1_4','C')"><span class="opt-badge">C</span> CPU utilization</li><li class="opt" id="opt_1_4_3" onclick="revealAns(this,'1_4','D')"><span class="opt-badge">D</span> Cost</li></ul>
+              <div class="mcq-reveal" id="mcq_1_4" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2025 — CPU utilization</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> A process terminates when ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_5_0" onclick="revealAns(this,'1_5','A')"><span class="opt-badge">A</span> Removed from job queue only</li><li class="opt" id="opt_1_5_1" onclick="revealAns(this,'1_5','B')"><span class="opt-badge">B</span> PCB never deallocated</li><li class="opt" id="opt_1_5_2" onclick="revealAns(this,'1_5','C')"><span class="opt-badge">C</span> PCB is deallocated</li><li class="opt" id="opt_1_5_3" onclick="revealAns(this,'1_5','D')"><span class="opt-badge">D</span> None of above</li></ul>
+              <div class="mcq-reveal" id="mcq_1_5" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2025 — PCB is deallocated</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> Which is NOT a scheduling criterion?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_6_0" onclick="revealAns(this,'1_6','A')"><span class="opt-badge">A</span> CPU utilization</li><li class="opt" id="opt_1_6_1" onclick="revealAns(this,'1_6','B')"><span class="opt-badge">B</span> Throughput</li><li class="opt" id="opt_1_6_2" onclick="revealAns(this,'1_6','C')"><span class="opt-badge">C</span> Compilation time</li><li class="opt" id="opt_1_6_3" onclick="revealAns(this,'1_6','D')"><span class="opt-badge">D</span> Waiting time</li></ul>
+              <div class="mcq-reveal" id="mcq_1_6" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Compilation time is not a scheduling criterion</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> Round Robin scheduling uses ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_1_7_0" onclick="revealAns(this,'1_7','A')"><span class="opt-badge">A</span> Priority</li><li class="opt" id="opt_1_7_1" onclick="revealAns(this,'1_7','B')"><span class="opt-badge">B</span> Arrival order</li><li class="opt" id="opt_1_7_2" onclick="revealAns(this,'1_7','C')"><span class="opt-badge">C</span> Time quantum</li><li class="opt" id="opt_1_7_3" onclick="revealAns(this,'1_7','D')"><span class="opt-badge">D</span> Shortest burst</li></ul>
+              <div class="mcq-reveal" id="mcq_1_7" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Fixed time quantum (slice)</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four1">
+            <div class="pane-title" style="color:#1565C0">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2021 Q1(a,c) | 2023 Q1</span>
+                <div class="q-text">What is multiprogramming? How does it differ from time-sharing?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Multiprogramming:</b> Keeps several jobs in main memory simultaneously. When running job waits for I/O, CPU immediately switches to another ready job — keeps CPU busy all the time.</div>
+
+<div class="em-def">📖 <b>Time-Sharing:</b> Extension of multiprogramming. Switching is so rapid (using time quanta/slices) that every user feels they have a dedicated computer.</div>
+
+<b>Key Differences:</b>
+<table class="exam-table">
+<tr><th>Aspect</th><th>Multiprogramming</th><th>Time-Sharing</th></tr>
+<tr><td>Goal</td><td>Maximise CPU utilisation</td><td>Minimise response time</td></tr>
+<tr><td>Switch trigger</td><td>I/O event</td><td>Fixed time quantum</td></tr>
+<tr><td>Users</td><td>Batch jobs</td><td>Interactive users</td></tr>
+<tr><td>Example</td><td>Background print job</td><td>30 students on one server</td></tr>
+</table>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Multiprogramming increases efficiency; time-sharing increases interactivity. Together they form the foundation of all modern operating systems.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2023 Q1(b) | Syllabus-core</span>
+                <div class="q-text">What is I/O buffering? Explain its types.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>I/O Buffering:</b> A technique of using a temporary memory area (buffer) to hold data being transferred between a device and a program, smoothing out their speed difference. Devices are much slower than CPUs.</div>
+
+<b>Types of Buffering:</b>
+<ol>
+<li><b>Single Buffering:</b> One buffer between device and process. While process consumes buffer, device cannot write — inefficient.</li>
+<li><b>Double Buffering:</b> Two buffers used alternately. One fills while the other is consumed simultaneously — much faster.</li>
+<li><b>Circular Buffering:</b> Multiple buffers in a circular queue. Used for continuous data streams like audio/video.</li>
+</ol>
+
+<div class="em-eg">💡 <b>Example:</b> Typing in an editor uses a keyboard buffer. Copying a large video reads it in chunks into a disk buffer instead of one byte at a time.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Buffering is essential because I/O devices are far slower than CPUs. Without buffering, the CPU would waste most of its time waiting for devices.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve1">
+            <div class="pane-title" style="color:#1565C0">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #1565C0">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2019 Q2(a) | 2021 | Repeated 12-mark — MUST PREPARE</span>
+                <div class="q-text">What is an Operating System? What are the various services provided by the Operating System? Explain each with examples.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> An Operating System is the most essential software in a computer. It acts as an intermediary between the hardware and the user, managing all hardware resources and providing a convenient, safe environment for programs and users.</div>
+
+<div class="em-def">📖 <b>Definition:</b> An Operating System is system software that manages computer hardware resources and provides common services for computer programs. It sits between the hardware layer (CPU, memory, devices) and the application software layer (Word, Chrome, games).</div>
+
+<b>Goals of an Operating System:</b>
+<ol>
+<li><b>Convenience</b> — makes the computer easier to use.</li>
+<li><b>Efficiency</b> — ensures optimum use of hardware resources.</li>
+<li><b>Ability to evolve</b> — new features can be added without disturbing existing services.</li>
+</ol>
+
+<b>Services Provided by OS:</b>
+<ol>
+<li><b>Program Execution:</b> The OS loads a program into memory, runs it, and ends it normally or on error. Example: Double-clicking a game icon — OS loads it and runs it.</li>
+<li><b>I/O Operations:</b> User programs cannot access I/O devices directly for safety. OS performs I/O on their behalf. Example: Printing a document.</li>
+<li><b>File-System Manipulation:</b> Create, delete, open, close, read, and write files and directories. Example: Saving a Word document.</li>
+<li><b>Communication:</b> Exchange of information between processes using shared memory or message passing. Example: Copy-paste between two applications.</li>
+<li><b>Error Detection:</b> Constantly watches for CPU, memory, I/O, and program errors and takes appropriate action. Example: "Application has stopped working" error message.</li>
+<li><b>Resource Allocation:</b> CPU cycles, memory and storage allotted fairly among many users/jobs. Example: Sharing CPU time between Chrome, music player, and antivirus.</li>
+<li><b>Accounting:</b> Keeps track of which user/job uses how much of which resource (important for billing in multi-user systems).</li>
+<li><b>Protection and Security:</b> Controlled access to resources and defence against outside attack. Example: Login password, file permissions.</li>
+</ol>
+
+<div class="em-eg">💡 <b>Real Life Example:</b> When you save a Word document (file-system service), print it (I/O service), and listen to music at the same time (resource allocation) — the OS manages all three simultaneously, invisibly.</div>
+
+<table class="exam-table">
+<tr><th>Service</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>Program Execution</td><td>Load and run programs</td><td>Opening an app</td></tr>
+<tr><td>I/O Operations</td><td>Safe device access</td><td>Printing</td></tr>
+<tr><td>File Management</td><td>Organise data</td><td>Save/Open files</td></tr>
+<tr><td>Error Detection</td><td>Monitor system</td><td>Blue screen alert</td></tr>
+<tr><td>Protection</td><td>Security</td><td>Password login</td></tr>
+</table>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> The Operating System is indispensable — without it, no program can run, no file can be saved, and no device can be used safely. It makes the computer usable, safe, and efficient for every user. Modern OS like Windows and Linux provide all eight services simultaneously.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #1565C0">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2014 Q3 | 2022 Q3 | 2023 Q7 — MOST REPEATED 12-mark in the entire paper</span>
+                <div class="q-text">Explain CPU Scheduling. What are the scheduling criteria? Describe FCFS, SJF, Priority Scheduling and Round Robin algorithms with a solved numerical example.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> In a multiprogrammed OS, many processes reside in memory but only one can use the CPU at a time on a single core. CPU Scheduling is the process by which the OS decides which ready process gets the CPU next, aiming to maximise efficiency and fairness.</div>
+
+<div class="em-def">📖 <b>Definition:</b> CPU Scheduling is the activity of the short-term scheduler that selects, from among the processes in the ready queue, which process will get the CPU next. The dispatcher then switches the CPU to that process (context switch).</div>
+
+<b>Scheduling Criteria (Goals to Optimise):</b>
+<ol>
+<li><b>CPU Utilisation</b> — Keep the CPU as busy as possible (MAXIMISE). Target: 40-90%.</li>
+<li><b>Throughput</b> — Number of processes completed per unit time (MAXIMISE).</li>
+<li><b>Turnaround Time (TAT)</b> = Completion Time − Arrival Time (MINIMISE).</li>
+<li><b>Waiting Time (WT)</b> = Turnaround Time − Burst Time (MINIMISE).</li>
+<li><b>Response Time</b> — Time from submission to first response (MINIMISE). Critical for interactive systems.</li>
+</ol>
+
+<b>CPU Scheduling Algorithms:</b>
+
+<div class="algo-box" style="border-left:5px solid #FF6B6B">
+<b>1. FCFS — First Come First Served</b><br>
+Non-preemptive. Processes run in arrival order (like a queue at a ticket counter).<br>
+<b>Problem: Convoy Effect</b> — one long job blocks all shorter jobs behind it, causing high average waiting time.
+</div>
+
+<div class="algo-box" style="border-left:5px solid #4CAF50">
+<b>2. SJF — Shortest Job First</b><br>
+Non-preemptive. Process with the shortest CPU burst time runs next.<br>
+<b>Advantage:</b> Gives optimal (minimum) average waiting time.<br>
+<b>Problem:</b> Starvation of long jobs. Needs burst time prediction.
+</div>
+
+<div class="algo-box" style="border-left:5px solid #FF9800">
+<b>3. Priority Scheduling</b><br>
+CPU goes to the highest-priority ready process (smaller number = higher priority usually).<br>
+Can be preemptive or non-preemptive.<br>
+<b>Problem:</b> Starvation. <b>Solution:</b> Aging — gradually increase priority of waiting processes.
+</div>
+
+<div class="algo-box" style="border-left:5px solid #9C27B0">
+<b>4. Round Robin (RR)</b><br>
+Preemptive. Each process gets a fixed time quantum, then joins the back of the ready queue.<br>
+<b>Best for:</b> Time-sharing/interactive systems.<br>
+<b>Note:</b> Large quantum → behaves like FCFS. Small quantum → too many context switches (overhead).
+</div>
+
+<b>Solved Numerical (FCFS):</b><br>
+Processes: P1(AT=0, BT=5), P2(AT=1, BT=3), P3(AT=2, BT=8), P4(AT=3, BT=6), P5(AT=4, BT=2)
+
+<div class="gantt-wrap">
+<div class="gantt-bar" style="width:21%;background:#1565C0">P1<br><small>0-5</small></div>
+<div class="gantt-bar" style="width:13%;background:#2E7D32">P2<br><small>5-8</small></div>
+<div class="gantt-bar" style="width:33%;background:#C62828">P3<br><small>8-16</small></div>
+<div class="gantt-bar" style="width:25%;background:#6A1B9A">P4<br><small>16-22</small></div>
+<div class="gantt-bar" style="width:8%;background:#E65100">P5<br><small>22-24</small></div>
+</div>
+
+<table class="exam-table">
+<tr><th>Process</th><th>AT</th><th>BT</th><th>CT</th><th>TAT=CT-AT</th><th>WT=TAT-BT</th></tr>
+<tr><td>P1</td><td>0</td><td>5</td><td>5</td><td>5</td><td>0</td></tr>
+<tr><td>P2</td><td>1</td><td>3</td><td>8</td><td>7</td><td>4</td></tr>
+<tr><td>P3</td><td>2</td><td>8</td><td>16</td><td>14</td><td>6</td></tr>
+<tr><td>P4</td><td>3</td><td>6</td><td>22</td><td>19</td><td>13</td></tr>
+<tr><td>P5</td><td>4</td><td>2</td><td>24</td><td>20</td><td>18</td></tr>
+<tr style="background:#FFF9C4"><td colspan="4"><b>Average</b></td><td><b>13.0</b></td><td><b>8.2</b></td></tr>
+</table>
+
+<div class="em-eg">💡 <b>SJF on same data:</b> After P1 finishes at t=5, all others have arrived. Order: P5(BT=2) → P2(BT=3) → P4(BT=6) → P3(BT=8). <b>SJF Avg WT = 5.6</b> — much better than FCFS (8.2). This proves SJF gives optimal average waiting time.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> No single algorithm is perfect for all situations. FCFS is simple but has convoy effect. SJF is optimal for average WT but needs burst prediction. Round Robin is best for interactive systems. Real OS like Linux use Multilevel Feedback Queue — combining multiple algorithms to balance fairness, efficiency and responsiveness.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #1565C0">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2021 Q3 | 2025 Q3 | 12-mark</span>
+                <div class="q-text">What are system calls? Describe their types with examples. Also explain storage structures (memory hierarchy).</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> User programs run in 'user mode' and cannot directly access hardware for safety. System calls provide the only safe mechanism for a user program to request OS services.</div>
+
+<div class="em-def">📖 <b>Definition:</b> A system call is a programmatic interface (API) that allows a user-level program to request a service from the OS kernel. It causes a mode switch from user mode to kernel mode via a TRAP instruction.</div>
+
+<b>How a System Call Works:</b>
+<ol>
+<li>User program calls a library function (e.g., fopen())</li>
+<li>Library function invokes the system call (e.g., open())</li>
+<li>TRAP instruction fires → CPU switches to kernel mode</li>
+<li>OS kernel performs the requested service</li>
+<li>Result returned → CPU switches back to user mode</li>
+</ol>
+
+<b>Types of System Calls:</b>
+<ol>
+<li><b>Process Control:</b> fork() [create process], exec() [run program], exit() [terminate], wait() [wait for child]. Example: Running a new program from terminal.</li>
+<li><b>File Management:</b> open(), close(), read(), write(), create(), delete(). Example: Opening a text file in a text editor.</li>
+<li><b>Device Management:</b> ioctl() [device control], read(), write() for devices. Example: Reading from keyboard.</li>
+<li><b>Information Maintenance:</b> getpid() [get process ID], time() [get system time], alarm(). Example: A program checking how long it has been running.</li>
+<li><b>Communication:</b> pipe() [create pipe], socket() [network], send(), receive(). Example: Two processes exchanging data via a pipe.</li>
+</ol>
+
+<b>Storage Structures (Memory Hierarchy):</b>
+<table class="exam-table">
+<tr><th>Level</th><th>Type</th><th>Speed</th><th>Size</th><th>Volatile?</th></tr>
+<tr><td>1 (Top)</td><td>CPU Registers</td><td>Fastest</td><td>Few bytes</td><td>Yes</td></tr>
+<tr><td>2</td><td>Cache (L1/L2/L3)</td><td>Very fast</td><td>KB-MB</td><td>Yes</td></tr>
+<tr><td>3</td><td>Main Memory (RAM)</td><td>Fast</td><td>GB</td><td>Yes</td></tr>
+<tr><td>4</td><td>Secondary (HDD/SSD)</td><td>Slow</td><td>TB</td><td>No</td></tr>
+<tr><td>5 (Bottom)</td><td>Tertiary (Tape)</td><td>Slowest</td><td>PB</td><td>No</td></tr>
+</table>
+
+<div class="em-eg">💡 <b>Memory trick:</b> "Rich Children Read Hard Textbooks" = Registers, Cache, RAM, HDD, Tape. As we go down: Slower, Cheaper, Bigger, Permanent.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> System calls are the backbone of the user-kernel boundary. The memory hierarchy explains why caching exists — to bridge the huge speed gap between fast CPUs and slow storage devices.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="unit-sec reveal" id="u2">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#2E7D32,#1B5E20)">
+            <div class="u-icon">⚙️</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 2</div>
+              <div class="u-title">Process Management</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #2E7D32;background:#E8F5E9">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🔴 HIGHEST PRIORITY: Deadlock asked in 2016,2017,2019,2021,2022,2023 (6 years!). Critical Section/Semaphores in 2016,2017,2019,2022,2023. Process States in 2019. These 3 topics alone can give you 36 marks!</div>
+          </div>
+
+          <div class="tabs" id="tabs2">
+            <button class="tab active" onclick="switchTab(this,'mcq2')"
+              style="--tc:#2E7D32">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four2')"
+              style="--tc:#2E7D32">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve2')"
+              style="--tc:#2E7D32">12-Mark Q&A (2)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq2">
+            <div class="pane-title" style="color:#2E7D32">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> A process is ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_0_0" onclick="revealAns(this,'2_0','A')"><span class="opt-badge">A</span> Program on disk</li><li class="opt" id="opt_2_0_1" onclick="revealAns(this,'2_0','B')"><span class="opt-badge">B</span> Program in execution</li><li class="opt" id="opt_2_0_2" onclick="revealAns(this,'2_0','C')"><span class="opt-badge">C</span> Program in compiler</li><li class="opt" id="opt_2_0_3" onclick="revealAns(this,'2_0','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_2_0" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2021 — A program in execution</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> Which is NOT a necessary condition for deadlock?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_1_0" onclick="revealAns(this,'2_1','A')"><span class="opt-badge">A</span> Mutual Exclusion</li><li class="opt" id="opt_2_1_1" onclick="revealAns(this,'2_1','B')"><span class="opt-badge">B</span> Hold and Wait</li><li class="opt" id="opt_2_1_2" onclick="revealAns(this,'2_1','C')"><span class="opt-badge">C</span> Preemption</li><li class="opt" id="opt_2_1_3" onclick="revealAns(this,'2_1','D')"><span class="opt-badge">D</span> Circular Wait</li></ul>
+              <div class="mcq-reveal" id="mcq_2_1" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2023 — No Preemption (NOT Preemption) is the condition</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> Semaphore wait() operation is also called ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_2_0" onclick="revealAns(this,'2_2','A')"><span class="opt-badge">A</span> V()</li><li class="opt" id="opt_2_2_1" onclick="revealAns(this,'2_2','B')"><span class="opt-badge">B</span> Signal()</li><li class="opt" id="opt_2_2_2" onclick="revealAns(this,'2_2','C')"><span class="opt-badge">C</span> P()</li><li class="opt" id="opt_2_2_3" onclick="revealAns(this,'2_2','D')"><span class="opt-badge">D</span> Down()</li></ul>
+              <div class="mcq-reveal" id="mcq_2_2" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — wait() = P() = down(). signal() = V() = up()</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> SJF stands for: the process with ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_3_0" onclick="revealAns(this,'2_3','A')"><span class="opt-badge">A</span> Shortest arrival time</li><li class="opt" id="opt_2_3_1" onclick="revealAns(this,'2_3','B')"><span class="opt-badge">B</span> Longest burst time</li><li class="opt" id="opt_2_3_2" onclick="revealAns(this,'2_3','C')"><span class="opt-badge">C</span> Shortest burst time</li><li class="opt" id="opt_2_3_3" onclick="revealAns(this,'2_3','D')"><span class="opt-badge">D</span> Highest priority</li></ul>
+              <div class="mcq-reveal" id="mcq_2_3" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Shortest Job (burst time) First</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> Which of the following is a synchronization tool?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_4_0" onclick="revealAns(this,'2_4','A')"><span class="opt-badge">A</span> Pipe</li><li class="opt" id="opt_2_4_1" onclick="revealAns(this,'2_4','B')"><span class="opt-badge">B</span> Thread</li><li class="opt" id="opt_2_4_2" onclick="revealAns(this,'2_4','C')"><span class="opt-badge">C</span> Socket</li><li class="opt" id="opt_2_4_3" onclick="revealAns(this,'2_4','D')"><span class="opt-badge">D</span> Semaphore</li></ul>
+              <div class="mcq-reveal" id="mcq_2_4" style="display:none">
+                <span class="correct-badge">✅ Correct: D</span>
+                <span class="exp-text">PYQ 2025 — Semaphore is the synchronization tool</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> Interprocess communication is ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_5_0" onclick="revealAns(this,'2_5','A')"><span class="opt-badge">A</span> Communication between threads</li><li class="opt" id="opt_2_5_1" onclick="revealAns(this,'2_5','B')"><span class="opt-badge">B</span> Communication between two processes</li><li class="opt" id="opt_2_5_2" onclick="revealAns(this,'2_5','C')"><span class="opt-badge">C</span> Within one process</li><li class="opt" id="opt_2_5_3" onclick="revealAns(this,'2_5','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_2_5" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2025 — Between two processes</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> The classical problem Producer-Consumer uses how many semaphores?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_6_0" onclick="revealAns(this,'2_6','A')"><span class="opt-badge">A</span> One</li><li class="opt" id="opt_2_6_1" onclick="revealAns(this,'2_6','B')"><span class="opt-badge">B</span> Two</li><li class="opt" id="opt_2_6_2" onclick="revealAns(this,'2_6','C')"><span class="opt-badge">C</span> Three</li><li class="opt" id="opt_2_6_3" onclick="revealAns(this,'2_6','D')"><span class="opt-badge">D</span> Four</li></ul>
+              <div class="mcq-reveal" id="mcq_2_6" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Three: empty, full, mutex</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> In Round Robin scheduling, if quantum is too small ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_2_7_0" onclick="revealAns(this,'2_7','A')"><span class="opt-badge">A</span> Better response</li><li class="opt" id="opt_2_7_1" onclick="revealAns(this,'2_7','B')"><span class="opt-badge">B</span> High context switch overhead</li><li class="opt" id="opt_2_7_2" onclick="revealAns(this,'2_7','C')"><span class="opt-badge">C</span> Same as FCFS</li><li class="opt" id="opt_2_7_3" onclick="revealAns(this,'2_7','D')"><span class="opt-badge">D</span> Starvation occurs</li></ul>
+              <div class="mcq-reveal" id="mcq_2_7" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — Too small quantum = too many context switches = overhead</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four2">
+            <div class="pane-title" style="color:#2E7D32">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2021 Q1(e) | 2019 Q3 | Repeated</span>
+                <div class="q-text">Define process. Explain the five states of a process with a state diagram.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Definition:</b> A process is a program in execution. It is an active entity. A program is a passive entity (on disk); a process is the program plus its current activity (program counter, registers, stack, data).</div>
+
+<b>Five Process States:</b>
+<ol>
+<li><b>New:</b> The process is being created.</li>
+<li><b>Ready:</b> Process is in memory, waiting to be assigned to the CPU.</li>
+<li><b>Running:</b> CPU is currently executing its instructions.</li>
+<li><b>Waiting (Blocked):</b> Process is waiting for an I/O event or signal.</li>
+<li><b>Terminated:</b> Process has finished execution.</li>
+</ol>
+
+<div class="state-diagram">
+<div class="state new">New</div>
+<div class="state-arrow">→ admitted →</div>
+<div class="state ready">Ready</div>
+<div class="state-arrow">⇌ dispatch / timeout</div>
+<div class="state running">Running</div>
+<div class="state-arrow">→ exit →</div>
+<div class="state term">Terminated</div>
+<br>
+<div style="text-align:center;margin-top:8px">Running ↓ I/O wait → Waiting → I/O done ↑ → Ready</div>
+</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Process states and the PCB let a multiprogrammed OS track and safely switch between many programs that appear to run simultaneously.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2021 Q4 | 2025 Q4 | Repeated</span>
+                <div class="q-text">What is a thread? Differentiate between user-level and kernel-level threads.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Definition:</b> A thread is a lightweight process — the basic unit of CPU utilisation within a process. It has its own thread ID, program counter, registers, and stack, but SHARES the code, data, and OS resources with other threads of the same process.</div>
+
+<table class="exam-table">
+<tr><th>Aspect</th><th>User-Level Threads</th><th>Kernel-Level Threads</th></tr>
+<tr><td>Managed by</td><td>Thread library (user space)</td><td>OS Kernel</td></tr>
+<tr><td>Kernel aware?</td><td>No</td><td>Yes</td></tr>
+<tr><td>Speed</td><td>Fast to create/switch</td><td>Slower (kernel call needed)</td></tr>
+<tr><td>Blocking</td><td>One block = all block</td><td>One block = others continue</td></tr>
+<tr><td>Example</td><td>POSIX Pthreads</td><td>Windows threads, Linux clone()</td></tr>
+</table>
+
+<div class="em-eg">💡 <b>Example:</b> A word processor uses one thread for typing (user input) and another for spell-check (background) — same process, shared document memory.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Threads allow a process to do multiple tasks concurrently far more cheaply than creating separate processes, since they share the same address space.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve2">
+            <div class="pane-title" style="color:#2E7D32">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #2E7D32">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2016 Q1(c) | 2022 Q4 | 2023 Q3 — Repeated every year — MUST PREPARE</span>
+                <div class="q-text">What is the critical-section problem? State its three requirements. Explain semaphores and solve the Producer-Consumer problem using semaphores.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> When multiple processes access shared data concurrently without any control, the result depends on the exact order of execution — this is called a race condition. The critical-section problem is about designing a solution that prevents race conditions.</div>
+
+<div class="em-def">📖 <b>Critical Section:</b> The segment of code in a process where it accesses shared resources (shared variables, files, buffers) that must not be accessed simultaneously by more than one process.</div>
+
+<b>Three Requirements for a Correct Solution:</b>
+<ol>
+<li><b>Mutual Exclusion:</b> If process Pi is executing in its critical section, no other process can execute in its critical section at the same time. (Only one at a time)</li>
+<li><b>Progress:</b> If no process is in its critical section, and some processes wish to enter, the decision of who enters next cannot be postponed indefinitely.</li>
+<li><b>Bounded Waiting:</b> There must be a bound on the number of times other processes can enter their critical section after a process has made a request — no starvation allowed.</li>
+</ol>
+
+<b>Semaphore Solution:</b>
+<div class="em-def">📖 <b>Semaphore:</b> An integer variable accessed only through two atomic operations:
+<ul>
+<li><b>wait(S) / P() / down():</b> Decrements S. If S becomes negative, the process blocks.</li>
+<li><b>signal(S) / V() / up():</b> Increments S. If S was negative (processes waiting), wakes one up.</li>
+</ul>
+Types: <b>Binary semaphore (mutex)</b> — value 0 or 1. <b>Counting semaphore</b> — any integer value.</div>
+
+<b>Classical Problem: Producer-Consumer (Bounded Buffer)</b>
+<div class="algo-box" style="border-left:5px solid #2E7D32">
+<b>Setup:</b> Producer adds items to a bounded buffer. Consumer removes items. Buffer has N slots.<br><br>
+<b>Three Semaphores:</b><br>
+• <b>mutex</b> = 1 (binary — mutual exclusion for buffer access)<br>
+• <b>empty</b> = N (counting — number of empty slots)<br>
+• <b>full</b> = 0 (counting — number of filled slots)<br><br>
+<b>Producer code:</b><br>
+wait(empty);  // wait if no empty slot<br>
+wait(mutex);  // enter critical section<br>
+// add item to buffer<br>
+signal(mutex); // exit critical section<br>
+signal(full);  // signal that one more slot is filled<br><br>
+<b>Consumer code:</b><br>
+wait(full);   // wait if no item to consume<br>
+wait(mutex);  // enter critical section<br>
+// remove item from buffer<br>
+signal(mutex); // exit critical section<br>
+signal(empty); // signal that one more slot is free
+</div>
+
+<b>Other Classical Synchronization Problems:</b>
+<ol>
+<li><b>Readers-Writers Problem:</b> Multiple readers can read simultaneously, but writers need exclusive access. Solved using reader count + mutex + write semaphore.</li>
+<li><b>Dining Philosophers Problem:</b> 5 philosophers, 5 forks between them. Need both neighbouring forks to eat. Naive solution → deadlock (all pick left fork). Fix: Allow at most 4 to sit, or asymmetric rule (odd picks left first, even picks right first).</li>
+</ol>
+
+<div class="em-eg">💡 <b>Real Example:</b> A print spooler is a producer-consumer system. Applications (producers) add print jobs. The printer driver (consumer) removes and prints them. Semaphores ensure no two apps corrupt the job queue simultaneously.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Semaphores are the standard, simple tool operating systems use to guarantee mutual exclusion, progress and bounded waiting. The three requirements — Mutual Exclusion, Progress, Bounded Waiting — must ALL be satisfied for a correct critical-section solution. These three terms must be written in every exam answer on this topic.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #2E7D32">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2016 Q2(d) | 2019 Q2(b) | 2021 Q5 | 2022 Q5 | 2023 Q4 — 5 years repeated</span>
+                <div class="q-text">What are the necessary conditions for deadlock? Explain deadlock prevention. Describe the Banker's Algorithm with a solved example.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> A deadlock is one of the most serious problems in multiprogrammed systems. It is a situation where processes permanently block each other, wasting all their allocated resources without making any progress.</div>
+
+<div class="em-def">📖 <b>Definition:</b> A deadlock is a state in which each process in a set is waiting for an event (typically resource release) that can only be caused by another process in the same set. Result: no process in the set can ever proceed.</div>
+
+<b>Four Necessary Conditions for Deadlock (Coffman Conditions):</b>
+<ol>
+<li><b>Mutual Exclusion:</b> At least one resource must be held in non-shareable mode. (Only one process can use it at a time.)</li>
+<li><b>Hold and Wait:</b> A process holding at least one resource is waiting to acquire additional resources held by other processes.</li>
+<li><b>No Preemption:</b> Resources cannot be forcibly taken from a process. They can only be released voluntarily.</li>
+<li><b>Circular Wait:</b> A circular chain exists: P0 waits for a resource held by P1, P1 waits for P2's resource, ..., Pn waits for P0's resource.</li>
+</ol>
+<div class="em-eg">⚠️ <b>KEY EXAM POINT:</b> ALL FOUR conditions must hold simultaneously for deadlock to occur. Remove ANY ONE condition → no deadlock possible.</div>
+
+<b>Deadlock Prevention (Remove one condition):</b>
+<ol>
+<li><b>Break Mutual Exclusion:</b> Make resources shareable where possible (not always practical — printers cannot be shared mid-job).</li>
+<li><b>Break Hold and Wait:</b> Require process to request ALL resources before it starts. OR: release all resources before making a new request.</li>
+<li><b>Break No Preemption:</b> If a process holding resources requests one unavailable, take away all its current resources. Restart when all resources available.</li>
+<li><b>Break Circular Wait:</b> Impose a strict total ordering on resource types. Require each process to request resources ONLY in increasing order of their type number.</li>
+</ol>
+
+<b>Deadlock Avoidance — Banker's Algorithm:</b>
+<div class="em-def">📖 <b>Concept:</b> The OS acts like a bank manager — grant a loan (resource) only if after granting it, the system remains in a SAFE STATE (all processes can still eventually finish).<br><br>
+<b>Key Formula: Need = Max − Allocation</b><br><br>
+<b>Safe State:</b> A state is safe if there exists a sequence (safe sequence) in which all processes can finish, each getting its maximum need met.</div>
+
+<b>Banker's Algorithm — Solved Example:</b><br>
+5 Processes (P0-P4), 3 Resource Types (A,B,C). Available = (3,3,2)
+
+<table class="exam-table">
+<tr><th>Process</th><th>Allocation (A,B,C)</th><th>Max (A,B,C)</th><th>Need=Max-Alloc</th></tr>
+<tr><td>P0</td><td>0,1,0</td><td>7,5,3</td><td>7,4,3</td></tr>
+<tr><td>P1</td><td>2,0,0</td><td>3,2,2</td><td>1,2,2</td></tr>
+<tr><td>P2</td><td>3,0,2</td><td>9,0,2</td><td>6,0,0</td></tr>
+<tr><td>P3</td><td>2,1,1</td><td>2,2,2</td><td>0,1,1</td></tr>
+<tr><td>P4</td><td>0,0,2</td><td>4,3,3</td><td>4,3,1</td></tr>
+</table>
+
+<b>Safety Algorithm Trace:</b>
+<div class="algo-box" style="border-left:5px solid #2E7D32; font-size:0.88rem">
+Available = (3,3,2)<br>
+Step 1: Need(P1)=(1,2,2) ≤ (3,3,2) ✓ → Run P1 → Available = (3+2,3+0,2+0) = (5,3,2)<br>
+Step 2: Need(P3)=(0,1,1) ≤ (5,3,2) ✓ → Run P3 → Available = (5+2,3+1,2+1) = (7,4,3)<br>
+Step 3: Need(P0)=(7,4,3) ≤ (7,4,3) ✓ → Run P0 → Available = (7+0,4+1,3+0) = (7,5,3)<br>
+Step 4: Need(P2)=(6,0,0) ≤ (7,5,3) ✓ → Run P2 → Available = (7+3,5+0,3+2) = (10,5,5)<br>
+Step 5: Need(P4)=(4,3,1) ≤ (10,5,5) ✓ → Run P4<br>
+<b>Result: SAFE STATE ✓ | Safe Sequence: P1 → P3 → P0 → P2 → P4</b>
+</div>
+
+<b>Deadlock Recovery:</b>
+<ol>
+<li><b>Process Termination:</b> Abort all deadlocked processes at once (drastic), or abort one at a time until cycle breaks.</li>
+<li><b>Resource Preemption:</b> Forcibly take resources from a victim process, roll it back, restart later. Ensure same process is not always victim (to avoid starvation).</li>
+</ol>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Deadlock prevention removes one of the four conditions structurally but may reduce resource utilisation. The Banker's Algorithm avoids deadlock at runtime by only granting safe requests. In AKU exams, always write all four Coffman conditions by name and always write the safety sequence when solving Banker's Algorithm.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="unit-sec reveal" id="u3">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#C62828,#B71C1C)">
+            <div class="u-icon">💾</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 3</div>
+              <div class="u-title">Memory Management</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #C62828;background:#FFEBEE">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🔴 VERY HIGH: Page replacement asked in 2016,2017,2018,2019,2021,2022,2023 — 7 out of 9 years! Paging in 2014,2021. Virtual memory/page fault in 2016,2017. Fragmentation in 2018,2019,2022. Thrashing in 2019,2022.</div>
+          </div>
+
+          <div class="tabs" id="tabs3">
+            <button class="tab active" onclick="switchTab(this,'mcq3')"
+              style="--tc:#C62828">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four3')"
+              style="--tc:#C62828">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve3')"
+              style="--tc:#C62828">12-Mark Q&A (2)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq3">
+            <div class="pane-title" style="color:#C62828">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> Logical address is generated by ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_0_0" onclick="revealAns(this,'3_0','A')"><span class="opt-badge">A</span> Memory</li><li class="opt" id="opt_3_0_1" onclick="revealAns(this,'3_0','B')"><span class="opt-badge">B</span> Disk</li><li class="opt" id="opt_3_0_2" onclick="revealAns(this,'3_0','C')"><span class="opt-badge">C</span> CPU</li><li class="opt" id="opt_3_0_3" onclick="revealAns(this,'3_0','D')"><span class="opt-badge">D</span> I/O Device</li></ul>
+              <div class="mcq-reveal" id="mcq_3_0" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — CPU generates logical (virtual) addresses during execution</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> Which page replacement algorithm suffers from Belady's Anomaly?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_1_0" onclick="revealAns(this,'3_1','A')"><span class="opt-badge">A</span> LRU</li><li class="opt" id="opt_3_1_1" onclick="revealAns(this,'3_1','B')"><span class="opt-badge">B</span> Optimal</li><li class="opt" id="opt_3_1_2" onclick="revealAns(this,'3_1','C')"><span class="opt-badge">C</span> FIFO</li><li class="opt" id="opt_3_1_3" onclick="revealAns(this,'3_1','D')"><span class="opt-badge">D</span> MRU</li></ul>
+              <div class="mcq-reveal" id="mcq_3_1" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2018 — FIFO can have more page faults with more frames (Belady's Anomaly)</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> Thrashing occurs when ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_2_0" onclick="revealAns(this,'3_2','A')"><span class="opt-badge">A</span> CPU is idle</li><li class="opt" id="opt_3_2_1" onclick="revealAns(this,'3_2','B')"><span class="opt-badge">B</span> System has too many frames</li><li class="opt" id="opt_3_2_2" onclick="revealAns(this,'3_2','C')"><span class="opt-badge">C</span> Process spends more time paging than executing</li><li class="opt" id="opt_3_2_3" onclick="revealAns(this,'3_2','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_3_2" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2019/2022 — More time paging than executing</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> Internal fragmentation occurs in ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_3_0" onclick="revealAns(this,'3_3','A')"><span class="opt-badge">A</span> Variable partitions</li><li class="opt" id="opt_3_3_1" onclick="revealAns(this,'3_3','B')"><span class="opt-badge">B</span> Segmentation</li><li class="opt" id="opt_3_3_2" onclick="revealAns(this,'3_3','C')"><span class="opt-badge">C</span> Fixed partitions/paging</li><li class="opt" id="opt_3_3_3" onclick="revealAns(this,'3_3','D')"><span class="opt-badge">D</span> Linked lists</li></ul>
+              <div class="mcq-reveal" id="mcq_3_3" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2022 — Fixed-size blocks cause internal fragmentation</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> ____ is a technique of temporarily removing inactive programs from memory.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_4_0" onclick="revealAns(this,'3_4','A')"><span class="opt-badge">A</span> Paging</li><li class="opt" id="opt_3_4_1" onclick="revealAns(this,'3_4','B')"><span class="opt-badge">B</span> Segmentation</li><li class="opt" id="opt_3_4_2" onclick="revealAns(this,'3_4','C')"><span class="opt-badge">C</span> Swapping</li><li class="opt" id="opt_3_4_3" onclick="revealAns(this,'3_4','D')"><span class="opt-badge">D</span> Caching</li></ul>
+              <div class="mcq-reveal" id="mcq_3_4" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2016/2017/2018 — Exact fill-in PYQ — Answer: Swapping</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> The memory allocation scheme subject to external fragmentation is ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_5_0" onclick="revealAns(this,'3_5','A')"><span class="opt-badge">A</span> Paging</li><li class="opt" id="opt_3_5_1" onclick="revealAns(this,'3_5','B')"><span class="opt-badge">B</span> Segmentation</li><li class="opt" id="opt_3_5_2" onclick="revealAns(this,'3_5','C')"><span class="opt-badge">C</span> Fixed partitions</li><li class="opt" id="opt_3_5_3" onclick="revealAns(this,'3_5','D')"><span class="opt-badge">D</span> Pure demand paging</li></ul>
+              <div class="mcq-reveal" id="mcq_3_5" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2018 — Segmentation uses variable-size blocks → external fragmentation</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> TLB stands for ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_6_0" onclick="revealAns(this,'3_6','A')"><span class="opt-badge">A</span> Transfer Location Block</li><li class="opt" id="opt_3_6_1" onclick="revealAns(this,'3_6','B')"><span class="opt-badge">B</span> Translation Lookaside Buffer</li><li class="opt" id="opt_3_6_2" onclick="revealAns(this,'3_6','C')"><span class="opt-badge">C</span> Table Location Base</li><li class="opt" id="opt_3_6_3" onclick="revealAns(this,'3_6','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_3_6" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — Translation Lookaside Buffer (fast cache for page table entries)</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> Optimal page replacement algorithm is impossible in practice because ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_3_7_0" onclick="revealAns(this,'3_7','A')"><span class="opt-badge">A</span> Too slow</li><li class="opt" id="opt_3_7_1" onclick="revealAns(this,'3_7','B')"><span class="opt-badge">B</span> Requires knowledge of future references</li><li class="opt" id="opt_3_7_2" onclick="revealAns(this,'3_7','C')"><span class="opt-badge">C</span> Too complex</li><li class="opt" id="opt_3_7_3" onclick="revealAns(this,'3_7','D')"><span class="opt-badge">D</span> Needs extra hardware</li></ul>
+              <div class="mcq-reveal" id="mcq_3_7" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — Optimal needs to know which page won't be used longest in FUTURE</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four3">
+            <div class="pane-title" style="color:#C62828">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2018 Q1(j) | 2019 Q2(c) | 2022 Q2(b) | Repeated</span>
+                <div class="q-text">Differentiate between internal fragmentation and external fragmentation. What is thrashing?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><table class="exam-table">
+<tr><th>Aspect</th><th>Internal Fragmentation</th><th>External Fragmentation</th></tr>
+<tr><td>Location</td><td>INSIDE allocated block</td><td>BETWEEN allocated blocks</td></tr>
+<tr><td>Cause</td><td>Block larger than process needs</td><td>Variable-size allocation over time</td></tr>
+<tr><td>Occurs in</td><td>Fixed partitions, Paging</td><td>Variable partitions, Segmentation</td></tr>
+<tr><td>Fix</td><td>Smaller block/page size</td><td>Compaction or use Paging</td></tr>
+<tr><td>Example</td><td>5KB block for 4.1KB process → 0.9KB wasted</td><td>Free 30KB scattered as 10KB+10KB+10KB but need 25KB contiguous</td></tr>
+</table>
+
+<b>Thrashing:</b>
+<div class="em-def">📖 <b>Definition:</b> A condition where a process (or entire system) spends MORE TIME swapping pages in and out of memory than actually executing — because it has too few frames for its current working set.</div>
+
+<b>Control:</b> Working-Set Model — only run a process if enough frames for its working set are available.
+
+<div class="em-concl">✍️ Fragmentation wastes memory space; thrashing wastes CPU time. Paging eliminates external fragmentation; working-set model prevents thrashing.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2016/17 | 2025 Q5 | 4-mark</span>
+                <div class="q-text">Explain swapping and contiguous memory allocation. What is the difference between logical and physical address?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Logical Address:</b> Generated by the CPU during execution. Also called virtual address. The address the program "thinks" it is using.</div>
+
+<div class="em-def">📖 <b>Physical Address:</b> Actual address in the RAM seen by the memory hardware. The MMU (Memory Management Unit) translates logical to physical address.</div>
+
+<b>Swapping:</b> Temporarily moving a process OUT of main memory to backing store (disk), and bringing it back later to continue execution.
+<ul><li>Increases degree of multiprogramming without more RAM.</li>
+<li>Tools: swap partition or swap file on disk.</li></ul>
+
+<b>Contiguous Allocation:</b> Each process placed in one single continuous block of memory.
+<ul><li><b>Fixed Partitioning:</b> Pre-divided into fixed sizes. Simple but causes internal fragmentation.</li>
+<li><b>Variable Partitioning:</b> Partition sized exactly for process. Causes external fragmentation over time.</li>
+<li><b>Algorithms:</b> First-fit (first block big enough), Best-fit (smallest fitting block), Worst-fit (largest block).</li></ul>
+
+<div class="em-concl">✍️ Logical-physical address separation allows the OS to relocate processes freely in RAM without the program knowing — making virtual memory and process isolation possible.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve3">
+            <div class="pane-title" style="color:#C62828">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #C62828">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2014 Q4 | 2021 Q6 | 2016/17 Q2(a) | 2023 Q2(c) — Combined 12-mark</span>
+                <div class="q-text">Explain paging in detail. What is the need for a page table and TLB? Explain virtual memory and demand paging with page fault handling steps.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> Contiguous memory allocation wastes memory through fragmentation and limits program size to physical RAM. Paging and virtual memory together solve both problems — eliminating external fragmentation and letting programs larger than RAM run.</div>
+
+<div class="em-def">📖 <b>Paging:</b> A non-contiguous memory management scheme that divides physical memory into fixed-size blocks called <b>frames</b> and logical memory into blocks of the same size called <b>pages</b>. Pages can be loaded into any available frames — no contiguity needed.</div>
+
+<b>How Paging Works:</b>
+<ol>
+<li>Logical address = <b>page number (p)</b> + <b>page offset (d)</b></li>
+<li>Page table maps: page number → frame number</li>
+<li>Physical address = frame number + offset d (offset stays unchanged)</li>
+</ol>
+
+<table class="exam-table">
+<tr><th>Concept</th><th>Explanation</th></tr>
+<tr><td>Page</td><td>Fixed-size block of logical memory</td></tr>
+<tr><td>Frame</td><td>Fixed-size block of physical memory (same size as page)</td></tr>
+<tr><td>Page Table</td><td>Maps each page number to its frame number in RAM</td></tr>
+<tr><td>No ext. fragmentation</td><td>Any free frame can hold any page</td></tr>
+<tr><td>Internal fragmentation</td><td>Possible only in the last page (minor)</td></tr>
+</table>
+
+<b>Need for Page Table:</b> Without a page table, the CPU cannot translate logical (virtual) addresses generated by programs to actual physical addresses in RAM. Each process has its own separate page table.
+
+<b>TLB (Translation Lookaside Buffer):</b>
+<div class="em-def">📖 Looking up the full page table in RAM for every memory access requires TWO memory accesses — too slow! The TLB is a small, extremely fast hardware associative cache that stores the most recently used page → frame mappings.
+<ul>
+<li><b>TLB HIT:</b> Frame number found instantly — only 1 memory access total.</li>
+<li><b>TLB MISS:</b> Go to page table in RAM, then update TLB. 2 memory accesses.</li>
+<li>Modern CPUs achieve >98% TLB hit rate → paging overhead becomes negligible.</li>
+</ul></div>
+
+<b>Virtual Memory:</b>
+<div class="em-def">📖 Virtual memory allows a process to execute even when it is not completely loaded in physical memory. The logical address space can be MUCH LARGER than physical RAM.</div>
+
+<b>Demand Paging:</b> Load a page into memory ONLY when it is actually referenced — not in advance. Uses a <b>valid-invalid bit</b> in the page table:
+<ul>
+<li><b>Valid (1):</b> Page is currently in a RAM frame.</li>
+<li><b>Invalid (0):</b> Page is NOT in RAM → causes a PAGE FAULT.</li>
+</ul>
+
+<b>Page Fault Handling Steps:</b>
+<ol>
+<li>Process references a page; valid-invalid bit = 0 → <b>PAGE FAULT TRAP fires.</b></li>
+<li>OS checks: is this a legal address for this process? If illegal → <b>abort process.</b></li>
+<li>Find a <b>free frame</b> in RAM (or select a victim using page replacement algorithm).</li>
+<li>Schedule a <b>disk read</b> to bring the required page into the free frame.</li>
+<li><b>Update page table:</b> set frame number, set valid bit = 1.</li>
+<li><b>Restart the instruction</b> that caused the page fault.</li>
+</ol>
+
+<div class="em-eg">💡 <b>Real Example:</b> Opening a 2 GB video editor does NOT load all 2 GB at once. Only the pages you actually use — current menus, current video frame — are loaded on demand. This is why startup is faster and more programs can run simultaneously.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Paging eliminates external fragmentation and enables virtual memory. The TLB makes paging fast. Demand paging allows programs much larger than physical RAM to run, increases the degree of multiprogramming, and reduces startup time — at the cost of occasional page-fault delays. These are the most important memory management techniques in modern operating systems.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #C62828">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2023 Q6 — 12 MARKS VERIFIED | 2018 Q3 | 2022 Q5 | 2019 Q2(e)</span>
+                <div class="q-text">Explain the page replacement algorithms FIFO, LRU and Optimal. Solve: reference string 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1 using LRU with 3 frames.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> When a page fault occurs and no free frame is available, the OS must choose an existing page to remove (victim page) to make room for the new page. The algorithm used to select the victim is the page replacement algorithm.</div>
+
+<b>1. FIFO — First In First Out:</b>
+<div class="em-def">Replace the page that has been in memory the LONGEST (loaded first, removed first). Implemented using a simple queue.<br>
+<b>Problem: Belady's Anomaly</b> — adding MORE frames can actually INCREASE page faults with FIFO. This is a unique, counter-intuitive flaw.</div>
+
+<b>2. Optimal (MIN) Algorithm:</b>
+<div class="em-def">Replace the page that will NOT BE USED for the LONGEST TIME in the future.<br>
+<b>Advantage:</b> Gives minimum possible page faults (theoretical best).<br>
+<b>Problem:</b> Impossible to implement in practice — needs to know future references. Used ONLY as a benchmark for comparison.</div>
+
+<b>3. LRU — Least Recently Used:</b>
+<div class="em-def">Replace the page that has NOT BEEN USED for the LONGEST TIME in the PAST. A practical, excellent approximation of Optimal.<br>
+<b>No Belady's Anomaly.</b> Implementation: use a counter or a stack of page references.</div>
+
+<b>Comparison Table:</b>
+<table class="exam-table">
+<tr><th>Algorithm</th><th>Replace</th><th>Page Faults (3 frames)</th><th>Belady's Anomaly</th></tr>
+<tr><td>FIFO</td><td>Oldest loaded page</td><td>15</td><td>Yes</td></tr>
+<tr><td>LRU</td><td>Least recently used</td><td>12</td><td>No</td></tr>
+<tr><td>Optimal</td><td>Farthest future use</td><td>9</td><td>No</td></tr>
+</table>
+
+<b>SOLVED: LRU with 3 frames — Reference String: 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1</b>
+
+<table class="exam-table" style="font-size:0.82rem">
+<tr><th>#</th><th>Ref</th><th>F1</th><th>F2</th><th>F3</th><th>Result</th><th>Action</th></tr>
+<tr><td>1</td><td>7</td><td>7</td><td>—</td><td>—</td><td class="fault">FAULT</td><td>Load 7</td></tr>
+<tr><td>2</td><td>0</td><td>7</td><td>0</td><td>—</td><td class="fault">FAULT</td><td>Load 0</td></tr>
+<tr><td>3</td><td>1</td><td>7</td><td>0</td><td>1</td><td class="fault">FAULT</td><td>Load 1 (frames full)</td></tr>
+<tr><td>4</td><td>2</td><td>2</td><td>0</td><td>1</td><td class="fault">FAULT</td><td>Evict 7 (LRU)</td></tr>
+<tr><td>5</td><td>0</td><td>2</td><td>0</td><td>1</td><td class="hit">HIT</td><td>0 is in frame</td></tr>
+<tr><td>6</td><td>3</td><td>2</td><td>3</td><td>1</td><td class="fault">FAULT</td><td>Evict 0 (LRU)</td></tr>
+<tr><td>7</td><td>0</td><td>2</td><td>3</td><td>0</td><td class="fault">FAULT</td><td>Evict 1 (LRU)</td></tr>
+<tr><td>8</td><td>4</td><td>4</td><td>3</td><td>0</td><td class="fault">FAULT</td><td>Evict 2 (LRU)</td></tr>
+<tr><td>9</td><td>2</td><td>4</td><td>3</td><td>2</td><td class="fault">FAULT</td><td>Evict 0 (LRU)</td></tr>
+<tr><td>10</td><td>3</td><td>4</td><td>3</td><td>2</td><td class="hit">HIT</td><td>3 is in frame</td></tr>
+<tr><td>11</td><td>0</td><td>0</td><td>3</td><td>2</td><td class="fault">FAULT</td><td>Evict 4 (LRU)</td></tr>
+<tr><td>12</td><td>3</td><td>0</td><td>3</td><td>2</td><td class="hit">HIT</td><td>3 is in frame</td></tr>
+<tr><td>13</td><td>2</td><td>0</td><td>3</td><td>2</td><td class="hit">HIT</td><td>2 is in frame</td></tr>
+<tr><td>14</td><td>1</td><td>0</td><td>1</td><td>2</td><td class="fault">FAULT</td><td>Evict 3 (LRU)</td></tr>
+<tr><td>15</td><td>2</td><td>0</td><td>1</td><td>2</td><td class="hit">HIT</td><td>2 is in frame</td></tr>
+<tr><td>16</td><td>0</td><td>0</td><td>1</td><td>2</td><td class="hit">HIT</td><td>0 is in frame</td></tr>
+<tr><td>17</td><td>1</td><td>0</td><td>1</td><td>2</td><td class="hit">HIT</td><td>1 is in frame</td></tr>
+<tr><td>18</td><td>7</td><td>7</td><td>1</td><td>2</td><td class="fault">FAULT</td><td>Evict 0 (LRU)</td></tr>
+<tr><td>19</td><td>0</td><td>7</td><td>1</td><td>0</td><td class="fault">FAULT</td><td>Evict 2 (LRU)</td></tr>
+<tr><td>20</td><td>1</td><td>7</td><td>1</td><td>0</td><td class="hit">HIT</td><td>1 is in frame</td></tr>
+<tr style="background:#FFF9C4;font-weight:bold"><td colspan="5">TOTAL</td><td colspan="2">Page Faults = 12 | Hits = 8</td></tr>
+</table>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> LRU with 12 page faults is much better than FIFO (15) and a practical approximation of Optimal (9). In exams, ALWAYS draw the frame table step by step, clearly mark FAULT or HIT for each reference, and count totals at the end. This numerical is worth full 12 marks if done correctly.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="unit-sec reveal" id="u4">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#6A1B9A,#4A148C)">
+            <div class="u-icon">🐧</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 4</div>
+              <div class="u-title">Open Source, File System & Linux Commands</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #6A1B9A;background:#F3E5F5">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🟠 HIGH: Environment variable (sub-shell) asked in 2016, 2017, 2018 — identical wording three years! chmod/permissions appear in Q1 almost every year. Pipes and redirection in 2023. vi commands in 2014, 2016, 2017, 2018, 2022, 2023.</div>
+          </div>
+
+          <div class="tabs" id="tabs4">
+            <button class="tab active" onclick="switchTab(this,'mcq4')"
+              style="--tc:#6A1B9A">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four4')"
+              style="--tc:#6A1B9A">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve4')"
+              style="--tc:#6A1B9A">12-Mark Q&A (1)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq4">
+            <div class="pane-title" style="color:#6A1B9A">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> Which command is used to see the contents of a directory?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_0_0" onclick="revealAns(this,'4_0','A')"><span class="opt-badge">A</span> lp</li><li class="opt" id="opt_4_0_1" onclick="revealAns(this,'4_0','B')"><span class="opt-badge">B</span> dir</li><li class="opt" id="opt_4_0_2" onclick="revealAns(this,'4_0','C')"><span class="opt-badge">C</span> ls</li><li class="opt" id="opt_4_0_3" onclick="revealAns(this,'4_0','D')"><span class="opt-badge">D</span> list</li></ul>
+              <div class="mcq-reveal" id="mcq_4_0" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2014 — ls is the correct command</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> wc command is used for ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_1_0" onclick="revealAns(this,'4_1','A')"><span class="opt-badge">A</span> Counting characters of a word</li><li class="opt" id="opt_4_1_1" onclick="revealAns(this,'4_1','B')"><span class="opt-badge">B</span> Counting lines of a file</li><li class="opt" id="opt_4_1_2" onclick="revealAns(this,'4_1','C')"><span class="opt-badge">C</span> Counting files in directory</li><li class="opt" id="opt_4_1_3" onclick="revealAns(this,'4_1','D')"><span class="opt-badge">D</span> Wrong command</li></ul>
+              <div class="mcq-reveal" id="mcq_4_1" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2014 — wc counts lines, words, characters of a file</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> To remove a directory in UNIX, ____ command is used.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_2_0" onclick="revealAns(this,'4_2','A')"><span class="opt-badge">A</span> rm</li><li class="opt" id="opt_4_2_1" onclick="revealAns(this,'4_2','B')"><span class="opt-badge">B</span> del</li><li class="opt" id="opt_4_2_2" onclick="revealAns(this,'4_2','C')"><span class="opt-badge">C</span> rmdir</li><li class="opt" id="opt_4_2_3" onclick="revealAns(this,'4_2','D')"><span class="opt-badge">D</span> remove</li></ul>
+              <div class="mcq-reveal" id="mcq_4_2" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2014 — rmdir (for empty), rm -r (for non-empty)</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> The octal number for chmod to make a file readable, writable, executable by owner is ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_3_0" onclick="revealAns(this,'4_3','A')"><span class="opt-badge">A</span> 000</li><li class="opt" id="opt_4_3_1" onclick="revealAns(this,'4_3','B')"><span class="opt-badge">B</span> 722</li><li class="opt" id="opt_4_3_2" onclick="revealAns(this,'4_3','C')"><span class="opt-badge">C</span> 755</li><li class="opt" id="opt_4_3_3" onclick="revealAns(this,'4_3','D')"><span class="opt-badge">D</span> 777</li></ul>
+              <div class="mcq-reveal" id="mcq_4_3" style="display:none">
+                <span class="correct-badge">✅ Correct: D</span>
+                <span class="exp-text">PYQ 2014 — 777 = rwxrwxrwx but 700 = rwx for owner only. 777 = owner+group+others all rwx</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> How do you set an environment variable accessible from sub-shell?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_4_0" onclick="revealAns(this,'4_4','A')"><span class="opt-badge">A</span> set VAR=value</li><li class="opt" id="opt_4_4_1" onclick="revealAns(this,'4_4','B')"><span class="opt-badge">B</span> VAR=value</li><li class="opt" id="opt_4_4_2" onclick="revealAns(this,'4_4','C')"><span class="opt-badge">C</span> export VAR=value</li><li class="opt" id="opt_4_4_3" onclick="revealAns(this,'4_4','D')"><span class="opt-badge">D</span> env VAR=value</li></ul>
+              <div class="mcq-reveal" id="mcq_4_4" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2016/2017/2018 — Exact repeated PYQ! Answer: export VAR=value</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> ____ command shows the current working directory.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_5_0" onclick="revealAns(this,'4_5','A')"><span class="opt-badge">A</span> cd</li><li class="opt" id="opt_4_5_1" onclick="revealAns(this,'4_5','B')"><span class="opt-badge">B</span> ls</li><li class="opt" id="opt_4_5_2" onclick="revealAns(this,'4_5','C')"><span class="opt-badge">C</span> pwd</li><li class="opt" id="opt_4_5_3" onclick="revealAns(this,'4_5','D')"><span class="opt-badge">D</span> dir</li></ul>
+              <div class="mcq-reveal" id="mcq_4_5" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — pwd = Print Working Directory</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> Which command counts the number of lines in a file?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_6_0" onclick="revealAns(this,'4_6','A')"><span class="opt-badge">A</span> wc -w</li><li class="opt" id="opt_4_6_1" onclick="revealAns(this,'4_6','B')"><span class="opt-badge">B</span> wc -c</li><li class="opt" id="opt_4_6_2" onclick="revealAns(this,'4_6','C')"><span class="opt-badge">C</span> wc -l</li><li class="opt" id="opt_4_6_3" onclick="revealAns(this,'4_6','D')"><span class="opt-badge">D</span> wc -n</li></ul>
+              <div class="mcq-reveal" id="mcq_4_6" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — wc -l counts lines</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> Hard links cannot be created for ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_4_7_0" onclick="revealAns(this,'4_7','A')"><span class="opt-badge">A</span> Regular files</li><li class="opt" id="opt_4_7_1" onclick="revealAns(this,'4_7','B')"><span class="opt-badge">B</span> Text files</li><li class="opt" id="opt_4_7_2" onclick="revealAns(this,'4_7','C')"><span class="opt-badge">C</span> Directories (normally)</li><li class="opt" id="opt_4_7_3" onclick="revealAns(this,'4_7','D')"><span class="opt-badge">D</span> Binary files</li></ul>
+              <div class="mcq-reveal" id="mcq_4_7" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Hard links cannot normally point to directories</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four4">
+            <div class="pane-title" style="color:#6A1B9A">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ related Q in 2014/2016/2017 | Syllabus-core</span>
+                <div class="q-text">Explain file permissions in Linux. How do chmod, chown and chgrp work?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 Linux uses rwx permissions for three groups: <b>Owner | Group | Others</b><br>
+Format: -rwxr-xr-- (10 characters)<br>
+First char: - (file) d (directory) l (link)</div>
+
+<b>Octal Notation: r=4, w=2, x=1</b>
+<table class="exam-table">
+<tr><th>Octal</th><th>Permission</th><th>Meaning</th></tr>
+<tr><td>7</td><td>rwx</td><td>Read + Write + Execute</td></tr>
+<tr><td>6</td><td>rw-</td><td>Read + Write only</td></tr>
+<tr><td>5</td><td>r-x</td><td>Read + Execute only</td></tr>
+<tr><td>4</td><td>r--</td><td>Read only</td></tr>
+<tr><td>0</td><td>---</td><td>No permission</td></tr>
+</table>
+
+<b>Commands:</b>
+<ul>
+<li><code>chmod 755 file</code> → owner rwx(7), group r-x(5), others r-x(5)</li>
+<li><code>chmod 644 file</code> → owner rw-(6), group r--(4), others r--(4) — standard text file</li>
+<li><code>chmod u+x file</code> → add execute for owner (symbolic mode)</li>
+<li><code>chown abdul file.txt</code> → change owner to 'abdul'</li>
+<li><code>chgrp students file.txt</code> → change group to 'students'</li>
+</ul>
+
+<div class="em-concl">✍️ chmod, chown, chgrp together form the complete access-control system of Linux. Always remember: r=4, w=2, x=1 — add them for each group.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2023 Q1(j) | 2016/17 Q1(g) | Repeated</span>
+                <div class="q-text">Explain I/O redirection, pipes and filters in Linux with examples.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><b>I/O Redirection:</b>
+<table class="exam-table">
+<tr><th>Symbol</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>&gt;</td><td>Redirect stdout to file (overwrite)</td><td>ls &gt; list.txt</td></tr>
+<tr><td>&gt;&gt;</td><td>Redirect stdout (append)</td><td>echo hi &gt;&gt; notes.txt</td></tr>
+<tr><td>&lt;</td><td>Redirect stdin from file</td><td>sort &lt; names.txt</td></tr>
+<tr><td>2&gt;</td><td>Redirect stderr only</td><td>cmd 2&gt; error.txt</td></tr>
+</table>
+
+<b>Pipes ( | ):</b> Connect one command's stdout directly to the next command's stdin. No temporary file needed.
+
+<b>Filters:</b> Commands that read stdin, transform data, write to stdout.
+<ul><li>grep — search</li><li>sort — sort lines</li><li>uniq — remove duplicates</li><li>wc — count</li><li>cut — extract columns</li></ul>
+
+<div class="em-eg">💡 <b>Example:</b> <code>grep 'error' log.txt | sort | uniq | wc -l</code><br>
+→ Find all error lines → sort them → remove duplicates → count unique error types. All in one command, no temporary files!</div>
+
+<div class="em-concl">✍️ Pipes and redirection are the most powerful features of Linux. They let simple single-purpose commands combine into sophisticated data-processing pipelines.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve4">
+            <div class="pane-title" style="color:#6A1B9A">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #6A1B9A">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2022 Q6 (Linux commands and utilities) | 2019 Q6 | 2023 Q1</span>
+                <div class="q-text">Explain the important Linux commands with their purpose, syntax and examples. Also explain hard links and soft links.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> Linux provides hundreds of commands. The following are the most important from the official syllabus — these appear in Q1 fill-in questions every year.</div>
+
+<b>Essential Linux Commands:</b>
+<table class="exam-table" style="font-size:0.83rem">
+<tr><th>Command</th><th>Purpose</th><th>Syntax</th><th>Example</th></tr>
+<tr><td>ls</td><td>List files/directories</td><td>ls [options] [path]</td><td>ls -l, ls -a</td></tr>
+<tr><td>cp</td><td>Copy files</td><td>cp source dest</td><td>cp a.txt b.txt</td></tr>
+<tr><td>mv</td><td>Move or rename</td><td>mv old new</td><td>mv a.txt /home/</td></tr>
+<tr><td>rm</td><td>Remove file/dir</td><td>rm [options] file</td><td>rm -r folder</td></tr>
+<tr><td>cat</td><td>Display/join files</td><td>cat file</td><td>cat notes.txt</td></tr>
+<tr><td>grep</td><td>Search text pattern</td><td>grep 'pat' file</td><td>grep 'error' log</td></tr>
+<tr><td>wc</td><td>Count lines/words/chars</td><td>wc -l file</td><td>wc -l names.txt</td></tr>
+<tr><td>sort</td><td>Sort lines</td><td>sort file</td><td>sort names.txt</td></tr>
+<tr><td>head</td><td>First N lines</td><td>head -N file</td><td>head -5 file.txt</td></tr>
+<tr><td>tail</td><td>Last N lines</td><td>tail -N file</td><td>tail -5 file.txt</td></tr>
+<tr><td>uniq</td><td>Remove duplicate lines</td><td>uniq file</td><td>sort f | uniq</td></tr>
+<tr><td>diff</td><td>Compare two files</td><td>diff f1 f2</td><td>diff old.txt new.txt</td></tr>
+<tr><td>find</td><td>Search files</td><td>find path -name</td><td>find / -name *.txt</td></tr>
+<tr><td>chmod</td><td>Change permissions</td><td>chmod mode file</td><td>chmod 755 script.sh</td></tr>
+<tr><td>chown</td><td>Change owner</td><td>chown user file</td><td>chown root file</td></tr>
+<tr><td>ps</td><td>Show processes</td><td>ps [options]</td><td>ps -ef</td></tr>
+<tr><td>kill</td><td>Terminate process</td><td>kill PID</td><td>kill 1234</td></tr>
+<tr><td>mkdir</td><td>Create directory</td><td>mkdir name</td><td>mkdir mydir</td></tr>
+<tr><td>rmdir</td><td>Remove empty dir</td><td>rmdir name</td><td>rmdir olddir</td></tr>
+<tr><td>pwd</td><td>Print working dir</td><td>pwd</td><td>pwd → /home/user</td></tr>
+<tr><td>cd</td><td>Change directory</td><td>cd path</td><td>cd /home/user</td></tr>
+<tr><td>df</td><td>Disk space usage</td><td>df -h</td><td>df -h</td></tr>
+<tr><td>du</td><td>Directory size</td><td>du -sh dir</td><td>du -sh /home</td></tr>
+<tr><td>who/whoami</td><td>Show logged users</td><td>who, whoami</td><td>whoami → root</td></tr>
+<tr><td>uname</td><td>System information</td><td>uname -a</td><td>uname -a</td></tr>
+<tr><td>history</td><td>Previous commands</td><td>history</td><td>history</td></tr>
+<tr><td>man</td><td>Manual pages</td><td>man cmd</td><td>man ls</td></tr>
+<tr><td>tar</td><td>Archive/compress</td><td>tar -czf out dir</td><td>tar -czf backup.tar.gz /home</td></tr>
+<tr><td>export</td><td>Set env variable</td><td>export VAR=val</td><td>export PATH=$PATH:/bin</td></tr>
+<tr><td>passwd</td><td>Change password</td><td>passwd</td><td>passwd username</td></tr>
+</table>
+
+<b>Hard Link vs Soft Link:</b>
+<table class="exam-table">
+<tr><th>Aspect</th><th>Hard Link</th><th>Soft (Symbolic) Link</th></tr>
+<tr><td>Points to</td><td>Same inode as original</td><td>A path string (the name of the original)</td></tr>
+<tr><td>If original deleted?</td><td>Data still accessible ✓</td><td>Link becomes BROKEN ✗</td></tr>
+<tr><td>Cross file systems?</td><td>No</td><td>Yes</td></tr>
+<tr><td>Link to directory?</td><td>No (normally)</td><td>Yes</td></tr>
+<tr><td>Create with</td><td><code>ln original hardlink</code></td><td><code>ln -s original softlink</code></td></tr>
+</table>
+
+<div class="em-eg">💡 Hard link = Aadhaar + Passport (same person, two ID cards — cancel one, person still exists). Soft link = WhatsApp shortcut (delete the app, shortcut stops working).</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Linux commands are the practical tools that make Linux powerful. Every Q1 fill-in question in AKU exam draws from this table. Hard links are robust; soft links are flexible. Practice all commands in a Linux terminal before the exam.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="unit-sec reveal" id="u5">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#00695C,#004D40)">
+            <div class="u-icon">📝</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 5</div>
+              <div class="u-title">vi Editor, Shell & Linux Features</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #00695C;background:#E0F2F1">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🔴 MAXIMUM ALERT: Shell types asked in 2014,2016,2017,2018,2019 — 5 CONSECUTIVE YEARS! vi editor asked in 2014,2016/17,2018,2022,2023. Linux features/components in 2016,2019,2021,2022,2025. These 3 topics have the highest repetition in the entire paper!</div>
+          </div>
+
+          <div class="tabs" id="tabs5">
+            <button class="tab active" onclick="switchTab(this,'mcq5')"
+              style="--tc:#00695C">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four5')"
+              style="--tc:#00695C">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve5')"
+              style="--tc:#00695C">12-Mark Q&A (2)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq5">
+            <div class="pane-title" style="color:#00695C">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> Which was the FIRST UNIX shell?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_0_0" onclick="revealAns(this,'5_0','A')"><span class="opt-badge">A</span> Bash shell</li><li class="opt" id="opt_5_0_1" onclick="revealAns(this,'5_0','B')"><span class="opt-badge">B</span> Korn shell</li><li class="opt" id="opt_5_0_2" onclick="revealAns(this,'5_0','C')"><span class="opt-badge">C</span> Bourne shell</li><li class="opt" id="opt_5_0_3" onclick="revealAns(this,'5_0','D')"><span class="opt-badge">D</span> X-shell</li></ul>
+              <div class="mcq-reveal" id="mcq_5_0" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">PYQ 2014 — Bourne shell (sh) by Stephen Bourne, 1977</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> To erase the entire word in vi editor, we use ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_1_0" onclick="revealAns(this,'5_1','A')"><span class="opt-badge">A</span> Ctrl-w</li><li class="opt" id="opt_5_1_1" onclick="revealAns(this,'5_1','B')"><span class="opt-badge">B</span> Ctrl-c</li><li class="opt" id="opt_5_1_2" onclick="revealAns(this,'5_1','C')"><span class="opt-badge">C</span> Alt-w</li><li class="opt" id="opt_5_1_3" onclick="revealAns(this,'5_1','D')"><span class="opt-badge">D</span> Ctrl-d</li></ul>
+              <div class="mcq-reveal" id="mcq_5_1" style="display:none">
+                <span class="correct-badge">✅ Correct: A</span>
+                <span class="exp-text">PYQ 2014 — Ctrl-w erases/deletes the word in vi Insert mode</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> What command is used to replace many characters in vi editor?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_2_0" onclick="revealAns(this,'5_2','A')"><span class="opt-badge">A</span> r</li><li class="opt" id="opt_5_2_1" onclick="revealAns(this,'5_2','B')"><span class="opt-badge">B</span> R</li><li class="opt" id="opt_5_2_2" onclick="revealAns(this,'5_2','C')"><span class="opt-badge">C</span> s</li><li class="opt" id="opt_5_2_3" onclick="revealAns(this,'5_2','D')"><span class="opt-badge">D</span> c</li></ul>
+              <div class="mcq-reveal" id="mcq_5_2" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2016/2017/2018 — R enters Replace mode (overwrites existing characters)</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> What is vim?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_3_0" onclick="revealAns(this,'5_3','A')"><span class="opt-badge">A</span> A shell</li><li class="opt" id="opt_5_3_1" onclick="revealAns(this,'5_3','B')"><span class="opt-badge">B</span> vi improved (enhanced vi)</li><li class="opt" id="opt_5_3_2" onclick="revealAns(this,'5_3','C')"><span class="opt-badge">C</span> A compiler</li><li class="opt" id="opt_5_3_3" onclick="revealAns(this,'5_3','D')"><span class="opt-badge">D</span> A file manager</li></ul>
+              <div class="mcq-reveal" id="mcq_5_3" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2022 — vim = vi improved, modern enhanced version of vi</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> What is the use of tsort command?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_4_0" onclick="revealAns(this,'5_4','A')"><span class="opt-badge">A</span> Sort by time</li><li class="opt" id="opt_5_4_1" onclick="revealAns(this,'5_4','B')"><span class="opt-badge">B</span> Topological sort</li><li class="opt" id="opt_5_4_2" onclick="revealAns(this,'5_4','C')"><span class="opt-badge">C</span> Sort in reverse</li><li class="opt" id="opt_5_4_3" onclick="revealAns(this,'5_4','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_5_4" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2022 — tsort performs topological sort of dependency ordered pairs</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> Which shell is the DEFAULT on most modern Linux systems?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_5_0" onclick="revealAns(this,'5_5','A')"><span class="opt-badge">A</span> sh</li><li class="opt" id="opt_5_5_1" onclick="revealAns(this,'5_5','B')"><span class="opt-badge">B</span> csh</li><li class="opt" id="opt_5_5_2" onclick="revealAns(this,'5_5','C')"><span class="opt-badge">C</span> ksh</li><li class="opt" id="opt_5_5_3" onclick="revealAns(this,'5_5','D')"><span class="opt-badge">D</span> bash</li></ul>
+              <div class="mcq-reveal" id="mcq_5_5" style="display:none">
+                <span class="correct-badge">✅ Correct: D</span>
+                <span class="exp-text">Practice — Bash (Bourne Again Shell) is the default Linux shell</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> The .exrc file in vi is used for ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_6_0" onclick="revealAns(this,'5_6','A')"><span class="opt-badge">A</span> Store backup files</li><li class="opt" id="opt_5_6_1" onclick="revealAns(this,'5_6','B')"><span class="opt-badge">B</span> Auto-apply settings at vi startup</li><li class="opt" id="opt_5_6_2" onclick="revealAns(this,'5_6','C')"><span class="opt-badge">C</span> Execute shell scripts</li><li class="opt" id="opt_5_6_3" onclick="revealAns(this,'5_6','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_5_6" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — .exrc contains settings like 'set number' applied automatically when vi starts</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> In shell, & symbol is used to ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_5_7_0" onclick="revealAns(this,'5_7','A')"><span class="opt-badge">A</span> Pipe commands</li><li class="opt" id="opt_5_7_1" onclick="revealAns(this,'5_7','B')"><span class="opt-badge">B</span> Run command in background</li><li class="opt" id="opt_5_7_2" onclick="revealAns(this,'5_7','C')"><span class="opt-badge">C</span> Redirect input</li><li class="opt" id="opt_5_7_3" onclick="revealAns(this,'5_7','D')"><span class="opt-badge">D</span> Comment</li></ul>
+              <div class="mcq-reveal" id="mcq_5_7" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — command & runs it in the background</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four5">
+            <div class="pane-title" style="color:#00695C">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2014 Q2(d) | 2018 Q7(d) | 2022 Q1(e) | 2023 Q2(d) — Repeated every year</span>
+                <div class="q-text">Explain the modes of the vi editor and how to switch between them.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>vi:</b> Standard screen-based text editor on every UNIX/Linux system. Mode-based — the same key performs DIFFERENT actions depending on which mode is currently active.</div>
+
+<b>Three Modes of vi:</b>
+<div class="state-diagram">
+<div class="state new" style="background:#1565C0">Command Mode<br>(DEFAULT)</div>
+<div class="state-arrow">⟵ Esc | i/a/o ⟶</div>
+<div class="state ready" style="background:#2E7D32">Insert Mode<br>(Type text)</div>
+<br><br>
+<div class="state new" style="background:#1565C0">Command Mode</div>
+<div class="state-arrow">⟵ Enter/Esc | : ⟶</div>
+<div class="state term" style="background:#6A1B9A">Ex/Last-line Mode<br>(Save, quit, replace)</div>
+</div>
+
+<ul>
+<li><b>Command Mode</b> — Default. Keystrokes = commands (dd, yy, p, /). Cannot type text here.</li>
+<li><b>Insert Mode</b> — Press i (before), a (after), o (new line below). Type text. Press <b>Esc</b> to exit.</li>
+<li><b>Ex Mode</b> — Press <b>:</b>. For :w (save), :q! (quit), :wq (save+quit), :%s/old/new/g (replace all).</li>
+</ul>
+
+<div class="em-concl">✍️ Most important vi skill: ALWAYS know which mode you are in. Esc returns to Command mode from anywhere. This one fact prevents 90% of vi beginner errors.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2022 Q2(e) | 2016/17 Q1(g) | 2018 Q1(g) — Same wording</span>
+                <div class="q-text">What is the meaning of shell? What is its purpose? How do you set an environment variable accessible from a sub-shell?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Shell:</b> A command-line interpreter between the user and the OS kernel. It reads commands the user types, interprets them, and instructs the kernel to execute them. It is also a scripting language for automating tasks.</div>
+
+<b>Purpose of Shell:</b>
+<ul>
+<li>Provides a convenient interface for users to interact with the OS without knowing low-level system calls.</li>
+<li>Supports I/O redirection, pipes, wildcards, scripting, job control, and aliases.</li>
+</ul>
+
+<b>Setting Environment Variable accessible from sub-shell:</b>
+<div class="algo-box" style="border-left:4px solid #00695C">
+<b>Step 1:</b> Set the variable: <code>VAR=value</code> (local to current shell only)<br>
+<b>Step 2:</b> Export it: <code>export VAR=value</code> (now visible to ALL sub-shells and child processes)<br>
+<b>Check:</b> <code>echo $VAR</code> or <code>echo $PATH</code><br>
+<b>Example:</b> <code>export PATH=$PATH:/usr/local/mybin</code><br>
+Without export → variable stays local → sub-shell cannot see it.
+</div>
+
+<div class="em-concl">✍️ <b>export</b> is the key command for this PYQ — it has appeared identically in 2016, 2017, and 2018. Always write: <b>export VAR=value</b> in your exam answer.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve5">
+            <div class="pane-title" style="color:#00695C">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #00695C">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2014 Q6 | 2016 Q6 | 2017 Q6 | 2018 Q6 | 2019 Q6 — 5 CONSECUTIVE YEARS — MUST PREPARE</span>
+                <div class="q-text">What is shell? How many types of shell are used in UNIX? Describe each type in detail.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> Without a shell, a user would need raw system calls to talk to the OS kernel — impractical for humans. The shell is the command-line interface that makes the OS usable. It has been asked as a full 12-mark question in 5 consecutive years (2014-2019), making it the single most reliably repeated question in the entire BCA-205 paper.</div>
+
+<div class="em-def">📖 <b>Definition:</b> A shell is a program that provides a command-line interface between the user and the operating system kernel. It reads commands typed by the user, interprets them, and instructs the kernel to carry them out. The shell is both a <b>command interpreter</b> and a <b>programming language</b> (shell scripting).</div>
+
+<b>Role of Shell in OS:</b>
+<div style="text-align:center;padding:10px;background:#E0F2F1;border-radius:8px;margin:8px 0">
+USER → types command → <b>SHELL</b> (interprets) → KERNEL (executes) → HARDWARE
+</div>
+
+<b>Types of Shell in UNIX/Linux:</b>
+
+<div class="algo-box" style="border-left:5px solid #1565C0">
+<b>1. Bourne Shell (sh)</b><br>
+• Developed by <b>Stephen Bourne</b> at Bell Labs, AT&T, <b>1977.</b><br>
+• The <b>FIRST UNIX shell</b> (always asked in MCQ/fill-in!).<br>
+• Simple, fast, highly portable — works on every UNIX system.<br>
+• Forms the basis of ALL shell scripting syntax still used today.<br>
+• Prompt: <b>$</b><br>
+• Limitation: no command history, no aliases.
+</div>
+
+<div class="algo-box" style="border-left:5px solid #2E7D32">
+<b>2. C Shell (csh)</b><br>
+• Developed by <b>Bill Joy</b> at UC Berkeley.<br>
+• Uses <b>C-like syntax</b> — familiar to C programmers.<br>
+• Introduced: command history (!!, !n), aliases, job control.<br>
+• Prompt: <b>%</b><br>
+• Problem: scripting is less powerful than Bourne shell.
+</div>
+
+<div class="algo-box" style="border-left:5px solid #E65100">
+<b>3. Korn Shell (ksh)</b><br>
+• Developed by <b>David Korn</b> at Bell Labs.<br>
+• Combines the <b>best of Bourne + C shells.</b><br>
+• Supports: command history, aliases, arrays, better scripting, floating-point arithmetic.<br>
+• Prompt: <b>$</b><br>
+• Upward compatible with Bourne shell (sh scripts run in ksh).
+</div>
+
+<div class="algo-box" style="border-left:5px solid #6A1B9A">
+<b>4. Bash (Bourne Again Shell)</b><br>
+• Developed by <b>Brian Fox</b> for GNU Project, 1989.<br>
+• <b>Default shell on almost all modern Linux systems</b> (Ubuntu, CentOS, etc.).<br>
+• A SUPERSET of Bourne shell — all sh scripts run in bash.<br>
+• Features: command-line editing, command history, tab completion, job control, arrays, arithmetic.<br>
+• Prompt: <b>$</b><br>
+• Most powerful and widely used shell today.
+</div>
+
+<b>Comparison Table:</b>
+<table class="exam-table">
+<tr><th>Feature</th><th>sh</th><th>csh</th><th>ksh</th><th>bash</th></tr>
+<tr><td>Year</td><td>1977</td><td>1978</td><td>1983</td><td>1989</td></tr>
+<tr><td>Creator</td><td>S. Bourne</td><td>B. Joy</td><td>D. Korn</td><td>B. Fox</td></tr>
+<tr><td>Command history</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Aliases</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Scripting</td><td>Good</td><td>Limited</td><td>Excellent</td><td>Excellent</td></tr>
+<tr><td>Default on</td><td>Classic UNIX</td><td>BSD systems</td><td>Some UNIX</td><td>Modern Linux</td></tr>
+</table>
+
+<b>Shell Features (applicable to all):</b>
+<ol>
+<li><b>Redirection:</b> >, >>, <, 2> (redirect input/output)</li>
+<li><b>Pipes:</b> | (connect commands)</li>
+<li><b>Wildcards:</b> * (any chars), ? (one char), [] (range)</li>
+<li><b>Aliases:</b> alias ll='ls -l' (create shortcuts)</li>
+<li><b>Job Control:</b> &amp; (background), Ctrl+Z (suspend), bg, fg, jobs</li>
+<li><b>Shell Scripts:</b> Files of commands with #!/bin/bash shebang line</li>
+<li><b>Variables:</b> VAR=value; echo $VAR; export for sub-shells</li>
+</ol>
+
+<div class="em-eg">💡 <b>Example:</b> The terminal prompt user@ubuntu:~$ you see in the lab is <b>Bash</b>. Every command you type — ls, cd, mkdir — is read and interpreted by Bash before the kernel acts on it.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> The shell is the most important tool for any Linux user or administrator. Four types: Bourne (first, 1977), C shell (C-like, history), Korn (best of both), Bash (default, most powerful). Always remember: First UNIX shell = Bourne Shell. Default Linux shell = Bash. These two facts appear in Q1 MCQ/fill-in almost every year.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #00695C">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2016 Q3 | 2017 Q3 | 2019 Q2(d) | 2021 Q2(e) | 2022 Q2(d) | 2025 Q7 — 6 years</span>
+                <div class="q-text">Discuss the features, advantages, disadvantages and components of Linux. Explain Linux Process and Thread Management.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> Linux is an open-source, UNIX-like operating system kernel first developed by Linus Torvalds in 1991. A complete Linux system (called a distribution, e.g. Ubuntu) combines the kernel with shells, file systems, libraries, utilities, and desktop applications.</div>
+
+<b>Features of Linux:</b>
+<ol>
+<li><b>Multiuser:</b> Multiple users can log in and work simultaneously with complete isolation. Each user has their own home directory and permissions.</li>
+<li><b>Multitasking:</b> Many processes run concurrently on the same hardware. CPU scheduler distributes time among all running processes.</li>
+<li><b>Open Source:</b> Full source code is publicly available at kernel.org. Anyone can study, modify, and redistribute it under the GPL licence.</li>
+<li><b>Portable:</b> Runs on virtually any hardware — from tiny embedded microcontrollers to the world's fastest supercomputers.</li>
+<li><b>Secure:</b> Strong permission model, file ownership system, and rapid community security patching within hours of vulnerability discovery.</li>
+<li><b>Hierarchical File System:</b> Everything — files, devices, network connections — appears under one root (/) directory tree.</li>
+<li><b>Networking:</b> Built-in TCP/IP networking stack, internet-ready from the first installation.</li>
+</ol>
+
+<b>Advantages of Linux:</b>
+<ol>
+<li>Free of cost — no licence fee, unlike Windows.</li>
+<li>Stable and reliable — Linux servers run for years without rebooting.</li>
+<li>Highly customisable — users can modify and rebuild the kernel itself.</li>
+<li>Huge community support — millions of developers, vast free documentation.</li>
+<li>Runs on old hardware that Windows cannot support.</li>
+</ol>
+
+<b>Disadvantages / Drawbacks of Linux:</b>
+<ol>
+<li>Steeper learning curve for users coming from Windows.</li>
+<li>Some proprietary hardware lacks Linux drivers (e.g. certain graphics cards, printers).</li>
+<li>Fewer commercial games and professional applications compared to Windows.</li>
+<li>Fragmentation — hundreds of different distributions (Ubuntu, Fedora, Arch) can confuse beginners.</li>
+</ol>
+
+<b>5 Components of Linux:</b>
+<table class="exam-table">
+<tr><th>#</th><th>Component</th><th>Role</th><th>Examples</th></tr>
+<tr><td>1</td><td><b>Kernel</b></td><td>Core. Manages CPU, memory, devices, file system. Only part that touches hardware directly.</td><td>linux-5.x kernel</td></tr>
+<tr><td>2</td><td><b>Shell</b></td><td>Command-line interpreter between user and kernel.</td><td>bash, sh, ksh</td></tr>
+<tr><td>3</td><td><b>File System</b></td><td>Hierarchical structure for organising all data (everything under /)</td><td>ext4, NTFS, FAT32</td></tr>
+<tr><td>4</td><td><b>System Libraries</b></td><td>Functions that programs use to request kernel services.</td><td>glibc, libpthread</td></tr>
+<tr><td>5</td><td><b>System Utilities</b></td><td>Programs for specific tasks — from simple tools to complete desktops.</td><td>ls, ps, gcc, Firefox</td></tr>
+</table>
+
+<b>Linux Process Management:</b>
+<ol>
+<li>Every process has a unique <b>PID</b> (Process ID) and a <b>PPID</b> (Parent PID).</li>
+<li><b>init/systemd</b> (PID 1) is the ancestor of EVERY other process on the system.</li>
+<li><b>fork()</b> — creates a near-identical copy (child process) of the parent.</li>
+<li><b>exec()</b> — loads a new program into the child process created by fork().</li>
+<li><b>CFS (Completely Fair Scheduler)</b> — Linux's default CPU scheduling policy, giving each process a fair share of CPU time.</li>
+<li><b>ps, top, kill</b> — everyday commands to view and manage running processes.</li>
+</ol>
+
+<b>Linux Thread Management:</b>
+<ol>
+<li>Linux threads are created using the <b>clone()</b> system call.</li>
+<li>Clone() creates a process that can share the parent's memory space, file descriptors, and other resources — making threads very lightweight.</li>
+<li>POSIX Pthreads library provides a standard API for creating and managing threads in C programs.</li>
+<li>Threads are much cheaper to create and switch between than full processes, since they share the same address space.</li>
+</ol>
+
+<div class="em-eg">💡 <b>Example:</b> When you type ls in a terminal, the shell (bash) calls fork() to create a child process, then exec() to load the ls program into that child. The child runs ls, prints the output, and exits. The parent (bash) waits and then shows the next prompt.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> Linux dominates servers, cloud infrastructure, Android smartphones, and supercomputers because of its stability, security, zero cost, and open-source nature. The five components — Kernel, Shell, File System, Libraries, Utilities — work together to create a complete, powerful operating system. Always draw the layer diagram (Hardware → Kernel → Shell → Libraries → Applications) in 12-mark answers.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="unit-sec reveal" id="u6">
+          <div class="unit-hdr" style="background:linear-gradient(135deg,#5D4037,#3E2723)">
+            <div class="u-icon">🔧</div>
+            <div class="u-info">
+              <div class="u-num">UNIT 6</div>
+              <div class="u-title">Linux Utilities & UNIX Administration</div>
+            </div>
+          </div>
+
+          <div class="pyq-alert" style="border-left:5px solid #5D4037;background:#FBE9E7">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">🟠 HIGH PRIORITY: UNIX System Admin role asked in 2016 Q7(c), 2017 Q7(c), 2022 Q7 — same question three times! Linux commands/utilities in 2022 Q6. Pathnames, links, backups appear in Q1/Q2 most years. Linux install steps are important but rarely a standalone 12-mark.</div>
+          </div>
+
+          <div class="tabs" id="tabs6">
+            <button class="tab active" onclick="switchTab(this,'mcq6')"
+              style="--tc:#5D4037">📝 MCQ Solved (8)</button>
+            <button class="tab" onclick="switchTab(this,'four6')"
+              style="--tc:#5D4037">4-Mark Q&A (2)</button>
+            <button class="tab" onclick="switchTab(this,'twelve6')"
+              style="--tc:#5D4037">12-Mark Q&A (1)</button>
+          </div>
+
+          <div class="tab-pane active" id="mcq6">
+            <div class="pane-title" style="color:#5D4037">📝 MCQ — Click option to reveal answer</div>
+            
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q1</span> How do you find whether your system is 32-bit or 64-bit?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_0_0" onclick="revealAns(this,'6_0','A')"><span class="opt-badge">A</span> ls -l</li><li class="opt" id="opt_6_0_1" onclick="revealAns(this,'6_0','B')"><span class="opt-badge">B</span> uname -a</li><li class="opt" id="opt_6_0_2" onclick="revealAns(this,'6_0','C')"><span class="opt-badge">C</span> ps -ef</li><li class="opt" id="opt_6_0_3" onclick="revealAns(this,'6_0','D')"><span class="opt-badge">D</span> df -h</li></ul>
+              <div class="mcq-reveal" id="mcq_6_0" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">PYQ 2016/2017/2018 — uname -a shows system architecture</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q2</span> What is the format of a Linux command?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_1_0" onclick="revealAns(this,'6_1','A')"><span class="opt-badge">A</span> command options</li><li class="opt" id="opt_6_1_1" onclick="revealAns(this,'6_1','B')"><span class="opt-badge">B</span> command [options] [arguments]</li><li class="opt" id="opt_6_1_2" onclick="revealAns(this,'6_1','C')"><span class="opt-badge">C</span> arguments command</li><li class="opt" id="opt_6_1_3" onclick="revealAns(this,'6_1','D')"><span class="opt-badge">D</span> None</li></ul>
+              <div class="mcq-reveal" id="mcq_6_1" style="display:none">
+                <span class="correct-badge">✅ Correct: B</span>
+                <span class="exp-text">Practice — command [options] [arguments] e.g. ls -l /home</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q3</span> Which command changes the password in Linux?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_2_0" onclick="revealAns(this,'6_2','A')"><span class="opt-badge">A</span> chpass</li><li class="opt" id="opt_6_2_1" onclick="revealAns(this,'6_2','B')"><span class="opt-badge">B</span> password</li><li class="opt" id="opt_6_2_2" onclick="revealAns(this,'6_2','C')"><span class="opt-badge">C</span> passwd</li><li class="opt" id="opt_6_2_3" onclick="revealAns(this,'6_2','D')"><span class="opt-badge">D</span> changepass</li></ul>
+              <div class="mcq-reveal" id="mcq_6_2" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — passwd (or passwd username for admin to change others)</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q4</span> Full backup means ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_3_0" onclick="revealAns(this,'6_3','A')"><span class="opt-badge">A</span> Only changed files</li><li class="opt" id="opt_6_3_1" onclick="revealAns(this,'6_3','B')"><span class="opt-badge">B</span> All data since last full</li><li class="opt" id="opt_6_3_2" onclick="revealAns(this,'6_3','C')"><span class="opt-badge">C</span> Complete copy of all data</li><li class="opt" id="opt_6_3_3" onclick="revealAns(this,'6_3','D')"><span class="opt-badge">D</span> Backup of boot files</li></ul>
+              <div class="mcq-reveal" id="mcq_6_3" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Full backup = complete copy of ALL data</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q5</span> ____ is the ancestor process of all processes in Linux (PID 1).</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_4_0" onclick="revealAns(this,'6_4','A')"><span class="opt-badge">A</span> kernel</li><li class="opt" id="opt_6_4_1" onclick="revealAns(this,'6_4','B')"><span class="opt-badge">B</span> bash</li><li class="opt" id="opt_6_4_2" onclick="revealAns(this,'6_4','C')"><span class="opt-badge">C</span> init/systemd</li><li class="opt" id="opt_6_4_3" onclick="revealAns(this,'6_4','D')"><span class="opt-badge">D</span> login</li></ul>
+              <div class="mcq-reveal" id="mcq_6_4" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — init or systemd always has PID 1, parent of all processes</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q6</span> What does /etc/fstab contain?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_5_0" onclick="revealAns(this,'6_5','A')"><span class="opt-badge">A</span> User passwords</li><li class="opt" id="opt_6_5_1" onclick="revealAns(this,'6_5','B')"><span class="opt-badge">B</span> File permission table</li><li class="opt" id="opt_6_5_2" onclick="revealAns(this,'6_5','C')"><span class="opt-badge">C</span> Filesystem auto-mount configuration</li><li class="opt" id="opt_6_5_3" onclick="revealAns(this,'6_5','D')"><span class="opt-badge">D</span> Process table</li></ul>
+              <div class="mcq-reveal" id="mcq_6_5" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — /etc/fstab lists which devices auto-mount and where, on every boot</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q7</span> What is the boot sequence order in Linux?</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_6_0" onclick="revealAns(this,'6_6','A')"><span class="opt-badge">A</span> Kernel→BIOS→GRUB→systemd</li><li class="opt" id="opt_6_6_1" onclick="revealAns(this,'6_6','B')"><span class="opt-badge">B</span> BIOS→Kernel→GRUB</li><li class="opt" id="opt_6_6_2" onclick="revealAns(this,'6_6','C')"><span class="opt-badge">C</span> BIOS/UEFI→GRUB→Kernel→systemd</li><li class="opt" id="opt_6_6_3" onclick="revealAns(this,'6_6','D')"><span class="opt-badge">D</span> GRUB→BIOS→Kernel</li></ul>
+              <div class="mcq-reveal" id="mcq_6_6" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — BIOS/UEFI → GRUB (bootloader) → Linux Kernel → init/systemd → Login</span>
+              </div>
+            </div>
+            <div class="mcq-card">
+              <div class="mcq-q"><span class="mcq-num">Q8</span> Incremental backup backs up ____.</div>
+              <ul class="mcq-opts"><li class="opt" id="opt_6_7_0" onclick="revealAns(this,'6_7','A')"><span class="opt-badge">A</span> All files</li><li class="opt" id="opt_6_7_1" onclick="revealAns(this,'6_7','B')"><span class="opt-badge">B</span> Files changed since last full backup</li><li class="opt" id="opt_6_7_2" onclick="revealAns(this,'6_7','C')"><span class="opt-badge">C</span> Files changed since any last backup</li><li class="opt" id="opt_6_7_3" onclick="revealAns(this,'6_7','D')"><span class="opt-badge">D</span> Boot files only</li></ul>
+              <div class="mcq-reveal" id="mcq_6_7" style="display:none">
+                <span class="correct-badge">✅ Correct: C</span>
+                <span class="exp-text">Practice — Incremental = since LAST BACKUP of any kind. Differential = since LAST FULL backup</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="four6">
+            <div class="pane-title" style="color:#5D4037">✏️ 4-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 PYQ 2016/17 Q1(i,j) | 2019 | Repeated short Q</span>
+                <div class="q-text">Explain absolute and relative pathnames in Linux. What is the purpose of man command?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Absolute Pathname:</b> Starts from the root directory /. Works from ANY location in the file system.<br>
+Example: <code>/home/abdul/notes.txt</code> — this path works from anywhere.</div>
+
+<div class="em-def">📖 <b>Relative Pathname:</b> Starts from the CURRENT WORKING DIRECTORY. Shorter to type but location-dependent.<br>
+Example: (if in /home/abdul) <code>notes.txt</code> or <code>./notes.txt</code> refers to the same file.</div>
+
+<b>Special Directory References:</b>
+<ul>
+<li><code>.</code> (dot) = current directory</li>
+<li><code>..</code> (dot-dot) = parent directory (one level up)</li>
+<li><code>~</code> (tilde) = your home directory</li>
+<li><code>pwd</code> = Print Working Directory (shows current absolute path)</li>
+</ul>
+
+<b>man Command:</b>
+<ul>
+<li>Manual pages — built-in reference for every Linux command.</li>
+<li>Usage: <code>man ls</code> shows complete documentation for ls command.</li>
+<li>Shows: purpose, all options, examples, related commands.</li>
+<li>The single most reliable reference for any Linux command.</li>
+</ul>
+
+<div class="em-concl">✍️ Absolute paths are safe and unambiguous. Relative paths are convenient for quick navigation. man is the most important help tool in Linux — "when in doubt, man it out!"</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)">
+                <span class="marks-badge m4">4M</span>
+                <span class="pyq-pill">📌 Syllabus-core | Sysadmin responsibilities — important 4-mark</span>
+                <div class="q-text">Explain backup types in Linux. What is the difference between full, incremental and differential backup?</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-def">📖 <b>Backup:</b> A stored copy of important data kept safely so it can be restored if the original is lost, corrupted, or accidentally deleted.</div>
+
+<table class="exam-table">
+<tr><th>Type</th><th>What is backed up?</th><th>Speed</th><th>Restore</th></tr>
+<tr><td><b>Full Backup</b></td><td>Complete copy of ALL data</td><td>Slowest, largest</td><td>Simplest — just one backup</td></tr>
+<tr><td><b>Incremental</b></td><td>Only files changed since LAST BACKUP (any kind)</td><td>Fastest, smallest</td><td>Complex — need full + all incrementals in order</td></tr>
+<tr><td><b>Differential</b></td><td>All files changed since LAST FULL BACKUP</td><td>Medium</td><td>Easy — need only full + latest differential</td></tr>
+</table>
+
+<b>Common Backup Tools:</b>
+<ul>
+<li><code>tar</code> — archive and compress: <code>tar -czf backup.tar.gz /home</code></li>
+<li><code>rsync</code> — efficient, copies only changed files</li>
+<li><code>cpio</code> — copy files to/from archives</li>
+</ul>
+
+<div class="em-eg">💡 <b>Best practice:</b> Full backup every Sunday + Incremental every other day. ⚠️ <b>Golden Rule:</b> ALWAYS test that your backup can actually be restored. An untested backup is NOT a backup!</div>
+
+<div class="em-concl">✍️ A disciplined backup and restoration plan is the final safety net of system administration. Differential gives the best balance of speed and ease of restoration.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="twelve6">
+            <div class="pane-title" style="color:#5D4037">📖 12-Mark Exam-Copy Answers</div>
+            
+            <div class="qa-wrap">
+              <div class="qa-q" onclick="tog(this)" style="border-left:5px solid #5D4037">
+                <span class="marks-badge m12">12M</span>
+                <span class="pyq-pill">🔥 PYQ 2016 Q7(c) | 2017 Q7(c) | 2022 Q7 — EXACT SAME QUESTION THREE TIMES</span>
+                <div class="q-text">Discuss the role of the UNIX System Administrator in detail. What are the main responsibilities? Also explain the process of installing Linux.</div>
+                <span class="tog-icon">▼</span>
+              </div>
+              <div class="qa-ans">
+                <div class="exam-paper">
+                  <div class="paper-lines"><div class="em-intro">📌 <b>Introduction:</b> A UNIX/Linux System Administrator (sysadmin) is the person responsible for managing, maintaining, securing, and optimising the operating system and all services running on it. The sysadmin has root (superuser) access — they have complete control over the entire system.</div>
+
+<div class="em-def">📖 <b>Definition:</b> A UNIX System Administrator is a trained professional who installs, configures, and maintains UNIX/Linux operating systems and their associated software, ensuring continuous, secure, and reliable operation for all users.</div>
+
+<b>Main Responsibilities of a UNIX System Administrator:</b>
+
+<b>1. User Account Management:</b>
+<ul>
+<li>Create, modify, delete user accounts and groups.</li>
+<li>Commands: <code>useradd username</code>, <code>usermod -aG group user</code>, <code>userdel -r user</code>, <code>passwd username</code>.</li>
+<li>Config files: /etc/passwd (user accounts), /etc/group (group membership), /etc/shadow (encrypted passwords).</li>
+</ul>
+
+<b>2. Software Management:</b>
+<ul>
+<li>Install, update, and remove software packages.</li>
+<li>Commands: <code>apt install package</code>, <code>apt remove package</code>, <code>apt update &amp;&amp; apt upgrade</code>.</li>
+</ul>
+
+<b>3. File System Management:</b>
+<ul>
+<li>Create partitions, format, mount and unmount storage devices.</li>
+<li>Monitor disk space and health.</li>
+<li>Commands: <code>mkfs.ext4 /dev/sdb1</code>, <code>mount /dev/sdb1 /mnt</code>, <code>umount /mnt</code>, <code>df -h</code>, <code>du -sh</code>.</li>
+<li>Config: /etc/fstab — lists auto-mount configuration for every boot.</li>
+</ul>
+
+<b>4. System Monitoring:</b>
+<ul>
+<li>Monitor CPU, memory, disk, and network usage.</li>
+<li>Monitor running processes and kill misbehaving ones.</li>
+<li>Check system logs for errors and intrusion attempts.</li>
+<li>Commands: <code>top</code>, <code>ps -ef</code>, <code>free -h</code>, <code>dmesg</code>, <code>journalctl</code>.</li>
+</ul>
+
+<b>5. Backup and Restoration:</b>
+<ul>
+<li>Plan, schedule, and execute regular backups of critical data.</li>
+<li>Test that backups can actually be restored (vital!).</li>
+<li>Types: Full (all data), Incremental (since last backup), Differential (since last full backup).</li>
+<li>Tools: tar, rsync, cpio.</li>
+</ul>
+
+<b>6. Network Configuration:</b>
+<ul>
+<li>Set up network interfaces, IP addresses, DNS servers, default gateway.</li>
+<li>Configure and manage firewall rules (iptables, firewalld, ufw).</li>
+</ul>
+
+<b>7. Security Management:</b>
+<ul>
+<li>Enforce strong password policies.</li>
+<li>Manage file and directory permissions (chmod, chown, chgrp).</li>
+<li>Monitor for unauthorised access and intrusion attempts.</li>
+<li>Keep the system patched — apply security updates promptly.</li>
+<li>Disable unnecessary services and ports.</li>
+</ul>
+
+<b>8. Boot Management:</b>
+<ul>
+<li>Configure and manage the bootloader (GRUB).</li>
+<li>Understand the boot sequence for troubleshooting.</li>
+</ul>
+
+<b>Boot Sequence of Linux:</b>
+<div class="algo-box" style="border-left:5px solid #5D4037">
+<b>Step 1 — BIOS/UEFI:</b> Hardware self-test (POST), finds bootable device.<br>
+<b>Step 2 — GRUB Bootloader:</b> Presents boot menu, loads selected kernel.<br>
+<b>Step 3 — Linux Kernel:</b> Initialises hardware, mounts root filesystem.<br>
+<b>Step 4 — init/systemd (PID 1):</b> Starts all system services in correct order.<br>
+<b>Step 5 — Login Prompt:</b> System ready for user login.
+</div>
+
+<b>Installing Linux — Step-by-Step Process:</b>
+<ol>
+<li><b>Choose Installation Method:</b> Bootable USB drive, DVD, or network install (PXE boot over LAN).</li>
+<li><b>Choose Installation Class:</b> Minimal (server, no GUI), Full Desktop (with GNOME/KDE), or Custom (select packages manually).</li>
+<li><b>Pre-installation Checks:</b> Verify hardware compatibility, check available disk space (minimum 20 GB recommended), BACK UP all existing important data.</li>
+<li><b>Installation:</b> Boot from installation media, partition the disk (/ root partition + swap partition + /home), format partitions, select software packages, configure timezone and language.</li>
+<li><b>Booting:</b> Install GRUB bootloader on the MBR/EFI partition. Set boot order in BIOS. System will boot to Linux on next restart.</li>
+</ol>
+
+<div class="em-eg">💡 <b>Real Example:</b> A college lab administrator's daily tasks: creating student accounts at the start of semester (useradd), running weekly tar backups of /home, checking auth.log for failed login attempts, and applying security patches when notified by the Linux security team.</div>
+
+<div class="em-concl">✍️ <b>Conclusion:</b> The UNIX System Administrator is the most critical role in any Linux environment. Their work spans user management, software, monitoring, security, backup, and networking. Without a skilled sysadmin, even the best hardware and software will fail. In AKU exams, always list all 7-8 responsibilities by name and briefly explain each — this earns full marks in this question.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+</div>
+
+<button id="btt" onclick="scrollTo(0,0)">↑</button>
+
+<footer>
+  BCA-205 Operating System &amp; UNIX &nbsp;·&nbsp; AKU Patna &nbsp;·&nbsp;
+  PYQ Verified: 2014, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2025 &nbsp;·&nbsp;
+  All the best for 16 September 2026! 🎯
+</footer>
+
+<script>
+// ── Countdown ──
+function tick(){
+  const t=new Date('2026-09-16T10:00:00').getTime()-Date.now();
+  if(t<=0){document.getElementById('cd').innerHTML='<div class="cd-box"><div class="cd-num">🎓</div><div class="cd-lbl">Exam Day!</div></div>';return;}
+  const d=Math.floor(t/864e5),h=Math.floor((t%864e5)/36e5),m=Math.floor((t%36e5)/6e4),s=Math.floor((t%6e4)/1e3);
+  document.getElementById('cdD').textContent=d;
+  document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+// ── Progress bar ──
+window.addEventListener('scroll',()=>{
+  const p=(scrollY/(document.body.scrollHeight-innerHeight))*100;
+  document.getElementById('prog').style.width=p+'%';
+  document.getElementById('btt').classList.toggle('show',scrollY>400);
+});
+
+// ── MCQ reveal ──
+function revealAns(el, key, clicked){
+  const card=el.closest('.mcq-card');
+  const opts=card.querySelectorAll('.opt');
+  opts.forEach(o=>o.style.pointerEvents='none');
+  const reveal=document.getElementById('mcq_'+key);
+  const correctLetter=reveal.querySelector('.correct-badge').textContent.replace('✅ Correct: ','');
+  opts.forEach(o=>{
+    const badge=o.querySelector('.opt-badge');
+    if(badge.textContent===correctLetter)o.classList.add('correct');
+    else o.classList.add('wrong');
+  });
+  reveal.style.display='flex';
+}
+
+// ── Tab switching ──
+function switchTab(btn, paneId){
+  const unit=btn.closest('section');
+  unit.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  unit.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(paneId).classList.add('active');
+}
+
+// ── Q&A toggle ──
+function tog(el){
+  el.classList.toggle('open');
+  const ans=el.nextElementSibling;
+  ans.classList.toggle('show');
+}
+
+// ── Expand/collapse all Q&A ──
+function toggleAll(open){
+  document.querySelectorAll('.qa-q').forEach(q=>{
+    if(open){q.classList.add('open');q.nextElementSibling.classList.add('show')}
+    else{q.classList.remove('open');q.nextElementSibling.classList.remove('show')}
+  });
+}
+
+// ── Scroll reveal ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add('in');
+}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── Smooth scroll for nav ──
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'});
+}));
+</script>
+</body>
+</html>
