@@ -59,8 +59,6 @@
         transition:
           background 0.3s,
           color 0.3s;
-        display: flex;
-        flex-direction: column;
       }
 
       button {
@@ -340,16 +338,96 @@
       }
 
       /* =========================================================
+   SEMESTER TABS
+========================================================= */
+      .sem-tabs-wrap {
+        position: sticky;
+        top: 64px;
+        z-index: 99;
+        background: rgba(0, 0, 0, 0.5);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: var(--glass);
+        -webkit-backdrop-filter: var(--glass);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      body.light .sem-tabs-wrap {
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .sem-tabs-wrap::-webkit-scrollbar {
+        display: none;
+      }
+
+      .sem-tabs {
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        gap: 4px;
+        min-width: max-content;
+      }
+
+      .sem-tab {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 14px 18px;
+        border-bottom: 2px solid transparent;
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 700;
+        background: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+        position: relative;
+      }
+
+      .sem-tab:hover {
+        color: var(--txt);
+      }
+
+      .sem-tab.active {
+        color: var(--txt);
+        border-bottom-color: var(--sem-color, #6366f1);
+      }
+
+      .sem-tab .sem-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--sem-color, #6366f1);
+        box-shadow: 0 0 8px var(--sem-color, #6366f1);
+      }
+
+      .sem-tab .note-count {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 1px 6px;
+        font-size: 0.68rem;
+      }
+
+      .sem-tab.active .note-count {
+        background: var(--sem-color, #6366f1);
+        color: #fff;
+      }
+
+      /* =========================================================
    MAIN CONTENT
 ========================================================= */
       .main {
-        flex: 1;
         padding: 32px 24px;
         max-width: 1200px;
         margin: 0 auto;
-        width: 100%;
       }
 
+      /* Semester header */
       .sem-header {
         display: flex;
         align-items: center;
@@ -391,19 +469,37 @@
         color: var(--muted);
       }
 
+      .sem-meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .meta-chip {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 6px 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
       /* Subject grid */
       .subjects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
         gap: 16px;
-        margin-bottom: 40px;
       }
 
       /* Subject card */
       .sub-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 18px;
+        border-radius: var(--r);
         padding: 20px;
         position: relative;
         overflow: hidden;
@@ -423,13 +519,26 @@
         right: 0;
         height: 3px;
         background: var(--c, #6366f1);
-        border-radius: 18px 18px 0 0;
+        border-radius: var(--r) var(--r) 0 0;
       }
 
       .sub-card:hover {
         transform: translateY(-6px);
         box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
         border-color: var(--c, #6366f1);
+      }
+
+      .sub-card-glow {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--c, #6366f1);
+        opacity: 0.06;
+        filter: blur(30px);
+        pointer-events: none;
       }
 
       .sub-top {
@@ -468,6 +577,36 @@
         color: var(--muted);
         line-height: 1.55;
         margin-bottom: 14px;
+      }
+
+      .sub-notes-row {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .note-chip {
+        font-size: 0.69rem;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .note-chip.available {
+        color: var(--c, #6366f1);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid currentColor;
+      }
+
+      .note-chip.empty {
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        opacity: 0.6;
       }
 
       .sub-footer {
@@ -510,32 +649,403 @@
         color: #fff;
       }
 
+      /* Empty subject (no notes yet) */
+      .sub-card.no-notes {
+        opacity: 0.65;
+      }
+
+      .sub-card.no-notes:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* =========================================================
+   NOTES PANEL (slide-over)
+========================================================= */
+      .panel-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      .panel-backdrop.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .notes-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 201;
+        width: min(520px, 100vw);
+        background: var(--bg);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+      }
+
+      body.light .notes-panel {
+        background: #f8faff;
+      }
+
+      .notes-panel.open {
+        transform: translateX(0);
+      }
+
+      .panel-header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 22px;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .panel-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--pc, #6366f1);
+      }
+
+      .panel-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+      }
+
+      .panel-close:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--txt);
+      }
+
+      .panel-sub-code {
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--pc, #6366f1);
+        margin-bottom: 4px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .panel-sub-name {
+        font-family: "Outfit";
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+
+      .panel-sub-desc {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .panel-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 18px;
+      }
+
+      /* Notes type sections in panel */
+      .notes-section {
+        margin-bottom: 22px;
+      }
+
+      .notes-section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .notes-section-title .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--pc, #6366f1);
+      }
+
+      .note-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 15px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        margin-bottom: 8px;
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+        cursor: pointer;
+      }
+
+      .note-row:hover {
+        transform: translateX(4px);
+        border-color: var(--pc, #6366f1);
+      }
+
+      .note-row-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .note-row-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .note-row-title {
+        font-weight: 700;
+        font-size: 0.88rem;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .note-row-desc {
+        font-size: 0.75rem;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .note-row-actions {
+        display: flex;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      .nr-btn {
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: 1px solid;
+        transition: all 0.2s;
+      }
+
+      .nr-btn.solid {
+        background: var(--pc, #6366f1);
+        border-color: var(--pc, #6366f1);
+        color: #fff;
+      }
+
+      .nr-btn.solid:hover {
+        opacity: 0.85;
+      }
+
+      .nr-btn.outline {
+        background: transparent;
+        border-color: var(--border);
+        color: var(--muted);
+      }
+
+      .nr-btn.outline:hover {
+        border-color: var(--pc, #6366f1);
+        color: var(--pc, #6366f1);
+      }
+
+      /* Empty panel */
+      .panel-empty {
+        text-align: center;
+        padding: 48px 20px;
+        color: var(--muted);
+      }
+
+      .panel-empty .pe-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+        opacity: 0.35;
+      }
+
+      .panel-empty h3 {
+        font-family: "Outfit";
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+        color: var(--txt);
+        opacity: 0.5;
+      }
+
+      .panel-empty p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      .panel-empty code {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+      }
+
+      /* =========================================================
+   READER OVERLAY
+========================================================= */
+      .reader-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        display: none;
+        flex-direction: column;
+        background: var(--bg);
+        animation: rIn 0.25s ease;
+      }
+
+      .reader-overlay.open {
+        display: flex;
+      }
+
+      @keyframes rIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .reader-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        background: rgba(0, 0, 0, 0.55);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: var(--glass);
+        flex-shrink: 0;
+      }
+
+      body.light .reader-bar {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .reader-back {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 15px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        color: var(--txt);
+        font-size: 0.82rem;
+        font-weight: 700;
+        transition: background 0.2s;
+        flex-shrink: 0;
+      }
+
+      .reader-back:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .reader-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .reader-title-txt {
+        font-weight: 700;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .reader-sub-txt {
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      .reader-frame {
+        flex: 1;
+        width: 100%;
+        border: none;
+        background: #fff;
+      }
+
+      .reader-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .reader-action-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .reader-action-btn:hover {
+        background: rgba(255, 255, 255, 0.14);
+        color: var(--txt);
+      }
+
       /* =========================================================
    FOOTER
 ========================================================= */
       .footer {
-        background: rgba(0, 0, 0, 0.3);
-        border-top: 1px solid var(--border);
-        padding: 24px;
         text-align: center;
-        font-size: 0.82rem;
+        padding: 16px 24px;
+        font-size: 0.8rem;
         color: var(--muted);
-        width: 100%;
-        margin-top: auto;
-      }
-
-      .footer a {
-        color: var(--txt);
-        font-weight: 600;
-        transition: color 0.2s;
-      }
-
-      .footer a:hover {
-        color: #6366f1;
+        border-top: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.2);
       }
 
       body.light .footer {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
       }
     </style>
   </head>
@@ -557,7 +1067,7 @@
         </div>
       </div>
       <div class="header-mid">
-        <div class="search-bar" onclick="alert('Search functionality coming soon!')">
+        <div class="search-bar">
           <i class="fa-solid fa-magnifying-glass"></i>
           <span>Search notes, subjects...</span>
           <kbd>/</kbd>
@@ -567,8 +1077,47 @@
         <span class="stats-pill">
           <i class="fa-solid fa-flame"></i> Keep Learning
         </span>
+        <button class="icon-btn" title="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </header>
+
+    <!-- Semester Tabs -->
+    <div class="sem-tabs-wrap">
+      <div class="sem-tabs">
+        <div class="sem-tab active" style="--sem-color: #6366f1">
+          <span class="sem-dot"></span>
+          <span>Semester I</span>
+          <span class="note-count">0</span>
+        </div>
+        <div class="sem-tab" style="--sem-color: #f59e0b">
+          <span class="sem-dot"></span>
+          <span>Semester II</span>
+          <span class="note-count">0</span>
+        </div>
+        <div class="sem-tab" style="--sem-color: #06b6d4">
+          <span class="sem-dot"></span>
+          <span>Semester III</span>
+          <span class="note-count">0</span>
+        </div>
+        <div class="sem-tab" style="--sem-color: #f43f5e">
+          <span class="sem-dot"></span>
+          <span>Semester IV</span>
+          <span class="note-count">0</span>
+        </div>
+        <div class="sem-tab" style="--sem-color: #10b981">
+          <span class="sem-dot"></span>
+          <span>Semester V</span>
+          <span class="note-count">0</span>
+        </div>
+        <div class="sem-tab" style="--sem-color: #8b5cf6">
+          <span class="sem-dot"></span>
+          <span>Semester VI</span>
+          <span class="note-count">0</span>
+        </div>
+      </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main">
@@ -578,89 +1127,111 @@
             class="sem-num-badge"
             style="background: linear-gradient(135deg, #6366f1, #8b5cf6)"
           >
-            I–VI
+            I
           </div>
           <div class="sem-title-block">
-            <h2>Semester Notes Hub</h2>
-            <p>All subjects from Year 1–3 · Interactive Learning Platform</p>
+            <h2>Semester I</h2>
+            <p>First Year · Foundation Courses</p>
           </div>
         </div>
       </div>
 
       <!-- Subjects Grid -->
-      <div class="subjects-grid" id="subjectsGrid"></div>
+      <div class="subjects-grid">
+        <!-- Subject cards will be populated here -->
+      </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Copyright -->
     <footer class="footer">
       © 2026 Abdul Rahman — BCA Student Portal | The Ladder to 2028
     </footer>
 
+    <!-- Notes Panel -->
+    <div class="panel-backdrop"></div>
+    <div class="notes-panel">
+      <div class="panel-header">
+        <button class="panel-close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="panel-sub-code">BCA-XXX</div>
+        <div class="panel-sub-name">Subject Name</div>
+        <div class="panel-sub-desc">Subject description here</div>
+      </div>
+      <div class="panel-body">
+        <div class="panel-empty">
+          <div class="pe-icon">📚</div>
+          <h3>No Notes Available</h3>
+          <p>Resources will be added soon for this subject</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reader Overlay -->
+    <div class="reader-overlay">
+      <div class="reader-bar">
+        <button class="reader-back">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back
+        </button>
+        <div class="reader-info">
+          <div class="reader-title-txt">Note Title</div>
+          <div class="reader-sub-txt">Subject Code</div>
+        </div>
+        <div class="reader-actions">
+          <button class="reader-action-btn">
+            <i class="fa-solid fa-download"></i>
+            Download
+          </button>
+          <button class="reader-action-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Open
+          </button>
+        </div>
+      </div>
+      <iframe class="reader-frame" sandbox="allow-same-origin"></iframe>
+    </div>
+
     <script>
-      // Sample subjects data
-      const SUBJECTS = [
+      // Sample data
+      const subjects = [
         {
-          code: "BCA-201",
-          name: "Business English",
-          icon: "📘",
-          color: "#6366f1",
-          desc: "Letter writing, comprehension, grammar & communication skills",
-        },
-        {
-          code: "BCA-202",
-          name: "Numerical Techniques",
-          icon: "🔢",
-          color: "#f59e0b",
-          desc: "Newton-Raphson, Gauss elimination, numerical integration & interpolation",
-        },
-        {
-          code: "BCA-203",
-          name: "System Analysis & Design",
-          icon: "🗂️",
-          color: "#06b6d4",
-          desc: "SDLC models, DFD, ER diagrams, structured system design",
-        },
-        {
-          code: "BCA-204",
-          name: "Programming in C",
+          code: "BCA-101",
+          name: "Fundamentals of IT",
           icon: "💻",
-          color: "#f43f5e",
-          desc: "Pointers, structures, file handling, dynamic memory management",
+          color: "#6366f1",
+          desc: "Introduction to IT, Hardware, Software & Networks",
         },
         {
-          code: "BCA-205",
-          name: "Operating System & UNIX",
-          icon: "🖥️",
-          color: "#10b981",
-          desc: "Process management, deadlock, memory management, shell scripting",
+          code: "BCA-102",
+          name: "Programming Basics",
+          icon: "👨‍💻",
+          color: "#f59e0b",
+          desc: "Introduction to programming concepts and logic",
         },
       ];
 
-      // Render subjects grid
-      function renderGrid() {
-        const grid = document.getElementById("subjectsGrid");
-        grid.innerHTML = SUBJECTS.map((s) => `
-          <div class="sub-card" style="--c:${s.color}">
-            <div class="sub-top">
-              <div class="sub-icon">${s.icon}</div>
-              <div class="sub-code">${s.code}</div>
-            </div>
-            <div class="sub-name">${s.name}</div>
-            <div class="sub-desc">${s.desc}</div>
-            <div class="sub-footer">
-              <div class="notes-count">
-                0 <span>resources</span>
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        // Render subjects
+        const grid = document.querySelector(".subjects-grid");
+        subjects.forEach((s) => {
+          grid.innerHTML += `
+            <div class="sub-card" style="--c: ${s.color}">
+              <div class="sub-top">
+                <div class="sub-icon">${s.icon}</div>
+                <div class="sub-code">${s.code}</div>
               </div>
-              <button class="open-btn" onclick="alert('Coming soon!')">
-                View <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i>
-              </button>
+              <div class="sub-name">${s.name}</div>
+              <div class="sub-desc">${s.desc}</div>
+              <div class="sub-footer">
+                <div class="notes-count">0 <span>resources</span></div>
+                <button class="open-btn">View</button>
+              </div>
             </div>
-          </div>
-        `).join("");
-      }
-
-      // Initialize on page load
-      window.addEventListener("DOMContentLoaded", renderGrid);
+          `;
+        });
+      });
     </script>
   </body>
 </html>
