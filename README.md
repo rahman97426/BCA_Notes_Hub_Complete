@@ -7,7 +7,7 @@
 
 ```
 BCA_Notes_Hub/
-├── notes_hub.html      ← Open this in browser (main website)
+├── index.html      ← Open this in browser (main website)
 ├── style.css           ← All CSS styles (external)
 ├── script.js           ← All JavaScript + data config (external)
 ├── README.md           ← This file
