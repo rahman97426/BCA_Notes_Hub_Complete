@@ -1,0 +1,576 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA-203 SAD Complete Exam Guide 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Century Gothic","CenturyGothic","Nunito",AppleGothic,sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#1a1a2e}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460,#533483);padding:28px 20px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.05),transparent 60%);animation:rotate 20s linear infinite}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.hero h1{font-size:26px;font-weight:900;color:#fff;animation:glow 2s ease-in-out infinite alternate;letter-spacing:2px;position:relative}
+@keyframes glow{from{text-shadow:0 0 10px #fff,0 0 20px #4fc3f7}to{text-shadow:0 0 20px #fff,0 0 40px #e040fb,0 0 60px #e040fb}}
+.hero h2{font-size:13px;color:#e2b96f;margin:6px 0;position:relative}
+.badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px;position:relative}
+.badge{background:rgba(255,255,255,.15);color:#fff;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid rgba(255,255,255,.3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.nav{position:sticky;top:0;z-index:999;background:rgba(15,12,41,.97);padding:8px 14px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid rgba(255,255,255,.1)}
+.nav a{color:#a8dadc;text-decoration:none;padding:4px 10px;border-radius:18px;font-size:10px;font-weight:700;border:1px solid rgba(168,218,220,.3);transition:all .3s;white-space:nowrap}
+.nav a:hover{background:#457b9d;color:#fff;transform:scale(1.1)}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 12px}
+.sec{background:rgba(255,255,255,.97);border-radius:14px;padding:22px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.3);animation:slideUp .5s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.stitle{font-size:18px;font-weight:900;color:#1d3557;margin-bottom:14px;padding:9px 14px;border-radius:9px;background:linear-gradient(135deg,#f1faee,#a8dadc);display:flex;align-items:center;gap:8px}
+.uh{background:linear-gradient(135deg,#1d3557,#457b9d);color:#fff;padding:9px 16px;border-radius:9px;font-size:13px;font-weight:900;margin-bottom:12px;letter-spacing:1px}
+.sh{font-size:13px;font-weight:800;color:#1d3557;margin:14px 0 7px;padding:5px 10px;background:linear-gradient(90deg,#e8f4fd,transparent);border-left:4px solid #457b9d;border-radius:0 7px 7px 0}
+.def{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-left:5px solid #3b82f6;border-radius:7px;padding:11px 13px;margin:7px 0;font-style:italic;font-size:12.5px;color:#1e3a8a}
+.def strong{font-style:normal;font-weight:900;color:#1d4ed8;display:block;margin-bottom:4px;text-decoration:underline;font-size:13px}
+.trick{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:5px solid #f59e0b;border-radius:7px;padding:11px 13px;margin:7px 0;font-size:12.5px;font-weight:800;color:#92400e;animation:shimmer 3s infinite}
+@keyframes shimmer{0%,100%{box-shadow:0 0 0 rgba(245,158,11,0)}50%{box-shadow:0 0 14px rgba(245,158,11,.4)}}
+.kp{background:linear-gradient(135deg,#f0fff4,#dcfce7);border-left:5px solid #22c55e;border-radius:7px;padding:11px 13px;margin:7px 0}
+.kp h4{color:#15803d;font-size:12px;font-weight:800;margin-bottom:6px;text-decoration:underline}
+.kp ul{padding-left:16px}.kp ul li{font-size:12px;margin:2px 0;color:#166534}
+.kp ul li strong{font-weight:900;color:#14532d}
+.pyq-alert{background:linear-gradient(135deg,#fff7ed,#fed7aa);border:2px solid #f97316;border-radius:9px;padding:9px 13px;margin:7px 0;font-size:11px;font-weight:800;color:#c2410c;animation:bounce .8s ease}
+.pyq-alert::before{content:"🔥 "}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin:9px 0;border-radius:7px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+th{background:linear-gradient(135deg,#1d3557,#457b9d);color:#fff;padding:7px 9px;text-align:left;font-size:11px;font-family:"Century Gothic",sans-serif}
+td{padding:6px 9px;border-bottom:1px solid #e0e7ff;vertical-align:top;font-size:11.5px}
+tr:nth-child(even){background:#f0f4ff}tr:hover{background:#dbeafe}
+td strong{font-weight:900;color:#1d3557;text-decoration:underline}
+.mcq-card{background:#fff;border:2px solid #e0e7ff;border-radius:11px;padding:14px;margin:10px 0;transition:all .3s;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.mcq-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.mcq-q{font-size:12.5px;font-weight:800;color:#1d3557;margin-bottom:9px;background:#f0f4ff;padding:7px 11px;border-radius:7px;border-left:4px solid #457b9d}
+.mcq-opt{display:flex;flex-direction:column;gap:5px}
+.opt{padding:5px 11px;border-radius:7px;font-size:11.5px;display:flex;align-items:center;gap:6px;font-weight:600;border:1.5px solid transparent}
+.correct{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-color:#22c55e!important;color:#15803d;font-weight:900}
+.correct::before{content:"✅ "}
+.wrong{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
+.wrong::before{content:"❌ "}
+.normal{background:#f8faff;border-color:#c7d2fe;color:#3730a3}
+.mcq-ans{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:7px;padding:9px 13px;margin-top:7px;font-size:11.5px;border:1px solid #93c5fd}
+.mcq-ans strong{color:#1d4ed8;font-weight:900;text-decoration:underline}
+.ytag{display:inline-block;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;padding:2px 7px;border-radius:9px;font-size:9px;font-weight:700;margin-left:6px}
+.a4{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86efac;border-radius:11px;padding:16px;margin:12px 0;box-shadow:0 5px 18px rgba(0,0,0,.1)}
+.a12{background:linear-gradient(135deg,#faf5ff,#ede9fe);border:2px solid #c4b5fd;border-radius:11px;padding:16px;margin:12px 0;box-shadow:0 5px 18px rgba(0,0,0,.1)}
+.ahdr{display:flex;align-items:center;gap:9px;margin-bottom:11px;flex-wrap:wrap}
+.mb4{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:3px 11px;border-radius:18px;font-size:10px;font-weight:900}
+.mb12{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;padding:3px 11px;border-radius:18px;font-size:10px;font-weight:900}
+.aq{font-size:13px;font-weight:900;color:#1d3557;flex:1}
+.ptag{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700}
+.ab{font-size:12px;line-height:1.85;color:#1a1a2e}
+.ab .hd{font-size:12.5px;font-weight:900;color:#6d28d9;margin:7px 0 3px;text-decoration:underline;display:block}
+.ab .bl{padding-left:18px;margin:2px 0;display:block}
+.ab .bl::before{content:"➤ ";color:#6d28d9;font-weight:900}
+.ab strong{font-weight:900;color:#1d3557;text-decoration:underline}
+.ab .imp{background:linear-gradient(135deg,#fef3c7,#fde68a);padding:1px 5px;border-radius:3px;font-weight:900;color:#92400e}
+.nb{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #ef4444;border-radius:7px;padding:8px 12px;margin:7px 0;font-size:11.5px;color:#7f1d1d;font-weight:700}
+.dgm{background:#1a1a2e;color:#a8dadc;border-radius:9px;padding:14px;margin:9px 0;font-family:"Courier New",monospace;font-size:10.5px;overflow-x:auto;white-space:pre;border:1px solid #457b9d}
+.float{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:600px){.hero h1{font-size:17px}.wrap{padding:8px 6px}.sec{padding:12px 9px}}
+</style></head><body>
+<div class="hero">
+<h1 class="float">📚 BCA-203: SYSTEM ANALYSIS &amp; DESIGN</h1>
+<h2>✨ COMPLETE EXAM MASTER GUIDE — AKU PATNA 2026 ✨</h2>
+<div class="badges">
+<span class="badge">📅 21 Sep 2026</span><span class="badge">🕙 10AM–1PM</span>
+<span class="badge">📝 60 Marks</span><span class="badge">📄 Code 303203</span>
+<span class="badge">🎯 PYQ 2014–2025</span><span class="badge">✏️ Century Gothic Font</span>
+</div></div>
+<div class="nav">
+<a href="#mcq">🎯 MCQ Solved</a><a href="#m4">📝 4-Mark</a><a href="#m12">📖 12-Mark</a>
+<a href="#u1">Unit 1</a><a href="#u2">Unit 2</a><a href="#u3">Unit 3</a>
+<a href="#u4">Unit 4</a><a href="#u5">Unit 5</a><a href="#u6">Unit 6</a><a href="#u7">Unit 7</a>
+<a href="#diffs">🔄 Diffs</a><a href="#tricks">🧠 Tricks</a><a href="#crash">📆 Plan</a>
+</div>
+<div class="wrap">
+<div class="sec" id="mcq"><div class="stitle">🎯 SECTION 1 — ALL MCQ SOLVED (PYQ 2014–2025 Verified)</div>
+<div class="pyq-alert">All MCQs from ACTUAL AKU exam papers 2014–2025. Green = Correct Answer ✅</div>
+<div class="pyq-alert">Q1 Pattern: Choose any 6 from 8–10 options. 2×6=12 marks. Never leave Q1 blank!</div><div class="mcq-card"><div class="mcq-q"><b>Q1.</b> How many steps are in SDLC? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) 4</div><div class="opt wrong">(ii) 5</div><div class="opt correct">(iii) 7</div><div class="opt normal">(iv) 10</div></div><div class="mcq-ans"><strong>Correct: (iii) 7</strong> &nbsp;|&nbsp; 💡 SDLC has EXACTLY 7 phases: P-I-A-L-P-I-M. Remember: Please Identify And Let People Implement Maintenance</div></div><div class="mcq-card"><div class="mcq-q"><b>Q2.</b> Debugging is: <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) Creating program code</div><div class="opt correct">(ii) Finding and correcting errors in program code</div><div class="opt normal">(iii) Identifying task to be computerized</div><div class="opt normal">(iv) Creating the algorithm</div></div><div class="mcq-ans"><strong>Correct: (ii) Finding and correcting errors</strong> &nbsp;|&nbsp; 💡 Debugging = finding and correcting errors/bugs in program code. Not creating code!</div></div><div class="mcq-card"><div class="mcq-q"><b>Q3.</b> Testing software WITHOUT knowledge of source code is called: <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) White box testing</div><div class="opt correct">(ii) Black box testing</div><div class="opt normal">(iii) Gray box testing</div><div class="opt normal">(iv) Blue box testing</div></div><div class="mcq-ans"><strong>Correct: (ii) Black box testing</strong> &nbsp;|&nbsp; 💡 Black box = no source code knowledge needed. White box = needs source code knowledge</div></div><div class="mcq-card"><div class="mcq-q"><b>Q4.</b> Which is a Fact Finding Technique? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) Systems Requirement Specification</div><div class="opt wrong">(ii) Quality Assurance</div><div class="opt correct">(iii) Sampling of Existing Documents</div><div class="opt normal">(iv) Prototyping</div></div><div class="mcq-ans"><strong>Correct: (iii) Sampling of Existing Documents</strong> &nbsp;|&nbsp; 💡 Fact Finding Techniques: I-G-S-P-Q. Sampling of Documents is a fact finding technique</div></div><div class="mcq-card"><div class="mcq-q"><b>Q5.</b> JAD stands for: <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt correct">(i) Joint Application Development</div><div class="opt wrong">(ii) Joint Analysis and Design</div><div class="opt normal">(iii) Joint Advanced Development</div><div class="opt normal">(iv) Joint Automated Design</div></div><div class="mcq-ans"><strong>Correct: (i) Joint Application Development</strong> &nbsp;|&nbsp; 💡 JAD = Joint Application Development — users, managers and analysts work together in workshops</div></div><div class="mcq-card"><div class="mcq-q"><b>Q6.</b> Which skill is NOT required by Systems Analyst? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt correct">(i) Programming Language Skill</div><div class="opt wrong">(ii) Technical Skill</div><div class="opt normal">(iii) Communication Skill</div><div class="opt normal">(iv) Management Skill</div></div><div class="mcq-ans"><strong>Correct: (i) Programming Language Skill</strong> &nbsp;|&nbsp; 💡 Analyst needs A-T-M-I skills. Programming is part of Technical skill but DEEP programming language skill is NOT mandatory</div></div><div class="mcq-card"><div class="mcq-q"><b>Q7.</b> Which activity does NOT belong to implementation phase? <span class="ytag">PYQ 2021</span></div><div class="mcq-opt"><div class="opt wrong">(i) File conversion</div><div class="opt wrong">(ii) Program testing</div><div class="opt normal">(iii) User training</div><div class="opt correct">(iv) All of the above belong to implementation</div></div><div class="mcq-ans"><strong>Correct: (iv) All of the above belong to implementation</strong> &nbsp;|&nbsp; 💡 File conversion + Program testing + User training ALL belong to Implementation phase</div></div><div class="mcq-card"><div class="mcq-q"><b>Q8.</b> Requirement analysis is performed during which phase? <span class="ytag">PYQ 2021</span></div><div class="mcq-opt"><div class="opt wrong">(i) System design phase</div><div class="opt wrong">(ii) System development phase</div><div class="opt correct">(iii) System analysis phase</div><div class="opt normal">(iv) System investigation phase</div></div><div class="mcq-ans"><strong>Correct: (iii) System analysis phase</strong> &nbsp;|&nbsp; 💡 Requirement analysis is done during the ANALYSIS phase of SDLC</div></div><div class="mcq-card"><div class="mcq-q"><b>Q9.</b> Which are characteristics of a system? <span class="ytag">PYQ 2021</span></div><div class="mcq-opt"><div class="opt wrong">(i) Organization</div><div class="opt wrong">(ii) Interaction</div><div class="opt normal">(iii) Interdependence</div><div class="opt correct">(iv) All of the above</div></div><div class="mcq-ans"><strong>Correct: (iv) All of the above</strong> &nbsp;|&nbsp; 💡 All three: Organization, Interaction and Interdependence are characteristics. Trick: O-I-I-I-C-E-B</div></div><div class="mcq-card"><div class="mcq-q"><b>Q10.</b> Main objective of feasibility study is: <span class="ytag">PYQ 2021</span></div><div class="mcq-opt"><div class="opt wrong">(i) See whether system met specification</div><div class="opt correct">(ii) Assess if possible to meet requirements within budget, HR and hardware constraints</div><div class="opt normal">(iii) Remove bugs in programs</div><div class="opt normal">(iv) Assist management in implementing system</div></div><div class="mcq-ans"><strong>Correct: (ii) Assess if possible to meet requirements within budget, HR and hardware constraints</strong> &nbsp;|&nbsp; 💡 Feasibility study checks if project can be completed within constraints of budget, resources and hardware</div></div><div class="mcq-card"><div class="mcq-q"><b>Q11.</b> SRS stands for: <span class="ytag">PYQ 2022</span></div><div class="mcq-opt"><div class="opt wrong">(i) Software Requirement Specification</div><div class="opt wrong">(ii) Software Requirement Solution</div><div class="opt correct">(iii) System Requirement Specification</div><div class="opt normal">(iv) None of the above</div></div><div class="mcq-ans"><strong>Correct: (iii) System Requirement Specification</strong> &nbsp;|&nbsp; 💡 SRS = System Requirement Specification. It describes WHAT system should do, not HOW</div></div><div class="mcq-card"><div class="mcq-q"><b>Q12.</b> Which is a tool used in design phase? <span class="ytag">PYQ 2022</span></div><div class="mcq-opt"><div class="opt wrong">(i) Abstraction</div><div class="opt wrong">(ii) Refinement</div><div class="opt normal">(iii) Information hiding</div><div class="opt correct">(iv) All of the above</div></div><div class="mcq-ans"><strong>Correct: (iv) All of the above</strong> &nbsp;|&nbsp; 💡 Abstraction + Refinement + Information hiding are ALL tools used in design phase</div></div><div class="mcq-card"><div class="mcq-q"><b>Q13.</b> DFD is normally levelled because: <span class="ytag">PYQ 2025</span></div><div class="mcq-opt"><div class="opt wrong">(i) It is a good idea</div><div class="opt wrong">(ii) Recommended by many experts</div><div class="opt normal">(iii) Easy to do</div><div class="opt correct">(iv) Easier to read many smaller DFDs than one large DFD</div></div><div class="mcq-ans"><strong>Correct: (iv) Easier to read many smaller DFDs than one large DFD</strong> &nbsp;|&nbsp; 💡 DFDs are levelled for readability — Level 0 (Context) → Level 1 → Level 2</div></div><div class="mcq-card"><div class="mcq-q"><b>Q14.</b> SDLC stands for: <span class="ytag">PYQ 2025</span></div><div class="mcq-opt"><div class="opt correct">(i) System Development Life Cycle</div><div class="opt wrong">(ii) Structure Design Life Cycle</div><div class="opt normal">(iii) System Design Life Cycle</div><div class="opt normal">(iv) Structure Development Life Cycle</div></div><div class="mcq-ans"><strong>Correct: (i) System Development Life Cycle</strong> &nbsp;|&nbsp; 💡 SDLC = System Development Life Cycle — structured process to design/develop/maintain IS</div></div><div class="mcq-card"><div class="mcq-q"><b>Q15.</b> In DFD, external entities are represented by: <span class="ytag">PYQ 2025</span></div><div class="mcq-opt"><div class="opt correct">(i) Rectangle</div><div class="opt wrong">(ii) Ellipse</div><div class="opt normal">(iii) Diamond-shaped box</div><div class="opt normal">(iv) Circle</div></div><div class="mcq-ans"><strong>Correct: (i) Rectangle</strong> &nbsp;|&nbsp; 💡 DFD Symbols: Rectangle=External Entity | Circle=Process | Arrow=Data Flow | Open Rectangle=Data Store</div></div><div class="mcq-card"><div class="mcq-q"><b>Q16.</b> Cost-benefit analysis is performed during: <span class="ytag">PYQ 2025</span></div><div class="mcq-opt"><div class="opt wrong">(i) Analysis phase</div><div class="opt wrong">(ii) Design phase</div><div class="opt correct">(iii) Feasibility study phase</div><div class="opt normal">(iv) Implementation phase</div></div><div class="mcq-ans"><strong>Correct: (iii) Feasibility study phase</strong> &nbsp;|&nbsp; 💡 CBA is done in Feasibility Study phase to check Economic Feasibility. Trick: T-O-E-L</div></div><div class="mcq-card"><div class="mcq-q"><b>Q17.</b> Tabular method for describing decision logic is called: <span class="ytag">PYQ 2025</span></div><div class="mcq-opt"><div class="opt correct">(i) Decision table</div><div class="opt wrong">(ii) Decision tree</div><div class="opt normal">(iii) Decision method</div><div class="opt normal">(iv) Decision data</div></div><div class="mcq-ans"><strong>Correct: (i) Decision table</strong> &nbsp;|&nbsp; 💡 Decision TABLE = tabular. Decision TREE = graphical tree. Same logic, different representation</div></div><div class="mcq-card"><div class="mcq-q"><b>Q18.</b> What is provided by Technical Writers for new system? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) Programs</div><div class="opt wrong">(ii) Network</div><div class="opt normal">(iii) Analysis</div><div class="opt correct">(iv) Documentation</div></div><div class="mcq-ans"><strong>Correct: (iv) Documentation</strong> &nbsp;|&nbsp; 💡 Technical Writers provide Documentation — user manuals, operation guides, technical docs</div></div><div class="mcq-card"><div class="mcq-q"><b>Q19.</b> Which is associated with make-or-buy decision in SDLC? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) Problem Opportunity</div><div class="opt correct">(ii) Design</div><div class="opt normal">(iii) Analysis</div><div class="opt normal">(iv) Development and Documentation</div></div><div class="mcq-ans"><strong>Correct: (ii) Design</strong> &nbsp;|&nbsp; 💡 Make-or-buy decision is made during the Design phase of SDLC</div></div><div class="mcq-card"><div class="mcq-q"><b>Q20.</b> Which of following is false about use case? <span class="ytag">PYQ 2014</span></div><div class="mcq-opt"><div class="opt wrong">(i) Scenario for understanding requirements</div><div class="opt wrong">(ii) Interaction between users and systems</div><div class="opt normal">(iii) Captures responsibility of system to users</div><div class="opt correct">(iv) Represents flow of activities of various processors</div></div><div class="mcq-ans"><strong>Correct: (iv) Represents flow of activities of various processors</strong> &nbsp;|&nbsp; 💡 Use case does NOT represent flow of processor activities — that is a flowchart/DFD</div></div></div>
+<div class="sec" id="m4"><div class="stitle">📝 SECTION 2 — 4-MARK ANSWERS (Q2 Style — Exam Copy Ready)</div>
+<div class="pyq-alert">Q2: Choose any 3 from 5. Each = 4 marks. Write Definition + 4 key points. 10–12 lines. Underline all key terms!</div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q1. What is a System? Write its characteristics.</span><span class="ptag">📅 2014,2016,2017,2018,2021</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+A <strong>system</strong> is a <strong>set of interrelated components working together to achieve a common goal.</strong> It accepts input, processes it, and produces output with feedback control.
+<span class="hd">Characteristics (Trick: O-I-I-I-C-E-B):</span>
+<span class="bl"><strong>Organization:</strong> System is a group of components</span>
+<span class="bl"><strong>Interaction:</strong> Components interact with each other</span>
+<span class="bl"><strong>Interdependence:</strong> Components depend on each other</span>
+<span class="bl"><strong>Integration:</strong> All parts work together as a whole</span>
+<span class="bl"><strong>Central Objective:</strong> Every system has a specific goal</span>
+<span class="bl"><strong>Environment:</strong> System exists in an environment</span>
+<span class="bl"><strong>Boundary:</strong> System has a boundary separating it from environment</span>
+<div class="trick">🧠 Trick: O-I-I-I-C-E-B = "Old Indians Identify Issues, Creating Easy Boundaries"</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q2. What is Prototype? Explain its types.</span><span class="ptag">📅 2014,2015,2018,2022,2023,2025</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+A <strong>prototype</strong> is a <strong>sample/working model</strong> of the system used to understand requirements and <strong>get feedback from users</strong> before building the final system.
+<span class="hd">Two Types:</span>
+<span class="bl"><strong>Throwaway Prototype:</strong> Built for requirement gathering only. Once feedback is collected, it is <strong>discarded</strong> and final system built from scratch.</span>
+<span class="bl"><strong>Evolutionary Prototype:</strong> Continuously <strong>improved and refined</strong> based on user feedback until it becomes the final delivered system.</span>
+<span class="hd">Benefits:</span>
+<span class="bl"><strong>Better understanding</strong> of user requirements</span>
+<span class="bl"><strong>Early feedback</strong> from users reduces risk</span>
+<span class="bl"><strong>Improves accuracy</strong> of final system</span></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q3. What is JAD? State its advantages.</span><span class="ptag">📅 2015,2016,2021,2022,2023</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+<strong>JAD (Joint Application Development)</strong> is a technique where <strong>users, managers and analysts</strong> work together in <strong>structured workshop sessions</strong> to define requirements and design the system.
+<span class="hd">Benefits of JAD:</span>
+<span class="bl"><strong>Better communication</strong> between all stakeholders</span>
+<span class="bl"><strong>Fast requirement gathering</strong> — all parties in one session</span>
+<span class="bl"><strong>High user satisfaction</strong> — users feel involved in design</span>
+<span class="bl"><strong>Reduced development time</strong> — fewer meetings later</span>
+<span class="bl"><strong>Better quality system</strong> — meets real user needs</span>
+<div class="trick">🧠 JAD = Users + Analysts + Managers → Better System</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q4. What is SRS? Write its contents.</span><span class="ptag">📅 2015,2017,2021,2022,2023</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+<strong>SRS (System Requirements Specification)</strong> describes <strong>WHAT the system should do</strong> — NOT HOW. It acts as a <strong>CONTRACT between users and developers.</strong>
+<span class="hd">Contents of SRS:</span>
+<span class="bl"><strong>Introduction</strong> — purpose, scope</span>
+<span class="bl"><strong>Overall description</strong> of system</span>
+<span class="bl"><strong>Functional requirements</strong> — what system must do</span>
+<span class="bl"><strong>Non-functional requirements</strong> — performance, security, reliability</span>
+<span class="bl"><strong>Constraints, Assumptions, External interfaces, Acceptance criteria</strong></span>
+<span class="hd">Importance:</span>Contract between users and developers | Basis for design and testing | Reduces misunderstanding
+<div class="trick">🧠 KEY: SRS=WHAT | SDS=HOW | Test Doc=HOW TO TEST | User Manual=HOW TO USE</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q5. What is Feasibility Study? Name its types.</span><span class="ptag">📅 2015,2016,2021,2022,2023,2025</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+<strong>Feasibility Study</strong> checks whether the proposed system is <strong>practical, economical and beneficial.</strong> It determines if the project is worth pursuing before investing time and money.
+<span class="hd">Four Types (Trick: T-O-E-L):</span>
+<span class="bl"><strong>Technical Feasibility:</strong> Is the required technology available? (hardware, software, expertise)</span>
+<span class="bl"><strong>Operational Feasibility:</strong> Will system work in organization? (user acceptance, training)</span>
+<span class="bl"><strong>Economic Feasibility:</strong> Is it cost-effective? If Benefits &gt; Costs → Feasible ✅</span>
+<span class="bl"><strong>Legal Feasibility:</strong> Is it legally acceptable? (laws, regulations, privacy)</span>
+<div class="trick">🧠 T-O-E-L = "Total Overall Exam Life" | Feasible system: Practical + Acceptable + Affordable + Legal</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q6. Explain Role of Systems Analyst.</span><span class="ptag">📅 2015,2016,2021,2022,2023,2025</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+A <strong>Systems Analyst</strong> is a professional who <strong>studies business systems, understands user needs</strong>, and designs effective IS solutions. Acts as a <strong>BRIDGE between users and developers.</strong>
+<span class="hd">Major Roles:</span>
+<span class="bl"><strong>Study</strong> current system and identify problems</span>
+<span class="bl"><strong>Elicit and analyze</strong> user requirements</span>
+<span class="bl"><strong>Design</strong> logical and physical solutions</span>
+<span class="bl"><strong>Prepare documentation</strong> — SRS, SDS, reports</span>
+<span class="bl"><strong>Coordinate</strong> with users, managers and developers</span>
+<span class="bl"><strong>Ensure</strong> successful implementation and maintenance</span>
+<div class="trick">🧠 Skills: A-T-M-I | Duties: I-C-A-D-E-T-M-T-S | Qualities: Good Listener, Impartial, Patient, Creative</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q7. What are Coupling and Cohesion? (Short Note)</span><span class="ptag">📅 2015,2022,2023,2025</span></div>
+<div class="ab"><span class="hd">Coupling — Definition:</span>
+<strong>Coupling</strong> = degree of <strong>interdependence BETWEEN modules.</strong> <span class="imp">LOW Coupling = GOOD DESIGN.</span>
+Types (Low→High): <strong>D-S-C-E-C-C</strong> = Data, Stamp, Control, External, Common, Content(Worst)
+<span class="hd">Cohesion — Definition:</span>
+<strong>Cohesion</strong> = degree elements WITHIN a module belong together. <span class="imp">HIGH Cohesion = GOOD DESIGN.</span>
+Types (Low→High): <strong>C-L-T-P-C-S-F</strong> = Coincidental(Worst), Logical, Temporal, Procedural, Communicational, Sequential, Functional(Best)
+<div class="trick">🧠 GOLDEN RULE: Good Design = LOW COUPLING + HIGH COHESION</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q8. Explain Top-Down and Bottom-Up Design.</span><span class="ptag">📅 2014,2016,2018,2021,2023</span></div>
+<div class="ab"><span class="hd">Top-Down Design:</span>
+Starts from <strong>WHOLE system</strong> and <strong>breaks it DOWN</strong> into smaller modules until detail level is reached.
+<span class="bl"><strong>Flow:</strong> System → Modules → Sub-modules (High to Low)</span>
+<span class="bl">Easy to <strong>manage and control</strong> | Used in <strong>early stages</strong></span>
+<span class="hd">Bottom-Up Design:</span>
+Starts from <strong>SMALL modules</strong> and <strong>builds UP</strong> to form larger modules and complete system.
+<span class="bl"><strong>Flow:</strong> Sub-modules → Modules → System (Low to High)</span>
+<span class="bl">Good for <strong>reusable modules</strong> | Ensures <strong>reliability</strong> at lower level</span>
+<div class="trick">🧠 Top-Down = Break Down ↓ | Bottom-Up = Build Up ↑</div></div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q9. What is DFD? Explain its symbols.</span><span class="ptag">📅 2014,2016,2017,2018,2021,2025</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+<strong>DFD (Data Flow Diagram)</strong> is a <strong>graphical representation</strong> showing how <strong>data flows</strong> in a system between processes, data stores and external entities.
+<span class="hd">Four Symbols (MUST memorize!):</span>
+<span class="bl"><strong>Rectangle/Square = External Entity</strong> (Source or destination of data)</span>
+<span class="bl"><strong>Circle/Oval = Process</strong> (Transforms input into output)</span>
+<span class="bl"><strong>Arrow = Data Flow</strong> (Direction and name of data movement)</span>
+<span class="bl"><strong>Open Rectangle = Data Store</strong> (Stores data — labeled D1, D2)</span>
+<span class="hd">DFD Levels:</span>Level 0 (Context) → Level 1 (Major processes) → Level 2 (Sub-processes)</div></div>
+
+<div class="a4"><div class="ahdr"><span class="mb4">4 MARKS</span><span class="aq">Q10. What are the types of Documentation?</span><span class="ptag">📅 2014,2016,2021,2025</span></div>
+<div class="ab"><span class="hd">Definition:</span>
+<strong>Documentation</strong> = process of recording information about the system — requirements, design, testing, implementation — in a clear and systematic manner.
+<span class="hd">Seven Types:</span>
+<span class="bl"><strong>1. Planning Documents</strong> — Define scope, objectives, schedule, resources</span>
+<span class="bl"><strong>2. Requirement Documents (SRS)</strong> — WHAT system should do</span>
+<span class="bl"><strong>3. Design Documents (SDS)</strong> — HOW system will be built</span>
+<span class="bl"><strong>4. Development Documents</strong> — Code, program logic, technical details</span>
+<span class="bl"><strong>5. Testing Documents</strong> — Test cases, procedures, expected results</span>
+<span class="bl"><strong>6. Operation Documents (User Manual)</strong> — How to run the system</span>
+<span class="bl"><strong>7. Maintenance Documents</strong> — Help in future changes</span></div></div>
+</div>
+<div class="sec" id="m12"><div class="stitle">📖 SECTION 3 — 12-MARK COMPLETE ANSWERS (Q3–Q7 Style — Full Exam Copy)</div>
+<div class="pyq-alert">Q3–Q7: Choose any 3 from 5. Each = 12 marks. Write 1 FULL PAGE. Include: Definition + All Points + Diagram + Table + Conclusion!</div>
+<div class="pyq-alert">🏆 BEST 3 TO ALWAYS ATTEMPT: SDLC + DFD + Coupling/Cohesion — These appear EVERY YEAR!</div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q1. What is SDLC? Explain all 7 phases with diagram.</span><span class="ptag">📅 EVERY YEAR 2014–2025 ⭐</span></div>
+<div class="ab">
+<span class="hd">A. Definition:</span>
+<strong>SDLC (System Development Life Cycle)</strong> is a <strong>structured process</strong> used to design, develop, implement and maintain information systems. It provides a systematic framework to build quality systems <strong>within budget and time.</strong>
+<div class="nb">SDLC has EXACTLY 7 phases. Trick: P-I-A-L-P-I-M = "Please Identify And Let People Implement Maintenance"</div>
+<span class="hd">B. Seven Phases of SDLC:</span>
+<strong><u>Phase 1 — Project Identification &amp; Selection:</u></strong>
+<span class="bl">Recognize business <strong>problems and opportunities</strong></span>
+<span class="bl">Evaluate projects on: <strong>Strategic fit, Feasibility, Cost, Risk, Priority</strong></span>
+<span class="bl"><strong>Output:</strong> Problem Statement, Project Proposal</span>
+<br>
+<strong><u>Phase 2 — Project Initiation &amp; Planning:</u></strong>
+<span class="bl">Define project <strong>scope, objectives</strong> and major deliverables</span>
+<span class="bl">Estimate <strong>cost and time</strong>, prepare Gantt chart and risk plan</span>
+<span class="bl"><strong>Output:</strong> Project Charter, Feasibility Report, Project Plan, Cost Estimate</span>
+<br>
+<strong><u>Phase 3 — Analysis:</u></strong>
+<span class="bl">Study <strong>current system</strong> and gather requirements from users</span>
+<span class="bl">Analyze data, processes and controls. Evaluate feasibility (T-O-E-L)</span>
+<span class="bl"><strong>Output:</strong> SRS Document, Feasibility Report, Process Models</span>
+<br>
+<strong><u>Phase 4 — Logical Design:</u></strong>
+<span class="bl">Design system architecture — <strong>technology INDEPENDENT</strong></span>
+<span class="bl">Create <strong>DFDs, ER Diagrams, Data Dictionary</strong></span>
+<span class="bl"><strong>Output:</strong> DFD, ER Diagram, Logical Data Dictionary, Process Specs</span>
+<br>
+<strong><u>Phase 5 — Physical Design:</u></strong>
+<span class="bl">Select <strong>hardware and software</strong>. Design database physically</span>
+<span class="bl">Design <strong>file structures, user interface and I/O formats</strong></span>
+<span class="bl"><strong>Output:</strong> Database Design, File Structures, I/O Design</span>
+<br>
+<strong><u>Phase 6 — Implementation:</u></strong>
+<span class="bl">Develop software, install hardware, <strong>test the system, train users</strong></span>
+<span class="bl">Changeover: <strong>Direct / Parallel / Phased / Pilot</strong></span>
+<span class="bl"><strong>Output:</strong> Working System, Test Reports, User Training, Documentation</span>
+<br>
+<strong><u>Phase 7 — Maintenance:</u></strong>
+<span class="bl"><strong>Corrective:</strong> Fix errors after go-live</span>
+<span class="bl"><strong>Adaptive:</strong> Modify for environment changes (new OS, hardware)</span>
+<span class="bl"><strong>Perfective:</strong> Improve performance or add new features</span>
+<span class="bl"><strong>Preventive:</strong> Make changes to prevent future problems</span>
+<span class="bl"><strong>Output:</strong> Maintenance Reports, Change Requests, Updated System</span>
+<span class="hd">C. SDLC Diagram (DRAW THIS IN EXAM):</span>
+<div class="dgm">SDLC CYCLE DIAGRAM:
+
+  [1. Project        [2. Project          [3. Analysis]
+   Identification]───Planning]───────────────────────────────┐
+       ▲                                                      │
+       │                                                      ▼
+  [7. Maintenance]◀──[6. Implementation]◀──[5. Physical]◀──[4. Logical
+       │                                       Design]        Design]
+       │
+       └─────── FEEDBACK LOOP (Maintenance may loop back to earlier phases)
+</div>
+<span class="hd">D. Logical vs Physical Design:</span>
+<strong>Logical Design</strong> = WHAT system will do (technology-independent) | <strong>Physical Design</strong> = HOW system is built (technology-dependent)
+<span class="hd">E. Conclusion:</span>
+SDLC provides systematic process to develop quality IS through proper planning, analysis, design, implementation and maintenance. Ensures projects are <strong>completed on time, within budget</strong> and meeting user requirements.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q2. What is DFD? Explain symbols, levels and draw example.</span><span class="ptag">📅 2014,2016,2017,2018,2021,2022,2025</span></div>
+<div class="ab">
+<span class="hd">A. Definition:</span>
+<strong>DFD (Data Flow Diagram)</strong> is a <strong>graphical representation</strong> showing how <strong>data flows</strong> in a system. It shows movement of data between processes, data stores, and external entities.
+<span class="hd">B. DFD Symbols (Draw these in exam!):</span>
+<span class="bl"><strong>Rectangle / Square = External Entity</strong> — Source or destination of data. Also called Terminator. Example: CUSTOMER, BANK, STUDENT</span>
+<span class="bl"><strong>Circle / Oval = Process</strong> — Transforms input data into output. Labeled verb + number. Example: "1. Verify Account"</span>
+<span class="bl"><strong>Arrow = Data Flow</strong> — Shows direction of data movement. Labeled with data name. Example: "Student Details"</span>
+<span class="bl"><strong>Open Rectangle (two parallel lines) = Data Store</strong> — Stores data. Labeled D1, D2. Example: "D1 STUDENT DATABASE"</span>
+<span class="hd">C. Levels of DFD:</span>
+<span class="bl"><strong>Level 0 (Context Diagram):</strong> Shows ENTIRE system as ONE single process with all external entities</span>
+<span class="bl"><strong>Level 1:</strong> Expands Level 0 into MAJOR processes — shows main system functions</span>
+<span class="bl"><strong>Level 2:</strong> Expands each Level 1 process into detailed SUB-PROCESSES</span>
+<span class="hd">D. Example DFD — Library System:</span>
+<div class="dgm">LEVEL 0 — CONTEXT DIAGRAM:
+
+┌─────────┐  Book Request   ╭──────────────────╮  Report  ┌──────────┐
+│ STUDENT │────────────────▶│  LIBRARY SYSTEM  │─────────▶│LIBRARIAN │
+│ (Entity)│◀───Book Issued──│    (Process 0)   │          │ (Entity) │
+└─────────┘                 ╰──────────────────╯
+
+LEVEL 1 — MAJOR PROCESSES:
+
+┌─────────┐  Request  ╭────────────╮ Check  ══D1═BOOK DATABASE═══
+│ STUDENT │──────────▶│ 1. Process │◀─────────────────────────────
+└─────────┘           │  Request   │──Available──▶╭─────────────╮
+                      ╰────────────╯              │ 2. Issue    │
+                                                  │   Book      │
+                                                  ╰──────┬──────╯
+                      ══D2═ISSUE RECORDS═══◀──Update─────┘</div>
+<span class="hd">E. Importance of DFD:</span>
+<span class="bl">Helps understand <strong>system requirements</strong> clearly</span>
+<span class="bl">Used in <strong>Logical Design phase</strong> of SDLC</span>
+<span class="bl">Easy to <strong>communicate</strong> with non-technical users</span>
+<span class="bl">Basis for <strong>database design</strong> and process specification</span>
+<span class="hd">F. Conclusion:</span>
+DFD is a powerful tool for visualizing data flow. Levelling helps manage complexity by breaking large diagrams into smaller, easier-to-read ones.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q3. What is Feasibility Study? Explain all 4 types in detail.</span><span class="ptag">📅 2015,2016,2021,2022,2023,2025</span></div>
+<div class="ab">
+<span class="hd">A. Definition:</span>
+<strong>Feasibility Study</strong> checks whether the proposed system is <strong>practical, economical and beneficial.</strong> It determines if the project is worth pursuing before investing time and money.
+<div class="nb">Feasibility Trick: T-O-E-L = "Total Overall Exam Life" → Technical, Operational, Economic, Legal</div>
+<span class="hd">B. Four Types of Feasibility Study:</span>
+<strong><u>1. Technical Feasibility — "Is technology AVAILABLE?"</u></strong>
+<span class="bl">Checks availability of required <strong>hardware and software</strong></span>
+<span class="bl">Checks availability of <strong>technical expertise</strong> in team</span>
+<span class="bl">Checks <strong>infrastructure</strong> — network, internet, power supply</span>
+<span class="bl">Example: If system needs cloud computing, is internet infrastructure available?</span>
+<br>
+<strong><u>2. Operational Feasibility — "Will it WORK in organization?"</u></strong>
+<span class="bl">Checks if system will be <strong>accepted by users</strong></span>
+<span class="bl">Studies <strong>organizational behavior</strong> and resistance to change</span>
+<span class="bl">Checks <strong>training requirements</strong> for staff</span>
+<span class="bl">Example: Will employees accept the new computerized payroll system?</span>
+<br>
+<strong><u>3. Economic Feasibility — "Is it COST-EFFECTIVE?" (Cost-Benefit Analysis)</u></strong>
+<span class="bl"><strong>Costs:</strong> Hardware, Software, Development, Training, Maintenance, Operating costs</span>
+<span class="bl"><strong>Benefits:</strong> Increased profit, Time saving, Better service, Accuracy, Competitive advantage</span>
+<span class="bl"><span class="imp">Decision Rule: If Total Benefits &gt; Total Costs → Economically FEASIBLE ✅</span></span>
+<br>
+<strong><u>4. Legal Feasibility — "Is it LEGALLY acceptable?"</u></strong>
+<span class="bl">Checks <strong>data protection laws</strong> — IT Act, GDPR</span>
+<span class="bl">Checks <strong>copyright</strong> and intellectual property issues</span>
+<span class="bl">Checks government <strong>regulations and standards</strong></span>
+<span class="bl">Example: Does system comply with data privacy laws?</span>
+<span class="hd">C. Issues in Feasibility Study:</span>
+<span class="bl">Lack of accurate information | Resistance to change | High initial cost</span>
+<span class="bl">Lack of technical skills | Time constraints | Uncertainty of future benefits | Legal issues</span>
+<span class="hd">D. Conclusion:</span>
+A feasible system must be: <span class="imp">Practical ✓ Acceptable ✓ Affordable ✓ Legal ✓</span>
+Feasibility study helps organizations make informed decisions before investing in system development.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q4. What is Coupling? Explain all 6 types. What is Cohesion? Explain all 7 types.</span><span class="ptag">📅 2015,2016,2022,2023,2025</span></div>
+<div class="ab">
+<span class="hd">PART A — COUPLING:</span>
+<strong>Definition:</strong> <strong>Coupling</strong> is the <strong>degree of interdependence between modules.</strong> It measures how much one module depends on another. <span class="imp">Good Design = LOW Coupling</span>
+<div class="nb">Coupling Trick (Low→High): D-S-C-E-C-C = "Don't Share Code Everywhere, Creates Confusion"</div>
+<strong><u>Types of Coupling (Low to High):</u></strong>
+<span class="bl"><strong>1. Data Coupling (BEST):</strong> Modules communicate through SIMPLE DATA PARAMETERS only. Example: pass "student_marks" to calculate grade module. Most independent.</span>
+<span class="bl"><strong>2. Stamp Coupling:</strong> Modules pass COMPOSITE DATA STRUCTURE (record/object). Example: pass entire "student_record" to module.</span>
+<span class="bl"><strong>3. Control Coupling:</strong> One module passes CONTROL FLAG/SWITCH to another. Example: pass "print_flag=true" to control behavior.</span>
+<span class="bl"><strong>4. External Coupling:</strong> Modules depend on SAME EXTERNAL FORMAT or device. Example: two modules both read from same CSV file format.</span>
+<span class="bl"><strong>5. Common Coupling:</strong> Modules share GLOBAL VARIABLES/DATA. Example: both access global variable "total_marks".</span>
+<span class="bl"><strong>6. Content Coupling (WORST):</strong> One module DIRECTLY ACCESSES internals of another. Completely breaks independence.</span>
+<span class="hd">PART B — COHESION:</span>
+<strong>Definition:</strong> <strong>Cohesion</strong> is the <strong>degree to which elements inside a module belong together.</strong> <span class="imp">Good Design = HIGH Cohesion</span>
+<div class="nb">Cohesion Trick (Low→High): C-L-T-P-C-S-F = "Can Lions Tame Parrots? Colorful Song Fragments!"</div>
+<strong><u>Types of Cohesion (Low to High):</u></strong>
+<span class="bl"><strong>1. Coincidental (WORST):</strong> No relationship — random functions grouped. Example: Print+Update+Email in one module.</span>
+<span class="bl"><strong>2. Logical:</strong> Grouped by logical category. Example: all input operations in one module.</span>
+<span class="bl"><strong>3. Temporal:</strong> Functions performed at SAME TIME. Example: initialization module.</span>
+<span class="bl"><strong>4. Procedural:</strong> Follow a sequence but not closely related.</span>
+<span class="bl"><strong>5. Communicational:</strong> Functions operate on SAME DATA. Example: read, update, display student record.</span>
+<span class="bl"><strong>6. Sequential:</strong> OUTPUT of one is INPUT to next. Example: Read→Validate→Process→Store (pipeline).</span>
+<span class="bl"><strong>7. Functional (BEST):</strong> Module performs ONE SINGLE WELL-DEFINED FUNCTION. Example: "Calculate_Tax()" does only tax calculation.</span>
+<span class="hd">C. Summary:</span>
+Coupling: <span class="imp">Data(Best)→Stamp→Control→External→Common→Content(Worst)</span><br>
+Cohesion: <span class="imp">Coincidental(Worst)→Logical→Temporal→Procedural→Communicational→Sequential→Functional(Best)</span>
+<span class="hd">D. Golden Rule:</span>
+<span class="imp">GOOD DESIGN = LOW COUPLING + HIGH COHESION</span> — Modules are independent AND each does one job well.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q5. Explain role, duties and skills of Systems Analyst.</span><span class="ptag">📅 2015,2016,2021,2022,2023,2025</span></div>
+<div class="ab">
+<span class="hd">A. Who is a Systems Analyst?</span>
+A <strong>Systems Analyst</strong> is a professional who <strong>studies business systems, understands user needs</strong>, and designs effective IS solutions. Acts as a <strong>BRIDGE between users and developers/technology.</strong>
+<span class="hd">B. Why Businesses Need Analysts:</span>
+<span class="bl">To <strong>identify business problems</strong> and opportunities</span>
+<span class="bl">To <strong>convert user needs</strong> into system requirements</span>
+<span class="bl">To act as <strong>bridge between users and developers</strong></span>
+<span class="bl">To design systems that <strong>improve efficiency and reduce cost</strong></span>
+<span class="hd">C. Role of Systems Analyst:</span>
+<span class="bl"><strong>Study</strong> the current system and identify problems</span>
+<span class="bl"><strong>Elicit and analyze</strong> user requirements</span>
+<span class="bl"><strong>Design</strong> logical and physical solutions</span>
+<span class="bl"><strong>Prepare documentation</strong> — SRS, SDS, reports</span>
+<span class="bl"><strong>Coordinate</strong> with users, managers and developers</span>
+<span class="bl"><strong>Ensure</strong> successful implementation and maintenance</span>
+<span class="hd">D. Duties (I-C-A-D-E-T-M-T-S):</span>
+<span class="bl"><strong>I</strong>nvestigate existing system | <strong>C</strong>ollect requirements | <strong>A</strong>nalyze and prepare SRS</span>
+<span class="bl"><strong>D</strong>esign system models | <strong>E</strong>valuate alternatives | <strong>T</strong>est plans | <strong>M</strong>onitor implementation</span>
+<span class="bl"><strong>T</strong>rain users | <strong>S</strong>upport maintenance</span>
+<span class="hd">E. Skills Required (A-T-M-I):</span>
+<strong><u>A — Analytical:</u></strong> Study complex problems, identify cause-effect, logical thinking, evaluate alternatives<br>
+<strong><u>T — Technical:</u></strong> Computer systems, databases, networks, programming concepts, software tools<br>
+<strong><u>M — Management:</u></strong> Planning, time management, budget control, risk management, leadership<br>
+<strong><u>I — Interpersonal:</u></strong> Communication (oral+written), active listening, teamwork, conflict resolution<br>
+<span class="hd">F. Qualities:</span>
+<span class="imp">Good Listener ✓ Impartial ✓ Patient ✓ Creative ✓ Detail Oriented ✓ Team Player</span>
+<span class="hd">G. Conclusion:</span>
+A Systems Analyst is a <strong>problem solver</strong> who improves business by designing effective IS. They are essential for bridging the gap between technical teams and business users.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q6. Explain Types of System with classification.</span><span class="ptag">📅 2014,2016,2017,2018,2021,2023</span></div>
+<div class="ab">
+<span class="hd">A. Definition:</span>
+A <strong>system</strong> is a <strong>set of interrelated components working together to achieve a common goal.</strong> It accepts input, processes it, produces output with feedback control.
+<span class="hd">B. Basic System Model:</span>
+<div class="dgm">┌──────────┐       ┌──────────┐       ┌──────────┐
+│  INPUT   │──────▶│ PROCESS  │──────▶│  OUTPUT  │
+│(Data/Raw │       │(Transform│       │(Info/    │
+│ Material)│       │ -ation)  │       │ Result)  │
+└──────────┘       └──────────┘       └──────────┘
+      ▲                                     │
+      │            ┌──────────┐             │
+      └────────────│ FEEDBACK │◀────────────┘
+                   │(Control) │
+                   └──────────┘
+ATM Example: Input=Card+PIN | Process=Verify Balance | Output=Cash | Feedback=SMS</div>
+<span class="hd">C. 12 Types of System (Write full table in exam):</span>
+<span class="bl"><strong>Physical System:</strong> Tangible, can be seen and touched. Example: Computer, Car</span>
+<span class="bl"><strong>Abstract System:</strong> Conceptual, cannot be seen. Example: Theory, Plan</span>
+<span class="bl"><strong>Open System:</strong> Interacts with environment. Example: Business organization</span>
+<span class="bl"><strong>Closed System:</strong> No interaction with environment. Example: Sealed bottle, Watch</span>
+<span class="bl"><strong>Deterministic System:</strong> Output is predictable. Example: Calculator</span>
+<span class="bl"><strong>Probabilistic System:</strong> Output is uncertain. Example: Weather forecast</span>
+<span class="bl"><strong>Manual System:</strong> Operated by humans. Example: Typewriter, Library card system</span>
+<span class="bl"><strong>Computerized System:</strong> Operated by computers. Example: Banking System</span>
+<span class="bl"><strong>Natural System:</strong> Occurs in nature. Example: Rain, River, Solar system</span>
+<span class="bl"><strong>Man-made System:</strong> Created by humans. Example: Railway System</span>
+<span class="bl"><strong>Real-time System:</strong> Gives output within fixed time limit. Example: ATM, Traffic Signal, ICU Monitor, UPI Payment</span>
+<span class="bl"><strong>Distributed System:</strong> Multiple independent computers over network. Example: Internet, Cloud Computing, Google Drive</span>
+<span class="hd">D. Characteristics (O-I-I-I-C-E-B):</span>
+Organization | Interaction | Interdependence | Integration | Central Objective | Environment | Boundary
+<span class="hd">E. Conclusion:</span>
+Understanding system types helps analysts design the RIGHT information system for the RIGHT business purpose.
+</div></div>
+
+<div class="a12"><div class="ahdr"><span class="mb12">12 MARKS</span><span class="aq">Q7. Explain types of Documentation. What is SRS? What is SDS?</span><span class="ptag">📅 2014,2016,2019,2021,2025</span></div>
+<div class="ab">
+<span class="hd">A. Definition:</span>
+<strong>Documentation</strong> is the process of <strong>recording information</strong> about the system — requirements, design, development, testing, implementation and maintenance — in a clear and systematic manner.
+<span class="hd">B. Seven Types of Documentation:</span>
+<span class="bl"><strong>1. Planning Documents:</strong> Define scope, objectives, schedule and resources. Created at project start.</span>
+<span class="bl"><strong>2. Requirement Documents (SRS):</strong> Describe user needs. WHAT system should do.</span>
+<span class="bl"><strong>3. Design Documents (SDS):</strong> Explain system design — logical and physical. HOW system will be built.</span>
+<span class="bl"><strong>4. Development Documents:</strong> Code, program logic and technical details. For developers.</span>
+<span class="bl"><strong>5. Testing Documents:</strong> Test cases, procedures and expected results.</span>
+<span class="bl"><strong>6. Operation Documents (User Manual):</strong> Help end users run the system step-by-step.</span>
+<span class="bl"><strong>7. Maintenance Documents:</strong> Help in future changes and maintenance records.</span>
+<span class="hd">C. SRS — System Requirements Specification:</span>
+<span class="bl"><strong>Definition:</strong> SRS describes WHAT system should do — NOT HOW. Acts as CONTRACT between users and developers.</span>
+<span class="bl"><strong>Contents:</strong> Introduction | Overall description | Functional requirements | Non-functional requirements | Constraints | Assumptions | External interfaces | Acceptance criteria</span>
+<span class="bl"><strong>Importance:</strong> Contract | Basis for design and testing | Reduces misunderstanding | Guides all project activities</span>
+<span class="hd">D. SDS — System Design Specification:</span>
+<span class="bl"><strong>Definition:</strong> SDS describes HOW system will meet requirements in SRS. Blueprint for developers.</span>
+<span class="bl"><strong>Contents:</strong> System architecture | Data design | Process design | I/O design | Database design | Security design</span>
+<span class="hd">E. Key Difference:</span>
+<span class="imp">SRS = WHAT (technology-independent) | SDS = HOW (technology-dependent)</span>
+<span class="hd">F. Good Documentation Practices:</span>
+Clear and Simple | Consistent | Complete | Accurate | Use Standard Templates | Update Regularly | Store Properly
+<span class="hd">G. Conclusion:</span>
+<span class="imp">"If it is not documented, it does not exist."</span> Good documentation ensures clarity, quality control and successful delivery.
+</div></div>
+</div>
+<div class="sec" id="diffs"><div class="stitle">🔄 SECTION 4 — IMPORTANT DIFFERENCES (Exam Tables)</div>
+<div class="pyq-alert">These comparison tables appear in Q2 (4 marks) frequently. Always draw as a TABLE in exam with proper headings!</div>
+<div class="sh">D1: Logical Design vs Physical Design</div>
+<table><tr><th>Basis</th><th>Logical Design</th><th>Physical Design</th></tr>
+<tr><td><strong>Focus</strong></td><td>WHAT system will do</td><td>HOW system will be implemented</td></tr>
+<tr><td><strong>Technology</strong></td><td>Technology INDEPENDENT</td><td>Technology DEPENDENT</td></tr>
+<tr><td><strong>Level</strong></td><td>High level, abstract</td><td>Low level, detailed</td></tr>
+<tr><td><strong>Output</strong></td><td>DFD, ER Diagram, Data Dictionary</td><td>Database design, File structures, UI</td></tr>
+<tr><td><strong>Change</strong></td><td>Easy to change</td><td>Changes are costly</td></tr>
+<tr><td><strong>Example</strong></td><td>What data to store, what process to run</td><td>How data stored, which DBMS to use</td></tr></table>
+
+<div class="sh">D2: SRS vs SDS</div>
+<table><tr><th>Basis</th><th>SRS</th><th>SDS</th></tr>
+<tr><td><strong>Describes</strong></td><td>WHAT system should do</td><td>HOW system will be built</td></tr>
+<tr><td><strong>Technology</strong></td><td>Technology INDEPENDENT</td><td>Technology DEPENDENT</td></tr>
+<tr><td><strong>Written By</strong></td><td>Analyst with users</td><td>Developers/Designers</td></tr>
+<tr><td><strong>Level</strong></td><td>High-level requirements</td><td>Low-level design details</td></tr>
+<tr><td><strong>Contents</strong></td><td>Functional and non-functional requirements</td><td>Architecture, DB design, interface design</td></tr></table>
+
+<div class="sh">D3: Top-Down vs Bottom-Up Design</div>
+<table><tr><th>Basis</th><th>Top-Down Design</th><th>Bottom-Up Design</th></tr>
+<tr><td><strong>Start</strong></td><td>Starts from WHOLE system (main module)</td><td>Starts from SMALL individual modules</td></tr>
+<tr><td><strong>Approach</strong></td><td>Break DOWN into sub-modules</td><td>BUILD UP to complete system</td></tr>
+<tr><td><strong>Focus</strong></td><td>Structure first, details later</td><td>Details first, then integration</td></tr>
+<tr><td><strong>Best Used</strong></td><td>System is new, early design stage</td><td>Modules are reusable and well tested</td></tr>
+<tr><td><strong>Flow</strong></td><td>High → Low (General → Specific)</td><td>Low → High (Specific → General)</td></tr></table>
+
+<div class="sh">D4: Forms vs Reports</div>
+<table><tr><th>Basis</th><th>Forms</th><th>Reports</th></tr>
+<tr><td><strong>Purpose</strong></td><td>INPUT — Collect data FROM users</td><td>OUTPUT — Present processed info TO users</td></tr>
+<tr><td><strong>Direction</strong></td><td>Filled BY user</td><td>Read BY user</td></tr>
+<tr><td><strong>Frequency</strong></td><td>Many times (frequent)</td><td>Less frequent</td></tr>
+<tr><td><strong>Design</strong></td><td>Simple and structured</td><td>More complex, summarized</td></tr>
+<tr><td><strong>Example</strong></td><td>Application form, Survey, Registration</td><td>Sales report, Result sheet, Account statement</td></tr></table>
+
+<div class="sh">D5: Coupling vs Cohesion</div>
+<table><tr><th>Concept</th><th>Definition</th><th>Good Value</th><th>Types</th></tr>
+<tr><td><strong>Coupling</strong></td><td>Interdependence BETWEEN modules</td><td>LOW Coupling (independent modules)</td><td>6 Types: D-S-C-E-C-C</td></tr>
+<tr><td><strong>Cohesion</strong></td><td>Relatedness WITHIN a module</td><td>HIGH Cohesion (single purpose)</td><td>7 Types: C-L-T-P-C-S-F</td></tr></table>
+
+<div class="sh">D6: DFD vs Structure Chart</div>
+<table><tr><th>Basis</th><th>DFD (Data Flow Diagram)</th><th>Structure Chart</th></tr>
+<tr><td><strong>Shows</strong></td><td>Flow of DATA in system</td><td>HIERARCHY of modules</td></tr>
+<tr><td><strong>Focus</strong></td><td>What data moves and where</td><td>How modules are organized and called</td></tr>
+<tr><td><strong>Nature</strong></td><td>Dynamic — shows movement</td><td>Static — shows structure</td></tr>
+<tr><td><strong>Used In</strong></td><td>Logical Design (Analysis phase)</td><td>Physical Design (Design phase)</td></tr></table>
+
+<div class="sh">D7: Decision Table vs Decision Tree</div>
+<table><tr><th>Basis</th><th>Decision Table</th><th>Decision Tree</th></tr>
+<tr><td><strong>Format</strong></td><td>TABULAR (rows and columns — matrix)</td><td>GRAPHICAL TREE (branches and leaves)</td></tr>
+<tr><td><strong>Shows</strong></td><td>All conditions vs actions at once</td><td>Sequential decision flow path</td></tr>
+<tr><td><strong>Best For</strong></td><td>Complex logic with many conditions</td><td>Simple sequential decisions</td></tr>
+<tr><td><strong>Readability</strong></td><td>Complete but harder to read</td><td>Easy to read and visually clear</td></tr></table>
+</div>
+
+<div class="sec" id="tricks"><div class="stitle">🧠 SECTION 5 — ALL MEMORY TRICKS (Mnemonics for Exam Hall)</div>
+<div class="pyq-alert">Learn these FIRST! In exam hall, these tricks help you remember everything in seconds!</div>
+<div class="trick">🧠 I-P-O-F → System Model: <u>Input → Process → Output → Feedback</u><br>"I Prefer Organic Food"</div>
+<div class="trick">🧠 O-I-I-I-C-E-B → System Characteristics: <u>Organization, Interaction, Interdependence, Integration, Central Objective, Environment, Boundary</u><br>"Old Indians Identify Issues, Creating Easy Boundaries"</div>
+<div class="trick">🧠 P-I-A-L-P-I-M → SDLC 7 Phases: <u>Project ID, Project Init, Analysis, Logical Design, Physical Design, Implementation, Maintenance</u><br>"Please Identify And Let People Implement Maintenance"</div>
+<div class="trick">🧠 C-A-P-P → Maintenance Types: <u>Corrective, Adaptive, Perfective, Preventive</u><br>"Computers Always Prevent Problems"</div>
+<div class="trick">🧠 T-O-E-L → Feasibility Study: <u>Technical, Operational, Economic, Legal</u><br>"Total Overall Exam Life"</div>
+<div class="trick">🧠 I-G-S-P-Q → Fact Finding Techniques: <u>Interview, Group Discussion, Site Visit, Presentation, Questionnaire (+ Sampling of Documents)</u><br>"I Get Some Pretty Quick [info]"</div>
+<div class="trick">🧠 A-T-M-I → Analyst Skills: <u>Analytical, Technical, Management, Interpersonal</u><br>"Always Think Management Interpersonally"</div>
+<div class="trick">🧠 I-C-A-D-E-T-M-T-S → Analyst Duties: <u>Investigate, Collect, Analyze, Design, Evaluate, Test, Monitor, Train, Support</u><br>"I Can Always Design Excellent Tests, Monitor, Train Staff"</div>
+<div class="trick">🧠 D-S-C-E-C-C → Coupling Types (Low→High): <u>Data, Stamp, Control, External, Common, Content</u> — LOW is GOOD!<br>"Don't Share Code Everywhere, Creates Confusion"</div>
+<div class="trick">🧠 C-L-T-P-C-S-F → Cohesion Types (Low→High): <u>Coincidental, Logical, Temporal, Procedural, Communicational, Sequential, Functional</u> — HIGH is GOOD!<br>"Can Lions Tame Parrots? Colorful Song Fragments!"</div>
+<div class="trick">🧠 SRS=WHAT | SDS=HOW | Test Doc=HOW TO TEST | User Manual=HOW TO USE<br>Remember: S=W, S=H, T=T, U=U</div>
+<div class="trick">🧠 CIA Triad → Security: <u>Confidentiality + Integrity + Availability</u><br>"CIA like the spy agency — keeps info SECRET, ACCURATE, ACCESSIBLE"</div>
+<div class="trick">🧠 DFD Symbols: Rectangle=Entity | Circle=Process | Arrow=Data Flow | Open Rectangle=Data Store<br>ER Symbols: Rectangle=Entity | Diamond=Relationship | Ellipse=Attribute | Double Rectangle=Weak Entity</div>
+</div>
+
+<div class="sec" id="crash"><div class="stitle">📆 SECTION 6 — 7-DAY CRASH PLAN + LAST NIGHT SHEET</div>
+<div class="pyq-alert">Exam: 21 September 2026 (Monday). Start from 14 September 2026!</div>
+<table><tr><th>Day</th><th>Date</th><th>Topics to Cover</th><th>Goal</th></tr>
+<tr><td><strong>Day 1</strong></td><td>14 Sep</td><td>Unit 1+2: 12 System types, Prototype, JAD, Analyst Role/Duties/Skills (A-T-M-I), Users 4 types</td><td>Write all 2-mark definitions</td></tr>
+<tr><td><strong>Day 2</strong></td><td>15 Sep</td><td>Unit 3: SDLC 7 phases (write 5×), Draw SDLC diagram 3×, Maintenance C-A-P-P, Logical vs Physical Design</td><td>Write complete 12-mark SDLC answer</td></tr>
+<tr><td><strong>Day 3</strong></td><td>16 Sep</td><td>Unit 4+5: Documentation 7 types, SRS contents, Feasibility T-O-E-L, Fact Finding I-G-S-P-Q, CBA, Gantt Chart</td><td>Write 12-mark Feasibility answer</td></tr>
+<tr><td><strong>Day 4</strong></td><td>17 Sep</td><td>Unit 6 Part 1: Top-Down, Bottom-Up, Structure Chart, ALL 6 Coupling types D-S-C-E-C-C, ALL 7 Cohesion C-L-T-P-C-S-F</td><td>Write 12-mark Coupling+Cohesion answer</td></tr>
+<tr><td><strong>Day 5</strong></td><td>18 Sep</td><td>Unit 6 Part 2: DFD 4 symbols + 3 levels + draw ATM/Library example, ER Diagram 4 components + Student-Course, Decision Table + Decision Tree</td><td>Draw ALL diagrams 3 times each</td></tr>
+<tr><td><strong>Day 6</strong></td><td>19 Sep</td><td>Unit 7: Forms vs Reports table, Form design O-C-C-F-E-E, CASE Tools benefits, Audit A-C-P-E-S-P, CIA Triad. Solve PYQ 2022 + 2023</td><td>Solve 2 complete past papers</td></tr>
+<tr><td><strong>Day 7</strong></td><td>20 Sep</td><td>Full Revision: All 12 mnemonics, PYQ 2025, All diagrams, All 7 difference tables, Last Night Sheet</td><td>Sleep early! Prepare exam kit 🎒</td></tr></table>
+
+<div class="sh" style="margin-top:18px">🌙 LAST NIGHT CHEAT SHEET (20 September Night — Read Before Sleeping)</div>
+<table><tr><th>Unit</th><th>Key Tricks + Facts to Remember</th></tr>
+<tr><td><strong>Unit 1</strong></td><td><strong>I-P-O-F</strong> | 12 System Types: Physical,Abstract,Open,Closed,Deterministic,Probabilistic,Manual,Computerized,Natural,Man-made,Real-time,Distributed | JAD=Users+Analysts+Managers</td></tr>
+<tr><td><strong>Unit 2</strong></td><td>Analyst = Bridge | Duties: <strong>I-C-A-D-E-T-M-T-S</strong> | Skills: <strong>A-T-M-I</strong> | Users: End, Operational, Managerial, Executive</td></tr>
+<tr><td><strong>Unit 3</strong></td><td>SDLC 7 phases: <strong>P-I-A-L-P-I-M</strong> | Maintenance: <strong>C-A-P-P</strong> | Logical=WHAT(independent) | Physical=HOW(dependent)</td></tr>
+<tr><td><strong>Unit 4</strong></td><td>7 Doc Types | <strong>SRS=WHAT | SDS=HOW | Test Doc=HOW TO TEST | User Manual=HOW TO USE</strong></td></tr>
+<tr><td><strong>Unit 5</strong></td><td>Fact Finding: <strong>I-G-S-P-Q</strong> | Feasibility: <strong>T-O-E-L</strong> | CBA: Benefits&gt;Costs=Feasible</td></tr>
+<tr><td><strong>Unit 6</strong></td><td>Coupling: <strong>D-S-C-E-C-C</strong> (Low=GOOD) | Cohesion: <strong>C-L-T-P-C-S-F</strong> (High=GOOD) | DFD: Rect=Entity,Circle=Process,Arrow=Flow | ER: Rect=Entity,Diamond=Relation,Ellipse=Attr</td></tr>
+<tr><td><strong>Unit 7</strong></td><td>Forms=Fill(Input) | Reports=Read(Output) | CASE=Computer Aided Software Engg | <strong>CIA</strong>=Confidentiality+Integrity+Availability</td></tr></table>
+
+<div class="trick" style="margin-top:14px">☀️ EXAM MORNING STRATEGY (9:00 AM — 21 September 2026):
+Read all 7 questions first (2 min) → Q1: Choose 6 easiest MCQs → Q2: Choose 3 you know best (4 marks each) → Q3-Q7: ALWAYS pick SDLC + DFD + Coupling/Cohesion (appear EVERY YEAR!) → Each 12-mark = 1 FULL PAGE minimum → ALWAYS draw diagrams → Bold + Underline ALL key terms in your answer!</div>
+
+<div style="background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;border-radius:10px;padding:13px;margin:12px 0;text-align:center;font-weight:900;font-size:13px;">
+🚨 DO NOT SKIP: SDLC Diagram + DFD 4 Symbols + Coupling 6 Types + Cohesion 7 Types + ER Diagram + Feasibility 4 Types + Analyst Duties/Skills 🚨
+</div>
+</div>
+
+<div style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;border-radius:14px;padding:24px;text-align:center;margin-bottom:20px">
+<p style="font-size:20px;font-weight:900;color:#e2b96f;margin-bottom:8px;animation:glow 2s ease-in-out infinite alternate">🏆 BEST OF LUCK — BCA-203 EXAM 21 SEPTEMBER 2026! 🏆</p>
+<p style="font-size:13px;color:#a8dadc;margin-bottom:6px;">"Hard Work + Smart Study = Top Score in BCA-203"</p>
+<p style="font-size:10px;color:#64748b;margin-top:6px;">PLAN WELL ⭐ ANALYZE DEEPLY ⭐ DESIGN SMARTLY ⭐ DOCUMENT CLEARLY ⭐ IMPLEMENT SUCCESSFULLY ⭐ MAINTAIN EFFECTIVELY</p>
+<p style="font-size:11px;color:#a8dadc;margin-top:10px;">Century Gothic Font | AKU Patna 2026 | PYQ 2014–2025 Verified | All Units Covered</p>
+</div>
+
+</div></body></html>

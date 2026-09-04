@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA-204 Complete Exam Guide | AKU Patna 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#eef2f7;color:#1a1a2e;font-size:14px;line-height:1.7}
+.cover{background:linear-gradient(135deg,#0d1b2a,#1b263b,#1a237e);color:#fff;padding:30px 20px;text-align:center;border-bottom:5px solid #e91e63}
+.cover h1{font-size:24px;letter-spacing:1px;margin-bottom:6px}
+.cover h2{font-size:15px;opacity:.85;margin-bottom:18px}
+.cover .info-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:12px}
+.cover .info-box{background:rgba(255,255,255,.13);border-radius:10px;padding:12px 18px;text-align:left;font-size:13px;min-width:200px}
+.cover .info-box p{margin:3px 0}
+.badge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;margin:2px}
+.badge-red{background:#e91e63;color:#fff}
+.badge-blue{background:#1565c0;color:#fff}
+.badge-green{background:#2e7d32;color:#fff}
+.badge-orange{background:#e65100;color:#fff}
+
+.snav{position:sticky;top:0;z-index:100;background:#0d1b2a;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.snav a{color:#90caf9;text-decoration:none;font-size:11px;padding:4px 9px;border-radius:15px;background:rgba(255,255,255,.1);transition:.2s}
+.snav a:hover{background:rgba(255,255,255,.25);color:#fff}
+
+.wrap{max-width:900px;margin:0 auto;padding:12px 14px 40px}
+
+.unit-hdr{background:linear-gradient(135deg,#0d1b2a,#1b263b);color:#fff;padding:20px 18px;border-radius:12px;margin:22px 0 10px;border-left:5px solid #e91e63}
+.unit-hdr .utag{display:inline-block;background:#e91e63;color:#fff;padding:2px 10px;border-radius:15px;font-size:11px;font-weight:700;margin-bottom:7px}
+.unit-hdr h2{font-size:20px;margin-bottom:4px}
+.unit-hdr p{font-size:12px;opacity:.8}
+
+.card{background:#fff;border-radius:10px;padding:15px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card.vvi{border-left:4px solid #e91e63}
+.card.pyq{border-left:4px solid #1565c0}
+.card.exp{border-left:4px solid #2e7d32}
+.card.ans{border-left:4px solid #6a1b9a}
+.card.prog{border-left:4px solid #e65100}
+.card.trick{border-left:4px solid #f9a825;background:#fffde7}
+.card.err{border-left:4px solid #b71c1c;background:#fff8f8}
+.card.rev{border-left:4px solid #0277bd;background:#e8f4fd}
+
+.ctitle{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.must{color:#c62828;font-weight:700}
+.high{color:#e65100;font-weight:700}
+.imp{color:#2e7d32;font-weight:700}
+
+ul.ql{list-style:none;padding:0}
+ul.ql li{padding:7px 10px;margin:5px 0;border-radius:7px;font-size:13px;border-left:3px solid #ccc}
+ul.ql li.must{background:#fce4ec;border-color:#e91e63}
+ul.ql li.high{background:#fff3e0;border-color:#ff6f00}
+ul.ql li.imp{background:#e8f5e9;border-color:#388e3c}
+.yr{display:inline-block;background:#1565c0;color:#fff;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}
+.yr-e{display:inline-block;background:#2e7d32;color:#fff;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}
+
+.def{background:#ede7f6;border-left:3px solid #7b1fa2;padding:8px 12px;border-radius:6px;margin:8px 0;font-size:13px}
+.mtag{display:inline-block;background:#7b1fa2;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;margin-left:6px}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+th{background:#0d1b2a;color:#fff;padding:8px 10px;text-align:left}
+td{padding:6px 10px;border-bottom:1px solid #e8e8e8}
+tr:nth-child(even) td{background:#f7f7f7}
+
+pre{background:#0d1b2a;color:#a8d8ea;padding:14px;border-radius:8px;overflow-x:auto;font-size:12px;margin:10px 0;font-family:'Courier New',monospace;line-height:1.6}
+.ctop{background:#1b263b;color:#90caf9;padding:5px 14px;border-radius:8px 8px 0 0;font-size:11px;font-family:monospace;display:block}
+.ctop+pre{border-radius:0 0 8px 8px;margin-top:0}
+
+.tip{background:#e3f2fd;border-left:3px solid #1976d2;padding:9px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12px}
+.note{background:#fff8e1;border-left:3px solid #f9a825;padding:9px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12px}
+.warn{background:#fce4ec;border-left:3px solid #c62828;padding:9px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12px}
+.ok{background:#e8f5e9;border-left:3px solid #2e7d32;padding:9px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12px}
+
+.trick-box{background:linear-gradient(135deg,#fff8e1,#fff3e0);border:2px dashed #f9a825;border-radius:10px;padding:14px;margin:10px 0}
+.trick-box h4{color:#e65100;margin-bottom:8px;font-size:14px}
+
+ol.nl{padding-left:20px}
+ol.nl li{padding:3px 0;font-size:13px}
+ul.bl{padding-left:20px}
+ul.bl li{padding:3px 0;font-size:13px}
+
+.hr{height:2px;background:linear-gradient(90deg,#e91e63,#1a237e,#00bcd4);border:none;margin:20px 0;border-radius:2px}
+
+.sum-hdr{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;padding:20px;border-radius:12px;margin:20px 0 12px}
+.sum-hdr h2{font-size:18px}
+
+.vq{background:#fff;border-radius:10px;padding:13px 15px;margin:8px 0;border:1px solid #e0e0e0;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.vq .qno{display:inline-flex;background:#e91e63;color:#fff;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-right:8px;flex-shrink:0;vertical-align:middle}
+.vq .qt{font-weight:700;font-size:13px}
+.utag2{display:inline-block;background:#0d1b2a;color:#fff;padding:1px 7px;border-radius:10px;font-size:10px;margin-left:5px}
+.ans-short{font-size:12px;color:#444;margin-top:6px;line-height:1.6}
+
+.cl li{padding:5px 0;font-size:13px;border-bottom:1px solid #f0f0f0;list-style:none}
+.cl li::before{content:"✅ "}
+.cl li.skip::before{content:"⬜ "}
+
+.footer{background:#0d1b2a;color:#90caf9;text-align:center;padding:20px;font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:580px){.grid2{grid-template-columns:1fr}.cover h1{font-size:19px}pre{font-size:11px}}
+</style>
+</head>
+<body>
+
+<!-- ===== COVER PAGE ===== -->
+<div class="cover">
+  <h1>📘 BCA-204 — Programming in C</h1>
+  <h2>COMPLETE EXAM PREPARATION GUIDE — AKU PATNA</h2>
+  <div style="margin:10px 0">
+    <span class="badge badge-red">🔥 Senior Professor Verified</span>
+    <span class="badge badge-blue">✅ 100% Syllabus Covered</span>
+    <span class="badge badge-green">📅 2014–2025 PYQs</span>
+    <span class="badge badge-orange">7 Units + 30 VVI Questions</span>
+  </div>
+  <div class="info-grid">
+    <div class="info-box">
+      <p>📅 <strong>Exam Date:</strong> 23 September 2026</p>
+      <p>⏰ <strong>Time:</strong> 10:00 AM – 1:00 PM</p>
+      <p>📄 <strong>Paper Code:</strong> 303204</p>
+      <p>🏛️ <strong>University:</strong> AKU Patna</p>
+    </div>
+    <div class="info-box">
+      <p>📊 <strong>Full Marks:</strong> 60</p>
+      <p>❓ <strong>Q1 (MCQ):</strong> 2×6 = 12 marks</p>
+      <p>✍️ <strong>Q2 (Short):</strong> 4×3 = 12 marks</p>
+      <p>📝 <strong>Q3–Q7 (Long):</strong> 12×3 = 36 marks</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<div class="snav">
+  <a href="#u1">U1 Fundamentals</a>
+  <a href="#u2">U2 Functions</a>
+  <a href="#u3">U3 Arrays</a>
+  <a href="#u4">U4 Structures</a>
+  <a href="#u5">U5 Pointers🔥</a>
+  <a href="#u6">U6 Preprocessor</a>
+  <a href="#u7">U7 Files🔥</a>
+  <a href="#top30">Top 30 VVI</a>
+  <a href="#crash">Crash Revision</a>
+  <a href="#checklist">Checklist</a>
+</div>
+
+<div class="wrap">
+
+<!-- ======================================================= -->
+<!-- UNIT 1                                                    -->
+<!-- ======================================================= -->
+<div id="u1">
+<div class="unit-hdr">
+  <div class="utag">UNIT 1</div>
+  <h2>Fundamentals of C</h2>
+  <p>Identifiers • Keywords • Data Types • Constants • Variables • Operators • Control Statements • Loops</p>
+</div>
+
+<!-- A. VVI Questions -->
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What are identifiers &amp; keywords? Rules for identifiers? <span class="yr">2014</span><span class="yr">2017</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What are data types in C? Explain with size and range. <span class="yr">2014</span><span class="yr">2016</span><span class="yr">2021</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What are operators in C? Explain all types with examples. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2022</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Write structure of a C program. <span class="yr">Every Year</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between while and do-while loops. <span class="yr">2017</span><span class="yr">2022</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Explain if, if-else, switch statements with syntax. <span class="yr">2016</span><span class="yr">2019</span><span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between = and == in C. <span class="yr">2017</span><span class="yr">2021</span></li>
+    <li class="high"><span class="high">🔥🔥</span> What are break and continue? Difference? <span class="yr">2014</span><span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="imp"><span class="imp">🔥</span> What is goto statement? When to use? <span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="imp"><span class="imp">🔥</span> What are constants? Types of constants? <span class="yr">2014</span><span class="yr">2021</span></li>
+  </ul>
+</div>
+
+<!-- B. Verified PYQs -->
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 1)</div>
+  <table>
+    <tr><th>Year</th><th>Question Asked</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: C developed by Dennis Ritchie ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: char range = -128 to 127 ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: 8%10 = 8 ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: ASCII A-Z = 65 to 90 ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: switch case separated by break ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: char array ends with null char \0 ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>MCQ: Underscore (_) allowed in variable name ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>MCQ: float cannot be used in switch ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>MCQ: Unary operators: !, sizeof, ~ ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>MCQ: Individual units of C program = tokens ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Discuss different types of operators in C</td><td>4</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: & (ampersand) is NOT a logical operator ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: float cannot be used in switch ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: return transfers control to calling function ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Short: Difference between = and == symbols</td><td>2</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>MCQ: Define keyword, identifier</td><td>2</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>MCQ: Difference between operator and operand</td><td>2</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>MCQ: Ternary operator = ?: ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Short: Basic data types in C</td><td>4</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Long: Variables vs constants, preprocessor directives</td><td>12</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>MCQ: printf format specifier output question</td><td>2</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Short: Explain tokens in C</td><td>4</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>MCQ: Role of break statement in C</td><td>2</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>MCQ: Use of goto statement in C</td><td>2</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Short: Distinguish Variables vs Identifiers, int main() vs void main()</td><td>4</td></tr>
+  </table>
+</div>
+
+<!-- D. Exam Answers -->
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 1)</div>
+
+  <div class="def"><strong>Q1: What are identifiers and keywords in C?</strong> <span class="mtag">4–5 marks</span></div>
+  <p><strong>Identifier:</strong> An identifier is a name given to variables, functions, arrays, or any user-defined elements in a program.</p>
+  <p style="margin-top:8px"><strong>Rules for Identifiers:</strong></p>
+  <ol class="nl">
+    <li>Must start with a letter (A-Z or a-z) or underscore (_)</li>
+    <li>Can contain letters, digits (0-9), and underscore only</li>
+    <li>Cannot start with a digit (e.g., 1sum is INVALID)</li>
+    <li>No spaces or special characters allowed (@, #, $ etc.)</li>
+    <li>Cannot be a keyword (e.g., int, float are INVALID as identifiers)</li>
+    <li>C is case sensitive: sum ≠ Sum ≠ SUM</li>
+  </ol>
+  <p style="margin-top:6px">✅ Valid: <code>sum</code>, <code>_count</code>, <code>total1</code>, <code>myVar</code> &nbsp; ❌ Invalid: <code>1sum</code>, <code>total@</code>, <code>my name</code>, <code>int</code></p>
+  <br>
+  <p><strong>Keywords:</strong> Reserved words with fixed predefined meaning. Cannot be used as identifiers. C has 32 keywords.</p>
+  <p style="margin-top:6px">Examples: <code>int, float, char, double, void, if, else, switch, case, for, while, do, return, break, continue, goto, struct, union, typedef, auto, static, extern, register</code></p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: What are data types in C? Explain with size and range.</strong> <span class="mtag">5 marks</span></div>
+  <p>Data types define the type and size of data a variable can hold.</p>
+  <table>
+    <tr><th>Data Type</th><th>Size</th><th>Range</th><th>Example</th></tr>
+    <tr><td>int</td><td>4 bytes</td><td>-2,147,483,648 to +2,147,483,647</td><td>int age = 25;</td></tr>
+    <tr><td>float</td><td>4 bytes</td><td>3.4e-38 to 3.4e+38 (6-7 digits)</td><td>float salary = 50000.5;</td></tr>
+    <tr><td>double</td><td>8 bytes</td><td>1.7e-308 to 1.7e+308 (15-16 digits)</td><td>double pi = 3.14159;</td></tr>
+    <tr><td>char</td><td>1 byte</td><td>-128 to 127</td><td>char grade = 'A';</td></tr>
+    <tr><td>void</td><td>—</td><td>No value</td><td>void main()</td></tr>
+  </table>
+  <p style="margin-top:6px">Modifiers: <code>short, long, signed, unsigned</code> &nbsp;|&nbsp; Derived: array, pointer &nbsp;|&nbsp; User-defined: struct, union, enum</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: Explain all operators in C with examples.</strong> <span class="mtag">5–12 marks</span></div>
+  <table>
+    <tr><th>Type</th><th>Operators</th><th>Example</th></tr>
+    <tr><td>Arithmetic</td><td>+ - * / %</td><td>a + b, a % b</td></tr>
+    <tr><td>Relational</td><td>== != &gt; &lt; &gt;= &lt;=</td><td>a &gt; b, a == b</td></tr>
+    <tr><td>Logical</td><td>&amp;&amp; || !</td><td>a&gt;0 &amp;&amp; b&gt;0</td></tr>
+    <tr><td>Assignment</td><td>= += -= *= /= %=</td><td>a = 5; a += 3;</td></tr>
+    <tr><td>Increment/Decrement</td><td>++ --</td><td>a++, --b</td></tr>
+    <tr><td>Bitwise</td><td>&amp; | ^ ~ &lt;&lt; &gt;&gt;</td><td>a &amp; b, a &lt;&lt; 2</td></tr>
+    <tr><td>Conditional/Ternary</td><td>? :</td><td>max = (a&gt;b) ? a : b;</td></tr>
+    <tr><td>Comma</td><td>,</td><td>a=2, b=4, c=a+b;</td></tr>
+    <tr><td>sizeof</td><td>sizeof()</td><td>sizeof(int) → 4</td></tr>
+  </table>
+  <div class="note">⭐ <strong>Operator Precedence (High → Low):</strong> () → ! ~ ++ -- → * / % → + - → &lt;&lt; &gt;&gt; → &lt; &lt;= &gt; &gt;= → == != → &amp;&amp; → || → ?: → = → ,</div>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: Difference between while and do-while loop.</strong> <span class="mtag">4 marks</span></div>
+  <table>
+    <tr><th>Feature</th><th>while</th><th>do-while</th></tr>
+    <tr><td>Type</td><td>Entry-controlled</td><td>Exit-controlled</td></tr>
+    <tr><td>Condition check</td><td>Before loop body</td><td>After loop body</td></tr>
+    <tr><td>Minimum execution</td><td>0 times (if false)</td><td>1 time (always)</td></tr>
+    <tr><td>Syntax</td><td>while(cond){...}</td><td>do{...}while(cond);</td></tr>
+    <tr><td>Use</td><td>When iterations unknown</td><td>When at least one run needed</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q5: What is break and continue? Difference?</strong> <span class="mtag">4 marks</span></div>
+  <ul class="bl">
+    <li><strong>break:</strong> Immediately terminates the loop or switch and transfers control to the next statement after the loop.</li>
+    <li><strong>continue:</strong> Skips the remaining statements of the current iteration and jumps to the next iteration of the loop.</li>
+  </ul>
+  <span class="ctop">// break and continue example</span>
+  <pre>for(int i=1; i&lt;=5; i++) {
+    if(i==3) continue;  // skip 3
+    if(i==5) break;     // stop at 5
+    printf("%d ", i);   // Output: 1 2 4
+}</pre>
+</div>
+
+<!-- E. Programs -->
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 1)</div>
+
+  <p><strong>Structure of a C Program:</strong></p>
+  <span class="ctop">// Basic C Program Structure</span>
+  <pre>#include &lt;stdio.h&gt;   // Preprocessor directive
+
+int main()            // Main function
+{
+    // Declaration
+    int a, b, sum;
+
+    // Statements
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    sum = a + b;
+    printf("Sum = %d", sum);
+
+    return 0;         // Exit status
+}</pre>
+
+  <p style="margin-top:10px"><strong>Largest of 3 numbers using if-else-if:</strong></p>
+  <span class="ctop">// Find largest of 3 numbers</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int a, b, c;
+    printf("Enter 3 numbers: ");
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;c);
+    if(a &gt; b &amp;&amp; a &gt; c)
+        printf("A is largest = %d", a);
+    else if(b &gt; c)
+        printf("B is largest = %d", b);
+    else
+        printf("C is largest = %d", c);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>Print table using for loop:</strong></p>
+  <span class="ctop">// Print table (2014 PYQ Q7)</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int n;
+    printf("Enter number: ");
+    scanf("%d", &amp;n);
+    for(int i=1; i&lt;=10; i++)
+        printf("%d x %d = %d\n", n, i, n*i);
+    return 0;
+}</pre>
+</div>
+
+<!-- G. Memory Tricks -->
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 1)</div>
+  <div class="trick-box">
+    <h4>🎯 "LAKES" for Identifier Rules</h4>
+    <p><strong>L</strong>etter or underscore must start &nbsp;|&nbsp; <strong>A</strong>lphanumeric + underscore only &nbsp;|&nbsp; <strong>K</strong>eywords not allowed &nbsp;|&nbsp; <strong>E</strong>vade spaces &nbsp;|&nbsp; <strong>S</strong>ensitive to case</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 Data Type Sizes: "I F D C" = 4 4 8 1</h4>
+    <p>int=4 | float=4 | double=8 | char=1</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 while vs do-while: "Entry vs Exit" </h4>
+    <p>while = Entry (check before) &nbsp;|&nbsp; do-while = Exit (check after)</p>
+  </div>
+</div>
+
+<!-- H. Common Mistakes -->
+<div class="card err">
+  <div class="ctitle">⚠️ H. COMMON MISTAKES (Unit 1)</div>
+  <ul class="bl">
+    <li>❌ Using = instead of == in if condition: <code>if(a=5)</code> → always true!</li>
+    <li>❌ Starting identifier with digit: <code>int 2sum;</code> → INVALID</li>
+    <li>❌ Using float in switch: <code>switch(3.14)</code> → INVALID (only int, char, enum)</li>
+    <li>❌ Forgetting semicolon after do-while: <code>}while(cond)</code> → must have ;</li>
+    <li>❌ char range: NOT 0 to 255 (that's unsigned char). signed char = -128 to 127</li>
+    <li>❌ 8%10 = 8, NOT 0 or 2 (8 divided by 10 gives remainder 8)</li>
+  </ul>
+</div>
+
+<!-- I. 5-Min Revision -->
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 1)</div>
+  <ul class="bl">
+    <li>C developed by <strong>Dennis Ritchie</strong> at Bell Labs</li>
+    <li>Identifier: starts with letter/_; no spaces; not keyword; case-sensitive</li>
+    <li>32 keywords in C (int, float, char, if, else, for, while, return...)</li>
+    <li>int=4B | float=4B | double=8B | char=1B</li>
+    <li>ASCII: A-Z = 65-90 | a-z = 97-122 | 0-9 = 48-57</li>
+    <li>switch works with int/char/enum ONLY — NOT float</li>
+    <li>while = entry-controlled | do-while = exit-controlled (runs at least once)</li>
+    <li>break = exits loop | continue = skips current iteration</li>
+    <li>= assignment | == comparison | always initialize variables</li>
+    <li>Ternary: condition ? true_val : false_val</li>
+  </ul>
+</div>
+</div><!-- end unit 1 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 2 — FUNCTIONS                                        -->
+<!-- ======================================================= -->
+<div id="u2">
+<div class="unit-hdr">
+  <div class="utag">UNIT 2</div>
+  <h2>Functions</h2>
+  <p>Definition • Prototypes • Call by Value/Reference • Recursion • Storage Classes • Global/Local Variables</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a function? Types? Definition? Prototype? Call? <span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">Every Year</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Difference between call by value and call by reference with programs. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What is recursion? Write program for factorial/fibonacci using recursion. <span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2019</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Storage classes in C — auto, register, static, extern. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between local and global variables. <span class="yr">2017</span><span class="yr">2019</span><span class="yr">2021</span></li>
+    <li class="high"><span class="high">🔥🔥</span> What is function prototype? Why is it used? <span class="yr">2015</span><span class="yr">2018</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Swap two numbers using call by reference (pointer). <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="imp"><span class="imp">🔥</span> Formal vs actual arguments. <span class="yr">2017</span><span class="yr">2018</span><span class="yr">2025</span></li>
+    <li class="imp"><span class="imp">🔥</span> Advantages and disadvantages of recursion. <span class="yr">2016</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 2)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: Recursion = function calls itself ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>Short: What is recursion? Explain advantages</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Short: What is a function? How to use user-defined functions?</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Short: What is a storage class? Discuss the various storage classes.</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Short: Write the difference between functions and macros.</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Long: What is recursion? Write a program for Fibonacci using recursion.</td><td>12</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Short: Call by value vs reference? Swap with both methods.</td><td>4</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Short: Storage classes discuss.</td><td>4</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Long: Advantages/disadvantages of recursion? Sum of n using recursion.</td><td>12</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: void*0 = Representation of NULL pointer ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: return keyword transfers control to calling function ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Short: What is macro? Why do we use it?</td><td>4</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Short: Difference between while and do-while in C</td><td>4</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Long: Scope &amp; storage allocation of register, static and local variables</td><td>12</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>Short: What is variable initialization and why is it important?</td><td>4</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>Short: What is pointer to a function?</td><td>4</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Short: Define recursion</td><td>2</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Short: Explain numeric data types used in C</td><td>4</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Short: Define recursion</td><td>2</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Short: Differentiate between local and global variables</td><td>4</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Short: Differentiate pass-by-reference and pass-by-value. What is static identifier?</td><td>4</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: Storage allocation and scope of global, extern, static, local, register variables. What is recursion?</td><td>12</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 2)</div>
+
+  <div class="def"><strong>Q1: What is a function? Explain definition, prototype, and call.</strong> <span class="mtag">5 marks</span></div>
+  <p>A function is a block of code that performs a specific task. It makes code <strong>modular, reusable, and easy to understand.</strong></p>
+  <p style="margin-top:6px"><strong>Parts of a Function:</strong></p>
+  <ol class="nl">
+    <li><strong>Function Prototype (Declaration):</strong> Tells the compiler about the function before use. Must be written before main().
+      <br><code>return_type function_name(parameter_types);</code>
+      <br>Example: <code>int add(int a, int b);</code></li>
+    <li><strong>Function Definition:</strong> Actual code of the function.
+      <br><code>int add(int a, int b) { return a + b; }</code></li>
+    <li><strong>Function Call:</strong> Calling the function from main or another function.
+      <br><code>sum = add(10, 20);</code></li>
+  </ol>
+  <p style="margin-top:6px"><strong>Types:</strong> 1. Library functions (printf, scanf, strlen) &nbsp; 2. User-defined functions</p>
+  <p><strong>4 Types based on return and argument:</strong></p>
+  <ol class="nl">
+    <li>No return, no argument: <code>void display(void)</code></li>
+    <li>No return, with argument: <code>void display(int a)</code></li>
+    <li>With return, no argument: <code>int getValue(void)</code></li>
+    <li>With return, with argument: <code>int add(int a, int b)</code></li>
+  </ol>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: Difference: Call by Value vs Call by Reference.</strong> <span class="mtag">4–12 marks</span></div>
+  <table>
+    <tr><th>Feature</th><th>Call by Value</th><th>Call by Reference</th></tr>
+    <tr><td>What is passed</td><td>Copy of value</td><td>Address of variable (&amp;)</td></tr>
+    <tr><td>Original affected?</td><td>No</td><td>Yes</td></tr>
+    <tr><td>Parameter type</td><td>Normal variable</td><td>Pointer (*)</td></tr>
+    <tr><td>Memory</td><td>More (extra copy created)</td><td>Less (same memory used)</td></tr>
+    <tr><td>Safety</td><td>Safe</td><td>Less safe</td></tr>
+    <tr><td>Calling syntax</td><td>swap(x, y)</td><td>swap(&amp;x, &amp;y)</td></tr>
+    <tr><td>Default in C</td><td>Yes</td><td>No (needs pointer)</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: What is recursion? Advantages and disadvantages?</strong> <span class="mtag">4 marks</span></div>
+  <p>A function that <strong>calls itself</strong> is called a recursive function. It must have a <strong>base condition</strong> to stop infinite recursion.</p>
+  <p style="margin-top:6px"><strong>Advantages:</strong> Code becomes shorter and cleaner | Useful for tree/graph problems | Solves complex problems easily</p>
+  <p><strong>Disadvantages:</strong> Uses more memory (stack) | Slower than loops | Risk of stack overflow if base case missing</p>
+  <div class="note">⭐ Always write base case FIRST in recursive function!</div>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: Storage Classes in C — auto, register, static, extern.</strong> <span class="mtag">4–12 marks</span></div>
+  <table>
+    <tr><th>Storage Class</th><th>Scope</th><th>Lifetime</th><th>Default Value</th><th>Stored In</th></tr>
+    <tr><td>auto</td><td>Local block</td><td>Block duration</td><td>Garbage</td><td>RAM (Stack)</td></tr>
+    <tr><td>register</td><td>Local block</td><td>Block duration</td><td>Garbage</td><td>CPU Register (fast!)</td></tr>
+    <tr><td>static (local)</td><td>Local block</td><td>Entire program</td><td>0</td><td>Data Segment</td></tr>
+    <tr><td>extern</td><td>Global</td><td>Entire program</td><td>0</td><td>Data Segment</td></tr>
+  </table>
+  <p style="margin-top:6px"><strong>Key points:</strong></p>
+  <ul class="bl">
+    <li><code>auto</code>: Default for local variables. Value lost after block ends.</li>
+    <li><code>register</code>: Hint to compiler to store in CPU register for faster access. Used for loop counters.</li>
+    <li><code>static</code>: Value is <strong>retained between function calls!</strong> Initialized to 0.</li>
+    <li><code>extern</code>: Variable declared in another file or globally. Value = 0. Used for sharing across files.</li>
+  </ul>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 2)</div>
+
+  <p><strong>1. Factorial using Recursion (MOST IMPORTANT):</strong></p>
+  <span class="ctop">// Factorial using recursion</span>
+  <pre>#include &lt;stdio.h&gt;
+
+int fact(int n) {
+    if(n == 0 || n == 1) return 1;  // Base case
+    return n * fact(n - 1);          // Recursive call
+}
+
+int main() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    printf("Factorial of %d = %d", n, fact(n));
+    return 0;
+}
+/* Output for n=5: fact(5)=5*4*3*2*1=120 */</pre>
+
+  <p style="margin-top:10px"><strong>2. Fibonacci using Recursion:</strong></p>
+  <span class="ctop">// Fibonacci using recursion (2015, 2016 PYQ)</span>
+  <pre>#include &lt;stdio.h&gt;
+
+int fib(int n) {
+    if(n &lt;= 1) return n;          // Base case: fib(0)=0, fib(1)=1
+    return fib(n-1) + fib(n-2);   // Recursive call
+}
+
+int main() {
+    int n, i;
+    printf("Enter n: ");
+    scanf("%d", &amp;n);
+    printf("Fibonacci: ");
+    for(i = 0; i &lt; n; i++)
+        printf("%d ", fib(i));
+    return 0;
+}
+/* Output for n=7: 0 1 1 2 3 5 8 */</pre>
+
+  <p style="margin-top:10px"><strong>3. Swap using Call by Value vs Call by Reference:</strong></p>
+  <span class="ctop">// Swap - Call by Value (changes NOT reflected)</span>
+  <pre>#include &lt;stdio.h&gt;
+
+void swapValue(int a, int b) {  // Copy is passed
+    int temp = a; a = b; b = temp;
+}
+
+void swapRef(int *a, int *b) {  // Address is passed
+    int temp = *a; *a = *b; *b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    swapValue(x, y);
+    printf("After Call by Value: x=%d y=%d\n", x, y);  // x=5 y=10 (unchanged!)
+
+    swapRef(&amp;x, &amp;y);
+    printf("After Call by Reference: x=%d y=%d\n", x, y); // x=10 y=5 (changed!)
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>4. Static variable demo:</strong></p>
+  <span class="ctop">// Static variable retains value between calls</span>
+  <pre>#include &lt;stdio.h&gt;
+
+void counter() {
+    static int count = 0;  // Initialized ONCE, retains value
+    count++;
+    printf("Count = %d\n", count);
+}
+
+int main() {
+    counter();  // Count = 1
+    counter();  // Count = 2
+    counter();  // Count = 3
+    return 0;
+}</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 2)</div>
+  <div class="trick-box">
+    <h4>🎯 Storage Classes: "A RASE" mnemonic</h4>
+    <p><strong>A</strong>uto=garbage,block | <strong>R</strong>egister=CPU,fast | <strong>A</strong>uto default | <strong>S</strong>tatic=retains,0 | <strong>E</strong>xtern=global,0</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 Call by Value vs Reference</h4>
+    <p>Value = Copy jata hai (original safe) | Reference = Address jata hai (original changes)</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 Recursion = 2 cheez yaad rakho</h4>
+    <p>1. Base Case (stop condition) &nbsp; 2. Recursive Call (get closer to base)</p>
+  </div>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 2)</div>
+  <ul class="bl">
+    <li>Function = block of code for specific task; makes code modular &amp; reusable</li>
+    <li>Prototype = declaration before use; tells compiler return type + parameter types</li>
+    <li>Call by Value = copy passed, original unchanged</li>
+    <li>Call by Reference = address passed using &amp; and *, original changes</li>
+    <li>Recursion = function calls itself; MUST have base case</li>
+    <li>factorial(5) = 5×4×3×2×1 = 120</li>
+    <li>auto = default, garbage, block scope</li>
+    <li>static = retains value, default 0, block scope but program lifetime</li>
+    <li>extern = global, across files, default 0</li>
+    <li>register = CPU register (hint), fast, block scope</li>
+  </ul>
+</div>
+</div><!-- end unit 2 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 3 — ARRAYS & STRINGS                                -->
+<!-- ======================================================= -->
+<div id="u3">
+<div class="unit-hdr">
+  <div class="utag">UNIT 3</div>
+  <h2>Arrays &amp; Strings</h2>
+  <p>1D Arrays • 2D Arrays • Processing • Passing to Functions • Multi-Dimensional • Strings • String Functions</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is an array? Types? 1D and 2D with examples. <span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> 2D array — initialization, declaration, and accessing elements. <span class="yr">2015</span><span class="yr">2016</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Write program: find smallest/largest element in array. <span class="yr">2014</span><span class="yr">2016</span></li>
+    <li class="high"><span class="high">🔥🔥</span> What are strings? String functions — strlen, strcpy, strcat, strcmp. <span class="yr">2014</span><span class="yr">2021</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Passing arrays to functions. Advantage of using pointers with arrays. <span class="yr">2015</span><span class="yr">2016</span></li>
+    <li class="imp"><span class="imp">🔥</span> Difference between 1D and 2D arrays. <span class="yr">2018</span><span class="yr">2019</span></li>
+    <li class="imp"><span class="imp">🔥</span> String vs Arrays — what is the difference? <span class="yr">2021</span><span class="yr">2025</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 3)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2014</span></td><td>Write a program to find smallest number in array of 10 elements</td><td>12</td></tr>
+    <tr><td><span class="yr">2014</span></td><td>Write a program to find length of string using pointer</td><td>12</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>What is array? 2D array? How 2D arrays initialized? Access elements?</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Long: Give advantage of array using pointers. Write program to access array using pointers.</td><td>12</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>MCQ: If a[4]={3,0,1,2} then a[0]=3 and a[4]=undefined/garbage ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Short: What is array? Merits/demerits? 2D array? Access elements?</td><td>4</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Long: Write program to print second largest number among 10 numbers</td><td>12</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Long: What is array? Explain its types with example.</td><td>12</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Short: What is the difference between strings and arrays?</td><td>4</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Long: Explain pointer variable declaration and initialization. Explain arrays of pointers.</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: Recursion definition? Difference between strings and arrays?</td><td>part of 12</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 3)</div>
+
+  <div class="def"><strong>Q1: What is an array? Types? Declaration and examples.</strong> <span class="mtag">4–5 marks</span></div>
+  <p>An array is a <strong>collection of similar data elements</strong> stored in <strong>contiguous memory locations</strong>, accessed using an index.</p>
+  <p style="margin-top:6px"><strong>Properties:</strong></p>
+  <ul class="bl">
+    <li>All elements are of the same data type</li>
+    <li>Index starts from 0 (not 1!)</li>
+    <li>Size is fixed at declaration time</li>
+    <li>Stored in continuous/sequential memory</li>
+  </ul>
+  <p style="margin-top:6px"><strong>1D Array Declaration:</strong> <code>data_type array_name[size];</code></p>
+  <p>Example: <code>int marks[5] = {10, 20, 30, 40, 50};</code></p>
+  <p>Access: marks[0]=10, marks[1]=20 ... marks[4]=50</p>
+
+  <p style="margin-top:10px"><strong>2D Array Declaration:</strong> <code>data_type array_name[rows][cols];</code></p>
+  <p>Example: <code>int m[3][4];</code> — 3 rows, 4 columns, total 12 elements</p>
+  <p>Access: <code>m[i][j]</code> where i=row, j=column</p>
+  <p>Memory Layout (Row-Major): m[0][0] m[0][1] m[0][2] m[0][3] | m[1][0] m[1][1]...</p>
+
+  <p style="margin-top:8px"><strong>Initialization of 2D Array:</strong></p>
+  <p><code>int a[2][3] = {{1,2,3},{4,5,6}};</code></p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: What is a String? String functions?</strong> <span class="mtag">4 marks</span></div>
+  <p>A string is a <strong>1D char array terminated by null character '\0'</strong>.</p>
+  <p>Example: <code>char name[6] = "Hello";</code> → stores H E L L O \0</p>
+  <table>
+    <tr><th>Function</th><th>Use</th><th>Example</th></tr>
+    <tr><td>strlen(str)</td><td>Returns length</td><td>strlen("Hello") = 5</td></tr>
+    <tr><td>strcpy(dest, src)</td><td>Copies string</td><td>strcpy(s2, s1)</td></tr>
+    <tr><td>strcat(dest, src)</td><td>Concatenates</td><td>strcat(s1, s2)</td></tr>
+    <tr><td>strcmp(s1, s2)</td><td>Compares (0=equal)</td><td>strcmp("ab","ab")=0</td></tr>
+    <tr><td>strrev(str)</td><td>Reverses string</td><td>strrev("hello")="olleh"</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: Difference between String and Array.</strong> <span class="mtag">4 marks</span></div>
+  <table>
+    <tr><th>Feature</th><th>Array</th><th>String</th></tr>
+    <tr><td>Data type</td><td>Any type (int, float...)</td><td>char only</td></tr>
+    <tr><td>Terminator</td><td>No null terminator needed</td><td>Ends with '\0' (null)</td></tr>
+    <tr><td>Functions</td><td>No built-in functions</td><td>strlen, strcpy etc. (string.h)</td></tr>
+    <tr><td>I/O</td><td>Element by element</td><td>Can use %s, scanf, gets</td></tr>
+    <tr><td>Comparison</td><td>Element-by-element manually</td><td>strcmp() function</td></tr>
+  </table>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 3)</div>
+
+  <p><strong>1. Find smallest element in array (2014 PYQ):</strong></p>
+  <span class="ctop">// Find smallest in array (2014 PYQ Q4)</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int a[10], n, i, small;
+    printf("Enter size: ");
+    scanf("%d", &amp;n);
+    printf("Enter elements: ");
+    for(i = 0; i &lt; n; i++) scanf("%d", &amp;a[i]);
+
+    small = a[0];  // Assume first is smallest
+    for(i = 1; i &lt; n; i++)
+        if(a[i] &lt; small) small = a[i];
+
+    printf("Smallest = %d", small);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>2. 2D Array — Matrix Addition:</strong></p>
+  <span class="ctop">// Matrix Addition</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int A[3][3], B[3][3], C[3][3], i, j;
+    printf("Enter first 3x3 matrix:\n");
+    for(i=0;i&lt;3;i++) for(j=0;j&lt;3;j++) scanf("%d",&amp;A[i][j]);
+    printf("Enter second 3x3 matrix:\n");
+    for(i=0;i&lt;3;i++) for(j=0;j&lt;3;j++) scanf("%d",&amp;B[i][j]);
+    for(i=0;i&lt;3;i++) for(j=0;j&lt;3;j++) C[i][j]=A[i][j]+B[i][j];
+    printf("Result:\n");
+    for(i=0;i&lt;3;i++){
+        for(j=0;j&lt;3;j++) printf("%d ", C[i][j]);
+        printf("\n");
+    }
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>3. String length WITHOUT strlen() (2014 PYQ Q5):</strong></p>
+  <span class="ctop">// String length using pointer</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    char str[100];
+    int len = 0;
+    printf("Enter string: ");
+    scanf("%s", str);
+    while(str[len] != '\0') len++;  // count till null
+    printf("Length = %d", len);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>4. Bubble Sort:</strong></p>
+  <span class="ctop">// Bubble Sort</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int a[100], n, i, j, temp;
+    printf("Enter size: "); scanf("%d",&amp;n);
+    for(i=0;i&lt;n;i++) scanf("%d",&amp;a[i]);
+    for(i=0;i&lt;n-1;i++)
+        for(j=0;j&lt;n-i-1;j++)
+            if(a[j]&gt;a[j+1]){
+                temp=a[j]; a[j]=a[j+1]; a[j+1]=temp;
+            }
+    printf("Sorted: ");
+    for(i=0;i&lt;n;i++) printf("%d ",a[i]);
+    return 0;
+}</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 3)</div>
+  <div class="trick-box">
+    <h4>🎯 "ARYS" for Array Features</h4>
+    <p><strong>A</strong>ll same type | <strong>R</strong>ow-major memory | <strong>Y</strong>ou use index | <strong>S</strong>tarts at 0</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 String Functions: "strlen strcpy strcat strcmp"</h4>
+    <p>Length → Copy → Concatenate → Compare (alphabetical order of usage)</p>
+  </div>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 3)</div>
+  <ul class="bl">
+    <li>Array = same type, contiguous memory, index starts 0</li>
+    <li>1D: <code>int a[5];</code> | 2D: <code>int m[3][4];</code></li>
+    <li>a[i] same as *(a+i) — array name is base address (constant pointer)</li>
+    <li>Array passed to function = address is passed (always by reference!)</li>
+    <li>String = char array ending with '\0' (null character)</li>
+    <li>strlen, strcpy, strcat, strcmp — all from &lt;string.h&gt;</li>
+    <li>strcmp returns 0 if equal, negative if s1&lt;s2, positive if s1&gt;s2</li>
+    <li>Always declare string one size bigger (e.g., "Hello"=5 chars → size 6)</li>
+  </ul>
+</div>
+</div><!-- end unit 3 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 4 — STRUCTURES, UNIONS & BITWISE                    -->
+<!-- ======================================================= -->
+<div id="u4">
+<div class="unit-hdr">
+  <div class="utag">UNIT 4</div>
+  <h2>Structures, Unions &amp; Bitwise Operations</h2>
+  <p>User-Defined Data Types • Structures • Unions • Self-Referential • Passing to Functions • Bitwise Ops</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a structure? Syntax, accessing members, example program. <span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2018</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a union? Syntax, memory sharing, example. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Difference between structure and union — MOST REPEATED EVERY YEAR! <span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2018</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Passing structure to function (by value and by reference). <span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Self-referential structure — linked list. <span class="yr">2017</span><span class="yr">2019</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Bitwise operators with examples. <span class="yr">2017</span><span class="yr">2021</span></li>
+    <li class="imp"><span class="imp">🔥</span> What is typedef? What is enum? <span class="yr">2017</span><span class="yr">2015</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 4)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2014</span></td><td>MCQ: Structure member accessed using dot (.) operator ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Short: User-defined data types? Difference between structure and union.</td><td>4</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Short: Structure variable + differences between structure and union.</td><td>4</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Long: What is enumeration? What is a structure? Explain with examples.</td><td>12</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>MCQ: Structure/union/enum similarity = all define new data types ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>Long: What is structure? Explain structure within structure with example.</td><td>12</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Short: Define structure | Define union</td><td>2+2</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Short: Structure with example | Union with example</td><td>4+4</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>MCQ: Differences between malloc() and calloc()</td><td>2</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Long: Explain how structure variable is passed as parameter to function with example.</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Short: What are structure and union? Differences between structure and union?</td><td>4</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 4)</div>
+
+  <div class="def"><strong>Q1: What is a structure? Syntax, accessing members.</strong> <span class="mtag">4–5 marks</span></div>
+  <p>Structure is a <strong>user-defined data type</strong> that groups variables of <strong>different data types</strong> under one name.</p>
+  <p style="margin-top:6px"><strong>Syntax:</strong></p>
+  <span class="ctop">// Structure syntax</span>
+  <pre>struct structure_name {
+    data_type member1;
+    data_type member2;
+    ...
+};
+struct structure_name variable;</pre>
+  <p style="margin-top:6px">Access members using <strong>dot (.) operator</strong>: <code>variable.member</code></p>
+  <p>Access via pointer using <strong>arrow (-&gt;) operator</strong>: <code>pointer-&gt;member</code></p>
+  <p style="margin-top:6px">Size of structure = Sum of all members (+ padding for alignment)</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: What is a union? How is it different from structure?</strong> <span class="mtag">4–12 marks</span></div>
+  <p>A union is a <strong>user-defined data type where all members share the same memory location</strong>.</p>
+  <ul class="bl">
+    <li>Size of union = size of its <strong>largest</strong> member</li>
+    <li>Only ONE member holds a valid value at a time</li>
+    <li>Last written value is stored (previous values overwritten)</li>
+    <li>Used to save memory</li>
+  </ul>
+  <p style="margin-top:8px"><strong>Difference: Structure vs Union (MOST IMPORTANT TABLE)</strong></p>
+  <table>
+    <tr><th>Feature</th><th>Structure (struct)</th><th>Union (union)</th></tr>
+    <tr><td>Memory</td><td>Each member has <strong>separate</strong> memory</td><td>All members <strong>share</strong> same memory</td></tr>
+    <tr><td>Size</td><td>Sum of all members (+padding)</td><td>Size of <strong>largest</strong> member only</td></tr>
+    <tr><td>Members active</td><td>All members can hold values simultaneously</td><td>Only ONE member at a time</td></tr>
+    <tr><td>Value overwrite</td><td>No (each has own space)</td><td>Yes (last value overwrites)</td></tr>
+    <tr><td>Use case</td><td>Store multiple values together</td><td>Save memory, one-at-a-time access</td></tr>
+    <tr><td>Keyword</td><td>struct</td><td>union</td></tr>
+    <tr><td>Accessing</td><td>. (dot) or -&gt; (arrow)</td><td>. (dot) or -&gt; (arrow)</td></tr>
+  </table>
+  <p style="margin-top:6px"><strong>Memory Trick:</strong> Structure = "Many members, separate house" | Union = "One time, one member"</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: Bitwise Operators in C.</strong> <span class="mtag">4 marks</span></div>
+  <table>
+    <tr><th>Operator</th><th>Name</th><th>Action</th><th>Example (a=5=0101, b=3=0011)</th></tr>
+    <tr><td>&amp;</td><td>AND</td><td>1 if BOTH bits 1</td><td>5&amp;3 = 0001 = 1</td></tr>
+    <tr><td>|</td><td>OR</td><td>1 if ANY bit 1</td><td>5|3 = 0111 = 7</td></tr>
+    <tr><td>^</td><td>XOR</td><td>1 if bits DIFFERENT</td><td>5^3 = 0110 = 6</td></tr>
+    <tr><td>~</td><td>NOT</td><td>Inverts all bits</td><td>~5 = -6 (2's complement)</td></tr>
+    <tr><td>&lt;&lt;</td><td>Left Shift</td><td>Multiply by 2^n</td><td>5&lt;&lt;1 = 1010 = 10</td></tr>
+    <tr><td>&gt;&gt;</td><td>Right Shift</td><td>Divide by 2^n</td><td>5&gt;&gt;1 = 0010 = 2</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: Self-referential structure (for linked list).</strong> <span class="mtag">4 marks</span></div>
+  <p>A structure that contains a <strong>pointer to the same type of structure</strong> is called self-referential. Used for linked lists, trees, graphs.</p>
+  <span class="ctop">// Self-referential structure</span>
+  <pre>struct Node {
+    int data;
+    struct Node *next;  // Pointer to same type!
+};
+/* Memory: [data | next] → [data | next] → NULL */</pre>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 4)</div>
+
+  <p><strong>1. Structure program — Student Record:</strong></p>
+  <span class="ctop">// Structure example</span>
+  <pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Student {
+    int roll;
+    char name[20];
+    float marks;
+};
+
+int main() {
+    struct Student s;
+    printf("Enter roll, name, marks: ");
+    scanf("%d %s %f", &amp;s.roll, s.name, &amp;s.marks);
+    printf("Roll: %d\n", s.roll);
+    printf("Name: %s\n", s.name);
+    printf("Marks: %.2f\n", s.marks);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>2. Passing structure to function by reference:</strong></p>
+  <span class="ctop">// Passing structure by reference</span>
+  <pre>#include &lt;stdio.h&gt;
+struct Student {
+    int roll;
+    char name[20];
+    float marks;
+};
+void display(struct Student *p) {  // pointer parameter
+    printf("Roll: %d, Name: %s, Marks: %.2f\n",
+           p-&gt;roll, p-&gt;name, p-&gt;marks);
+}
+int main() {
+    struct Student s = {1, "Rahul", 85.5};
+    display(&amp;s);  // Pass address
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>3. Union program:</strong></p>
+  <span class="ctop">// Union example</span>
+  <pre>#include &lt;stdio.h&gt;
+union Data {
+    int i;
+    float f;
+    char ch;
+};
+int main() {
+    union Data d;
+    d.i = 10;
+    printf("Integer: %d\n", d.i);  // 10
+    d.f = 3.14;  // Overwrites integer!
+    printf("Float: %.2f\n", d.f);  // 3.14
+    printf("Integer now: %d\n", d.i);  // Garbage (overwritten)
+    printf("Size of union: %lu\n", sizeof(d));  // Size of largest = float = 4
+    return 0;
+}</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 4)</div>
+  <div class="trick-box">
+    <h4>🎯 Structure vs Union in ONE line:</h4>
+    <p><strong>S</strong>tructure = <strong>S</strong>eparate memory | <strong>U</strong>nion = <strong>U</strong>se one at a time</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 Bitwise "& | ^ ~ &lt;&lt; &gt;&gt;"</h4>
+    <p><strong>AND</strong>=both 1 | <strong>OR</strong>=any 1 | <strong>XOR</strong>=different | <strong>NOT</strong>=invert | <strong>&lt;&lt;</strong>=×2 | <strong>&gt;&gt;</strong>=÷2</p>
+  </div>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 4)</div>
+  <ul class="bl">
+    <li>struct = user-defined type, different data types together, separate memory</li>
+    <li>union = same memory, only 1 member active, size=largest member</li>
+    <li>struct access: <code>s.member</code> (dot) or <code>ptr-&gt;member</code> (arrow)</li>
+    <li>union access: same as struct (. or -&gt;)</li>
+    <li>Self-referential struct: contains pointer to same struct type → linked list</li>
+    <li>Bitwise: &amp;=AND, |=OR, ^=XOR, ~=NOT, &lt;&lt;=left shift, &gt;&gt;=right shift</li>
+    <li>Left shift by n = multiply by 2^n | Right shift by n = divide by 2^n</li>
+    <li>sizeof(struct) = sum of all members + padding</li>
+  </ul>
+</div>
+</div><!-- end unit 4 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 5 — POINTERS (HIGHEST PRIORITY)                     -->
+<!-- ======================================================= -->
+<div id="u5">
+<div class="unit-hdr" style="border-left-color:#ff1744">
+  <div class="utag">UNIT 5 — HIGHEST PRIORITY 🔥🔥🔥</div>
+  <h2>Pointers</h2>
+  <p>Declaration • Initialization • Dereferencing • Arithmetic • Arrays • Functions • Structures • Arrays of Pointers</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a pointer? Declaration, initialization, dereferencing with example. <span class="yr">2014</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2018</span><span class="yr">2019</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What are uses/advantages of pointers in C? <span class="yr">2014</span><span class="yr">2018</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Pointer arithmetic — how does p+1, p++ work? <span class="yr">2017</span><span class="yr">2019</span><span class="yr">2022</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Access array elements using pointer. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2022</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Passing pointer to function — call by reference (swap). <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between * (dereferencing) and &amp; (address-of) operators. <span class="yr">2014</span><span class="yr">2021</span><span class="yr">2022</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Pointer with structure — using -&gt; operator. <span class="yr">2016</span><span class="yr">2018</span><span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Arrays of pointers — declaration and use. <span class="yr">2022</span></li>
+    <li class="imp"><span class="imp">🔥</span> What is a NULL pointer? Wild pointer? Dangling pointer? <span class="yr">2021</span><span class="yr">2017</span></li>
+    <li class="imp"><span class="imp">🔥</span> What does void*0 represent? <span class="yr">2017</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 5)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2014</span></td><td>Short: What are pointers? Why are they important?</td><td>4</td></tr>
+    <tr><td><span class="yr">2015</span></td><td>Long: Advantages of array using pointers. Write program to access array using pointers.</td><td>12</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Long: Advantages of array using pointers. Access elements using pointers.</td><td>12</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>MCQ: void*0 = Representation of NULL pointer ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>MCQ: -&gt; operator used when variable is pointer to structure ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>MCQ: (*ptr)[10] = ptr is a pointer to an array of 10 integers ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>Long: What is pointer? Advantages of using pointers? Explain with examples.</td><td>12</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>MCQ: Define pointer</td><td>2</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Long: Explain pointer. Give example of passing pointer to function.</td><td>12</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Short: What is a pointer?</td><td>2</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Long: Wild pointers in C. Difference between = and == symbols. Prototype function explanation.</td><td>12</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>MCQ: Difference between * and &amp; in C pointer</td><td>2</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Long: What is pointer? Declare and initialize pointer. Explain arrays of pointers.</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>MCQ: char*p=0; *p='a'; — output is Runtime Error ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Short: What is a pointer? What are uses of a pointer?</td><td>4</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: Static vs dynamic memory alloc, realloc, pointer to pointer.</td><td>12</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 5)</div>
+
+  <div class="def"><strong>Q1: What is a pointer? Declaration, initialization, dereferencing.</strong> <span class="mtag">4–12 marks</span></div>
+  <p>A <strong>pointer</strong> is a variable that stores the <strong>memory address</strong> of another variable.</p>
+  <p style="margin-top:6px"><strong>Declaration:</strong> <code>data_type *pointer_name;</code></p>
+  <p>Example: <code>int *ptr;</code> — ptr is a pointer to an integer</p>
+  <p style="margin-top:6px"><strong>Initialization:</strong> <code>ptr = &amp;variable;</code></p>
+  <p>Example: <code>int a = 10; int *ptr = &amp;a;</code> — ptr holds address of a</p>
+  <p style="margin-top:6px"><strong>Operators:</strong></p>
+  <ul class="bl">
+    <li><code>&amp;</code> (Address-of operator): Gets address of variable. <code>&amp;a</code> = address of a (e.g., 1000)</li>
+    <li><code>*</code> (Dereferencing operator): Gets value at address. <code>*ptr</code> = value at address stored in ptr = 10</li>
+  </ul>
+  <span class="ctop">// Pointer example</span>
+  <pre>int a = 10;
+int *ptr = &amp;a;
+printf("%d", a);     // 10   (value of a)
+printf("%p", &amp;a);   // 1000 (address of a)
+printf("%p", ptr);   // 1000 (address stored in ptr)
+printf("%d", *ptr);  // 10   (value at address 1000)</pre>
+
+  <p style="margin-top:8px"><strong>Uses/Advantages of Pointers:</strong></p>
+  <ol class="nl">
+    <li>Dynamic memory allocation (malloc, calloc)</li>
+    <li>Call by reference — modify original values</li>
+    <li>Array traversal — efficient and fast</li>
+    <li>Linked lists, trees, graphs — self-referential structures</li>
+    <li>Reduces code length and complexity</li>
+    <li>Used with structures via -&gt; operator</li>
+  </ol>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: Pointer Arithmetic.</strong> <span class="mtag">4 marks</span></div>
+  <p>Pointer arithmetic moves the pointer based on the <strong>size of the data type</strong>.</p>
+  <table>
+    <tr><th>Operation</th><th>Meaning</th><th>Effect (for int ptr, sizeof(int)=4)</th></tr>
+    <tr><td>ptr + 1</td><td>Move to next element</td><td>Address increases by 4 bytes</td></tr>
+    <tr><td>ptr - 1</td><td>Move to previous element</td><td>Address decreases by 4 bytes</td></tr>
+    <tr><td>ptr++</td><td>Increment by 1 element</td><td>ptr points to next int</td></tr>
+    <tr><td>ptr--</td><td>Decrement by 1 element</td><td>ptr points to previous int</td></tr>
+    <tr><td>ptr2 - ptr1</td><td>Number of elements between</td><td>Difference in elements</td></tr>
+  </table>
+  <div class="warn">⚠️ You can add integer to pointer, but NOT add two pointers!</div>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: Pointers and Arrays.</strong> <span class="mtag">4 marks</span></div>
+  <ul class="bl">
+    <li>Array name = <strong>constant pointer</strong> to first element</li>
+    <li><code>arr</code> same as <code>&amp;arr[0]</code></li>
+    <li><code>a[i]</code> is same as <code>*(a+i)</code></li>
+    <li>You can traverse array using pointer: <code>int *p = arr;</code> then <code>*(p+i)</code> or <code>p[i]</code></li>
+  </ul>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: Arrays of Pointers.</strong> <span class="mtag">4 marks</span></div>
+  <p>An array where each element is a pointer. Most commonly used for arrays of strings.</p>
+  <span class="ctop">// Array of pointers (string array)</span>
+  <pre>char *names[3];         // Array of 3 char pointers
+names[0] = "Ram";
+names[1] = "Shyam";
+names[2] = "Mohan";
+printf("%s", names[1]); // Output: Shyam</pre>
+  <p style="margin-top:6px">Each element stores the <strong>address</strong> of a string. Efficient for storing multiple strings.</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q5: Pointer with Structure — Arrow Operator.</strong> <span class="mtag">4 marks</span></div>
+  <ul class="bl">
+    <li>When we have a pointer to a structure, use <code>-&gt;</code> (arrow operator) to access members</li>
+    <li><code>ptr-&gt;member</code> is same as <code>(*ptr).member</code></li>
+  </ul>
+  <span class="ctop">// Pointer with structure</span>
+  <pre>struct Student s = {1, "Rahul", 85.5};
+struct Student *ps = &amp;s;  // Pointer to structure
+printf("%d", ps-&gt;roll);   // Same as (*ps).roll
+printf("%s", ps-&gt;name);
+printf("%.2f", ps-&gt;marks);</pre>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q6: NULL pointer, Wild pointer, Dangling pointer.</strong> <span class="mtag">4 marks</span></div>
+  <ul class="bl">
+    <li><strong>NULL pointer:</strong> A pointer that doesn't point to any valid memory. <code>int *p = NULL;</code> or <code>int *p = 0;</code>. Safe to use as initial value.</li>
+    <li><strong>Wild pointer:</strong> An uninitialized pointer that points to some random memory address. Very dangerous! Always initialize pointers.</li>
+    <li><strong>Dangling pointer:</strong> A pointer that points to memory that has been freed or deallocated. Accessing it causes undefined behavior.</li>
+  </ul>
+  <div class="warn">⚠️ <code>char *p = 0; *p = 'a';</code> → NULL pointer dereference → <strong>Runtime Error (Segmentation Fault)</strong>! (2025 PYQ)</div>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 5)</div>
+
+  <p><strong>1. Basic pointer program:</strong></p>
+  <span class="ctop">// Basic pointer operations</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int a = 10;
+    int *ptr = &amp;a;
+    printf("Value of a = %d\n", a);
+    printf("Address of a = %p\n", &amp;a);
+    printf("Value of ptr = %p\n", ptr);  // Same address
+    printf("Value at ptr = %d\n", *ptr); // 10
+    *ptr = 20;  // Change value through pointer
+    printf("New value of a = %d\n", a);  // 20
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>2. Access array elements using pointer (2015, 2016 PYQ):</strong></p>
+  <span class="ctop">// Array access using pointer</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int *p = arr;  // p points to arr[0]
+    int i;
+    printf("Array elements using pointer:\n");
+    for(i = 0; i &lt; 5; i++)
+        printf("arr[%d] = %d\n", i, *(p+i)); // *(p+i) = arr[i]
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>3. String length using pointer (2014 PYQ Q5):</strong></p>
+  <span class="ctop">// String length using pointer</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    char str[100], *p;
+    int len = 0;
+    printf("Enter string: ");
+    scanf("%s", str);
+    p = str;
+    while(*p != '\0') { len++; p++; }
+    printf("Length = %d", len);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>4. Swap using pointers (Call by Reference):</strong></p>
+  <span class="ctop">// Swap using pointers</span>
+  <pre>#include &lt;stdio.h&gt;
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+int main() {
+    int a = 5, b = 10;
+    printf("Before: a=%d, b=%d\n", a, b);
+    swap(&amp;a, &amp;b);  // Pass addresses
+    printf("After:  a=%d, b=%d\n", a, b);
+    return 0;
+}
+/* Output: Before: a=5, b=10 | After: a=10, b=5 */</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 5)</div>
+  <div class="trick-box">
+    <h4>🎯 "PAST 6" to remember pointer concepts</h4>
+    <p><strong>P</strong>ointer | <strong>A</strong>rray | <strong>S</strong>tructure | <strong>T</strong>ype | <strong>6</strong> = Operations &amp; Uses</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 * vs &amp; one-liner</h4>
+    <p>* = "Value at address" (star = go inside) | &amp; = "Address of variable" (ampersand = find location)</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 dot vs arrow</h4>
+    <p>Variable → dot (.) | Pointer → arrow (→)</p>
+  </div>
+</div>
+
+<div class="card err">
+  <div class="ctitle">⚠️ H. COMMON MISTAKES (Unit 5)</div>
+  <ul class="bl">
+    <li>❌ Using *p before initializing p (Wild pointer → undefined behavior)</li>
+    <li>❌ Using &amp; on pointer to get address of pointer: <code>&amp;ptr</code> gives address of ptr itself, not value</li>
+    <li>❌ Pointer arithmetic out of array bounds (seg fault)</li>
+    <li>❌ Forgetting to free dynamically allocated memory (memory leak)</li>
+    <li>❌ char*p=0; *p='a'; → NULL pointer dereference → RUNTIME ERROR (2025 PYQ)</li>
+    <li>❌ Using . operator with pointer (should use -&gt;)</li>
+  </ul>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 5)</div>
+  <ul class="bl">
+    <li>Pointer = variable storing address of another variable</li>
+    <li>Declaration: <code>int *p;</code> | Initialization: <code>p = &amp;a;</code></li>
+    <li><code>&amp;</code> = address-of | <code>*</code> = value-at-address (dereference)</li>
+    <li>Pointer arithmetic: p+1 moves by sizeof(data_type) bytes</li>
+    <li>Array name = constant pointer to first element; <code>a[i] == *(a+i)</code></li>
+    <li>Arrays of pointers: <code>char *names[3];</code> — array of string pointers</li>
+    <li>Struct pointer uses <code>-&gt;</code>: <code>ps-&gt;roll</code> same as <code>(*ps).roll</code></li>
+    <li>NULL pointer = points to nothing (safe initial value)</li>
+    <li>Wild pointer = uninitialized (dangerous)</li>
+    <li>Dangling pointer = points to freed memory (dangerous)</li>
+  </ul>
+</div>
+</div><!-- end unit 5 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 6 — C PREPROCESSOR                                  -->
+<!-- ======================================================= -->
+<div id="u6">
+<div class="unit-hdr">
+  <div class="utag">UNIT 6</div>
+  <h2>The C Preprocessor</h2>
+  <p>#define • #include • #ifdef/#ifndef • Conditional Compilation • Macros vs Functions</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a preprocessor? What are its advantages? <span class="yr">2016</span><span class="yr">2021</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> #define for constants and macros — syntax and examples. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Difference between macro and function. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> #include directive — system vs user header files. <span class="yr">2014</span><span class="yr">2018</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Conditional compilation — #ifdef, #ifndef, #if, #endif. <span class="yr">2016</span><span class="yr">2017</span><span class="yr">2021</span></li>
+    <li class="high"><span class="high">🔥🔥</span> What is preprocessor? Advantages? Facilities provided? <span class="yr">2025</span></li>
+    <li class="imp"><span class="imp">🔥</span> What is #undef? What are predefined macros? <span class="yr-e">EXPECTED</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 6)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2015</span></td><td>Short: Write difference between functions and macros.</td><td>4</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Long: Discuss preprocessor commands + difference calloc vs malloc + macro vs function</td><td>12</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Short: What is macro? Why do we use macro?</td><td>4</td></tr>
+    <tr><td><span class="yr">2017</span></td><td>Long: What are differences between malloc() and calloc()? Explain with examples.</td><td>12</td></tr>
+    <tr><td><span class="yr">2018</span></td><td>MCQ: #include processed during PREPROCESSING stage ✓</td><td>2</td></tr>
+    <tr><td><span class="yr">2021</span></td><td>Long: Variables vs constants + what are preprocessor directives?</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>MCQ: Why and when do we use #define and #include directives?</td><td>2</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: What are macros? What are its advantages and disadvantages? Out of fgets() and gets() which function is safe and why?</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: Explain preprocessor. What are advantages of preprocessor? What are facilities provided?</td><td>12</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 6)</div>
+
+  <div class="def"><strong>Q1: What is a preprocessor? What does it do?</strong> <span class="mtag">4–12 marks</span></div>
+  <p>The <strong>preprocessor</strong> is a program that processes source code <strong>before actual compilation</strong>. All preprocessor commands start with <code>#</code> symbol.</p>
+  <p style="margin-top:6px"><strong>Processing Order:</strong> Source Code (.c) → Preprocessor → Modified Code (.i) → Compiler → Object Code</p>
+  <p style="margin-top:6px"><strong>What preprocessor does:</strong></p>
+  <ol class="nl">
+    <li>Removes all comments from source code</li>
+    <li>Expands all <code>#define</code> macros</li>
+    <li>Inserts content of <code>#include</code> header files</li>
+    <li>Handles conditional compilation (#if, #ifdef, #endif)</li>
+    <li>Generates final modified source code for compiler</li>
+  </ol>
+  <p style="margin-top:6px"><strong>Advantages of Preprocessor:</strong></p>
+  <ul class="bl">
+    <li>Makes programs easier to read and modify</li>
+    <li>Allows code reuse through macros</li>
+    <li>Enables conditional compilation (platform-specific code)</li>
+    <li>Macros execute faster than functions (inline expansion)</li>
+  </ul>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: #define directive — constants and functional macros.</strong> <span class="mtag">4 marks</span></div>
+  <p><strong>For Constants:</strong> <code>#define MACRO_NAME value</code></p>
+  <p>Example: <code>#define PI 3.14159</code> &nbsp; <code>#define MAX 100</code></p>
+  <p style="margin-top:6px"><strong>For Functional Macros:</strong> <code>#define MACRO_NAME(args) expression</code></p>
+  <p>Example: <code>#define SQUARE(x) ((x)*(x))</code></p>
+  <p>Example: <code>#define MAX(a,b) ((a)&gt;(b)?(a):(b))</code></p>
+  <div class="note">⭐ Key rules: No semicolon after #define | Always use parentheses around arguments | No memory used (inline expansion)</div>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: Macro vs Function — Differences.</strong> <span class="mtag">4–12 marks</span></div>
+  <table>
+    <tr><th>Feature</th><th>Macro</th><th>Function</th></tr>
+    <tr><td>Processed by</td><td>Preprocessor (before compile)</td><td>Compiler (during compile)</td></tr>
+    <tr><td>Execution</td><td>Inline expansion (code replaces call)</td><td>Function call (jump to code)</td></tr>
+    <tr><td>Speed</td><td>Faster (no call overhead)</td><td>Slower (call, return overhead)</td></tr>
+    <tr><td>Type checking</td><td>No type checking</td><td>Yes, type checked</td></tr>
+    <tr><td>Return type</td><td>No return type</td><td>Has return type</td></tr>
+    <tr><td>Memory</td><td>No memory used</td><td>Uses stack memory</td></tr>
+    <tr><td>Debugging</td><td>Difficult (code replaced)</td><td>Easy (stack trace)</td></tr>
+    <tr><td>Recursion</td><td>Not possible</td><td>Possible</td></tr>
+    <tr><td>Example</td><td>#define SQ(x) ((x)*(x))</td><td>int sq(int x){return x*x;}</td></tr>
+  </table>
+  <p style="margin-top:6px"><strong>Short Trick:</strong> Use Macro for simple &amp; small tasks | Use Function for complex &amp; large tasks</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: #include directive — system vs user header files.</strong> <span class="mtag">4 marks</span></div>
+  <ul class="bl">
+    <li><strong>System header files:</strong> <code>#include &lt;stdio.h&gt;</code> — angle brackets, searches in standard library</li>
+    <li><strong>User-defined header files:</strong> <code>#include "myfile.h"</code> — double quotes, searches in current directory first</li>
+  </ul>
+  <table>
+    <tr><th>Header File</th><th>Purpose</th></tr>
+    <tr><td>stdio.h</td><td>printf, scanf, fopen, fclose etc.</td></tr>
+    <tr><td>math.h</td><td>sqrt, pow, sin, cos, log etc.</td></tr>
+    <tr><td>string.h</td><td>strlen, strcpy, strcmp, strcat etc.</td></tr>
+    <tr><td>stdlib.h</td><td>malloc, calloc, free, atoi, exit etc.</td></tr>
+    <tr><td>ctype.h</td><td>isalpha, isdigit, toupper, tolower etc.</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q5: Conditional compilation — #ifdef, #ifndef.</strong> <span class="mtag">4 marks</span></div>
+  <p>Used to compile code only under certain conditions. Makes code platform-independent.</p>
+  <span class="ctop">// Conditional compilation example</span>
+  <pre>#ifdef DEBUG          // If DEBUG is defined
+    printf("Debug mode ON\n");
+#else
+    printf("Release mode\n");
+#endif                // End of condition
+
+#ifndef MYHEADER_H    // If MYHEADER_H is NOT defined
+#define MYHEADER_H    // Define it (prevents double inclusion)
+// ... header content ...
+#endif</pre>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q6: fgets() vs gets() — which is safer? (2025 PYQ)</strong> <span class="mtag">4 marks</span></div>
+  <p><strong>fgets()</strong> is safer than <strong>gets()</strong>.</p>
+  <table>
+    <tr><th>Feature</th><th>fgets()</th><th>gets()</th></tr>
+    <tr><td>Syntax</td><td>fgets(str, n, stdin)</td><td>gets(str)</td></tr>
+    <tr><td>Size limit</td><td>Yes — n characters max</td><td>No limit!</td></tr>
+    <tr><td>Buffer overflow</td><td>Protected</td><td>Risk of overflow</td></tr>
+    <tr><td>Recommended</td><td>Yes ✅</td><td>No ❌ (deprecated)</td></tr>
+  </table>
+  <p style="margin-top:6px"><strong>fgets is safer</strong> because it accepts a maximum character count (n), preventing buffer overflow. gets() reads indefinitely and can overwrite memory.</p>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 6)</div>
+
+  <p><strong>1. Using #define for constants and macros:</strong></p>
+  <span class="ctop">// Preprocessor macros</span>
+  <pre>#include &lt;stdio.h&gt;
+#define PI 3.14159           // Constant
+#define SQUARE(x) ((x)*(x)) // Functional macro (always use parens!)
+#define MAX(a,b) ((a)&gt;(b)?(a):(b)) // Max macro
+#define AREA(r) (PI*(r)*(r)) // Circle area macro
+
+int main() {
+    float r = 5;
+    printf("Area = %.2f\n", AREA(r));       // 78.54
+    printf("Square of 4 = %d\n", SQUARE(4)); // 16
+    printf("Max(10,20) = %d\n", MAX(10,20)); // 20
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>2. Conditional compilation with #ifdef:</strong></p>
+  <span class="ctop">// Conditional compilation</span>
+  <pre>#include &lt;stdio.h&gt;
+#define DEBUG   // Define DEBUG macro
+
+int main() {
+    int a = 5, b = 10;
+    int sum = a + b;
+
+#ifdef DEBUG
+    printf("Debug: a=%d, b=%d\n", a, b); // Only in debug mode
+#endif
+
+    printf("Sum = %d\n", sum);
+    return 0;
+}</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 6)</div>
+  <div class="trick-box">
+    <h4>🎯 "D I COMP" to remember Preprocessor</h4>
+    <p><strong>D</strong>=Define | <strong>I</strong>=Include | <strong>C</strong>=Conditional | <strong>O</strong>=Other commands | <strong>M</strong>=Macros | <strong>P</strong>=Process before compile</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 Macro vs Function in 5 words</h4>
+    <p>Macro = FAST, NO check | Function = SAFE, type check</p>
+  </div>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 6)</div>
+  <ul class="bl">
+    <li>Preprocessor runs BEFORE compiler; all commands start with #</li>
+    <li>#define PI 3.14 → constant; #define SQ(x) ((x)*(x)) → macro</li>
+    <li>No semicolon after #define; always use () around macro args</li>
+    <li>#include &lt;stdio.h&gt; → system file; #include "myfile.h" → user file</li>
+    <li>#ifdef = if defined; #ifndef = if not defined; #endif = end of condition</li>
+    <li>Macro = faster, inline, no type check; Function = safer, type checked</li>
+    <li>fgets() safer than gets() — provides buffer size limit</li>
+    <li>#undef removes a macro | #pragma = compiler specific directive</li>
+  </ul>
+</div>
+</div><!-- end unit 6 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- UNIT 7 — FILE HANDLING (HIGHEST PRIORITY)                -->
+<!-- ======================================================= -->
+<div id="u7">
+<div class="unit-hdr" style="border-left-color:#ff6f00">
+  <div class="utag" style="background:#ff6f00">UNIT 7 — HIGHEST PRIORITY 🔥🔥🔥</div>
+  <h2>File Handling in C</h2>
+  <p>File Pointers • fopen • fclose • Read/Write • fseek/ftell/rewind • Sequential vs Random Access</p>
+</div>
+
+<div class="card vvi">
+  <div class="ctitle">🔥 A. TOP VVI QUESTIONS</div>
+  <ul class="ql">
+    <li class="must"><span class="must">🔥🔥🔥</span> What is a file? Why do we need files in C? Types of files? <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> How to open and close a file in C? Explain fopen() with all modes. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> Explain file I/O functions: fscanf, fprintf, fgetc, fputc, fgets, fputs. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><span class="yr">2025</span></li>
+    <li class="must"><span class="must">🔥🔥🔥</span> What are fseek(), ftell(), and rewind()? Explain with examples. <span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between sequential and random access files. <span class="yr">2022</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Write programs: write to file, read from file, copy file. <span class="yr">2015</span><span class="yr">2016</span><span class="yr">2025</span></li>
+    <li class="high"><span class="high">🔥🔥</span> Difference between text file and binary file. <span class="yr-e">EXPECTED</span></li>
+    <li class="imp"><span class="imp">🔥</span> What is EOF? How is it used? What is file pointer? <span class="yr">2022</span><span class="yr">2025</span></li>
+  </ul>
+</div>
+
+<div class="card pyq">
+  <div class="ctitle">🚨 B. VERIFIED PYQs (Unit 7)</div>
+  <table>
+    <tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+    <tr><td><span class="yr">2015</span></td><td>Long: How to open and close file in C? Discuss various modes to open a file.</td><td>12</td></tr>
+    <tr><td><span class="yr">2016</span></td><td>Long: Why are files needed? How to open/close existing file? Discuss various modes.</td><td>12</td></tr>
+    <tr><td><span class="yr">2019</span></td><td>Short: What is file? Write its operations.</td><td>4</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Short: What is a file pointer?</td><td>2</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Short: Briefly explain the various file opening modes in C.</td><td>4</td></tr>
+    <tr><td><span class="yr">2022</span></td><td>Long: What is difference between sequential and random access files? Write C program to reverse content of file and print it.</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Short: MCQ: Which header file for file handling?</td><td>2</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: What are macros? fgets() vs gets() safety?</td><td>12</td></tr>
+    <tr><td><span class="yr">2025</span></td><td>Long: What is FILE? How is fopen() used? How is a file closed? What is a random access file? What is purpose of ftell? What is purpose of rewind()?</td><td>12</td></tr>
+  </table>
+</div>
+
+<div class="card ans">
+  <div class="ctitle">✍️ D. EXAM-COPY ANSWERS (Unit 7)</div>
+
+  <div class="def"><strong>Q1: What is a file? Why do we need files? Types?</strong> <span class="mtag">4 marks</span></div>
+  <p>A <strong>file</strong> is a collection of related data stored on secondary storage (disk) that persists even after program termination.</p>
+  <p style="margin-top:6px"><strong>Why files are needed?</strong></p>
+  <ol class="nl">
+    <li>Data storage is <strong>permanent</strong> — survives after program ends</li>
+    <li>Large amounts of data can be stored</li>
+    <li>Data can be shared between programs</li>
+    <li>No need to re-enter data every time program runs</li>
+  </ol>
+  <p style="margin-top:6px"><strong>Types of Files:</strong></p>
+  <table>
+    <tr><th>Feature</th><th>Text File</th><th>Binary File</th></tr>
+    <tr><td>Data stored as</td><td>Characters (ASCII)</td><td>Binary (0s and 1s)</td></tr>
+    <tr><td>Human readable</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Size</td><td>Larger</td><td>Smaller</td></tr>
+    <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+    <tr><td>Extension</td><td>.txt, .c</td><td>.dat, .bin, .exe</td></tr>
+    <tr><td>End of line</td><td>\n (newline)</td><td>No special end char</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q2: fopen() — Opening a file with all modes.</strong> <span class="mtag">5–12 marks</span></div>
+  <p><strong>Syntax:</strong> <code>FILE *fp = fopen("filename", "mode");</code></p>
+  <p><strong>Returns NULL if file cannot be opened. ALWAYS check!</strong></p>
+  <table>
+    <tr><th>Mode</th><th>Description</th><th>File Exists?</th></tr>
+    <tr><td>"r"</td><td>Open for reading</td><td>Must exist</td></tr>
+    <tr><td>"w"</td><td>Open for writing (creates new)</td><td>Creates or truncates</td></tr>
+    <tr><td>"a"</td><td>Open for append (write at end)</td><td>Creates if not exists</td></tr>
+    <tr><td>"r+"</td><td>Open for read and write</td><td>Must exist</td></tr>
+    <tr><td>"w+"</td><td>Open for read and write</td><td>Creates or truncates</td></tr>
+    <tr><td>"a+"</td><td>Open for read and append</td><td>Creates if not exists</td></tr>
+    <tr><td>"rb","wb","ab"</td><td>Binary modes (read/write/append)</td><td>Same as text modes</td></tr>
+  </table>
+  <div class="warn">⚠️ "w" mode DESTROYS existing file content! Use "a" to append.</div>
+  <p style="margin-top:6px"><strong>Memory Trick for modes:</strong> r=Read | w=Write(new) | a=Append | + =Read+Write</p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q3: File I/O Functions — Read and Write.</strong> <span class="mtag">5–12 marks</span></div>
+  <table>
+    <tr><th>Function</th><th>Use</th><th>Syntax</th></tr>
+    <tr><td>fprintf()</td><td>Formatted write to file</td><td>fprintf(fp, "format", var);</td></tr>
+    <tr><td>fscanf()</td><td>Formatted read from file</td><td>fscanf(fp, "format", &amp;var);</td></tr>
+    <tr><td>fputc()</td><td>Write one character</td><td>fputc(ch, fp);</td></tr>
+    <tr><td>fgetc()</td><td>Read one character</td><td>ch = fgetc(fp);</td></tr>
+    <tr><td>fputs()</td><td>Write string to file</td><td>fputs(str, fp);</td></tr>
+    <tr><td>fgets()</td><td>Read string from file</td><td>fgets(str, n, fp);</td></tr>
+    <tr><td>fwrite()</td><td>Write binary data</td><td>fwrite(ptr, size, n, fp);</td></tr>
+    <tr><td>fread()</td><td>Read binary data</td><td>fread(ptr, size, n, fp);</td></tr>
+    <tr><td>fclose()</td><td>Close file</td><td>fclose(fp);</td></tr>
+    <tr><td>feof()</td><td>Check end of file</td><td>while(!feof(fp)){...}</td></tr>
+  </table>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q4: fseek(), ftell(), rewind() — Random Access.</strong> <span class="mtag">5–12 marks</span></div>
+  <p><strong>fseek():</strong> Moves file pointer to a specific position.</p>
+  <p>Syntax: <code>fseek(fp, offset, origin);</code></p>
+  <table>
+    <tr><th>Origin</th><th>Meaning</th></tr>
+    <tr><td>SEEK_SET</td><td>From beginning of file</td></tr>
+    <tr><td>SEEK_CUR</td><td>From current position</td></tr>
+    <tr><td>SEEK_END</td><td>From end of file</td></tr>
+  </table>
+  <p style="margin-top:6px"><strong>ftell():</strong> Returns current position of file pointer (in bytes from beginning).</p>
+  <p>Syntax: <code>long pos = ftell(fp);</code></p>
+  <p style="margin-top:6px"><strong>rewind():</strong> Moves file pointer back to the beginning of file.</p>
+  <p>Syntax: <code>rewind(fp);</code> — same as <code>fseek(fp, 0, SEEK_SET)</code></p>
+
+  <hr style="margin:15px 0;border-color:#e0e0e0">
+
+  <div class="def"><strong>Q5: Sequential vs Random Access.</strong> <span class="mtag">4 marks</span></div>
+  <table>
+    <tr><th>Feature</th><th>Sequential Access</th><th>Random Access</th></tr>
+    <tr><td>Reading order</td><td>Start to end in order</td><td>Jump to any position</td></tr>
+    <tr><td>Function</td><td>fgetc, fputc, fgets, fputs</td><td>fseek(), ftell(), fread(), fwrite()</td></tr>
+    <tr><td>Speed</td><td>Slower for middle access</td><td>Fast — direct access</td></tr>
+    <tr><td>Use</td><td>Simple text files</td><td>Databases, binary files</td></tr>
+    <tr><td>File pointer</td><td>Moves one-by-one</td><td>Can jump anywhere</td></tr>
+  </table>
+</div>
+
+<div class="card prog">
+  <div class="ctitle">💻 E. IMPORTANT PROGRAMS (Unit 7)</div>
+
+  <p><strong>1. Write data to file using fprintf() [MOST IMPORTANT]:</strong></p>
+  <span class="ctop">// Write to file (2015, 2016 PYQ)</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    FILE *fp;
+    fp = fopen("data.txt", "w");
+    if(fp == NULL) {
+        printf("Cannot open file!\n");
+        return 1;
+    }
+    fprintf(fp, "Hello File Handling!\n");
+    fprintf(fp, "Roll: %d, Name: %s, Marks: %.2f\n", 1, "Rahul", 85.5);
+    fclose(fp);
+    printf("Data written successfully.");
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>2. Read data from file using fgets():</strong></p>
+  <span class="ctop">// Read from file</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    FILE *fp;
+    char line[100];
+    fp = fopen("data.txt", "r");
+    if(fp == NULL) {
+        printf("Cannot open file!\n");
+        return 1;
+    }
+    while(fgets(line, sizeof(line), fp) != NULL)
+        printf("%s", line);
+    fclose(fp);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>3. Copy file character by character [IMPORTANT]:</strong></p>
+  <span class="ctop">// Copy file (character by character)</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    FILE *src, *dest;
+    char ch;
+    src  = fopen("source.txt", "r");
+    dest = fopen("dest.txt", "w");
+    if(src == NULL || dest == NULL) {
+        printf("File error!");
+        return 1;
+    }
+    while((ch = fgetc(src)) != EOF)
+        fputc(ch, dest);
+    fclose(src);
+    fclose(dest);
+    printf("File copied successfully.");
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>4. fseek, ftell, rewind example (2022, 2025 PYQ):</strong></p>
+  <span class="ctop">// Random access using fseek/ftell/rewind</span>
+  <pre>#include &lt;stdio.h&gt;
+int main() {
+    FILE *fp;
+    char ch;
+    long pos;
+    fp = fopen("data.txt", "r");
+    if(fp == NULL) { printf("Error!"); return 1; }
+
+    fseek(fp, 0, SEEK_END);           // Go to end
+    pos = ftell(fp);                   // Get file size
+    printf("File size = %ld bytes\n", pos);
+
+    rewind(fp);                        // Back to beginning
+    printf("Position after rewind: %ld\n", ftell(fp)); // 0
+
+    fseek(fp, 5, SEEK_SET);           // Move to 6th byte
+    ch = fgetc(fp);                    // Read that character
+    printf("Character at position 5: %c\n", ch);
+
+    fclose(fp);
+    return 0;
+}</pre>
+
+  <p style="margin-top:10px"><strong>5. Student record — write and read binary file:</strong></p>
+  <span class="ctop">// Binary file - student records</span>
+  <pre>#include &lt;stdio.h&gt;
+struct Student { int roll; char name[20]; float marks; };
+
+int main() {
+    FILE *fp;
+    struct Student s = {1, "Rahul", 85.5};
+
+    // WRITE
+    fp = fopen("student.dat", "wb");
+    fwrite(&amp;s, sizeof(s), 1, fp);
+    fclose(fp);
+
+    // READ
+    struct Student r;
+    fp = fopen("student.dat", "rb");
+    fread(&amp;r, sizeof(r), 1, fp);
+    printf("Roll: %d, Name: %s, Marks: %.2f", r.roll, r.name, r.marks);
+    fclose(fp);
+    return 0;
+}</pre>
+</div>
+
+<div class="card trick">
+  <div class="ctitle">🧠 G. MEMORY TRICKS (Unit 7)</div>
+  <div class="trick-box">
+    <h4>🎯 "R W A" for file modes</h4>
+    <p><strong>R</strong>=Read (must exist) | <strong>W</strong>=Write (create/overwrite) | <strong>A</strong>=Append (add at end) | + = Both Read &amp; Write | b = Binary</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 "AKU Exam Focus" — File Functions</h4>
+    <p>fopen/fclose | fscanf/fprintf | fgetc/fputc | fgets/fputs | fseek/ftell/rewind</p>
+  </div>
+  <div class="trick-box">
+    <h4>🎯 fseek Origins: "SET CUR END"</h4>
+    <p>SEEK_SET = Beginning | SEEK_CUR = Current position | SEEK_END = End of file</p>
+  </div>
+</div>
+
+<div class="card err">
+  <div class="ctitle">⚠️ H. COMMON MISTAKES (Unit 7)</div>
+  <ul class="bl">
+    <li>❌ Not checking if fopen() returns NULL</li>
+    <li>❌ Forgetting fclose() after operations (data may not be written!)</li>
+    <li>❌ Using wrong mode: "w" when you want to append (use "a")</li>
+    <li>❌ Reading from a write-only file (mode "w") — causes error</li>
+    <li>❌ Not checking EOF when reading — causes infinite loop</li>
+    <li>❌ Using gets() instead of fgets() — buffer overflow risk</li>
+  </ul>
+</div>
+
+<div class="card rev">
+  <div class="ctitle">⚡ I. 5-MINUTE REVISION (Unit 7)</div>
+  <ul class="bl">
+    <li>FILE *fp; → file pointer | fopen() returns NULL on failure</li>
+    <li>Modes: r=read | w=write(new/overwrite) | a=append | r+/w+/a+=both</li>
+    <li>Always check: <code>if(fp == NULL)</code> before using file</li>
+    <li>fprintf/fscanf = formatted | fputc/fgetc = character | fputs/fgets = string</li>
+    <li>fwrite/fread = binary data blocks</li>
+    <li>fclose(fp) → returns 0 on success, EOF on failure</li>
+    <li>fseek(fp, offset, SEEK_SET/CUR/END) → move file pointer</li>
+    <li>ftell(fp) → returns current position in bytes</li>
+    <li>rewind(fp) → reset to beginning = fseek(fp, 0, SEEK_SET)</li>
+    <li>EOF = End Of File marker (-1)</li>
+    <li>Sequential = read in order | Random = jump anywhere with fseek</li>
+  </ul>
+</div>
+</div><!-- end unit 7 -->
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- TOP 30 VVI QUESTIONS WITH ANSWERS                         -->
+<!-- ======================================================= -->
+<div id="top30">
+<div class="sum-hdr">
+  <h2>🏆 TOP 30 VVI QUESTIONS — WITH ANSWERS</h2>
+  <p style="opacity:.85;font-size:13px">Based on PYQ analysis 2014–2025 | Prioritized by frequency and marks</p>
+</div>
+
+<div class="vq"><span class="qno">1</span><span class="qt">What are identifiers? Rules?</span><span class="utag2">U1</span><span class="yr">2014</span><span class="yr">2017</span><div class="ans-short">Identifier = name given to variable/function. Rules: Start with letter/_, no spaces, no special chars, not a keyword, case-sensitive. Valid: sum, _count | Invalid: 1sum, my name</div></div>
+
+<div class="vq"><span class="qno">2</span><span class="qt">Data types in C with size and range?</span><span class="utag2">U1</span><span class="yr">2014</span><div class="ans-short">int=4B(-2B to +2B) | float=4B(6-7 digits) | double=8B(15-16 digits) | char=1B(-128 to 127) | void=no value</div></div>
+
+<div class="vq"><span class="qno">3</span><span class="qt">Difference between = and == in C?</span><span class="utag2">U1</span><span class="yr">2017</span><span class="yr">2021</span><div class="ans-short">= is Assignment operator (stores value). == is Equality/Comparison operator (checks if equal, returns true/false). Common mistake: if(a=5) always true! Should be if(a==5)</div></div>
+
+<div class="vq"><span class="qno">4</span><span class="qt">Difference: while vs do-while loop?</span><span class="utag2">U1</span><span class="yr">2017</span><span class="yr">2022</span><div class="ans-short">while=entry-controlled(condition before); do-while=exit-controlled(condition after, runs at least once). do-while ends with semicolon after while(cond);</div></div>
+
+<div class="vq"><span class="qno">5</span><span class="qt">What is a function? Types? Prototype?</span><span class="utag2">U2</span><span class="yr">Every Year</span><div class="ans-short">Block of code for specific task. Types: Library (printf, scanf) and User-defined. Prototype = declaration before use → tells compiler return type + params. Syntax: return_type func_name(params);</div></div>
+
+<div class="vq"><span class="qno">6</span><span class="qt">Call by Value vs Call by Reference with swap program?</span><span class="utag2">U2</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2021</span><span class="yr">2025</span><div class="ans-short">Value=copy passed, original unchanged, no pointer. Reference=address passed using &amp; and *, original changes. Swap by ref: void swap(int *x, int *y){int t=*x;*x=*y;*y=t;} called as swap(&amp;a,&amp;b);</div></div>
+
+<div class="vq"><span class="qno">7</span><span class="qt">What is recursion? Write factorial program.</span><span class="utag2">U2</span><span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><div class="ans-short">Function that calls itself. Must have base case. fact(n){if(n==0||n==1)return 1; return n*fact(n-1);} Adv: clean code. Disadv: uses more memory, risk of stack overflow.</div></div>
+
+<div class="vq"><span class="qno">8</span><span class="qt">Write Fibonacci using recursion.</span><span class="utag2">U2</span><span class="yr">2015</span><span class="yr">2016</span><div class="ans-short">fib(n){if(n&lt;=1)return n; return fib(n-1)+fib(n-2);} Output for 7 terms: 0 1 1 2 3 5 8</div></div>
+
+<div class="vq"><span class="qno">9</span><span class="qt">Storage classes — auto, register, static, extern?</span><span class="utag2">U2</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2025</span><div class="ans-short">auto=default,garbage,block | register=CPU,fast,block | static=retains value,0 default,entire program lifetime | extern=global,0 default,across files</div></div>
+
+<div class="vq"><span class="qno">10</span><span class="qt">Local vs global variables?</span><span class="utag2">U2</span><span class="yr">2017</span><span class="yr">2019</span><span class="yr">2021</span><div class="ans-short">Local=declared inside function, accessible only inside that function, default=garbage. Global=declared outside all functions, accessible everywhere, default=0.</div></div>
+
+<div class="vq"><span class="qno">11</span><span class="qt">What is an array? 1D and 2D?</span><span class="utag2">U3</span><span class="yr">2014</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><div class="ans-short">Collection of similar elements in contiguous memory, accessed by index (starts 0). 1D: int a[5]={10,20,30,40,50}; 2D: int m[3][4]; accessed as m[i][j]</div></div>
+
+<div class="vq"><span class="qno">12</span><span class="qt">2D array initialization and access?</span><span class="utag2">U3</span><span class="yr">2015</span><span class="yr">2016</span><div class="ans-short">int a[2][3]={{1,2,3},{4,5,6}}; Access: a[i][j] where i=row, j=col. Memory is Row-major. 2D memory formula: Base + (i*cols + j)*size</div></div>
+
+<div class="vq"><span class="qno">13</span><span class="qt">What are strings? String functions?</span><span class="utag2">U3</span><span class="yr">2014</span><span class="yr">2021</span><div class="ans-short">char array ending with '\0'. char str[20]; scanf("%s",str); Functions in string.h: strlen, strcpy, strcat, strcmp. strcmp returns 0 if equal.</div></div>
+
+<div class="vq"><span class="qno">14</span><span class="qt">What is a structure? Write syntax and program.</span><span class="utag2">U4</span><span class="yr">Every Year</span><div class="ans-short">User-defined type grouping different data. struct Student{int roll; char name[20]; float marks;}; Access with dot: s.roll. With pointer: ps-&gt;roll. Size = sum of all members.</div></div>
+
+<div class="vq"><span class="qno">15</span><span class="qt">What is a union? Difference from structure?</span><span class="utag2">U4</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2025</span><div class="ans-short">Union = all members share same memory. Size=largest member. Only one active at a time. Structure=separate memory for each, size=sum. Struct=many values; Union=one at a time, saves memory.</div></div>
+
+<div class="vq"><span class="qno">16</span><span class="qt">What is self-referential structure?</span><span class="utag2">U4</span><span class="yr">2017</span><span class="yr">2019</span><div class="ans-short">Structure containing pointer to same type. Used for linked lists, trees. struct Node{int data; struct Node *next;}; Allows chaining of nodes.</div></div>
+
+<div class="vq"><span class="qno">17</span><span class="qt">Bitwise operators in C?</span><span class="utag2">U4</span><span class="yr">2017</span><div class="ans-short">&amp;=AND(both1→1) | |=OR(any1→1) | ^=XOR(diff→1) | ~=NOT(invert) | &lt;&lt;=left shift(×2) | &gt;&gt;=right shift(÷2). Example: 5&amp;3=1, 5|3=7, 5^3=6, 5&lt;&lt;1=10</div></div>
+
+<div class="vq"><span class="qno">18</span><span class="qt">What is a pointer? Declaration and uses?</span><span class="utag2">U5</span><span class="yr">Every Year</span><div class="ans-short">Variable storing address of another variable. int *p=&amp;a; &amp;=address-of, *=dereference. Uses: dynamic memory, call by reference, arrays, linked lists, functions, structures.</div></div>
+
+<div class="vq"><span class="qno">19</span><span class="qt">Pointer arithmetic?</span><span class="utag2">U5</span><span class="yr">2017</span><span class="yr">2022</span><div class="ans-short">p+1 moves by sizeof(data_type). For int (4B), p+1 adds 4 to address. p+n=move n elements ahead. Cannot add two pointers. Can subtract: p2-p1 = elements between.</div></div>
+
+<div class="vq"><span class="qno">20</span><span class="qt">Access array using pointer?</span><span class="utag2">U5</span><span class="yr">2015</span><span class="yr">2016</span><div class="ans-short">int arr[5]={10,20,30,40,50}; int *p=arr; *(p+i) or p[i] accesses arr[i]. arr[i] is same as *(arr+i). Array name = constant pointer to first element.</div></div>
+
+<div class="vq"><span class="qno">21</span><span class="qt">Arrays of pointers?</span><span class="utag2">U5</span><span class="yr">2022</span><div class="ans-short">Array where each element is a pointer. char *names[3]; names[0]="Ram"; names[1]="Shyam"; Each stores address of string. Efficient for multiple strings (no wasted space).</div></div>
+
+<div class="vq"><span class="qno">22</span><span class="qt">Pointer with structure — -&gt; operator?</span><span class="utag2">U5</span><span class="yr">2016</span><span class="yr">2018</span><span class="yr">2022</span><div class="ans-short">struct Student *ps=&amp;s; ps-&gt;roll same as (*ps).roll. Use -&gt; when pointer to struct, use . when direct struct variable. MCQ: -> operator for struct pointer (2018 PYQ).</div></div>
+
+<div class="vq"><span class="qno">23</span><span class="qt">NULL, wild, and dangling pointers?</span><span class="utag2">U5</span><span class="yr">2021</span><div class="ans-short">NULL=initialized to nothing (safe), int *p=NULL; Wild=uninitialized (dangerous). Dangling=freed memory (undefined). Always initialize pointers! char*p=0; *p='a'; = RUNTIME ERROR (2025).</div></div>
+
+<div class="vq"><span class="qno">24</span><span class="qt">What is preprocessor? What does it do?</span><span class="utag2">U6</span><span class="yr">2016</span><span class="yr">2025</span><div class="ans-short">Processes source code before compilation. Commands start with #. Tasks: remove comments, expand macros, insert header files, handle conditional compilation. Runs before compiler.</div></div>
+
+<div class="vq"><span class="qno">25</span><span class="qt">#define for constants and macros?</span><span class="utag2">U6</span><span class="yr">2015</span><span class="yr">2017</span><span class="yr">2025</span><div class="ans-short">Constants: #define PI 3.14; Macros: #define SQ(x) ((x)*(x)); No semicolon. Always use parentheses around args. No memory used — inline expansion. Faster than functions.</div></div>
+
+<div class="vq"><span class="qno">26</span><span class="qt">Macro vs Function differences?</span><span class="utag2">U6</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2017</span><span class="yr">2025</span><div class="ans-short">Macro: preprocessor, inline, fast, no type check, no memory. Function: compiler, call overhead, slower, type checked, uses stack. Use macro for simple tasks, function for complex.</div></div>
+
+<div class="vq"><span class="qno">27</span><span class="qt">What is a file? Why needed? fopen() modes?</span><span class="utag2">U7</span><span class="yr">2015</span><span class="yr">2016</span><span class="yr">2019</span><span class="yr">2025</span><div class="ans-short">File=data on disk, permanent. Needed for permanent storage. fopen(name,mode): r=read, w=write(new), a=append, r+=read+write, w+=read+write(new), rb/wb=binary. Returns NULL on failure.</div></div>
+
+<div class="vq"><span class="qno">28</span><span class="qt">File I/O functions — read and write?</span><span class="utag2">U7</span><span class="yr">2015</span><span class="yr">2019</span><span class="yr">2025</span><div class="ans-short">Write: fprintf(fp,"fmt",var), fputc(ch,fp), fputs(str,fp). Read: fscanf(fp,"fmt",&amp;var), fgetc(fp), fgets(str,n,fp). Binary: fwrite(&amp;var,size,n,fp), fread(&amp;var,size,n,fp).</div></div>
+
+<div class="vq"><span class="qno">29</span><span class="qt">fseek(), ftell(), rewind() with example?</span><span class="utag2">U7</span><span class="yr">2022</span><span class="yr">2025</span><div class="ans-short">fseek(fp,offset,SEEK_SET/CUR/END)=move pointer. ftell(fp)=current position in bytes. rewind(fp)=go to beginning (=fseek with SEEK_SET,0). Used for random access files.</div></div>
+
+<div class="vq"><span class="qno">30</span><span class="qt">Sequential vs Random access files?</span><span class="utag2">U7</span><span class="yr">2022</span><span class="yr">2025</span><div class="ans-short">Sequential=read in order from start, uses fgetc/fgets. Random=jump to any position with fseek(), fast direct access, uses fread/fwrite. Binary files support random access better.</div></div>
+</div>
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- CRASH REVISION SHEET                                      -->
+<!-- ======================================================= -->
+<div id="crash">
+<div class="sum-hdr" style="background:linear-gradient(135deg,#b71c1c,#c62828)">
+  <h2>⚡ ONE-DAY CRASH REVISION SHEET</h2>
+  <p style="opacity:.85;font-size:13px">Study this if you have only 24 hours left!</p>
+</div>
+
+<div class="grid2">
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 1 KEY POINTS</div>
+    <ul class="bl" style="font-size:12px">
+      <li>C by Dennis Ritchie at Bell Labs</li>
+      <li>int=4B, float=4B, double=8B, char=1B</li>
+      <li>ASCII: A-Z=65-90, a-z=97-122</li>
+      <li>float NOT in switch; only int/char/enum</li>
+      <li>while=entry, do-while=exit(runs≥1)</li>
+      <li>break=exit loop, continue=skip iteration</li>
+      <li>= assign, == compare</li>
+    </ul>
+  </div>
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 2 KEY POINTS</div>
+    <ul class="bl" style="font-size:12px">
+      <li>Function: prototype before use, then define</li>
+      <li>Call by value=copy; by ref=address</li>
+      <li>Recursion MUST have base case</li>
+      <li>auto=garbage,block; static=0,retains value</li>
+      <li>extern=global,0; register=CPU,fast</li>
+      <li>factorial(5)=120; fib:0,1,1,2,3,5,8</li>
+    </ul>
+  </div>
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 3 KEY POINTS</div>
+    <ul class="bl" style="font-size:12px">
+      <li>Array=same type, contiguous, index from 0</li>
+      <li>a[i] == *(a+i); array name=base address</li>
+      <li>String=char array ending with '\0'</li>
+      <li>strlen,strcpy,strcat,strcmp (string.h)</li>
+      <li>strcmp: 0=equal, neg=s1&lt;s2, pos=s1&gt;s2</li>
+    </ul>
+  </div>
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 4 KEY POINTS</div>
+    <ul class="bl" style="font-size:12px">
+      <li>struct=separate memory, size=sum of members</li>
+      <li>union=shared memory, size=largest member</li>
+      <li>struct access: s.member or ptr-&gt;member</li>
+      <li>Self-referential: pointer to same struct type</li>
+      <li>&amp;=AND, |=OR, ^=XOR, ~=NOT, &lt;&lt;=×2, &gt;&gt;=÷2</li>
+    </ul>
+  </div>
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 5 KEY POINTS 🔥</div>
+    <ul class="bl" style="font-size:12px">
+      <li>Pointer = variable storing another variable's address</li>
+      <li>int *p=&amp;a; &amp;=address, *=value at address</li>
+      <li>p+1 moves by sizeof(type) bytes</li>
+      <li>Array name = constant pointer to first element</li>
+      <li>Arrays of pointers: char *names[3];</li>
+      <li>struct ptr: use -&gt;; direct struct: use .</li>
+      <li>NULL=safe, Wild=uninitialized(danger), Dangling=freed(danger)</li>
+    </ul>
+  </div>
+  <div class="card rev">
+    <div class="ctitle">📌 UNIT 6 KEY POINTS</div>
+    <ul class="bl" style="font-size:12px">
+      <li>Preprocessor = before compiler; # prefix</li>
+      <li>#define PI 3.14 (constant); #define SQ(x) ((x)*(x)) (macro)</li>
+      <li>No semicolon after #define; use () around args</li>
+      <li>&lt;stdio.h&gt; system; "myfile.h" user file</li>
+      <li>#ifdef=if defined; #ifndef=if NOT defined</li>
+      <li>Macro=fast,no type check; Function=safe,type checked</li>
+      <li>fgets safer than gets (has size limit)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card rev" style="margin-top:10px">
+  <div class="ctitle">📌 UNIT 7 KEY POINTS 🔥 (FILE HANDLING)</div>
+  <div class="grid2">
+    <ul class="bl" style="font-size:12px">
+      <li>FILE *fp; → file pointer (pointer to FILE type)</li>
+      <li>fopen("name","mode") → NULL if fails; ALWAYS CHECK!</li>
+      <li>Modes: r=read, w=write(new), a=append</li>
+      <li>r+=read+write, w+=read+write(new), a+=read+append</li>
+      <li>b suffix = binary mode (rb, wb, ab)</li>
+    </ul>
+    <ul class="bl" style="font-size:12px">
+      <li>fprintf/fscanf=formatted | fputc/fgetc=char | fputs/fgets=string</li>
+      <li>fwrite/fread=binary blocks</li>
+      <li>fclose(fp) → always close after use!</li>
+      <li>fseek(fp,offset,SEEK_SET/CUR/END) → random access</li>
+      <li>ftell(fp) → current position; rewind(fp) → go to start</li>
+      <li>EOF = End Of File (-1)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card" style="border-left:4px solid #e91e63;margin-top:10px">
+  <div class="ctitle">🎯 MOST IMPORTANT MCQ ANSWERS (Quick Recall)</div>
+  <table>
+    <tr><th>Question</th><th>Answer</th><th>Year</th></tr>
+    <tr><td>C developed by?</td><td>Dennis Ritchie</td><td>2014</td></tr>
+    <tr><td>char data type range?</td><td>-128 to 127</td><td>2014</td></tr>
+    <tr><td>8 % 10 = ?</td><td>8</td><td>2014</td></tr>
+    <tr><td>ASCII A to Z?</td><td>65 to 90</td><td>2014</td></tr>
+    <tr><td>char array ends with?</td><td>Null character '\0'</td><td>2014</td></tr>
+    <tr><td>switch case separated by?</td><td>break</td><td>2014</td></tr>
+    <tr><td>Special symbol allowed in variable name?</td><td>_ (underscore)</td><td>2015,2017</td></tr>
+    <tr><td>Float can be used in switch?</td><td>NO — only int/char/enum</td><td>2015,2017</td></tr>
+    <tr><td>Unary operators in C?</td><td>!, sizeof, ~, ++, --, - (unary)</td><td>2015</td></tr>
+    <tr><td>Individual units of C program?</td><td>Tokens</td><td>2016</td></tr>
+    <tr><td>Not a logical operator?</td><td>& (ampersand) — logical is &&</td><td>2017</td></tr>
+    <tr><td>void*0 represents?</td><td>NULL pointer</td><td>2017</td></tr>
+    <tr><td>Operator for struct pointer?</td><td>-&gt; (arrow operator)</td><td>2018</td></tr>
+    <tr><td>#include processed during?</td><td>Preprocessing stage</td><td>2018</td></tr>
+    <tr><td>Ternary operator?</td><td>?: (question mark colon)</td><td>2021</td></tr>
+    <tr><td>Recursion means?</td><td>Function calling itself</td><td>2014,2021</td></tr>
+    <tr><td>char*p=0; *p='a'; result?</td><td>Runtime Error</td><td>2025</td></tr>
+    <tr><td>sizeof(int) &gt; -1 is?</td><td>True (sizeof always ≥ 0)</td><td>2025</td></tr>
+  </table>
+</div>
+</div>
+
+<div class="hr"></div>
+
+<!-- ======================================================= -->
+<!-- SYLLABUS CHECKLIST                                        -->
+<!-- ======================================================= -->
+<div id="checklist">
+<div class="sum-hdr" style="background:linear-gradient(135deg,#004d40,#00695c)">
+  <h2>✅ FULL SYLLABUS CHECKLIST</h2>
+  <p style="opacity:.85;font-size:13px">Tick each topic after revising. Cover all before exam!</p>
+</div>
+
+<div class="grid2">
+<div class="card">
+  <div class="ctitle">Unit 1 — Fundamentals</div>
+  <ul class="cl">
+    <li>Identifiers &amp; Keywords</li>
+    <li>Data types (int, float, double, char, void)</li>
+    <li>Constants (integer, float, char, string, symbolic)</li>
+    <li>Variables — declaration and initialization</li>
+    <li>Expressions — types</li>
+    <li>Arithmetic, Unary, Relational operators</li>
+    <li>Logical, Assignment, Conditional operators</li>
+    <li>Comma operator, sizeof operator</li>
+    <li>Operator precedence</li>
+    <li>Library functions &amp; header files</li>
+    <li>if, if-else, if-else-if, switch</li>
+    <li>while, do-while, for loops</li>
+    <li>Nested loops</li>
+    <li>break, continue, goto</li>
+    <li>Simple C programs</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 2 — Functions</div>
+  <ul class="cl">
+    <li>Function definition</li>
+    <li>Function prototype (declaration)</li>
+    <li>Passing arguments (parameters)</li>
+    <li>Return statement and return types</li>
+    <li>Call by Value</li>
+    <li>Call by Reference (using pointers)</li>
+    <li>Recursion — definition, base case</li>
+    <li>Factorial using recursion</li>
+    <li>Fibonacci using recursion</li>
+    <li>Storage class: auto</li>
+    <li>Storage class: register</li>
+    <li>Storage class: static</li>
+    <li>Storage class: extern</li>
+    <li>Local vs global variables</li>
+    <li>Formal vs actual arguments</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 3 — Arrays &amp; Strings</div>
+  <ul class="cl">
+    <li>What is an array? Properties</li>
+    <li>1D array declaration and initialization</li>
+    <li>1D array processing (loops)</li>
+    <li>Passing 1D arrays to functions</li>
+    <li>2D array declaration and initialization</li>
+    <li>2D array accessing elements m[i][j]</li>
+    <li>Matrix operations (addition, multiplication)</li>
+    <li>Multi-dimensional arrays (3D)</li>
+    <li>Strings — char array with '\0'</li>
+    <li>String input/output (%s, scanf, gets, fgets)</li>
+    <li>strlen(), strcpy(), strcat(), strcmp()</li>
+    <li>strrev(), strupr(), strlwr()</li>
+    <li>Arrays and strings relationship</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 4 — Structures, Unions, Bitwise</div>
+  <ul class="cl">
+    <li>User-defined data types concept</li>
+    <li>Structure — syntax and declaration</li>
+    <li>Accessing structure members (dot operator)</li>
+    <li>Structure initialization</li>
+    <li>Array of structures</li>
+    <li>Passing structure to function (by value)</li>
+    <li>Passing structure to function (by reference)</li>
+    <li>Self-referential structures</li>
+    <li>Union — syntax and declaration</li>
+    <li>Memory sharing in union</li>
+    <li>Structure vs Union comparison</li>
+    <li>Nested structures</li>
+    <li>typedef</li>
+    <li>enum (enumeration)</li>
+    <li>Bitwise operators: &amp; | ^ ~ &lt;&lt; &gt;&gt;</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 5 — Pointers 🔥</div>
+  <ul class="cl">
+    <li>Pointer concept — what is a pointer</li>
+    <li>Pointer declaration (int *p;)</li>
+    <li>Pointer initialization (p=&amp;a;)</li>
+    <li>&amp; (address-of) operator</li>
+    <li>* (dereference) operator</li>
+    <li>Pointer arithmetic (p+n, p-n)</li>
+    <li>Pointer comparison</li>
+    <li>Pointers and 1D arrays</li>
+    <li>Pointers and 2D arrays</li>
+    <li>Arrays of pointers</li>
+    <li>Pointer to pointer (**)</li>
+    <li>Passing pointers to functions</li>
+    <li>Pointers and structures (-&gt; operator)</li>
+    <li>NULL pointer</li>
+    <li>Wild pointer and dangling pointer</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 6 — Preprocessor</div>
+  <ul class="cl">
+    <li>What is preprocessor? When does it run?</li>
+    <li>#define for symbolic constants</li>
+    <li>#define for functional macros</li>
+    <li>Macros with multiple arguments</li>
+    <li>#include (system and user files)</li>
+    <li>Common header files and their purpose</li>
+    <li>#ifdef (if defined)</li>
+    <li>#ifndef (if not defined)</li>
+    <li>#if, #else, #elif, #endif</li>
+    <li>#undef — removing a macro</li>
+    <li>Other directives (#error, #pragma, #line)</li>
+    <li>Predefined macros (__FILE__, __LINE__, __DATE__)</li>
+    <li>Macros vs Functions comparison</li>
+    <li>fgets() vs gets() safety</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="ctitle">Unit 7 — File Handling 🔥</div>
+  <ul class="cl">
+    <li>What is a file? Why needed?</li>
+    <li>Text file vs binary file</li>
+    <li>FILE pointer declaration (FILE *fp;)</li>
+    <li>fopen() — all 6 text modes + binary</li>
+    <li>NULL check for fopen()</li>
+    <li>fclose() — closing file</li>
+    <li>fprintf() — formatted write</li>
+    <li>fscanf() — formatted read</li>
+    <li>fputc() — write one character</li>
+    <li>fgetc() — read one character</li>
+    <li>fputs() — write string</li>
+    <li>fgets() — read string (safe!)</li>
+    <li>fwrite() — binary write</li>
+    <li>fread() — binary read</li>
+    <li>fseek() — move file pointer</li>
+    <li>ftell() — get current position</li>
+    <li>rewind() — go to beginning</li>
+    <li>feof() — check end of file</li>
+    <li>Sequential vs random access</li>
+    <li>Common file programs (write, read, copy)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="ctitle">📌 TOP 10 MOST REPEATED CONCEPTS</div>
+  <ol class="nl">
+    <li>🥇 Structure vs Union (Every year 2014–2025)</li>
+    <li>🥈 Pointers — declaration, uses (Every year)</li>
+    <li>🥉 Call by Value vs Reference with swap (Every year)</li>
+    <li>Recursion + Factorial/Fibonacci (Every year)</li>
+    <li>Storage classes (auto/register/static/extern)</li>
+    <li>File handling — fopen modes, fclose</li>
+    <li>Arrays — 1D and 2D</li>
+    <li>#define macros vs functions</li>
+    <li>Function definition and prototype</li>
+    <li>while vs do-while difference</li>
+  </ol>
+</div>
+</div>
+
+<div class="card" style="margin-top:10px;border-left:4px solid #e91e63">
+  <div class="ctitle">🎓 EXAM TIPS — SCORE HIGH IN AKU</div>
+  <div class="grid2">
+    <ul class="bl" style="font-size:13px">
+      <li>✅ Q1 (MCQ): Attempt all 6 out of 10. Quick ones first.</li>
+      <li>✅ Q2 (Short 4M): Write definition + 2-3 points + example</li>
+      <li>✅ Q3-Q7 (Long 12M): Choose questions you know best</li>
+      <li>✅ Programs: Write algorithm first, then code, then sample output</li>
+      <li>✅ Diagrams help in structure/union/pointer questions</li>
+    </ul>
+    <ul class="bl" style="font-size:13px">
+      <li>✅ Always write syntax before example</li>
+      <li>✅ For comparison questions — use tables (saves time, looks good)</li>
+      <li>✅ In programs: add comments, proper indentation</li>
+      <li>✅ Underline key terms in answers</li>
+      <li>✅ Leave last 10 minutes for revision of your paper</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+</div><!-- end .wrap -->
+
+<div class="footer">
+  <p>📘 BCA-204 Complete Exam Guide | AKU Patna | Paper Code: 303204</p>
+  <p style="margin-top:5px;opacity:.7">Exam: 23 September 2026 | 10:00 AM – 1:00 PM | Prepared by Senior BCA Professor (12+ years AKU)</p>
+  <p style="margin-top:8px;font-size:14px">⭐ CONCEPT CLEAR → PRACTICE PROGRAMS → WRITE CLEAN → SCORE HIGH ⭐</p>
+  <p style="margin-top:5px;opacity:.7">All the Best! 🏆 You've got this!</p>
+</div>
+
+</body>
+</html>
