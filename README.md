@@ -78,7 +78,7 @@ Save. Refresh browser. Done ✅
 
 | Platform     | How                                          |
 |--------------|----------------------------------------------|
-| Local        | Double-click `notes_hub.html`                |
+| Local        | Double-click `index.html`                |
 | GitHub Pages | Push folder → Settings → Pages → root branch |
 | Netlify      | Drag and drop the whole folder               |
 | Vercel       | Import repo, no config needed                |
