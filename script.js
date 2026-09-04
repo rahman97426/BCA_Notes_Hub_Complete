@@ -136,6 +136,12 @@
                   type: "pdf",
                   desc: "BCA-202 Numerical Techniques PDF notes",
                 },
+                {
+                  title: "Cheatsheet",
+                  file: "notes/bca202/cheatsheet.pdf",
+                  type: "pdf",
+                  desc: "BCA-202 Numerical Techniques quick reference cheatsheet",
+                },
               ],
             },
             {
@@ -174,6 +180,12 @@
                   type: "pdf",
                   desc: "BCA-203 System Analysis & Design PDF notes",
                 },
+                {
+                  title: "Cheatsheet",
+                  file: "notes/bca203/cheatsheet.pdf",
+                  type: "pdf",
+                  desc: "BCA-203 System Analysis & Design quick reference cheatsheet",
+                },
               ],
             },
             {
@@ -205,6 +217,12 @@
                   file: "notes/bca204/pyq.pdf",
                   type: "pdf",
                   desc: "BCA-204 previous year exam questions · AKU Patna",
+                },
+                {
+                  title: "Cheatsheet",
+                  file: "notes/bca204/cheatsheet.pdf",
+                  type: "pdf",
+                  desc: "BCA-204 Programming in C quick reference cheatsheet",
                 },
               ],
             },
@@ -249,6 +267,12 @@
                   file: "notes/bca205/notes.pdf",
                   type: "pdf",
                   desc: "BCA-205 Operating System & UNIX PDF notes",
+                },
+                {
+                  title: "Cheatsheet",
+                  file: "notes/bca205/cheatsheet.pdf",
+                  type: "pdf",
+                  desc: "BCA-205 Operating System & UNIX quick reference cheatsheet",
                 },
               ],
             },
@@ -530,6 +554,7 @@
       <div class="sem-meta">
         <div class="meta-chip"><i class="fa-solid fa-file-lines" style="color:${s.color}"></i>&nbsp;${totalNotes} Notes</div>
         <div class="meta-chip"><i class="fa-solid fa-book" style="color:${s.color}"></i>&nbsp;${subsWithNotes}/${s.subjects.length} Covered</div>
+        ${s.num === 2 ? `<button class="meta-chip syl-all-btn" onclick="openSyllabusModal()" style="border-color:${s.color};color:${s.color};cursor:pointer;"><i class="fa-solid fa-scroll"></i>&nbsp;All Syllabuses</button>` : ""}
       </div>
     </div>
 
@@ -652,7 +677,7 @@
       </button>
       ${
         isPdf
-          ? `<a class="nr-btn outline" href="${esc(note.file)}" download onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i></a>`
+          ? `<button class="nr-btn outline" onclick="event.stopPropagation();forceDownload('${esc(note.file)}')"><i class="fa-solid fa-download"></i></button>`
           : `<button class="nr-btn outline" onclick="event.stopPropagation();window.open('${esc(note.file)}','_blank')"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>`
       }
     </div>
@@ -663,6 +688,63 @@
         document.getElementById("panelBackdrop").classList.remove("open");
         document.getElementById("notesPanel").classList.remove("open");
         document.body.style.overflow = "";
+      }
+
+      /* ══════════════════════════════════════════════════════
+       ALL SYLLABUSES MODAL  (Semester II)
+    ══════════════════════════════════════════════════════ */
+      function openSyllabusModal() {
+        const sem2 = SEMESTERS.find((s) => s.num === 2);
+        const color = sem2.color;
+
+        // Build rows for each subject's syllabus note
+        const rows = sem2.subjects.map((sub) => {
+          const syl = sub.notes.find((n) => n.title === "Official Syllabus");
+          return `
+  <div class="syl-row">
+    <div class="syl-row-left">
+      <span class="syl-row-icon">${sub.icon}</span>
+      <div>
+        <div class="syl-row-code" style="color:${color}">${sub.code}</div>
+        <div class="syl-row-name">${sub.name}</div>
+      </div>
+    </div>
+    <div class="syl-row-actions">
+      ${syl
+        ? `<button class="nr-btn solid" style="background:${color};border-color:${color}"
+              onclick="closeModal('syllabusModal');openReader('${esc(syl.file)}','pdf','${esc(sub.code)} Official Syllabus','${esc(sub.code)} — ${esc(sub.name)}')">
+              <i class="fa-solid fa-file-pdf"></i> Open
+            </button>
+            <button class="nr-btn outline" onclick="forceDownload('${esc(syl.file)}')">
+              <i class="fa-solid fa-download"></i> Save
+            </button>`
+        : `<span style="font-size:.75rem;color:var(--muted)">📂 Not uploaded yet</span>`
+      }
+    </div>
+  </div>`;
+        }).join("");
+
+        document.getElementById("sylModalBody").innerHTML = rows;
+        document.getElementById("syllabusModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      /* ══════════════════════════════════════════════════════
+       FORCE DOWNLOAD  (never opens reader)
+    ══════════════════════════════════════════════════════ */
+      function forceDownload(file) {
+        const a = document.createElement("a");
+        a.href = file;
+        a.download = file.split("/").pop();
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 200);
       }
 
       /* ══════════════════════════════════════════════════════
@@ -895,15 +977,20 @@
         const ro = document
           .getElementById("readerOverlay")
           .classList.contains("open");
+        const syl = document
+          .getElementById("syllabusModal")
+          .classList.contains("open");
         if (e.key === "Escape") {
           if (sm) closeSearch();
           else if (ro) closeReader();
+          else if (syl) closeModal("syllabusModal");
           else closePanel();
         }
         if (
           e.key === "/" &&
           !sm &&
           !ro &&
+          !syl &&
           document.activeElement.tagName !== "INPUT"
         ) {
           e.preventDefault();
