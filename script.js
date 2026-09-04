@@ -1,0 +1,917 @@
+/* ============================================================
+   BCA Notes Hub — JavaScript / Data
+   © 2026 Abdul Rahman — BCA Student Portal | The Ladder to 2028
+   File: script.js
+   Add new notes: find the subject in SEMESTERS[] → push to notes[]
+============================================================ */
+
+      /* ╔══════════════════════════════════════════════════════╗
+       ║  BCA NOTES DATA  —  Sem I to Sem VI                  ║
+       ║  To add a note: push into subject.notes[]             ║
+       ║  Format: { title, file, type:'html'|'pdf', desc }    ║
+       ╚══════════════════════════════════════════════════════╝ */
+
+      const SEMESTERS = [
+        /* ─── SEMESTER I ──────────────────────────────────── */
+        {
+          num: 1,
+          label: "Semester I",
+          short: "Sem I",
+          period: "Jul – Dec 2025",
+          color: "#6366f1",
+          gradient: "linear-gradient(135deg,#4f46e5,#7c3aed)",
+          subjects: [
+            {
+              code: "BCA-101",
+              name: "Communication Skills in English",
+              icon: "📝",
+              desc: "Business letters, report writing, grammar, verbal communication",
+              notes: [],
+            },
+            {
+              code: "BCA-102",
+              name: "Mathematics-I",
+              icon: "📐",
+              desc: "Differential calculus, integral calculus, algebra, 2D geometry",
+              notes: [],
+            },
+            {
+              code: "BCA-103",
+              name: "IT Fundamentals",
+              icon: "🖥️",
+              desc: "Computer organization, OS basics, networks, binary systems",
+              notes: [],
+            },
+            {
+              code: "BCA-104",
+              name: "Principles of Management",
+              icon: "📊",
+              desc: "Planning, organizing, staffing, leadership, controlling",
+              notes: [],
+            },
+            {
+              code: "BCA-105",
+              name: "Python Programming",
+              icon: "🐍",
+              desc: "Variables, loops, functions, file handling, OOP in Python",
+              notes: [],
+            },
+          ],
+        },
+
+        /* ─── SEMESTER II ─────────────────────────────────── */
+        {
+          num: 2,
+          label: "Semester II",
+          short: "Sem II",
+          period: "Feb – Jun 2026",
+          color: "#f43f5e",
+          gradient: "linear-gradient(135deg,#e11d48,#f97316)",
+          subjects: [
+            {
+              code: "BCA-201",
+              name: "Business English",
+              icon: "📘",
+              desc: "Letter writing, comprehension, grammar & business communication",
+              notes: [
+                {
+                  title: "Complete Exam Guide",
+                  file: "notes/bca201/BCA201_Complete_Exam_Guide.html",
+                  type: "html",
+                  desc: "Complete notes · PYQs · VVI Questions · Exam answers · Exam strategy",
+                },
+                {
+                  title: "Official Syllabus",
+                  file: "notes/bca201/syllabus.pdf",
+                  type: "pdf",
+                  desc: "BCA-201 Business English official syllabus · AKU Patna",
+                },
+                {
+                  title: "Previous Year Questions",
+                  file: "notes/bca201/pyq.pdf",
+                  type: "pdf",
+                  desc: "BCA-201 previous year exam questions · AKU Patna",
+                },
+                {
+                  title: "Notes PDF",
+                  file: "notes/bca201/notes.pdf",
+                  type: "pdf",
+                  desc: "BCA-201 Business English PDF notes",
+                },
+                {
+                  title: "Cheatsheet",
+                  file: "notes/bca201/cheatsheet.pdf",
+                  type: "pdf",
+                  desc: "BCA-201 Business English quick reference cheatsheet",
+                },
+              ],
+            },
+            {
+              code: "BCA-202",
+              name: "Numerical Techniques",
+              icon: "🔢",
+              desc: "Newton-Raphson, Gauss elimination, interpolation, integration",
+              notes: [
+                {
+                  title: "Complete Exam Guide",
+                  file: "notes/bca202/BCA202_Complete_Exam_Guide.html",
+                  type: "html",
+                  desc: "Complete notes · PYQs · VVI Questions · Exam answers · Exam strategy",
+                },
+                {
+                  title: "Official Syllabus",
+                  file: "notes/bca202/syllabus.pdf",
+                  type: "pdf",
+                  desc: "BCA-202 Numerical Techniques official syllabus · AKU Patna",
+                },
+                {
+                  title: "Previous Year Questions",
+                  file: "notes/bca202/pyq.pdf",
+                  type: "pdf",
+                  desc: "BCA-202 previous year exam questions · AKU Patna",
+                },
+                {
+                  title: "Notes PDF",
+                  file: "notes/bca202/notes.pdf",
+                  type: "pdf",
+                  desc: "BCA-202 Numerical Techniques PDF notes",
+                },
+              ],
+            },
+            {
+              code: "BCA-203",
+              name: "System Analysis & Design",
+              icon: "🗂️",
+              desc: "SDLC models, DFD, ER diagrams, structured system design",
+              notes: [
+                {
+                  title: "Interactive Study Guide",
+                  file: "notes/bca203/BCA203_Interactive_Study.html",
+                  type: "html",
+                  desc: "All 7 units · Interactive Q&A · Countdown timer · PYQ mapped",
+                },
+                {
+                  title: "Colorful Exam Guide",
+                  file: "notes/bca203/BCA203_SAD_ColorfulExamGuide.html",
+                  type: "html",
+                  desc: "Definitions · Short tricks · VVI answers · Exam strategy",
+                },
+                {
+                  title: "Official Syllabus",
+                  file: "notes/bca203/syllabus.pdf",
+                  type: "pdf",
+                  desc: "BCA-203 System Analysis & Design official syllabus · AKU Patna",
+                },
+                {
+                  title: "Previous Year Questions",
+                  file: "notes/bca203/pyq.pdf",
+                  type: "pdf",
+                  desc: "BCA-203 previous year exam questions · AKU Patna",
+                },
+                {
+                  title: "Notes PDF",
+                  file: "notes/bca203/notes.pdf",
+                  type: "pdf",
+                  desc: "BCA-203 System Analysis & Design PDF notes",
+                },
+              ],
+            },
+            {
+              code: "BCA-204",
+              name: "Programming in C",
+              icon: "💻",
+              desc: "Pointers, structures, file handling, dynamic memory management",
+              notes: [
+                {
+                  title: "Complete Exam Guide",
+                  file: "notes/bca204/BCA204_Complete_Exam_Guide.html",
+                  type: "html",
+                  desc: "All units · PYQ answers · Code examples · Exam strategy",
+                },
+                {
+                  title: "VVI Interactive Exam Guide",
+                  file: "notes/bca204/BCA204_VVI_ExamGuide.html",
+                  type: "html",
+                  desc: "7 units · Top 30 VVI Qs · Programs · Crash sheet · Checklist",
+                },
+                {
+                  title: "Official Syllabus",
+                  file: "notes/bca204/syllabus.pdf",
+                  type: "pdf",
+                  desc: "BCA-204 Programming in C official syllabus · AKU Patna",
+                },
+                {
+                  title: "Previous Year Questions",
+                  file: "notes/bca204/pyq.pdf",
+                  type: "pdf",
+                  desc: "BCA-204 previous year exam questions · AKU Patna",
+                },
+              ],
+            },
+            {
+              code: "BCA-205",
+              name: "Operating System & UNIX",
+              icon: "⚙️",
+              desc: "Process management, deadlock, memory management, shell scripting",
+              notes: [
+                {
+                  title: "OS & UNIX Complete Notes",
+                  file: "notes/bca205/BCA205_Complete.html",
+                  type: "html",
+                  desc: "Full PYQ answers · UNIX commands · OS theory · All units",
+                },
+                {
+                  title: "OS & UNIX Updated Notes",
+                  file: "notes/bca205/BCA205_Complete_v2.html",
+                  type: "html",
+                  desc: "Updated version · Complete coverage · New PYQs included",
+                },
+                {
+                  title: "PYQ Solved Q&A",
+                  file: "notes/bca205/BCA205_QA.html",
+                  type: "html",
+                  desc: "Previous year questions with detailed answers · AKU Patna",
+                },
+                {
+                  title: "Official Syllabus",
+                  file: "notes/bca205/syllabus.pdf",
+                  type: "pdf",
+                  desc: "BCA-205 Operating System & UNIX official syllabus · AKU Patna",
+                },
+                {
+                  title: "Previous Year Questions",
+                  file: "notes/bca205/pyq.pdf",
+                  type: "pdf",
+                  desc: "BCA-205 previous year exam questions · AKU Patna",
+                },
+                {
+                  title: "Notes PDF",
+                  file: "notes/bca205/notes.pdf",
+                  type: "pdf",
+                  desc: "BCA-205 Operating System & UNIX PDF notes",
+                },
+              ],
+            },
+          ],
+        },
+
+        /* ─── SEMESTER III ────────────────────────────────── */
+        {
+          num: 3,
+          label: "Semester III",
+          short: "Sem III",
+          period: "Jul – Dec 2026",
+          color: "#f59e0b",
+          gradient: "linear-gradient(135deg,#d97706,#f59e0b)",
+          subjects: [
+            {
+              code: "BCA-301",
+              name: "OOPs with C++",
+              icon: "🔵",
+              desc: "Classes, objects, inheritance, polymorphism, templates, STL",
+              notes: [],
+            },
+            {
+              code: "BCA-302",
+              name: "Data Structures",
+              icon: "🌳",
+              desc: "Arrays, linked lists, stacks, queues, trees, graphs, hashing",
+              notes: [],
+            },
+            {
+              code: "BCA-303",
+              name: "Java Programming",
+              icon: "☕",
+              desc: "OOP in Java, applets, multithreading, exception handling",
+              notes: [],
+            },
+            {
+              code: "BCA-304",
+              name: "Computer Networks-I",
+              icon: "🌐",
+              desc: "OSI model, TCP/IP, data link layer, network topologies",
+              notes: [],
+            },
+            {
+              code: "BCA-305",
+              name: "Software Engineering",
+              icon: "⚙️",
+              desc: "SDLC, agile, testing, project management, quality assurance",
+              notes: [],
+            },
+          ],
+        },
+
+        /* ─── SEMESTER IV ─────────────────────────────────── */
+        {
+          num: 4,
+          label: "Semester IV",
+          short: "Sem IV",
+          period: "Jan – Jun 2027",
+          color: "#10b981",
+          gradient: "linear-gradient(135deg,#059669,#10b981)",
+          subjects: [
+            {
+              code: "BCA-401",
+              name: "Database Management System",
+              icon: "🗄️",
+              desc: "RDBMS concepts, SQL, normalization, ER modeling, transactions",
+              notes: [],
+            },
+            {
+              code: "BCA-402",
+              name: "Computer Organization",
+              icon: "🔌",
+              desc: "CPU architecture, memory hierarchy, I/O organization, pipelining",
+              notes: [],
+            },
+            {
+              code: "BCA-403",
+              name: "Design & Analysis of Algorithms",
+              icon: "📈",
+              desc: "Time complexity, sorting, divide & conquer, greedy, DP",
+              notes: [],
+            },
+            {
+              code: "BCA-404",
+              name: "Web Technology",
+              icon: "🌍",
+              desc: "HTML5, CSS3, JavaScript, PHP, XML, web services",
+              notes: [],
+            },
+            {
+              code: "BCA-405",
+              name: "Computer Graphics",
+              icon: "🎨",
+              desc: "2D/3D transformations, rendering, multimedia, animation basics",
+              notes: [],
+            },
+          ],
+        },
+
+        /* ─── SEMESTER V ──────────────────────────────────── */
+        {
+          num: 5,
+          label: "Semester V",
+          short: "Sem V",
+          period: "Jul – Dec 2027",
+          color: "#06b6d4",
+          gradient: "linear-gradient(135deg,#0284c7,#06b6d4)",
+          subjects: [
+            {
+              code: "BCA-501",
+              name: "Visual Basic .NET",
+              icon: "🟦",
+              desc: "Windows forms, ADO.NET, event handling, database connectivity",
+              notes: [],
+            },
+            {
+              code: "BCA-502",
+              name: "Internet Technology",
+              icon: "📡",
+              desc: "HTTP, FTP, email protocols, web security, cloud basics",
+              notes: [],
+            },
+            {
+              code: "BCA-503",
+              name: "Computer Networks-II",
+              icon: "🔒",
+              desc: "Transport layer, network security, cryptography, firewalls",
+              notes: [],
+            },
+            {
+              code: "BCA-504",
+              name: "Theory of Computation",
+              icon: "🧮",
+              desc: "Automata, formal languages, Turing machines, decidability",
+              notes: [],
+            },
+            {
+              code: "BCA-505",
+              name: "Software Testing",
+              icon: "🧪",
+              desc: "Testing types, test cases, defect management, automation basics",
+              notes: [],
+            },
+          ],
+        },
+
+        /* ─── SEMESTER VI ─────────────────────────────────── */
+        {
+          num: 6,
+          label: "Semester VI",
+          short: "Sem VI",
+          period: "Jan – Jun 2028",
+          color: "#8b5cf6",
+          gradient: "linear-gradient(135deg,#7c3aed,#a855f7)",
+          subjects: [
+            {
+              code: "BCA-601",
+              name: "Cloud Computing",
+              icon: "☁️",
+              desc: "Cloud models, AWS/Azure basics, virtualization, deployment",
+              notes: [],
+            },
+            {
+              code: "BCA-602",
+              name: "Artificial Intelligence",
+              icon: "🤖",
+              desc: "Search algorithms, ML basics, neural networks, expert systems",
+              notes: [],
+            },
+            {
+              code: "BCA-603",
+              name: "E-Commerce",
+              icon: "🛒",
+              desc: "E-business models, payment systems, digital marketing, security",
+              notes: [],
+            },
+            {
+              code: "BCA-604",
+              name: "Cyber Security",
+              icon: "🛡️",
+              desc: "Ethical hacking, OWASP, penetration testing, cyber laws",
+              notes: [],
+            },
+            {
+              code: "BCA-605",
+              name: "Project Work",
+              icon: "🚀",
+              desc: "Capstone project: Full stack + security + documentation",
+              notes: [],
+            },
+          ],
+        },
+      ];
+
+      /* ─── STATE ─────────────────────────────────────────── */
+      let activeSem = 2; // default: show Sem II (has notes)
+      let searchHits = [];
+      let curFile = "";
+      let recent = JSON.parse(localStorage.getItem("hub_recent") || "[]");
+
+      /* ─── INIT ───────────────────────────────────────────── */
+      (function () {
+        applyTheme();
+        renderTabs();
+        renderSem(activeSem);
+        updateTotalLabel();
+      })();
+
+      /* ══════════════════════════════════════════════════════
+       TABS
+    ══════════════════════════════════════════════════════ */
+      function renderTabs() {
+        const bar = document.getElementById("semTabs");
+        bar.innerHTML = SEMESTERS.map((s) => {
+          const cnt = s.subjects.reduce((a, sub) => a + sub.notes.length, 0);
+          return `
+    <button class="sem-tab${s.num === activeSem ? " active" : ""}"
+      style="--sem-color:${s.color}"
+      onclick="switchSem(${s.num})">
+      <span class="sem-dot"></span>
+      ${s.short}
+      <span class="note-count">${cnt || "0"}</span>
+    </button>`;
+        }).join("");
+      }
+
+      function switchSem(num) {
+        activeSem = num;
+        renderTabs();
+        renderSem(num);
+      }
+
+      /* ══════════════════════════════════════════════════════
+       SEM VIEW
+    ══════════════════════════════════════════════════════ */
+      function renderSem(num) {
+        const s = SEMESTERS.find((x) => x.num === num);
+        const main = document.getElementById("mainContent");
+
+        const totalNotes = s.subjects.reduce(
+          (a, sub) => a + sub.notes.length,
+          0,
+        );
+        const subsWithNotes = s.subjects.filter(
+          (sub) => sub.notes.length > 0,
+        ).length;
+
+        // Recent bar
+        const recentHtml = recent.length
+          ? `
+  <div class="recent-bar">
+    <span class="recent-label" style="color:${s.color}">🕐 Recent</span>
+    <div class="recent-chips">
+      ${recent
+        .slice(0, 5)
+        .map(
+          (r) => `
+        <div class="rchip" style="--active-c:${s.color}"
+          onclick="openReader('${esc(r.file)}','${r.type}','${esc(r.title)}','${esc(r.sub || "")}')">
+          ${r.type === "pdf" ? "📄" : "📖"} ${r.title}
+        </div>`,
+        )
+        .join("")}
+    </div>
+  </div>`
+          : "";
+
+        main.innerHTML = `
+  <div class="section-view">
+    <div class="sem-header">
+      <div class="sem-heading">
+        <div class="sem-num-badge" style="background:${s.gradient}">0${s.num}</div>
+        <div class="sem-title-block">
+          <h2>${s.label}</h2>
+          <p>${s.period} · AKU Patna · ${s.subjects.length} Subjects</p>
+        </div>
+      </div>
+      <div class="sem-meta">
+        <div class="meta-chip"><i class="fa-solid fa-file-lines" style="color:${s.color}"></i>&nbsp;${totalNotes} Notes</div>
+        <div class="meta-chip"><i class="fa-solid fa-book" style="color:${s.color}"></i>&nbsp;${subsWithNotes}/${s.subjects.length} Covered</div>
+      </div>
+    </div>
+
+    ${recentHtml}
+
+    <div class="subjects-grid">
+      ${s.subjects.map((sub, i) => subCard(sub, s.color, i)).join("")}
+    </div>
+  </div>`;
+      }
+
+      function subCard(sub, color, idx) {
+        const hasNotes = sub.notes.length > 0;
+        const delay = idx * 0.06;
+        const chips = sub.notes.length
+          ? sub.notes
+              .map(
+                (n) =>
+                  `<span class="note-chip available">${n.type === "pdf" ? "📄" : "📖"} ${n.title}</span>`,
+              )
+              .join("")
+          : `<span class="note-chip empty">📂 No notes yet</span>`;
+
+        return `
+  <div class="sub-card${hasNotes ? "" : " no-notes"}"
+    style="--c:${color};animation-delay:${delay}s"
+    onclick="${hasNotes ? `openPanel(${JSON.stringify(sub).replace(/"/g, "&quot;")},'${color}')` : ""}"
+    title="${hasNotes ? "Click to view notes" : "Notes coming soon"}">
+    <div class="sub-card-glow"></div>
+    <div class="sub-top">
+      <div class="sub-icon">${sub.icon}</div>
+      <div class="sub-code">${sub.code}</div>
+    </div>
+    <div class="sub-name">${sub.name}</div>
+    <div class="sub-desc">${sub.desc}</div>
+    <div class="sub-notes-row">${chips}</div>
+    <div class="sub-footer">
+      <div class="notes-count">${hasNotes ? `<span>${sub.notes.length}</span> file${sub.notes.length > 1 ? "s" : ""} ready` : "Coming soon"}</div>
+      ${
+        hasNotes
+          ? `<button class="open-btn" onclick="event.stopPropagation();openPanel(${JSON.stringify(sub).replace(/"/g, "&quot;")},'${color}')">
+        Open <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i>
+      </button>`
+          : `<span style="font-size:.72rem;color:var(--muted)">📁 Empty</span>`
+      }
+    </div>
+  </div>`;
+      }
+
+      /* ══════════════════════════════════════════════════════
+       NOTES PANEL
+    ══════════════════════════════════════════════════════ */
+      function openPanel(sub, color) {
+        const hdr = document.getElementById("panelHeader");
+        const body = document.getElementById("panelBody");
+
+        hdr.style.setProperty("--pc", color);
+        hdr.innerHTML = `
+    <button class="panel-close" onclick="closePanel()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="panel-sub-code">${sub.code}</div>
+    <div class="panel-sub-name">${sub.icon} ${sub.name}</div>
+    <div class="panel-sub-desc">${sub.desc}</div>`;
+
+        if (!sub.notes.length) {
+          body.innerHTML = `
+      <div class="panel-empty">
+        <div class="pe-icon">📂</div>
+        <h3>No notes yet</h3>
+        <p>Add files to <code>${sub.code}</code> in the DATA section of <code>notes_hub.html</code>.<br>
+        See README.md for instructions.</p>
+      </div>`;
+        } else {
+          // Group by type
+          const html = sub.notes.filter((n) => n.type === "html");
+          const pdf = sub.notes.filter((n) => n.type === "pdf");
+
+          body.innerHTML = `
+      ${
+        html.length
+          ? `
+      <div class="notes-section">
+        <div class="notes-section-title" style="--pc:${color}">
+          <span class="dot"></span> 📖 HTML Notes <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${html.length}</span>
+        </div>
+        ${html.map((n) => noteRow(n, sub, color)).join("")}
+      </div>`
+          : ""
+      }
+      ${
+        pdf.length
+          ? `
+      <div class="notes-section">
+        <div class="notes-section-title" style="--pc:${color}">
+          <span class="dot"></span> 📄 PDF Files <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${pdf.length}</span>
+        </div>
+        ${pdf.map((n) => noteRow(n, sub, color)).join("")}
+      </div>`
+          : ""
+      }`;
+        }
+
+        document.getElementById("panelBackdrop").classList.add("open");
+        document.getElementById("notesPanel").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function noteRow(note, sub, color) {
+        const isPdf = note.type === "pdf";
+        return `
+  <div class="note-row" style="--pc:${color}"
+    onclick="openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " — " + sub.name)}')">
+    <div class="note-row-icon" style="background:${color}18">${isPdf ? "📄" : "📖"}</div>
+    <div class="note-row-info">
+      <div class="note-row-title">${note.title}</div>
+      <div class="note-row-desc">${note.desc || ""}</div>
+    </div>
+    <div class="note-row-actions">
+      <button class="nr-btn solid" onclick="event.stopPropagation();openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " — " + sub.name)}')">
+        <i class="fa-solid fa-${isPdf ? "file-pdf" : "book-open"}"></i> Open
+      </button>
+      ${
+        isPdf
+          ? `<a class="nr-btn outline" href="${esc(note.file)}" download onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i></a>`
+          : `<button class="nr-btn outline" onclick="event.stopPropagation();window.open('${esc(note.file)}','_blank')"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>`
+      }
+    </div>
+  </div>`;
+      }
+
+      function closePanel() {
+        document.getElementById("panelBackdrop").classList.remove("open");
+        document.getElementById("notesPanel").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      /* ══════════════════════════════════════════════════════
+       READER
+    ══════════════════════════════════════════════════════ */
+      function openReader(file, type, title, sub) {
+        curFile = file;
+
+        // Update top bar
+        document.getElementById("rdTitle").textContent = title;
+        document.getElementById("rdSub").textContent   = sub || "";
+        document.getElementById("rdDownload").style.display = type === "pdf" ? "flex" : "none";
+        document.getElementById("readerOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+        saveRecent({ file, type, title, sub });
+
+        const frame    = document.getElementById("readerFrame");
+        const embed    = document.getElementById("pdfEmbed");
+        const fallback = document.getElementById("pdfFallback");
+
+        if (type === "pdf") {
+          // --- PDF: use <embed> — far more reliable than iframe ---
+          frame.style.display    = "none";
+          frame.src              = "";
+          fallback.style.display = "none";
+
+          // Detect if browser can show PDFs inline
+          const canEmbed = navigator.pdfViewerEnabled !== false &&
+                           !/Android|iPhone|iPad/i.test(navigator.userAgent);
+
+          if (canEmbed) {
+            embed.style.display = "flex";
+            embed.style.flex    = "1";
+            embed.src           = file + "?t=" + Date.now(); // cache-bust
+          } else {
+            // Mobile / no PDF plugin → show friendly fallback panel
+            embed.style.display    = "none";
+            embed.src              = "";
+            fallback.style.display = "flex";
+          }
+        } else {
+          // --- HTML: use iframe as before ---
+          embed.style.display    = "none";
+          embed.src              = "";
+          fallback.style.display = "none";
+          frame.style.display    = "block";
+          frame.src              = file;
+        }
+      }
+
+      function closeReader() {
+        document.getElementById("readerOverlay").classList.remove("open");
+
+        const frame    = document.getElementById("readerFrame");
+        const embed    = document.getElementById("pdfEmbed");
+        const fallback = document.getElementById("pdfFallback");
+
+        frame.src              = "";
+        frame.style.display    = "block";   // reset for next open
+        embed.src              = "";
+        embed.style.display    = "none";
+        fallback.style.display = "none";
+
+        document.body.style.overflow = "";
+      }
+      function readerFullscreen() {
+        const el = document.getElementById("readerOverlay");
+        if (!document.fullscreenElement) el.requestFullscreen().catch(() => {});
+        else document.exitFullscreen();
+      }
+      function readerNewTab() {
+        if (curFile) window.open(curFile, "_blank");
+      }
+      function readerDownload() {
+        if (!curFile) return;
+        const a = document.createElement("a");
+        a.href = curFile;
+        a.download = curFile.split("/").pop();
+        a.click();
+      }
+
+      /* ══════════════════════════════════════════════════════
+       RECENT
+    ══════════════════════════════════════════════════════ */
+      function saveRecent(item) {
+        recent = recent.filter((r) => r.file !== item.file);
+        recent.unshift(item);
+        recent = recent.slice(0, 8);
+        localStorage.setItem("hub_recent", JSON.stringify(recent));
+      }
+
+      /* ══════════════════════════════════════════════════════
+       SEARCH
+    ══════════════════════════════════════════════════════ */
+      function openSearch() {
+        document.getElementById("searchModal").classList.add("open");
+        document.getElementById("searchResults").innerHTML = "";
+        setTimeout(() => document.getElementById("searchInput").focus(), 80);
+      }
+      function closeSearch() {
+        document.getElementById("searchModal").classList.remove("open");
+        document.getElementById("searchInput").value = "";
+        document.getElementById("searchResults").innerHTML = "";
+      }
+      function searchBgClick(e) {
+        if (e.target === e.currentTarget) closeSearch();
+      }
+      function searchKeydown(e) {
+        if (e.key === "Escape") closeSearch();
+      }
+
+      function doSearch(q) {
+        const box = document.getElementById("searchResults");
+        if (!q.trim()) {
+          box.innerHTML = "";
+          searchHits = [];
+          return;
+        }
+        const lq = q.toLowerCase();
+        searchHits = [];
+
+        SEMESTERS.forEach((s) => {
+          s.subjects.forEach((sub) => {
+            if (
+              sub.name.toLowerCase().includes(lq) ||
+              sub.code.toLowerCase().includes(lq) ||
+              sub.desc.toLowerCase().includes(lq)
+            ) {
+              searchHits.push({
+                icon: sub.icon,
+                title: sub.name,
+                meta: `${sub.code} · ${s.label}`,
+                kind: "sub",
+                sem: s.num,
+                color: s.color,
+                sub,
+              });
+            }
+            sub.notes.forEach((note) => {
+              if (
+                note.title.toLowerCase().includes(lq) ||
+                (note.desc || "").toLowerCase().includes(lq)
+              ) {
+                searchHits.push({
+                  icon: note.type === "pdf" ? "📄" : "📖",
+                  title: note.title,
+                  meta: `${sub.code} · ${s.label}`,
+                  kind: "note",
+                  file: note.file,
+                  type: note.type,
+                  noteSub: `${sub.code} — ${sub.name}`,
+                  color: s.color,
+                  sem: s.num,
+                  sub,
+                });
+              }
+            });
+          });
+        });
+
+        if (!searchHits.length) {
+          box.innerHTML = '<div class="sb-empty">No results found</div>';
+          return;
+        }
+        box.innerHTML = searchHits
+          .slice(0, 10)
+          .map(
+            (h, i) => `
+    <div class="sr-item" onclick="execSearch(${i})">
+      <div class="sri-icon">${h.icon}</div>
+      <div><div class="sri-title">${h.title}</div><div class="sri-sub">${h.meta}</div></div>
+    </div>`,
+          )
+          .join("");
+      }
+
+      function execSearch(idx) {
+        const h = searchHits[idx];
+        if (!h) return;
+        closeSearch();
+        if (h.kind === "sub") {
+          switchSem(h.sem);
+          setTimeout(() => {
+            if (h.sub.notes.length) openPanel(h.sub, h.color);
+          }, 180);
+        } else {
+          openReader(h.file, h.type, h.title, h.noteSub);
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════
+       THEME
+    ══════════════════════════════════════════════════════ */
+      function toggleTheme() {
+        document.body.classList.toggle("light");
+        const isLight = document.body.classList.contains("light");
+        document.getElementById("themeIcon").className = isLight
+          ? "fa-solid fa-sun"
+          : "fa-solid fa-moon";
+        localStorage.setItem("hub_theme", isLight ? "light" : "dark");
+      }
+      function applyTheme() {
+        if (localStorage.getItem("hub_theme") === "light") {
+          document.body.classList.add("light");
+          document.getElementById("themeIcon").className = "fa-solid fa-sun";
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════
+       UTILS
+    ══════════════════════════════════════════════════════ */
+      function esc(s) {
+        return String(s).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+      }
+
+      function updateTotalLabel() {
+        let total = 0;
+        SEMESTERS.forEach((s) =>
+          s.subjects.forEach((sub) => (total += sub.notes.length)),
+        );
+        document.getElementById("totalNotesLabel").textContent =
+          `${total} Notes Available`;
+      }
+
+      /* keyboard shortcuts */
+      document.addEventListener("keydown", (e) => {
+        const sm = document
+          .getElementById("searchModal")
+          .classList.contains("open");
+        const ro = document
+          .getElementById("readerOverlay")
+          .classList.contains("open");
+        if (e.key === "Escape") {
+          if (sm) closeSearch();
+          else if (ro) closeReader();
+          else closePanel();
+        }
+        if (
+          e.key === "/" &&
+          !sm &&
+          !ro &&
+          document.activeElement.tagName !== "INPUT"
+        ) {
+          e.preventDefault();
+          openSearch();
+        }
+      });
+
+      /* mobile: show search icon instead of bar */
+      if (window.innerWidth <= 680) {
+        document.getElementById("mobileSearchBtn").style.display = "flex";
+      }
