@@ -5,6 +5,17 @@
    Add new notes: find the subject in SEMESTERS[] → push to notes[]
 ============================================================ */
 
+      /* ══════════════════════════════════════════════════════
+       GA4 EVENT HELPER — safe wrapper, never throws
+    ══════════════════════════════════════════════════════ */
+      function gae(name, params) {
+        try {
+          if (typeof gtag === "function") {
+            gtag("event", name, Object.assign({ page_location: location.href }, params || {}));
+          }
+        } catch (e) { /* silent */ }
+      }
+
       /* ╔══════════════════════════════════════════════════════╗
        ║  BCA NOTES DATA  —  Sem I to Sem VI                  ║
        ║  To add a note: push into subject.notes[]             ║
@@ -502,6 +513,7 @@
 
       function switchSem(num) {
         activeSem = num;
+        gae("semester_select", { semester_number: num });
         renderTabs();
         renderSem(num);
       }
@@ -608,6 +620,7 @@
        NOTES PANEL
     ══════════════════════════════════════════════════════ */
       function openPanel(sub, color) {
+        gae("subject_open", { subject_code: sub.code, subject_name: sub.name });
         const hdr = document.getElementById("panelHeader");
         const body = document.getElementById("panelBody");
 
@@ -694,6 +707,7 @@
        ALL SYLLABUSES MODAL  (Semester II)
     ══════════════════════════════════════════════════════ */
       function openSyllabusModal() {
+        gae("syllabus_modal_open");
         const sem2 = SEMESTERS.find((s) => s.num === 2);
         const color = sem2.color;
 
@@ -738,6 +752,7 @@
        FORCE DOWNLOAD  (never opens reader)
     ══════════════════════════════════════════════════════ */
       function forceDownload(file) {
+        gae("file_download", { file_name: file.split("/").pop() });
         const a = document.createElement("a");
         a.href = file;
         a.download = file.split("/").pop();
@@ -751,6 +766,7 @@
        READER
     ══════════════════════════════════════════════════════ */
       function openReader(file, type, title, sub) {
+        gae("note_open", { file_name: file.split("/").pop(), file_type: type, note_title: title });
         curFile = file;
 
         // Update top bar
@@ -941,10 +957,9 @@
       function toggleTheme() {
         document.body.classList.toggle("light");
         const isLight = document.body.classList.contains("light");
-        document.getElementById("themeIcon").className = isLight
-          ? "fa-solid fa-sun"
-          : "fa-solid fa-moon";
+        document.getElementById("themeIcon").className = isLight ? "fa-solid fa-sun" : "fa-solid fa-moon";
         localStorage.setItem("hub_theme", isLight ? "light" : "dark");
+        gae("theme_toggle", { theme: isLight ? "light" : "dark" });
       }
       function applyTheme() {
         if (localStorage.getItem("hub_theme") === "light") {
@@ -1171,6 +1186,7 @@
 
       function toggleChatbot() {
         chatbotOpen = !chatbotOpen;
+        gae("chatbot_toggle", { state: chatbotOpen ? "open" : "close" });
         const win  = document.getElementById("chatbotWindow");
         const icon = document.getElementById("chatFabIcon");
         win.classList.toggle("open", chatbotOpen);
@@ -1220,6 +1236,7 @@
         const input = document.getElementById("chatbotInput");
         const msg   = input.value.trim();
         if (!msg) return;
+        gae("chatbot_message");
         input.value = "";
         addChatMsg("user", msg);
         showTyping();
