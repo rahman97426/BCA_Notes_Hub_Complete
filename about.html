@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About | BCA Notes Hub | AKU Patna</title>
+  <meta name="description" content="Learn about BCA Notes Hub — a free educational resource for AKU Patna BCA students providing semester-wise notes, PYQs, syllabus and exam preparation materials."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://arrahmanstudyhub.tech/about.html"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="space"><div class="stars"></div><div class="nebula"></div><div class="nebula2"></div></div>
+
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="BCA Notes Hub Home">
+      <div class="logo-icon">📚</div>
+      <div>BCA Notes Hub<span class="logo-sub">Abdul Rahman · AKU Patna 2026–28</span></div>
+    </a>
+    <div style="flex:1"></div>
+    <div class="header-right">
+      <a class="icon-btn" href="index.html" title="Home" aria-label="Go to homepage"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+      <button class="icon-btn" title="Toggle Theme" aria-label="Toggle dark/light theme" onclick="togglePageTheme()">
+        <i class="fa-solid fa-moon" id="pageThemeIcon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <nav class="page-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">🏠 Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>About</span>
+    </nav>
+
+    <h1 class="page-h1">About BCA Notes Hub</h1>
+    <p class="page-lead">A free educational resource built for BCA students studying at institutions affiliated with Aryabhatta Knowledge University (AKU), Patna.</p>
+
+    <section class="page-section">
+      <h2 class="page-h2">What is BCA Notes Hub?</h2>
+      <p class="page-p">BCA Notes Hub is a student-built, student-focused platform that collects, organises and presents study materials for the Bachelor of Computer Applications (BCA) programme. It is designed to make exam preparation simpler, more organised and more accessible for all BCA students.</p>
+      <p class="page-p">This is an independent educational resource and is <strong>not</strong> the official website of Aryabhatta Knowledge University (AKU) or any affiliated college.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">Our Purpose</h2>
+      <ul class="page-ul">
+        <li>Provide well-organised, semester-wise study notes for BCA subjects</li>
+        <li>Offer previous year question papers (PYQs) to help students understand exam patterns</li>
+        <li>Share official syllabus documents so students always know what to study</li>
+        <li>Provide quick-revision cheatsheets for important topics</li>
+        <li>Support effective exam preparation with targeted resources</li>
+      </ul>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">Resources Available</h2>
+      <div class="page-card">
+        <div class="page-card-title">📖 HTML Notes</div>
+        <p class="page-p" style="margin:0">Interactive, browser-readable notes covering all BCA Semester II subjects including C Programming, OS &amp; UNIX, System Analysis &amp; Design and more.</p>
+      </div>
+      <div class="page-card">
+        <div class="page-card-title">🔥 Previous Year Questions (PYQs)</div>
+        <p class="page-p" style="margin:0">Past examination question papers for AKU Patna BCA subjects to help students understand patterns and focus on important topics.</p>
+      </div>
+      <div class="page-card">
+        <div class="page-card-title">📕 Official Syllabus</div>
+        <p class="page-p" style="margin:0">Subject-wise syllabus documents for BCA Semester II covering all 5 subjects: Business English, Numerical Techniques, SAD, C Programming and OS &amp; UNIX.</p>
+      </div>
+      <div class="page-card">
+        <div class="page-card-title">📝 Cheatsheets</div>
+        <p class="page-p" style="margin:0">Quick-reference cheatsheets for all 5 Semester II subjects for rapid last-minute revision before exams.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">About the Creator</h2>
+      <p class="page-p">BCA Notes Hub was created by <strong>Abdul Rahman</strong>, a BCA student at IIBM, Patna, affiliated with Aryabhatta Knowledge University. This project was built to help fellow BCA students study more efficiently and prepare better for their examinations.</p>
+      <p class="page-p">For queries, collaborations or suggestions, please visit the <a href="contact.html" style="color:#6366f1">Contact page</a>.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">Important Notice</h2>
+      <p class="page-p">This website is an independent educational initiative. It is not affiliated with, endorsed by, or the official website of Aryabhatta Knowledge University (AKU) Patna or any government body. For official university information, please visit the official AKU website.</p>
+    </section>
+  </main>
+
+  <footer class="page-simple-footer">
+    © 2026 Abdul Rahman. All Rights Reserved. &nbsp;·&nbsp;
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </footer>
+
+  <script>
+    function togglePageTheme() {
+      document.body.classList.toggle('light');
+      const l = document.body.classList.contains('light');
+      document.getElementById('pageThemeIcon').className = l ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      localStorage.setItem('hub_theme', l ? 'light' : 'dark');
+    }
+    if (localStorage.getItem('hub_theme') === 'light') {
+      document.body.classList.add('light');
+      document.getElementById('pageThemeIcon').className = 'fa-solid fa-sun';
+    }
+  </script>
+</body>
+</html>
