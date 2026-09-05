@@ -1002,3 +1002,230 @@
       if (window.innerWidth <= 680) {
         document.getElementById("mobileSearchBtn").style.display = "flex";
       }
+
+      /* ══════════════════════════════════════════════════════
+       1. SOURCE CODE PROTECTION
+       Disables right-click, F12, Ctrl+U/S/Shift+I/J/C
+    ══════════════════════════════════════════════════════ */
+      (function protectContent() {
+
+        document.addEventListener("contextmenu", function (e) {
+          e.preventDefault();
+          showProtectToast();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          const blocked =
+            e.key === "F12" ||
+            (e.ctrlKey && !e.shiftKey && e.key.toLowerCase() === "u") ||
+            (e.ctrlKey && !e.shiftKey && e.key.toLowerCase() === "s") ||
+            (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(e.key.toLowerCase()));
+
+          if (blocked) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        function showProtectToast() {
+          if (document.getElementById("__pt")) return;
+          const t = document.createElement("div");
+          t.id = "__pt";
+          t.innerHTML = '<i class="fa-solid fa-lock"></i> Content is protected &copy; Abdul Rahman';
+          Object.assign(t.style, {
+            position: "fixed",
+            bottom: "28px",
+            left: "50%",
+            transform: "translateX(-50%) translateY(12px)",
+            background: "rgba(12,12,22,0.95)",
+            color: "#e2e8f0",
+            padding: "10px 22px",
+            borderRadius: "30px",
+            fontSize: ".8rem",
+            fontWeight: "600",
+            fontFamily: "'Plus Jakarta Sans',sans-serif",
+            letterSpacing: ".3px",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.55)",
+            backdropFilter: "blur(14px)",
+            zIndex: "99999",
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            opacity: "0",
+            transition: "opacity .25s ease, transform .25s ease",
+          });
+          document.body.appendChild(t);
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            t.style.opacity = "1";
+            t.style.transform = "translateX(-50%) translateY(0)";
+          }));
+          setTimeout(() => {
+            t.style.opacity = "0";
+            t.style.transform = "translateX(-50%) translateY(10px)";
+            setTimeout(() => t.remove(), 300);
+          }, 2400);
+        }
+
+      })();
+
+      /* ══════════════════════════════════════════════════════
+       2. ROBOT VERIFICATION  (first visit only)
+    ══════════════════════════════════════════════════════ */
+      (function initRobotCheck() {
+        if (localStorage.getItem("hub_human_verified") === "true") {
+          const overlay = document.getElementById("robotOverlay");
+          if (overlay) overlay.remove();
+          return;
+        }
+        // Already visible — nothing extra needed
+      })();
+
+      function onRobotCheck() {
+        const cb = document.getElementById("robotCheckbox");
+        if (!cb.checked) return;
+
+        // Disable checkbox so it can't be unchecked
+        cb.disabled = true;
+        document.getElementById("robotLabel").style.pointerEvents = "none";
+
+        // Show progress bar
+        const prog = document.getElementById("robotProgress");
+        prog.classList.add("show");
+
+        // After animation completes → show verified
+        setTimeout(() => {
+          document.getElementById("robotTxt").textContent = "✓ Verified! Welcome!";
+          document.getElementById("robotTxt").style.color = "#10b981";
+        }, 1500);
+
+        // Hide overlay
+        setTimeout(() => {
+          const overlay = document.getElementById("robotOverlay");
+          overlay.classList.add("hide");
+          setTimeout(() => {
+            overlay.remove();
+            localStorage.setItem("hub_human_verified", "true");
+          }, 500);
+        }, 2200);
+      }
+
+      /* ══════════════════════════════════════════════════════
+       3. AI CHATBOT
+    ══════════════════════════════════════════════════════ */
+      let chatbotOpen = false;
+      let chatInitialized = false;
+
+      const CHAT_KB = [
+        { k: ["hello","hi","hey","helo","hii","salam","assalam"],
+          r: "Hi! 👋 I'm Rahman AI. Ask me about BCA notes, subjects, syllabus or exam tips!" },
+        { k: ["bca-201","201","business english","english","letter"],
+          r: "📘 BCA-201 Business English: Letter writing, grammar, comprehension.\nNotes, PYQ, Syllabus & Cheatsheet available!" },
+        { k: ["bca-202","202","numerical","techniques","newton","gauss"],
+          r: "🔢 BCA-202 Numerical Techniques: Newton-Raphson, Gauss Elimination, Simpson's Rule.\nComplete Exam Guide + PYQ + Cheatsheet available!" },
+        { k: ["bca-203","203","system analysis","sad","sdlc","dfd","er diagram"],
+          r: "🗂️ BCA-203 SAD: SDLC, DFD, ER Diagrams, System Design.\nInteractive Study Guide + Colorful Exam Guide + Syllabus!" },
+        { k: ["bca-204","204","c programming","programming in c","pointers","structures","c lang"],
+          r: "💻 BCA-204 C Programming: Pointers, Structures, File Handling.\n2 HTML Guides + VVI Exam Guide + PYQ + Cheatsheet!" },
+        { k: ["bca-205","205","operating system","unix","os","shell","linux","deadlock"],
+          r: "⚙️ BCA-205 OS & UNIX: Process Management, Deadlock, Shell Scripting.\n3 Complete HTML Guides + PYQ + Cheatsheet!" },
+        { k: ["syllabus","sylabus","curriculum","course content"],
+          r: "📕 Click 'All Syllabuses' button on Semester II page to view all 5 subject syllabuses in one place!" },
+        { k: ["pyq","previous year","past paper","old paper","question paper"],
+          r: "🔥 PYQ papers available for all 5 Sem II subjects!\nOpen any subject card → look in PDF Files section." },
+        { k: ["cheatsheet","cheat sheet","cheat","quick revision"],
+          r: "📝 Cheatsheets available for ALL 5 Semester II subjects!\nOpen any subject panel and find it in PDF Files." },
+        { k: ["exam","tip","tips","prepare","study","how to study","revision","revise"],
+          r: "⭐ Exam Tips:\n1️⃣ Start with Cheatsheets\n2️⃣ Solve all PYQs\n3️⃣ Focus on VVI questions\n4️⃣ Practice C programs\n5️⃣ Revise formulas daily\n6️⃣ Study 5-6 hrs/day!" },
+        { k: ["note","notes","material","study material"],
+          r: "📖 Notes available under Semester II tab!\nClick any subject card to view HTML notes, PDFs, PYQs & Cheatsheets." },
+        { k: ["download","save","pdf","kaise download"],
+          r: "📥 Click the ↓ download icon next to any PDF to save it directly.\nThe Open button opens it inside the reader." },
+        { k: ["search","find","dhundh","look for"],
+          r: "🔍 Press the / key or click the search bar to search across all subjects, notes, and topics instantly!" },
+        { k: ["semester","sem 1","sem 2","sem i","sem ii","all sem"],
+          r: "📚 Notes Hub covers Semester I to VI!\nCurrently Semester II has the most notes. More being added soon!" },
+        { k: ["theme","dark","light","mode","appearance"],
+          r: "🌙 Click the moon/sun icon in the top-right header to toggle between dark and light theme!" },
+        { k: ["aku","patna","iibm","college","university","aryabhatta"],
+          r: "📍 University: AKU Patna (Aryabhatta Knowledge University)\nCollege: IIBM · Semester II exams: 2026" },
+        { k: ["who are you","what are you","chatbot","rahman ai","assistant"],
+          r: "I'm Rahman AI Assistant 🤖 — a smart study helper for BCA students!\nI can guide you through notes, subjects, syllabus & exam prep." },
+        { k: ["thank","thanks","shukriya","thank you","bahut acha"],
+          r: "You're welcome! 😊 Best of luck with your BCA exams!\nYou've got this, Abdul! 💪🚀" },
+        { k: ["bye","goodbye","ok bye","later","alvida"],
+          r: "Goodbye! 👋 Study hard & ace your BCA exams!\nCome back anytime you need help! 🚀" },
+        { k: ["help","kya","menu","options","what can you do"],
+          r: "I can help with:\n📘 BCA subject info (201–205)\n📖 Finding notes & PDFs\n📕 Syllabus queries\n🔥 PYQ papers\n⭐ Exam tips\n📥 Download help\n🔍 Search tips\n\nJust type your question!" },
+      ];
+
+      function getBotReply(msg) {
+        const m = msg.toLowerCase().trim();
+        for (const entry of CHAT_KB) {
+          if (entry.k.some(k => m.includes(k))) return entry.r;
+        }
+        return "🤔 I'm not sure about that.\nTry asking about BCA subjects, notes, syllabus, PYQs or exam tips!\nType 'help' to see all I can do.";
+      }
+
+      function toggleChatbot() {
+        chatbotOpen = !chatbotOpen;
+        const win  = document.getElementById("chatbotWindow");
+        const icon = document.getElementById("chatFabIcon");
+        win.classList.toggle("open", chatbotOpen);
+        icon.className = chatbotOpen ? "fa-solid fa-xmark chatbot-fab-icon" : "fa-solid fa-robot chatbot-fab-icon";
+
+        if (chatbotOpen && !chatInitialized) {
+          chatInitialized = true;
+          appendBotMsg("Hi! 👋 I'm **Rahman AI Assistant**.\nI'm here to help you with BCA notes, subjects, syllabus and exam tips.\n\nType 'help' to see what I can do!");
+        }
+        if (chatbotOpen) {
+          setTimeout(() => document.getElementById("chatbotInput").focus(), 200);
+        }
+      }
+
+      function appendBotMsg(text) {
+        addChatMsg("bot", text);
+      }
+
+      function addChatMsg(role, text) {
+        const msgs = document.getElementById("chatbotMsgs");
+        const now  = new Date().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
+        const div  = document.createElement("div");
+        div.className = "chat-msg " + role;
+        div.innerHTML = `
+          <div class="chat-bubble">${text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")}</div>
+          <div class="chat-time">${now}</div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      function showTyping() {
+        const msgs = document.getElementById("chatbotMsgs");
+        const div  = document.createElement("div");
+        div.className = "chat-msg bot";
+        div.id = "chatTyping";
+        div.innerHTML = `<div class="chat-typing"><span></span><span></span><span></span></div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      function removeTyping() {
+        const t = document.getElementById("chatTyping");
+        if (t) t.remove();
+      }
+
+      function sendChat() {
+        const input = document.getElementById("chatbotInput");
+        const msg   = input.value.trim();
+        if (!msg) return;
+        input.value = "";
+        addChatMsg("user", msg);
+        showTyping();
+        const delay = 700 + Math.random() * 600;
+        setTimeout(() => {
+          removeTyping();
+          appendBotMsg(getBotReply(msg));
+        }, delay);
+      }
