@@ -2,34 +2,58 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRJX4B3LNV"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZRJX4B3LNV"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-ZRJX4B3LNV');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZRJX4B3LNV");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>BCA Notes Hub | Sem I–VI | Abdul Rahman</title>
-    <title>BCA Notes Hub | AKU Patna Notes, PYQs, Syllabus & Exam Preparation</title>
-    <meta name="description" content="BCA Notes Hub for AKU Patna students with semester-wise notes, official syllabus, previous year questions, MCQs, repeated questions, 4-mark and 12-mark exam preparation resources.">
-
-<meta name="keywords" content="BCA Notes, AKU Patna BCA Notes, BCA PYQ, AKU PYQ, BCA Syllabus, BCA MCQ, BCA Exam Preparation, BCA Semester Notes, Previous Year Questions">
-
-<meta name="author" content="Abdul Rahman">
-
-<link rel="canonical" href="https://arrahmanstudyhub.tech/">
-
-<meta property="og:title" content="BCA Notes Hub | AKU Patna">
-<meta property="og:description" content="Semester-wise BCA notes, PYQs, official syllabus, MCQs, repeated questions and exam-focused study resources for AKU Patna students.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://arrahmanstudyhub.tech/">
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BCA Notes Hub | AKU Patna">
-<meta name="twitter:description" content="BCA notes, PYQs, syllabus, MCQs and exam-focused resources for AKU Patna students.">
+    <title>
+      BCA Notes Hub | AKU Patna Notes, PYQs, Syllabus &amp; Exam Preparation
+    </title>
+    <meta
+      name="description"
+      content="BCA Notes Hub for AKU Patna students with semester-wise notes, official syllabus, previous year questions, MCQs, repeated questions, 4-mark and 12-mark exam preparation resources."
+    />
+    <meta
+      name="keywords"
+      content="BCA Notes, AKU Patna BCA Notes, BCA PYQ, AKU PYQ, BCA Syllabus, BCA MCQ, BCA Exam Preparation, BCA Semester Notes, Previous Year Questions"
+    />
+    <meta name="author" content="Abdul Rahman" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://arrahmanstudyhub.tech/" />
+    <meta property="og:title" content="BCA Notes Hub | AKU Patna" />
+    <meta
+      property="og:description"
+      content="Semester-wise BCA notes, PYQs, official syllabus, MCQs, repeated questions and exam-focused study resources for AKU Patna students."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arrahmanstudyhub.tech/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BCA Notes Hub | AKU Patna" />
+    <meta
+      name="twitter:description"
+      content="BCA notes, PYQs, syllabus, MCQs and exam-focused resources for AKU Patna students."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BCA Notes Hub",
+        "url": "https://arrahmanstudyhub.tech/",
+        "description": "BCA Notes Hub for AKU Patna students with semester-wise notes, official syllabus, previous year questions and exam preparation resources.",
+        "author": { "@type": "Person", "name": "Abdul Rahman" }
+      }
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -38,7 +62,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -120,14 +144,22 @@
     <!-- ═══════════════════════════════════════
      ALL SYLLABUSES MODAL
 ════════════════════════════════════════ -->
-    <div class="syl-modal" id="syllabusModal" onclick="if(event.target===this)closeModal('syllabusModal')">
+    <div
+      class="syl-modal"
+      id="syllabusModal"
+      onclick="if (event.target === this) closeModal('syllabusModal');"
+    >
       <div class="syl-modal-box">
         <div class="syl-modal-header">
           <div>
             <div class="syl-modal-title">📕 Official Syllabuses</div>
             <div class="syl-modal-sub">Semester II · AKU Patna · 2026</div>
           </div>
-          <button class="panel-close" style="position:static;flex-shrink:0" onclick="closeModal('syllabusModal')">
+          <button
+            class="panel-close"
+            style="position: static; flex-shrink: 0"
+            onclick="closeModal('syllabusModal')"
+          >
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -180,33 +212,71 @@
         id="pdfEmbed"
         class="reader-frame"
         type="application/pdf"
-        style="display:none;"
+        style="display: none"
       />
 
       <!-- PDF fallback — shown if embed fails (e.g. mobile / no PDF plugin) -->
-      <div id="pdfFallback" style="
-        display:none; flex:1; flex-direction:column;
-        align-items:center; justify-content:center;
-        background:var(--bg); color:var(--muted); gap:20px; padding:40px;
-        text-align:center;
-      ">
-        <div style="font-size:3rem;">📄</div>
-        <div style="font-size:1rem;font-weight:700;color:var(--txt);">PDF cannot display here</div>
-        <div style="font-size:.85rem;max-width:340px;line-height:1.6;">
-          Your browser blocked inline PDF viewing.<br>
+      <div
+        id="pdfFallback"
+        style="
+          display: none;
+          flex: 1;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: var(--bg);
+          color: var(--muted);
+          gap: 20px;
+          padding: 40px;
+          text-align: center;
+        "
+      >
+        <div style="font-size: 3rem">📄</div>
+        <div style="font-size: 1rem; font-weight: 700; color: var(--txt)">
+          PDF cannot display here
+        </div>
+        <div style="font-size: 0.85rem; max-width: 340px; line-height: 1.6">
+          Your browser blocked inline PDF viewing.<br />
           Use the buttons below to open or save the file.
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-          <button onclick="readerNewTab()" style="
-            padding:10px 22px;border-radius:10px;font-size:.9rem;
-            font-weight:700;font-family:inherit;cursor:pointer;
-            background:var(--primary,#6366f1);border:none;color:#fff;">
+        <div
+          style="
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+          "
+        >
+          <button
+            onclick="readerNewTab()"
+            style="
+              padding: 10px 22px;
+              border-radius: 10px;
+              font-size: 0.9rem;
+              font-weight: 700;
+              font-family: inherit;
+              cursor: pointer;
+              background: var(--primary, #6366f1);
+              border: none;
+              color: #fff;
+            "
+          >
             ↗ Open in New Tab
           </button>
-          <button onclick="readerDownload()" style="
-            padding:10px 22px;border-radius:10px;font-size:.9rem;
-            font-weight:700;font-family:inherit;cursor:pointer;
-            background:transparent;border:1px solid var(--border);color:var(--txt);">
+          <button
+            onclick="readerDownload()"
+            style="
+              padding: 10px 22px;
+              border-radius: 10px;
+              font-size: 0.9rem;
+              font-weight: 700;
+              font-family: inherit;
+              cursor: pointer;
+              background: transparent;
+              border: 1px solid var(--border);
+              color: var(--txt);
+            "
+          >
             ↓ Download PDF
           </button>
         </div>
@@ -250,7 +320,11 @@
         <p class="robot-sub">BCA Notes Hub · Abdul Rahman · AKU Patna</p>
         <label class="robot-check-label" id="robotLabel">
           <div class="robot-checkbox-wrap">
-            <input type="checkbox" id="robotCheckbox" onchange="onRobotCheck()"/>
+            <input
+              type="checkbox"
+              id="robotCheckbox"
+              onchange="onRobotCheck()"
+            />
             <span class="robot-custom-check">
               <i class="fa-solid fa-check robot-check-icon"></i>
             </span>
@@ -261,14 +335,21 @@
           <div class="robot-progress-bar" id="robotBar"></div>
           <span class="robot-progress-txt" id="robotTxt">Verifying…</span>
         </div>
-        <p class="robot-footer-note">© 2026 Abdul Rahman — BCA Student Portal</p>
+        <p class="robot-footer-note">
+          © 2026 Abdul Rahman — BCA Student Portal
+        </p>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════
      AI CHATBOT
 ════════════════════════════════════════ -->
-    <button class="chatbot-fab" id="chatbotFab" onclick="toggleChatbot()" title="Rahman AI Assistant">
+    <button
+      class="chatbot-fab"
+      id="chatbotFab"
+      onclick="toggleChatbot()"
+      title="Rahman AI Assistant"
+    >
       <i class="fa-solid fa-robot chatbot-fab-icon" id="chatFabIcon"></i>
       <span class="chatbot-fab-pulse"></span>
     </button>
@@ -279,7 +360,9 @@
           <div class="chatbot-avatar">🤖</div>
           <div>
             <div class="chatbot-name">Rahman AI Assistant</div>
-            <div class="chatbot-status"><span class="chatbot-dot"></span> Online</div>
+            <div class="chatbot-status">
+              <span class="chatbot-dot"></span> Online
+            </div>
           </div>
         </div>
         <button class="chatbot-close" onclick="toggleChatbot()">
@@ -288,9 +371,13 @@
       </div>
       <div class="chatbot-msgs" id="chatbotMsgs"></div>
       <div class="chatbot-input-wrap">
-        <input class="chatbot-input" id="chatbotInput" type="text"
+        <input
+          class="chatbot-input"
+          id="chatbotInput"
+          type="text"
           placeholder="Ask about notes, syllabus, exams…"
-          onkeydown="if(event.key==='Enter')sendChat()"/>
+          onkeydown="if (event.key === 'Enter') sendChat();"
+        />
         <button class="chatbot-send" onclick="sendChat()">
           <i class="fa-solid fa-paper-plane"></i>
         </button>
@@ -307,7 +394,6 @@
 ════════════════════════════════════════ -->
     <footer class="site-footer">
       <div class="site-footer-inner">
-
         <!-- Col 1: Brand -->
         <div class="footer-col footer-brand-col">
           <div class="footer-logo">
@@ -315,7 +401,9 @@
             <span class="footer-logo-txt">BCA Notes Hub</span>
           </div>
           <p class="footer-tagline">Building the Ladder · One Note at a Time</p>
-          <p class="footer-tagline" style="margin-top:4px;font-size:.72rem;">Semester I – VI · AKU Patna · 2026–2028</p>
+          <p class="footer-tagline" style="margin-top: 4px; font-size: 0.72rem">
+            Semester I – VI · AKU Patna · 2026–2028
+          </p>
         </div>
 
         <!-- Col 2: Contact -->
@@ -329,8 +417,13 @@
             <i class="fa-solid fa-phone"></i>
             <span>+91-8936875243</span>
           </a>
-          <a class="footer-contact-row footer-link" href="https://wa.me/918936875243" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
+          <a
+            class="footer-contact-row footer-link"
+            href="https://wa.me/918936875243"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fa-brands fa-whatsapp" style="color: #25d366"></i>
             <span>WhatsApp Chat</span>
           </a>
         </div>
@@ -338,45 +431,123 @@
         <!-- Col 3: Quick Links -->
         <div class="footer-col">
           <div class="footer-col-title">Quick Links</div>
-          <a class="footer-link footer-nav-link" href="#" onclick="switchSem(2);return false">📚 Semester II Notes</a>
-          <a class="footer-link footer-nav-link" href="#" onclick="openSyllabusModal();return false">📕 All Syllabuses</a>
-          <a class="footer-link footer-nav-link" href="#" onclick="openSearch();return false">🔍 Search Notes</a>
-          <a class="footer-link footer-nav-link" href="index.html">🚀 Main Portal</a>
+          <a
+            class="footer-link footer-nav-link"
+            href="#"
+            onclick="
+              switchSem(2);
+              return false;
+            "
+            >📚 Semester II Notes</a
+          >
+          <a
+            class="footer-link footer-nav-link"
+            href="#"
+            onclick="
+              openSyllabusModal();
+              return false;
+            "
+            >📕 All Syllabuses</a
+          >
+          <a
+            class="footer-link footer-nav-link"
+            href="#"
+            onclick="
+              openSearch();
+              return false;
+            "
+            >🔍 Search Notes</a
+          >
+          <a class="footer-link footer-nav-link" href="about.html">ℹ️ About</a>
+          <a class="footer-link footer-nav-link" href="contact.html"
+            >📬 Contact</a
+          >
         </div>
 
         <!-- Col 4: Social -->
         <div class="footer-col">
           <div class="footer-col-title">Connect</div>
           <div class="footer-social-row">
-            <a class="footer-social-btn whatsapp" href="https://wa.me/918936875243" target="_blank" rel="noopener" title="WhatsApp">
+            <a
+              class="footer-social-btn whatsapp"
+              href="https://wa.me/918936875243"
+              target="_blank"
+              rel="noopener"
+              title="WhatsApp"
+            >
               <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a class="footer-social-btn github" href="https://github.com/rahman97426" target="_blank" rel="noopener" title="GitHub">
+            <a
+              class="footer-social-btn github"
+              href="https://github.com/rahman97426"
+              target="_blank"
+              rel="noopener"
+              title="GitHub"
+            >
               <i class="fa-brands fa-github"></i>
             </a>
-            <a class="footer-social-btn linkedin" href="https://linkedin.com/in/arrahmanraza" target="_blank" rel="noopener" title="LinkedIn">
+            <a
+              class="footer-social-btn linkedin"
+              href="https://linkedin.com/in/arrahmanraza"
+              target="_blank"
+              rel="noopener"
+              title="LinkedIn"
+            >
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a class="footer-social-btn email" href="mailto:arrahman97426@gmail.com" title="Email">
+            <a
+              class="footer-social-btn email"
+              href="mailto:arrahman97426@gmail.com"
+              title="Email"
+            >
               <i class="fa-solid fa-envelope"></i>
             </a>
-            <a class="footer-social-btn facebook" href="https://www.facebook.com/Siddique.0086" target="_blank" rel="noopener" title="Facebook">
+            <a
+              class="footer-social-btn facebook"
+              href="https://www.facebook.com/Siddique.0086"
+              target="_blank"
+              rel="noopener"
+              title="Facebook"
+            >
               <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <a class="footer-social-btn instagram" href="https://www.instagram.com/zoha__.rahman_/" target="_blank" rel="noopener" title="Instagram">
+            <a
+              class="footer-social-btn instagram"
+              href="https://www.instagram.com/zoha__.rahman_/"
+              target="_blank"
+              rel="noopener"
+              title="Instagram"
+            >
               <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
-          <p class="footer-tagline" style="margin-top:14px;font-size:.72rem;">Feel free to reach out for notes,<br>collaborations or study tips.</p>
+          <p
+            class="footer-tagline"
+            style="margin-top: 14px; font-size: 0.72rem"
+          >
+            Feel free to reach out for notes,<br />collaborations or study tips.
+          </p>
         </div>
+      </div>
 
+      <!-- Legal links -->
+      <div class="footer-legal-links">
+        <a href="about.html">About</a>
+        <span class="footer-divider">·</span>
+        <a href="contact.html">Contact</a>
+        <span class="footer-divider">·</span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="terms.html">Terms</a>
+        <span class="footer-divider">·</span>
+        <a href="disclaimer.html">Disclaimer</a>
       </div>
 
       <!-- Bottom bar -->
       <div class="footer-bottom">
-        <span>© 2026 Abdul Rahman — BCA Student Portal</span>
+        <span>© 2026 Abdul Rahman. All Rights Reserved.</span>
         <span class="footer-divider">·</span>
-        <span>The Ladder to 2028</span>
+        <span>BCA Student Portal | The Ladder to 2028</span>
         <span class="footer-divider">·</span>
         <span>AKU Patna · IIBM</span>
       </div>
