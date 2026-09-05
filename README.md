@@ -211,7 +211,7 @@ Save → Refresh browser → Done ✅
 | **Email** | arrahman97426@gmail.com |
 | **GitHub** | [github.com/rahman97426](https://github.com/rahman97426) |
 | **LinkedIn** | [linkedin.com/in/arrahmanraza](https://linkedin.com/in/arrahmanraza) |
-| **WhatsApp** | +91-9341844755 |
+| **WhatsApp** | +91-8936875243 |
 | **Website** | [arrahmanstudyhub.tech](https://arrahmanstudyhub.tech/) |
 
 ---
