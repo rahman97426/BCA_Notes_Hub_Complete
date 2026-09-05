@@ -2190,3 +2190,158 @@
           height: 52px;
         }
       }
+
+      /* =========================================================
+   FOOTER LEGAL LINKS ROW  (new)
+========================================================= */
+      .footer-legal-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 14px 32px 0;
+        font-size: 0.73rem;
+      }
+
+      .footer-legal-links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-legal-links a:hover { color: #6366f1; }
+
+      /* =========================================================
+   STATIC PAGES (about, contact, privacy, terms, disclaimer)
+========================================================= */
+      .page-main {
+        padding: 48px 24px 80px;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      .page-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .page-breadcrumb a { color: var(--muted); transition: color 0.2s; }
+      .page-breadcrumb a:hover { color: #6366f1; }
+      .page-breadcrumb .sep { opacity: 0.35; }
+
+      .page-h1 {
+        font-family: "Outfit";
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--txt);
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .page-lead {
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin-bottom: 40px;
+        line-height: 1.7;
+      }
+
+      .page-section { margin-bottom: 36px; }
+
+      .page-h2 {
+        font-family: "Outfit";
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--txt);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .page-p {
+        font-size: 0.86rem;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 12px;
+      }
+
+      .page-ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 12px;
+      }
+
+      .page-ul li {
+        font-size: 0.86rem;
+        color: var(--muted);
+        padding: 5px 0 5px 22px;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .page-ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6366f1;
+      }
+
+      .page-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 24px;
+        margin-bottom: 18px;
+      }
+
+      .page-card-title {
+        font-family: "Outfit";
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--txt);
+        margin-bottom: 6px;
+      }
+
+      .page-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      .page-contact-item:last-child { border-bottom: none; }
+
+      .page-contact-item i {
+        width: 18px;
+        text-align: center;
+        flex-shrink: 0;
+        font-size: 1rem;
+      }
+
+      .page-contact-item a { color: var(--muted); transition: color 0.2s; }
+      .page-contact-item a:hover { color: var(--txt); }
+
+      .page-simple-footer {
+        margin-top: 60px;
+        padding: 20px 24px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        font-size: 0.73rem;
+        color: var(--muted);
+      }
+
+      .page-simple-footer a { color: var(--muted); transition: color 0.2s; margin: 0 6px; }
+      .page-simple-footer a:hover { color: #6366f1; }
+
+      @media (max-width: 600px) {
+        .page-main { padding: 28px 16px 60px; }
+        .page-h1   { font-size: 1.55rem; }
+        .footer-legal-links { padding: 12px 16px 0; }
+      }
