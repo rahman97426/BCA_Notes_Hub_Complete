@@ -1,34 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRJX4B3LNV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZRJX4B3LNV');
-</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>BCA Notes Hub | AKU Patna Notes, PYQs, Syllabus & Exam Preparation</title>
-    <meta name="description" content="BCA Notes Hub for AKU Patna students with semester-wise notes, official syllabus, previous year questions, MCQs, repeated questions, 4-mark and 12-mark exam preparation resources.">
-
-<meta name="keywords" content="BCA Notes, AKU Patna BCA Notes, BCA PYQ, AKU PYQ, BCA Syllabus, BCA MCQ, BCA Exam Preparation, BCA Semester Notes, Previous Year Questions">
-
-<meta name="author" content="Abdul Rahman">
-
-<link rel="canonical" href="https://arrahmanstudyhub.tech/">
-
-<meta property="og:title" content="BCA Notes Hub | AKU Patna">
-<meta property="og:description" content="Semester-wise BCA notes, PYQs, official syllabus, MCQs, repeated questions and exam-focused study resources for AKU Patna students.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://arrahmanstudyhub.tech/">
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BCA Notes Hub | AKU Patna">
-<meta name="twitter:description" content="BCA notes, PYQs, syllabus, MCQs and exam-focused resources for AKU Patna students.">
+    <title>BCA Notes Hub | Sem I–VI | Abdul Rahman</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -39,7 +14,7 @@
     />
     <link rel="stylesheet" href="style.css"/>
   </head>
-  
+
   <body>
     <!-- SPACE -->
     <div class="space">
@@ -238,6 +213,65 @@
     </div>
 
     <!-- ═══════════════════════════════════════
+     ROBOT VERIFICATION (first visit)
+════════════════════════════════════════ -->
+    <div class="robot-overlay" id="robotOverlay">
+      <div class="robot-card">
+        <div class="robot-icon-wrap">
+          <div class="robot-icon">🔒</div>
+        </div>
+        <h2 class="robot-title">Verify you are human</h2>
+        <p class="robot-sub">BCA Notes Hub · Abdul Rahman · AKU Patna</p>
+        <label class="robot-check-label" id="robotLabel">
+          <div class="robot-checkbox-wrap">
+            <input type="checkbox" id="robotCheckbox" onchange="onRobotCheck()"/>
+            <span class="robot-custom-check">
+              <i class="fa-solid fa-check robot-check-icon"></i>
+            </span>
+          </div>
+          <span class="robot-check-text">I'm not a robot</span>
+        </label>
+        <div class="robot-progress-wrap" id="robotProgress">
+          <div class="robot-progress-bar" id="robotBar"></div>
+          <span class="robot-progress-txt" id="robotTxt">Verifying…</span>
+        </div>
+        <p class="robot-footer-note">© 2026 Abdul Rahman — BCA Student Portal</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+     AI CHATBOT
+════════════════════════════════════════ -->
+    <button class="chatbot-fab" id="chatbotFab" onclick="toggleChatbot()" title="Rahman AI Assistant">
+      <i class="fa-solid fa-robot chatbot-fab-icon" id="chatFabIcon"></i>
+      <span class="chatbot-fab-pulse"></span>
+    </button>
+
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <div class="chatbot-header-left">
+          <div class="chatbot-avatar">🤖</div>
+          <div>
+            <div class="chatbot-name">Rahman AI Assistant</div>
+            <div class="chatbot-status"><span class="chatbot-dot"></span> Online</div>
+          </div>
+        </div>
+        <button class="chatbot-close" onclick="toggleChatbot()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="chatbot-msgs" id="chatbotMsgs"></div>
+      <div class="chatbot-input-wrap">
+        <input class="chatbot-input" id="chatbotInput" type="text"
+          placeholder="Ask about notes, syllabus, exams…"
+          onkeydown="if(event.key==='Enter')sendChat()"/>
+        <button class="chatbot-send" onclick="sendChat()">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
      DATA + JAVASCRIPT
 ════════════════════════════════════════ -->
     <script src="script.js"></script>
@@ -265,11 +299,11 @@
             <i class="fa-solid fa-user"></i>
             <span>Abdul Rahman</span>
           </div>
-          <a class="footer-contact-row footer-link" href="tel:+919341844755">
+          <a class="footer-contact-row footer-link" href="tel:+918936875243">
             <i class="fa-solid fa-phone"></i>
-            <span>+91-9341844755</span>
+            <span>+91-8936875243</span>
           </a>
-          <a class="footer-contact-row footer-link" href="https://wa.me/919341844755" target="_blank" rel="noopener">
+          <a class="footer-contact-row footer-link" href="https://wa.me/918936875243" target="_blank" rel="noopener">
             <i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
             <span>WhatsApp Chat</span>
           </a>
@@ -288,17 +322,23 @@
         <div class="footer-col">
           <div class="footer-col-title">Connect</div>
           <div class="footer-social-row">
-            <a class="footer-social-btn whatsapp" href="https://wa.me/919341844755" target="_blank" rel="noopener" title="WhatsApp">
+            <a class="footer-social-btn whatsapp" href="https://wa.me/918936875243" target="_blank" rel="noopener" title="WhatsApp">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a class="footer-social-btn github" href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+            <a class="footer-social-btn github" href="https://github.com/rahman97426" target="_blank" rel="noopener" title="GitHub">
               <i class="fa-brands fa-github"></i>
             </a>
-            <a class="footer-social-btn linkedin" href="https://linkedin.com/" target="_blank" rel="noopener" title="LinkedIn">
+            <a class="footer-social-btn linkedin" href="https://linkedin.com/in/arrahmanraza" target="_blank" rel="noopener" title="LinkedIn">
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a class="footer-social-btn email" href="mailto:abdulrahman@email.com" title="Email">
+            <a class="footer-social-btn email" href="mailto:arrahman97426@gmail.com" title="Email">
               <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a class="footer-social-btn facebook" href="https://www.facebook.com/Siddique.0086" target="_blank" rel="noopener" title="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a class="footer-social-btn instagram" href="https://www.instagram.com/zoha__.rahman_/" target="_blank" rel="noopener" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
           <p class="footer-tagline" style="margin-top:14px;font-size:.72rem;">Feel free to reach out for notes,<br>collaborations or study tips.</p>
