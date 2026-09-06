@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA-205 OS & UNIX — 20 Most Important Q&A | 16 Sept 2026</title>
+<style>
+:root{--navy:#0D1B4F;--blue:#1565C0;--dkblue:#0D47A1;--green:#1B5E20;
+--dkgrn:#2E7D32;--ltgrn:#E8F5E9;--red:#B71C1C;--ltred:#FFEBEE;
+--org:#E65100;--ltorg:#FFF3E0;--purp:#4A148C;--ltpur:#F3E5F5;
+--teal:#004D40;--yel:#F57F17;--ltyle:#FFFDE7;--gray:#F5F5F5;
+--gold:#F9A825;--ink:#1A1A1A;--ltblue:#E3F2FD;--maroon:#880E4F;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#08101e;color:#e2e8f0;min-height:100vh;}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0D1B4F 0%,#1565C0 60%,#4A148C 100%);
+padding:22px 16px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.6);}
+.header::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;
+background:radial-gradient(ellipse,rgba(249,168,37,.12) 0%,transparent 65%);
+animation:hbg 5s ease-in-out infinite;}
+@keyframes hbg{0%,100%{transform:scale(1) rotate(0deg);}50%{transform:scale(1.08) rotate(3deg);}}
+.header h1{font-size:1.9em;color:#fff;letter-spacing:2px;
+animation:glow 2.5s ease-in-out infinite alternate;position:relative;}
+@keyframes glow{from{text-shadow:0 0 8px #F9A825,0 0 18px #F9A825;}
+to{text-shadow:0 0 22px #F9A825,0 0 44px #F9A825,0 0 66px rgba(249,168,37,.4);}}
+.header .sub{color:#F9A825;font-size:1em;margin:8px 0;animation:fid 1s ease;position:relative;}
+@keyframes fid{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+.exam-badge{display:inline-block;background:linear-gradient(135deg,#B71C1C,#7F0000);
+color:#fff;padding:8px 22px;border-radius:30px;margin-top:10px;font-weight:700;
+animation:bounce 2.2s ease-in-out infinite;font-size:.95em;position:relative;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* SEARCH */
+.search-wrap{background:#0f172a;padding:10px 16px;display:flex;align-items:center;gap:8px;
+border-bottom:1px solid #1e293b;}
+.search-bar{flex:1;background:#1e293b;border:1.5px solid #1565C0;border-radius:25px;
+padding:8px 18px;color:#e2e8f0;font-size:.9em;outline:none;max-width:440px;
+transition:border-color .3s,box-shadow .3s;}
+.search-bar::placeholder{color:#64748b;}
+.search-bar:focus{border-color:#F9A825;box-shadow:0 0 12px rgba(249,168,37,.35);}
+.q-count{color:#64748b;font-size:.82em;white-space:nowrap;}
+
+/* NAV */
+.nav{background:#0f172a;display:flex;flex-wrap:wrap;gap:4px;padding:10px 12px;
+position:sticky;top:0;z-index:200;border-bottom:2px solid #F9A825;}
+.nav button{background:#1e293b;color:#94a3b8;border:1.5px solid transparent;
+padding:7px 13px;border-radius:8px;cursor:pointer;font-size:.8em;font-weight:600;
+transition:all .25s;}
+.nav button:hover{background:#0D47A1;color:#fff;border-color:#F9A825;transform:translateY(-2px);}
+.nav button.active{background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;
+border-color:#F9A825;box-shadow:0 0 16px rgba(21,101,192,.55);}
+
+/* PANELS */
+.panel{display:none;padding:16px;animation:fadeIn .35s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTION HEADER */
+.sec-hdr{background:linear-gradient(135deg,#004D40,#00695C);border-radius:12px;
+padding:13px 18px;margin-bottom:14px;border-left:5px solid #F9A825;position:relative;}
+.sec-hdr h2{color:#fff;font-size:1.25em;}
+.sec-hdr p{color:#B0BEC5;font-size:.82em;margin-top:3px;}
+
+/* Q BLOCK */
+.q-block{background:#0f172a;border-radius:11px;margin-bottom:18px;overflow:hidden;
+border:1px solid #1e293b;transition:transform .2s,box-shadow .2s;}
+.q-block:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(21,101,192,.28);}
+.q-block.hidden{display:none;}
+
+/* Q HEAD */
+.q-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;
+border-bottom:2px solid rgba(249,168,37,.3);}
+.q-head.red{background:linear-gradient(135deg,#7F0000,#B71C1C);}
+.q-head.blue{background:linear-gradient(135deg,#0D47A1,#1565C0);}
+.q-head.purp{background:linear-gradient(135deg,#4A148C,#6A1B9A);}
+.q-head.teal{background:linear-gradient(135deg,#004D40,#00695C);}
+.q-head.org{background:linear-gradient(135deg,#E65100,#F57F17);}
+.marks{background:#F9A825;color:#000;font-weight:700;padding:3px 12px;
+border-radius:12px;font-size:.82em;white-space:nowrap;}
+.stars{color:#F9A825;font-size:.9em;white-space:nowrap;}
+.q-num{color:rgba(255,255,255,.7);font-size:.82em;white-space:nowrap;}
+.q-text{color:#fff;font-size:.98em;font-weight:600;flex:1;min-width:200px;}
+
+/* ANS BOX */
+.ans-box{background:#08101e;border-left:5px solid #1565C0;padding:15px 17px;}
+.ans-lbl{color:#90CAF9;font-size:.76em;font-weight:700;margin-bottom:10px;
+letter-spacing:1.2px;text-transform:uppercase;}
+.ans-box p{color:#e2e8f0;font-size:.9em;line-height:1.75;margin-bottom:7px;}
+.ans-box b{color:#93C5FD;}
+.ans-box ul,.ans-box ol{padding-left:22px;margin-bottom:9px;}
+.ans-box li{color:#cbd5e1;font-size:.9em;line-height:1.65;margin-bottom:4px;}
+.ans-box li b{color:#93C5FD;}
+.ans-box pre{background:#0d1b2e;border:1px solid #1565C0;border-radius:8px;
+padding:13px;color:#a5d6a7;font-family:'Consolas',monospace;font-size:.82em;
+overflow-x:auto;margin:9px 0;white-space:pre-wrap;line-height:1.55;}
+.ans-box code{background:#1e3a5f;padding:1px 6px;border-radius:4px;
+color:#90CAF9;font-family:'Consolas',monospace;font-size:.88em;}
+.ans-box .conc{background:#0a2040;border-left:4px solid #F9A825;padding:9px 13px;
+margin-top:10px;border-radius:4px;color:#fde68a;font-size:.88em;}
+
+/* TABLE */
+.ntbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.83em;}
+.ntbl th{background:#0D47A1;color:#fff;padding:8px 10px;text-align:left;}
+.ntbl td{padding:7px 10px;border-bottom:1px solid #1e293b;color:#cbd5e1;}
+.ntbl tr:nth-child(even) td{background:#0f172a;}
+.ntbl tr:hover td{background:#1e293b;}
+
+/* HINGLISH */
+.hin-box{background:#130f00;border-left:5px solid #F9A825;padding:11px 16px;}
+.hin-lbl{color:#F9A825;font-size:.76em;font-weight:700;margin-bottom:7px;letter-spacing:1px;}
+.hin-box p{color:#fef3c7;font-size:.87em;line-height:1.6;}
+
+/* TRICK */
+.trick-box{background:#150800;border-left:5px solid #E65100;padding:10px 16px;
+display:flex;gap:10px;align-items:flex-start;}
+.trick-box .ic{font-size:1.1em;flex-shrink:0;margin-top:1px;}
+.trick-box p{color:#fed7aa;font-size:.87em;line-height:1.55;}
+.trick-box b{color:#fb923c;}
+
+/* PYQ */
+.pyq-box{background:#130005;border:1px solid #B71C1C;border-left:5px solid #ef4444;
+border-radius:8px;padding:9px 14px;margin-top:9px;display:flex;gap:9px;
+animation:pb 2.5s ease-in-out infinite;}
+@keyframes pb{0%,100%{border-left-color:#B71C1C;}50%{border-left-color:#ef4444;}}
+.pyq-box .ic{font-size:1.1em;flex-shrink:0;}
+.pyq-box p{color:#fca5a5;font-size:.83em;line-height:1.55;}
+.pyq-box b{color:#f87171;}
+
+/* DIAGRAM */
+.diag-box{background:#051209;border-left:5px solid #2E7D32;padding:12px 16px;}
+.diag-lbl{color:#86efac;font-size:.76em;font-weight:700;margin-bottom:9px;letter-spacing:1px;}
+.diag-box pre{color:#86efac;font-family:'Consolas',monospace;font-size:.8em;line-height:1.45;white-space:pre-wrap;}
+
+/* FLOATING */
+.fab{position:fixed;bottom:22px;right:18px;background:linear-gradient(135deg,#B71C1C,#7F0000);
+color:#fff;padding:11px 18px;border-radius:28px;font-size:.83em;font-weight:700;
+box-shadow:0 4px 18px rgba(183,28,28,.55);animation:float 3.2s ease-in-out infinite;z-index:999;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:#0f172a;}
+::-webkit-scrollbar-thumb{background:#1565C0;border-radius:3px;}
+
+/* PRINT */
+@media print{.nav,.fab,.search-wrap{display:none!important;}
+.panel{display:block!important;}.q-block{break-inside:avoid;page-break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<div class="fab">📅 EXAM: 16 SEPT 2026</div>
+
+<div class="header">
+  <h1>BCA-205: Operating System &amp; UNIX</h1>
+  <p class="sub">20 Most Important Questions | Complete Exam Answers | AKU Patna</p>
+  <div class="exam-badge">📅 16 September 2026 | 10:00 AM – 1:00 PM | 60 Marks | Paper Code: 303205</div>
+</div>
+
+<div class="search-wrap">
+  <input class="search-bar" id="search" type="text" placeholder="🔍 Search questions (e.g. 'paging', 'deadlock', 'semaphore')..." oninput="document.querySelector('[onclick*=all]').click();filterQ()">
+  <span class="q-count" id="qcount">20 questions</span>
+</div>
+
+<div class="nav">
+<button class="active" onclick="show('home',this)">🏠 Overview</button>
+<button onclick="show('secA',this)">Sec A: Introduction to OS</button>
+<button onclick="show('secB',this)">Sec B: Process Management</button>
+<button onclick="show('secC',this)">Sec C: Synchronization</button>
+<button onclick="show('secD',this)">Sec D: Deadlock</button>
+<button onclick="show('secE',this)">Sec E: Memory Management</button>
+<button onclick="show('secF',this)">Sec F: UNIX/Linux Intro</button>
+<button onclick="show('secG',this)">Sec G: File System & Permis</button>
+<button onclick="show('secH',this)">Sec H: I/O, Shell & vi Edit</button>
+<button onclick="show('all',this)">📚 All 20 Q</button>
+<button onclick="show('rev',this)">⚡ Revision</button>
+
+</div>
+
+
+<div id="home" class="panel active">
+  <div class="sec-hdr">
+    <h2>📋 Overview — 20 Most Important Questions</h2>
+    <p>BCA-205 Operating System & UNIX | AKU Patna | 16 Sept 2026 | 60 Marks</p>
+  </div>
+  <table class="ntbl">
+    <tr><th>Q#</th><th>Section</th><th>Topic</th><th>Marks</th><th>Stars</th></tr><tr><td>Q1</td><td>Sec A</td>
+<td>Define an Operating System. Explain its functions, objectives, and maj...</td><td>8M</td><td>★★</td></tr><tr><td>Q2</td><td>Sec A</td>
+<td>Explain different types of Operating Systems: Batch, Multiprogramming,...</td><td>8M</td><td>★★</td></tr><tr><td>Q3</td><td>Sec B</td>
+<td>What is a process? Explain the process states and Process Control Bloc...</td><td>12M</td><td>★★★</td></tr><tr><td>Q4</td><td>Sec B</td>
+<td>Explain CPU scheduling. Describe FCFS, SJF, Priority and Round Robin s...</td><td>12M</td><td>★★★</td></tr><tr><td>Q5</td><td>Sec B</td>
+<td>What is a thread? Explain the types of threads and differentiate betwe...</td><td>8M</td><td>★★</td></tr><tr><td>Q6</td><td>Sec C</td>
+<td>What is the critical-section problem? Explain its requirements and sol...</td><td>8M</td><td>★★</td></tr><tr><td>Q7</td><td>Sec C</td>
+<td>What is a semaphore? Explain binary and counting semaphores with suita...</td><td>8M</td><td>★★</td></tr><tr><td>Q8</td><td>Sec D</td>
+<td>What is deadlock? Explain the four necessary conditions for deadlock w...</td><td>12M</td><td>★★★★</td></tr><tr><td>Q9</td><td>Sec D</td>
+<td>Explain deadlock prevention, avoidance, detection and recovery techniq...</td><td>12M</td><td>★★★</td></tr><tr><td>Q10</td><td>Sec D</td>
+<td>Explain the Banker's Algorithm for deadlock avoidance with a suitable ...</td><td>12M</td><td>★★★★</td></tr><tr><td>Q11</td><td>Sec E</td>
+<td>Explain memory management and discuss different memory allocation tech...</td><td>8M</td><td>★★</td></tr><tr><td>Q12</td><td>Sec E</td>
+<td>Explain paging and segmentation. Differentiate between paging and segm...</td><td>12M</td><td>★★★</td></tr><tr><td>Q13</td><td>Sec E</td>
+<td>What is virtual memory? Explain demand paging and its advantages....</td><td>12M</td><td>★★★</td></tr><tr><td>Q14</td><td>Sec E</td>
+<td>Explain page replacement algorithms: FIFO, LRU and Optimal. Give suita...</td><td>12M</td><td>★★★</td></tr><tr><td>Q15</td><td>Sec F</td>
+<td>What is UNIX? Explain its features, architecture and major components....</td><td>8M</td><td>★★</td></tr><tr><td>Q16</td><td>Sec F</td>
+<td>Explain the following UNIX commands with syntax and examples: ls, cd, ...</td><td>10M</td><td>★★★</td></tr><tr><td>Q17</td><td>Sec G</td>
+<td>Explain the UNIX file system hierarchy. What are absolute and relative...</td><td>8M</td><td>★★</td></tr><tr><td>Q18</td><td>Sec G</td>
+<td>Explain file permissions in UNIX. Describe chmod, chown and chgrp comm...</td><td>8M</td><td>★★</td></tr><tr><td>Q19</td><td>Sec H</td>
+<td>What is I/O redirection and piping in UNIX? Explain >, >>, < and | wit...</td><td>10M</td><td>★★★</td></tr><tr><td>Q20</td><td>Sec H</td>
+<td>Explain the vi editor and UNIX shell. Discuss vi modes, insertion/dele...</td><td>12M</td><td>★★★★</td></tr>
+  </table>
+  <div class="pyq-box" style="margin-top:14px"><span class="ic">🎯</span>
+  <p><b>EXAM STRATEGY:</b> Q1(2×6=12M) + Q2(4×3=12M) = 24 fixed marks. Then pick 3 long questions = 36M.
+  Target: CPU Scheduling + Deadlock/Paging + Linux/vi = 60 marks!<br>
+  <b>★★★★</b> = 12M must-do | <b>★★★</b> = 12M very imp | <b>★★</b> = 8M important | <b>★</b> = 5M good to do</p></div>
+</div>
+<div id="secA" class="panel">
+  <div class="sec-hdr">
+    <h2>Section A: Unit 1 — Introduction to OS</h2>
+    <p>OS Definition | Types | Functions | Objectives</p>
+  </div>
+<div class="q-block" id="q1" data-text="define an operating system. explain its functions, objectives, and major services. 
+<p><b>definition:</b> an operating system (os) is system software that acts as an interface between">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q1 | Sec A</span>
+    <span class="q-text">Define an Operating System. Explain its functions, objectives, and major services.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Definition:</b> An Operating System (OS) is system software that acts as an interface between the user and computer hardware. It manages all hardware resources (CPU, memory, I/O devices, files) and provides services to user programs and users.</p>
+<p><b>Example:</b> Windows 11, Linux (Ubuntu), Android, macOS, iOS, UNIX</p>
+<p><b>Objectives of OS:</b></p>
+<ol><li><b>Convenience:</b> Make computer easier to use — user does not need to know hardware details.</li>
+<li><b>Efficiency:</b> Manage resources efficiently — maximize CPU utilization, minimize waste.</li>
+<li><b>Ability to Evolve:</b> Allow development of new system functions without interfering with existing ones.</li></ol>
+<p><b>Major Functions of OS (PIFCERP):</b></p>
+<ol><li><b>Process Management:</b> Creates, schedules and terminates processes. Allocates CPU time using scheduling algorithms (FCFS, SJF, RR).</li>
+<li><b>I/O Operations:</b> Controls input/output devices through device drivers. Handles keyboard, mouse, printer, disk.</li>
+<li><b>File Management:</b> Creates, reads, writes, deletes files and directories. Manages file permissions and directory structure.</li>
+<li><b>Communication:</b> Allows processes to exchange data — same machine (shared memory, pipes) or network (sockets).</li>
+<li><b>Error Detection:</b> Monitors CPU, memory, I/O for errors. Takes corrective action (App crash = OS handled it).</li>
+<li><b>Resource Allocation:</b> Distributes CPU, memory, I/O among multiple processes efficiently.</li>
+<li><b>Protection &amp; Security:</b> Prevents unauthorized access. User authentication (passwords, biometrics). File permissions.</li></ol>
+<p><b>Major OS Services:</b></p>
+<ul><li><b>Program Execution</b> — loads and runs programs</li>
+<li><b>I/O Operations</b> — handles all device communication</li>
+<li><b>File System Manipulation</b> — file create/read/write/delete</li>
+<li><b>Error Detection</b> — handles hardware and software errors</li>
+<li><b>Resource Allocation</b> — CPU, memory, disk allocation</li>
+<li><b>Accounting</b> — tracks resource usage (billing in shared systems)</li></ul>
+<div class="conc"><b>Conclusion:</b> The OS is the most essential software in a computer. Without OS, hardware cannot be used. It acts as manager, translator and security guard of the entire computer system.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>OS = School ka Principal! Students (Users) maangte hain → Principal (OS) manage karta hai → Classrooms + Teachers (Hardware). PIFCERP = 7 functions ka shortcut!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> PIFCERP = Process, I/O, File, Communication, Error, Resource, Protection — 7 OS Functions!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M): OS Services | 2018(12M): OS with diagram | 2020(10M): OS types + functions | 2022(5M): OS objectives</p>
+  </div>
+</div>
+
+<div class="q-block" id="q2" data-text="explain different types of operating systems: batch, multiprogramming, multitasking, time-sharing, real-time and distributed os. 
+<p><b>1. batch operating system:</b></p>
+<ul><li>jobs collected and processed in batches without us">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q2 | Sec A</span>
+    <span class="q-text">Explain different types of Operating Systems: Batch, Multiprogramming, Multitasking, Time-Sharing, Real-Time and Distributed OS.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>1. Batch Operating System:</b></p>
+<ul><li>Jobs collected and processed in batches without user interaction.</li>
+<li>Operator groups similar jobs together and submits to computer.</li>
+<li>Disadvantage: No user interaction. Long waiting time.</li>
+<li><b>Example:</b> Early IBM mainframes, Payroll processing.</li></ul>
+<p><b>2. Multiprogramming OS:</b></p>
+<ul><li>Multiple programs kept in memory simultaneously.</li>
+<li>When one program waits for I/O, CPU switches to another.</li>
+<li>Goal: Maximize CPU utilization — CPU never idle!</li>
+<li><b>Example:</b> UNIX — antivirus runs while Word is open.</li></ul>
+<p><b>3. Multitasking OS:</b></p>
+<ul><li>Multiple tasks executed simultaneously with CPU switching rapidly.</li>
+<li>Extension of multiprogramming with time-sharing concept.</li>
+<li>User can switch between applications smoothly.</li>
+<li><b>Example:</b> Modern Windows — browser + music + chat simultaneously.</li></ul>
+<p><b>4. Time-Sharing OS:</b></p>
+<ul><li>CPU time divided into fixed intervals called time slices (quantum).</li>
+<li>Each user/process gets one slice in circular rotation.</li>
+<li>So fast that every user feels the computer is dedicated to them.</li>
+<li>Goal: Minimize response time.</li>
+<li><b>Example:</b> IRCTC handles lakhs of users simultaneously.</li></ul>
+<p><b>5. Real-Time OS (RTOS):</b></p>
+<ul><li><b>Hard Real-Time:</b> Deadline miss = Complete system failure. Ex: Pacemaker, missile guidance, aircraft autopilot, nuclear reactor.</li>
+<li><b>Soft Real-Time:</b> Deadline miss = Performance degradation, not failure. Ex: Video streaming, gaming, ATM.</li>
+<li>Algorithms: Rate Monotonic (RM), Earliest Deadline First (EDF).</li></ul>
+<p><b>6. Distributed OS:</b></p>
+<ul><li>Multiple computers connected over a network work as a single unified system.</li>
+<li>Resources shared across network. Users see a single coherent system.</li>
+<li><b>Example:</b> Google's distributed computing, cloud computing.</li></ul>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Batch=Khana batches mein banana (no interaction). Multi=CPU kabhi idle nahi. Time-sharing=Canteen counter (sabko turn). Hard RT=Zindagi ka sawaal (pacemaker). Distributed=Sab mila ke ek!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> B-M-M-T-R-D = Batch, Multiprogramming, Multitasking, Time-sharing, Real-time, Distributed — 6 types!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2020(10M): OS types with examples | 2018(5M): Batch vs Time-sharing | 2022(5M): Real-Time OS types</p>
+  </div>
+</div>
+</div>
+
+<div id="secB" class="panel">
+  <div class="sec-hdr">
+    <h2>Section B: Unit 2 — Process Management</h2>
+    <p>Process | PCB | States | CPU Scheduling | Threads</p>
+  </div>
+<div class="q-block" id="q3" data-text="what is a process? explain the process states and process control block (pcb) with a suitable diagram. 
+<p><b>process:</b> a process is a program in execution. it is more than just code — it includes the">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q3 | Sec B</span>
+    <span class="q-text">What is a process? Explain the process states and Process Control Block (PCB) with a suitable diagram.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Process:</b> A process is a program in execution. It is more than just code — it includes the program counter, CPU registers, stack, heap and data section. The OS manages processes through PCB.</p>
+<p><b>Components of a Process:</b></p>
+<ul><li><b>Text Section:</b> Program code (instructions)</li>
+<li><b>Data Section:</b> Global variables</li>
+<li><b>Stack:</b> Function parameters, return addresses, local variables</li>
+<li><b>Heap:</b> Dynamically allocated memory</li>
+<li><b>Program Counter (PC):</b> Address of next instruction to execute</li></ul>
+<p><b>PCB — Process Control Block:</b> Data structure maintained by OS for each process. Acts as the process's identity card.</p>
+<p><b>PCB Contents:</b></p>
+<ol><li><b>Process ID (PID):</b> Unique identifier for each process.</li>
+<li><b>Process State:</b> Current state (New/Ready/Running/Waiting/Terminated).</li>
+<li><b>Program Counter:</b> Address of next instruction.</li>
+<li><b>CPU Registers:</b> Accumulator, index registers, stack pointer values.</li>
+<li><b>Memory Management Info:</b> Base/limit registers, page table pointers.</li>
+<li><b>Open Files List:</b> Files currently opened by process.</li>
+<li><b>Scheduling Information:</b> Priority, queue pointers, scheduling algorithm data.</li>
+<li><b>I/O Status Information:</b> Allocated I/O devices, pending I/O requests.</li></ol>
+<p><b>Five Process States:</b></p>
+<ol><li><b>New:</b> Process is being created. fork() system call invoked.</li>
+<li><b>Ready:</b> Process is in memory and waiting to be assigned the CPU.</li>
+<li><b>Running:</b> Process instructions are currently being executed on CPU.</li>
+<li><b>Waiting/Blocked:</b> Process waiting for I/O operation or event to occur.</li>
+<li><b>Terminated:</b> Process has finished execution. exit() called. Resources reclaimed.</li></ol>
+<p><b>Context Switch:</b> When CPU switches from one process to another. Save current PCB → Load next PCB. Pure overhead — no useful work during switch!</p>
+<p><b>Types of Schedulers:</b></p>
+<ul><li><b>Long-term (Job) Scheduler:</b> Controls multiprogramming degree. New → Ready. Slow.</li>
+<li><b>Short-term (CPU) Scheduler:</b> Selects from ready queue. Most important. Milliseconds.</li>
+<li><b>Medium-term (Swapper):</b> Swaps processes in/out of memory.</li></ul>
+<div class="conc"><b>Conclusion:</b> PCB is the identity card of a process. The five-state model describes the complete process lifecycle. Context switching enables multitasking but adds overhead.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PROCESS STATE DIAGRAM (Draw this in exam!):
+
+   New ──(admit)──▶ Ready ◀──(I/O complete)──── Waiting
+                      │                              ▲
+               (dispatch/CPU)                        │
+                      │                       (I/O request)
+                      ▼                              │
+                   Running ─────────────────────────┘
+                      │
+                   (exit)
+                      ▼
+                 Terminated
+
+PCB STRUCTURE:
+┌─────────────────────┐
+│  Process ID (PID)   │
+├─────────────────────┤
+│  Process State      │
+├─────────────────────┤
+│  Program Counter    │
+├─────────────────────┤
+│  CPU Registers      │
+├─────────────────────┤
+│  Memory Management  │
+├─────────────────────┤
+│  Open Files List    │
+├─────────────────────┤
+│  Scheduling Info    │
+└─────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>NRRWT = 5 states. PCB = Process ka Aadhar Card! LSM = 3 schedulers. Context switch = state save karna — overhead hai! Process = Running program.</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> NRRWT = New,Ready,Running,Waiting,Terminated. PCB = PID+State+PC+Reg+Mem+Files+Sched!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M): Process states diagram | 2017(5M): PCB contents | 2019(8M): Process vs Thread | 2022(10M): Complete process concept</p>
+  </div>
+</div>
+
+<div class="q-block" id="q4" data-text="explain cpu scheduling. describe fcfs, sjf, priority and round robin scheduling algorithms with suitable examples. 
+<p><b>cpu scheduling:</b> the process of selecting a process from the ready queue and allocating th">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q4 | Sec B</span>
+    <span class="q-text">Explain CPU scheduling. Describe FCFS, SJF, Priority and Round Robin scheduling algorithms with suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>CPU Scheduling:</b> The process of selecting a process from the ready queue and allocating the CPU to it. Done by the Short-term Scheduler in milliseconds.</p>
+<p><b>Scheduling Criteria:</b> CPU Utilization (↑ maximize), Throughput (↑), Turnaround Time (↓ minimize), Waiting Time (↓), Response Time (↓).</p>
+<p><b>Formulae:</b> Turnaround Time (TT) = Completion Time − Arrival Time | Waiting Time (WT) = TT − Burst Time</p>
+<p><b>1. FCFS — First Come First Served:</b></p>
+<ul><li>Rule: Process arriving first gets CPU first. <b>Non-preemptive.</b></li>
+<li>Problem: <b>Convoy Effect</b> — long process blocks all short ones behind it.</li></ul>
+<pre>P1(BT=24), P2(BT=3), P3(BT=3), all arrive at t=0
+Gantt: |————P1(0–24)————|—P2(24–27)—|—P3(27–30)—|
+WT: P1=0, P2=24, P3=27 → Avg WT = (0+24+27)/3 = 17ms</pre>
+<p><b>2. SJF — Shortest Job First:</b></p>
+<ul><li>Rule: Process with shortest burst time runs first. <b>Non-preemptive</b> (basic).</li>
+<li>Gives <b>minimum average waiting time</b> among non-preemptive algorithms.</li>
+<li>Problem: <b>Starvation</b> — long processes may never run. Fix: <b>Aging.</b></li></ul>
+<pre>SJF Order: P2(3ms) → P3(3ms) → P1(24ms)
+Gantt: |—P2(0–3)—|—P3(3–6)—|————P1(6–30)————|
+WT: P2=0, P3=3, P1=6 → Avg WT = (0+3+6)/3 = 3ms ← MUCH BETTER!</pre>
+<p><b>3. Priority Scheduling:</b></p>
+<ul><li>Rule: Process with highest priority (lowest priority number) runs first.</li>
+<li>Can be preemptive or non-preemptive.</li>
+<li>Problem: Starvation of low-priority processes. Fix: <b>Aging</b> (increase priority with waiting time).</li>
+<li><b>Example:</b> P1(Priority=3), P2(Priority=1), P3(Priority=2) → Order: P2 → P3 → P1</li></ul>
+<p><b>4. Round Robin (RR) — Best for Time-Sharing:</b></p>
+<ul><li>Rule: Each process gets a fixed time quantum (10–100ms) in circular rotation. <b>Preemptive.</b></li>
+<li><b>Advantages:</b> Fair, No starvation, Best for time-sharing/interactive systems.</li>
+<li><b>Disadvantage:</b> High context switch overhead if quantum too small.</li></ul>
+<pre>Quantum=4ms, P1(24ms), P2(3ms), P3(3ms), all arrive at 0
+Gantt: |P1-4|P2-3|P3-3|P1-4|P1-4|P1-4|P1-4|P1-4|
+        0    4    7   10   14   18   22   26   30
+WT: P2=4, P3=7, P1=6 → Avg WT = (4+7+6)/3 = 5.67ms</pre>
+<table class="ntbl">
+<tr><th>Algorithm</th><th>Preemptive?</th><th>Best For</th><th>Main Problem</th></tr>
+<tr><td>FCFS</td><td>No</td><td>Simple batch</td><td>Convoy effect</td></tr>
+<tr><td>SJF</td><td>No</td><td>Min avg wait time</td><td>Starvation</td></tr>
+<tr><td>Priority</td><td>Optional</td><td>Critical tasks first</td><td>Starvation</td></tr>
+<tr><td>Round Robin ✅</td><td>Yes</td><td>Time-sharing BEST</td><td>Context switch overhead</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Round Robin is the best algorithm for time-sharing systems as it is fair, preemptive and avoids starvation. SJF gives minimum average waiting time but may cause starvation.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>FCFS=Queue(convoy effect). SJF=Shortest first(starvation). Priority=VIP first(starvation). RR=Rotation(BEST!). TT=CT-AT. WT=TT-BT yaad karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> FSP-R = FCFS, SJF, Priority, Round Robin. Only RR = No Starvation + Fair + Preemptive = BEST TIME-SHARING!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2024(12M): FCFS+SJF+RR Gantt | 2022(8M): RR quantum=3 | 2020(10M): All algorithms | 2019(12M): With numericals</p>
+  </div>
+</div>
+
+<div class="q-block" id="q5" data-text="what is a thread? explain the types of threads and differentiate between a process and a thread. 
+<p><b>thread:</b> a thread is the smallest unit of cpu execution within a process. multiple threads">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q5 | Sec B</span>
+    <span class="q-text">What is a thread? Explain the types of threads and differentiate between a process and a thread.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Thread:</b> A thread is the smallest unit of CPU execution within a process. Multiple threads in the same process share the same memory space, code and data. Threads are also called <b>Lightweight Processes (LWP)</b>.</p>
+<p><b>Types of Threads:</b></p>
+<p><b>1. User Level Threads (ULT):</b></p>
+<ul><li>Managed by user-space libraries (e.g., POSIX Pthreads). OS is not aware of them.</li>
+<li>Fast creation and context switching.</li>
+<li>Disadvantage: If one thread makes a blocking system call, ALL threads in the process block.</li>
+<li><b>Example:</b> Java threads (Green threads), POSIX pthreads.</li></ul>
+<p><b>2. Kernel Level Threads (KLT):</b></p>
+<ul><li>Directly managed by the OS kernel.</li>
+<li>If one thread blocks, others can continue running independently.</li>
+<li>Slower creation but more reliable and better parallelism.</li>
+<li><b>Example:</b> Windows threads, Linux clone().</li></ul>
+<p><b>3. Hybrid Threads:</b></p>
+<ul><li>Combination of ULT and KLT. Many user threads mapped to many kernel threads.</li>
+<li>Best performance and flexibility.</li>
+<li><b>Example:</b> Solaris OS.</li></ul>
+<p><b>Advantages of Threads:</b> Responsiveness, Resource Sharing, Economy (cheaper than processes), Scalability (use multiple CPUs).</p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Process</th><th>Thread</th></tr>
+<tr><td>Definition</td><td>Program in execution</td><td>Smallest execution unit</td></tr>
+<tr><td>Memory</td><td>Separate address space</td><td>Shared with other threads</td></tr>
+<tr><td>Communication</td><td>IPC needed (complex)</td><td>Direct shared memory (fast)</td></tr>
+<tr><td>Creation Time</td><td>Slow (heavy)</td><td>Fast (lightweight)</td></tr>
+<tr><td>Context Switch</td><td>Expensive</td><td>Cheap</td></tr>
+<tr><td>Crash Effect</td><td>Other processes safe</td><td>Whole process may crash</td></tr>
+<tr><td>Example</td><td>Chrome browser</td><td>Each Chrome tab</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Threads enable efficient concurrent execution within a process. ULT is fast but ULT blocking is a problem. KLT is reliable. Hybrid combines best of both.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Thread = Process ka employee! Office(Process)=Reliance. Employees(Threads)=HR,Finance,Marketing — sab same office share karte hain. Chrome=process, each tab=thread!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Thread = RRES advantages: Responsiveness, Resource sharing, Economy, Scalability. ULT=fast but blocks all. KLT=reliable.</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2018(7M): Thread types | 2020(10M): Thread+IPC | 2021(5M): Process vs Thread | 2023(5M): Thread advantages</p>
+  </div>
+</div>
+</div>
+
+<div id="secC" class="panel">
+  <div class="sec-hdr">
+    <h2>Section C: Unit 2 — Synchronization</h2>
+    <p>Critical Section | Semaphores | Classical Problems</p>
+  </div>
+<div class="q-block" id="q6" data-text="what is the critical-section problem? explain its requirements and solutions. 
+<p><b>process synchronization:</b> when multiple processes access shared data concurrently, we must">
+  <div class="q-head purp">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q6 | Sec C</span>
+    <span class="q-text">What is the critical-section problem? Explain its requirements and solutions.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Process Synchronization:</b> When multiple processes access shared data concurrently, we must ensure correct execution to maintain data consistency.</p>
+<p><b>Race Condition:</b> Multiple processes access and modify shared data simultaneously → result depends on execution order → incorrect results!</p>
+<p><b>Example:</b> P1 reads balance=5000, P2 reads balance=5000. P1 adds 1000→6000. P2 adds 2000→7000. Should be 8000! <b>This is a race condition.</b></p>
+<p><b>Critical Section:</b> The segment of code that accesses shared resources (shared variables, files, I/O devices). Only <b>ONE process</b> must be in the critical section at a time.</p>
+<p><b>Structure of Critical Section Solution:</b></p>
+<pre>ENTRY SECTION        ← Request permission to enter
+  CRITICAL SECTION   ← Access shared resource here
+EXIT SECTION         ← Release permission
+  REMAINDER SECTION  ← Non-critical code</pre>
+<p><b>Three Requirements for CS Solution:</b></p>
+<ol><li><b>Mutual Exclusion:</b> Only one process can be in the critical section at any given time.</li>
+<li><b>Progress:</b> If no process is in the CS, any process requesting entry must be allowed to enter without indefinite delay. Selection cannot be postponed indefinitely.</li>
+<li><b>Bounded Waiting:</b> A limit must exist on the number of times other processes can enter CS after a process has requested entry. No process waits forever.</li></ol>
+<p><b>Solutions:</b></p>
+<ul><li><b>Software Solutions:</b> Peterson's Algorithm — uses two variables (turn, flag[]).</li>
+<li><b>Hardware Solutions:</b> test_and_set(), compare_and_swap() instructions.</li>
+<li><b>OS Solutions:</b> Semaphores (most important!), Mutex locks, Monitors.</li></ul>
+<div class="conc"><b>Conclusion:</b> The critical section problem ensures data consistency in concurrent systems. The three requirements (mutual exclusion, progress, bounded waiting) must all be satisfied for a correct solution.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>CS = ATM machine ka andar! Ek waqt pe ek transaction sirf! Race condition = bank balance problem! MBP = 3 rules yaad karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> MBP = Mutual exclusion, Bounded waiting, Progress — 3 CS requirements. ATM = perfect critical section example!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M): CS problem | 2019(5M): 3 requirements | 2021(5M): Race condition + CS | 2023(3M): Critical section</p>
+  </div>
+</div>
+
+<div class="q-block" id="q7" data-text="what is a semaphore? explain binary and counting semaphores with suitable examples. 
+<p><b>semaphore:</b> a semaphore is an integer variable used for process synchronization. it suppor">
+  <div class="q-head purp">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q7 | Sec C</span>
+    <span class="q-text">What is a semaphore? Explain binary and counting semaphores with suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Semaphore:</b> A semaphore is an integer variable used for process synchronization. It supports two atomic operations: <b>wait()</b> and <b>signal()</b>.</p>
+<p><b>Operations:</b></p>
+<ul><li><b>wait(S) / P(S):</b> S = S − 1; if S &lt; 0 → block the process (LOCK the resource)</li>
+<li><b>signal(S) / V(S):</b> S = S + 1; if S ≤ 0 → wake up one blocked process (UNLOCK)</li></ul>
+<p><b>Both operations must be atomic</b> — cannot be interrupted during execution!</p>
+<p><b>1. Binary Semaphore (Mutex):</b></p>
+<ul><li>Value is either 0 (locked) or 1 (unlocked) only.</li>
+<li>Used for mutual exclusion — ensuring only one process in critical section.</li>
+<li>Initialized to 1.</li></ul>
+<pre>mutex = 1   (initially unlocked)
+Process P1:  wait(mutex) → mutex=0 → Enter CS → signal(mutex) → mutex=1
+Process P2:  wait(mutex) → mutex=-1 → BLOCKED! Waits until P1 signals.
+When P1 signals: P2 wakes up → enters CS</pre>
+<p><b>2. Counting Semaphore:</b></p>
+<ul><li>Value ranges from 0 to N (unrestricted integer).</li>
+<li>Used when N instances of a resource are available.</li>
+<li>Tracks count of available resource instances.</li></ul>
+<pre>Example: Parking lot with 10 spaces. semaphore = 10
+Car enters: wait(S) → S decreases (9,8,7...0)
+Car leaves: signal(S) → S increases
+If S = 0: Next car BLOCKS until someone leaves!</pre>
+<p><b>Producer-Consumer Problem using Semaphores:</b></p>
+<pre>Semaphores: mutex=1 (critical section), full=0, empty=N (buffer size)
+Producer:  wait(empty) → wait(mutex) → ADD item → signal(mutex) → signal(full)
+Consumer:  wait(full)  → wait(mutex) → REMOVE item → signal(mutex) → signal(empty)</pre>
+<p><b>Semaphore vs Mutex:</b></p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Binary Semaphore (Mutex)</th><th>Counting Semaphore</th></tr>
+<tr><td>Value range</td><td>0 or 1 only</td><td>0 to N (any integer)</td></tr>
+<tr><td>Use case</td><td>Mutual exclusion</td><td>Resource counting</td></tr>
+<tr><td>Who can signal</td><td>Typically only owner</td><td>Any process</td></tr>
+<tr><td>Example</td><td>Bathroom key (one at a time)</td><td>Parking lot (N spaces)</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Semaphores are a versatile synchronization mechanism. wait() = lock, signal() = unlock. Binary semaphore ensures mutual exclusion. Counting semaphore manages resource pools.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Semaphore = Traffic Light! P()=Red=Lock=S-1. V()=Green=Unlock=S+1. Binary=0 ya 1 (bathroom key). Counting=Parking lot (N spaces).</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> P()=wait=S-1=LOCK | V()=signal=S+1=UNLOCK. Binary=0/1=Mutex. Counting=0 to N=Resource pool!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2019(10M): Semaphore+Producer-Consumer | 2021(8M): Semaphore vs Mutex | 2023(8M): Classical sync problems with semaphores</p>
+  </div>
+</div>
+</div>
+
+<div id="secD" class="panel">
+  <div class="sec-hdr">
+    <h2>Section D: Unit 2 — Deadlock</h2>
+    <p>Deadlock | 4 Conditions | Prevention | Avoidance | Banker's</p>
+  </div>
+<div class="q-block" id="q8" data-text="what is deadlock? explain the four necessary conditions for deadlock with examples. 
+<p><b>deadlock:</b> a deadlock is a situation in which a set of processes are permanently blocked b">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q8 | Sec D</span>
+    <span class="q-text">What is deadlock? Explain the four necessary conditions for deadlock with examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Deadlock:</b> A deadlock is a situation in which a set of processes are permanently blocked because each process holds some resources and waits for resources held by other processes in the same set. No process can proceed — complete standstill!</p>
+<p><b>Simple Example:</b></p>
+<p>Process P1 holds Resource R1 (Printer) and waits for R2 (Scanner).<br>
+Process P2 holds Resource R2 (Scanner) and waits for R1 (Printer).<br>
+Both wait forever → <b>DEADLOCK!</b></p>
+<p><b>Four Necessary Conditions for Deadlock (Coffman Conditions, 1971):</b></p>
+<p><b>ALL FOUR conditions must hold simultaneously for deadlock to occur. Remove ANY ONE → No Deadlock!</b></p>
+<p><b>1. Mutual Exclusion:</b></p>
+<ul><li>At least one resource must be held in a non-sharable mode.</li>
+<li>Only ONE process can use the resource at a time.</li>
+<li><b>Example:</b> Only one person can use a printer at a time. If another wants it, they must wait.</li></ul>
+<p><b>2. Hold and Wait:</b></p>
+<ul><li>A process must be holding at least one resource AND waiting to acquire additional resources currently held by other processes.</li>
+<li><b>Example:</b> Process holds the Scanner (holds) and is waiting for the Printer (wait).</li></ul>
+<p><b>3. No Preemption:</b></p>
+<ul><li>Resources cannot be forcibly taken away from a process holding them.</li>
+<li>A resource can only be released voluntarily by the process holding it after it completes its task.</li>
+<li><b>Example:</b> You cannot snatch a pen from someone who is writing — they must give it up themselves.</li></ul>
+<p><b>4. Circular Wait:</b></p>
+<ul><li>A set of processes {P1, P2, ..., Pn} must exist such that P1 waits for P2, P2 waits for P3, ..., Pn waits for P1.</li>
+<li>A circular chain of waiting is formed!</li>
+<li><b>Example:</b> P1 wants R2 (held by P2), P2 wants R3 (held by P3), P3 wants R1 (held by P1) → CYCLE!</li></ul>
+<div class="conc"><b>Conclusion:</b> Deadlock is a serious problem in concurrent systems. All four Coffman conditions must hold simultaneously for deadlock to occur. Eliminating even one condition prevents deadlock. This forms the basis of deadlock prevention strategies.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>DEADLOCK EXAMPLE — Resource Allocation Graph:
+
+P1 ──holds──▶ R1     R2 ◀──holds── P2
+P1 ◀──needs── R2     R1 ◀──needs── P2
+
+CIRCULAR CHAIN: P1→R2→P2→R1→P1 = DEADLOCK!
+
+4 CONDITIONS VISUALIZATION:
+┌─────────────────────────────────┐
+│  1. Mutual Exclusion: R shared? │  NO → Cannot be shared → ✓ Condition met
+│  2. Hold and Wait: P1 holds R1  │  P1 holds R1, waits for R2 → ✓
+│  3. No Preemption: Force take?  │  Cannot force take R1 from P1 → ✓
+│  4. Circular Wait: P1→P2→P1?   │  Cycle exists → ✓
+│  ALL 4 MET → DEADLOCK!         │
+└─────────────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Teen yaar: Raju(cycle pakdi,bat chahiye)→Sham(bat pakdi,helmet chahiye)→Babu(helmet pakda,cycle chahiye) = DEADLOCK! MH-NC = 4 conditions! Remove ANY ONE = no deadlock!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> MH-NC = Mutual exclusion, Hold&wait, No preemption, Circular wait — ALL 4 must hold for DEADLOCK!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2015(8M)|2017(10M)|2019(12M)|2021(10M)|2023(12M)|2025(10M): Deadlock conditions with diagram!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q9" data-text="explain deadlock prevention, avoidance, detection and recovery techniques. 
+<p><b>deadlock handling methods (4 approaches):</b></p>
+<p><b>method 1 — deadlock prevention:</b></">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q9 | Sec D</span>
+    <span class="q-text">Explain deadlock prevention, avoidance, detection and recovery techniques.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Deadlock Handling Methods (4 approaches):</b></p>
+<p><b>METHOD 1 — DEADLOCK PREVENTION:</b></p>
+<p>Ensure at least one of the four Coffman conditions NEVER holds in the system.</p>
+<ul><li><b>Eliminate Mutual Exclusion:</b> Make resources sharable where possible (e.g., use print spooler instead of direct printer access). Not always feasible.</li>
+<li><b>Eliminate Hold and Wait:</b> A process must request ALL needed resources at once before starting. OR must release all held resources before requesting more. Leads to low resource utilization.</li>
+<li><b>Allow Preemption:</b> If a process holding resources requests another that cannot be immediately allocated, release all currently held resources. Process restarts when all resources available.</li>
+<li><b>Eliminate Circular Wait:</b> Assign a total ordering to all resource types. Processes must request resources in strictly increasing order. Breaks the circular chain.</li></ul>
+<p><b>METHOD 2 — DEADLOCK AVOIDANCE (Banker's Algorithm):</b></p>
+<ul><li>Before granting a resource request, check if resulting state is a <b>SAFE STATE</b>.</li>
+<li><b>Safe State:</b> All processes can eventually finish in some sequence (safe sequence).</li>
+<li>Need matrix: Need[i][j] = Max[i][j] − Allocation[i][j]</li>
+<li>Grant request ONLY IF resulting state is safe. Otherwise, make process wait.</li></ul>
+<p><b>METHOD 3 — DEADLOCK DETECTION:</b></p>
+<ul><li>Allow deadlock to occur. Detect it using <b>Resource Allocation Graph (RAG)</b>.</li>
+<li>If RAG contains a cycle → Deadlock exists (for single-instance resources).</li>
+<li>Run detection algorithm periodically (every hour, or when CPU utilization drops).</li>
+<li>Detection algorithm uses Available, Allocation, and Request matrices.</li></ul>
+<p><b>METHOD 4 — DEADLOCK RECOVERY:</b></p>
+<ul><li><b>Process Termination:</b>
+  <ul><li>Abort all deadlocked processes (expensive — loses work).</li>
+  <li>Abort one process at a time until deadlock cycle broken (less expensive).</li></ul></li>
+<li><b>Resource Preemption:</b>
+  <ul><li>Forcibly take a resource from one process and give it to another.</li>
+  <li>Preempted process is rolled back to a safe earlier state (checkpoint).</li>
+  <li>Same process should not always be the victim (starvation!).</li></ul></li></ul>
+<table class="ntbl">
+<tr><th>Method</th><th>Approach</th><th>Cost</th><th>Best Use</th></tr>
+<tr><td>Prevention</td><td>Break one Coffman condition</td><td>High (resource waste)</td><td>Safety-critical systems</td></tr>
+<tr><td>Avoidance</td><td>Banker's Algorithm check</td><td>Medium (overhead)</td><td>Known max needs</td></tr>
+<tr><td>Detection</td><td>Periodic RAG check</td><td>Low (allow deadlock)</td><td>Rare deadlocks</td></tr>
+<tr><td>Recovery</td><td>Terminate/Preempt</td><td>Medium (work lost)</td><td>After detection</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Prevention is safest but most restrictive. Avoidance (Banker's) is practical but needs advance resource declarations. Detection+Recovery is used when deadlocks are rare. In practice, most systems use prevention + detection.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Prevention=condition hata. Avoidance=Banker's (safe state check). Detection=Graph mein cycle dhundo. Recovery=Kisi ko terminate karo ya resources cheeno!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Prevention→Avoidance→Detection→Recovery (cost increases, control decreases). Banker's = Avoidance! RAG cycle = Detection!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2017(10M):Prevention+Avoidance | 2019(12M):All 4 methods | 2021(8M):Recovery | 2023(10M):Complete deadlock handling</p>
+  </div>
+</div>
+
+<div class="q-block" id="q10" data-text="explain the banker's algorithm for deadlock avoidance with a suitable example. 
+<p><b>banker's algorithm:</b> developed by dijkstra. used for deadlock avoidance. before granting a">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q10 | Sec D</span>
+    <span class="q-text">Explain the Banker's Algorithm for deadlock avoidance with a suitable example.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Banker's Algorithm:</b> Developed by Dijkstra. Used for deadlock avoidance. Before granting any resource request, the OS checks whether the resulting state is a <b>SAFE STATE</b>. If safe → grant. If unsafe → make process wait.</p>
+<p><b>Safe State:</b> A state where there exists at least one safe sequence in which all processes can finish their execution. If no safe sequence exists → Unsafe State (may lead to deadlock).</p>
+<p><b>Data Structures Used:</b></p>
+<ul><li><b>Available[j]:</b> Number of available instances of resource type j.</li>
+<li><b>Max[i][j]:</b> Maximum demand of process i for resource type j.</li>
+<li><b>Allocation[i][j]:</b> Resources currently allocated to process i.</li>
+<li><b>Need[i][j]:</b> Remaining resources needed by process i. <b>Need = Max − Allocation</b></li></ul>
+<p><b>Safety Algorithm Steps:</b></p>
+<ol><li>Initialize Work = Available, Finish[i] = false for all i.</li>
+<li>Find process i where Finish[i]=false AND Need[i] ≤ Work.</li>
+<li>If found: Work = Work + Allocation[i]; Finish[i] = true. Go to step 2.</li>
+<li>If all Finish[i]=true → Safe State! Otherwise → Unsafe State.</li></ol>
+<p><b>Example:</b></p>
+<pre>Resources: A(10), B(5), C(7) | Available: A=3, B=3, C=2
+
+Process | Allocation  | Maximum     | Need        
+        | A   B   C  | A   B   C  | A   B   C  
+  P0    | 0   1   0  | 7   5   3  | 7   4   3  
+  P1    | 2   0   0  | 3   2   2  | 1   2   2  ← Need(1,2,2) ≤ Avail(3,3,2) ✓ → Run P1
+  P2    | 3   0   2  | 9   0   2  | 6   0   0  
+  P3    | 2   1   1  | 2   2   2  | 0   1   1  
+  P4    | 0   0   2  | 4   3   3  | 4   3   1  
+
+Step 1: P1 runs. Work = (3,3,2) + (2,0,0) = (5,3,2). Finish[1]=true.
+Step 2: P3 needs(0,1,1) ≤ Work(5,3,2) ✓ → Run P3. Work=(5,3,2)+(2,1,1)=(7,4,3). Finish[3]=true.
+Step 3: P4 needs(4,3,1) ≤ Work(7,4,3) ✓ → Run P4. Work=(7,4,3)+(0,0,2)=(7,4,5). Finish[4]=true.
+Step 4: P0 needs(7,4,3) ≤ Work(7,4,5) ✓ → Run P0. Work=(7,5,5). Finish[0]=true.
+Step 5: P2 needs(6,0,0) ≤ Work(7,5,5) ✓ → Run P2. Finish[2]=true.
+
+SAFE SEQUENCE: P1 → P3 → P4 → P0 → P2 ✅ SAFE STATE → Grant request!</pre>
+<div class="conc"><b>Conclusion:</b> Banker's Algorithm ensures the system never enters an unsafe state by checking safety before every resource allocation. It is the most important deadlock avoidance algorithm. Need = Max − Allocation is the key formula.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Banker's = Bank loan ka system! Bank pehle check karta hai — agar dene ke baad bank bankrupt nahi hoga toh deta hai! Need=Max-Allocation. Safe sequence milte = SAFE!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Banker's Key: Need = Max − Allocation. Find process where Need ≤ Available → run it → release resources → repeat. Safe sequence = No deadlock!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2015(8M)|2017(10M)|2019(12M)|2021(12M)|2023(10M): Banker's Algorithm with numerical example!</p>
+  </div>
+</div>
+</div>
+
+<div id="secE" class="panel">
+  <div class="sec-hdr">
+    <h2>Section E: Unit 3 — Memory Management</h2>
+    <p>Memory Allocation | Paging | Segmentation | Virtual Memory | Page Replacement</p>
+  </div>
+<div class="q-block" id="q11" data-text="explain memory management and discuss different memory allocation techniques. 
+<p><b>memory management:</b> the os function that controls and coordinates the use of primary memor">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q11 | Sec E</span>
+    <span class="q-text">Explain memory management and discuss different memory allocation techniques.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Memory Management:</b> The OS function that controls and coordinates the use of primary memory (RAM). It allocates memory to processes when needed and reclaims it when done.</p>
+<p><b>Goals:</b> Efficient utilization, Protection (processes don't interfere), Sharing (share common code), Relocation (run process anywhere in memory).</p>
+<p><b>Logical vs Physical Address:</b></p>
+<ul><li><b>Logical (Virtual) Address:</b> Generated by CPU. User/programmer sees this. Starts from 0 for each process.</li>
+<li><b>Physical Address:</b> Actual RAM location. Hardware uses this. MMU translates logical → physical.</li></ul>
+<p><b>Swapping:</b> Moving an inactive process from RAM to disk (swap out) to free memory. Brings it back when needed (swap in). Increases multiprogramming degree.</p>
+<p><b>Contiguous Memory Allocation:</b></p>
+<ul><li><b>Fixed Partition:</b> Memory divided into fixed-size partitions. Simple but causes Internal Fragmentation (allocated > required).</li>
+<li><b>Variable Partition:</b> Partitions created exactly as needed. Causes External Fragmentation (total free enough but not contiguous).</li></ul>
+<p><b>Fit Strategies for Variable Partition:</b></p>
+<ul><li><b>First Fit:</b> Allocate first hole that is large enough. Fast!</li>
+<li><b>Best Fit:</b> Allocate smallest suitable hole. Less waste but slow.</li>
+<li><b>Worst Fit:</b> Allocate largest hole. Large leftover (for future use).</li></ul>
+<p><b>Fragmentation Solution:</b></p>
+<ul><li><b>Compaction:</b> Move all processes to one end, creating one large free block. Expensive!</li>
+<li><b>Paging/Segmentation:</b> Better — non-contiguous allocation, no external fragmentation.</li></ul>
+<div class="conc"><b>Conclusion:</b> Memory management ensures efficient and safe use of RAM. Fixed partition is simple but wasteful. Variable partition is efficient but causes external fragmentation. Paging and segmentation provide better solutions.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Memory Management = Library management. Books(programs) ko tables(RAM) pe laana jaana. Librarian(OS) track karta hai. First Fit = Fast! Best Fit = Less waste!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Fragmentation types: Internal=allocated>needed (wasted inside). External=total free enough but scattered. Fix=Compaction or Paging!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M):Contiguous allocation | 2018(5M):Swapping | 2020(8M):Memory techniques | 2022(5M):Fragmentation</p>
+  </div>
+</div>
+
+<div class="q-block" id="q12" data-text="explain paging and segmentation. differentiate between paging and segmentation. 
+<p><b>paging:</b></p>
+<p>paging is a non-contiguous memory allocation technique where:</p>
+<ul><li>">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q12 | Sec E</span>
+    <span class="q-text">Explain paging and segmentation. Differentiate between paging and segmentation.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>PAGING:</b></p>
+<p>Paging is a non-contiguous memory allocation technique where:</p>
+<ul><li>Logical memory is divided into fixed-size blocks called <b>PAGES</b>.</li>
+<li>Physical memory is divided into fixed-size blocks called <b>FRAMES</b> (same size as pages).</li>
+<li>OS maintains a <b>Page Table</b> for each process mapping page numbers to frame numbers.</li>
+<li>Pages can be placed in ANY available frame — non-contiguous!</li>
+<li><b>No External Fragmentation!</b> Only Internal Fragmentation (last page may not be full).</li></ul>
+<p><b>Address Translation in Paging:</b></p>
+<ul><li>Logical Address = Page Number (p) + Page Offset (d)</li>
+<li>Physical Address = Frame[p] × Frame_Size + d</li>
+<li><b>TLB (Translation Lookaside Buffer):</b> Hardware cache for page table entries = fast translation!</li></ul>
+<p><b>SEGMENTATION:</b></p>
+<p>Segmentation is a memory management technique where a program is divided into logical variable-size segments:</p>
+<ul><li>Segments correspond to logical program units: Code, Data, Stack, Heap.</li>
+<li>Segment Table stores <b>Base address</b> and <b>Limit (size)</b> for each segment.</li>
+<li>Physical Address = Base[segment_no] + Offset (if offset &lt; Limit)</li>
+<li>External Fragmentation possible (variable sizes). No Internal Fragmentation!</li>
+<li>Matches programmer's logical view of memory.</li></ul>
+<p><b>Paging + Segmentation Combined:</b> First segment the program, then page each segment. Best of both worlds — logical organization + no external fragmentation.</p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Paging</th><th>Segmentation</th></tr>
+<tr><td>Division Type</td><td>Fixed size pages</td><td>Variable size segments</td></tr>
+<tr><td>External Fragmentation</td><td>NONE ✅</td><td>Occurs ❌</td></tr>
+<tr><td>Internal Fragmentation</td><td>Occurs ❌</td><td>NONE ✅</td></tr>
+<tr><td>Table Used</td><td>Page Table (page→frame)</td><td>Segment Table (base+limit)</td></tr>
+<tr><td>User View</td><td>Hardware/physical view</td><td>Programmer's logical view</td></tr>
+<tr><td>Address</td><td>Page no. + Offset</td><td>Segment no. + Offset</td></tr>
+<tr><td>Memory Use</td><td>Simple management</td><td>Logical program structure</td></tr>
+<tr><td>Example</td><td>Equal size book pages</td><td>Different size book chapters</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Paging is hardware-oriented with no external fragmentation. Segmentation is programmer-oriented with no internal fragmentation. Combined paging+segmentation provides best of both. For modern OS, paging is most commonly used.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PAGING DIAGRAM (Must draw!):
+
+Logical Memory    Page Table        Physical Memory
+┌─────────┐      ┌───┬──────┐      ┌─────────┐ F0
+│  Page 0 │─────▶│ 0 │  5  │      ├─────────┤ F1
+├─────────┤      ├───┼──────┤      ├─────────┤ F2 ← Page 1
+│  Page 1 │─────▶│ 1 │  2  │      ├─────────┤ F3
+├─────────┤      ├───┼──────┤      ├─────────┤ F4
+│  Page 2 │─────▶│ 2 │  8  │      ├─────────┤ F5 ← Page 0
+└─────────┘      └───┴──────┘      ├─────────┤
+CPU→Logical→TLB/Page Table→Physical→RAM │ F8 ← Page 2</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Paging=Book pages(equal size,kisi bhi shelf pe). Segmentation=Book chapters(different size,logical). TLB=fast cache. Paging vs Seg = OPPOSITE properties!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Paging=Fixed/No-External-Frag. Segmentation=Variable/No-Internal-Frag. They are OPPOSITES! TLB=page table cache=faster!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M),2016(5M),2019(8M),2022(5M),2025(8M): Paging diagram + address translation!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q13" data-text="what is virtual memory? explain demand paging and its advantages. 
+<p><b>virtual memory:</b> a memory management technique that allows processes to execute even if th">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q13 | Sec E</span>
+    <span class="q-text">What is virtual memory? Explain demand paging and its advantages.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Virtual Memory:</b> A memory management technique that allows processes to execute even if they are not completely loaded in RAM. The remaining pages/segments are stored on disk (secondary storage). Creates an illusion that the computer has more memory than physically available.</p>
+<p><b>Benefits of Virtual Memory:</b></p>
+<ul><li>Programs larger than physical RAM can execute.</li>
+<li>More processes can be kept in memory simultaneously (increased multiprogramming).</li>
+<li>Less I/O needed — only load what is currently being used.</li>
+<li>Each process has full address space illusion.</li></ul>
+<p><b>Demand Paging:</b> A virtual memory implementation where pages are loaded into memory ONLY when they are demanded (accessed by the process). NOT all pages are loaded at program start. Pages on disk until referenced.</p>
+<p><b>Working of Demand Paging:</b></p>
+<ol><li>Process starts. Only essential initial pages loaded into RAM.</li>
+<li>CPU accesses a page. Check page table — valid bit.</li>
+<li>If valid bit = 1: Page is in RAM → access directly (no fault).</li>
+<li>If valid bit = 0: <b>PAGE FAULT!</b> OS interrupt occurs.</li>
+<li>OS saves current process state.</li>
+<li>OS finds a free frame in RAM (or replaces a page).</li>
+<li>OS loads required page from disk into free frame.</li>
+<li>OS updates page table (valid bit = 1).</li>
+<li>Process restarts the faulted instruction.</li></ol>
+<p><b>Page Fault Rate:</b> If p = page fault rate, then:</p>
+<p>Effective Access Time (EAT) = (1-p) × memory_access_time + p × page_fault_time</p>
+<p><b>Advantages of Demand Paging:</b></p>
+<ul><li>Large programs can run with limited RAM.</li>
+<li>Faster initial program loading (only load what's needed).</li>
+<li>Increased degree of multiprogramming.</li>
+<li>Less physical memory needed per process.</li>
+<li>Unused code/data never loaded (efficient).</li></ul>
+<p><b>Disadvantages:</b></p>
+<ul><li>Page fault handling overhead (disk access is slow).</li>
+<li>Can lead to thrashing if too many page faults occur.</li>
+<li>Complex OS implementation required.</li></ul>
+<p><b>Thrashing:</b> When a process spends more time swapping pages than executing. CPU utilization drops drastically. Fix: Working Set Model, Page Fault Frequency algorithm, more RAM.</p>
+<div class="conc"><b>Conclusion:</b> Virtual memory with demand paging greatly increases the degree of multiprogramming and allows large programs to run on systems with limited RAM. The key is minimizing page faults through good page replacement algorithms.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PAGE FAULT HANDLING FLOW:
+
+CPU accesses page P
+         │
+    Page in RAM? (valid bit=1)
+    YES → Access directly, continue execution
+    NO  → PAGE FAULT TRAP!
+         │
+         ▼ OS takes control
+    Find free frame in RAM
+    (If no free frame → run page replacement algorithm)
+         │
+         ▼
+    Load required page from disk into free frame
+         │
+         ▼
+    Update page table (valid bit = 1, frame number)
+         │
+         ▼
+    Restart the faulted instruction → Continue</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Virtual Memory = 4GB RAM mein 8GB program chalao! Demand paging = Sirf jo chahiye woh laao (Zomato order!). Page fault = Out of stock (disk se laana). Thrashing = System hang!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Demand Paging = Lazy Loading! Load only when demanded. Page Fault = Miss in RAM → go to disk. Thrashing = too many faults = system busy only in paging!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M)|2018(10M)|2020(8M)|2021(5M)|2023(10M): Virtual memory + demand paging + advantages!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q14" data-text="explain page replacement algorithms: fifo, lru and optimal. give suitable examples. 
+<p><b>page replacement:</b> when ram is full and a new page needs to be loaded, an existing page mu">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q14 | Sec E</span>
+    <span class="q-text">Explain page replacement algorithms: FIFO, LRU and Optimal. Give suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Page Replacement:</b> When RAM is full and a new page needs to be loaded, an existing page must be replaced. Page replacement algorithms decide WHICH page to replace to minimize future page faults.</p>
+<p><b>Reference String for examples:</b> 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3 | Frames = 3</p>
+<p><b>1. FIFO — First In First Out:</b></p>
+<ul><li>Replace the page that was loaded into memory the EARLIEST (oldest page).</li>
+<li>Simple to implement (queue structure).</li>
+<li>Problem: <b>Belady's Anomaly</b> — increasing number of frames can INCREASE page faults! Counter-intuitive!</li></ul>
+<pre>Ref:  7   0   1   2   0   3   0   4   2   3   0   3
+F1:   7   7   7   2   2   2   2   4   4   4   0   0
+F2:   -   0   0   0   0   3   3   3   2   2   2   2
+F3:   -   -   1   1   1   1   0   0   0   3   3   3
+      F   F   F   F   H   F   F   F   H   H   F   H
+Page Faults = 9 (9 out of 12 references)</pre>
+<p><b>2. LRU — Least Recently Used:</b></p>
+<ul><li>Replace the page that has NOT been used for the LONGEST time.</li>
+<li>Based on past reference history (approximates future usage).</li>
+<li>No Belady's Anomaly! Best practical performance.</li>
+<li>Approximation methods: Counter, Stack, Reference Bit.</li></ul>
+<pre>Ref:  7   0   1   2   0   3   0   4   2   3   0   3
+F1:   7   7   7   2   2   2   0   0   0   3   3   3
+F2:   -   0   0   0   0   0   0   4   4   4   0   0
+F3:   -   -   1   1   1   3   3   3   2   2   2   2
+      F   F   F   F   H   F   F   F   F   F   F   H
+Page Faults = 8 (Better than FIFO's 9!)</pre>
+<p><b>3. Optimal Page Replacement:</b></p>
+<ul><li>Replace the page that will NOT be used for the LONGEST time in the FUTURE.</li>
+<li>Theoretically gives minimum page faults — best possible!</li>
+<li><b>Impossible in practice</b> — requires knowledge of future references.</li>
+<li>Used as a benchmark to evaluate other algorithms.</li></ul>
+<table class="ntbl">
+<tr><th>Algorithm</th><th>Replace</th><th>Page Faults</th><th>Belady's?</th><th>Practical?</th></tr>
+<tr><td>FIFO</td><td>Oldest loaded</td><td>9 (worst)</td><td>YES ❌</td><td>Yes (simple)</td></tr>
+<tr><td>LRU</td><td>Least recently used</td><td>8 (good)</td><td>NO ✅</td><td>Yes (best practical)</td></tr>
+<tr><td>Optimal</td><td>Farthest future use</td><td>Minimum</td><td>NO ✅</td><td>NO ❌ (offline only)</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Optimal algorithm gives minimum page faults but is impossible to implement online. LRU is the best practical algorithm with good performance and no Belady's Anomaly. FIFO is simplest but may suffer from Belady's Anomaly. LRU is preferred in real OS implementations.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>FIFO=oldest out(Belady's Anomaly!). LRU=Least recently used out(BEST practical, no Belady's). Optimal=Best but impossible(need future). LRU always better than or equal to FIFO!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> FIFO=Belady's Anomaly (bad!). LRU=Best practical (no Belady's). Optimal=Min faults but impossible. Use LRU in practice!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2016(8M)|2018(10M)|2020(12M)|2022(8M)|2024(12M): FIFO+LRU+Optimal with same reference string!</p>
+  </div>
+</div>
+</div>
+
+<div id="secF" class="panel">
+  <div class="sec-hdr">
+    <h2>Section F: Unit 4 & 5 — UNIX/Linux Intro</h2>
+    <p>UNIX Features | Architecture | Shell | Commands</p>
+  </div>
+<div class="q-block" id="q15" data-text="what is unix? explain its features, architecture and major components. 
+<p><b>unix:</b> unix is a powerful, multi-user, multitasking operating system originally developed ">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q15 | Sec F</span>
+    <span class="q-text">What is UNIX? Explain its features, architecture and major components.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX:</b> UNIX is a powerful, multi-user, multitasking operating system originally developed at Bell Labs in 1969 by Ken Thompson and Dennis Ritchie. Written in C language. Parent of modern OS like Linux, macOS, Android.</p>
+<p><b>Features of UNIX:</b></p>
+<ul><li><b>Multi-user:</b> Multiple users can work simultaneously on the same system.</li>
+<li><b>Multitasking:</b> Multiple processes run concurrently.</li>
+<li><b>Portability:</b> Written in C — runs on diverse hardware platforms.</li>
+<li><b>Security:</b> Strong file permissions (read/write/execute for owner/group/others).</li>
+<li><b>File System:</b> Hierarchical tree structure starting from root (/).</li>
+<li><b>Shell:</b> Powerful command-line interface with scripting capability.</li>
+<li><b>Pipes &amp; Filters:</b> Connect programs — output of one becomes input of another.</li>
+<li><b>Networking:</b> Built-in TCP/IP support. Internet was built on UNIX!</li>
+<li><b>Open Standard:</b> POSIX standard allows portability.</li></ul>
+<p><b>UNIX Architecture (3 Layers):</b></p>
+<ul><li><b>Layer 1 — Kernel:</b> Core of UNIX OS. Manages hardware, processes, memory, file system, I/O. Runs in privileged mode.</li>
+<li><b>Layer 2 — Shell:</b> Command-line interpreter between user and kernel. Interprets commands, runs programs. Types: sh, bash, csh, ksh.</li>
+<li><b>Layer 3 — User Programs/Applications:</b> Programs used by users — vi, ls, cp, compilers, databases.</li></ul>
+<p><b>Major Components:</b></p>
+<ul><li><b>Kernel:</b> Heart of UNIX. Process management, memory management, file system, I/O control, device drivers.</li>
+<li><b>Shell:</b> User interface. Command interpreter. Scripting. Types: Bourne (sh), Bash, C Shell (csh), Korn (ksh).</li>
+<li><b>File System:</b> Hierarchical (tree) structure. Everything is a file — devices, pipes, sockets.</li>
+<li><b>UNIX Commands:</b> ls, cp, mv, grep, chmod, ps, kill, etc.</li>
+<li><b>System Calls:</b> Interface between user programs and kernel — fork(), exec(), read(), write().</li></ul>
+<div class="conc"><b>Conclusion:</b> UNIX is a powerful, portable, multi-user OS that formed the foundation of modern computing. Its philosophy of "everything is a file" and "small programs that do one thing well" revolutionized OS design.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>UNIX ARCHITECTURE:
+
+┌─────────────────────────────────────┐
+│   USER PROGRAMS / APPLICATIONS       │
+│  (ls, vi, compilers, databases)      │
+└───────────────┬─────────────────────┘
+                │ User Level
+┌───────────────▼─────────────────────┐
+│   SHELL (bash / sh / csh / ksh)      │
+│   Command Interpreter                │
+└───────────────┬─────────────────────┘
+                │ System Calls
+┌───────────────▼─────────────────────┐
+│           KERNEL                     │
+│  Process | Memory | File | I/O Mgmt  │  ← Kernel Level
+└───────────────┬─────────────────────┘
+                │ Hardware Interface
+┌───────────────▼─────────────────────┐
+│   HARDWARE (CPU, RAM, Disk, Network) │
+└─────────────────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>UNIX = Linux ka baap! Ken Thompson+Dennis Ritchie, Bell Labs, 1969, C mein likha. Kernel=Heart, Shell=Mouth, Programs=Hands! Everything is a file in UNIX!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> UNIX = Multi-user + Multitasking + Portable + Shell + Hierarchical FS. Architecture = 3 layers: Hardware→Kernel→Shell→User!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M)|2017(5M)|2019(8M)|2021(5M)|2023(5M): UNIX features + architecture + components!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q16" data-text="explain the following unix commands with syntax and examples: ls, cd, pwd, mkdir, rmdir, cp, mv, cat, rm, head, tail, wc, sort, grep. 
+<table class="ntbl">
+<tr><th>command</th><th>purpose</th><th>syntax</th><th>example</th></tr>
+<tr><">
+  <div class="q-head blue">
+    <span class="marks">10M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q16 | Sec F</span>
+    <span class="q-text">Explain the following UNIX commands with syntax and examples: ls, cd, pwd, mkdir, rmdir, cp, mv, cat, rm, head, tail, wc, sort, grep.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<table class="ntbl">
+<tr><th>Command</th><th>Purpose</th><th>Syntax</th><th>Example</th></tr>
+<tr><td><code>ls</code></td><td>List files and directories</td><td>ls [options] [path]</td><td>ls -la /home</td></tr>
+<tr><td><code>cd</code></td><td>Change directory</td><td>cd [directory]</td><td>cd /etc | cd .. | cd ~</td></tr>
+<tr><td><code>pwd</code></td><td>Print current working directory</td><td>pwd</td><td>pwd → /home/zoha</td></tr>
+<tr><td><code>mkdir</code></td><td>Make new directory</td><td>mkdir [-p] dirname</td><td>mkdir BCA_Notes</td></tr>
+<tr><td><code>rmdir</code></td><td>Remove empty directory</td><td>rmdir dirname</td><td>rmdir olddir</td></tr>
+<tr><td><code>cp</code></td><td>Copy files/directories</td><td>cp [-r] src dest</td><td>cp file.txt /backup/</td></tr>
+<tr><td><code>mv</code></td><td>Move or rename file</td><td>mv src dest</td><td>mv old.txt new.txt</td></tr>
+<tr><td><code>cat</code></td><td>Display file content</td><td>cat [file]</td><td>cat /etc/passwd</td></tr>
+<tr><td><code>rm</code></td><td>Remove/delete file</td><td>rm [-rf] file</td><td>rm file.txt</td></tr>
+<tr><td><code>head</code></td><td>Show first N lines</td><td>head [-n] file</td><td>head -10 file.txt</td></tr>
+<tr><td><code>tail</code></td><td>Show last N lines / monitor</td><td>tail [-n|-f] file</td><td>tail -f /var/log/syslog</td></tr>
+<tr><td><code>wc</code></td><td>Count lines/words/chars</td><td>wc [-l|-w|-c] file</td><td>wc -l /etc/passwd</td></tr>
+<tr><td><code>sort</code></td><td>Sort lines alphabetically</td><td>sort [-r|-n] file</td><td>sort names.txt</td></tr>
+<tr><td><code>grep</code></td><td>Search pattern in file</td><td>grep [-i|-r|-v] pattern file</td><td>grep "root" /etc/passwd</td></tr>
+</table>
+<p><b>Detailed Important Commands:</b></p>
+<p><b>ls options:</b> <code>ls -l</code> (long format) | <code>ls -a</code> (hidden files) | <code>ls -la</code> (both) | <code>ls -lh</code> (human readable)</p>
+<p><b>grep options:</b> <code>grep -i</code> (case-insensitive) | <code>grep -r</code> (recursive) | <code>grep -v</code> (invert — non-matching) | <code>grep -c</code> (count matches)</p>
+<p><b>Common pipe combinations:</b></p>
+<ul><li><code>ls -l | wc -l</code> → Count files in directory</li>
+<li><code>cat file | grep "pattern"</code> → Search in file</li>
+<li><code>ps aux | grep firefox</code> → Find process</li>
+<li><code>sort file.txt | uniq -c</code> → Count unique lines</li></ul>
+<div class="conc"><b>Conclusion:</b> These basic UNIX/Linux commands are essential for daily system administration. They can be combined using pipes (|) to create powerful command pipelines for complex tasks.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>ls=Look(list), cd=Change door, pwd=GPS, mkdir=Make folder, rm=Remove(no recycle!), cp=CoPy, mv=MoVe/rename, cat=show file, grep=Global search, wc=Word Count!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> LMCG-RHT = ls, mkdir, cp, grep, rm, head, tail. grep -i=ignore case. wc -l=line count. rm = NO recycle bin! rm -rf = nuclear option!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M)|2016(5M)|2018(8M)|2020(5M)|2022(5M)|2024(8M): 5+ commands with syntax and examples!</p>
+  </div>
+</div>
+</div>
+
+<div id="secG" class="panel">
+  <div class="sec-hdr">
+    <h2>Section G: Unit 4 — File System & Permissions</h2>
+    <p>File Hierarchy | chmod | Links | Pathnames</p>
+  </div>
+<div class="q-block" id="q17" data-text="explain the unix file system hierarchy. what are absolute and relative pathnames? 
+<p><b>unix file system hierarchy:</b> unix uses a hierarchical (inverted tree) file system structur">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q17 | Sec G</span>
+    <span class="q-text">Explain the UNIX file system hierarchy. What are absolute and relative pathnames?</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX File System Hierarchy:</b> UNIX uses a hierarchical (inverted tree) file system structure with a single root directory <code>/</code>. Everything in UNIX is a file — regular files, directories, devices, pipes.</p>
+<p><b>Important Directories:</b></p>
+<ul><li><code>/</code> → Root — parent of ALL directories. Top of hierarchy.</li>
+<li><code>/bin</code> → Essential user command binaries (ls, cp, mv, rm, cat, grep, chmod...)</li>
+<li><code>/sbin</code> → System administration binaries (mount, ifconfig, fdisk, fsck)</li>
+<li><code>/etc</code> → Configuration files (/etc/passwd, /etc/fstab, /etc/hosts)</li>
+<li><code>/home</code> → User home directories (/home/zoha, /home/admin)</li>
+<li><code>/var</code> → Variable data — logs (/var/log), mail queues, print spools</li>
+<li><code>/usr</code> → User programs (/usr/bin), libraries (/usr/lib), documentation</li>
+<li><code>/tmp</code> → Temporary files. Auto-deleted on reboot!</li>
+<li><code>/dev</code> → Device files — keyboard (/dev/tty), disk (/dev/sda), USB (/dev/sdb)</li>
+<li><code>/lib</code> → Shared libraries for /bin and /sbin commands</li>
+<li><code>/boot</code> → Kernel image (vmlinuz), GRUB bootloader configuration</li>
+<li><code>/proc</code> → Virtual FS — real-time process info (/proc/cpuinfo, /proc/meminfo)</li>
+<li><code>/mnt</code> → Temporary mount point for external drives</li></ul>
+<p><b>ABSOLUTE PATHNAME:</b></p>
+<ul><li>Complete path from root directory (/) to the file/directory.</li>
+<li>Always starts with <code>/</code> (forward slash).</li>
+<li>Works from ANYWHERE in the file system.</li>
+<li><b>Example:</b> <code>/home/zoha/Documents/file.txt</code></li></ul>
+<p><b>RELATIVE PATHNAME:</b></p>
+<ul><li>Path relative to the CURRENT working directory.</li>
+<li>Does NOT start with <code>/</code>.</li>
+<li>Shorter, but works only from specific location.</li>
+<li><b>Special symbols:</b> <code>.</code> (current directory) | <code>..</code> (parent directory) | <code>~</code> (home directory)</li>
+<li><b>Example:</b> If current dir is /home/zoha → <code>Documents/file.txt</code> or <code>../admin/file.txt</code></li></ul>
+<div class="conc"><b>Conclusion:</b> UNIX file system follows a hierarchical tree structure with root (/) at top. Absolute paths start from / and always work. Relative paths are shorter but depend on current location. Key: Everything in UNIX is a file!</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>FILE SYSTEM TREE (Draw this in exam!):
+              / (Root — Mother of All!)
+    ┌────┬────┬────┬──────┬────┬────┬────┬────┬──────┐
+  /bin /sbin /etc /home /var /usr /tmp /dev /lib /boot
+           │    │
+       passwd  /home/zoha/    ← User home directory
+       fstab   /home/admin/
+       hosts
+
+Absolute: /home/zoha/file.txt  (starts with /)
+Relative:  Documents/file.txt  (from /home/zoha)
+         ../admin/file.txt     (go up then down)
+         ./file.txt            (current dir)</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>/ = Root (sab ka baap!). /bin=kitchen tools, /etc=rules, /home=ghar, /tmp=dustbin(reboot pe saaf!). B-S-E-H-V-U-T-D-L-B yaad karo! Absolute=GPS se. Relative=Ghar se direction.</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> B-S-E-H-V-U-T-D-L-B = Bin,Sbin,Etc,Home,Var,Usr,Tmp,Dev,Lib,Boot! Absolute=starts with /. Relative=starts without /. .=current ..=parent ~=home!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M)|2016(2M)|2018(5M)|2020(5M)|2022(5M)|2024(5M): File hierarchy tree + pathnames!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q18" data-text="explain file permissions in unix. describe chmod, chown and chgrp commands with examples. also explain hard links and soft links. 
+<p><b>unix file permissions:</b> every file has 3 types of permissions for 3 categories of users.</">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q18 | Sec G</span>
+    <span class="q-text">Explain file permissions in UNIX. Describe chmod, chown and chgrp commands with examples. Also explain hard links and soft links.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX File Permissions:</b> Every file has 3 types of permissions for 3 categories of users.</p>
+<p><b>Permission Types:</b> r = read (4), w = write (2), x = execute (1)</p>
+<p><b>User Categories:</b> u = owner/user | g = group | o = others | a = all</p>
+<p><b>Reading ls -l output:</b> <code>-rwxr-xr--</code></p>
+<pre>- r w x r - x r - -
+│ └─┬─┘ └─┬─┘ └─┬─┘
+│  Owner  Group Others
+│  (7)    (5)   (4)
+└─ File type (- = file, d = directory, l = link)</pre>
+<p><b>chmod — Change Mode (Permissions):</b></p>
+<ul><li>Numeric mode: <code>chmod 755 file</code> → Owner:rwx(7), Group:r-x(5), Others:r-x(5)</li>
+<li>r=4, w=2, x=1 — add values to get octal number</li>
+<li>Common permissions:<br>
+<code>chmod 755 file</code> → -rwxr-xr-x (standard program)<br>
+<code>chmod 644 file</code> → -rw-r--r-- (standard text file)<br>
+<code>chmod 777 file</code> → -rwxrwxrwx (all access — dangerous!)<br>
+<code>chmod 600 file</code> → -rw------- (private file)</li>
+<li>Symbolic mode: <code>chmod u+x file</code> | <code>chmod g-w file</code> | <code>chmod o+r file</code></li>
+<li>Recursive: <code>chmod -R 755 directory/</code></li></ul>
+<p><b>chown — Change Owner:</b></p>
+<ul><li><code>chown zoha file.txt</code> → Change owner to zoha</li>
+<li><code>chown zoha:students file.txt</code> → Change owner to zoha, group to students</li>
+<li><code>chown -R zoha /home/zoha/</code> → Recursive ownership change</li></ul>
+<p><b>chgrp — Change Group:</b></p>
+<ul><li><code>chgrp students file.txt</code> → Change group to students</li></ul>
+<p><b>Hard Link vs Soft Link:</b></p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Hard Link (ln)</th><th>Soft/Symbolic Link (ln -s)</th></tr>
+<tr><td>Creation</td><td>ln original hardlink</td><td>ln -s original softlink</td></tr>
+<tr><td>Inode number</td><td>Same as original</td><td>Different (new inode)</td></tr>
+<tr><td>If original deleted</td><td>Data still accessible ✅</td><td>Link becomes broken ❌</td></tr>
+<tr><td>Cross filesystem</td><td>NO ❌</td><td>YES ✅</td></tr>
+<tr><td>Link to directory</td><td>Generally NO</td><td>YES ✅</td></tr>
+<tr><td>Analogy</td><td>Duplicate key (same lock)</td><td>Sign/shortcut pointing to location</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> File permissions (r=4,w=2,x=1) control who can do what with files. chmod changes permissions, chown changes owner, chgrp changes group. Hard links share inodes while soft links are shortcuts that can break if original is deleted.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>r=4,w=2,x=1. Add karo! 7=rwx(full), 5=r-x, 4=r--, 6=rw-. chmod 755=standard program. Soft link=Windows shortcut. Hard link=same file two names!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> r=4,w=2,x=1. 755=rwxr-xr-x. 644=rw-r--r--. Hard link=same inode(data safe). Soft link=different inode(shortcut, can break). ln=hard, ln -s=soft!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2014(2M)|2016(2M)|2018(3M)|2020(3M)|2022(3M)|2024(5M): chmod calculation + link types!</p>
+  </div>
+</div>
+</div>
+
+<div id="secH" class="panel">
+  <div class="sec-hdr">
+    <h2>Section H: Unit 5 — I/O, Shell & vi Editor</h2>
+    <p>Redirection | Pipes | Filters | vi Modes | awk | Job Control</p>
+  </div>
+<div class="q-block" id="q19" data-text="what is i/o redirection and piping in unix? explain >, >>, < and | with examples. also explain the concept of filters. 
+<p><b>standard i/o streams:</b></p>
+<ul><li><b>stdin (0):</b> standard input — keyboard by default.">
+  <div class="q-head purp">
+    <span class="marks">10M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q19 | Sec H</span>
+    <span class="q-text">What is I/O redirection and piping in UNIX? Explain >, >>, < and | with examples. Also explain the concept of filters.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Standard I/O Streams:</b></p>
+<ul><li><b>stdin (0):</b> Standard input — keyboard by default.</li>
+<li><b>stdout (1):</b> Standard output — screen by default.</li>
+<li><b>stderr (2):</b> Standard error — screen by default.</li></ul>
+<p><b>I/O Redirection:</b> Changing where input comes from or where output goes.</p>
+<p><b>1. > (Output Redirection — Overwrite):</b></p>
+<ul><li>Redirects stdout to a file. Overwrites existing content!</li>
+<li><code>ls -l &gt; files.txt</code> → Save ls output to files.txt (overwrites)</li>
+<li><code>echo "Hello World" &gt; greeting.txt</code> → Create file with content</li>
+<li><code>who &gt; logged_users.txt</code> → Save current users to file</li></ul>
+<p><b>2. >> (Output Redirection — Append):</b></p>
+<ul><li>Redirects stdout to a file. APPENDS to existing content (original data safe!).</li>
+<li><code>echo "New entry" &gt;&gt; log.txt</code> → Add to end of file</li>
+<li><code>date &gt;&gt; log.txt</code> → Append current date/time</li></ul>
+<p><b>3. < (Input Redirection):</b></p>
+<ul><li>Takes input from a file instead of keyboard.</li>
+<li><code>sort &lt; names.txt</code> → Sort using names.txt as input</li>
+<li><code>wc -l &lt; file.txt</code> → Count lines from file</li>
+<li><code>mail user &lt; message.txt</code> → Send file content as email</li></ul>
+<p><b>4. 2> (Error Redirection):</b></p>
+<ul><li>Redirects stderr to a file. Errors go to file, not screen.</li>
+<li><code>command 2&gt; errors.txt</code> → Save error messages</li>
+<li><code>find / -name "*.txt" 2&gt; /dev/null</code> → Discard errors</li></ul>
+<p><b>PIPING (|):</b></p>
+<ul><li>Connects commands in a pipeline. Output of first command → Input of second command.</li>
+<li>Syntax: <code>command1 | command2 | command3</code></li>
+<li>Examples:
+  <ul><li><code>ls -l | wc -l</code> → Count files in directory</li>
+  <li><code>cat /etc/passwd | grep "bash"</code> → Find bash users</li>
+  <li><code>ps aux | sort -k3 -r | head -5</code> → Top 5 CPU processes</li>
+  <li><code>who | wc -l</code> → Count logged-in users</li></ul></li></ul>
+<p><b>FILTERS:</b> Commands that read from stdin and write to stdout. Designed to work in pipelines.</p>
+<p>Common filters: <code>grep</code> (search), <code>sort</code> (sort), <code>wc</code> (count), <code>head</code> (first n lines), <code>tail</code> (last n lines), <code>cut</code> (extract fields), <code>tr</code> (translate characters), <code>uniq</code> (unique lines), <code>sed</code> (stream editor), <code>awk</code> (pattern processing).</p>
+<div class="conc"><b>Conclusion:</b> I/O redirection and pipes are powerful UNIX features. > overwrites, >> appends, < reads from file, | chains commands. Filters work between pipes to process data streams.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>'>' = overwrite(purana DELETE!). '>>' = append(purana SAFE!). '<' = input file se. '|' = Pipe = Factory assembly line! ls | wc -l = files count karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> > overwrite (dangerous!). >> append (safe!). < input from file. | pipe = assembly line. 2> errors. Filters = grep,sort,wc,head,tail,cut,awk!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M)|2018(5M)|2020(10M)|2022(5M)|2024(8M): I/O redirection + piping + filter examples!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q20" data-text="explain the vi editor and unix shell. discuss vi modes, insertion/deletion, yank and put, .exrc, types of shells, shell variables, aliases, history, job control and awk. 
+<p><b>part a — vi editor:</b></p>
+<p><b>vi (visual interface):</b> standard unix/linux text editor.">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q20 | Sec H</span>
+    <span class="q-text">Explain the vi editor and UNIX shell. Discuss vi modes, insertion/deletion, yank and put, .exrc, types of shells, shell variables, aliases, history, job control and awk.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>PART A — vi EDITOR:</b></p>
+<p><b>vi (Visual Interface):</b> Standard UNIX/Linux text editor. Available on every system. Entirely keyboard-driven. Created by Bill Joy. Modern version: vim (Vi IMproved).</p>
+<p><b>THREE MODES (CIE):</b></p>
+<p><b>1. Command Mode (Normal Mode — DEFAULT on open):</b></p>
+<ul><li>Navigation: h(←) j(↓) k(↑) l(→) | w(next word) b(prev word)</li>
+<li>G(last line) gg(first line) :n(go to line n) | 0(line start) $(line end)</li>
+<li><b>Delete:</b> x(char) dd(line) dw(word) D(to line end) 5dd(5 lines)</li>
+<li><b>Yank (Copy):</b> yy(copy line) 5yy(copy 5 lines) yw(copy word)</li>
+<li><b>Put (Paste):</b> p(paste below cursor) P(paste above cursor)</li>
+<li><b>Undo:</b> u(undo last) U(undo all on line) Ctrl+r(redo)</li>
+<li><b>Search:</b> /pattern (forward) ?pattern (backward) n(next) N(previous)</li></ul>
+<p><b>2. Insert Mode:</b> i(before) a(after) o(new line below) O(new line above) I(line start) A(line end) → Press Esc to return</p>
+<p><b>3. Ex Mode (Last Line Mode):</b> Enter by pressing : in Command Mode</p>
+<ul><li><code>:w</code> save | <code>:q</code> quit | <code>:wq</code> save+quit ← MOST IMPORTANT!</li>
+<li><code>:q!</code> force quit no save | <code>:set nu</code> line numbers</li>
+<li><code>:%s/old/new/g</code> replace ALL in file ← EXAM FAVOURITE!</li>
+<li><code>:r filename</code> insert another file here</li></ul>
+<p><b>.exrc file:</b> vi configuration file at <code>~/.exrc</code>. Contains: set nu, set tabstop=4, set autoindent. Read automatically at vi startup to customize settings.</p>
+<p><b>vim vs vi:</b> vim = Vi IMproved. Adds syntax highlighting, multiple undo, split windows, plugins. Default on modern Linux.</p>
+<p><b>PART B — UNIX SHELL:</b></p>
+<p><b>Shell:</b> Command-line interpreter between user and OS kernel. Reads commands, interprets them, passes to kernel, shows output.</p>
+<p><b>Types of Shell:</b></p>
+<ul><li><b>sh (Bourne Shell, 1979):</b> First UNIX shell. Simple, portable, good for scripting.</li>
+<li><b>csh (C Shell):</b> C-like syntax. Aliasing and history features.</li>
+<li><b>ksh (Korn Shell, 1983):</b> sh compatible + csh features. Good performance.</li>
+<li><b>bash (Bourne Again Shell):</b> DEFAULT on Linux! Free, best features, most popular.</li>
+<li><b>zsh (Z Shell):</b> Modern, excellent autocomplete and plugins.</li></ul>
+<p><b>Shell Variables:</b></p>
+<ul><li>User-defined: <code>name="Zoha"; echo $name</code></li>
+<li>Environment: <code>$HOME</code>, <code>$PATH</code>, <code>$USER</code>, <code>$SHELL</code>, <code>$PWD</code></li>
+<li>Export: <code>export VAR=value</code> → makes available to child processes</li></ul>
+<p><b>Aliases:</b></p>
+<ul><li>Create shortcuts for commands: <code>alias ll='ls -la'</code></li>
+<li>List aliases: <code>alias</code> | Remove: <code>unalias ll</code></li>
+<li>Permanent: Add to ~/.bashrc file</li></ul>
+<p><b>History:</b></p>
+<ul><li><code>history</code> → show command history list</li>
+<li>↑↓ arrows → navigate history | <code>!!</code> → repeat last command</li>
+<li><code>!n</code> → run command number n | <code>Ctrl+R</code> → search history</li></ul>
+<p><b>Job Control:</b></p>
+<ul><li><code>command &amp;</code> → start in background</li>
+<li><code>Ctrl+Z</code> → suspend current process</li>
+<li><code>bg</code> → resume suspended job in background</li>
+<li><code>fg</code> → bring background job to foreground</li>
+<li><code>jobs</code> → list all background/suspended jobs</li></ul>
+<p><b>awk — Pattern Processing Tool:</b></p>
+<ul><li><code>awk '{print $1}' file</code> → print first column of each line</li>
+<li><code>awk -F: '{print $1}' /etc/passwd</code> → use : delimiter, print usernames</li>
+<li><code>awk 'NR==3{print}' file</code> → print only line 3</li>
+<li><code>awk '{sum+=$1} END{print sum}' file</code> → sum first column</li>
+<li><code>awk '/pattern/{print}' file</code> → print lines matching pattern</li>
+<li><code>awk '{if($1&gt;50)print $0}' file</code> → conditional printing</li></ul>
+<div class="conc"><b>Conclusion:</b> vi editor mastery requires understanding 3 modes: Command, Insert, Ex. Key commands: i(insert), Esc(back), :wq(save+quit), :q!(force quit), :%s/x/y/g(replace all). Shell with variables, aliases, job control and awk makes UNIX extremely powerful for scripting and automation.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>vi MODE DIAGRAM:
+        ┌─────────────────────────┐
+Esc ◀──│    COMMAND MODE          │──▶ : (colon)
+        │  (Default on open)       │              │
+        │  Navigate,Delete,Copy    │              ▼
+        └─────────────────────────┘   ┌────────────────────┐
+                     │                │    EX MODE         │
+         i/a/o/A/I/O │                │ :w :q :wq :q!      │
+                     ▼                │ :%s/x/y/g :set nu  │
+        ┌─────────────────────────┐   └────────────────────┘
+        │    INSERT MODE          │
+        │  (Type text here)       │
+        │  Press Esc to exit      │
+        └─────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>CIE = Command(Esc), Insert(i/a/o), Ex(:). :wq = SAVE+EXIT! :q! = bhaag bina save! :%s/x/y/g = poori file mein replace! awk = column cutter! bash = DEFAULT shell! alias ll='ls -la' = shortcut!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> vi: CIE modes. :wq=save+quit (MOST IMPORTANT!). :q!=force quit. :%s/old/new/g=replace all. awk $1=first col $NF=last col. bash=DEFAULT. alias=shortcut. !! = last command!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(2M)|2016(5M)|2018(8M)|2020(8M)|2022(8M)|2024(12M): vi modes+:wq + Shell types + awk examples!</p>
+  </div>
+</div>
+</div>
+<div id="all" class="panel">
+<div class="sec-hdr"><h2>📚 All 20 Questions</h2><p>Complete unit-wise answers</p></div>
+
+<div class="q-block" id="q1" data-text="define an operating system. explain its functions, objectives, and major services. 
+<p><b>definition:</b> an operating system (os) is system software that acts as an interface between">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q1 | Sec A</span>
+    <span class="q-text">Define an Operating System. Explain its functions, objectives, and major services.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Definition:</b> An Operating System (OS) is system software that acts as an interface between the user and computer hardware. It manages all hardware resources (CPU, memory, I/O devices, files) and provides services to user programs and users.</p>
+<p><b>Example:</b> Windows 11, Linux (Ubuntu), Android, macOS, iOS, UNIX</p>
+<p><b>Objectives of OS:</b></p>
+<ol><li><b>Convenience:</b> Make computer easier to use — user does not need to know hardware details.</li>
+<li><b>Efficiency:</b> Manage resources efficiently — maximize CPU utilization, minimize waste.</li>
+<li><b>Ability to Evolve:</b> Allow development of new system functions without interfering with existing ones.</li></ol>
+<p><b>Major Functions of OS (PIFCERP):</b></p>
+<ol><li><b>Process Management:</b> Creates, schedules and terminates processes. Allocates CPU time using scheduling algorithms (FCFS, SJF, RR).</li>
+<li><b>I/O Operations:</b> Controls input/output devices through device drivers. Handles keyboard, mouse, printer, disk.</li>
+<li><b>File Management:</b> Creates, reads, writes, deletes files and directories. Manages file permissions and directory structure.</li>
+<li><b>Communication:</b> Allows processes to exchange data — same machine (shared memory, pipes) or network (sockets).</li>
+<li><b>Error Detection:</b> Monitors CPU, memory, I/O for errors. Takes corrective action (App crash = OS handled it).</li>
+<li><b>Resource Allocation:</b> Distributes CPU, memory, I/O among multiple processes efficiently.</li>
+<li><b>Protection &amp; Security:</b> Prevents unauthorized access. User authentication (passwords, biometrics). File permissions.</li></ol>
+<p><b>Major OS Services:</b></p>
+<ul><li><b>Program Execution</b> — loads and runs programs</li>
+<li><b>I/O Operations</b> — handles all device communication</li>
+<li><b>File System Manipulation</b> — file create/read/write/delete</li>
+<li><b>Error Detection</b> — handles hardware and software errors</li>
+<li><b>Resource Allocation</b> — CPU, memory, disk allocation</li>
+<li><b>Accounting</b> — tracks resource usage (billing in shared systems)</li></ul>
+<div class="conc"><b>Conclusion:</b> The OS is the most essential software in a computer. Without OS, hardware cannot be used. It acts as manager, translator and security guard of the entire computer system.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>OS = School ka Principal! Students (Users) maangte hain → Principal (OS) manage karta hai → Classrooms + Teachers (Hardware). PIFCERP = 7 functions ka shortcut!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> PIFCERP = Process, I/O, File, Communication, Error, Resource, Protection — 7 OS Functions!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M): OS Services | 2018(12M): OS with diagram | 2020(10M): OS types + functions | 2022(5M): OS objectives</p>
+  </div>
+</div>
+
+<div class="q-block" id="q2" data-text="explain different types of operating systems: batch, multiprogramming, multitasking, time-sharing, real-time and distributed os. 
+<p><b>1. batch operating system:</b></p>
+<ul><li>jobs collected and processed in batches without us">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q2 | Sec A</span>
+    <span class="q-text">Explain different types of Operating Systems: Batch, Multiprogramming, Multitasking, Time-Sharing, Real-Time and Distributed OS.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>1. Batch Operating System:</b></p>
+<ul><li>Jobs collected and processed in batches without user interaction.</li>
+<li>Operator groups similar jobs together and submits to computer.</li>
+<li>Disadvantage: No user interaction. Long waiting time.</li>
+<li><b>Example:</b> Early IBM mainframes, Payroll processing.</li></ul>
+<p><b>2. Multiprogramming OS:</b></p>
+<ul><li>Multiple programs kept in memory simultaneously.</li>
+<li>When one program waits for I/O, CPU switches to another.</li>
+<li>Goal: Maximize CPU utilization — CPU never idle!</li>
+<li><b>Example:</b> UNIX — antivirus runs while Word is open.</li></ul>
+<p><b>3. Multitasking OS:</b></p>
+<ul><li>Multiple tasks executed simultaneously with CPU switching rapidly.</li>
+<li>Extension of multiprogramming with time-sharing concept.</li>
+<li>User can switch between applications smoothly.</li>
+<li><b>Example:</b> Modern Windows — browser + music + chat simultaneously.</li></ul>
+<p><b>4. Time-Sharing OS:</b></p>
+<ul><li>CPU time divided into fixed intervals called time slices (quantum).</li>
+<li>Each user/process gets one slice in circular rotation.</li>
+<li>So fast that every user feels the computer is dedicated to them.</li>
+<li>Goal: Minimize response time.</li>
+<li><b>Example:</b> IRCTC handles lakhs of users simultaneously.</li></ul>
+<p><b>5. Real-Time OS (RTOS):</b></p>
+<ul><li><b>Hard Real-Time:</b> Deadline miss = Complete system failure. Ex: Pacemaker, missile guidance, aircraft autopilot, nuclear reactor.</li>
+<li><b>Soft Real-Time:</b> Deadline miss = Performance degradation, not failure. Ex: Video streaming, gaming, ATM.</li>
+<li>Algorithms: Rate Monotonic (RM), Earliest Deadline First (EDF).</li></ul>
+<p><b>6. Distributed OS:</b></p>
+<ul><li>Multiple computers connected over a network work as a single unified system.</li>
+<li>Resources shared across network. Users see a single coherent system.</li>
+<li><b>Example:</b> Google's distributed computing, cloud computing.</li></ul>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Batch=Khana batches mein banana (no interaction). Multi=CPU kabhi idle nahi. Time-sharing=Canteen counter (sabko turn). Hard RT=Zindagi ka sawaal (pacemaker). Distributed=Sab mila ke ek!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> B-M-M-T-R-D = Batch, Multiprogramming, Multitasking, Time-sharing, Real-time, Distributed — 6 types!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2020(10M): OS types with examples | 2018(5M): Batch vs Time-sharing | 2022(5M): Real-Time OS types</p>
+  </div>
+</div>
+
+<div class="q-block" id="q3" data-text="what is a process? explain the process states and process control block (pcb) with a suitable diagram. 
+<p><b>process:</b> a process is a program in execution. it is more than just code — it includes the">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q3 | Sec B</span>
+    <span class="q-text">What is a process? Explain the process states and Process Control Block (PCB) with a suitable diagram.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Process:</b> A process is a program in execution. It is more than just code — it includes the program counter, CPU registers, stack, heap and data section. The OS manages processes through PCB.</p>
+<p><b>Components of a Process:</b></p>
+<ul><li><b>Text Section:</b> Program code (instructions)</li>
+<li><b>Data Section:</b> Global variables</li>
+<li><b>Stack:</b> Function parameters, return addresses, local variables</li>
+<li><b>Heap:</b> Dynamically allocated memory</li>
+<li><b>Program Counter (PC):</b> Address of next instruction to execute</li></ul>
+<p><b>PCB — Process Control Block:</b> Data structure maintained by OS for each process. Acts as the process's identity card.</p>
+<p><b>PCB Contents:</b></p>
+<ol><li><b>Process ID (PID):</b> Unique identifier for each process.</li>
+<li><b>Process State:</b> Current state (New/Ready/Running/Waiting/Terminated).</li>
+<li><b>Program Counter:</b> Address of next instruction.</li>
+<li><b>CPU Registers:</b> Accumulator, index registers, stack pointer values.</li>
+<li><b>Memory Management Info:</b> Base/limit registers, page table pointers.</li>
+<li><b>Open Files List:</b> Files currently opened by process.</li>
+<li><b>Scheduling Information:</b> Priority, queue pointers, scheduling algorithm data.</li>
+<li><b>I/O Status Information:</b> Allocated I/O devices, pending I/O requests.</li></ol>
+<p><b>Five Process States:</b></p>
+<ol><li><b>New:</b> Process is being created. fork() system call invoked.</li>
+<li><b>Ready:</b> Process is in memory and waiting to be assigned the CPU.</li>
+<li><b>Running:</b> Process instructions are currently being executed on CPU.</li>
+<li><b>Waiting/Blocked:</b> Process waiting for I/O operation or event to occur.</li>
+<li><b>Terminated:</b> Process has finished execution. exit() called. Resources reclaimed.</li></ol>
+<p><b>Context Switch:</b> When CPU switches from one process to another. Save current PCB → Load next PCB. Pure overhead — no useful work during switch!</p>
+<p><b>Types of Schedulers:</b></p>
+<ul><li><b>Long-term (Job) Scheduler:</b> Controls multiprogramming degree. New → Ready. Slow.</li>
+<li><b>Short-term (CPU) Scheduler:</b> Selects from ready queue. Most important. Milliseconds.</li>
+<li><b>Medium-term (Swapper):</b> Swaps processes in/out of memory.</li></ul>
+<div class="conc"><b>Conclusion:</b> PCB is the identity card of a process. The five-state model describes the complete process lifecycle. Context switching enables multitasking but adds overhead.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PROCESS STATE DIAGRAM (Draw this in exam!):
+
+   New ──(admit)──▶ Ready ◀──(I/O complete)──── Waiting
+                      │                              ▲
+               (dispatch/CPU)                        │
+                      │                       (I/O request)
+                      ▼                              │
+                   Running ─────────────────────────┘
+                      │
+                   (exit)
+                      ▼
+                 Terminated
+
+PCB STRUCTURE:
+┌─────────────────────┐
+│  Process ID (PID)   │
+├─────────────────────┤
+│  Process State      │
+├─────────────────────┤
+│  Program Counter    │
+├─────────────────────┤
+│  CPU Registers      │
+├─────────────────────┤
+│  Memory Management  │
+├─────────────────────┤
+│  Open Files List    │
+├─────────────────────┤
+│  Scheduling Info    │
+└─────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>NRRWT = 5 states. PCB = Process ka Aadhar Card! LSM = 3 schedulers. Context switch = state save karna — overhead hai! Process = Running program.</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> NRRWT = New,Ready,Running,Waiting,Terminated. PCB = PID+State+PC+Reg+Mem+Files+Sched!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M): Process states diagram | 2017(5M): PCB contents | 2019(8M): Process vs Thread | 2022(10M): Complete process concept</p>
+  </div>
+</div>
+
+<div class="q-block" id="q4" data-text="explain cpu scheduling. describe fcfs, sjf, priority and round robin scheduling algorithms with suitable examples. 
+<p><b>cpu scheduling:</b> the process of selecting a process from the ready queue and allocating th">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q4 | Sec B</span>
+    <span class="q-text">Explain CPU scheduling. Describe FCFS, SJF, Priority and Round Robin scheduling algorithms with suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>CPU Scheduling:</b> The process of selecting a process from the ready queue and allocating the CPU to it. Done by the Short-term Scheduler in milliseconds.</p>
+<p><b>Scheduling Criteria:</b> CPU Utilization (↑ maximize), Throughput (↑), Turnaround Time (↓ minimize), Waiting Time (↓), Response Time (↓).</p>
+<p><b>Formulae:</b> Turnaround Time (TT) = Completion Time − Arrival Time | Waiting Time (WT) = TT − Burst Time</p>
+<p><b>1. FCFS — First Come First Served:</b></p>
+<ul><li>Rule: Process arriving first gets CPU first. <b>Non-preemptive.</b></li>
+<li>Problem: <b>Convoy Effect</b> — long process blocks all short ones behind it.</li></ul>
+<pre>P1(BT=24), P2(BT=3), P3(BT=3), all arrive at t=0
+Gantt: |————P1(0–24)————|—P2(24–27)—|—P3(27–30)—|
+WT: P1=0, P2=24, P3=27 → Avg WT = (0+24+27)/3 = 17ms</pre>
+<p><b>2. SJF — Shortest Job First:</b></p>
+<ul><li>Rule: Process with shortest burst time runs first. <b>Non-preemptive</b> (basic).</li>
+<li>Gives <b>minimum average waiting time</b> among non-preemptive algorithms.</li>
+<li>Problem: <b>Starvation</b> — long processes may never run. Fix: <b>Aging.</b></li></ul>
+<pre>SJF Order: P2(3ms) → P3(3ms) → P1(24ms)
+Gantt: |—P2(0–3)—|—P3(3–6)—|————P1(6–30)————|
+WT: P2=0, P3=3, P1=6 → Avg WT = (0+3+6)/3 = 3ms ← MUCH BETTER!</pre>
+<p><b>3. Priority Scheduling:</b></p>
+<ul><li>Rule: Process with highest priority (lowest priority number) runs first.</li>
+<li>Can be preemptive or non-preemptive.</li>
+<li>Problem: Starvation of low-priority processes. Fix: <b>Aging</b> (increase priority with waiting time).</li>
+<li><b>Example:</b> P1(Priority=3), P2(Priority=1), P3(Priority=2) → Order: P2 → P3 → P1</li></ul>
+<p><b>4. Round Robin (RR) — Best for Time-Sharing:</b></p>
+<ul><li>Rule: Each process gets a fixed time quantum (10–100ms) in circular rotation. <b>Preemptive.</b></li>
+<li><b>Advantages:</b> Fair, No starvation, Best for time-sharing/interactive systems.</li>
+<li><b>Disadvantage:</b> High context switch overhead if quantum too small.</li></ul>
+<pre>Quantum=4ms, P1(24ms), P2(3ms), P3(3ms), all arrive at 0
+Gantt: |P1-4|P2-3|P3-3|P1-4|P1-4|P1-4|P1-4|P1-4|
+        0    4    7   10   14   18   22   26   30
+WT: P2=4, P3=7, P1=6 → Avg WT = (4+7+6)/3 = 5.67ms</pre>
+<table class="ntbl">
+<tr><th>Algorithm</th><th>Preemptive?</th><th>Best For</th><th>Main Problem</th></tr>
+<tr><td>FCFS</td><td>No</td><td>Simple batch</td><td>Convoy effect</td></tr>
+<tr><td>SJF</td><td>No</td><td>Min avg wait time</td><td>Starvation</td></tr>
+<tr><td>Priority</td><td>Optional</td><td>Critical tasks first</td><td>Starvation</td></tr>
+<tr><td>Round Robin ✅</td><td>Yes</td><td>Time-sharing BEST</td><td>Context switch overhead</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Round Robin is the best algorithm for time-sharing systems as it is fair, preemptive and avoids starvation. SJF gives minimum average waiting time but may cause starvation.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>FCFS=Queue(convoy effect). SJF=Shortest first(starvation). Priority=VIP first(starvation). RR=Rotation(BEST!). TT=CT-AT. WT=TT-BT yaad karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> FSP-R = FCFS, SJF, Priority, Round Robin. Only RR = No Starvation + Fair + Preemptive = BEST TIME-SHARING!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2024(12M): FCFS+SJF+RR Gantt | 2022(8M): RR quantum=3 | 2020(10M): All algorithms | 2019(12M): With numericals</p>
+  </div>
+</div>
+
+<div class="q-block" id="q5" data-text="what is a thread? explain the types of threads and differentiate between a process and a thread. 
+<p><b>thread:</b> a thread is the smallest unit of cpu execution within a process. multiple threads">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q5 | Sec B</span>
+    <span class="q-text">What is a thread? Explain the types of threads and differentiate between a process and a thread.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Thread:</b> A thread is the smallest unit of CPU execution within a process. Multiple threads in the same process share the same memory space, code and data. Threads are also called <b>Lightweight Processes (LWP)</b>.</p>
+<p><b>Types of Threads:</b></p>
+<p><b>1. User Level Threads (ULT):</b></p>
+<ul><li>Managed by user-space libraries (e.g., POSIX Pthreads). OS is not aware of them.</li>
+<li>Fast creation and context switching.</li>
+<li>Disadvantage: If one thread makes a blocking system call, ALL threads in the process block.</li>
+<li><b>Example:</b> Java threads (Green threads), POSIX pthreads.</li></ul>
+<p><b>2. Kernel Level Threads (KLT):</b></p>
+<ul><li>Directly managed by the OS kernel.</li>
+<li>If one thread blocks, others can continue running independently.</li>
+<li>Slower creation but more reliable and better parallelism.</li>
+<li><b>Example:</b> Windows threads, Linux clone().</li></ul>
+<p><b>3. Hybrid Threads:</b></p>
+<ul><li>Combination of ULT and KLT. Many user threads mapped to many kernel threads.</li>
+<li>Best performance and flexibility.</li>
+<li><b>Example:</b> Solaris OS.</li></ul>
+<p><b>Advantages of Threads:</b> Responsiveness, Resource Sharing, Economy (cheaper than processes), Scalability (use multiple CPUs).</p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Process</th><th>Thread</th></tr>
+<tr><td>Definition</td><td>Program in execution</td><td>Smallest execution unit</td></tr>
+<tr><td>Memory</td><td>Separate address space</td><td>Shared with other threads</td></tr>
+<tr><td>Communication</td><td>IPC needed (complex)</td><td>Direct shared memory (fast)</td></tr>
+<tr><td>Creation Time</td><td>Slow (heavy)</td><td>Fast (lightweight)</td></tr>
+<tr><td>Context Switch</td><td>Expensive</td><td>Cheap</td></tr>
+<tr><td>Crash Effect</td><td>Other processes safe</td><td>Whole process may crash</td></tr>
+<tr><td>Example</td><td>Chrome browser</td><td>Each Chrome tab</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Threads enable efficient concurrent execution within a process. ULT is fast but ULT blocking is a problem. KLT is reliable. Hybrid combines best of both.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Thread = Process ka employee! Office(Process)=Reliance. Employees(Threads)=HR,Finance,Marketing — sab same office share karte hain. Chrome=process, each tab=thread!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Thread = RRES advantages: Responsiveness, Resource sharing, Economy, Scalability. ULT=fast but blocks all. KLT=reliable.</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2018(7M): Thread types | 2020(10M): Thread+IPC | 2021(5M): Process vs Thread | 2023(5M): Thread advantages</p>
+  </div>
+</div>
+
+<div class="q-block" id="q6" data-text="what is the critical-section problem? explain its requirements and solutions. 
+<p><b>process synchronization:</b> when multiple processes access shared data concurrently, we must">
+  <div class="q-head purp">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q6 | Sec C</span>
+    <span class="q-text">What is the critical-section problem? Explain its requirements and solutions.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Process Synchronization:</b> When multiple processes access shared data concurrently, we must ensure correct execution to maintain data consistency.</p>
+<p><b>Race Condition:</b> Multiple processes access and modify shared data simultaneously → result depends on execution order → incorrect results!</p>
+<p><b>Example:</b> P1 reads balance=5000, P2 reads balance=5000. P1 adds 1000→6000. P2 adds 2000→7000. Should be 8000! <b>This is a race condition.</b></p>
+<p><b>Critical Section:</b> The segment of code that accesses shared resources (shared variables, files, I/O devices). Only <b>ONE process</b> must be in the critical section at a time.</p>
+<p><b>Structure of Critical Section Solution:</b></p>
+<pre>ENTRY SECTION        ← Request permission to enter
+  CRITICAL SECTION   ← Access shared resource here
+EXIT SECTION         ← Release permission
+  REMAINDER SECTION  ← Non-critical code</pre>
+<p><b>Three Requirements for CS Solution:</b></p>
+<ol><li><b>Mutual Exclusion:</b> Only one process can be in the critical section at any given time.</li>
+<li><b>Progress:</b> If no process is in the CS, any process requesting entry must be allowed to enter without indefinite delay. Selection cannot be postponed indefinitely.</li>
+<li><b>Bounded Waiting:</b> A limit must exist on the number of times other processes can enter CS after a process has requested entry. No process waits forever.</li></ol>
+<p><b>Solutions:</b></p>
+<ul><li><b>Software Solutions:</b> Peterson's Algorithm — uses two variables (turn, flag[]).</li>
+<li><b>Hardware Solutions:</b> test_and_set(), compare_and_swap() instructions.</li>
+<li><b>OS Solutions:</b> Semaphores (most important!), Mutex locks, Monitors.</li></ul>
+<div class="conc"><b>Conclusion:</b> The critical section problem ensures data consistency in concurrent systems. The three requirements (mutual exclusion, progress, bounded waiting) must all be satisfied for a correct solution.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>CS = ATM machine ka andar! Ek waqt pe ek transaction sirf! Race condition = bank balance problem! MBP = 3 rules yaad karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> MBP = Mutual exclusion, Bounded waiting, Progress — 3 CS requirements. ATM = perfect critical section example!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M): CS problem | 2019(5M): 3 requirements | 2021(5M): Race condition + CS | 2023(3M): Critical section</p>
+  </div>
+</div>
+
+<div class="q-block" id="q7" data-text="what is a semaphore? explain binary and counting semaphores with suitable examples. 
+<p><b>semaphore:</b> a semaphore is an integer variable used for process synchronization. it suppor">
+  <div class="q-head purp">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q7 | Sec C</span>
+    <span class="q-text">What is a semaphore? Explain binary and counting semaphores with suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Semaphore:</b> A semaphore is an integer variable used for process synchronization. It supports two atomic operations: <b>wait()</b> and <b>signal()</b>.</p>
+<p><b>Operations:</b></p>
+<ul><li><b>wait(S) / P(S):</b> S = S − 1; if S &lt; 0 → block the process (LOCK the resource)</li>
+<li><b>signal(S) / V(S):</b> S = S + 1; if S ≤ 0 → wake up one blocked process (UNLOCK)</li></ul>
+<p><b>Both operations must be atomic</b> — cannot be interrupted during execution!</p>
+<p><b>1. Binary Semaphore (Mutex):</b></p>
+<ul><li>Value is either 0 (locked) or 1 (unlocked) only.</li>
+<li>Used for mutual exclusion — ensuring only one process in critical section.</li>
+<li>Initialized to 1.</li></ul>
+<pre>mutex = 1   (initially unlocked)
+Process P1:  wait(mutex) → mutex=0 → Enter CS → signal(mutex) → mutex=1
+Process P2:  wait(mutex) → mutex=-1 → BLOCKED! Waits until P1 signals.
+When P1 signals: P2 wakes up → enters CS</pre>
+<p><b>2. Counting Semaphore:</b></p>
+<ul><li>Value ranges from 0 to N (unrestricted integer).</li>
+<li>Used when N instances of a resource are available.</li>
+<li>Tracks count of available resource instances.</li></ul>
+<pre>Example: Parking lot with 10 spaces. semaphore = 10
+Car enters: wait(S) → S decreases (9,8,7...0)
+Car leaves: signal(S) → S increases
+If S = 0: Next car BLOCKS until someone leaves!</pre>
+<p><b>Producer-Consumer Problem using Semaphores:</b></p>
+<pre>Semaphores: mutex=1 (critical section), full=0, empty=N (buffer size)
+Producer:  wait(empty) → wait(mutex) → ADD item → signal(mutex) → signal(full)
+Consumer:  wait(full)  → wait(mutex) → REMOVE item → signal(mutex) → signal(empty)</pre>
+<p><b>Semaphore vs Mutex:</b></p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Binary Semaphore (Mutex)</th><th>Counting Semaphore</th></tr>
+<tr><td>Value range</td><td>0 or 1 only</td><td>0 to N (any integer)</td></tr>
+<tr><td>Use case</td><td>Mutual exclusion</td><td>Resource counting</td></tr>
+<tr><td>Who can signal</td><td>Typically only owner</td><td>Any process</td></tr>
+<tr><td>Example</td><td>Bathroom key (one at a time)</td><td>Parking lot (N spaces)</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Semaphores are a versatile synchronization mechanism. wait() = lock, signal() = unlock. Binary semaphore ensures mutual exclusion. Counting semaphore manages resource pools.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Semaphore = Traffic Light! P()=Red=Lock=S-1. V()=Green=Unlock=S+1. Binary=0 ya 1 (bathroom key). Counting=Parking lot (N spaces).</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> P()=wait=S-1=LOCK | V()=signal=S+1=UNLOCK. Binary=0/1=Mutex. Counting=0 to N=Resource pool!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2019(10M): Semaphore+Producer-Consumer | 2021(8M): Semaphore vs Mutex | 2023(8M): Classical sync problems with semaphores</p>
+  </div>
+</div>
+
+<div class="q-block" id="q8" data-text="what is deadlock? explain the four necessary conditions for deadlock with examples. 
+<p><b>deadlock:</b> a deadlock is a situation in which a set of processes are permanently blocked b">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q8 | Sec D</span>
+    <span class="q-text">What is deadlock? Explain the four necessary conditions for deadlock with examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Deadlock:</b> A deadlock is a situation in which a set of processes are permanently blocked because each process holds some resources and waits for resources held by other processes in the same set. No process can proceed — complete standstill!</p>
+<p><b>Simple Example:</b></p>
+<p>Process P1 holds Resource R1 (Printer) and waits for R2 (Scanner).<br>
+Process P2 holds Resource R2 (Scanner) and waits for R1 (Printer).<br>
+Both wait forever → <b>DEADLOCK!</b></p>
+<p><b>Four Necessary Conditions for Deadlock (Coffman Conditions, 1971):</b></p>
+<p><b>ALL FOUR conditions must hold simultaneously for deadlock to occur. Remove ANY ONE → No Deadlock!</b></p>
+<p><b>1. Mutual Exclusion:</b></p>
+<ul><li>At least one resource must be held in a non-sharable mode.</li>
+<li>Only ONE process can use the resource at a time.</li>
+<li><b>Example:</b> Only one person can use a printer at a time. If another wants it, they must wait.</li></ul>
+<p><b>2. Hold and Wait:</b></p>
+<ul><li>A process must be holding at least one resource AND waiting to acquire additional resources currently held by other processes.</li>
+<li><b>Example:</b> Process holds the Scanner (holds) and is waiting for the Printer (wait).</li></ul>
+<p><b>3. No Preemption:</b></p>
+<ul><li>Resources cannot be forcibly taken away from a process holding them.</li>
+<li>A resource can only be released voluntarily by the process holding it after it completes its task.</li>
+<li><b>Example:</b> You cannot snatch a pen from someone who is writing — they must give it up themselves.</li></ul>
+<p><b>4. Circular Wait:</b></p>
+<ul><li>A set of processes {P1, P2, ..., Pn} must exist such that P1 waits for P2, P2 waits for P3, ..., Pn waits for P1.</li>
+<li>A circular chain of waiting is formed!</li>
+<li><b>Example:</b> P1 wants R2 (held by P2), P2 wants R3 (held by P3), P3 wants R1 (held by P1) → CYCLE!</li></ul>
+<div class="conc"><b>Conclusion:</b> Deadlock is a serious problem in concurrent systems. All four Coffman conditions must hold simultaneously for deadlock to occur. Eliminating even one condition prevents deadlock. This forms the basis of deadlock prevention strategies.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>DEADLOCK EXAMPLE — Resource Allocation Graph:
+
+P1 ──holds──▶ R1     R2 ◀──holds── P2
+P1 ◀──needs── R2     R1 ◀──needs── P2
+
+CIRCULAR CHAIN: P1→R2→P2→R1→P1 = DEADLOCK!
+
+4 CONDITIONS VISUALIZATION:
+┌─────────────────────────────────┐
+│  1. Mutual Exclusion: R shared? │  NO → Cannot be shared → ✓ Condition met
+│  2. Hold and Wait: P1 holds R1  │  P1 holds R1, waits for R2 → ✓
+│  3. No Preemption: Force take?  │  Cannot force take R1 from P1 → ✓
+│  4. Circular Wait: P1→P2→P1?   │  Cycle exists → ✓
+│  ALL 4 MET → DEADLOCK!         │
+└─────────────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Teen yaar: Raju(cycle pakdi,bat chahiye)→Sham(bat pakdi,helmet chahiye)→Babu(helmet pakda,cycle chahiye) = DEADLOCK! MH-NC = 4 conditions! Remove ANY ONE = no deadlock!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> MH-NC = Mutual exclusion, Hold&wait, No preemption, Circular wait — ALL 4 must hold for DEADLOCK!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2015(8M)|2017(10M)|2019(12M)|2021(10M)|2023(12M)|2025(10M): Deadlock conditions with diagram!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q9" data-text="explain deadlock prevention, avoidance, detection and recovery techniques. 
+<p><b>deadlock handling methods (4 approaches):</b></p>
+<p><b>method 1 — deadlock prevention:</b></">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q9 | Sec D</span>
+    <span class="q-text">Explain deadlock prevention, avoidance, detection and recovery techniques.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Deadlock Handling Methods (4 approaches):</b></p>
+<p><b>METHOD 1 — DEADLOCK PREVENTION:</b></p>
+<p>Ensure at least one of the four Coffman conditions NEVER holds in the system.</p>
+<ul><li><b>Eliminate Mutual Exclusion:</b> Make resources sharable where possible (e.g., use print spooler instead of direct printer access). Not always feasible.</li>
+<li><b>Eliminate Hold and Wait:</b> A process must request ALL needed resources at once before starting. OR must release all held resources before requesting more. Leads to low resource utilization.</li>
+<li><b>Allow Preemption:</b> If a process holding resources requests another that cannot be immediately allocated, release all currently held resources. Process restarts when all resources available.</li>
+<li><b>Eliminate Circular Wait:</b> Assign a total ordering to all resource types. Processes must request resources in strictly increasing order. Breaks the circular chain.</li></ul>
+<p><b>METHOD 2 — DEADLOCK AVOIDANCE (Banker's Algorithm):</b></p>
+<ul><li>Before granting a resource request, check if resulting state is a <b>SAFE STATE</b>.</li>
+<li><b>Safe State:</b> All processes can eventually finish in some sequence (safe sequence).</li>
+<li>Need matrix: Need[i][j] = Max[i][j] − Allocation[i][j]</li>
+<li>Grant request ONLY IF resulting state is safe. Otherwise, make process wait.</li></ul>
+<p><b>METHOD 3 — DEADLOCK DETECTION:</b></p>
+<ul><li>Allow deadlock to occur. Detect it using <b>Resource Allocation Graph (RAG)</b>.</li>
+<li>If RAG contains a cycle → Deadlock exists (for single-instance resources).</li>
+<li>Run detection algorithm periodically (every hour, or when CPU utilization drops).</li>
+<li>Detection algorithm uses Available, Allocation, and Request matrices.</li></ul>
+<p><b>METHOD 4 — DEADLOCK RECOVERY:</b></p>
+<ul><li><b>Process Termination:</b>
+  <ul><li>Abort all deadlocked processes (expensive — loses work).</li>
+  <li>Abort one process at a time until deadlock cycle broken (less expensive).</li></ul></li>
+<li><b>Resource Preemption:</b>
+  <ul><li>Forcibly take a resource from one process and give it to another.</li>
+  <li>Preempted process is rolled back to a safe earlier state (checkpoint).</li>
+  <li>Same process should not always be the victim (starvation!).</li></ul></li></ul>
+<table class="ntbl">
+<tr><th>Method</th><th>Approach</th><th>Cost</th><th>Best Use</th></tr>
+<tr><td>Prevention</td><td>Break one Coffman condition</td><td>High (resource waste)</td><td>Safety-critical systems</td></tr>
+<tr><td>Avoidance</td><td>Banker's Algorithm check</td><td>Medium (overhead)</td><td>Known max needs</td></tr>
+<tr><td>Detection</td><td>Periodic RAG check</td><td>Low (allow deadlock)</td><td>Rare deadlocks</td></tr>
+<tr><td>Recovery</td><td>Terminate/Preempt</td><td>Medium (work lost)</td><td>After detection</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Prevention is safest but most restrictive. Avoidance (Banker's) is practical but needs advance resource declarations. Detection+Recovery is used when deadlocks are rare. In practice, most systems use prevention + detection.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Prevention=condition hata. Avoidance=Banker's (safe state check). Detection=Graph mein cycle dhundo. Recovery=Kisi ko terminate karo ya resources cheeno!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Prevention→Avoidance→Detection→Recovery (cost increases, control decreases). Banker's = Avoidance! RAG cycle = Detection!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2017(10M):Prevention+Avoidance | 2019(12M):All 4 methods | 2021(8M):Recovery | 2023(10M):Complete deadlock handling</p>
+  </div>
+</div>
+
+<div class="q-block" id="q10" data-text="explain the banker's algorithm for deadlock avoidance with a suitable example. 
+<p><b>banker's algorithm:</b> developed by dijkstra. used for deadlock avoidance. before granting a">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q10 | Sec D</span>
+    <span class="q-text">Explain the Banker's Algorithm for deadlock avoidance with a suitable example.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Banker's Algorithm:</b> Developed by Dijkstra. Used for deadlock avoidance. Before granting any resource request, the OS checks whether the resulting state is a <b>SAFE STATE</b>. If safe → grant. If unsafe → make process wait.</p>
+<p><b>Safe State:</b> A state where there exists at least one safe sequence in which all processes can finish their execution. If no safe sequence exists → Unsafe State (may lead to deadlock).</p>
+<p><b>Data Structures Used:</b></p>
+<ul><li><b>Available[j]:</b> Number of available instances of resource type j.</li>
+<li><b>Max[i][j]:</b> Maximum demand of process i for resource type j.</li>
+<li><b>Allocation[i][j]:</b> Resources currently allocated to process i.</li>
+<li><b>Need[i][j]:</b> Remaining resources needed by process i. <b>Need = Max − Allocation</b></li></ul>
+<p><b>Safety Algorithm Steps:</b></p>
+<ol><li>Initialize Work = Available, Finish[i] = false for all i.</li>
+<li>Find process i where Finish[i]=false AND Need[i] ≤ Work.</li>
+<li>If found: Work = Work + Allocation[i]; Finish[i] = true. Go to step 2.</li>
+<li>If all Finish[i]=true → Safe State! Otherwise → Unsafe State.</li></ol>
+<p><b>Example:</b></p>
+<pre>Resources: A(10), B(5), C(7) | Available: A=3, B=3, C=2
+
+Process | Allocation  | Maximum     | Need        
+        | A   B   C  | A   B   C  | A   B   C  
+  P0    | 0   1   0  | 7   5   3  | 7   4   3  
+  P1    | 2   0   0  | 3   2   2  | 1   2   2  ← Need(1,2,2) ≤ Avail(3,3,2) ✓ → Run P1
+  P2    | 3   0   2  | 9   0   2  | 6   0   0  
+  P3    | 2   1   1  | 2   2   2  | 0   1   1  
+  P4    | 0   0   2  | 4   3   3  | 4   3   1  
+
+Step 1: P1 runs. Work = (3,3,2) + (2,0,0) = (5,3,2). Finish[1]=true.
+Step 2: P3 needs(0,1,1) ≤ Work(5,3,2) ✓ → Run P3. Work=(5,3,2)+(2,1,1)=(7,4,3). Finish[3]=true.
+Step 3: P4 needs(4,3,1) ≤ Work(7,4,3) ✓ → Run P4. Work=(7,4,3)+(0,0,2)=(7,4,5). Finish[4]=true.
+Step 4: P0 needs(7,4,3) ≤ Work(7,4,5) ✓ → Run P0. Work=(7,5,5). Finish[0]=true.
+Step 5: P2 needs(6,0,0) ≤ Work(7,5,5) ✓ → Run P2. Finish[2]=true.
+
+SAFE SEQUENCE: P1 → P3 → P4 → P0 → P2 ✅ SAFE STATE → Grant request!</pre>
+<div class="conc"><b>Conclusion:</b> Banker's Algorithm ensures the system never enters an unsafe state by checking safety before every resource allocation. It is the most important deadlock avoidance algorithm. Need = Max − Allocation is the key formula.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Banker's = Bank loan ka system! Bank pehle check karta hai — agar dene ke baad bank bankrupt nahi hoga toh deta hai! Need=Max-Allocation. Safe sequence milte = SAFE!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Banker's Key: Need = Max − Allocation. Find process where Need ≤ Available → run it → release resources → repeat. Safe sequence = No deadlock!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2015(8M)|2017(10M)|2019(12M)|2021(12M)|2023(10M): Banker's Algorithm with numerical example!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q11" data-text="explain memory management and discuss different memory allocation techniques. 
+<p><b>memory management:</b> the os function that controls and coordinates the use of primary memor">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q11 | Sec E</span>
+    <span class="q-text">Explain memory management and discuss different memory allocation techniques.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Memory Management:</b> The OS function that controls and coordinates the use of primary memory (RAM). It allocates memory to processes when needed and reclaims it when done.</p>
+<p><b>Goals:</b> Efficient utilization, Protection (processes don't interfere), Sharing (share common code), Relocation (run process anywhere in memory).</p>
+<p><b>Logical vs Physical Address:</b></p>
+<ul><li><b>Logical (Virtual) Address:</b> Generated by CPU. User/programmer sees this. Starts from 0 for each process.</li>
+<li><b>Physical Address:</b> Actual RAM location. Hardware uses this. MMU translates logical → physical.</li></ul>
+<p><b>Swapping:</b> Moving an inactive process from RAM to disk (swap out) to free memory. Brings it back when needed (swap in). Increases multiprogramming degree.</p>
+<p><b>Contiguous Memory Allocation:</b></p>
+<ul><li><b>Fixed Partition:</b> Memory divided into fixed-size partitions. Simple but causes Internal Fragmentation (allocated > required).</li>
+<li><b>Variable Partition:</b> Partitions created exactly as needed. Causes External Fragmentation (total free enough but not contiguous).</li></ul>
+<p><b>Fit Strategies for Variable Partition:</b></p>
+<ul><li><b>First Fit:</b> Allocate first hole that is large enough. Fast!</li>
+<li><b>Best Fit:</b> Allocate smallest suitable hole. Less waste but slow.</li>
+<li><b>Worst Fit:</b> Allocate largest hole. Large leftover (for future use).</li></ul>
+<p><b>Fragmentation Solution:</b></p>
+<ul><li><b>Compaction:</b> Move all processes to one end, creating one large free block. Expensive!</li>
+<li><b>Paging/Segmentation:</b> Better — non-contiguous allocation, no external fragmentation.</li></ul>
+<div class="conc"><b>Conclusion:</b> Memory management ensures efficient and safe use of RAM. Fixed partition is simple but wasteful. Variable partition is efficient but causes external fragmentation. Paging and segmentation provide better solutions.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Memory Management = Library management. Books(programs) ko tables(RAM) pe laana jaana. Librarian(OS) track karta hai. First Fit = Fast! Best Fit = Less waste!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Fragmentation types: Internal=allocated>needed (wasted inside). External=total free enough but scattered. Fix=Compaction or Paging!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M):Contiguous allocation | 2018(5M):Swapping | 2020(8M):Memory techniques | 2022(5M):Fragmentation</p>
+  </div>
+</div>
+
+<div class="q-block" id="q12" data-text="explain paging and segmentation. differentiate between paging and segmentation. 
+<p><b>paging:</b></p>
+<p>paging is a non-contiguous memory allocation technique where:</p>
+<ul><li>">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q12 | Sec E</span>
+    <span class="q-text">Explain paging and segmentation. Differentiate between paging and segmentation.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>PAGING:</b></p>
+<p>Paging is a non-contiguous memory allocation technique where:</p>
+<ul><li>Logical memory is divided into fixed-size blocks called <b>PAGES</b>.</li>
+<li>Physical memory is divided into fixed-size blocks called <b>FRAMES</b> (same size as pages).</li>
+<li>OS maintains a <b>Page Table</b> for each process mapping page numbers to frame numbers.</li>
+<li>Pages can be placed in ANY available frame — non-contiguous!</li>
+<li><b>No External Fragmentation!</b> Only Internal Fragmentation (last page may not be full).</li></ul>
+<p><b>Address Translation in Paging:</b></p>
+<ul><li>Logical Address = Page Number (p) + Page Offset (d)</li>
+<li>Physical Address = Frame[p] × Frame_Size + d</li>
+<li><b>TLB (Translation Lookaside Buffer):</b> Hardware cache for page table entries = fast translation!</li></ul>
+<p><b>SEGMENTATION:</b></p>
+<p>Segmentation is a memory management technique where a program is divided into logical variable-size segments:</p>
+<ul><li>Segments correspond to logical program units: Code, Data, Stack, Heap.</li>
+<li>Segment Table stores <b>Base address</b> and <b>Limit (size)</b> for each segment.</li>
+<li>Physical Address = Base[segment_no] + Offset (if offset &lt; Limit)</li>
+<li>External Fragmentation possible (variable sizes). No Internal Fragmentation!</li>
+<li>Matches programmer's logical view of memory.</li></ul>
+<p><b>Paging + Segmentation Combined:</b> First segment the program, then page each segment. Best of both worlds — logical organization + no external fragmentation.</p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Paging</th><th>Segmentation</th></tr>
+<tr><td>Division Type</td><td>Fixed size pages</td><td>Variable size segments</td></tr>
+<tr><td>External Fragmentation</td><td>NONE ✅</td><td>Occurs ❌</td></tr>
+<tr><td>Internal Fragmentation</td><td>Occurs ❌</td><td>NONE ✅</td></tr>
+<tr><td>Table Used</td><td>Page Table (page→frame)</td><td>Segment Table (base+limit)</td></tr>
+<tr><td>User View</td><td>Hardware/physical view</td><td>Programmer's logical view</td></tr>
+<tr><td>Address</td><td>Page no. + Offset</td><td>Segment no. + Offset</td></tr>
+<tr><td>Memory Use</td><td>Simple management</td><td>Logical program structure</td></tr>
+<tr><td>Example</td><td>Equal size book pages</td><td>Different size book chapters</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Paging is hardware-oriented with no external fragmentation. Segmentation is programmer-oriented with no internal fragmentation. Combined paging+segmentation provides best of both. For modern OS, paging is most commonly used.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PAGING DIAGRAM (Must draw!):
+
+Logical Memory    Page Table        Physical Memory
+┌─────────┐      ┌───┬──────┐      ┌─────────┐ F0
+│  Page 0 │─────▶│ 0 │  5  │      ├─────────┤ F1
+├─────────┤      ├───┼──────┤      ├─────────┤ F2 ← Page 1
+│  Page 1 │─────▶│ 1 │  2  │      ├─────────┤ F3
+├─────────┤      ├───┼──────┤      ├─────────┤ F4
+│  Page 2 │─────▶│ 2 │  8  │      ├─────────┤ F5 ← Page 0
+└─────────┘      └───┴──────┘      ├─────────┤
+CPU→Logical→TLB/Page Table→Physical→RAM │ F8 ← Page 2</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Paging=Book pages(equal size,kisi bhi shelf pe). Segmentation=Book chapters(different size,logical). TLB=fast cache. Paging vs Seg = OPPOSITE properties!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Paging=Fixed/No-External-Frag. Segmentation=Variable/No-Internal-Frag. They are OPPOSITES! TLB=page table cache=faster!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M),2016(5M),2019(8M),2022(5M),2025(8M): Paging diagram + address translation!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q13" data-text="what is virtual memory? explain demand paging and its advantages. 
+<p><b>virtual memory:</b> a memory management technique that allows processes to execute even if th">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q13 | Sec E</span>
+    <span class="q-text">What is virtual memory? Explain demand paging and its advantages.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Virtual Memory:</b> A memory management technique that allows processes to execute even if they are not completely loaded in RAM. The remaining pages/segments are stored on disk (secondary storage). Creates an illusion that the computer has more memory than physically available.</p>
+<p><b>Benefits of Virtual Memory:</b></p>
+<ul><li>Programs larger than physical RAM can execute.</li>
+<li>More processes can be kept in memory simultaneously (increased multiprogramming).</li>
+<li>Less I/O needed — only load what is currently being used.</li>
+<li>Each process has full address space illusion.</li></ul>
+<p><b>Demand Paging:</b> A virtual memory implementation where pages are loaded into memory ONLY when they are demanded (accessed by the process). NOT all pages are loaded at program start. Pages on disk until referenced.</p>
+<p><b>Working of Demand Paging:</b></p>
+<ol><li>Process starts. Only essential initial pages loaded into RAM.</li>
+<li>CPU accesses a page. Check page table — valid bit.</li>
+<li>If valid bit = 1: Page is in RAM → access directly (no fault).</li>
+<li>If valid bit = 0: <b>PAGE FAULT!</b> OS interrupt occurs.</li>
+<li>OS saves current process state.</li>
+<li>OS finds a free frame in RAM (or replaces a page).</li>
+<li>OS loads required page from disk into free frame.</li>
+<li>OS updates page table (valid bit = 1).</li>
+<li>Process restarts the faulted instruction.</li></ol>
+<p><b>Page Fault Rate:</b> If p = page fault rate, then:</p>
+<p>Effective Access Time (EAT) = (1-p) × memory_access_time + p × page_fault_time</p>
+<p><b>Advantages of Demand Paging:</b></p>
+<ul><li>Large programs can run with limited RAM.</li>
+<li>Faster initial program loading (only load what's needed).</li>
+<li>Increased degree of multiprogramming.</li>
+<li>Less physical memory needed per process.</li>
+<li>Unused code/data never loaded (efficient).</li></ul>
+<p><b>Disadvantages:</b></p>
+<ul><li>Page fault handling overhead (disk access is slow).</li>
+<li>Can lead to thrashing if too many page faults occur.</li>
+<li>Complex OS implementation required.</li></ul>
+<p><b>Thrashing:</b> When a process spends more time swapping pages than executing. CPU utilization drops drastically. Fix: Working Set Model, Page Fault Frequency algorithm, more RAM.</p>
+<div class="conc"><b>Conclusion:</b> Virtual memory with demand paging greatly increases the degree of multiprogramming and allows large programs to run on systems with limited RAM. The key is minimizing page faults through good page replacement algorithms.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>PAGE FAULT HANDLING FLOW:
+
+CPU accesses page P
+         │
+    Page in RAM? (valid bit=1)
+    YES → Access directly, continue execution
+    NO  → PAGE FAULT TRAP!
+         │
+         ▼ OS takes control
+    Find free frame in RAM
+    (If no free frame → run page replacement algorithm)
+         │
+         ▼
+    Load required page from disk into free frame
+         │
+         ▼
+    Update page table (valid bit = 1, frame number)
+         │
+         ▼
+    Restart the faulted instruction → Continue</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>Virtual Memory = 4GB RAM mein 8GB program chalao! Demand paging = Sirf jo chahiye woh laao (Zomato order!). Page fault = Out of stock (disk se laana). Thrashing = System hang!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> Demand Paging = Lazy Loading! Load only when demanded. Page Fault = Miss in RAM → go to disk. Thrashing = too many faults = system busy only in paging!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M)|2018(10M)|2020(8M)|2021(5M)|2023(10M): Virtual memory + demand paging + advantages!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q14" data-text="explain page replacement algorithms: fifo, lru and optimal. give suitable examples. 
+<p><b>page replacement:</b> when ram is full and a new page needs to be loaded, an existing page mu">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q14 | Sec E</span>
+    <span class="q-text">Explain page replacement algorithms: FIFO, LRU and Optimal. Give suitable examples.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Page Replacement:</b> When RAM is full and a new page needs to be loaded, an existing page must be replaced. Page replacement algorithms decide WHICH page to replace to minimize future page faults.</p>
+<p><b>Reference String for examples:</b> 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3 | Frames = 3</p>
+<p><b>1. FIFO — First In First Out:</b></p>
+<ul><li>Replace the page that was loaded into memory the EARLIEST (oldest page).</li>
+<li>Simple to implement (queue structure).</li>
+<li>Problem: <b>Belady's Anomaly</b> — increasing number of frames can INCREASE page faults! Counter-intuitive!</li></ul>
+<pre>Ref:  7   0   1   2   0   3   0   4   2   3   0   3
+F1:   7   7   7   2   2   2   2   4   4   4   0   0
+F2:   -   0   0   0   0   3   3   3   2   2   2   2
+F3:   -   -   1   1   1   1   0   0   0   3   3   3
+      F   F   F   F   H   F   F   F   H   H   F   H
+Page Faults = 9 (9 out of 12 references)</pre>
+<p><b>2. LRU — Least Recently Used:</b></p>
+<ul><li>Replace the page that has NOT been used for the LONGEST time.</li>
+<li>Based on past reference history (approximates future usage).</li>
+<li>No Belady's Anomaly! Best practical performance.</li>
+<li>Approximation methods: Counter, Stack, Reference Bit.</li></ul>
+<pre>Ref:  7   0   1   2   0   3   0   4   2   3   0   3
+F1:   7   7   7   2   2   2   0   0   0   3   3   3
+F2:   -   0   0   0   0   0   0   4   4   4   0   0
+F3:   -   -   1   1   1   3   3   3   2   2   2   2
+      F   F   F   F   H   F   F   F   F   F   F   H
+Page Faults = 8 (Better than FIFO's 9!)</pre>
+<p><b>3. Optimal Page Replacement:</b></p>
+<ul><li>Replace the page that will NOT be used for the LONGEST time in the FUTURE.</li>
+<li>Theoretically gives minimum page faults — best possible!</li>
+<li><b>Impossible in practice</b> — requires knowledge of future references.</li>
+<li>Used as a benchmark to evaluate other algorithms.</li></ul>
+<table class="ntbl">
+<tr><th>Algorithm</th><th>Replace</th><th>Page Faults</th><th>Belady's?</th><th>Practical?</th></tr>
+<tr><td>FIFO</td><td>Oldest loaded</td><td>9 (worst)</td><td>YES ❌</td><td>Yes (simple)</td></tr>
+<tr><td>LRU</td><td>Least recently used</td><td>8 (good)</td><td>NO ✅</td><td>Yes (best practical)</td></tr>
+<tr><td>Optimal</td><td>Farthest future use</td><td>Minimum</td><td>NO ✅</td><td>NO ❌ (offline only)</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> Optimal algorithm gives minimum page faults but is impossible to implement online. LRU is the best practical algorithm with good performance and no Belady's Anomaly. FIFO is simplest but may suffer from Belady's Anomaly. LRU is preferred in real OS implementations.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>FIFO=oldest out(Belady's Anomaly!). LRU=Least recently used out(BEST practical, no Belady's). Optimal=Best but impossible(need future). LRU always better than or equal to FIFO!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> FIFO=Belady's Anomaly (bad!). LRU=Best practical (no Belady's). Optimal=Min faults but impossible. Use LRU in practice!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2016(8M)|2018(10M)|2020(12M)|2022(8M)|2024(12M): FIFO+LRU+Optimal with same reference string!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q15" data-text="what is unix? explain its features, architecture and major components. 
+<p><b>unix:</b> unix is a powerful, multi-user, multitasking operating system originally developed ">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q15 | Sec F</span>
+    <span class="q-text">What is UNIX? Explain its features, architecture and major components.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX:</b> UNIX is a powerful, multi-user, multitasking operating system originally developed at Bell Labs in 1969 by Ken Thompson and Dennis Ritchie. Written in C language. Parent of modern OS like Linux, macOS, Android.</p>
+<p><b>Features of UNIX:</b></p>
+<ul><li><b>Multi-user:</b> Multiple users can work simultaneously on the same system.</li>
+<li><b>Multitasking:</b> Multiple processes run concurrently.</li>
+<li><b>Portability:</b> Written in C — runs on diverse hardware platforms.</li>
+<li><b>Security:</b> Strong file permissions (read/write/execute for owner/group/others).</li>
+<li><b>File System:</b> Hierarchical tree structure starting from root (/).</li>
+<li><b>Shell:</b> Powerful command-line interface with scripting capability.</li>
+<li><b>Pipes &amp; Filters:</b> Connect programs — output of one becomes input of another.</li>
+<li><b>Networking:</b> Built-in TCP/IP support. Internet was built on UNIX!</li>
+<li><b>Open Standard:</b> POSIX standard allows portability.</li></ul>
+<p><b>UNIX Architecture (3 Layers):</b></p>
+<ul><li><b>Layer 1 — Kernel:</b> Core of UNIX OS. Manages hardware, processes, memory, file system, I/O. Runs in privileged mode.</li>
+<li><b>Layer 2 — Shell:</b> Command-line interpreter between user and kernel. Interprets commands, runs programs. Types: sh, bash, csh, ksh.</li>
+<li><b>Layer 3 — User Programs/Applications:</b> Programs used by users — vi, ls, cp, compilers, databases.</li></ul>
+<p><b>Major Components:</b></p>
+<ul><li><b>Kernel:</b> Heart of UNIX. Process management, memory management, file system, I/O control, device drivers.</li>
+<li><b>Shell:</b> User interface. Command interpreter. Scripting. Types: Bourne (sh), Bash, C Shell (csh), Korn (ksh).</li>
+<li><b>File System:</b> Hierarchical (tree) structure. Everything is a file — devices, pipes, sockets.</li>
+<li><b>UNIX Commands:</b> ls, cp, mv, grep, chmod, ps, kill, etc.</li>
+<li><b>System Calls:</b> Interface between user programs and kernel — fork(), exec(), read(), write().</li></ul>
+<div class="conc"><b>Conclusion:</b> UNIX is a powerful, portable, multi-user OS that formed the foundation of modern computing. Its philosophy of "everything is a file" and "small programs that do one thing well" revolutionized OS design.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>UNIX ARCHITECTURE:
+
+┌─────────────────────────────────────┐
+│   USER PROGRAMS / APPLICATIONS       │
+│  (ls, vi, compilers, databases)      │
+└───────────────┬─────────────────────┘
+                │ User Level
+┌───────────────▼─────────────────────┐
+│   SHELL (bash / sh / csh / ksh)      │
+│   Command Interpreter                │
+└───────────────┬─────────────────────┘
+                │ System Calls
+┌───────────────▼─────────────────────┐
+│           KERNEL                     │
+│  Process | Memory | File | I/O Mgmt  │  ← Kernel Level
+└───────────────┬─────────────────────┘
+                │ Hardware Interface
+┌───────────────▼─────────────────────┐
+│   HARDWARE (CPU, RAM, Disk, Network) │
+└─────────────────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>UNIX = Linux ka baap! Ken Thompson+Dennis Ritchie, Bell Labs, 1969, C mein likha. Kernel=Heart, Shell=Mouth, Programs=Hands! Everything is a file in UNIX!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> UNIX = Multi-user + Multitasking + Portable + Shell + Hierarchical FS. Architecture = 3 layers: Hardware→Kernel→Shell→User!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2015(5M)|2017(5M)|2019(8M)|2021(5M)|2023(5M): UNIX features + architecture + components!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q16" data-text="explain the following unix commands with syntax and examples: ls, cd, pwd, mkdir, rmdir, cp, mv, cat, rm, head, tail, wc, sort, grep. 
+<table class="ntbl">
+<tr><th>command</th><th>purpose</th><th>syntax</th><th>example</th></tr>
+<tr><">
+  <div class="q-head blue">
+    <span class="marks">10M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q16 | Sec F</span>
+    <span class="q-text">Explain the following UNIX commands with syntax and examples: ls, cd, pwd, mkdir, rmdir, cp, mv, cat, rm, head, tail, wc, sort, grep.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<table class="ntbl">
+<tr><th>Command</th><th>Purpose</th><th>Syntax</th><th>Example</th></tr>
+<tr><td><code>ls</code></td><td>List files and directories</td><td>ls [options] [path]</td><td>ls -la /home</td></tr>
+<tr><td><code>cd</code></td><td>Change directory</td><td>cd [directory]</td><td>cd /etc | cd .. | cd ~</td></tr>
+<tr><td><code>pwd</code></td><td>Print current working directory</td><td>pwd</td><td>pwd → /home/zoha</td></tr>
+<tr><td><code>mkdir</code></td><td>Make new directory</td><td>mkdir [-p] dirname</td><td>mkdir BCA_Notes</td></tr>
+<tr><td><code>rmdir</code></td><td>Remove empty directory</td><td>rmdir dirname</td><td>rmdir olddir</td></tr>
+<tr><td><code>cp</code></td><td>Copy files/directories</td><td>cp [-r] src dest</td><td>cp file.txt /backup/</td></tr>
+<tr><td><code>mv</code></td><td>Move or rename file</td><td>mv src dest</td><td>mv old.txt new.txt</td></tr>
+<tr><td><code>cat</code></td><td>Display file content</td><td>cat [file]</td><td>cat /etc/passwd</td></tr>
+<tr><td><code>rm</code></td><td>Remove/delete file</td><td>rm [-rf] file</td><td>rm file.txt</td></tr>
+<tr><td><code>head</code></td><td>Show first N lines</td><td>head [-n] file</td><td>head -10 file.txt</td></tr>
+<tr><td><code>tail</code></td><td>Show last N lines / monitor</td><td>tail [-n|-f] file</td><td>tail -f /var/log/syslog</td></tr>
+<tr><td><code>wc</code></td><td>Count lines/words/chars</td><td>wc [-l|-w|-c] file</td><td>wc -l /etc/passwd</td></tr>
+<tr><td><code>sort</code></td><td>Sort lines alphabetically</td><td>sort [-r|-n] file</td><td>sort names.txt</td></tr>
+<tr><td><code>grep</code></td><td>Search pattern in file</td><td>grep [-i|-r|-v] pattern file</td><td>grep "root" /etc/passwd</td></tr>
+</table>
+<p><b>Detailed Important Commands:</b></p>
+<p><b>ls options:</b> <code>ls -l</code> (long format) | <code>ls -a</code> (hidden files) | <code>ls -la</code> (both) | <code>ls -lh</code> (human readable)</p>
+<p><b>grep options:</b> <code>grep -i</code> (case-insensitive) | <code>grep -r</code> (recursive) | <code>grep -v</code> (invert — non-matching) | <code>grep -c</code> (count matches)</p>
+<p><b>Common pipe combinations:</b></p>
+<ul><li><code>ls -l | wc -l</code> → Count files in directory</li>
+<li><code>cat file | grep "pattern"</code> → Search in file</li>
+<li><code>ps aux | grep firefox</code> → Find process</li>
+<li><code>sort file.txt | uniq -c</code> → Count unique lines</li></ul>
+<div class="conc"><b>Conclusion:</b> These basic UNIX/Linux commands are essential for daily system administration. They can be combined using pipes (|) to create powerful command pipelines for complex tasks.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>ls=Look(list), cd=Change door, pwd=GPS, mkdir=Make folder, rm=Remove(no recycle!), cp=CoPy, mv=MoVe/rename, cat=show file, grep=Global search, wc=Word Count!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> LMCG-RHT = ls, mkdir, cp, grep, rm, head, tail. grep -i=ignore case. wc -l=line count. rm = NO recycle bin! rm -rf = nuclear option!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M)|2016(5M)|2018(8M)|2020(5M)|2022(5M)|2024(8M): 5+ commands with syntax and examples!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q17" data-text="explain the unix file system hierarchy. what are absolute and relative pathnames? 
+<p><b>unix file system hierarchy:</b> unix uses a hierarchical (inverted tree) file system structur">
+  <div class="q-head teal">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q17 | Sec G</span>
+    <span class="q-text">Explain the UNIX file system hierarchy. What are absolute and relative pathnames?</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX File System Hierarchy:</b> UNIX uses a hierarchical (inverted tree) file system structure with a single root directory <code>/</code>. Everything in UNIX is a file — regular files, directories, devices, pipes.</p>
+<p><b>Important Directories:</b></p>
+<ul><li><code>/</code> → Root — parent of ALL directories. Top of hierarchy.</li>
+<li><code>/bin</code> → Essential user command binaries (ls, cp, mv, rm, cat, grep, chmod...)</li>
+<li><code>/sbin</code> → System administration binaries (mount, ifconfig, fdisk, fsck)</li>
+<li><code>/etc</code> → Configuration files (/etc/passwd, /etc/fstab, /etc/hosts)</li>
+<li><code>/home</code> → User home directories (/home/zoha, /home/admin)</li>
+<li><code>/var</code> → Variable data — logs (/var/log), mail queues, print spools</li>
+<li><code>/usr</code> → User programs (/usr/bin), libraries (/usr/lib), documentation</li>
+<li><code>/tmp</code> → Temporary files. Auto-deleted on reboot!</li>
+<li><code>/dev</code> → Device files — keyboard (/dev/tty), disk (/dev/sda), USB (/dev/sdb)</li>
+<li><code>/lib</code> → Shared libraries for /bin and /sbin commands</li>
+<li><code>/boot</code> → Kernel image (vmlinuz), GRUB bootloader configuration</li>
+<li><code>/proc</code> → Virtual FS — real-time process info (/proc/cpuinfo, /proc/meminfo)</li>
+<li><code>/mnt</code> → Temporary mount point for external drives</li></ul>
+<p><b>ABSOLUTE PATHNAME:</b></p>
+<ul><li>Complete path from root directory (/) to the file/directory.</li>
+<li>Always starts with <code>/</code> (forward slash).</li>
+<li>Works from ANYWHERE in the file system.</li>
+<li><b>Example:</b> <code>/home/zoha/Documents/file.txt</code></li></ul>
+<p><b>RELATIVE PATHNAME:</b></p>
+<ul><li>Path relative to the CURRENT working directory.</li>
+<li>Does NOT start with <code>/</code>.</li>
+<li>Shorter, but works only from specific location.</li>
+<li><b>Special symbols:</b> <code>.</code> (current directory) | <code>..</code> (parent directory) | <code>~</code> (home directory)</li>
+<li><b>Example:</b> If current dir is /home/zoha → <code>Documents/file.txt</code> or <code>../admin/file.txt</code></li></ul>
+<div class="conc"><b>Conclusion:</b> UNIX file system follows a hierarchical tree structure with root (/) at top. Absolute paths start from / and always work. Relative paths are shorter but depend on current location. Key: Everything in UNIX is a file!</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>FILE SYSTEM TREE (Draw this in exam!):
+              / (Root — Mother of All!)
+    ┌────┬────┬────┬──────┬────┬────┬────┬────┬──────┐
+  /bin /sbin /etc /home /var /usr /tmp /dev /lib /boot
+           │    │
+       passwd  /home/zoha/    ← User home directory
+       fstab   /home/admin/
+       hosts
+
+Absolute: /home/zoha/file.txt  (starts with /)
+Relative:  Documents/file.txt  (from /home/zoha)
+         ../admin/file.txt     (go up then down)
+         ./file.txt            (current dir)</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>/ = Root (sab ka baap!). /bin=kitchen tools, /etc=rules, /home=ghar, /tmp=dustbin(reboot pe saaf!). B-S-E-H-V-U-T-D-L-B yaad karo! Absolute=GPS se. Relative=Ghar se direction.</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> B-S-E-H-V-U-T-D-L-B = Bin,Sbin,Etc,Home,Var,Usr,Tmp,Dev,Lib,Boot! Absolute=starts with /. Relative=starts without /. .=current ..=parent ~=home!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(5M)|2016(2M)|2018(5M)|2020(5M)|2022(5M)|2024(5M): File hierarchy tree + pathnames!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q18" data-text="explain file permissions in unix. describe chmod, chown and chgrp commands with examples. also explain hard links and soft links. 
+<p><b>unix file permissions:</b> every file has 3 types of permissions for 3 categories of users.</">
+  <div class="q-head blue">
+    <span class="marks">8M</span>
+    <span class="stars">★★</span>
+    <span class="q-num">Q18 | Sec G</span>
+    <span class="q-text">Explain file permissions in UNIX. Describe chmod, chown and chgrp commands with examples. Also explain hard links and soft links.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>UNIX File Permissions:</b> Every file has 3 types of permissions for 3 categories of users.</p>
+<p><b>Permission Types:</b> r = read (4), w = write (2), x = execute (1)</p>
+<p><b>User Categories:</b> u = owner/user | g = group | o = others | a = all</p>
+<p><b>Reading ls -l output:</b> <code>-rwxr-xr--</code></p>
+<pre>- r w x r - x r - -
+│ └─┬─┘ └─┬─┘ └─┬─┘
+│  Owner  Group Others
+│  (7)    (5)   (4)
+└─ File type (- = file, d = directory, l = link)</pre>
+<p><b>chmod — Change Mode (Permissions):</b></p>
+<ul><li>Numeric mode: <code>chmod 755 file</code> → Owner:rwx(7), Group:r-x(5), Others:r-x(5)</li>
+<li>r=4, w=2, x=1 — add values to get octal number</li>
+<li>Common permissions:<br>
+<code>chmod 755 file</code> → -rwxr-xr-x (standard program)<br>
+<code>chmod 644 file</code> → -rw-r--r-- (standard text file)<br>
+<code>chmod 777 file</code> → -rwxrwxrwx (all access — dangerous!)<br>
+<code>chmod 600 file</code> → -rw------- (private file)</li>
+<li>Symbolic mode: <code>chmod u+x file</code> | <code>chmod g-w file</code> | <code>chmod o+r file</code></li>
+<li>Recursive: <code>chmod -R 755 directory/</code></li></ul>
+<p><b>chown — Change Owner:</b></p>
+<ul><li><code>chown zoha file.txt</code> → Change owner to zoha</li>
+<li><code>chown zoha:students file.txt</code> → Change owner to zoha, group to students</li>
+<li><code>chown -R zoha /home/zoha/</code> → Recursive ownership change</li></ul>
+<p><b>chgrp — Change Group:</b></p>
+<ul><li><code>chgrp students file.txt</code> → Change group to students</li></ul>
+<p><b>Hard Link vs Soft Link:</b></p>
+<table class="ntbl">
+<tr><th>Feature</th><th>Hard Link (ln)</th><th>Soft/Symbolic Link (ln -s)</th></tr>
+<tr><td>Creation</td><td>ln original hardlink</td><td>ln -s original softlink</td></tr>
+<tr><td>Inode number</td><td>Same as original</td><td>Different (new inode)</td></tr>
+<tr><td>If original deleted</td><td>Data still accessible ✅</td><td>Link becomes broken ❌</td></tr>
+<tr><td>Cross filesystem</td><td>NO ❌</td><td>YES ✅</td></tr>
+<tr><td>Link to directory</td><td>Generally NO</td><td>YES ✅</td></tr>
+<tr><td>Analogy</td><td>Duplicate key (same lock)</td><td>Sign/shortcut pointing to location</td></tr>
+</table>
+<div class="conc"><b>Conclusion:</b> File permissions (r=4,w=2,x=1) control who can do what with files. chmod changes permissions, chown changes owner, chgrp changes group. Hard links share inodes while soft links are shortcuts that can break if original is deleted.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>r=4,w=2,x=1. Add karo! 7=rwx(full), 5=r-x, 4=r--, 6=rw-. chmod 755=standard program. Soft link=Windows shortcut. Hard link=same file two names!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> r=4,w=2,x=1. 755=rwxr-xr-x. 644=rw-r--r--. Hard link=same inode(data safe). Soft link=different inode(shortcut, can break). ln=hard, ln -s=soft!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2014(2M)|2016(2M)|2018(3M)|2020(3M)|2022(3M)|2024(5M): chmod calculation + link types!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q19" data-text="what is i/o redirection and piping in unix? explain >, >>, < and | with examples. also explain the concept of filters. 
+<p><b>standard i/o streams:</b></p>
+<ul><li><b>stdin (0):</b> standard input — keyboard by default.">
+  <div class="q-head purp">
+    <span class="marks">10M</span>
+    <span class="stars">★★★</span>
+    <span class="q-num">Q19 | Sec H</span>
+    <span class="q-text">What is I/O redirection and piping in UNIX? Explain >, >>, < and | with examples. Also explain the concept of filters.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>Standard I/O Streams:</b></p>
+<ul><li><b>stdin (0):</b> Standard input — keyboard by default.</li>
+<li><b>stdout (1):</b> Standard output — screen by default.</li>
+<li><b>stderr (2):</b> Standard error — screen by default.</li></ul>
+<p><b>I/O Redirection:</b> Changing where input comes from or where output goes.</p>
+<p><b>1. > (Output Redirection — Overwrite):</b></p>
+<ul><li>Redirects stdout to a file. Overwrites existing content!</li>
+<li><code>ls -l &gt; files.txt</code> → Save ls output to files.txt (overwrites)</li>
+<li><code>echo "Hello World" &gt; greeting.txt</code> → Create file with content</li>
+<li><code>who &gt; logged_users.txt</code> → Save current users to file</li></ul>
+<p><b>2. >> (Output Redirection — Append):</b></p>
+<ul><li>Redirects stdout to a file. APPENDS to existing content (original data safe!).</li>
+<li><code>echo "New entry" &gt;&gt; log.txt</code> → Add to end of file</li>
+<li><code>date &gt;&gt; log.txt</code> → Append current date/time</li></ul>
+<p><b>3. < (Input Redirection):</b></p>
+<ul><li>Takes input from a file instead of keyboard.</li>
+<li><code>sort &lt; names.txt</code> → Sort using names.txt as input</li>
+<li><code>wc -l &lt; file.txt</code> → Count lines from file</li>
+<li><code>mail user &lt; message.txt</code> → Send file content as email</li></ul>
+<p><b>4. 2> (Error Redirection):</b></p>
+<ul><li>Redirects stderr to a file. Errors go to file, not screen.</li>
+<li><code>command 2&gt; errors.txt</code> → Save error messages</li>
+<li><code>find / -name "*.txt" 2&gt; /dev/null</code> → Discard errors</li></ul>
+<p><b>PIPING (|):</b></p>
+<ul><li>Connects commands in a pipeline. Output of first command → Input of second command.</li>
+<li>Syntax: <code>command1 | command2 | command3</code></li>
+<li>Examples:
+  <ul><li><code>ls -l | wc -l</code> → Count files in directory</li>
+  <li><code>cat /etc/passwd | grep "bash"</code> → Find bash users</li>
+  <li><code>ps aux | sort -k3 -r | head -5</code> → Top 5 CPU processes</li>
+  <li><code>who | wc -l</code> → Count logged-in users</li></ul></li></ul>
+<p><b>FILTERS:</b> Commands that read from stdin and write to stdout. Designed to work in pipelines.</p>
+<p>Common filters: <code>grep</code> (search), <code>sort</code> (sort), <code>wc</code> (count), <code>head</code> (first n lines), <code>tail</code> (last n lines), <code>cut</code> (extract fields), <code>tr</code> (translate characters), <code>uniq</code> (unique lines), <code>sed</code> (stream editor), <code>awk</code> (pattern processing).</p>
+<div class="conc"><b>Conclusion:</b> I/O redirection and pipes are powerful UNIX features. > overwrites, >> appends, < reads from file, | chains commands. Filters work between pipes to process data streams.</div>
+
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>'>' = overwrite(purana DELETE!). '>>' = append(purana SAFE!). '<' = input file se. '|' = Pipe = Factory assembly line! ls | wc -l = files count karo!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> > overwrite (dangerous!). >> append (safe!). < input from file. | pipe = assembly line. 2> errors. Filters = grep,sort,wc,head,tail,cut,awk!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> 2016(5M)|2018(5M)|2020(10M)|2022(5M)|2024(8M): I/O redirection + piping + filter examples!</p>
+  </div>
+</div>
+
+<div class="q-block" id="q20" data-text="explain the vi editor and unix shell. discuss vi modes, insertion/deletion, yank and put, .exrc, types of shells, shell variables, aliases, history, job control and awk. 
+<p><b>part a — vi editor:</b></p>
+<p><b>vi (visual interface):</b> standard unix/linux text editor.">
+  <div class="q-head red">
+    <span class="marks">12M</span>
+    <span class="stars">★★★★</span>
+    <span class="q-num">Q20 | Sec H</span>
+    <span class="q-text">Explain the vi editor and UNIX shell. Discuss vi modes, insertion/deletion, yank and put, .exrc, types of shells, shell variables, aliases, history, job control and awk.</span>
+  </div>
+  <div class="ans-box">
+    <div class="ans-lbl">📝 EXAM ANSWER — Write Exactly This in Copy:</div>
+    
+<p><b>PART A — vi EDITOR:</b></p>
+<p><b>vi (Visual Interface):</b> Standard UNIX/Linux text editor. Available on every system. Entirely keyboard-driven. Created by Bill Joy. Modern version: vim (Vi IMproved).</p>
+<p><b>THREE MODES (CIE):</b></p>
+<p><b>1. Command Mode (Normal Mode — DEFAULT on open):</b></p>
+<ul><li>Navigation: h(←) j(↓) k(↑) l(→) | w(next word) b(prev word)</li>
+<li>G(last line) gg(first line) :n(go to line n) | 0(line start) $(line end)</li>
+<li><b>Delete:</b> x(char) dd(line) dw(word) D(to line end) 5dd(5 lines)</li>
+<li><b>Yank (Copy):</b> yy(copy line) 5yy(copy 5 lines) yw(copy word)</li>
+<li><b>Put (Paste):</b> p(paste below cursor) P(paste above cursor)</li>
+<li><b>Undo:</b> u(undo last) U(undo all on line) Ctrl+r(redo)</li>
+<li><b>Search:</b> /pattern (forward) ?pattern (backward) n(next) N(previous)</li></ul>
+<p><b>2. Insert Mode:</b> i(before) a(after) o(new line below) O(new line above) I(line start) A(line end) → Press Esc to return</p>
+<p><b>3. Ex Mode (Last Line Mode):</b> Enter by pressing : in Command Mode</p>
+<ul><li><code>:w</code> save | <code>:q</code> quit | <code>:wq</code> save+quit ← MOST IMPORTANT!</li>
+<li><code>:q!</code> force quit no save | <code>:set nu</code> line numbers</li>
+<li><code>:%s/old/new/g</code> replace ALL in file ← EXAM FAVOURITE!</li>
+<li><code>:r filename</code> insert another file here</li></ul>
+<p><b>.exrc file:</b> vi configuration file at <code>~/.exrc</code>. Contains: set nu, set tabstop=4, set autoindent. Read automatically at vi startup to customize settings.</p>
+<p><b>vim vs vi:</b> vim = Vi IMproved. Adds syntax highlighting, multiple undo, split windows, plugins. Default on modern Linux.</p>
+<p><b>PART B — UNIX SHELL:</b></p>
+<p><b>Shell:</b> Command-line interpreter between user and OS kernel. Reads commands, interprets them, passes to kernel, shows output.</p>
+<p><b>Types of Shell:</b></p>
+<ul><li><b>sh (Bourne Shell, 1979):</b> First UNIX shell. Simple, portable, good for scripting.</li>
+<li><b>csh (C Shell):</b> C-like syntax. Aliasing and history features.</li>
+<li><b>ksh (Korn Shell, 1983):</b> sh compatible + csh features. Good performance.</li>
+<li><b>bash (Bourne Again Shell):</b> DEFAULT on Linux! Free, best features, most popular.</li>
+<li><b>zsh (Z Shell):</b> Modern, excellent autocomplete and plugins.</li></ul>
+<p><b>Shell Variables:</b></p>
+<ul><li>User-defined: <code>name="Zoha"; echo $name</code></li>
+<li>Environment: <code>$HOME</code>, <code>$PATH</code>, <code>$USER</code>, <code>$SHELL</code>, <code>$PWD</code></li>
+<li>Export: <code>export VAR=value</code> → makes available to child processes</li></ul>
+<p><b>Aliases:</b></p>
+<ul><li>Create shortcuts for commands: <code>alias ll='ls -la'</code></li>
+<li>List aliases: <code>alias</code> | Remove: <code>unalias ll</code></li>
+<li>Permanent: Add to ~/.bashrc file</li></ul>
+<p><b>History:</b></p>
+<ul><li><code>history</code> → show command history list</li>
+<li>↑↓ arrows → navigate history | <code>!!</code> → repeat last command</li>
+<li><code>!n</code> → run command number n | <code>Ctrl+R</code> → search history</li></ul>
+<p><b>Job Control:</b></p>
+<ul><li><code>command &amp;</code> → start in background</li>
+<li><code>Ctrl+Z</code> → suspend current process</li>
+<li><code>bg</code> → resume suspended job in background</li>
+<li><code>fg</code> → bring background job to foreground</li>
+<li><code>jobs</code> → list all background/suspended jobs</li></ul>
+<p><b>awk — Pattern Processing Tool:</b></p>
+<ul><li><code>awk '{print $1}' file</code> → print first column of each line</li>
+<li><code>awk -F: '{print $1}' /etc/passwd</code> → use : delimiter, print usernames</li>
+<li><code>awk 'NR==3{print}' file</code> → print only line 3</li>
+<li><code>awk '{sum+=$1} END{print sum}' file</code> → sum first column</li>
+<li><code>awk '/pattern/{print}' file</code> → print lines matching pattern</li>
+<li><code>awk '{if($1&gt;50)print $0}' file</code> → conditional printing</li></ul>
+<div class="conc"><b>Conclusion:</b> vi editor mastery requires understanding 3 modes: Command, Insert, Ex. Key commands: i(insert), Esc(back), :wq(save+quit), :q!(force quit), :%s/x/y/g(replace all). Shell with variables, aliases, job control and awk makes UNIX extremely powerful for scripting and automation.</div>
+
+  </div>
+  <div class="diag-box">
+    <div class="diag-lbl">📊 DIAGRAM — Draw in Exam!</div>
+    <pre>vi MODE DIAGRAM:
+        ┌─────────────────────────┐
+Esc ◀──│    COMMAND MODE          │──▶ : (colon)
+        │  (Default on open)       │              │
+        │  Navigate,Delete,Copy    │              ▼
+        └─────────────────────────┘   ┌────────────────────┐
+                     │                │    EX MODE         │
+         i/a/o/A/I/O │                │ :w :q :wq :q!      │
+                     ▼                │ :%s/x/y/g :set nu  │
+        ┌─────────────────────────┐   └────────────────────┘
+        │    INSERT MODE          │
+        │  (Type text here)       │
+        │  Press Esc to exit      │
+        └─────────────────────────┘</pre>
+  </div>
+  <div class="hin-box">
+    <div class="hin-lbl">💬 HINGLISH — Samjho aur Yaad Karo:</div>
+    <p>CIE = Command(Esc), Insert(i/a/o), Ex(:). :wq = SAVE+EXIT! :q! = bhaag bina save! :%s/x/y/g = poori file mein replace! awk = column cutter! bash = DEFAULT shell! alias ll='ls -la' = shortcut!</p>
+  </div>
+  <div class="trick-box">
+    <span class="ic">⚡</span>
+    <p><b>TRICK:</b> vi: CIE modes. :wq=save+quit (MOST IMPORTANT!). :q!=force quit. :%s/old/new/g=replace all. awk $1=first col $NF=last col. bash=DEFAULT. alias=shortcut. !! = last command!</p>
+  </div>
+  <div class="pyq-box">
+    <span class="ic">⭐</span>
+    <p><b>PYQ ALERT:</b> EVERY YEAR! 2014(2M)|2016(5M)|2018(8M)|2020(8M)|2022(8M)|2024(12M): vi modes+:wq + Shell types + awk examples!</p>
+  </div>
+</div>
+</div>
+
+<div id="rev" class="panel">
+  <div class="sec-hdr"><h2>⚡ Quick Revision — Exam Morning Sheet</h2>
+    <p>Last-minute tricks | Key formulas | PYQ alerts</p></div>
+
+  <div class="q-block">
+    <div class="q-head red"><span class="marks">5 MIN</span>
+      <span class="q-text">🌟 EXAM MORNING SHEET — Read Before Hall! 16 Sept 2026</span></div>
+    <div class="ans-box">
+      <div class="ans-lbl">⚡ LAST MINUTE TRICKS:</div>
+      <pre>UNIT 1: PIFCERP (OS functions) | Types=B-M-M-T-R-D | TT=CT-AT | WT=TT-BT
+UNIT 2: NRRWT (5 process states) | PCB=PID+State+PC+Reg+Mem | LSM=3 schedulers
+         MH-NC (4 deadlock conditions) | P()=lock=S-1 | V()=unlock=S+1 | Need=Max-Alloc
+UNIT 3: Paging=Fixed/No-ExtFrag | Seg=Variable/No-IntFrag | TLB=page table cache
+         Virtual Mem=disk as RAM | FIFO=Belady's Anomaly! | LRU=Best practical
+UNIT 4: / = root | B-S-E-H-V-U-T-D-L-B (dirs) | r=4,w=2,x=1 | 755=rwxr-xr-x
+         &gt; overwrite | &gt;&gt; append | &lt; input | | pipe | ln -s = soft link
+UNIT 5: CIE = vi 3 modes | :wq=save+quit | :q!=force quit | :%s/x/y/g=replace ALL
+         bash=DEFAULT shell | alias ll='ls -la' | !! = last command | awk $1=first col
+
+KEY FORMULAE:
+Turnaround Time = Completion Time - Arrival Time
+Waiting Time    = Turnaround Time - Burst Time
+Need[i][j]      = Max[i][j] - Allocation[i][j]
+chmod 755       = Owner:rwx(7) + Group:r-x(5) + Others:r-x(5)
+
+EXAM STRATEGY:
+1. Q1 (2×6=12M): Answer 6 easiest first — 2 min each = 12 min done!
+2. Q2 (4×3=12M): Answer 3 medium — 8 min each = 24 min done!
+3. Q3-Q7 (12×3=36M): CPU Scheduling + Deadlock/Paging + Linux/vi
+4. TOTAL = 24 + 36 = 60 MARKS!
+
+WRITE FORMAT: Definition → Points → Diagram → Example → Conclusion
+2M=5 lines | 4M=half page | 8M=1 page | 12M=2-3 pages</pre>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-head teal"><span class="marks">TRICKS</span>
+      <span class="q-text">🧠 All Important Mnemonics</span></div>
+    <div class="ans-box">
+      <div class="ans-lbl">MNEMONICS:</div>
+      <table class="ntbl">
+        <tr><th>Topic</th><th>Mnemonic</th><th>Full Form</th></tr>
+        <tr><td>OS Functions</td><td>PIFCERP</td><td>Process,I/O,File,Communication,Error,Resource,Protection</td></tr>
+        <tr><td>OS Types</td><td>B-M-M-T-R-D</td><td>Batch,Multi-prog,Multi-task,Time-sharing,Real-time,Distributed</td></tr>
+        <tr><td>Scheduling</td><td>FSP-R-MF</td><td>FCFS,SJF,Priority,Round Robin,Multilevel,Feedback</td></tr>
+        <tr><td>Process States</td><td>NRRWT</td><td>New,Ready,Running,Waiting,Terminated</td></tr>
+        <tr><td>Schedulers</td><td>LSM</td><td>Long-term,Short-term,Medium-term</td></tr>
+        <tr><td>PCB Contents</td><td>PID+State+PC+Reg+Mem</td><td>ProcessID,State,ProgramCounter,Registers,Memory...</td></tr>
+        <tr><td>Deadlock</td><td>MH-NC</td><td>Mutual exclusion,Hold&wait,No preemption,Circular wait</td></tr>
+        <tr><td>Thread Advantages</td><td>RRES</td><td>Responsiveness,Resource sharing,Economy,Scalability</td></tr>
+        <tr><td>IPC Methods</td><td>SMP-SS</td><td>Shared mem,Message passing,Pipe,Semaphore,Socket</td></tr>
+        <tr><td>Linux Dirs</td><td>B-S-E-H-V-U-T-D-L-B</td><td>Bin,Sbin,Etc,Home,Var,Usr,Tmp,Dev,Lib,Boot</td></tr>
+        <tr><td>vi Modes</td><td>CIE</td><td>Command,Insert,Ex(Last Line)</td></tr>
+        <tr><td>Linux Features</td><td>OMMPSSH-CP</td><td>Open,Multi-user,Multi-task,Portable,Secure,Stable,High-perf,Community,Powerful</td></tr>
+        <tr><td>Backup</td><td>BACKUP</td><td>Before Any Crash Keep Useful Precaution</td></tr>
+        <tr><td>Semaphore</td><td>P=lock=S-1 V=unlock=S+1</td><td>P()=Proberen(test/lock) V()=Verhogen(increment/unlock)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='all')filterQ();
+}
+function filterQ(){
+  var s=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('#all .q-block').forEach(function(el){
+    var t=el.dataset.text||'';
+    var h=el.querySelector('.q-text');
+    var qt=h?h.textContent.toLowerCase():'';
+    el.classList.toggle('hidden',(s.length>2)&&!t.includes(s)&&!qt.includes(s));
+  });
+  var vis=document.querySelectorAll('#all .q-block:not(.hidden)').length;
+  document.getElementById('qcount').textContent=s.length>2?vis+' questions found':'20 questions';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.q-block').forEach(function(el,i){
+    el.style.animationDelay=(i*0.04)+'s';
+  });
+});
+</script>
+</body>
+</html>
