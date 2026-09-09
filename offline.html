@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Offline — BCA Notes Hub</title>
+  <meta name="theme-color" content="#6366f1"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+      background:#050510;color:#fff;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      min-height:100vh;text-align:center;padding:28px;
+    }
+    .wrap{max-width:380px}
+    .icon{
+      font-size:5rem;margin-bottom:28px;
+      animation:bob 2.5s ease-in-out infinite alternate;
+      display:block;
+    }
+    @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+    h1{
+      font-size:1.7rem;font-weight:800;margin-bottom:10px;
+      background:linear-gradient(135deg,#818cf8,#c4b5fd);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    p{color:#94a3b8;font-size:.9rem;line-height:1.65;margin-bottom:28px}
+    .note{
+      background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);
+      border-radius:14px;padding:16px 20px;
+      font-size:.82rem;color:#a5b4fc;line-height:1.6;margin-bottom:24px;
+      text-align:left;
+    }
+    .note strong{color:#c4b5fd}
+    .btn{
+      background:linear-gradient(135deg,#6366f1,#7c3aed);color:#fff;
+      border:none;padding:14px 32px;border-radius:13px;
+      font-size:.95rem;font-weight:700;cursor:pointer;
+      font-family:inherit;transition:opacity .2s,transform .15s;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .btn:hover{opacity:.88;transform:translateY(-2px)}
+    .home{
+      margin-top:16px;display:block;
+      color:#64748b;font-size:.8rem;text-decoration:none;
+      transition:color .2s;
+    }
+    .home:hover{color:#94a3b8}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="icon">📚</span>
+    <h1>You're Offline</h1>
+    <p>No internet connection detected. Connect to the internet to access new notes.</p>
+    <div class="note">
+      <strong>💡 Good news:</strong> Notes you have previously opened are saved in your device cache and can still be read offline. Try opening the main page.
+    </div>
+    <button class="btn" onclick="location.href='/'">
+      📖 Go to Saved Notes
+    </button>
+    <a class="home" href="/" onclick="location.reload()">↺ Try Again</a>
+  </div>
+</body>
+</html>
