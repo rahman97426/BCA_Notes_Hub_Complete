@@ -1,1 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172554">
+<title>Operating System & UNIX — 24 VVI Exam Answers</title>
+<style>
+:root{
+ --ink:#14213d;--blue:#2563eb;--purple:#7c3aed;--red:#dc2626;--orange:#ea580c;
+ --green:#15803d;--paper:#fffdf7;--line:#d8dee9;--muted:#667085;--nav:#0b1220;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#edf1f7;color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.52}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;
+ background-image:radial-gradient(#111 0.6px,transparent .6px);background-size:6px 6px}
+.hero{position:relative;overflow:hidden;color:white;padding:34px 18px 28px;
+ background:linear-gradient(120deg,#2563eb,#7c3aed,#dc2626);}
+.hero h1{font-family:"Comic Sans MS","Bradley Hand",cursive;font-size:42px;line-height:1.05;margin:10px 0}
+.hero .sub{font-weight:700;letter-spacing:.4px;opacity:.95}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
+.pill{padding:8px 12px;border:1px solid #ffffff55;background:#ffffff18;border-radius:999px;font-weight:800;font-size:13px;backdrop-filter:blur(5px)}
+#countdown{font-weight:900;font-size:20px;margin-top:12px}
+.particle{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff8;animation:float 9s linear infinite}
+@keyframes float{from{transform:translateY(120vh)}to{transform:translateY(-20vh)}}
+.nav{position:sticky;top:0;z-index:20;background:var(--nav);display:flex;gap:5px;overflow:auto;padding:8px}
+.nav a{color:#fff;text-decoration:none;white-space:nowrap;padding:8px 11px;border-radius:8px;font-weight:800;font-size:12px}
+.nav a:hover{background:#ffffff18}
+.wrap{max-width:1000px;margin:auto;padding:14px}
+.progress{position:fixed;top:0;left:0;height:4px;background:#fbbf24;z-index:99;width:0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.ctrl{border:0;background:#172554;color:#fff;border-radius:9px;padding:9px 12px;font-weight:800;cursor:pointer}
+.covernote{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0;box-shadow:0 4px 16px #0000000b}
+.unit{margin:22px 0;background:#f9fafb;border:1px solid #cfd6e2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px #0000000a}
+.unitbar{display:flex;gap:13px;align-items:center;padding:18px;background:linear-gradient(90deg,#eff6ff,#faf5ff);border-bottom:2px solid #cbd5e1}
+.uniticon{font-size:36px}
+.unitlabel{font-size:12px;font-weight:900;color:#475569;letter-spacing:1px}
+h2{margin:2px 0;color:#172554;font-size:24px}
+.topics{color:#475569;font-size:13px}
+.alert{margin:14px;padding:12px 14px;background:#fff1f2;border-left:5px solid var(--red);border-radius:9px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 4px;font-size:12px;font-weight:800}
+.hint{margin:8px 14px 14px;padding:11px 13px;background:#fff8d8;border-left:5px solid #eab308;border-radius:8px;font-size:13px}
+.qcard{margin:12px 14px;border:1px solid #cfd6e2;border-radius:12px;overflow:hidden;background:white}
+.qhead{width:100%;text-align:left;border:0;background:#fff;padding:14px 15px;display:flex;justify-content:space-between;gap:10px;
+ font-weight:900;color:#10244d;font-size:16px;cursor:pointer}
+.qhead:hover{background:#f7f9fc}
+.chev{font-size:22px;color:#64748b}
+.qbody{display:none;padding:0 16px 16px;background:
+ repeating-linear-gradient(to bottom,#fffdf7 0,#fffdf7 27px,#dfe7f2 28px);
+ border-top:1px solid #d5dbe5;position:relative}
+.qbody:before{content:"";position:absolute;left:42px;top:0;bottom:0;width:2px;background:#ef4444aa}
+.qbody>*{position:relative;z-index:1;margin-left:36px}
+.qmeta{display:flex;gap:7px;flex-wrap:wrap;padding:11px 0}
+.badge{display:inline-block;background:#eaf1ff;color:#173b72;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900}
+.classalert{background:#fff0d9;color:#9a3412}
+.answer{padding-top:2px}
+.answer p{margin:7px 0}
+.answer table{border-collapse:collapse;width:100%;margin:9px 0;font-size:13px;background:#fff}
+.answer th,.answer td{border:1px solid #aeb7c5;padding:7px;text-align:left;vertical-align:top}
+.answer th{background:#edf2fa;color:#173b72}
+.diagram{font-family:"Courier New",monospace;white-space:pre-wrap;background:#eef4ff;border:1px dashed #8290a8;padding:9px;border-radius:8px;color:#10294e;margin:9px 0}
+.trick{background:#fff3a8;padding:9px;border-radius:8px;margin-top:11px;font-weight:700}
+.sticky{position:fixed;right:14px;bottom:14px;z-index:30;border:0;border-radius:50%;width:48px;height:48px;background:#172554;color:white;font-size:20px;cursor:pointer;box-shadow:0 4px 16px #0003}
+.footer{padding:25px 8px;text-align:center;color:#64748b;font-size:12px}
+@media(max-width:650px){.hero h1{font-size:32px}h2{font-size:20px}.qhead{font-size:14px}.wrap{padding:8px}}
+@media print{
+ body{background:#fff}.nav,.controls,.sticky,#countdown,.particle{display:none!important}
+ .hero{color:#111;background:#fff;border-bottom:2px solid #111}
+ .unit{break-before:page;box-shadow:none}
+ .qbody{display:block!important}
+ .qhead{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
 
+<header class="hero">
+  <div class="particle" style="left:8%;animation-delay:-1s"></div>
+  <div class="particle" style="left:25%;animation-delay:-4s"></div>
+  <div class="particle" style="left:48%;animation-delay:-7s"></div>
+  <div class="particle" style="left:72%;animation-delay:-2s"></div>
+  <div class="particle" style="left:91%;animation-delay:-6s"></div>
+  <div class="wrap">
+    <div class="sub">VVI EXAM ANSWER BOOK • 24 QUESTIONS • UNIT-WISE</div>
+    <h1>Operating System &amp; UNIX</h1>
+    <div class="pills">
+      <span class="pill">16 September 2026</span>
+      <span class="pill">10:00 AM – 1:00 PM</span>
+      <span class="pill">60 Marks</span>
+      <span class="pill">Simple English • Exam-copy style</span>
+    </div>
+    <div id="countdown">Loading countdown…</div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#u1">U1</a><a href="#u2">U2</a><a href="#u3">U3</a>
+  <a href="#u4">U4</a><a href="#u5">U5</a><a href="#u6">U6</a>
+</nav>
+
+<main class="wrap">
+  <div class="covernote">
+    <b>How to use:</b> Tap a question to open the answer. These are the supplied VVI questions reorganized by the six syllabus units.
+    PYQ years shown in the red/orange alerts are <b>verified topic-level years from the uploaded PYQ analysis</b>.
+    The supplied VVI question sheet itself does not print a year beside every question, so no year has been invented.
+    The visible college class-test paper is marked only as a <b>5-mark class-test alert</b>.
+  </div>
+  <div class="controls">
+    <button class="ctrl" onclick="expandAll()">Expand All</button>
+    <button class="ctrl" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  
+    <section class="unit" id="u1">
+      <div class="unitbar">
+        <div class="uniticon">⚡</div>
+        <div><div class="unitlabel">UNIT 1</div><h2>Introduction, CPU Scheduling & I/O</h2><div class="topics">OS basics • OS services • OS types • CPU scheduling</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🔴 CPU scheduling: verified PYQ topic years 2014, 2022, 2023. Pre-emptive scheduling was also tested in 2016/2017/2018. Real-time system and OS–hardware relationship were tested in 2021; multiprogramming appeared in 2025.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q1. Define an Operating System. Explain its functions, objectives, and major services.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b></p><p><b>Introduction:</b> An Operating System (OS) is system software that acts as a link between the user and computer hardware. It manages hardware resources and provides services to programs.</p>
+<p><b>Functions and objectives:</b> The main objectives are convenient use of the computer, efficient use of resources and safe operation. The OS manages the CPU, memory, files and I/O devices. It also controls processes, provides security and detects errors.</p>
+<p><b>Major services:</b> Program execution, I/O operations, file-system manipulation, communication, error detection, resource allocation, accounting and protection/security.</p>
+<div class="diagram">User / Application Programs
+          ↓
+     OPERATING SYSTEM
+          ↓
+CPU • Memory • Files • I/O Devices</div>
+<p><b>Example:</b> Linux manages applications, RAM, CPU time, files and devices.</p><p><b>Conclusion:</b> Thus, an OS makes the computer easy to use and manages hardware resources efficiently.</p></div>
+            <div class="trick">🧠 Trick: <b>PMFIC-ERS</b> → Process, Memory, File, I/O, Communication, Error, Resource, Security.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q2. Explain different types of Operating Systems such as Batch, Multiprogramming, Multitasking, Time-Sharing, Real-Time and Distributed Operating Systems.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Different OS types are designed for different working needs.</p>
+<table><tr><th>Type</th><th>Simple explanation</th><th>Example/use</th></tr>
+<tr><td>Batch</td><td>Jobs are collected and executed in batches with little/no user interaction.</td><td>Large routine jobs</td></tr>
+<tr><td>Multiprogramming</td><td>Several programs are kept in memory so CPU can switch when one waits.</td><td>Better CPU utilization</td></tr>
+<tr><td>Multitasking</td><td>CPU shares time among multiple tasks, giving the user a responsive system.</td><td>Desktop systems</td></tr>
+<tr><td>Time-Sharing</td><td>Many users/processes get small CPU time slices.</td><td>Interactive multi-user systems</td></tr>
+<tr><td>Real-Time</td><td>System must respond within required time limits.</td><td>Control/embedded systems</td></tr>
+<tr><td>Distributed</td><td>Multiple networked computers cooperate and appear as a coordinated system.</td><td>Distributed computing</td></tr>
+</table>
+<p><b>Conclusion:</b> OS types differ mainly in how they manage jobs, users, CPU time and response requirements.</p></div>
+            <div class="trick">🧠 Remember: <b>B-M-M-T-R-D</b> = Batch, Multi-programming, Multi-tasking, Time-sharing, Real-time, Distributed.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q3. What is CPU scheduling? Describe FCFS, SJF, Priority and Round Robin scheduling algorithms with suitable examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> CPU scheduling is the process of selecting a process from the ready queue and giving it the CPU for execution.</p>
+<p><b>FCFS:</b> First Come First Serve executes processes in the order in which they arrive. It is simple and normally non-preemptive.</p>
+<p><b>SJF:</b> Shortest Job First selects the process having the smallest CPU burst. It can be preemptive or non-preemptive.</p>
+<p><b>Priority:</b> The process with the highest priority is selected. It may be preemptive or non-preemptive.</p>
+<p><b>Round Robin:</b> Each ready process gets a fixed time quantum. If it does not finish, it goes back to the ready queue.</p>
+<div class="diagram">Ready Queue → CPU Scheduler → CPU
+     ↑             ↓
+   waiting ← preemption / completion</div>
+<p><b>Conclusion:</b> CPU scheduling improves CPU utilization and system performance. The choice of algorithm depends on the system requirement.</p></div>
+            <div class="trick">🧠 FCFS = first arrival • SJF = shortest job • Priority = highest priority • RR = fixed time slice.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q4. What is CPU scheduling? Explain how the CPU scheduler selects processes from the Ready state for execution. Illustrate with a process state diagram.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span><span class="badge classalert">🟠 COLLEGE CLASS-TEST ALERT • 5 MARKS</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> CPU scheduling is the selection of a process from the ready queue to run on the CPU. The short-term CPU scheduler makes this decision according to a scheduling algorithm.</p>
+<p>Processes waiting for CPU stay in the <b>Ready</b> state. When the scheduler selects one, it moves to <b>Running</b>. If it finishes, it goes to <b>Terminated</b>. If it requests I/O, it moves to <b>Waiting</b>. After I/O completion, it returns to Ready. In a preemptive system, a running process may be moved back to Ready.</p>
+<div class="diagram">        dispatch
+Ready ───────────→ Running
+ ↑                  │  │
+ │ I/O done         │  └──→ Terminated
+ │                  ↓
+ └────────────── Waiting
+      (I/O request)
+
+Preemption: Running → Ready</div>
+<p><b>Conclusion:</b> The scheduler selects the suitable ready process so that CPU time is used efficiently and response is improved.</p></div>
+            <div class="trick">🧠 State flow: <b>Ready → Running → Waiting → Ready</b>; finish = Terminated.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q5. Explain the major functions and different types of Operating Systems with suitable examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span><span class="badge classalert">🟠 COLLEGE CLASS-TEST ALERT • 5 MARKS</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> An Operating System is system software that manages computer hardware and provides a working environment for application programs.</p>
+<p><b>Major functions:</b> process management, memory management, file management, device/I/O management, security/protection, error handling and resource allocation.</p>
+<p><b>Types:</b> Batch OS processes jobs in groups; Multiprogramming OS keeps several programs in memory; Multitasking OS runs many tasks apparently together; Time-Sharing OS gives CPU time to users/processes; Real-Time OS gives responses within required deadlines; Distributed OS coordinates networked computers.</p>
+<p><b>Conclusion:</b> Therefore, the OS controls resources and provides useful services to users and applications.</p></div>
+            
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q7. Explain CPU scheduling. Describe FCFS, SJF, Priority and Round Robin scheduling algorithms with suitable examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> CPU scheduling selects a ready process for CPU execution. The main aim is good CPU utilization and acceptable waiting/response time.</p>
+<p><b>FCFS:</b> Executes in arrival order. <b>SJF:</b> chooses the smallest CPU burst. <b>Priority:</b> chooses the highest-priority process. <b>Round Robin:</b> gives each process a fixed time quantum in cyclic order.</p>
+<table><tr><th>Algorithm</th><th>Basic rule</th><th>Nature</th></tr>
+<tr><td>FCFS</td><td>First arrival first</td><td>Usually non-preemptive</td></tr>
+<tr><td>SJF</td><td>Shortest burst first</td><td>Preemptive/non-preemptive</td></tr>
+<tr><td>Priority</td><td>Highest priority first</td><td>Preemptive/non-preemptive</td></tr>
+<tr><td>RR</td><td>Time quantum in cycle</td><td>Preemptive</td></tr></table>
+<p><b>Conclusion:</b> Different algorithms suit different performance goals.</p></div>
+            
+          </div>
+        </article>
+    </section>
+    <section class="unit" id="u2">
+      <div class="unitbar">
+        <div class="uniticon">⚙️</div>
+        <div><div class="unitlabel">UNIT 2</div><h2>Process Management, Synchronization & Deadlock</h2><div class="topics">Process • PCB • Threads • Critical Section • Semaphores • Deadlock • Banker’s Algorithm</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🔴 Deadlock: verified topic years 2016, 2017, 2019, 2021, 2022, 2023. Critical section/synchronization: 2016, 2017, 2019, 2022, 2023. Process/thread concepts also recur in verified PYQs.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q6. What is a process? Explain the process states and Process Control Block (PCB) with a suitable diagram.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> A process is a program in execution. It has its own current state and resources required for execution.</p>
+<p><b>Process states:</b> New means the process is being created. Ready means it is waiting for CPU. Running means it is executing. Waiting/Blocked means it is waiting for an event such as I/O. Terminated means execution is finished.</p>
+<div class="diagram">New → Ready → Running → Terminated
+             ↑       │
+             │       ↓
+             └── Waiting
+       I/O completion ↑</div>
+<p><b>PCB:</b> Process Control Block is the data structure maintained by the OS for a process. It stores process state, process ID, program counter, CPU registers, scheduling information, memory-management information and I/O/accounting information.</p>
+<p><b>Conclusion:</b> The process state shows what a process is doing, while the PCB stores the information needed by the OS to manage it.</p></div>
+            <div class="trick">🧠 PCB = <b>State + ID + PC + Registers + Schedule + Memory + I/O</b>.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q8. What is a thread? Explain the types of threads and differentiate between a process and a thread.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> A thread is the smallest unit of CPU execution within a process. Threads of the same process share its code, data and other resources but have their own execution state.</p>
+<p><b>Types:</b> User-level threads are managed mainly by a user-level library. Kernel-level threads are managed by the operating system kernel.</p>
+<table><tr><th>Process</th><th>Thread</th></tr><tr><td>Independent program in execution.</td><td>Execution unit inside a process.</td></tr><tr><td>Has its own address space/resources.</td><td>Shares process resources.</td></tr><tr><td>Creation/context switch is generally heavier.</td><td>Generally lighter and faster.</td></tr></table>
+<p><b>Conclusion:</b> Threads improve responsiveness and allow concurrent work within a process.</p></div>
+            <div class="trick">🧠 Process = container; Thread = worker inside the container.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q9. What is the critical-section problem? Explain its requirements and solutions.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> A critical section is the part of a program where shared data or a shared resource is accessed. The critical-section problem is to design a solution so concurrent processes do not corrupt shared data.</p>
+<p><b>Requirements:</b> <b>Mutual exclusion</b> means only one process can execute its critical section at a time. <b>Progress</b> means selection of the next process should not be postponed unnecessarily. <b>Bounded waiting</b> means a process should not wait forever to enter its critical section.</p>
+<div class="diagram">Entry Section → Critical Section → Exit Section → Remainder Section</div>
+<p><b>Solutions:</b> hardware atomic instructions, locks/mutexes, semaphores and suitable software algorithms.</p>
+<p><b>Conclusion:</b> A correct solution protects shared data while maintaining fairness and progress.</p></div>
+            <div class="trick">🧠 Requirements = <b>MPB</b>: Mutual exclusion, Progress, Bounded waiting.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q10. What is a semaphore? Explain binary and counting semaphores with suitable examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> A semaphore is a synchronization variable used to control access to shared resources. Its value is changed only through atomic operations commonly called <b>wait()</b> and <b>signal()</b>.</p>
+<p><b>Binary semaphore:</b> It has values such as 0 and 1 and can be used like a lock for mutual exclusion.</p>
+<p><b>Counting semaphore:</b> It can hold a non-negative count and is useful when several identical resources are available.</p>
+<div class="diagram">wait(S)   → decrease S / wait if unavailable
+signal(S) → increase S / wake a waiting process</div>
+<p><b>Example:</b> A counting semaphore initialized to 3 can control access to three identical printers/resources.</p>
+<p><b>Conclusion:</b> Semaphores help processes coordinate and prevent unsafe simultaneous access.</p></div>
+            <div class="trick">🧠 Binary = one permit; Counting = many permits.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q11. What is deadlock? Explain the four necessary conditions for deadlock with examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span><span class="badge classalert">🟠 COLLEGE CLASS-TEST ALERT • 5 MARKS</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Deadlock is a situation in which a group of processes waits forever because each process is waiting for a resource held by another process in the group.</p>
+<p><b>Four necessary conditions:</b></p>
+<ol><li><b>Mutual exclusion:</b> A resource can be used by only one process at a time.</li><li><b>Hold and wait:</b> A process holds at least one resource while waiting for another.</li><li><b>No preemption:</b> A resource cannot be forcibly taken away; it must be released by its holder.</li><li><b>Circular wait:</b> A circular chain exists where each process waits for a resource held by the next process.</li></ol>
+<div class="diagram">P1 holds R1 → waits R2
+↑                  ↓
+R1 ← P2 holds R2</div>
+<p><b>Conclusion:</b> Deadlock can occur only when all four conditions exist together.</p></div>
+            <div class="trick">🧠 <b>M-H-N-C</b> = Mutual exclusion, Hold &amp; wait, No preemption, Circular wait.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q12. Explain deadlock prevention, avoidance, detection and recovery techniques.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Deadlock handling methods try to stop deadlock or recover after it occurs.</p>
+<p><b>Prevention:</b> Design the system so at least one necessary deadlock condition cannot hold, for example by preventing circular wait through an ordering of resources.</p>
+<p><b>Avoidance:</b> Before granting a request, the OS checks whether the resulting state is safe. The Banker’s Algorithm is a common method.</p>
+<p><b>Detection:</b> The OS allows deadlock to occur and periodically checks for a deadlock condition using suitable detection methods.</p>
+<p><b>Recovery:</b> After detection, the OS can terminate selected processes or preempt resources and restore the system to a safe state.</p>
+<p><b>Conclusion:</b> Prevention avoids a condition, avoidance checks safety before allocation, detection finds deadlock, and recovery removes its effects.</p></div>
+            <div class="trick">🧠 <b>P-A-D-R</b> = Prevent → Avoid → Detect → Recover.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q13. Explain the Banker&#x27;s Algorithm for deadlock avoidance with a suitable example.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Banker’s Algorithm is a deadlock-avoidance algorithm. It checks whether granting a resource request keeps the system in a <b>safe state</b>.</p>
+<p><b>Main data:</b> <b>Available</b> shows free resources. <b>Max</b> is the maximum demand of each process. <b>Allocation</b> is the resources currently given. <b>Need</b> is calculated as:</p>
+<p><b>Need = Max − Allocation</b></p>
+<p><b>Basic steps:</b> Find a process whose Need ≤ Available. Pretend it completes and releases its Allocation. Add the released resources to Available. Repeat. If all processes can finish, the state is safe; otherwise it is unsafe.</p>
+<div class="diagram">Available
+   ↓
+Find Need ≤ Available
+   ↓
+Assume process finishes
+   ↓
+Available = Available + Allocation
+   ↓
+Repeat → Safe sequence / Unsafe state</div>
+<p><b>Conclusion:</b> The Banker’s Algorithm grants resources only when the system can remain in a safe state.</p></div>
+            <div class="trick">🧠 Formula: <b>Need = Max − Allocation</b>. Safe = every process can get its remaining Need in some order.</div>
+          </div>
+        </article>
+    </section>
+    <section class="unit" id="u3">
+      <div class="unitbar">
+        <div class="uniticon">🧠</div>
+        <div><div class="unitlabel">UNIT 3</div><h2>Memory Management & Virtual Memory</h2><div class="topics">Allocation • Paging • Segmentation • Virtual Memory • Page Replacement</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🔴 Page faults/page replacement: verified topic years 2016, 2017, 2018, 2019, 2021, 2022, 2023. Fragmentation: 2018, 2019, 2022. Paging/segmentation was asked in 2014.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q14. Explain memory management and discuss different memory allocation techniques.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Memory management is the OS function that manages main memory and allocates memory to processes.</p>
+<p><b>Contiguous allocation:</b> A process is placed in one continuous area of memory. Common methods include fixed/variable partitions and placement methods such as first fit, best fit and worst fit.</p>
+<p><b>Non-contiguous allocation:</b> A process may be divided and placed in different memory locations. Paging and segmentation are important examples.</p>
+<p><b>Goals:</b> efficient memory use, protection, relocation and support for multiple processes.</p>
+<div class="diagram">Main Memory
+| OS | Process A | Free | Process B | Free |</div>
+<p><b>Conclusion:</b> Good memory management allows more processes to run while using RAM efficiently.</p></div>
+            <div class="trick">🧠 Allocation = <b>Contiguous</b> (together) vs <b>Non-contiguous</b> (separate).</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q15. Explain paging and segmentation. Differentiate between paging and segmentation.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Paging and segmentation are non-contiguous memory-management techniques.</p>
+<p><b>Paging:</b> Logical memory is divided into fixed-size pages and physical memory into fixed-size frames. A page table maps page numbers to frame numbers.</p>
+<p><b>Segmentation:</b> A program is divided into logical variable-size segments such as code, data and stack. A segment table maps segment numbers to their memory locations.</p>
+<table><tr><th>Paging</th><th>Segmentation</th></tr><tr><td>Fixed-size pages</td><td>Variable-size segments</td></tr><tr><td>Based mainly on physical memory units</td><td>Matches logical program units</td></tr><tr><td>Uses page table</td><td>Uses segment table</td></tr></table>
+<div class="diagram">Paging:  Logical Address → Page No. + Offset → Page Table → Frame + Offset</div>
+<p><b>Conclusion:</b> Paging reduces external fragmentation, while segmentation represents the logical structure of a program.</p></div>
+            <div class="trick">🧠 Page = fixed; Segment = logical + variable.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q16. What is virtual memory? Explain demand paging and its advantages.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Virtual memory is a memory-management technique that allows a process to use an address space larger than the available physical RAM by keeping required parts in secondary storage.</p>
+<p><b>Demand paging:</b> Pages are loaded into memory only when they are needed. If the required page is not in memory, a <b>page fault</b> occurs. The OS brings the page from disk/secondary storage into a free frame and continues execution.</p>
+<div class="diagram">CPU reference → Page in memory?
+                 │Yes → continue
+                 │No
+                 ↓
+              Page fault
+                 ↓
+          Load page from disk
+                 ↓
+             Update table
+                 ↓
+              Continue</div>
+<p><b>Advantages:</b> better memory utilization, larger logical address space and ability to run programs that do not fit completely in RAM.</p>
+<p><b>Conclusion:</b> Virtual memory improves flexibility by loading only the pages that are required.</p></div>
+            <div class="trick">🧠 Demand paging = <b>“Load only when needed.”</b></div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q17. Explain page replacement algorithms: FIFO, LRU and Optimal. Give suitable examples.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> When a page fault occurs and all frames are full, the OS must choose a page to remove. This is called page replacement.</p>
+<p><b>FIFO:</b> Replaces the page that entered memory first.</p>
+<p><b>LRU:</b> Replaces the page that has not been used for the longest time.</p>
+<p><b>Optimal:</b> Replaces the page whose next use is farthest in the future. It gives the theoretical minimum number of page faults but needs future knowledge, so it is mainly used as a benchmark.</p>
+<table><tr><th>Algorithm</th><th>Victim page</th></tr><tr><td>FIFO</td><td>Oldest loaded page</td></tr><tr><td>LRU</td><td>Least recently used</td></tr><tr><td>Optimal</td><td>Used farthest in future</td></tr></table>
+<p><b>Conclusion:</b> FIFO is simple, LRU uses recent history, and Optimal is the ideal benchmark.</p></div>
+            <div class="trick">🧠 FIFO = oldest • LRU = least recent • OPT = farthest future.</div>
+          </div>
+        </article>
+    </section>
+    <section class="unit" id="u4">
+      <div class="unitbar">
+        <div class="uniticon">🐧</div>
+        <div><div class="unitlabel">UNIT 4</div><h2>Open Source, File System & Linux Basics</h2><div class="topics">UNIX • Commands • File hierarchy • Pathnames • Permissions • Links</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🟠 Verified command/permission PYQ topics: environment variables 2016/2017/2018; file-access permissions 2016/2017; pipes & filters 2023; mv/wc 2023; Linux/UNIX components 2019/2025.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q18. What is UNIX? Explain its features, architecture and major components.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> UNIX is a multiuser, multitasking operating system. It provides a command-based environment and manages system resources through the kernel.</p>
+<p><b>Features:</b> multiuser operation, multitasking, portability, security, hierarchical file system, shell interface and strong support for networking/utilities.</p>
+<p><b>Architecture/components:</b> users interact through applications and the shell. The shell interprets commands and communicates with the kernel. The kernel manages CPU/processes, memory, files and devices. Hardware is at the bottom.</p>
+<div class="diagram">Users → Applications / Shell → Kernel → Hardware
+                         ↕
+                File • Memory • Process • Device management</div>
+<p><b>Conclusion:</b> UNIX provides a powerful and organized environment for multiuser and multitasking computing.</p></div>
+            <div class="trick">🧠 Layer order: <b>User → Shell → Kernel → Hardware</b>.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q19. Explain these UNIX commands with syntax and examples: ls, cd, pwd, mkdir, rmdir, cp, mv, cat, rm, head, tail, wc, sort, grep.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span><span class="badge classalert">🟠 COLLEGE CLASS-TEST ALERT • 5 MARKS</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> UNIX commands are small utilities used to perform file, directory and text-processing operations.</p>
+<table><tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>ls</td><td>list contents</td><td><code>ls</code></td></tr><tr><td>cd</td><td>change directory</td><td><code>cd Documents</code></td></tr>
+<tr><td>pwd</td><td>show current path</td><td><code>pwd</code></td></tr><tr><td>mkdir</td><td>create directory</td><td><code>mkdir test</code></td></tr>
+<tr><td>rmdir</td><td>remove empty directory</td><td><code>rmdir test</code></td></tr><tr><td>cp</td><td>copy</td><td><code>cp a.txt b.txt</code></td></tr>
+<tr><td>mv</td><td>move/rename</td><td><code>mv a.txt new.txt</code></td></tr><tr><td>cat</td><td>display/concatenate</td><td><code>cat a.txt</code></td></tr>
+<tr><td>rm</td><td>remove file</td><td><code>rm a.txt</code></td></tr><tr><td>head</td><td>show beginning</td><td><code>head a.txt</code></td></tr>
+<tr><td>tail</td><td>show end</td><td><code>tail a.txt</code></td></tr><tr><td>wc</td><td>count lines/words/bytes</td><td><code>wc a.txt</code></td></tr>
+<tr><td>sort</td><td>sort lines</td><td><code>sort a.txt</code></td></tr><tr><td>grep</td><td>search matching text</td><td><code>grep "OS" a.txt</code></td></tr>
+</table>
+<p><b>Conclusion:</b> These commands form the basic working toolkit for navigating and managing UNIX files and text.</p></div>
+            <div class="trick">🧠 Navigation: <b>pwd → ls → cd</b>. File: <b>cp → mv → cat → rm</b>. Text: <b>head → tail → wc → sort → grep</b>.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q20. Explain the UNIX file system hierarchy. What are absolute and relative pathnames?</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> UNIX uses a hierarchical file system beginning at the root directory represented by <b>/</b>. Directories can contain files and other directories.</p>
+<div class="diagram">/
+├── home
+├── bin
+├── etc
+├── dev
+├── tmp
+└── var</div>
+<p><b>Absolute pathname:</b> Starts from the root <b>/</b> and gives the complete path, for example <code>/home/user/file.txt</code>.</p>
+<p><b>Relative pathname:</b> Starts from the current directory, for example <code>docs/file.txt</code>. <code>.</code> means current directory and <code>..</code> means parent directory.</p>
+<p><b>Conclusion:</b> Pathnames tell UNIX exactly where a file or directory is located.</p></div>
+            <div class="trick">🧠 Absolute = starts <b>/</b>; Relative = starts from <b>current directory</b>.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q21. Explain file permissions in UNIX. Describe chmod, chown and chgrp with examples. Also explain hard links and soft links.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> UNIX permissions control who can read, write or execute a file.</p>
+<p>Permissions are commonly represented for <b>user (u), group (g), others (o)</b>. The three basic permissions are <b>r = read, w = write, x = execute</b>.</p>
+<p><b>chmod</b> changes permissions, e.g. <code>chmod 755 file.sh</code>. <b>chown</b> changes file owner, e.g. <code>chown user file.txt</code>. <b>chgrp</b> changes group ownership, e.g. <code>chgrp staff file.txt</code>.</p>
+<p><b>Hard link:</b> another directory entry referring to the same underlying file data/inode. <b>Soft link:</b> a symbolic link that stores a path to another file.</p>
+<div class="diagram">File → permissions: r w x | r w x | r w x
+             user       group      others</div>
+<p><b>Conclusion:</b> Permissions and links help UNIX provide controlled and flexible file management.</p></div>
+            <div class="trick">🧠 <b>rwx = 4,2,1</b>; 755 = rwx r-x r-x.</div>
+          </div>
+        </article>
+    </section>
+    <section class="unit" id="u5">
+      <div class="unitbar">
+        <div class="uniticon">⌨️</div>
+        <div><div class="unitlabel">UNIT 5</div><h2>vi Editor, Shell & Linux Features</h2><div class="topics">Redirection • Pipes • Filters • vi • Shell • awk • Linux features</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🔴 Shell meaning/types: verified topic years 2014, 2016, 2017, 2018, 2019. vi editor: 2014, 2016/2017, 2018, 2022, 2023. Linux features/components: 2016, 2019, 2021, 2022, 2025.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q22. What is I/O redirection and piping in UNIX? Explain &gt;, &gt;&gt;, &lt; and | with suitable examples. Also explain filters.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> I/O redirection changes where a command gets input or sends output. A pipe connects the output of one command to the input of another.</p>
+<table><tr><th>Symbol</th><th>Meaning</th><th>Example</th></tr><tr><td>&gt;</td><td>redirect output; overwrite file</td><td><code>ls &gt; list.txt</code></td></tr><tr><td>&gt;&gt;</td><td>append output</td><td><code>date &gt;&gt; log.txt</code></td></tr><tr><td>&lt;</td><td>take input from file</td><td><code>sort &lt; names.txt</code></td></tr><tr><td>|</td><td>pipe output to next command</td><td><code>ls | grep txt</code></td></tr></table>
+<p><b>Filters:</b> Commands that read input, process it and produce output are called filters. Examples include <code>grep</code>, <code>sort</code>, <code>head</code>, <code>tail</code> and <code>wc</code>.</p>
+<p><b>Conclusion:</b> Redirection and pipes make UNIX commands powerful by allowing commands to be combined.</p></div>
+            <div class="trick">🧠 <b>&gt; new, &gt;&gt; add, &lt; take, | join</b>.</div>
+          </div>
+        </article>
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q23. Explain the vi editor and UNIX shell. Discuss vi modes, insertion/deletion, yank and put, .exrc, types of shells, shell variables, aliases, history, job control and awk.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> <b>vi</b> is a screen-oriented text editor in UNIX/Linux. The <b>shell</b> is a command interpreter that accepts commands from the user and runs programs.</p>
+<p><b>vi modes:</b> Normal/command mode is used for movement and editing commands. Insert mode is used to enter text. Ex/last-line mode is used for commands such as saving and quitting.</p>
+<table><tr><th>Operation</th><th>Common command</th></tr><tr><td>Insert</td><td><code>i</code></td></tr><tr><td>Delete character</td><td><code>x</code></td></tr><tr><td>Delete line</td><td><code>dd</code></td></tr><tr><td>Yank/copy line</td><td><code>yy</code></td></tr><tr><td>Put/paste</td><td><code>p</code></td></tr><tr><td>Search</td><td><code>/pattern</code></td></tr><tr><td>Write</td><td><code>:w</code></td></tr><tr><td>Quit</td><td><code>:q</code></td></tr><tr><td>Write + quit</td><td><code>:wq</code></td></tr></table>
+<p><b>.exrc:</b> A configuration file used to set vi/ex editor options. <b>Shell types:</b> common shells include sh, bash, ksh, csh and related shells. <b>Variables:</b> store values used by the shell. <b>Aliases:</b> give short names to commands. <b>History:</b> stores previous commands. <b>Job control:</b> manages foreground/background jobs. <b>awk:</b> a text-processing and pattern-scanning utility useful for reports and field-based processing.</p>
+<p><b>Conclusion:</b> vi provides efficient text editing, while the shell provides command execution and automation facilities.</p></div>
+            <div class="trick">🧠 vi: <b>i = insert, x = delete, dd = line delete, yy = yank, p = put, :w = write, :q = quit.</b></div>
+          </div>
+        </article>
+    </section>
+    <section class="unit" id="u6">
+      <div class="unitbar">
+        <div class="uniticon">🛠️</div>
+        <div><div class="unitlabel">UNIT 6</div><h2>Linux Utilities & UNIX System Administration</h2><div class="topics">Linux command workflow • File operations • Administration</div></div>
+      </div>
+      <div class="alert"><b>PYQ ALERT:</b> 🟠 UNIX system-administrator role: verified topic years 2016/2017 and 2022. Linux commands/utilities appeared as a longer question in 2022. This 24-question pack uses the supplied VVI command workflow for Unit 6.</div>
+      <div class="legend"><span>🔴 Must-study / repeated</span><span>🟠 High priority</span><span>🟡 VVI / syllabus-linked</span></div>
+      <div class="hint"><b>Exam writing:</b> Write the answer in the same order: <b>Definition/Introduction → Main Explanation → Points/Example → Diagram/Table → Conclusion</b>. Do not add unrelated theory.</div>
+      
+        <article class="qcard">
+          <button class="qhead" onclick="toggleCard(this)">
+            <span>Q24. Using Linux basic commands, explain step by step how to create a directory, create and edit a file inside it, display the file contents, copy the file and rename it. Write the Linux command used at each step.</span><span class="chev">＋</span>
+          </button>
+          <div class="qbody">
+            <div class="qmeta">
+              <span class="badge">VVI answer</span>
+            </div>
+            <div class="answer"><p><b>Ans:</b> Linux commands can be used step by step for directory and file management.</p>
+<table><tr><th>Step</th><th>Command</th><th>Purpose</th></tr>
+<tr><td>1. Create directory</td><td><code>mkdir test</code></td><td>Creates <b>test</b>.</td></tr>
+<tr><td>2. Enter directory</td><td><code>cd test</code></td><td>Moves into test.</td></tr>
+<tr><td>3. Create/edit file</td><td><code>vi file.txt</code></td><td>Opens vi; type text, then <code>:wq</code>.</td></tr>
+<tr><td>4. Display content</td><td><code>cat file.txt</code></td><td>Shows file content.</td></tr>
+<tr><td>5. Copy file</td><td><code>cp file.txt copy.txt</code></td><td>Creates a copy.</td></tr>
+<tr><td>6. Rename file</td><td><code>mv copy.txt new.txt</code></td><td>Renames the copy.</td></tr>
+</table>
+<div class="diagram">mkdir → cd → vi → :wq → cat → cp → mv</div>
+<p><b>Conclusion:</b> These basic commands are enough to create a directory, edit and display a file, make a copy and rename it.</p></div>
+            <div class="trick">🧠 Sequence: <b>MAKE → ENTER → EDIT → SEE → COPY → RENAME</b>.</div>
+          </div>
+        </article>
+    </section>
+
+  <div class="covernote">
+    <b>FINAL QUICK ALERT:</b> Focus first on CPU Scheduling, Deadlock/Banker's Algorithm, Paging/Page Replacement,
+    Shell + vi, Linux commands/permissions. Draw a neat diagram whenever the question asks for one.
+  </div>
+</main>
+
+<button class="sticky" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+<div class="footer">Offline single-file HTML • No external files or internet required.</div>
+
+<script>
+function toggleCard(btn){
+  const body=btn.nextElementSibling, chev=btn.querySelector('.chev');
+  const open=getComputedStyle(body).display!=="none";
+  body.style.display=open?"none":"block";
+  chev.textContent=open?"＋":"−";
+}
+function expandAll(){
+ document.querySelectorAll('.qbody').forEach(x=>x.style.display='block');
+ document.querySelectorAll('.chev').forEach(x=>x.textContent='−');
+}
+function collapseAll(){
+ document.querySelectorAll('.qbody').forEach(x=>x.style.display='none');
+ document.querySelectorAll('.chev').forEach(x=>x.textContent='＋');
+}
+const exam=new Date("2026-09-16T10:00:00+05:30").getTime();
+function tick(){
+ const now=Date.now(), d=exam-now, el=document.getElementById("countdown");
+ if(d<=0){el.textContent="EXAM TIME — ALL THE BEST!";return;}
+ const days=Math.floor(d/86400000), hrs=Math.floor(d%86400000/3600000),
+       mins=Math.floor(d%3600000/60000), secs=Math.floor(d%60000/1000);
+ el.textContent=`⏳ ${days}d ${hrs}h ${mins}m ${secs}s remaining`;
+}
+tick();setInterval(tick,1000);
+window.addEventListener('scroll',()=>{
+ const h=document.documentElement, p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+ document.getElementById('progress').style.width=p+'%';
+});
+</script>
+</body>
+</html>
