@@ -2,591 +2,1278 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BCA-205 OS & UNIX — PYQ Solved Q&A | AKU Patna</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA-205 OS & UNIX — Complete Guide | 16 Sept 2026</title>
 <style>
-:root{
-  --bg:#F8F9FA; --card:#fff; --shadow:0 4px 20px rgba(0,0,0,.10);
-  --radius:14px; --transition:.35s cubic-bezier(.4,0,.2,1);
-}
-*{box-sizing:border-box; margin:0; padding:0}
-body{font-family:'Poppins',sans-serif; background:var(--bg); color:#1a1a2e; overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#060d1a;color:#e2e8f0;overflow-x:hidden;}
+#pb{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#1565C0,#F9A825,#C62828);z-index:9999;width:0;transition:width .2s;}
 
-/* ── scrollbar ── */
-::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-track{background:#eee}
-::-webkit-scrollbar-thumb{background:#aaa; border-radius:4px}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#060d1a 0%,#0d1b4f 28%,#4a148c 62%,#7f0000 100%);
+  position:relative;overflow:hidden;text-align:center;padding:24px 14px;}
+#hcv{position:absolute;inset:0;pointer-events:none;}
+.hc{position:relative;z-index:2;}
+.h-eye{color:#90caf9;font-size:.88em;margin-bottom:6px;letter-spacing:1px;}
+.h-title{font-size:clamp(1.8em,6.5vw,3.5em);color:#fff;font-weight:900;line-height:1.15;
+  animation:glow 3s ease-in-out infinite alternate;margin-bottom:5px;}
+@keyframes glow{from{text-shadow:0 0 12px #F9A825;}to{text-shadow:0 0 35px #F9A825,0 0 70px rgba(249,168,37,.4);}}
+.h-code{color:#F9A825;font-size:.88em;letter-spacing:2px;margin-bottom:16px;}
+.pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:18px;}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  padding:5px 12px;border-radius:20px;font-size:.78em;color:#fff;}
+.pill.hot{background:rgba(183,28,28,.5);border-color:#ef4444;}
+.cdw{background:rgba(13,27,79,.8);border:2px solid rgba(249,168,37,.4);border-radius:14px;
+  padding:13px 20px;margin-bottom:18px;}
+.cdl{color:#F9A825;font-size:.76em;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;}
+.cdb{display:flex;gap:10px;justify-content:center;}
+.cdx{text-align:center;min-width:52px;}
+.cdn{font-size:2em;font-weight:800;color:#fff;display:block;line-height:1;}
+.cdlb{font-size:.6em;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;}
+.sbtn{background:linear-gradient(135deg,#1565C0,#0d47a1);color:#fff;border:none;
+  padding:12px 28px;border-radius:28px;font-size:.95em;cursor:pointer;font-weight:700;
+  animation:bob 2.5s ease-in-out infinite;box-shadow:0 0 18px rgba(21,101,192,.5);}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
 
-/* ── Hero ── */
-.hero{
-  background:linear-gradient(135deg,#0D47A1 0%,#4A148C 50%,#B71C1C 100%);
-  padding:60px 20px 50px; text-align:center; position:relative; overflow:hidden;
-}
-.hero::before{
-  content:''; position:absolute; inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,.15)'/%3E%3C/svg%3E") repeat;
-  animation:bgscroll 20s linear infinite;
-}
-@keyframes bgscroll{to{background-position:200px 200px}}
-.hero-tag{
-  display:inline-block; background:rgba(255,255,255,.18); color:#fff;
-  font-size:.8rem; font-weight:600; padding:5px 18px; border-radius:50px;
-  border:1px solid rgba(255,255,255,.3); margin-bottom:18px;
-  animation:fadedown .6s ease both;
-}
-.hero h1{
-  font-family:'Caveat',cursive; font-size:clamp(2.2rem,7vw,4.2rem);
-  color:#fff; line-height:1.1; animation:fadedown .7s .1s ease both;
-}
-.hero h2{
-  font-size:clamp(1rem,3vw,1.5rem); color:rgba(255,255,255,.85);
-  font-weight:300; margin:.5rem 0 1.5rem; animation:fadedown .7s .2s ease both;
-}
-.hero-pills{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; animation:fadedown .7s .3s ease both}
-.pill{
-  background:rgba(255,255,255,.15); backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.25); color:#fff;
-  padding:7px 18px; border-radius:50px; font-size:.82rem; font-weight:600;
-}
-@keyframes fadedown{from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none}}
+/* STICKY NAV */
+.snav{background:#07111e;position:sticky;top:0;z-index:300;border-bottom:2px solid #F9A825;
+  display:flex;flex-wrap:wrap;gap:3px;padding:7px 10px;}
+.nl{color:#64748b;text-decoration:none;padding:5px 9px;border-radius:6px;
+  font-size:.75em;font-weight:700;transition:all .2s;white-space:nowrap;border:1px solid transparent;}
+.nl:hover,.nl.on{background:linear-gradient(135deg,#0d47a1,#1565C0);color:#fff;border-color:#F9A825;}
+.nctrl{margin-left:auto;display:flex;gap:3px;align-items:center;}
+.nbtn{background:#1e293b;color:#94a3b8;border:none;padding:5px 9px;border-radius:6px;
+  font-size:.73em;cursor:pointer;font-weight:700;transition:all .2s;}
+.nbtn:hover{background:#1565C0;color:#fff;}
 
-/* ── Sticky nav ── */
-.nav{
-  position:sticky; top:0; z-index:100; background:#1a1a2e;
-  display:flex; overflow-x:auto; gap:4px; padding:10px 16px;
-  box-shadow:0 3px 16px rgba(0,0,0,.35);
-}
-.nav::-webkit-scrollbar{height:3px}
-.nav a{
-  white-space:nowrap; color:rgba(255,255,255,.75); text-decoration:none;
-  font-size:.78rem; font-weight:600; padding:7px 16px; border-radius:50px;
-  border:2px solid transparent; transition:var(--transition);
-}
-.nav a:hover{color:#fff; border-color:var(--uc,#fff); background:rgba(255,255,255,.1)}
+/* UNIT WRAPPER */
+.unit{max-width:900px;margin:20px auto;padding:0 10px;}
 
-/* ── Progress bar ── */
-#progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#42A5F5,#AB47BC,#EF5350);width:0%;z-index:999;transition:width .15s}
+/* UNIT HEADER */
+.uhdr{border-radius:14px;overflow:hidden;margin-bottom:10px;}
+.uhdr-in{display:flex;gap:12px;padding:16px 18px;align-items:center;}
+.uico{font-size:2.2em;flex-shrink:0;}
+.utag{color:rgba(249,168,37,.9);font-size:.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+.utit{color:#fff;font-size:1.2em;font-weight:800;}
+.usub{color:#b0bec5;font-size:.76em;margin-top:2px;}
 
-/* ── Main ── */
-.main{max-width:900px; margin:0 auto; padding:30px 16px 60px}
+/* PYQ ALERT BANNER — always visible */
+.pyq-banner{border-radius:10px;padding:10px 14px;margin-bottom:12px;
+  display:flex;gap:10px;align-items:flex-start;
+  background:#140008;border:2px solid #ef4444;
+  animation:pa 3s ease-in-out infinite;}
+@keyframes pa{0%,100%{border-color:#B71C1C;}50%{border-color:#ef4444;box-shadow:0 0 12px rgba(239,68,68,.3);}}
+.pyq-banner .pico{font-size:1.3em;flex-shrink:0;margin-top:1px;}
+.pyq-banner p{color:#fca5a5;font-size:.83em;line-height:1.5;}
+.pyq-banner b{color:#f87171;}
 
-/* ── Unit section ── */
-.unit-section{margin-bottom:40px; animation:fadein .5s ease both}
-@keyframes fadein{from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none}}
+/* TABS */
+.tabwrap{background:#090f1e;border-radius:12px;border:1px solid #1e293b;overflow:hidden;}
+.tabbar{display:flex;background:#060d1a;border-bottom:1px solid #1e293b;gap:0;}
+.tbtn{flex:1;background:none;border:none;color:#475569;padding:11px 4px;font-size:.78em;
+  cursor:pointer;font-weight:700;border-bottom:3px solid transparent;transition:all .2s;}
+.tbtn:hover{color:#e2e8f0;background:#0f172a;}
+.tbtn.on{color:#fff;background:#0f172a;}
+.tp{display:none;padding:12px;}
+.tp.on{display:block;animation:fi .3s ease;}
+@keyframes fi{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
-.unit-header{
-  border-radius:var(--radius) var(--radius) 0 0; padding:22px 28px;
-  display:flex; align-items:center; gap:16px; color:#fff;
-  position:relative; overflow:hidden;
-}
-.unit-header::after{
-  content:''; position:absolute; right:-20px; top:-20px;
-  width:120px; height:120px; border-radius:50%;
-  background:rgba(255,255,255,.08);
-}
-.unit-icon{font-size:2.4rem; filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
-.unit-title{font-family:'Caveat',cursive; font-size:1.5rem; font-weight:700; flex:1}
-.unit-badge{
-  background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.35);
-  padding:4px 14px; border-radius:50px; font-size:.78rem; font-weight:700;
-}
+/* MCQ — 4-COLUMN GRID */
+.mitem{background:#0b1625;border-radius:10px;margin-bottom:10px;overflow:hidden;border:1px solid #1e293b;}
+.mqhd{background:#111827;padding:9px 13px;display:flex;align-items:flex-start;gap:8px;}
+.mqn{color:#F9A825;font-size:.82em;font-weight:800;flex-shrink:0;padding-top:1px;}
+.mqtxt{color:#e2e8f0;font-size:.88em;font-weight:600;line-height:1.4;}
+/* 4-column options grid */
+.mopts{padding:8px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.mopt{background:#1e293b;padding:7px 8px;border-radius:7px;cursor:pointer;
+  color:#cbd5e1;font-size:.8em;text-align:center;transition:all .18s;
+  border:1.5px solid transparent;user-select:none;line-height:1.3;}
+.mopt:hover{background:#0d47a1;color:#fff;border-color:#1565C0;}
+.mopt.right{background:#0a2e1a!important;border-color:#4ade80!important;color:#4ade80!important;cursor:default;font-weight:700;}
+.mopt.wrong{background:#2e0a0a!important;border-color:#ef4444!important;color:#ef4444!important;cursor:default;}
+.mres{display:none;padding:7px 12px 9px;background:#060d1a;border-top:1px solid #1e293b;
+  display:none;align-items:flex-start;gap:7px;}
+.mres.show{display:flex;}
+.rbdg{background:#0a2e1a;color:#4ade80;padding:2px 8px;border-radius:8px;font-size:.76em;font-weight:800;flex-shrink:0;}
+.rexp{color:#94a3b8;font-size:.8em;line-height:1.45;}
 
-/* ── Q&A Card ── */
-.qa-card{
-  background:var(--card); margin-bottom:12px;
-  border-radius:var(--radius); box-shadow:var(--shadow);
-  overflow:hidden; transition:var(--transition);
-}
-.qa-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.15); transform:translateY(-2px)}
+/* QUESTION CARD */
+.qcard{background:#0b1625;border-radius:11px;margin-bottom:12px;overflow:hidden;
+  border:1px solid #1e293b;transition:box-shadow .2s;}
+.qcard:hover{box-shadow:0 4px 18px rgba(21,101,192,.2);}
 
-.q-header{
-  display:flex; align-items:flex-start; gap:14px; padding:18px 20px;
-  cursor:pointer; user-select:none;
-  transition:background var(--transition);
-}
-.q-header:hover{background:#F0F4FF}
-.q-num{
-  min-width:38px; height:38px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:#fff; font-weight:700; font-size:.85rem; flex-shrink:0;
-}
-.q-text{flex:1}
-.q-main{
-  font-family:'Caveat',cursive; font-size:1.12rem; font-weight:700;
-  color:#1a1a2e; line-height:1.35;
-}
-.q-src{font-size:.72rem; color:#888; margin-top:3px; font-weight:600}
-.q-toggle{
-  color:#aaa; font-size:1rem; flex-shrink:0; margin-top:2px;
-  transition:transform var(--transition);
-}
-.q-header.open .q-toggle{transform:rotate(180deg)}
+/* Q HEADER — always visible */
+.qhd{padding:0;}
+.qtop{display:flex;align-items:center;gap:8px;padding:10px 13px;background:#111827;flex-wrap:wrap;}
+.qnum-badge{background:#F9A825;color:#000;font-weight:800;padding:2px 10px;border-radius:8px;font-size:.78em;flex-shrink:0;}
+.marks-badge{font-weight:800;padding:2px 10px;border-radius:8px;font-size:.78em;flex-shrink:0;color:#fff;}
+.q-pyq-tag{background:#140008;color:#f87171;font-size:.74em;padding:2px 9px;border-radius:8px;
+  border:1px solid #B71C1C;flex-shrink:0;}
+.qtitle{color:#e2e8f0;font-size:.9em;font-weight:700;flex:1;min-width:0;}
+.togico{color:#475569;font-size:.82em;transition:transform .22s;flex-shrink:0;cursor:pointer;padding:0 4px;}
 
-.ans-body{
-  display:none; padding:20px 24px; border-top:none;
-  animation:slidedown .3s ease;
-}
-@keyframes slidedown{from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none}}
-.ans-body.show{display:block}
+/* ONE-LINER — always visible */
+.oneliner{background:#0d1b36;border-left:4px solid #F9A825;padding:8px 13px;
+  font-size:.83em;color:#fde68a;line-height:1.5;}
+.oneliner b{color:#F9A825;}
 
-.ans-intro{
-  background:rgba(255,255,255,.7); border-radius:10px;
-  padding:12px 16px; margin-bottom:12px; font-size:.95rem;
-  border-left:4px solid #42A5F5; color:#1a237e;
-}
-.ans-def{
-  background:#FFF8E1; border-radius:10px; padding:12px 16px;
-  margin-bottom:12px; font-size:.93rem; border-left:4px solid #FFC107;
-}
-.ans-points{
-  font-size:.92rem; line-height:1.75; color:#2c2c2c;
-  margin-bottom:12px; padding:10px 0;
-}
-.ans-example{
-  background:#E8F5E9; border-radius:10px; padding:12px 16px;
-  margin-bottom:12px; font-size:.91rem; color:#1B5E20;
-  border-left:4px solid #4CAF50;
-}
-.ans-concl{
-  background:#FCE4EC; border-radius:10px; padding:12px 16px;
-  font-size:.91rem; font-style:italic; color:#880E4F;
-  border-left:4px solid #E91E63;
-}
-.ans-icon{margin-right:6px}
+/* COLLAPSIBLE BODY */
+.qbody{display:none;}
+.qbody.op{display:block;animation:fi .3s ease;}
 
-/* ── Tables ── */
-.gantt-table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.84rem}
-.gantt-table th{background:#1a1a2e; color:#fff; padding:8px 10px; text-align:left}
-.gantt-table td{padding:7px 10px; border-bottom:1px solid #e0e0e0}
-.gantt-table tr:nth-child(even) td{background:#F5F5F5}
-.fault{color:#C62828; font-weight:700}
-.hit{color:#2E7D32; font-weight:700}
-code{background:#F3E5F5; color:#6A1B9A; padding:2px 7px; border-radius:5px; font-size:.88em}
+/* NOTEBOOK PAPER */
+.notebook{
+  background-color:#fefef9;
+  background-image:
+    repeating-linear-gradient(transparent,transparent 27px,#c5d8ea 27px,#c5d8ea 28px),
+    linear-gradient(to right,#ffb3b3 38px,transparent 38px);
+  padding:12px 14px 14px 50px;border-radius:0 0 11px 11px;}
 
-/* ── Back to top ── */
-#backtop{
-  position:fixed; bottom:24px; right:24px; z-index:200;
-  width:48px; height:48px; border-radius:50%;
-  background:linear-gradient(135deg,#1565C0,#6A1B9A);
-  color:#fff; font-size:1.4rem; border:none; cursor:pointer;
-  box-shadow:0 4px 16px rgba(0,0,0,.3);
-  display:flex; align-items:center; justify-content:center;
-  transition:var(--transition); opacity:0; pointer-events:none;
+/* TRICK BOX */
+.trick{background:#061a00;border-left:4px solid #22c55e;padding:8px 12px;
+  margin-bottom:10px;border-radius:5px;color:#86efac;font-size:.83em;}
+
+/* POINTS TABLE — 4 COLUMN LAYOUT */
+.pts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0;}
+.pt{background:#fff;border:1px solid #e2e8f0;border-radius:6px;overflow:hidden;}
+.pt-head{background:#1565C0;color:#fff;padding:5px 10px;font-size:.78em;font-weight:700;}
+.pt-body{padding:7px 10px;color:#1a1a1a;font-size:.83em;line-height:1.6;}
+
+/* Color boxes */
+.box{display:block;padding:8px 12px;margin:5px 0;border-radius:5px;font-size:.86em;line-height:1.7;}
+.box.blue{background:#e8f0fe;border-left:4px solid #1565C0;color:#0d1b4f;}
+.box.orange{background:#fff3e0;border-left:4px solid #e65100;color:#2e1000;}
+.box.green{background:#e8f5e9;border-left:4px solid #2e7d32;color:#0a2e10;}
+.box.red{background:#ffebee;border-left:4px solid #c62828;color:#3e0000;}
+
+/* DIAGRAM */
+.diag{background:#0f172a;border:1px solid #334155;border-radius:7px;padding:10px 13px;
+  color:#a5d6a7;font-family:'Courier New',monospace;font-size:.78em;overflow-x:auto;
+  white-space:pre;line-height:1.5;margin:7px 0;}
+
+/* SECTION LABELS */
+.sec-lbl{background:#0d47a1;color:#fff;font-size:.72em;font-weight:700;padding:2px 9px;
+  border-radius:10px;display:inline-block;margin-bottom:3px;letter-spacing:.5px;}
+
+/* DIFF TABLE */
+.dtbl{width:100%;border-collapse:collapse;font-size:.82em;margin:6px 0;}
+.dtbl th{background:#1565C0;color:#fff;padding:6px 8px;text-align:left;}
+.dtbl td{padding:5px 8px;border-bottom:1px solid #e2e8f0;color:#1a1a1a;}
+.dtbl tr:nth-child(even) td{background:#f5f5f5;}
+
+/* NUMERICALS */
+.nsec{max-width:900px;margin:20px auto;padding:0 10px;}
+.nhdr{background:linear-gradient(135deg,#0d1b4f,#1565C0);border-radius:14px;
+  padding:15px 18px;margin-bottom:12px;border-left:5px solid #F9A825;}
+.nhdr h2{color:#F9A825;font-size:1.15em;}
+.nhdr p{color:#94a3b8;font-size:.8em;margin-top:3px;}
+.ncard{background:#0b1625;border-radius:12px;margin-bottom:14px;overflow:hidden;border:1px solid #1e293b;}
+.nc-hdr{padding:11px 15px;}
+.nc-hdr b{color:#fff;font-size:.95em;display:block;}
+.nc-hdr span{color:#b0bec5;font-size:.78em;}
+.nc-body{padding:13px 15px;overflow-x:auto;}
+.gbar-wrap{display:flex;align-items:center;gap:2px;margin-bottom:4px;}
+.glbl{width:50px;color:#94a3b8;font-size:.72em;flex-shrink:0;}
+.gbar{height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:.72em;flex-shrink:0;}
+.gtimes{display:flex;color:#475569;font-size:.68em;padding-left:50px;gap:2px;margin-bottom:8px;}
+.fault{display:inline-block;background:#7f0000;color:#fff;font-weight:800;padding:2px 7px;border-radius:4px;font-size:.76em;margin:1px;}
+.hit{display:inline-block;background:#1b5e20;color:#fff;font-weight:800;padding:2px 7px;border-radius:4px;font-size:.76em;margin:1px;}
+.ntbl{width:100%;border-collapse:collapse;font-size:.78em;margin-top:8px;}
+.ntbl th{background:#4a148c;color:#fff;padding:5px 7px;text-align:center;}
+.ntbl td{padding:4px 7px;border:1px solid #1e293b;color:#e2e8f0;text-align:center;background:#0f172a;}
+.nresult{background:#0a1628;border-left:4px solid #F9A825;padding:8px 12px;border-radius:4px;margin-top:9px;font-size:.84em;}
+
+/* BACK TOP */
+#btop{position:fixed;bottom:18px;right:14px;background:linear-gradient(135deg,#1565C0,#0d47a1);
+  color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.1em;cursor:pointer;
+  box-shadow:0 4px 15px rgba(21,101,192,.5);z-index:500;opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;}
+#btop.show{opacity:1;}
+
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:#060d1a;}
+::-webkit-scrollbar-thumb{background:#1565C0;border-radius:3px;}
+
+@media(max-width:520px){
+  .mopts{grid-template-columns:repeat(2,1fr);}
+  .pts-grid{grid-template-columns:1fr;}
+  .cdn{font-size:1.5em;}
 }
-#backtop.show{opacity:1; pointer-events:auto}
-#backtop:hover{transform:scale(1.1)}
-
-/* ── Expand all ── */
-.expand-bar{
-  display:flex; justify-content:flex-end; gap:10px; margin-bottom:18px;
-}
-.expand-btn{
-  background:#1a1a2e; color:#fff; border:none; padding:8px 20px;
-  border-radius:50px; cursor:pointer; font-size:.8rem; font-weight:600;
-  transition:var(--transition);
-}
-.expand-btn:hover{background:#2E4057; transform:scale(1.04)}
-
-/* ── Footer ── */
-footer{
-  text-align:center; padding:30px; color:#888; font-size:.82rem;
-  border-top:1px solid #e0e0e0;
-}
-
-/* ── Scroll reveal ── */
-.unit-section{opacity:0; transform:translateY(30px); transition:opacity .5s ease, transform .5s ease}
-.unit-section.visible{opacity:1; transform:none}
-
-/* ── Responsive ── */
-@media(max-width:600px){
-  .unit-title{font-size:1.1rem}
-  .q-main{font-size:1rem}
-  .ans-points{font-size:.86rem}
-  .gantt-table{font-size:.75rem}
+@media print{
+  .snav,#btop,#pb{display:none!important;}
+  .tp{display:block!important;}
+  .qbody{display:block!important;}
 }
 </style>
 </head>
 <body>
+<div id="pb"></div>
 
-<div id="progress"></div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">📚 AKU Patna · BCA 2nd Sem · Code 303205</div>
-  <h1>BCA-205 OS &amp; UNIX</h1>
-  <h2>Complete PYQ Solved Q&amp;A  ·  Unit-wise Series</h2>
-  <div class="hero-pills">
-    <span class="pill">🗓️ Exam: 16 Sept 2026</span>
-    <span class="pill">⏰ 10 AM – 1 PM</span>
-    <span class="pill">📝 60 Marks</span>
-    <span class="pill">✅ PYQ 2014–2025 Verified</span>
-    <span class="pill">🔴 All Repeated Questions</span>
+<section class="hero">
+  <canvas id="hcv"></canvas>
+  <div class="hc">
+    <p class="h-eye">BCA 2nd Semester | Paper Code: 303205</p>
+    <h1 class="h-title">Operating System &amp; UNIX</h1>
+    <p class="h-code">6 Units · 18 Main Questions · 48 MCQs · PYQ Alerts · Memory Tricks</p>
+    <div class="pills">
+      <span class="pill">📅 16 September 2026</span>
+      <span class="pill">⏰ 10:00 AM – 1:00 PM</span>
+      <span class="pill">✍️ 60 Marks</span>
+      <span class="pill hot">⭐ Class Test 2026 + AKU VVI PDF</span>
+    </div>
+    <div class="cdw">
+      <div class="cdl">⏳ Countdown to Exam</div>
+      <div class="cdb">
+        <div class="cdx"><span class="cdn" id="cd-d">--</span><span class="cdlb">Days</span></div>
+        <div class="cdx"><span class="cdn" id="cd-h">--</span><span class="cdlb">Hours</span></div>
+        <div class="cdx"><span class="cdn" id="cd-m">--</span><span class="cdlb">Mins</span></div>
+        <div class="cdx"><span class="cdn" id="cd-s">--</span><span class="cdlb">Secs</span></div>
+      </div>
+    </div>
+    <button class="sbtn" onclick="document.querySelector('.snav').scrollIntoView({behavior:'smooth'})">📚 Start Studying ↓</button>
   </div>
-</div>
+</section>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="#unit1" style="--uc:#1565C0">🖥️ Unit 1</a><a href="#unit2" style="--uc:#2E7D32">⚙️ Unit 2</a><a href="#unit3" style="--uc:#C62828">💾 Unit 3</a><a href="#unit4" style="--uc:#6A1B9A">🐧 Unit 4</a><a href="#unit5" style="--uc:#00695C">📝 Unit 5</a><a href="#unit6" style="--uc:#4E342E">🔧 Unit 6</a>
+<nav class="snav">
+  <a href="#u1" class="nl">🖥️ U1</a>
+<a href="#u2" class="nl">⚙️ U2</a>
+<a href="#u3" class="nl">🔒 U3</a>
+<a href="#u4" class="nl">💾 U4</a>
+<a href="#u5" class="nl">🐧 U5</a>
+<a href="#u6" class="nl">📝 U6</a>
+
+  <a href="#nums" class="nl">📊 Nums</a>
+  <div class="nctrl">
+    <button class="nbtn" onclick="expAll()">⬇ Expand All</button>
+    <button class="nbtn" onclick="colAll()">⬆ Collapse</button>
+  </div>
 </nav>
 
-<!-- MAIN -->
-<div class="main">
-  <div class="expand-bar">
-    <button class="expand-btn" onclick="expandAll()">▼ Expand All</button>
-    <button class="expand-btn" onclick="collapseAll()">▲ Collapse All</button>
+
+<section class="unit" id="u1">
+  <div class="uhdr" style="background:linear-gradient(135deg,#0d47a1,#1565C0);">
+    <div class="uhdr-in">
+      <div class="uico">🖥️</div>
+      <div>
+        <div class="utag">UNIT 1 · 3 Questions</div>
+        <div class="utit">Operating System — Introduction</div>
+        <div class="usub">OS Definition · Functions (PIFCERP) · Types · Multiprogramming · Time-Sharing · Real-Time</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ Class Test 2026 Q2(5M): OS functions + types | AKU VVI Q1★★ OS functions | Q2★★ OS types</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#1565C0;" data-col="#1565C0" onclick="swTab(this,'u1-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#1565C0" onclick="swTab(this,'u1-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#1565C0" onclick="swTab(this,'u1-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u1-mcq" class="tp on">
+<div class="mitem" id="mu10">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">OS is which type of software?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Application</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) System</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Compiler</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Assembler</div></div>
+  <div class="mres" id="rmu10"><span class="rbdg">✅ System</span><span class="rexp">OS = System software. Manages hardware + provides services to programs.</span></div>
+</div>
+<div class="mitem" id="mu11">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">OS is interface between?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Hardware & Files</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) User & Hardware</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) CPU & Disk</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) RAM & Screen</div></div>
+  <div class="mres" id="rmu11"><span class="rbdg">✅ User & Hardware</span><span class="rexp">OS = bridge between USER and HARDWARE. User requests → OS → Hardware executes!</span></div>
+</div>
+<div class="mitem" id="mu12">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">Which is NOT OS function?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Process Mgmt</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Virus Making</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Memory Mgmt</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) File Mgmt</div></div>
+  <div class="mres" id="rmu12"><span class="rbdg">✅ Virus Making</span><span class="rexp">OS functions = PIFCERP (7). Creating viruses is NOT one of them!</span></div>
+</div>
+<div class="mitem" id="mu13">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">Multiprogramming goal?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,0,+oid+)">A) Maximize CPU</div><div class="mopt" onclick="chk(this,1,0,+oid+)">B) Increase RAM</div><div class="mopt" onclick="chk(this,2,0,+oid+)">C) Speed disk</div><div class="mopt" onclick="chk(this,3,0,+oid+)">D) Add users</div></div>
+  <div class="mres" id="rmu13"><span class="rbdg">✅ Maximize CPU</span><span class="rexp">Multiprogramming = CPU NEVER idle. Switches to another process when one waits for IO!</span></div>
+</div>
+<div class="mitem" id="mu14">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">Time-sharing gives each user?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Full CPU</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Disk block</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Time Slice</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Dedicated RAM</div></div>
+  <div class="mres" id="rmu14"><span class="rbdg">✅ Time Slice</span><span class="rexp">Time-sharing = fixed CPU time quantum per user in rotation. Feels like dedicated access!</span></div>
+</div>
+<div class="mitem" id="mu15">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">Hard Real-Time example?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) YouTube</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) WhatsApp</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Pacemaker</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Google</div></div>
+  <div class="mres" id="rmu15"><span class="rbdg">✅ Pacemaker</span><span class="rexp">Hard RT = Miss deadline = FAILURE. Pacemaker, Missile, Aircraft = life-critical!</span></div>
+</div>
+<div class="mitem" id="mu16">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">Batch OS problem?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Too fast</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) No user interaction</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Too much RAM</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Single program</div></div>
+  <div class="mres" id="rmu16"><span class="rbdg">✅ No user interaction</span><span class="rexp">Batch OS = no user interaction during execution. Jobs wait, result comes later!</span></div>
+</div>
+<div class="mitem" id="mu17">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">Distributed OS connects?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Files only</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Multiple computers</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) RAM to CPU</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Keyboard only</div></div>
+  <div class="mres" id="rmu17"><span class="rbdg">✅ Multiple computers</span><span class="rexp">Distributed OS = multiple networked computers appear as ONE unified system!</span></div>
+</div></div>
+    <div id="u1-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q1</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q1★★ | Class Test 2026 Q2(5M)…</span>
+      <span class="qtitle">Define Operating System. Explain its 7 main functions.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> OS = System software. Interface between user and hardware. 7 functions = PIFCERP.</div>
   </div>
   
-        <section class="unit-section" id="unit1">
-          <div class="unit-header" style="background:linear-gradient(135deg,#1565C0,#0D47A1)">
-            <div class="unit-icon">🖥️</div>
-            <div class="unit-title">Unit 1 — Introduction, OS Services & CPU Scheduling</div>
-            <div class="unit-badge">Unit 1</div>
-          </div>
-          
-            <div class="qa-card" data-unit="1">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #1565C0">
-                <div class="q-num" style="background:#1565C0">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">What is an Operating System? What services does it provide?</div>
-                  <div class="q-src">PYQ 2019 Q2(a) | 2021 | Repeated 12-mark</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #42A5F5; background:#E3F2FD">
-                <div class="ans-intro"><span class="ans-icon">📌</span> An OS is system software that acts as an intermediary between the user and hardware. It manages CPU, memory, I/O devices, and file storage.</div><div class="ans-def"><span class="ans-icon">📖</span> <b>Definition:</b> An Operating System is system software that manages hardware resources and provides services to programs and users.</div><div class="ans-points"><b>Services Provided:</b><br>1. <b>Program Execution</b> — loads program into memory and runs it.<br>2. <b>I/O Operations</b> — performs I/O on behalf of user programs (for safety).<br>3. <b>File-System Manipulation</b> — create, delete, open, close, read, write files.<br>4. <b>Communication</b> — processes exchange data via shared memory or message passing.<br>5. <b>Error Detection</b> — monitors CPU, memory, I/O for errors continuously.<br>6. <b>Resource Allocation</b> — distributes CPU time, memory, I/O among programs.<br>7. <b>Accounting</b> — tracks resource usage per user/job.<br>8. <b>Protection & Security</b> — controls access and defends against attacks.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> When you save a Word document → OS uses file-system service. When you print → OS uses I/O service. Both happen invisibly.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> The OS is indispensable — without it, no program can run, no file can be saved, and no device can be used safely.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="1">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #1565C0">
-                <div class="q-num" style="background:#1565C0">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">What is multiprogramming? How does it differ from time-sharing?</div>
-                  <div class="q-src">PYQ 2021 Q1(a,c) | 2023 Q1 | 4-mark type</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #42A5F5; background:#E3F2FD">
-                <div class="ans-intro"><span class="ans-icon">📌</span> Both multiprogramming and time-sharing aim to keep the CPU busy, but they differ in purpose and switching speed.</div><div class="ans-points"><b>Multiprogramming:</b><br>• Keeps several jobs in main memory simultaneously.<br>• When running job waits for I/O, CPU switches to another ready job.<br>• Goal: maximise CPU utilisation (batch-oriented).<br><br><b>Time-Sharing:</b><br>• Switches so rapidly (using time quanta) that every user feels they have a dedicated CPU.<br>• Goal: minimise response time for interactive users.<br>• Example: 30 students sharing one AKU lab server — all feel instant response.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Multiprogramming = efficiency. Time-sharing = interactivity. Together they form the foundation of all modern OS.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="1">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #1565C0">
-                <div class="q-num" style="background:#1565C0">Q3</div>
-                <div class="q-text">
-                  <div class="q-main">What are system calls? Explain their types with examples.</div>
-                  <div class="q-src">PYQ 2021 Q3 | 2025 Q3 | 12-mark</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #42A5F5; background:#E3F2FD">
-                <div class="ans-intro"><span class="ans-icon">📌</span> User programs run in user mode and cannot touch hardware directly. A system call is the only safe gateway to request OS services.</div><div class="ans-def"><span class="ans-icon">📖</span> <b>Definition:</b> A system call is a programmatic interface that lets a user program request a privileged service from the OS kernel, causing a mode switch from user mode to kernel mode.</div><div class="ans-points"><b>Types of System Calls:</b><br>1. <b>Process Control</b> — fork(), exec(), exit(), wait(). Create, run, terminate processes.<br>2. <b>File Management</b> — open(), read(), write(), close(), delete(). Manage files.<br>3. <b>Device Management</b> — ioctl(), read/write device. Request/release devices.<br>4. <b>Information Maintenance</b> — getpid(), time(). Get/set system attributes.<br>5. <b>Communication</b> — pipe(), socket(), send(), receive(). IPC.<br><br><b>How it works:</b> Program calls open() → TRAP fires → CPU switches to kernel mode → OS performs service → returns result to user mode.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> A C program calling fopen() internally invokes the open() system call. The program never talks to the disk directly — the kernel does it.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> System calls are the backbone of the user-kernel boundary. Every file operation, process creation, and I/O request ultimately goes through a system call.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="1">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #1565C0">
-                <div class="q-num" style="background:#1565C0">Q4</div>
-                <div class="q-text">
-                  <div class="q-main">Explain CPU Scheduling algorithms: FCFS, SJF, Priority, Round Robin with examples.</div>
-                  <div class="q-src">PYQ 2014 Q3 | 2022 Q3 | 2023 Q7 — MOST REPEATED 12-mark</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #42A5F5; background:#E3F2FD">
-                <div class="ans-intro"><span class="ans-icon">📌</span> In a multiprogrammed OS, many processes compete for the CPU. The short-term scheduler decides who gets it next.</div><div class="ans-points"><b>Scheduling Criteria:</b><br>• CPU Utilisation — keep CPU busy (maximise)<br>• Throughput — processes completed per time unit (maximise)<br>• TAT = Completion Time − Arrival Time (minimise)<br>• WT = TAT − Burst Time (minimise)<br>• Response Time — time to first response (minimise)</div><div class="ans-points"><b>FCFS</b> — First Come First Served. Non-preemptive. Runs in arrival order like a ticket queue. Problem: <i>Convoy Effect</i> — long job blocks all short jobs behind it.<br><br><b>SJF</b> — Shortest Job First. Non-preemptive. Shortest burst runs next. Gives optimal minimum average waiting time. Problem: starvation of long jobs.<br><br><b>Priority</b> — highest priority process runs first. Problem: starvation of low-priority jobs. Fix: Aging (gradually raise priority of waiting jobs).<br><br><b>Round Robin</b> — each process gets a fixed time quantum, then joins the back of the queue. Best for interactive/time-sharing. Too large quantum → FCFS; too small → overhead.</div><div class="ans-points"><b>FCFS Numerical Example:</b><br>P1(AT=0,BT=5), P2(AT=1,BT=3), P3(AT=2,BT=8), P4(AT=3,BT=6), P5(AT=4,BT=2)<br><br><table class='gantt-table'><tr><th>Process</th><th>AT</th><th>BT</th><th>CT</th><th>TAT</th><th>WT</th></tr><tr><td>P1</td><td>0</td><td>5</td><td>5</td><td>5</td><td>0</td></tr><tr><td>P2</td><td>1</td><td>3</td><td>8</td><td>7</td><td>4</td></tr><tr><td>P3</td><td>2</td><td>8</td><td>16</td><td>14</td><td>6</td></tr><tr><td>P4</td><td>3</td><td>6</td><td>22</td><td>19</td><td>13</td></tr><tr><td>P5</td><td>4</td><td>2</td><td>24</td><td>20</td><td>18</td></tr></table><br><b>Avg TAT = 13.0 | Avg WT = 8.2</b><br>SJF order (after P1 at t=5): P5→P2→P4→P3 → <b>Avg WT = 5.6</b> (much better!)</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> No single algorithm is perfect. Real OS like Linux use Multilevel Feedback Queue combining multiple algorithms so interactive tasks feel instant while batch jobs still finish.</div>
-              </div>
-            </div>
-        </section>
-        <section class="unit-section" id="unit2">
-          <div class="unit-header" style="background:linear-gradient(135deg,#2E7D32,#1B5E20)">
-            <div class="unit-icon">⚙️</div>
-            <div class="unit-title">Unit 2 — Process Management</div>
-            <div class="unit-badge">Unit 2</div>
-          </div>
-          
-            <div class="qa-card" data-unit="2">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #2E7D32">
-                <div class="q-num" style="background:#2E7D32">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">Explain the different states of a process. What is the purpose of the PCB?</div>
-                  <div class="q-src">PYQ 2019 Q3 | 2021 Q1(e,f) | 12-mark</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #66BB6A; background:#E8F5E9">
-                <div class="ans-intro"><span class="ans-icon">📌</span> A process is a program in execution. As it runs it moves through different states. The OS tracks each process using a PCB (Process Control Block).</div><div class="ans-points"><b>5 Process States:</b><br>1. <b>New</b> — process is being created.<br>2. <b>Ready</b> — in memory, waiting for CPU.<br>3. <b>Running</b> — CPU is currently executing it.<br>4. <b>Waiting/Blocked</b> — waiting for I/O or an event to complete.<br>5. <b>Terminated</b> — finished execution; resources being freed.<br><br><b>Transitions:</b> New→Ready (admitted) | Ready→Running (scheduler dispatch) | Running→Waiting (I/O request) | Waiting→Ready (I/O done) | Running→Terminated (exit)</div><div class="ans-points"><b>PCB (Process Control Block) contains:</b><br>1. Process state (New/Ready/Running/Waiting/Terminated)<br>2. Program counter — next instruction address<br>3. CPU registers — all register values<br>4. Scheduling info — priority, queue pointers<br>5. Memory management info — page tables, base/limit registers<br>6. Accounting info — CPU time used<br>7. I/O status — devices allocated, open files</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> Opening two browser tabs creates two processes. While one waits for a slow website (Waiting state), the other responds to your typing (Running state).</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Process states and PCB are the foundation of multiprogramming. Without them the OS could not safely switch between processes.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="2">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #2E7D32">
-                <div class="q-num" style="background:#2E7D32">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">What is the critical-section problem? Explain semaphores and the Producer-Consumer problem.</div>
-                  <div class="q-src">PYQ 2016/17 Q1(c) | 2022 Q4 | 2023 Q3 — Repeated every year</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #66BB6A; background:#E8F5E9">
-                <div class="ans-intro"><span class="ans-icon">📌</span> When multiple processes access shared data concurrently, results can be corrupted. This is called a race condition. The critical-section problem is the challenge of preventing it.</div><div class="ans-def"><span class="ans-icon">📖</span> <b>Critical Section:</b> Code segment where a process accesses shared resources that must not be accessed simultaneously by another process.</div><div class="ans-points"><b>3 Requirements for a Correct Solution:</b><br>1. <b>Mutual Exclusion</b> — if Pi is in CS, no other process may enter its CS.<br>2. <b>Progress</b> — if no process is in CS, the decision of who enters next cannot be postponed indefinitely.<br>3. <b>Bounded Waiting</b> — limit on how many times others can enter before a waiting process gets its turn (no starvation).</div><div class="ans-points"><b>Semaphore Solution:</b><br>A semaphore is an integer variable with two atomic operations:<br>• <b>wait(S) / P()</b> — decrements S; if S < 0, process blocks.<br>• <b>signal(S) / V()</b> — increments S; wakes a blocked process if any.<br><br><b>Producer-Consumer Problem:</b><br>3 semaphores: <b>empty</b> (free slots), <b>full</b> (filled slots), <b>mutex</b> (mutual exclusion).<br><br>Producer: wait(empty) → wait(mutex) → add item → signal(mutex) → signal(full)<br>Consumer: wait(full) → wait(mutex) → remove item → signal(mutex) → signal(empty)</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> A print spooler is producer-consumer: apps add print jobs (produce), printer driver removes and prints them (consume). Semaphores ensure no conflict.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Semaphores are the standard OS synchronisation tool. Always remember the 3 requirements: Mutual Exclusion, Progress, Bounded Waiting.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="2">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #2E7D32">
-                <div class="q-num" style="background:#2E7D32">Q3</div>
-                <div class="q-text">
-                  <div class="q-main">What are the necessary conditions for deadlock? Explain the Banker's Algorithm.</div>
-                  <div class="q-src">PYQ 2016 Q2(d) | 2019 Q2(b) | 2021 Q5 | 2023 Q4 — Most Repeated</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #66BB6A; background:#E8F5E9">
-                <div class="ans-def"><span class="ans-icon">📖</span> <b>Deadlock:</b> A situation where a set of processes are permanently blocked — each waiting for a resource held by another in the same set, so none can ever proceed.</div><div class="ans-points"><b>4 Necessary Conditions (Coffman Conditions):</b><br>1. <b>Mutual Exclusion</b> — at least one resource held in non-shareable mode.<br>2. <b>Hold and Wait</b> — process holding a resource waits to acquire more.<br>3. <b>No Preemption</b> — resource cannot be forcibly taken; released voluntarily only.<br>4. <b>Circular Wait</b> — cycle: P0 waits for P1's resource, P1 for P2's, ..., Pn waits for P0's.<br><br><b>ALL 4 must hold simultaneously for deadlock to occur.</b></div><div class="ans-points"><b>Banker's Algorithm (Deadlock Avoidance):</b><br>Key formula: <b>Need = Max − Allocation</b><br><br>Grant a request ONLY IF the resulting state is SAFE (a safe sequence exists where all processes can finish).<br><br><b>Safety Check:</b> Find a process whose Need ≤ Available → 'run' it → add its Allocation back to Available → repeat until all processes finish = SAFE STATE.<br><br><b>Example:</b> Available=(3,3,2). P1 Need=(1,2,2) ≤ (3,3,2) → run P1 → Available grows. Continue: P3→P0→P2→P4. Safe sequence = <b>P1→P3→P0→P2→P4</b>.</div><div class="ans-points"><b>Deadlock Prevention</b> — remove one of the 4 conditions:<br>• Break Circular Wait: impose total ordering on resource types, request only in increasing order.<br>• Break Hold & Wait: request all resources before execution starts.<br><br><b>Deadlock Recovery:</b><br>• Process termination: abort all deadlocked processes, or one by one until cycle breaks.<br>• Resource preemption: forcibly take resources from a victim process.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Prevention guarantees no deadlock but reduces utilisation. Banker's Algorithm avoids deadlock at runtime by only granting safe requests.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="2">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #2E7D32">
-                <div class="q-num" style="background:#2E7D32">Q4</div>
-                <div class="q-text">
-                  <div class="q-main">Differentiate between user-level and kernel-level threads. Explain IPC.</div>
-                  <div class="q-src">PYQ 2021 Q4 | 2025 Q4 | 2018 Q4 | Repeated</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #66BB6A; background:#E8F5E9">
-                <div class="ans-def"><span class="ans-icon">📖</span> <b>Thread:</b> Lightweight process — basic unit of CPU utilisation within a process. Has its own thread ID, PC, registers, stack, but SHARES code, data, and OS resources with other threads.</div><div class="ans-points"><b>User-Level Threads:</b><br>• Managed by thread library in user space; kernel unaware.<br>• Fast to create/switch (no kernel call needed).<br>• Problem: one blocking call blocks entire process.<br><br><b>Kernel-Level Threads:</b><br>• Managed directly by OS; each thread scheduled independently.<br>• One thread blocking does NOT block others.<br>• Slower to create/switch (requires kernel call).<br>• Used by: Windows, Linux.<br><br><b>Multithreading Models:</b> Many-to-One | One-to-One | Many-to-Many</div><div class="ans-points"><b>Inter-Process Communication (IPC):</b><br><br><b>Model 1 — Shared Memory:</b><br>• Region of memory shared between cooperating processes.<br>• Very FAST (direct memory access).<br>• Processes must synchronise access themselves (e.g. semaphores).<br><br><b>Model 2 — Message Passing:</b><br>• Processes use send() and receive() primitives.<br>• No shared memory needed; safer and easier to implement.<br>• Slower (kernel overhead for every message).<br>• Better for distributed systems.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> A word processor uses threads: one for typing (foreground), one for spell-check (background) — same process, shared document. Two chat apps on different computers use message-passing IPC.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Threads give a process the ability to do many things concurrently at low cost. IPC lets separate processes cooperate — essential for complex software systems.</div>
-              </div>
-            </div>
-        </section>
-        <section class="unit-section" id="unit3">
-          <div class="unit-header" style="background:linear-gradient(135deg,#C62828,#B71C1C)">
-            <div class="unit-icon">💾</div>
-            <div class="unit-title">Unit 3 — Memory Management</div>
-            <div class="unit-badge">Unit 3</div>
-          </div>
-          
-            <div class="qa-card" data-unit="3">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #C62828">
-                <div class="q-num" style="background:#C62828">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">Explain paging. What is the need of a page table? Explain TLB.</div>
-                  <div class="q-src">PYQ 2014 Q4 | 2021 Q6 | 2018 Q7(c) | Repeated</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #EF5350; background:#FFEBEE">
-                <div class="ans-intro"><span class="ans-icon">📌</span> Paging solves the external fragmentation problem entirely by using fixed-size memory blocks.</div><div class="ans-def"><span class="ans-icon">📖</span> <b>Paging:</b> Non-contiguous memory scheme. Physical memory → fixed-size <b>frames</b>. Logical memory → same-sized <b>pages</b>. Pages load into any available frames — no contiguity needed.</div><div class="ans-points"><b>Address Translation:</b><br>Logical address = <b>page number (p)</b> + <b>offset (d)</b><br>Page table maps: page number → frame number<br>Physical address = frame number + offset d<br><br><b>Advantages:</b><br>✓ No external fragmentation<br>✓ Any free frame can hold any page<br>✓ Easy sharing of pages between processes<br><br><b>Minor Disadvantage:</b> slight internal fragmentation in last page only.</div><div class="ans-points"><b>Page Table:</b> Without it, CPU cannot translate logical addresses to physical addresses. Each process has its own page table stored in main memory.<br><br><b>TLB (Translation Lookaside Buffer):</b><br>• Looking up the page table requires an extra memory access — slow!<br>• TLB is a small, super-fast hardware associative cache of recent page→frame mappings.<br>• TLB HIT → frame number given instantly (no extra memory access).<br>• TLB MISS → go to full page table in memory, then update TLB.<br>• Modern CPUs achieve TLB hit rate >98% → paging is fast enough to be practical.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> A 12 KB process with 4 KB pages needs 3 pages. Even if free frames are at positions 5, 19, 40 in RAM — paging places them there without any problem.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Paging is the foundation of virtual memory in virtually every modern OS. The TLB makes paging fast enough by eliminating the extra memory access for most translations.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="3">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #C62828">
-                <div class="q-num" style="background:#C62828">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">Explain virtual memory and demand paging. What happens when a page fault occurs?</div>
-                  <div class="q-src">PYQ 2016/17 Q2(a) | 2023 Q2(c) — Repeated identical wording</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #EF5350; background:#FFEBEE">
-                <div class="ans-def"><span class="ans-icon">📖</span> <b>Virtual Memory:</b> Technique that lets a process execute even when not completely loaded in physical RAM. Logical address space can be much larger than physical memory.</div><div class="ans-points"><b>Demand Paging:</b> Load a page into memory ONLY when it is actually referenced — not in advance.<br><br>Each page-table entry has a <b>valid-invalid bit</b>:<br>• valid (1) = page is in a frame in RAM<br>• invalid (0) = page is NOT currently in memory → causes a PAGE FAULT</div><div class="ans-points"><b>Page Fault Handling Steps:</b><br>1. Process references a page; valid-invalid bit = 0 → <b>PAGE FAULT TRAP</b> fires.<br>2. OS checks: is this a legal address for this process? If illegal → abort process.<br>3. Find a free frame in RAM (or select a victim frame using a replacement algorithm).<br>4. Schedule a disk read to bring the required page into that frame.<br>5. Update page table: set frame number, set valid bit = 1.<br>6. <b>Restart</b> the instruction that caused the page fault.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> Opening a 2 GB video editor does NOT load all 2 GB at once. Only the pages you actually use — current menus, current timeline frame — are loaded on demand. This is why startup is fast.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Demand paging allows programs much larger than physical RAM to run, increases multiprogramming degree, and reduces startup time — at the cost of occasional page-fault delays.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="3">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #C62828">
-                <div class="q-num" style="background:#C62828">Q3</div>
-                <div class="q-text">
-                  <div class="q-main">Explain FIFO, LRU and Optimal page replacement. Solve: ref string 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1 with 3 frames using LRU.</div>
-                  <div class="q-src">PYQ 2023 Q6 — 12 marks VERIFIED NUMERICAL | 2018 Q3 | 2022 Q5</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #EF5350; background:#FFEBEE">
-                <div class="ans-def"><span class="ans-icon">📖</span> When a page fault occurs and no free frame is available, the OS must choose a victim page to remove. The rule for choosing is the page replacement algorithm.</div><div class="ans-points"><b>FIFO</b> — Replace the page loaded FIRST (oldest in memory). Simple queue. Problem: <b>Belady's Anomaly</b> — adding more frames can INCREASE page faults.<br><br><b>LRU</b> — Replace the page NOT USED for the LONGEST TIME in the past. Practical approximation of Optimal. No Belady's Anomaly.<br><br><b>Optimal (MIN)</b> — Replace the page NOT NEEDED for the LONGEST TIME in the future. Gives minimum page faults. Impossible in practice (needs future knowledge) — used only as a benchmark.</div><div class="ans-points"><b>LRU SOLVED — 2023 PYQ (3 frames):</b><br>Reference string: 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1<br><table class='gantt-table'><tr><th>Ref</th><th>Frame1</th><th>Frame2</th><th>Frame3</th><th>Result</th></tr><tr><td>7</td><td>7</td><td>—</td><td>—</td><td class='fault'>FAULT</td></tr><tr><td>0</td><td>7</td><td>0</td><td>—</td><td class='fault'>FAULT</td></tr><tr><td>1</td><td>7</td><td>0</td><td>1</td><td class='fault'>FAULT</td></tr><tr><td>2</td><td>2</td><td>0</td><td>1</td><td class='fault'>FAULT (evict 7)</td></tr><tr><td>0</td><td>2</td><td>0</td><td>1</td><td class='hit'>HIT</td></tr><tr><td>3</td><td>2</td><td>3</td><td>1</td><td class='fault'>FAULT (evict 0)</td></tr><tr><td>0</td><td>2</td><td>3</td><td>0</td><td class='fault'>FAULT (evict 1)</td></tr><tr><td>4</td><td>4</td><td>3</td><td>0</td><td class='fault'>FAULT (evict 2)</td></tr><tr><td>2</td><td>4</td><td>3</td><td>2</td><td class='fault'>FAULT (evict 0)</td></tr><tr><td>3</td><td>4</td><td>3</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>0</td><td>0</td><td>3</td><td>2</td><td class='fault'>FAULT (evict 4)</td></tr><tr><td>3</td><td>0</td><td>3</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>2</td><td>0</td><td>3</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>1</td><td>0</td><td>1</td><td>2</td><td class='fault'>FAULT (evict 3)</td></tr><tr><td>2</td><td>0</td><td>1</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>0</td><td>0</td><td>1</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>1</td><td>0</td><td>1</td><td>2</td><td class='hit'>HIT</td></tr><tr><td>7</td><td>7</td><td>1</td><td>2</td><td class='fault'>FAULT (evict 0)</td></tr><tr><td>0</td><td>7</td><td>1</td><td>0</td><td class='fault'>FAULT (evict 2)</td></tr><tr><td>1</td><td>7</td><td>1</td><td>0</td><td class='hit'>HIT</td></tr></table><br><b>Total Page Faults (LRU) = 12 | Hits = 8</b><br>FIFO = 15 faults | LRU = 12 faults | Optimal = 9 faults</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> LRU is the standard recommended algorithm. In exams: always draw the frame table step by step, marking FAULT or HIT for each reference.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="3">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #C62828">
-                <div class="q-num" style="background:#C62828">Q4</div>
-                <div class="q-text">
-                  <div class="q-main">Discuss fragmentation and thrashing. How is thrashing controlled?</div>
-                  <div class="q-src">PYQ 2018 Q1(j) | 2019 Q2(c) | 2022 Q2(b) | 2019 Q1(c)</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #EF5350; background:#FFEBEE">
-                <div class="ans-points"><b>Internal Fragmentation:</b> Wasted space INSIDE an allocated block. Occurs when a process gets a block larger than it needs. Example: 4.1 KB process in a 5 KB partition wastes 0.9 KB.<br><br><b>External Fragmentation:</b> Wasted space BETWEEN allocated blocks. Total free memory may be enough, but scattered in small non-contiguous pieces. Fix: Compaction (shuffle memory) or use Paging.</div><div class="ans-points"><b>Thrashing:</b> A condition where the system spends MORE TIME swapping pages in/out than actually executing instructions. CPU utilisation drops sharply even as more processes are added.<br><br><b>Cause:</b> Too many processes in memory → each gets too few frames → constant page faults → OS busy paging → CPU idle → OS admits even more processes (makes it worse).<br><br><b>Control Methods:</b><br>1. <b>Working-Set Model</b> — track pages each process used recently (working set). Only run a process if enough frames for its working set are available.<br>2. <b>Page-Fault Frequency (PFF)</b> — monitor each process's fault rate. Give more frames if rate too high; take frames away if too low.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Fragmentation wastes memory space. Thrashing wastes CPU time. Paging eliminates external fragmentation; working-set model prevents thrashing.</div>
-              </div>
-            </div>
-        </section>
-        <section class="unit-section" id="unit4">
-          <div class="unit-header" style="background:linear-gradient(135deg,#6A1B9A,#4A148C)">
-            <div class="unit-icon">🐧</div>
-            <div class="unit-title">Unit 4 — Open Source, File System & Linux Commands</div>
-            <div class="unit-badge">Unit 4</div>
-          </div>
-          
-            <div class="qa-card" data-unit="4">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #6A1B9A">
-                <div class="q-num" style="background:#6A1B9A">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">Explain file permissions in Linux. How do chmod, chown and chgrp work?</div>
-                  <div class="q-src">Syllabus-core | chmod Q in PYQ 2014/2016/2017</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #AB47BC; background:#F3E5F5">
-                <div class="ans-intro"><span class="ans-icon">📌</span> Linux is multiuser. Every file/directory has permissions controlling who can read, write, and execute it — the core of Linux security.</div><div class="ans-points"><b>Permission Format:</b> -rwxr-xr--<br>• First char: - (file), d (dir), l (link)<br>• Next 9: three groups of rwx for <b>Owner | Group | Others</b><br><br><b>Octal Notation:</b><br>r=4, w=2, x=1. Add values per group:<br>• rwx = 7 | rw- = 6 | r-x = 5 | r-- = 4 | --- = 0<br><br><table class='gantt-table'><tr><th>Mode</th><th>Octal</th><th>Meaning</th></tr><tr><td>rwxr-xr-x</td><td>755</td><td>Owner: full | Group/Others: read+execute</td></tr><tr><td>rw-r--r--</td><td>644</td><td>Owner: read+write | Group/Others: read only</td></tr><tr><td>rwx------</td><td>700</td><td>Owner: full | Group/Others: no access</td></tr></table></div><div class="ans-points"><b>Commands:</b><br>• <code>chmod 755 file</code> — change permissions<br>• <code>chmod u+x file</code> — add execute for owner (symbolic)<br>• <code>chown abdul file.txt</code> — change owner to 'abdul'<br>• <code>chgrp students file.txt</code> — change group to 'students'<br>• <code>chmod 750 assignment</code> — owner rwx, group r-x, others ---</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> chmod, chown, chgrp together form the complete access-control system of Linux — essential for any multiuser environment.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="4">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #6A1B9A">
-                <div class="q-num" style="background:#6A1B9A">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">Explain I/O redirection and pipes. What are filters? Also explain hard vs soft links.</div>
-                  <div class="q-src">PYQ 2023 Q1(j) | 2016/17 Q1(g) | Repeated short Q</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #AB47BC; background:#F3E5F5">
-                <div class="ans-points"><b>I/O Redirection:</b><br>• <code>&gt;</code> redirect stdout to file (overwrite): <code>ls &gt; filelist.txt</code><br>• <code>&gt;&gt;</code> redirect stdout (append): <code>echo hi &gt;&gt; notes.txt</code><br>• <code>&lt;</code> redirect stdin from file: <code>sort &lt; names.txt</code><br>• <code>2&gt;</code> redirect stderr: <code>command 2&gt; errors.txt</code></div><div class="ans-points"><b>Pipes ( | ):</b> Connect one command's stdout directly to next command's stdin. No temporary file needed.<br>Example: <code>grep 'error' system.log | sort | uniq | wc -l</code><br>→ find error lines → sort → remove duplicates → count. All in one line!<br><br><b>Filters:</b> Commands that read stdin, transform data, write to stdout.<br>Common filters: grep, sort, uniq, wc, cut, awk</div><div class="ans-points"><b>Hard Link:</b><br>• Second directory entry pointing to the SAME inode as the original.<br>• Deleting original does NOT delete data — hard link still works.<br>• Cannot cross file systems. Created: <code>ln original hardlink</code><br><br><b>Soft (Symbolic) Link:</b><br>• Separate file storing only the PATH to target.<br>• If original deleted/moved → soft link BREAKS (dangling).<br>• CAN cross file systems. Created: <code>ln -s original softlink</code></div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Pipes and redirection make Linux powerful — small commands combine into sophisticated pipelines. Hard links are robust; soft links are flexible shortcuts.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="4">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #6A1B9A">
-                <div class="q-num" style="background:#6A1B9A">Q3</div>
-                <div class="q-text">
-                  <div class="q-main">Write notes on the important Linux commands with syntax and examples.</div>
-                  <div class="q-src">PYQ 2022 Q6 | 2019 Q6 | All years Q1 fill-in</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #AB47BC; background:#F3E5F5">
-                <div class="ans-points"><table class='gantt-table'><tr><th>Command</th><th>Purpose</th><th>Example</th></tr><tr><td>ls</td><td>List files</td><td>ls -l, ls -a</td></tr><tr><td>cp</td><td>Copy file</td><td>cp src dst</td></tr><tr><td>mv</td><td>Move/rename</td><td>mv old new</td></tr><tr><td>rm</td><td>Remove file</td><td>rm file.txt</td></tr><tr><td>cat</td><td>Display file</td><td>cat file.txt</td></tr><tr><td>grep</td><td>Search text</td><td>grep 'error' log.txt</td></tr><tr><td>wc</td><td>Count lines/words</td><td>wc -l file.txt</td></tr><tr><td>sort</td><td>Sort lines</td><td>sort names.txt</td></tr><tr><td>head/tail</td><td>First/Last N lines</td><td>head -5 file.txt</td></tr><tr><td>find</td><td>Search files</td><td>find / -name *.txt</td></tr><tr><td>ps</td><td>Show processes</td><td>ps -ef</td></tr><tr><td>kill</td><td>End process</td><td>kill 1234</td></tr><tr><td>pwd</td><td>Current directory</td><td>pwd</td></tr><tr><td>mkdir/rmdir</td><td>Create/remove dir</td><td>mkdir newfolder</td></tr><tr><td>chmod</td><td>Change permissions</td><td>chmod 755 script.sh</td></tr><tr><td>tar</td><td>Archive files</td><td>tar -czf out.tar.gz dir</td></tr><tr><td>man</td><td>Manual pages</td><td>man ls</td></tr><tr><td>who/whoami</td><td>Show logged users</td><td>who, whoami</td></tr><tr><td>uname</td><td>System info</td><td>uname -a</td></tr><tr><td>df/du</td><td>Disk usage</td><td>df -h, du -sh dir</td></tr><tr><td>history</td><td>Past commands</td><td>history</td></tr><tr><td>export</td><td>Set env variable</td><td>export PATH=$PATH:/dir</td></tr><tr><td>useradd</td><td>Add user</td><td>useradd username</td></tr><tr><td>passwd</td><td>Change password</td><td>passwd username</td></tr><tr><td>mount</td><td>Mount device</td><td>mount /dev/sdb1 /mnt</td></tr></table></div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Knowing the purpose, syntax and one example for every command above covers all Q1 fill-in questions from 2014-2025.</div>
-              </div>
-            </div>
-        </section>
-        <section class="unit-section" id="unit5">
-          <div class="unit-header" style="background:linear-gradient(135deg,#00695C,#004D40)">
-            <div class="unit-icon">📝</div>
-            <div class="unit-title">Unit 5 — vi Editor, Shell & Linux Features</div>
-            <div class="unit-badge">Unit 5</div>
-          </div>
-          
-            <div class="qa-card" data-unit="5">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #00695C">
-                <div class="q-num" style="background:#00695C">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">What is shell? How many types of shell are used in UNIX? Describe them.</div>
-                  <div class="q-src">PYQ 2014 Q6 | 2016 Q6 | 2017 Q6 | 2018 Q6 | 2019 Q6 — 5 YEARS IN A ROW</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #26A69A; background:#E0F2F1">
-                <div class="ans-def"><span class="ans-icon">📖</span> <b>Shell:</b> A command-line interpreter between the user and the OS kernel. It reads commands, interprets them, and instructs the kernel to carry them out. Also a scripting language.</div><div class="ans-points"><b>Types of Shell:</b><br><br><b>1. Bourne Shell (sh)</b> — developed by Stephen Bourne, 1977. The FIRST UNIX shell. Simple, portable. Basis of all shell scripting syntax. Prompt: $<br><br><b>2. C Shell (csh)</b> — by Bill Joy (UC Berkeley). C-like syntax. Introduced command history (!!) and aliases. Prompt: %<br><br><b>3. Korn Shell (ksh)</b> — by David Korn (Bell Labs). Best of Bourne + C shells. Better scripting. Prompt: $<br><br><b>4. Bash (Bourne Again Shell)</b> — DEFAULT on almost all modern Linux. Superset of Bourne shell. Adds: command-line editing, history, job control, tab completion. Prompt: $</div><div class="ans-points"><b>Shell Features:</b><br>• Redirection: >, >>, <, 2><br>• Pipes: | connects commands<br>• Aliases: <code>alias ll='ls -l'</code><br>• Job control: &amp; (background), Ctrl+Z (suspend), bg, fg, jobs<br>• Shell scripts: files of commands with #!/bin/bash shebang<br>• Variables, if-else, for/while loops</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> The terminal prompt user@machine:~$ is Bash. Every command you type is interpreted by Bash before the kernel acts on it. First UNIX shell = Bourne shell (always asked in exams!).</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Shell is the most important tool for any Linux user. Bash is the shell to know for AKU exams — most commonly asked and used in all lab practicals.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="5">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #00695C">
-                <div class="q-num" style="background:#00695C">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">Explain the vi editor. What are its modes? How do you switch between them?</div>
-                  <div class="q-src">PYQ 2014 Q2(d) | 2016/17 | 2018 Q7(d) | 2022 Q1(e) | 2023 Q2(d) — Every year</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #26A69A; background:#E0F2F1">
-                <div class="ans-def"><span class="ans-icon">📖</span> <b>vi:</b> Standard screen-based text editor on every UNIX/Linux system. Mode-based — same key performs different actions depending on the active mode. vim = vi improved (modern version).</div><div class="ans-points"><b>3 Modes of vi:</b><br><br><b>1. Command Mode</b> — DEFAULT on opening. Keystrokes = commands (move, delete, copy). Cannot type text here.<br><br><b>2. Insert Mode</b> — press i (before cursor), a (after cursor), o (new line below), O (new line above) to enter. Type normal text. Press <b>Esc</b> to return to Command mode.<br><br><b>3. Ex / Last-line Mode</b> — press <b>:</b> from Command mode. For file operations. Press Enter to execute, Esc to cancel.</div><div class="ans-points"><b>Important vi Commands:</b><br><table class='gantt-table'><tr><th>Operation</th><th>Command</th></tr><tr><td>Enter Insert mode</td><td>i / a / o</td></tr><tr><td>Return to Command mode</td><td>Esc</td></tr><tr><td>Delete current line</td><td>dd</td></tr><tr><td>Copy (yank) line</td><td>yy</td></tr><tr><td>Paste below</td><td>p</td></tr><tr><td>Delete word</td><td>dw</td></tr><tr><td>Delete character</td><td>x</td></tr><tr><td>Search forward</td><td>/pattern</td></tr><tr><td>Next match</td><td>n</td></tr><tr><td>Undo</td><td>u</td></tr><tr><td>Go to last line</td><td>G</td></tr><tr><td>Start of line</td><td>0</td></tr><tr><td>End of line</td><td>$</td></tr><tr><td>Save file</td><td>:w</td></tr><tr><td>Quit without save</td><td>:q!</td></tr><tr><td>Save and quit</td><td>:wq</td></tr><tr><td>Replace all</td><td>:%s/old/new/g</td></tr><tr><td>Replace mode</td><td>R</td></tr><tr><td>.exrc file</td><td>Auto-settings at startup (e.g. set number)</td></tr></table></div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> Create file: vi exam.txt → press i → type text → Esc → :wq → Enter. Done!</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> The single most important vi skill: ALWAYS know which mode you are in. Esc = Command mode. : = Ex mode. i/a/o = Insert mode.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="5">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #00695C">
-                <div class="q-num" style="background:#00695C">Q3</div>
-                <div class="q-text">
-                  <div class="q-main">Discuss the features, drawbacks and components of Linux.</div>
-                  <div class="q-src">PYQ 2016 Q3 | 2017 Q3 | 2019 Q2(d) | 2021 Q2(e) | 2022 Q2(d) | 2025 Q7 — 6 years</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #26A69A; background:#E0F2F1">
-                <div class="ans-points"><b>Features of Linux:</b><br>1. <b>Multiuser</b> — multiple users work simultaneously with full isolation.<br>2. <b>Multitasking</b> — many processes run concurrently.<br>3. <b>Open Source</b> — full source code freely available to study, modify, distribute.<br>4. <b>Portable</b> — runs on any hardware from tiny embedded to supercomputers.<br>5. <b>Secure</b> — strong permission model + rapid community security patching.<br>6. <b>Hierarchical File System</b> — everything under one root (/) tree, including devices.<br>7. <b>Networking</b> — built-in TCP/IP, internet-ready.</div><div class="ans-points"><b>Advantages:</b><br>✓ Free of cost — no licence fee<br>✓ Stable and reliable — servers run years without reboot<br>✓ Highly customisable — modify kernel itself<br>✓ Huge community support<br><br><b>Disadvantages / Drawbacks:</b><br>✗ Steep learning curve for beginners from Windows<br>✗ Some proprietary hardware lacks Linux drivers<br>✗ Fewer commercial games and apps than Windows<br>✗ Fragmentation — hundreds of distributions cause confusion</div><div class="ans-points"><b>5 Components of Linux:</b><br>1. <b>Kernel</b> — core; manages CPU, memory, devices, file system. Only part that talks to hardware directly.<br>2. <b>Shell</b> — command-line interpreter between user and kernel (Bash etc.).<br>3. <b>File System</b> — hierarchical structure (ext4, NTFS, FAT); everything under root /.<br>4. <b>System Libraries</b> — functions programs use to request kernel services (e.g. glibc).<br>5. <b>System Utilities / Applications</b> — ls, ps, useradd, gcc, Firefox, etc.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Linux dominates servers, cloud, Android, and supercomputers because of stability, security, and zero cost. Remember: 5 components + 7 features = full marks!</div>
-              </div>
-            </div>
-        </section>
-        <section class="unit-section" id="unit6">
-          <div class="unit-header" style="background:linear-gradient(135deg,#5D4037,#3E2723)">
-            <div class="unit-icon">🔧</div>
-            <div class="unit-title">Unit 6 — Linux Utilities & UNIX Administration</div>
-            <div class="unit-badge">Unit 6</div>
-          </div>
-          
-            <div class="qa-card" data-unit="6">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #4E342E">
-                <div class="q-num" style="background:#4E342E">Q1</div>
-                <div class="q-text">
-                  <div class="q-main">Discuss the role of the UNIX System Administrator. What are the main responsibilities?</div>
-                  <div class="q-src">PYQ 2016 Q7(c) | 2017 Q7(c) | 2022 Q7 — Repeated exactly same question</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #FF7043; background:#FBE9E7">
-                <div class="ans-intro"><span class="ans-icon">📌</span> A UNIX/Linux System Administrator (sysadmin) manages, maintains, and secures the OS and all services running on it. The sysadmin has root (superuser) access — they can do anything on the system.</div><div class="ans-points"><b>Main Responsibilities:</b><br>1. <b>User Account Management</b> — create, modify, delete accounts and groups.<br>Commands: useradd, usermod, userdel, passwd, groupadd<br><br>2. <b>Software Management</b> — install, update, remove packages.<br>Commands: apt install, apt remove, yum install<br><br>3. <b>File System Management</b> — partition, format, mount/unmount drives, monitor disk.<br>Commands: mkfs, mount, umount, df, du. Config: /etc/fstab<br><br>4. <b>System Monitoring</b> — CPU, memory, processes, logs.<br>Commands: top, ps, free, dmesg, journalctl<br><br>5. <b>Backup &amp; Restoration</b> — schedule and test regular backups.<br>Tools: tar, rsync, cpio<br>Types: Full | Incremental | Differential<br><br>6. <b>Network Configuration</b> — IP addresses, DNS, firewall rules.<br><br>7. <b>Security</b> — strong password policies, file permissions, intrusion monitoring, system patching.<br><br>8. <b>Booting the System</b> — Boot sequence: BIOS/UEFI → GRUB → Kernel → init/systemd → login prompt.</div><div class="ans-points"><b>Installing Linux — Steps:</b><br>1. Choose installation method: bootable USB, DVD, or network (PXE) install.<br>2. Choose installation class: Minimal (server), Full Desktop, or Custom.<br>3. Pre-installation checks: hardware compatibility, free disk space, backup existing data.<br>4. Installation: partition disk, format, copy system files, select packages.<br>5. Boot configuration: install GRUB bootloader, set boot order.</div><div class="ans-example"><span class="ans-icon">💡</span> <b>Example:</b> A college lab admin's daily tasks: adding student accounts each semester, running weekly tar backups of /home, checking logs for failed logins, updating kernel for security patches.</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> The sysadmin is the most critical role in any Linux environment. Their work keeps the system running, users working, and data safe.</div>
-              </div>
-            </div>
-            <div class="qa-card" data-unit="6">
-              <div class="q-header" onclick="toggleAns(this)" style="border-left: 5px solid #4E342E">
-                <div class="q-num" style="background:#4E342E">Q2</div>
-                <div class="q-text">
-                  <div class="q-main">Explain absolute vs relative pathnames. Hard links vs soft links. Backup types.</div>
-                  <div class="q-src">PYQ 2016/17 Q1(i,j) | 2019 Q1(f) | 2022 | Repeated short Q</div>
-                </div>
-                <div class="q-toggle">▼</div>
-              </div>
-              <div class="ans-body" style="border-left: 5px solid #FF7043; background:#FBE9E7">
-                <div class="ans-points"><b>Absolute Pathname:</b> Starts from root /. Works from any location.<br>Example: /home/abdul/notes.txt<br><br><b>Relative Pathname:</b> Starts from current working directory.<br>Example: (if in /home/abdul) just notes.txt refers to same file.<br><br>Special: . = current directory | .. = parent directory<br>Commands: pwd (print current dir) | man (manual pages/help)</div><div class="ans-points"><b>Hard Link vs Soft Link:</b><br><table class='gantt-table'><tr><th>Aspect</th><th>Hard Link</th><th>Soft (Symbolic) Link</th></tr><tr><td>Points to</td><td>Same inode (data blocks)</td><td>A path string only</td></tr><tr><td>Original deleted?</td><td>Data still accessible ✓</td><td>Link BREAKS (dangling) ✗</td></tr><tr><td>Cross file systems?</td><td>No</td><td>Yes</td></tr><tr><td>Link to directory?</td><td>No (normally)</td><td>Yes</td></tr><tr><td>Created with</td><td>ln orig hard</td><td>ln -s orig soft</td></tr></table></div><div class="ans-points"><b>Backup Types:</b><br>1. <b>Full Backup</b> — copy of ALL data. Simplest to restore; slowest and largest to create.<br>2. <b>Incremental Backup</b> — only data changed since the LAST BACKUP OF ANY KIND. Fastest to create; restoration needs full + all incrementals in order.<br>3. <b>Differential Backup</b> — all data changed since the LAST FULL BACKUP. Middle ground.<br><br>Tools: tar (archive), rsync (copy only changed files), cpio<br><br>⚠️ Golden rule: ALWAYS TEST that a backup can actually be restored — untested backup = no backup!</div><div class="ans-concl"><span class="ans-icon">✍️</span> <b>Conclusion:</b> Absolute paths are safe and unambiguous. Hard links are robust. Differential backup gives the best balance of speed and easy restoration.</div>
-              </div>
-            </div>
-        </section>
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 PIFCERP = Process, IO, File, Communication, Error, Resource, Protection</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">OS is system software acting as interface between user and hardware. Manages CPU, memory, IO, files. Examples: Windows, Linux, Android, macOS.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Definition</div><div class="pt-body">OS is system software acting as interface between user and hardware. Manages CPU, memory, IO, files. Examples: Windows, Linux, Android, macOS.</div></div><div class="pt"><div class="pt-head">P – Process Management</div><div class="pt-body">Creates, schedules and terminates programs. Uses FCFS, SJF, Round Robin algorithms.</div></div><div class="pt"><div class="pt-head">I – IO Operations</div><div class="pt-body">Controls keyboard, mouse, printer via device drivers. Handles all input/output.</div></div><div class="pt"><div class="pt-head">F – File Management</div><div class="pt-body">Creates, reads, writes, deletes files and folders. Manages permissions.</div></div><div class="pt"><div class="pt-head">C – Communication</div><div class="pt-body">Lets programs share data. Methods: Shared Memory, Pipes, Message Passing.</div></div><div class="pt"><div class="pt-head">E – Error Detection</div><div class="pt-body">Watches for hardware/software errors. Takes corrective action. Example: 'App has stopped working'.</div></div><div class="pt"><div class="pt-head">R – Resource Allocation</div><div class="pt-body">Shares CPU time, RAM, disk among all running programs fairly.</div></div><div class="pt"><div class="pt-head">P – Protection & Security</div><div class="pt-body">Login passwords, file permissions, prevents unauthorized access.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Android OS manages apps (process), storage (file), camera (IO), screen lock (security) — all at once!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> OS is the most critical software. Without it, no program can run. It acts as Manager + Translator + Security Guard.</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q2</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q2★★…</span>
+      <span class="qtitle">Explain the different types of Operating Systems with examples.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> 6 types: Batch, Multiprogramming, Multitasking, Time-sharing, Real-time, Distributed = B-M-M-T-R-D</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 B-M-M-T-R-D = Big Monkeys Make Tea Running Daily</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Jobs collected → processed in batches. No user interaction. Example: Bank payroll, early IBM mainframes.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">1. Batch OS</div><div class="pt-body">Jobs collected → processed in batches. No user interaction. Example: Bank payroll, early IBM mainframes.</div></div><div class="pt"><div class="pt-head">2. Multiprogramming OS</div><div class="pt-body">Multiple programs in memory. CPU switches when one waits for IO. Goal = CPU never idle. Example: UNIX.</div></div><div class="pt"><div class="pt-head">3. Multitasking OS</div><div class="pt-body">Multiple tasks simultaneously. Rapid CPU switching. Example: Windows — browser + music + chat.</div></div><div class="pt"><div class="pt-head">4. Time-Sharing OS</div><div class="pt-body">CPU time divided into fixed quantum slots per user in rotation. Example: IRCTC handles lakhs simultaneously.</div></div><div class="pt"><div class="pt-head">5. Real-Time OS</div><div class="pt-body">Hard RT: Miss deadline = failure (pacemaker, missile). Soft RT: Miss = degraded (YouTube, gaming).</div></div><div class="pt"><div class="pt-head">6. Distributed OS</div><div class="pt-body">Multiple networked computers work as ONE. Example: Google search uses thousands of servers.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Android = multitasking. IRCTC = time-sharing. Pacemaker = Hard Real-Time OS.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Each OS type solves a specific problem. Modern OS combines multiple concepts for best performance.</div>
+  </div>
+</div>
+</div></div>
+    <div id="u1-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q3</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐⭐ CLASS TEST 2026 Q2(5M) | AKU VVI Q1★★…</span>
+      <span class="qtitle">Explain the Operating System in detail. Discuss major functions and all types with suitable examples.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> OS = System software interface. Functions = PIFCERP(7). Types = B-M-M-T-R-D(6).</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 Functions: PIFCERP | Types: B-M-M-T-R-D | Story: Big Monkeys Make Tea Running Daily</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">OS is backbone of every computer. Sits between user and hardware. Without OS, a computer is just expensive metal!</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Introduction</div><div class="pt-body">OS is backbone of every computer. Sits between user and hardware. Without OS, a computer is just expensive metal!</div></div><div class="pt"><div class="pt-head">Definition</div><div class="pt-body">System software managing hardware and software resources, providing services to programs. Acts as Manager + Translator + Security Guard.</div></div><div class="pt"><div class="pt-head">Objectives</div><div class="pt-body">1. Convenience: Easy to use without hardware knowledge. 2. Efficiency: CPU never idle. 3. Evolution: New features without breaking old ones.</div></div><div class="pt"><div class="pt-head">P – Process Management</div><div class="pt-body">Creates, schedules, terminates programs. Algorithms: FCFS, SJF, Priority, Round Robin. Music + Word run simultaneously.</div></div><div class="pt"><div class="pt-head">I – IO Operations</div><div class="pt-body">Controls all IO devices via device drivers. Keyboard keypress → OS signal → CPU → screen output.</div></div><div class="pt"><div class="pt-head">F – File Management</div><div class="pt-body">Creates, reads, writes, deletes files/folders. Manages permissions. Saving a Word document = OS file management.</div></div><div class="pt"><div class="pt-head">C – Communication</div><div class="pt-body">Data sharing between programs. Methods: Shared Memory (fastest), Pipes, Message Passing, Sockets. Copy in Word → paste in Chrome.</div></div><div class="pt"><div class="pt-head">E – Error Detection</div><div class="pt-body">Continuously monitors errors, takes action. 'App has stopped' = OS detected and handled crash.</div></div><div class="pt"><div class="pt-head">R – Resource Allocation</div><div class="pt-body">Distributes CPU time, RAM, disk fairly among all programs. 5 apps running = OS shares resources equally.</div></div><div class="pt"><div class="pt-head">P – Protection & Security</div><div class="pt-body">Login passwords, file permissions, prevents one program corrupting another.</div></div><div class="pt"><div class="pt-head">Type 1: Batch OS</div><div class="pt-body">No user interaction. Jobs collected → processed in group → result later. Example: Bank payroll processing.</div></div><div class="pt"><div class="pt-head">Type 2: Multiprogramming</div><div class="pt-body">Multiple programs in memory. CPU switches on IO wait. Goal: CPU never idle. Example: UNIX.</div></div><div class="pt"><div class="pt-head">Type 3: Multitasking</div><div class="pt-body">Multiple tasks run simultaneously. Rapid switching. Example: Windows — browser + Zoom + music.</div></div><div class="pt"><div class="pt-head">Type 4: Time-Sharing</div><div class="pt-body">Fixed quantum slots per user in circular rotation. So fast, feels dedicated. Example: IRCTC lakhs of users.</div></div><div class="pt"><div class="pt-head">Type 5: Real-Time OS</div><div class="pt-body">Hard RT (pacemaker, missile — failure if missed). Soft RT (YouTube, gaming — performance drops). Algorithms: RM, EDF.</div></div><div class="pt"><div class="pt-head">Type 6: Distributed OS</div><div class="pt-body">Multiple networked computers as ONE system. Example: Google infrastructure uses thousands of servers.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Android = multitasking. IRCTC booking = time-sharing. Pacemaker = Hard Real-Time. Google = Distributed OS.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> OS is the most critical software. Its 7 functions (PIFCERP) keep the computer safe and efficient. 6 types serve different needs. Modern OS combines multiple concepts!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+<section class="unit" id="u2">
+  <div class="uhdr" style="background:linear-gradient(135deg,#1b5e20,#2E7D32);">
+    <div class="uhdr-in">
+      <div class="uico">⚙️</div>
+      <div>
+        <div class="utag">UNIT 2 · 3 Questions</div>
+        <div class="utit">Process Management and CPU Scheduling</div>
+        <div class="usub">Process · PCB · 5 States · Schedulers · Threads · IPC · FCFS · SJF · Priority · Round Robin</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ Class Test 2026 Q1(5M): CPU scheduling with process state diagram | AKU VVI Q3★★ Process+PCB | Q4★★ CPU Scheduling | Q5 Threads</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#2E7D32;" data-col="#2E7D32" onclick="swTab(this,'u2-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#2E7D32" onclick="swTab(this,'u2-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#2E7D32" onclick="swTab(this,'u2-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u2-mcq" class="tp on">
+<div class="mitem" id="mu20">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">Process is?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) File on disk</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Program in execution</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) RAM block</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) OS function</div></div>
+  <div class="mres" id="rmu20"><span class="rbdg">✅ Program in execution</span><span class="rexp">Process = program in execution + PC + registers + stack + heap. Not just code!</span></div>
+</div>
+<div class="mitem" id="mu21">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">PCB stands for?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Program Control Base</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Process Control Block</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Processor Command</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Program Code</div></div>
+  <div class="mres" id="rmu21"><span class="rbdg">✅ Process Control Block</span><span class="rexp">PCB = Process Control Block = process identity card. PID+State+PC+Registers+Memory+Files!</span></div>
+</div>
+<div class="mitem" id="mu22">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">After IO request, process moves to?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Running</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) New</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Waiting</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Terminated</div></div>
+  <div class="mres" id="rmu22"><span class="rbdg">✅ Waiting</span><span class="rexp">Running → IO request → WAITING. Returns to Ready when IO completes. NRRWT!</span></div>
+</div>
+<div class="mitem" id="mu23">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">FCFS problem called?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Starvation</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Convoy Effect</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Thrashing</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Deadlock</div></div>
+  <div class="mres" id="rmu23"><span class="rbdg">✅ Convoy Effect</span><span class="rexp">FCFS = Convoy Effect. One long process blocks ALL short ones behind it!</span></div>
+</div>
+<div class="mitem" id="mu24">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">Which scheduling = NO starvation?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,3,+oid+)">A) FCFS</div><div class="mopt" onclick="chk(this,1,3,+oid+)">B) SJF</div><div class="mopt" onclick="chk(this,2,3,+oid+)">C) Priority</div><div class="mopt" onclick="chk(this,3,3,+oid+)">D) Round Robin</div></div>
+  <div class="mres" id="rmu24"><span class="rbdg">✅ Round Robin</span><span class="rexp">Round Robin = FAIREST! Every process gets equal time quantum. No process waits forever!</span></div>
+</div>
+<div class="mitem" id="mu25">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">Turnaround Time (TT) =?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) CT+AT</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) CT-AT</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) BT+AT</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) BT-AT</div></div>
+  <div class="mres" id="rmu25"><span class="rbdg">✅ CT-AT</span><span class="rexp">TT = Completion Time − Arrival Time. WT = TT − Burst Time. Learn BOTH formulas!</span></div>
+</div>
+<div class="mitem" id="mu26">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">Thread advantage?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) More memory</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Lightweight+shared memory</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Slower</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) No communication</div></div>
+  <div class="mres" id="rmu26"><span class="rbdg">✅ Lightweight+shared memory</span><span class="rexp">Thread = lightweight process. Shares memory = faster creation, less overhead!</span></div>
+</div>
+<div class="mitem" id="mu27">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">IPC fastest method?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Message Queue</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Socket</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Shared Memory</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Pipe</div></div>
+  <div class="mres" id="rmu27"><span class="rbdg">✅ Shared Memory</span><span class="rexp">Shared Memory = FASTEST IPC! No kernel involvement after setup. Direct memory access!</span></div>
+</div></div>
+    <div id="u2-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q4</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q3★★ | Class Test 2026 Q1(5M)…</span>
+      <span class="qtitle">What is a Process? Explain the 5 process states with state transition diagram.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Process = Program in execution. 5 states = New→Ready→Running→Waiting→Terminated (NRRWT).</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 NRRWT = Never Run Races Without Training | PCB = Process's Aadhar Card</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">A process is a program in execution. Includes Program Counter (PC), CPU registers, stack, heap, and data. OS keeps a PCB for each process.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Process Definition</div><div class="pt-body">A process is a program in execution. Includes Program Counter (PC), CPU registers, stack, heap, and data. OS keeps a PCB for each process.</div></div><div class="pt"><div class="pt-head">PCB Contents</div><div class="pt-body">PID (unique ID), Process State, Program Counter, CPU Registers, Memory limits, Open files list, Scheduling info.</div></div><div class="pt"><div class="pt-head">State 1 – New</div><div class="pt-body">Process being created. fork() system call used. Just entered the system.</div></div><div class="pt"><div class="pt-head">State 2 – Ready</div><div class="pt-body">Loaded in memory. Waiting for CPU. Sitting in Ready Queue.</div></div><div class="pt"><div class="pt-head">State 3 – Running</div><div class="pt-body">Currently executing on CPU. Only ONE process runs per CPU at a time.</div></div><div class="pt"><div class="pt-head">State 4 – Waiting/Blocked</div><div class="pt-body">Waiting for IO (disk read, keyboard input). NOT using CPU at all.</div></div><div class="pt"><div class="pt-head">State 5 – Terminated</div><div class="pt-body">Finished execution. exit() called. OS reclaims all resources.</div></div><div class="pt"><div class="pt-head">State Transitions</div><div class="pt-body">New→Ready (admitted) | Ready→Running (CPU dispatched) | Running→Waiting (IO request) | Waiting→Ready (IO done) | Running→Terminated (exit)</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> You open Chrome = New state. OS loads it = Ready. You click = Running. Chrome downloads = Waiting. You close = Terminated.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Every process goes through NRRWT. PCB is its identity card. Context switch = save current PCB + load next = overhead (wasted time).</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q5</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q5…</span>
+      <span class="qtitle">What is a Thread? Explain types. Compare Process vs Thread.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Thread = smallest CPU execution unit inside process. Types: ULT, KLT, Hybrid. Chrome=process, each tab=thread.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 RRES = Thread advantages: Responsiveness, Resource sharing, Economy, Scalability</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Smallest unit of CPU execution inside a process. Multiple threads SHARE code, data, heap. Each has own stack and registers. Called Lightweight Process (LWP).</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Thread Definition</div><div class="pt-body">Smallest unit of CPU execution inside a process. Multiple threads SHARE code, data, heap. Each has own stack and registers. Called Lightweight Process (LWP).</div></div><div class="pt"><div class="pt-head">ULT – User Level</div><div class="pt-body">Library managed (pthreads). Fast to create. Problem: If one thread blocks → ALL block!</div></div><div class="pt"><div class="pt-head">KLT – Kernel Level</div><div class="pt-body">OS managed. If one blocks → others continue. Reliable but slower creation.</div></div><div class="pt"><div class="pt-head">Hybrid Threads</div><div class="pt-body">Mix of ULT + KLT. Best performance! Used in modern OS (Linux, Windows).</div></div><div class="pt"><div class="pt-head">Thread Advantages</div><div class="pt-body">R-Responsiveness: App stays responsive | R-Resource sharing: less memory | E-Economy: cheaper than process | S-Scalability: use multiple CPUs</div></div><div class="pt"><div class="pt-head">Process vs Thread</div><div class="pt-body">Process: separate memory, slow create, needs IPC. Thread: shared memory, fast create, direct communication. Crash: process = others safe, thread = whole process may crash.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Chrome browser = 1 process. Each browser tab = 1 thread. All tabs share Chrome's memory but run independently.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Threads give RRES advantages. ULT = fast but blocking shared. KLT = reliable. Hybrid = best. Use threads when tasks share data!</div>
+  </div>
+</div>
+</div></div>
+    <div id="u2-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q6</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐⭐ CLASS TEST 2026 Q1(5M) | AKU VVI Q4★★…</span>
+      <span class="qtitle">What is CPU Scheduling? Explain FCFS, SJF, Priority and Round Robin with Gantt charts and examples.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> CPU Scheduling = pick process from Ready Queue for CPU. TT=CT-AT, WT=TT-BT. RR = BEST for time-sharing!</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 FSP-R: FCFS=Convoy, SJF=Starvation, Priority=Starvation, RR=BEST! | TT=CT-AT | WT=TT-BT</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">CPU Scheduling = deciding which process from Ready Queue gets CPU next. Done by Short-Term Scheduler in milliseconds.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Introduction</div><div class="pt-body">CPU Scheduling = deciding which process from Ready Queue gets CPU next. Done by Short-Term Scheduler in milliseconds.</div></div><div class="pt"><div class="pt-head">Goals</div><div class="pt-body">↑ CPU Utilization (keep busy) | ↑ Throughput (more jobs/hour) | ↓ TT = CT-AT (turnaround) | ↓ WT = TT-BT (waiting)</div></div><div class="pt"><div class="pt-head">Process State (From Ready to Running)</div><div class="pt-body">Scheduler selects from Ready Queue → Dispatcher gives CPU → Process moves Ready→Running. If IO needed: Running→Waiting. Quantum expires: Running→Ready.</div></div><div class="pt"><div class="pt-head">1. FCFS – First Come First Served</div><div class="pt-body">Rule: First arrived = first served. NON-PREEMPTIVE. P1(24ms), P2(3ms), P3(3ms) all at t=0.</div></div><div class="pt"><div class="pt-head">FCFS Gantt</div><div class="pt-body">P1(0-24) → P2(24-27) → P3(27-30). WT: P1=0, P2=24, P3=27. Avg WT = 17ms. Problem = CONVOY EFFECT!</div></div><div class="pt"><div class="pt-head">2. SJF – Shortest Job First</div><div class="pt-body">Rule: Shortest burst time first. NON-PREEMPTIVE. Gives MINIMUM average waiting time!</div></div><div class="pt"><div class="pt-head">SJF Gantt</div><div class="pt-body">Order: P2(3ms)→P3(3ms)→P1(24ms). Gantt: P2(0-3)→P3(3-6)→P1(6-30). Avg WT = (0+3+6)/3 = 3ms. Problem = STARVATION. Fix = Aging!</div></div><div class="pt"><div class="pt-head">3. Priority Scheduling</div><div class="pt-body">Rule: Highest priority (lowest number) runs first. Can be preemptive or non-preemptive. Problem = Starvation. Fix = Aging.</div></div><div class="pt"><div class="pt-head">4. Round Robin – BEST</div><div class="pt-body">Rule: Fixed TIME QUANTUM (10-100ms) in circular rotation. PREEMPTIVE. Most fair!</div></div><div class="pt"><div class="pt-head">RR Gantt</div><div class="pt-body">Quantum=4ms. P1(24ms),P2(3ms),P3(3ms). Gantt: P1(0-4)→P2(4-7)→P3(7-10)→P1(10-14)→...→P1(26-30). Avg WT = (4+7+6)/3 = 5.67ms.</div></div><div class="pt"><div class="pt-head">Comparison Table</div><div class="pt-body">FCFS: Simple, no preempt, convoy effect. SJF: Min wait, no preempt, starvation. Priority: flexible, starvation. Round Robin: fair, preemptive, NO STARVATION = BEST TIME-SHARING!</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> FCFS = Hospital queue (long patient first = others wait hours). RR = ATM machine (fixed time per person, fair to all).</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Round Robin = BEST for time-sharing. Fair, preemptive, no starvation. SJF = minimum avg wait but starvation. FCFS = simplest but convoy effect kills performance!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+<section class="unit" id="u3">
+  <div class="uhdr" style="background:linear-gradient(135deg,#7f0000,#C62828);">
+    <div class="uhdr-in">
+      <div class="uico">🔒</div>
+      <div>
+        <div class="utag">UNIT 3 · 3 Questions</div>
+        <div class="utit">Synchronization and Deadlock</div>
+        <div class="usub">Critical Section · Semaphores · Deadlock 4 Conditions · Prevention · Avoidance · Banker's Algorithm · Recovery</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ Class Test 2026 Q3(5M): Deadlock conditions, prevention, avoidance, detection, recovery | AKU VVI Q6★ CS problem | Q7★ Semaphores | Q8★★ Deadlock conditions | Q9★★ Deadlock handling | Q10★★ Banker's</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#C62828;" data-col="#C62828" onclick="swTab(this,'u3-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#C62828" onclick="swTab(this,'u3-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#C62828" onclick="swTab(this,'u3-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u3-mcq" class="tp on">
+<div class="mitem" id="mu30">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">CS requires?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) High speed</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Mutual Exclusion</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) More RAM</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Faster CPU</div></div>
+  <div class="mres" id="rmu30"><span class="rbdg">✅ Mutual Exclusion</span><span class="rexp">CS needs 3 things: Mutual Exclusion + Progress + Bounded Waiting. MBP!</span></div>
+</div>
+<div class="mitem" id="mu31">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">wait(S) does?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) S=S+1</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) S=S*2</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) S=S-1</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) S=0</div></div>
+  <div class="mres" id="rmu31"><span class="rbdg">✅ S=S-1</span><span class="rexp">wait()/P() = S-1 = LOCK. signal()/V() = S+1 = UNLOCK. P=lock, V=unlock!</span></div>
+</div>
+<div class="mitem" id="mu32">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">Binary semaphore values?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) 0 to 100</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) 0 or 1 only</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) -1 to 1</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) 0 to N</div></div>
+  <div class="mres" id="rmu32"><span class="rbdg">✅ 0 or 1 only</span><span class="rexp">Binary = Mutex = 0 or 1 ONLY. Counting semaphore = 0 to N resources!</span></div>
+</div>
+<div class="mitem" id="mu33">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">Deadlock needs how many conditions?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) 2</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) 3</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) 4</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) 5</div></div>
+  <div class="mres" id="rmu33"><span class="rbdg">✅ 4</span><span class="rexp">ALL 4 Coffman conditions: Mutual Exclusion + Hold&Wait + No Preemption + Circular Wait!</span></div>
+</div>
+<div class="mitem" id="mu34">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">Banker's Algorithm for?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Memory</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) CPU scheduling</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Deadlock avoidance</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Page replacement</div></div>
+  <div class="mres" id="rmu34"><span class="rbdg">✅ Deadlock avoidance</span><span class="rexp">Banker's = Deadlock AVOIDANCE. Checks SAFE STATE before giving resources!</span></div>
+</div>
+<div class="mitem" id="mu35">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">Break circular wait how?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) More CPU</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Add RAM</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Order resources</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) More processes</div></div>
+  <div class="mres" id="rmu35"><span class="rbdg">✅ Order resources</span><span class="rexp">Break circular wait = number ALL resources, always request in INCREASING order only!</span></div>
+</div>
+<div class="mitem" id="mu36">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">Producer-Consumer semaphores?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) 1</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) 2</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) 3</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) 4</div></div>
+  <div class="mres" id="rmu36"><span class="rbdg">✅ 3</span><span class="rexp">PC Problem needs 3 semaphores: mutex=1, full=0, empty=N. Three exactly!</span></div>
+</div>
+<div class="mitem" id="mu37">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">RAG cycle in single-instance?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) No deadlock</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Definitely deadlock</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Always safe</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Need more RAM</div></div>
+  <div class="mres" id="rmu37"><span class="rbdg">✅ Definitely deadlock</span><span class="rexp">RAG cycle with single-instance resources = DEFINITELY DEADLOCK! No escape!</span></div>
+</div></div>
+    <div id="u3-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q7</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q6★ | Q7★…</span>
+      <span class="qtitle">What is Critical Section? Explain its 3 requirements. What is a Semaphore?</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> CS = code accessing shared resource (only 1 at a time). 3 rules = MBP. Semaphore = integer for sync (P=lock, V=unlock).</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 CS rules = MBP = Mutual exclusion, Bounded waiting, Progress | P()=Red Light=Stop | V()=Green Light=Go</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Code segment accessing shared resources (variables, files). Only ONE process inside CS at a time. Prevents race conditions.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Critical Section</div><div class="pt-body">Code segment accessing shared resources (variables, files). Only ONE process inside CS at a time. Prevents race conditions.</div></div><div class="pt"><div class="pt-head">M – Mutual Exclusion</div><div class="pt-body">Only one process in CS at any time. No two processes simultaneously.</div></div><div class="pt"><div class="pt-head">B – Bounded Waiting</div><div class="pt-body">Every process must eventually enter CS. No infinite waiting forever.</div></div><div class="pt"><div class="pt-head">P – Progress</div><div class="pt-body">If CS is empty and some process wants to enter, it MUST be allowed. No unnecessary delay.</div></div><div class="pt"><div class="pt-head">Race Condition Example</div><div class="pt-body">P1 reads balance=5000. P2 reads balance=5000. P1 adds ₹1000→6000. P2 adds ₹2000→7000. Should be ₹8000! CS prevents this!</div></div><div class="pt"><div class="pt-head">Semaphore Definition</div><div class="pt-body">Integer variable for process synchronization. Two atomic operations: wait()/P() and signal()/V().</div></div><div class="pt"><div class="pt-head">wait(S) / P(S)</div><div class="pt-body">S = S-1. If S < 0 → BLOCK process (LOCK). Red Traffic Light = STOP!</div></div><div class="pt"><div class="pt-head">signal(S) / V(S)</div><div class="pt-body">S = S+1. Wake up blocked process (UNLOCK). Green Traffic Light = GO!</div></div><div class="pt"><div class="pt-head">Binary vs Counting</div><div class="pt-body">Binary (Mutex): 0 or 1 only. Like one bathroom key. Counting: 0 to N. Like N parking spaces.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> ATM machine = Critical Section. Only ONE transaction at a time. Semaphore prevents two transactions simultaneously.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> CS prevents race conditions using MBP rules. Semaphore: P()=lock=S-1, V()=unlock=S+1. Binary=mutex(0/1). Counting=resource pool(0 to N).</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q8</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q8★★ | Class Test 2026 Q3(5M)…</span>
+      <span class="qtitle">What is Deadlock? Explain the four necessary conditions with examples.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Deadlock = processes stuck forever, each holding resources waiting for others. 4 conditions = MH-NC (ALL must hold).</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 MH-NC = Monkeys Hold Noodles Carefully | Remove ANY ONE condition = NO DEADLOCK!</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">A set of processes permanently blocked. Each holds resources AND waits for resources held by others. Nobody can move. System freezes!</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Deadlock Definition</div><div class="pt-body">A set of processes permanently blocked. Each holds resources AND waits for resources held by others. Nobody can move. System freezes!</div></div><div class="pt"><div class="pt-head">Example</div><div class="pt-body">P1 holds Printer (needs Scanner). P2 holds Scanner (needs Printer). Both wait forever = DEADLOCK!</div></div><div class="pt"><div class="pt-head">Condition 1: Mutual Exclusion</div><div class="pt-body">Resource used by ONLY one process at a time. Example: Only one person can use a printer at once.</div></div><div class="pt"><div class="pt-head">Condition 2: Hold and Wait</div><div class="pt-body">Process holds one resource AND waits for more without releasing. Example: P1 holds Printer, waits for Scanner.</div></div><div class="pt"><div class="pt-head">Condition 3: No Preemption</div><div class="pt-body">Resources CANNOT be forcibly taken. Must be released voluntarily. Cannot snatch a pen from someone writing!</div></div><div class="pt"><div class="pt-head">Condition 4: Circular Wait</div><div class="pt-body">Cycle of waiting: P1 waits for P2, P2 waits for P3, P3 waits for P1. A closed loop!</div></div><div class="pt"><div class="pt-head">KEY RULE</div><div class="pt-body">ALL 4 conditions must hold SIMULTANEOUSLY. Remove ANY ONE = NO DEADLOCK possible!</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Three friends: Raju holds cycle (wants bat) → Sham holds bat (wants helmet) → Babu holds helmet (wants cycle). All stuck forever = DEADLOCK!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Deadlock occurs only when ALL 4 Coffman conditions (MH-NC) hold simultaneously. Eliminate any ONE condition = no deadlock. This is the basis of ALL deadlock prevention!</div>
+  </div>
+</div>
+</div></div>
+    <div id="u3-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q9</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐⭐ CLASS TEST 2026 Q3(5M) | AKU VVI Q8★★…</span>
+      <span class="qtitle">Explain Deadlock completely: 4 conditions, prevention, avoidance (Banker's), detection and recovery.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> 4 conditions=MH-NC. 4 methods=Prevention(break condition)+Avoidance(Banker's)+Detection(RAG)+Recovery(kill/preempt). Need = Max minus Allocation.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 MH-NC conditions | PADR = Prevention, Avoidance, Detection, Recovery | Banker's KEY: Need = Max - Allocation</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Deadlock is a critical OS problem where processes freeze permanently. OS must detect/prevent it to keep system running.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Introduction</div><div class="pt-body">Deadlock is a critical OS problem where processes freeze permanently. OS must detect/prevent it to keep system running.</div></div><div class="pt"><div class="pt-head">Definition</div><div class="pt-body">Set of processes permanently blocked. Each holds resources AND waits for others' resources. No process can proceed.</div></div><div class="pt"><div class="pt-head">4 Conditions (MH-NC)</div><div class="pt-body">ALL must hold simultaneously: Mutual Exclusion + Hold&Wait + No Preemption + Circular Wait. Remove ANY ONE = NO DEADLOCK!</div></div><div class="pt"><div class="pt-head">Method 1: Prevention</div><div class="pt-body">Break one of 4 conditions: No ME (use spooler) | No H&W (request all at start) | Allow Preemption (OS takes resources) | No Circular Wait (order resources, request in increasing order).</div></div><div class="pt"><div class="pt-head">Method 2: Avoidance</div><div class="pt-body">Banker's Algorithm: Before giving resource, check if SAFE STATE exists. Safe = all processes can finish in some sequence.</div></div><div class="pt"><div class="pt-head">Banker's Formula</div><div class="pt-body">Need[i] = Max[i] - Allocation[i]. Find process where Need ≤ Available → simulate finish → release resources → repeat. If all finish = SAFE!</div></div><div class="pt"><div class="pt-head">Banker's Example</div><div class="pt-body">Available={A=3,B=3,C=2}. P1 Need={1,2,2}. Check: 1≤3,2≤3,2≤2 = YES! Run P1. Available increases. Continue for all. Safe Sequence = P1→P3→P4→P0→P2.</div></div><div class="pt"><div class="pt-head">Method 3: Detection</div><div class="pt-body">Allow deadlock. Use Resource Allocation Graph (RAG). If CYCLE exists = DEADLOCK! Run detection periodically (every hour or when CPU drops suddenly).</div></div><div class="pt"><div class="pt-head">Method 4: Recovery</div><div class="pt-body">Process Termination: Kill ALL deadlocked processes (expensive) OR kill ONE at a time till cycle breaks. Resource Preemption: Forcibly take resource, give to other, rollback victim to checkpoint.</div></div><div class="pt"><div class="pt-head">Comparison</div><div class="pt-body">Prevention = safest but wasteful resources | Avoidance (Banker's) = practical, needs max info | Detection = cheap but deadlock already happened | Recovery = after detection only.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Banker's: P1 needs {1,2,2} and Available={3,3,2}. Since 1≤3, 2≤3, 2≤2, P1 can run. After P1, available increases. Safe sequence found = grant request!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Deadlock is dangerous. 4 Coffman conditions (MH-NC) must ALL hold. We handle via Prevention, Avoidance (Banker's), Detection (RAG), Recovery (kill/preempt). Most real systems use Prevention + Detection together. KEY FORMULA: Need = Max - Allocation!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+<section class="unit" id="u4">
+  <div class="uhdr" style="background:linear-gradient(135deg,#4a148c,#6A1B9A);">
+    <div class="uhdr-in">
+      <div class="uico">💾</div>
+      <div>
+        <div class="utag">UNIT 4 · 3 Questions</div>
+        <div class="utit">Memory Management</div>
+        <div class="usub">Logical/Physical Address · MMU · Swapping · Paging · Segmentation · Virtual Memory · Page Replacement · Thrashing</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ AKU VVI Q11 Memory techniques | Q12★★★ Paging+Segmentation | Q13★★★ Virtual Memory+Demand Paging | Q14★★★ FIFO/LRU/Optimal Page Replacement</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#6A1B9A;" data-col="#6A1B9A" onclick="swTab(this,'u4-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#6A1B9A" onclick="swTab(this,'u4-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#6A1B9A" onclick="swTab(this,'u4-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u4-mcq" class="tp on">
+<div class="mitem" id="mu40">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">Paging avoids which fragmentation?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Internal</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) External</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Both</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Neither</div></div>
+  <div class="mres" id="rmu40"><span class="rbdg">✅ External</span><span class="rexp">Paging = FIXED size pages+frames = NO external fragmentation! Only internal (last page partial).</span></div>
+</div>
+<div class="mitem" id="mu41">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">TLB is?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) File storage</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Fast page table cache</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Disk buffer</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Network cache</div></div>
+  <div class="mres" id="rmu41"><span class="rbdg">✅ Fast page table cache</span><span class="rexp">TLB = Translation Lookaside Buffer = HARDWARE cache for page table = fast address translation!</span></div>
+</div>
+<div class="mitem" id="mu42">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">Belady's Anomaly in?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) LRU</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Optimal</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) FIFO</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) All</div></div>
+  <div class="mres" id="rmu42"><span class="rbdg">✅ FIFO</span><span class="rexp">Belady's Anomaly = FIFO ONLY! More frames → MORE page faults! Opposite of expected!</span></div>
+</div>
+<div class="mitem" id="mu43">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">Virtual memory lets programs?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Run faster</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Larger than RAM run</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Skip paging</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Ignore disk</div></div>
+  <div class="mres" id="rmu43"><span class="rbdg">✅ Larger than RAM run</span><span class="rexp">Virtual memory = disk as RAM extension = programs BIGGER than physical RAM can execute!</span></div>
+</div>
+<div class="mitem" id="mu44">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">Demand paging loads?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) All at start</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Only when needed</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Randomly</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) By priority</div></div>
+  <div class="mres" id="rmu44"><span class="rbdg">✅ Only when needed</span><span class="rexp">Demand paging = LAZY loading! Pages loaded ONLY when accessed. Not all at program start!</span></div>
+</div>
+<div class="mitem" id="mu45">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">Thrashing means?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) CPU overload</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) More paging less execution</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Disk full</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) RAM broken</div></div>
+  <div class="mres" id="rmu45"><span class="rbdg">✅ More paging less execution</span><span class="rexp">Thrashing = MORE time paging than executing! CPU utilization crashes dramatically!</span></div>
+</div>
+<div class="mitem" id="mu46">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">LRU replaces?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Oldest loaded</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Most used</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Least recently used</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Random</div></div>
+  <div class="mres" id="rmu46"><span class="rbdg">✅ Least recently used</span><span class="rexp">LRU = replace page not used for LONGEST TIME. No Belady's. BEST practical algorithm!</span></div>
+</div>
+<div class="mitem" id="mu47">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">Optimal algorithm is?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Best and practical</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Impossible online</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Same as LRU</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Same as FIFO</div></div>
+  <div class="mres" id="rmu47"><span class="rbdg">✅ Impossible online</span><span class="rexp">Optimal = theoretically best but IMPOSSIBLE online (needs future knowledge). Benchmark only!</span></div>
+</div></div>
+    <div id="u4-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q10</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q12★★★…</span>
+      <span class="qtitle">Explain Paging with diagram. How does address translation work?</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Paging = fixed-size pages→frames. Page table maps page→frame. TLB=fast cache. No external fragmentation!</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 Paging = Book pages (equal size, any shelf). Physical = Frame[p] × Size + Offset. TLB = fast shortcut!</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Logical memory (program) divided into fixed-size PAGES. Physical memory (RAM) divided into same-size FRAMES. OS keeps PAGE TABLE mapping pages to frames.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Paging Definition</div><div class="pt-body">Logical memory (program) divided into fixed-size PAGES. Physical memory (RAM) divided into same-size FRAMES. OS keeps PAGE TABLE mapping pages to frames.</div></div><div class="pt"><div class="pt-head">Key Advantage</div><div class="pt-body">NO External Fragmentation! Pages can go in ANY free frame. Only internal fragmentation in last page.</div></div><div class="pt"><div class="pt-head">Logical Address</div><div class="pt-body">Generated by CPU. Divided into: Page Number (p) + Page Offset (d).</div></div><div class="pt"><div class="pt-head">Physical Address</div><div class="pt-body">Frame[p] × Frame_Size + Offset(d). Translated by MMU (Memory Management Unit).</div></div><div class="pt"><div class="pt-head">TLB</div><div class="pt-body">Translation Lookaside Buffer = hardware cache for page table entries. Makes address translation FAST! TLB hit = direct access, no delay.</div></div><div class="pt"><div class="pt-head">Page Table</div><div class="pt-body">One per process. Maps each page number to its frame number in RAM. Stored in memory.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Page size=4KB. Logical address=8192. Page no = 8192/4096 = 2. Offset = 8192 mod 4096 = 0. If Page 2 → Frame 5, Physical = 5×4096 + 0 = 20480.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Paging eliminates external fragmentation and enables virtual memory. TLB speeds up address translation. Fixed page size = simple management.</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q11</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q14★★★…</span>
+      <span class="qtitle">Explain FIFO and LRU page replacement algorithms with examples.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> FIFO=replace oldest (Belady's Anomaly!). LRU=replace least recently used (BEST! No Belady's). Optimal=impossible.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 FIFO=First In First Out (Belady's BAD!) | LRU=Least Recently Used (BEST!) | Optimal=future needed (IMPOSSIBLE!)</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">When RAM is full and new page needed, existing page must be replaced. Algorithm decides WHICH page to remove.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Need for Page Replacement</div><div class="pt-body">When RAM is full and new page needed, existing page must be replaced. Algorithm decides WHICH page to remove.</div></div><div class="pt"><div class="pt-head">FIFO Algorithm</div><div class="pt-body">Replace the OLDEST loaded page. Simple queue. Put new at back, remove from front.</div></div><div class="pt"><div class="pt-head">FIFO Problem</div><div class="pt-body">BELADY'S ANOMALY: More frames can give MORE page faults! Counter-intuitive! Very unreliable.</div></div><div class="pt"><div class="pt-head">LRU Algorithm</div><div class="pt-body">Replace page NOT used for LONGEST TIME. Looks backward at history. Best practical choice!</div></div><div class="pt"><div class="pt-head">LRU Advantage</div><div class="pt-body">NO Belady's Anomaly! Page faults always ≤ FIFO faults. Based on past usage (good predictor of future).</div></div><div class="pt"><div class="pt-head">Optimal Algorithm</div><div class="pt-body">Replace page not needed for LONGEST FUTURE TIME. Best possible (minimum faults) but IMPOSSIBLE online (need future knowledge). Used as benchmark only.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Reference: 7,0,1,2,0,3 | Frames=3. FIFO: 7=F,0=F,1=F,2=F(replace 7),0=HIT,3=F(replace 0). 5 faults. LRU gives same or fewer faults!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> LRU = BEST practical page replacement. FIFO = simple but Belady's Anomaly problem. Optimal = benchmark only, impossible in practice. Always prefer LRU!</div>
+  </div>
+</div>
+</div></div>
+    <div id="u4-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q12</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q13★★★ Q14★★★…</span>
+      <span class="qtitle">Explain Virtual Memory and Demand Paging. Describe FIFO, LRU and Optimal page replacement with complete numerical example.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Virtual Memory = run programs bigger than RAM using disk. Demand paging = lazy load. FIFO(Belady's!)<LRU(BEST!)<Optimal(impossible).</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 Virtual = disk as RAM. Demand = load only when needed. FIFO=oldest out(bad!). LRU=least used(BEST!). Optimal=future(impossible!)</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Virtual memory is the greatest OS innovation. Lets programs larger than RAM run by using disk as extension. More programs can run simultaneously!</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Introduction</div><div class="pt-body">Virtual memory is the greatest OS innovation. Lets programs larger than RAM run by using disk as extension. More programs can run simultaneously!</div></div><div class="pt"><div class="pt-head">Virtual Memory</div><div class="pt-body">Program not fully in RAM to run. Only needed parts (pages) kept in RAM. Rest stays on disk. Creates illusion of huge memory!</div></div><div class="pt"><div class="pt-head">Demand Paging</div><div class="pt-body">Pages loaded ONLY when demanded (accessed). Not all at program start = lazy loading! Less initial loading time, efficient memory use.</div></div><div class="pt"><div class="pt-head">Page Fault Process</div><div class="pt-body">Step 1: CPU accesses page, valid bit=0 = PAGE FAULT! Step 2: OS saves state. Step 3: Find free frame. Step 4: Load page from disk. Step 5: Update page table. Step 6: Restart instruction.</div></div><div class="pt"><div class="pt-head">Thrashing</div><div class="pt-body">Page faults so frequent = more time paging than executing! CPU utilization crashes. Fix: Reduce multiprogramming, add RAM, use Working Set model.</div></div><div class="pt"><div class="pt-head">FIFO Algorithm</div><div class="pt-body">Replace OLDEST loaded page. Reference: 7,0,1,2,0,3,0,4,2,3,0,3 | Frames=3.</div></div><div class="pt"><div class="pt-head">FIFO Working</div><div class="pt-body">7=F(load), 0=F, 1=F, 2=F(replace 7-oldest), 0=HIT, 3=F(replace 0), 0=F(replace 1), 4=F(replace 2), 2=HIT, 3=HIT, 0=F(replace 4), 3=HIT. Total FAULTS=9!</div></div><div class="pt"><div class="pt-head">LRU Algorithm</div><div class="pt-body">Replace page NOT used for LONGEST TIME. Same reference string → FAULTS=8! Better than FIFO. No Belady's Anomaly!</div></div><div class="pt"><div class="pt-head">Optimal Algorithm</div><div class="pt-body">Replace page NOT needed for LONGEST FUTURE TIME. Theoretically minimum faults. IMPOSSIBLE online (needs future). Used as benchmark.</div></div><div class="pt"><div class="pt-head">Comparison</div><div class="pt-body">FIFO: Faults=9, Belady's=YES, Simple but bad. LRU: Faults=8, Belady's=NO, BEST practical. Optimal: Minimum faults, Belady's=NO, Impossible.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> FIFO 3-frames result: F F F F H F F F H H F H = 9 page faults, 4 hits. LRU 3-frames = 8 page faults. LRU WINS!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Virtual memory enables programs bigger than RAM using demand paging. LRU = best practical page replacement. FIFO = simple but Belady's Anomaly. Optimal = benchmark only. Thrashing kills performance — control it with proper frame allocation!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+<section class="unit" id="u5">
+  <div class="uhdr" style="background:linear-gradient(135deg,#004d40,#00695C);">
+    <div class="uhdr-in">
+      <div class="uico">🐧</div>
+      <div>
+        <div class="utag">UNIT 5 · 3 Questions</div>
+        <div class="utit">UNIX/Linux — Commands and File System</div>
+        <div class="usub">UNIX Features · File Hierarchy · 15+ Commands · chmod · Links · IO Redirection · Pipes · Filters</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ Class Test 2026 Q4(5M): Create directory, edit file, display, copy, rename step-by-step | AKU VVI Q15 UNIX features | Q16 Linux commands | Q17 File hierarchy | Q18 Permissions+Links</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#00695C;" data-col="#00695C" onclick="swTab(this,'u5-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#00695C" onclick="swTab(this,'u5-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#00695C" onclick="swTab(this,'u5-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u5-mcq" class="tp on">
+<div class="mitem" id="mu50">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">Linux root directory?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) ~</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) /</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) //</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) \</div></div>
+  <div class="mres" id="rmu50"><span class="rbdg">✅ /</span><span class="rexp">/ = root of ALL directories. Everything starts from /. Remember B-S-E-H-V-U-T-D-L-B!</span></div>
+</div>
+<div class="mitem" id="mu51">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">chmod 644 means?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) rwxrwxrwx</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) rwxr-xr-x</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) rw-r--r--</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) rw-------</div></div>
+  <div class="mres" id="rmu51"><span class="rbdg">✅ rw-r--r--</span><span class="rexp">6=rw-(owner), 4=r--(group), 4=r--(others). r=4, w=2, x=1. Add numbers!</span></div>
+</div>
+<div class="mitem" id="mu52">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">grep -v shows?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Matching lines</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Non-matching</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Line count</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) All files</div></div>
+  <div class="mres" id="rmu52"><span class="rbdg">✅ Non-matching</span><span class="rexp">grep -v = INVERT MATCH = shows lines that do NOT match the pattern!</span></div>
+</div>
+<div class="mitem" id="mu53">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">>> operator?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Overwrites</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Appends</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Reads from</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Deletes</div></div>
+  <div class="mres" id="rmu53"><span class="rbdg">✅ Appends</span><span class="rexp">>> = APPEND (safe! old data kept!). > = OVERWRITE (DANGER! old data lost!)</span></div>
+</div>
+<div class="mitem" id="mu54">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">/etc contains?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) User homes</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Config files</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Temp files</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Binaries</div></div>
+  <div class="mres" id="rmu54"><span class="rbdg">✅ Config files</span><span class="rexp">/etc = configuration files! /etc/passwd, /etc/fstab, /etc/hosts all live here!</span></div>
+</div>
+<div class="mitem" id="mu55">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">Soft link by?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) ln file lnk</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) ln -s file lnk</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) cp file lnk</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) mv file lnk</div></div>
+  <div class="mres" id="rmu55"><span class="rbdg">✅ ln -s file lnk</span><span class="rexp">ln -s = soft/symbolic link (Windows shortcut equivalent). ln = hard link!</span></div>
+</div>
+<div class="mitem" id="mu56">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">kill -9 sends?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) SIGTERM</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) SIGSTOP</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) SIGKILL</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) SIGHUP</div></div>
+  <div class="mres" id="rmu56"><span class="rbdg">✅ SIGKILL</span><span class="rexp">kill -9 = SIGKILL = immediate forced kill. Cannot be caught or ignored by process!</span></div>
+</div>
+<div class="mitem" id="mu57">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">/tmp files?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Never deleted</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) After 1 year</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) On reboot</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) After 1 week</div></div>
+  <div class="mres" id="rmu57"><span class="rbdg">✅ On reboot</span><span class="rexp">/tmp = temporary files. Automatically deleted when system reboots!</span></div>
+</div></div>
+    <div id="u5-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q13</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q17 | Class Test 2026 Q4(5M)…</span>
+      <span class="qtitle">Draw and explain the Linux File System Hierarchy.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Linux FS = inverted tree from / (root). B-S-E-H-V-U-T-D-L-B = 10 main directories. Everything = a file!</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 B-S-E-H-V-U-T-D-L-B = Bin Sbin Etc Home Var Usr Tmp Dev Lib Boot</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Hierarchical (inverted tree) structure. Single ROOT directory /. Everything is a FILE — directories, devices, network connections. Case sensitive: file ≠ File!</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Linux File System</div><div class="pt-body">Hierarchical (inverted tree) structure. Single ROOT directory /. Everything is a FILE — directories, devices, network connections. Case sensitive: file ≠ File!</div></div><div class="pt"><div class="pt-head">/ – Root</div><div class="pt-body">Parent of ALL directories. Top of the hierarchy.</div></div><div class="pt"><div class="pt-head">/bin – Binaries</div><div class="pt-body">Essential user commands: ls, cp, mv, rm, cat, grep, chmod, kill.</div></div><div class="pt"><div class="pt-head">/sbin – System Binaries</div><div class="pt-body">Admin commands: mount, fdisk, ifconfig, fsck.</div></div><div class="pt"><div class="pt-head">/etc – Configuration</div><div class="pt-body">All config files: /etc/passwd (users), /etc/fstab (disk mounts), /etc/hosts (network).</div></div><div class="pt"><div class="pt-head">/home – User Homes</div><div class="pt-body">Personal directories: /home/zoha, /home/admin, /home/user.</div></div><div class="pt"><div class="pt-head">/var – Variable Data</div><div class="pt-body">Changing data: logs (/var/log), mail queues, print spools.</div></div><div class="pt"><div class="pt-head">/tmp – Temporary</div><div class="pt-body">Temp files. AUTOMATICALLY DELETED ON REBOOT! Never store important files here!</div></div><div class="pt"><div class="pt-head">/dev – Devices</div><div class="pt-body">Device files: /dev/sda (disk), /dev/sdb (USB), /dev/tty (terminal).</div></div><div class="pt"><div class="pt-head">/boot – Boot Files</div><div class="pt-body">Kernel image (vmlinuz), GRUB bootloader config files.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> To find who can login: check /etc/passwd. Server logs at /var/log/. USB drive appears at /dev/sdb. User files at /home/username/.</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> Linux FHS organizes everything from /. /etc=configs, /home=users, /tmp=temp(deleted on reboot!), /dev=devices. Trick: B-S-E-H-V-U-T-D-L-B!</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q14</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q18…</span>
+      <span class="qtitle">Explain chmod (r=4,w=2,x=1). Differentiate Hard Link and Soft Link.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> chmod: r=4,w=2,x=1, add numbers for permission. 755=rwxr-xr-x. Hard link=same inode. Soft link=shortcut.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 r=4,w=2,x=1. 7=rwx, 6=rw-, 5=r-x, 4=r-- | Hard=same inode (data survives) | Soft=shortcut (breaks if original deleted)</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Changes file permissions. r(read)=4, w(write)=2, x(execute)=1. ADD values to get number for each group.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">chmod – Change Mode</div><div class="pt-body">Changes file permissions. r(read)=4, w(write)=2, x(execute)=1. ADD values to get number for each group.</div></div><div class="pt"><div class="pt-head">Three Groups</div><div class="pt-body">u=user/owner, g=group, o=others. Each gets own permission value.</div></div><div class="pt"><div class="pt-head">chmod 755</div><div class="pt-body">Owner: 7=rwx (read+write+execute) | Group: 5=r-x (read+execute) | Others: 5=r-x. Standard for programs!</div></div><div class="pt"><div class="pt-head">chmod 644</div><div class="pt-body">Owner: 6=rw- (read+write) | Group: 4=r-- (read only) | Others: 4=r--. Standard for text files!</div></div><div class="pt"><div class="pt-head">chmod 777</div><div class="pt-body">ALL groups get rwx = DANGEROUS! Everyone can do everything. Avoid!</div></div><div class="pt"><div class="pt-head">chmod 600</div><div class="pt-body">Owner: 6=rw- only. Group: 0=none. Others: 0=none. Private file!</div></div><div class="pt"><div class="pt-head">Symbolic chmod</div><div class="pt-body">chmod u+x file (add execute to owner) | chmod g-w file (remove write from group) | chmod o+r file (add read to others)</div></div><div class="pt"><div class="pt-head">Hard Link</div><div class="pt-body">ln original hardlink. SAME inode number. Data survives if original deleted. NO cross-filesystem. Duplicate key = same lock.</div></div><div class="pt"><div class="pt-head">Soft Link</div><div class="pt-body">ln -s original softlink. DIFFERENT inode. BREAKS if original deleted. Can cross filesystems. Sign pointing to key location (shortcut).</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> chmod 755 script.sh = script is executable by all but only owner can modify. ln -s /home/zoha/file /tmp/slink = shortcut. Delete original = slink breaks!</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> r=4,w=2,x=1. Add to get chmod number. 755=standard program, 644=standard text file. Hard link=same inode=safe. Soft link=shortcut=can break!</div>
+  </div>
+</div>
+</div></div>
+    <div id="u5-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q15</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐⭐ CLASS TEST 2026 Q4(5M) | AKU VVI Q15 …</span>
+      <span class="qtitle">Explain step-by-step: create directory, create and edit file, display, copy, rename using Linux commands. Also explain IO redirection and piping.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> mkdir to cd to vi(i-type-Esc-colon wq) to cat to cp to mv. Redirection: redirect-overwrite, append, input-from-file. Pipe | = assembly line.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 mkdir→cd→vi→cat→cp→mv = 6 steps file lifecycle | > overwrite DANGER | >> append SAFE | | pipe = chain commands</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">mkdir BCA_Notes = Creates new empty folder. mkdir -p a/b/c = Create nested folders. Verify with ls.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Step 1: Create Directory</div><div class="pt-body">mkdir BCA_Notes = Creates new empty folder. mkdir -p a/b/c = Create nested folders. Verify with ls.</div></div><div class="pt"><div class="pt-head">Step 2: Enter Directory</div><div class="pt-body">cd BCA_Notes = Enter the folder. cd .. = go up. cd ~ = go home. pwd = show current location.</div></div><div class="pt"><div class="pt-head">Step 3: Create and Edit File</div><div class="pt-body">vi notes.txt = open vi editor. Press i = INSERT mode. Type content. Press Esc. Type :wq = SAVE AND EXIT. Simple: cat > notes.txt (Ctrl+D to save).</div></div><div class="pt"><div class="pt-head">Step 4: Display File Contents</div><div class="pt-body">cat notes.txt = show entire file. head -5 notes.txt = first 5 lines. tail -5 notes.txt = last 5 lines. more notes.txt = page by page (q to quit).</div></div><div class="pt"><div class="pt-head">Step 5: Copy File</div><div class="pt-body">cp notes.txt backup.txt = copy file. cp -r folder1/ folder2/ = copy directory. Both files exist after copy!</div></div><div class="pt"><div class="pt-head">Step 6: Rename File</div><div class="pt-body">mv notes.txt OS_Chapter1.txt = rename. mv file /path/ = move to different location. Old name disappears!</div></div><div class="pt"><div class="pt-head">Other Important Commands</div><div class="pt-body">ls -la = list all including hidden | rm -rf dir = force delete folder | grep -i pattern file = case-insensitive search | ps aux = all processes | kill -9 PID = force kill | df -h = disk space | wc -l file = count lines</div></div><div class="pt"><div class="pt-head">IO Redirection: ></div><div class="pt-body">Redirect output to file. OVERWRITES existing content! ls > files.txt. Old data LOST!</div></div><div class="pt"><div class="pt-head">IO Redirection: >></div><div class="pt-body">Redirect output APPEND to file. OLD DATA SAFE! date >> log.txt adds to end.</div></div><div class="pt"><div class="pt-head">IO Redirection: <</div><div class="pt-body">Take input FROM file instead of keyboard. sort < names.txt</div></div><div class="pt"><div class="pt-head">Pipe: |</div><div class="pt-body">Output of command1 becomes INPUT of command2. ls -l | wc -l = count files. ps aux | grep firefox = find process. Chain as many as needed!</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> ls -l | wc -l (count files) | cat /etc/passwd | grep bash | cut -d: -f1 (find bash users) | history | grep rm (find rm commands used)</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> mkdir→cd→vi→cat→cp→mv = complete file lifecycle in Linux. > = overwrite(dangerous!). >> = append(safe!). | = pipe = assembly line for commands. These commands handle 90% of daily Linux work!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+<section class="unit" id="u6">
+  <div class="uhdr" style="background:linear-gradient(135deg,#bf360c,#D84315);">
+    <div class="uhdr-in">
+      <div class="uico">📝</div>
+      <div>
+        <div class="utag">UNIT 6 · 3 Questions</div>
+        <div class="utit">vi Editor, Shell and UNIX Administration</div>
+        <div class="usub">vi 3 Modes · Commands · .exrc · vim · Shell Types · Variables · Aliases · History · Job Control · awk · Backup · User Management</div>
+      </div>
+    </div>
+  </div>
+  <div class="pyq-banner">
+    <span class="pico">⭐</span>
+    <p><b>PYQ ALERT:</b> ⭐ AKU VVI Q19 IO Redirection+Pipes | Q20★★★★ vi editor + Shell (MOST STARRED in entire PDF!) | Both extremely important for exam!</p>
+  </div>
+  <div class="tabwrap">
+    <div class="tabbar">
+      <button class="tbtn on" style="border-bottom-color:#D84315;" data-col="#D84315" onclick="swTab(this,'u6-mcq')">🎯 MCQ Solved (8)</button>
+      <button class="tbtn" data-col="#D84315" onclick="swTab(this,'u6-4m')">📝 4-Mark (2Q)</button>
+      <button class="tbtn" data-col="#D84315" onclick="swTab(this,'u6-12m')">📚 12-Mark (1Q)</button>
+    </div>
+    <div id="u6-mcq" class="tp on">
+<div class="mitem" id="mu60">
+  <div class="mqhd"><span class="mqn">Q1.</span><span class="mqtxt">vi opens in?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Insert</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) Command</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Ex mode</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Visual</div></div>
+  <div class="mres" id="rmu60"><span class="rbdg">✅ Command</span><span class="rexp">vi ALWAYS opens in COMMAND MODE by default. Press i for Insert, : for Ex mode!</span></div>
+</div>
+<div class="mitem" id="mu61">
+  <div class="mqhd"><span class="mqn">Q2.</span><span class="mqtxt">Save and quit vi?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,3,+oid+)">A) q!</div><div class="mopt" onclick="chk(this,1,3,+oid+)">B) q</div><div class="mopt" onclick="chk(this,2,3,+oid+)">C) w</div><div class="mopt" onclick="chk(this,3,3,+oid+)">D) :wq</div></div>
+  <div class="mres" id="rmu61"><span class="rbdg">✅ :wq</span><span class="rexp">:wq = Write + Quit = SAVE + EXIT! Most important vi command of all!</span></div>
+</div>
+<div class="mitem" id="mu62">
+  <div class="mqhd"><span class="mqn">Q3.</span><span class="mqtxt">dd in vi?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) Copy line</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) Delete char</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) Delete line</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) Undo</div></div>
+  <div class="mres" id="rmu62"><span class="rbdg">✅ Delete line</span><span class="rexp">dd = DELETE entire current line! x=char. yy=yank(copy). p=paste. u=undo!</span></div>
+</div>
+<div class="mitem" id="mu63">
+  <div class="mqhd"><span class="mqn">Q4.</span><span class="mqtxt">Replace ALL in vi?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,2,+oid+)">A) :%s/x/y</div><div class="mopt" onclick="chk(this,1,2,+oid+)">B) s/x/y/g</div><div class="mopt" onclick="chk(this,2,2,+oid+)">C) :%s/x/y/g</div><div class="mopt" onclick="chk(this,3,2,+oid+)">D) r/x/y</div></div>
+  <div class="mres" id="rmu63"><span class="rbdg">✅ :%s/x/y/g</span><span class="rexp">:%s/old/new/g = replace ALL in ENTIRE file! Most asked vi command!</span></div>
+</div>
+<div class="mitem" id="mu64">
+  <div class="mqhd"><span class="mqn">Q5.</span><span class="mqtxt">Default Linux shell?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,3,+oid+)">A) sh</div><div class="mopt" onclick="chk(this,1,3,+oid+)">B) csh</div><div class="mopt" onclick="chk(this,2,3,+oid+)">C) zsh</div><div class="mopt" onclick="chk(this,3,3,+oid+)">D) bash</div></div>
+  <div class="mres" id="rmu64"><span class="rbdg">✅ bash</span><span class="rexp">bash = Bourne Again Shell = DEFAULT on Linux! Free, powerful, most popular!</span></div>
+</div>
+<div class="mitem" id="mu65">
+  <div class="mqhd"><span class="mqn">Q6.</span><span class="mqtxt">awk '{print $1}' prints?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Last column</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) First column</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) All columns</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) Line numbers</div></div>
+  <div class="mres" id="rmu65"><span class="rbdg">✅ First column</span><span class="rexp">$1=first column. $2=second. $NF=last column. NR=line number in awk!</span></div>
+</div>
+<div class="mitem" id="mu66">
+  <div class="mqhd"><span class="mqn">Q7.</span><span class="mqtxt">Background job?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,3,+oid+)">A) fg</div><div class="mopt" onclick="chk(this,1,3,+oid+)">B) bg</div><div class="mopt" onclick="chk(this,2,3,+oid+)">C) ctrl+c</div><div class="mopt" onclick="chk(this,3,3,+oid+)">D) command &</div></div>
+  <div class="mres" id="rmu66"><span class="rbdg">✅ command &</span><span class="rexp">command & = start in background. Ctrl+Z = suspend. bg = resume. fg = foreground!</span></div>
+</div>
+<div class="mitem" id="mu67">
+  <div class="mqhd"><span class="mqn">Q8.</span><span class="mqtxt">.exrc file is?</span></div>
+  <div class="mopts"><div class="mopt" onclick="chk(this,0,1,+oid+)">A) Shell config</div><div class="mopt" onclick="chk(this,1,1,+oid+)">B) vi startup config</div><div class="mopt" onclick="chk(this,2,1,+oid+)">C) Password file</div><div class="mopt" onclick="chk(this,3,1,+oid+)">D) System log</div></div>
+  <div class="mres" id="rmu67"><span class="rbdg">✅ vi startup config</span><span class="rexp">~/.exrc = vi configuration file. Read automatically every time vi starts!</span></div>
+</div></div>
+    <div id="u6-4m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q16</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q20★★★★…</span>
+      <span class="qtitle">Explain vi editor: three modes, important commands and .exrc file.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> vi = 3 modes: Command(default), Insert(i), Ex(:). :wq=save+quit (MOST IMPORTANT!). .exrc=startup config.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 CIE = Command(Esc), Insert(i/a/o), Ex(:). :wq=save+quit | :q!=force quit | :%s/x/y/g=replace all</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Standard Unix/Linux text editor. Available on EVERY system. Keyboard-only. vim = Vi IMproved (modern version with syntax highlighting, unlimited undo).</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">vi Editor</div><div class="pt-body">Standard Unix/Linux text editor. Available on EVERY system. Keyboard-only. vim = Vi IMproved (modern version with syntax highlighting, unlimited undo).</div></div><div class="pt"><div class="pt-head">MODE 1: Command Mode</div><div class="pt-body">Default mode when vi opens. Press Esc anytime to return here. Navigation + deletion + copy.</div></div><div class="pt"><div class="pt-head">Command: Navigation</div><div class="pt-body">h(left) j(down) k(up) l(right) | w(next word) b(prev word) | G(last line) gg(first line) | :n(go to line n)</div></div><div class="pt"><div class="pt-head">Command: Delete</div><div class="pt-body">dd = delete entire line | x = delete character | dw = delete word | 5dd = delete 5 lines | D = delete to end of line</div></div><div class="pt"><div class="pt-head">Command: Yank+Put</div><div class="pt-body">yy = yank/copy line | 5yy = copy 5 lines | p = paste below | P = paste above | yw = copy word</div></div><div class="pt"><div class="pt-head">Command: Search+Undo</div><div class="pt-body">/pattern = search forward | ?pattern = backward | n = next match | N = prev | u = undo | Ctrl+r = redo</div></div><div class="pt"><div class="pt-head">MODE 2: Insert Mode</div><div class="pt-body">Press i/a/o from Command Mode to enter. i=before cursor, a=after, o=new line below, I=line start, A=line end. Press Esc to exit!</div></div><div class="pt"><div class="pt-head">MODE 3: Ex Mode</div><div class="pt-body">Press : from Command Mode. :w=save | :q=quit | :wq=SAVE+EXIT (MOST IMPORTANT!) | :q!=force quit no save | :set nu=line numbers | :%s/old/new/g=replace ALL</div></div><div class="pt"><div class="pt-head">.exrc File</div><div class="pt-body">~/.exrc = vi configuration file. Auto-read at vi startup. Contents: set nu (line numbers), set tabstop=4, set autoindent.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Open file: vi notes.txt → press i → type text → press Esc → type :wq → SAVED! Replace all 'hello' with 'world': :%s/hello/world/g</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> vi has 3 modes: Command(default), Insert(i), Ex(:). Most important: i=start typing, Esc=back, :wq=save+quit, :q!=force quit, :%s/x/y/g=replace all. .exrc customizes vi startup!</div>
+  </div>
+</div>
+</div>
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q17</span>
+      <span class="marks-badge" style="background:#1565C0;">4M</span>
+      <span class="q-pyq-tag">⭐ ⭐ AKU VVI Q20★★★★…</span>
+      <span class="qtitle">Explain Shell types, variables, aliases, history, job control and awk.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> Shell = CLI interpreter. bash = DEFAULT. awk=column cutter($1=first col). alias=shortcut. !!=last command. &=background.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 Shell: sh→csh→ksh→bash(DEFAULT!)→zsh | awk $1=column1 $NF=last | &=background Ctrl+Z=pause fg=foreground</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">Command-line interpreter between user and OS kernel. Type commands → Shell interprets → Kernel executes → Result shown.</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Shell Definition</div><div class="pt-body">Command-line interpreter between user and OS kernel. Type commands → Shell interprets → Kernel executes → Result shown.</div></div><div class="pt"><div class="pt-head">sh – Bourne Shell</div><div class="pt-body">1979. First Unix shell. Simple, portable, good for scripting.</div></div><div class="pt"><div class="pt-head">bash – DEFAULT</div><div class="pt-body">Bourne Again Shell. DEFAULT on Linux! Free, most features, most popular. Use daily!</div></div><div class="pt"><div class="pt-head">csh, ksh, zsh</div><div class="pt-body">csh = C-like syntax. ksh = sh+csh combined. zsh = modern, best autocomplete, plugins.</div></div><div class="pt"><div class="pt-head">Shell Variables</div><div class="pt-body">name='Zoha'; echo $name → prints Zoha. $HOME, $PATH, $USER, $SHELL = important env vars. export VAR=value = make available to child processes.</div></div><div class="pt"><div class="pt-head">Aliases</div><div class="pt-body">alias ll='ls -la' = create shortcut. alias cls='clear'. unalias ll = remove. Add to ~/.bashrc = permanent!</div></div><div class="pt"><div class="pt-head">History</div><div class="pt-body">history = show all past commands (numbered). !! = repeat LAST command. !n = run command number n. Ctrl+R = reverse search.</div></div><div class="pt"><div class="pt-head">Job Control</div><div class="pt-body">command & = start in BACKGROUND. Ctrl+Z = suspend/pause. bg = resume in background. fg = bring to foreground. jobs = list all background jobs.</div></div><div class="pt"><div class="pt-head">awk Command</div><div class="pt-body">awk '{print $1}' file = print 1st column. awk -F: '{print $1}' /etc/passwd = use : separator (print usernames!). awk 'NR==3{print}' file = print line 3. awk '{sum+=$1} END{print sum}' file = sum column 1.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> Find all bash users: awk -F: '$7~/bash/{print $1}' /etc/passwd. Run backup in background: tar -czvf backup.tar.gz /home/ &</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> bash = DEFAULT Linux shell. Shell provides variables, aliases, history, job control. awk = powerful column/text processor. Together these tools make Unix extremely productive!</div>
+  </div>
+</div>
+</div></div>
+    <div id="u6-12m" class="tp">
+<div class="qcard">
+  <div class="qhd">
+    <div class="qtop">
+      <span class="qnum-badge">Q18</span>
+      <span class="marks-badge" style="background:#C62828;">12M</span>
+      <span class="q-pyq-tag">⭐ ⭐⭐ AKU VVI Q20★★★★ — MOST STARRED QUESTI…</span>
+      <span class="qtitle">Explain vi editor and UNIX Shell completely — modes, yank/put, search, .exrc, shell types, variables, aliases, history, job control and awk.</span>
+      <span class="togico" onclick="tog(this.closest('.qhd').closest('.qcard'))">▼</span>
+    </div>
+    <div class="oneliner"><b>💡 One-Line:</b> vi=CIE 3 modes. :wq=save+quit. Shell=bash DEFAULT. awk=column processor. alias=shortcut. !!=last cmd. &=background.</div>
+  </div>
+  
+<div class="qbody">
+  <div class="notebook">
+    <div class="trick">🧠 vi=CIE modes | :wq MOST IMPORTANT | bash = DEFAULT shell | awk $1=col1 $NF=last | alias=shortcut | &=background</div>
+    <span class="sec-lbl">📘 Introduction / Definition</span>
+    <div class="box blue">vi editor and Shell are the two most fundamental Unix/Linux tools. vi for text editing. Shell for command execution and automation. Must master both!</div>
+    <div class="pts-grid"><div class="pt"><div class="pt-head">Introduction</div><div class="pt-body">vi editor and Shell are the two most fundamental Unix/Linux tools. vi for text editing. Shell for command execution and automation. Must master both!</div></div><div class="pt"><div class="pt-head">vi – Three Modes (CIE)</div><div class="pt-body">C=Command Mode (default, navigation/delete/copy) | I=Insert Mode (type text, press i/a/o) | E=Ex Mode (save/quit/replace, press :)</div></div><div class="pt"><div class="pt-head">vi Command Mode Details</div><div class="pt-body">Navigation: h/j/k/l arrows. G=last line, gg=first. :n=go to line n. Delete: dd(line), x(char), dw(word), 5dd(5 lines). Yank: yy(copy line), 5yy(5 lines). Put: p(below), P(above). Search: /pattern forward, ?backward, n=next. Undo: u(undo), Ctrl+r(redo).</div></div><div class="pt"><div class="pt-head">vi Insert Mode</div><div class="pt-body">Enter: i(before cursor), a(after cursor), o(new line below), I(line start), A(line end), O(new line above). Exit: Press Esc → back to Command Mode!</div></div><div class="pt"><div class="pt-head">vi Ex Mode Commands</div><div class="pt-body">:w = save | :q = quit | :wq = SAVE+QUIT (MOST IMPORTANT!) | :q! = force quit no save | :set nu = line numbers | :%s/old/new/g = replace ALL in file | :r file = insert another file</div></div><div class="pt"><div class="pt-head">.exrc Configuration</div><div class="pt-body">~/.exrc = vi's personal config. Auto-read at startup. set nu (line numbers), set tabstop=4, set autoindent, set ic (ignore case).</div></div><div class="pt"><div class="pt-head">vim vs vi</div><div class="pt-body">vim = Vi IMproved. Better: syntax highlighting, unlimited undo, split windows, plugins. Default on modern Linux. Same commands as vi plus more!</div></div><div class="pt"><div class="pt-head">Shell Types Table</div><div class="pt-body">sh(1979,first,simple) | csh(C-like syntax) | ksh(sh+csh combined) | bash(DEFAULT Linux,free,best features) | zsh(modern,best autocomplete,plugins)</div></div><div class="pt"><div class="pt-head">Shell Variables</div><div class="pt-body">User: name='Zoha'; echo $name. Env: $HOME (home dir), $PATH (search path), $USER (username), $SHELL (current shell), $PWD (current dir). export VAR=value = child processes inherit.</div></div><div class="pt"><div class="pt-head">Aliases and History</div><div class="pt-body">alias ll='ls -la' (shortcut). unalias ll (remove). Add to ~/.bashrc = permanent. history = numbered list. !! = last command. !n = command n. Ctrl+R = search history.</div></div><div class="pt"><div class="pt-head">Job Control</div><div class="pt-body">command & = start background. Ctrl+Z = suspend. bg = resume background. fg = bring foreground. jobs = list all. nohup command & = run after logout!</div></div><div class="pt"><div class="pt-head">awk Pattern Processor</div><div class="pt-body">$1=1st col, $2=2nd, $NF=last, NR=line number. -F: = use colon separator. awk '{print $1}' file. awk -F: '{print $1}' /etc/passwd = usernames. awk 'NR==3{print}' = line 3. awk '{sum+=$1} END{print sum}' = column sum.</div></div></div>
+    <span class="sec-lbl">💡 Example</span>
+    <div class="box green"><b>Example:</b> vi quick: vi file.txt → i → type → Esc → :wq → done! Replace all: :%s/old/new/g. Find bash users: awk -F: '$7~/bash/{print $1}' /etc/passwd. Background: tar -czvf bak.tar.gz /home &</div>
+    <span class="sec-lbl">🔴 Conclusion</span>
+    <div class="box red"><b>Conclusion:</b> vi has 3 modes (CIE). :wq = save+quit = most important command. bash = DEFAULT Linux shell. Shell gives variables, aliases, history, job control, awk for complete productivity. Mastering vi + Shell = mastering Unix!</div>
+  </div>
+</div>
+</div></div>
+  </div>
+</section>
+
+<section class="nsec" id="nums">
+<div class="nhdr">
+  <h2>📊 Numericals — Gantt Charts + Page Replacement</h2>
+  <p>FCFS | SJF | Round Robin | FIFO Page Replacement | Full step-by-step</p>
+  <div style="background:#140008;border:1px solid #B71C1C;border-radius:6px;padding:6px 11px;margin-top:7px;font-size:.8em;color:#fca5a5;">
+    ⭐ <b>PYQ:</b> Class Test 2026 Q1(5M) — CPU Scheduling with process state diagram | AKU VVI Q4★★ CPU Scheduling
+  </div>
 </div>
 
-<button id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- FCFS -->
+<div class="ncard">
+  <div class="nc-hdr" style="background:linear-gradient(135deg,#0d47a1,#1565C0);">
+    <b>📌 Numerical 1: FCFS — First Come First Served</b>
+    <span>P1(BT=24,AT=0) | P2(BT=3,AT=0) | P3(BT=3,AT=0) → All arrive at t=0</span>
+  </div>
+  <div class="nc-body">
+    <p style="color:#F9A825;font-size:.78em;font-weight:700;margin-bottom:7px;">GANTT CHART (FCFS Order: P1→P2→P3):</p>
+    <div class="gbar-wrap">
+      <span class="glbl">Process:</span>
+      <div class="gbar" style="background:#1565C0;width:192px;">P1 (0 – 24)</div>
+      <div class="gbar" style="background:#2E7D32;width:24px;font-size:.65em;">P2</div>
+      <div class="gbar" style="background:#B71C1C;width:24px;font-size:.65em;">P3</div>
+    </div>
+    <div class="gtimes"><span style="width:192px;">0</span><span style="width:24px;">24</span><span style="width:24px;">27</span><span>30</span></div>
+    <table class="ntbl">
+      <tr><th>Process</th><th>AT</th><th>BT</th><th>CT</th><th>TT = CT−AT</th><th>WT = TT−BT</th></tr>
+      <tr><td style="color:#93C5FD;">P1</td><td>0</td><td>24</td><td>24</td><td>24</td><td style="color:#4ade80;">0</td></tr>
+      <tr><td style="color:#93C5FD;">P2</td><td>0</td><td>3</td><td>27</td><td>27</td><td style="color:#ef4444;font-weight:700;">24</td></tr>
+      <tr><td style="color:#93C5FD;">P3</td><td>0</td><td>3</td><td>30</td><td>30</td><td style="color:#ef4444;font-weight:700;">27</td></tr>
+    </table>
+    <div class="nresult"><b style="color:#fde68a;">Avg WT = (0+24+27)/3 = 17ms | Avg TT = (24+27+30)/3 = 27ms</b><br><span style="color:#ef4444;font-size:.9em;">⚠️ CONVOY EFFECT: P1(24ms long) blocks P2 and P3(3ms short)!</span></div>
+  </div>
+</div>
 
-<footer>
-  BCA-205 Operating System &amp; UNIX &nbsp;·&nbsp; AKU Patna &nbsp;·&nbsp;
-  PYQ years used: 2014, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2025 (verified only) &nbsp;·&nbsp;
-  All the best for 16 September 2026! 🎯
-</footer>
+<!-- SJF -->
+<div class="ncard">
+  <div class="nc-hdr" style="background:linear-gradient(135deg,#1b5e20,#2e7d32);">
+    <b>📌 Numerical 2: SJF — Shortest Job First (Min Avg Waiting Time!)</b>
+    <span>Same processes reordered by burst time: P2(3ms) → P3(3ms) → P1(24ms)</span>
+  </div>
+  <div class="nc-body">
+    <div class="gbar-wrap">
+      <span class="glbl">Process:</span>
+      <div class="gbar" style="background:#2E7D32;width:24px;font-size:.65em;">P2</div>
+      <div class="gbar" style="background:#B71C1C;width:24px;font-size:.65em;">P3</div>
+      <div class="gbar" style="background:#1565C0;width:192px;">P1 (6 – 30)</div>
+    </div>
+    <div class="gtimes"><span style="width:24px;">0</span><span style="width:24px;">3</span><span style="width:192px;">6</span><span>30</span></div>
+    <div class="nresult"><b style="color:#4ade80;">Avg WT = (0+3+6)/3 = 3ms</b> — FAR BETTER than FCFS 17ms!<br><span style="color:#ef4444;font-size:.9em;">⚠️ STARVATION: Long processes may never run. Fix = Aging (increase priority over time)!</span></div>
+  </div>
+</div>
 
+<!-- ROUND ROBIN -->
+<div class="ncard">
+  <div class="nc-hdr" style="background:linear-gradient(135deg,#4a148c,#6a1b9a);">
+    <b>📌 Numerical 3: Round Robin — Quantum = 4ms (BEST for Time-Sharing!)</b>
+    <span>P1(BT=24ms) P2(BT=3ms) P3(BT=3ms) — Fair! No Starvation!</span>
+  </div>
+  <div class="nc-body" style="overflow-x:auto;">
+    <div class="gbar-wrap" style="min-width:420px;">
+      <span class="glbl">Gantt:</span>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.65em;">P1<br>0-4</div>
+      <div class="gbar" style="background:#2E7D32;width:24px;font-size:.63em;">P2<br>4-7</div>
+      <div class="gbar" style="background:#B71C1C;width:24px;font-size:.63em;">P3<br>7-10</div>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.63em;">P1<br>10-14</div>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.63em;">P1<br>14-18</div>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.63em;">P1<br>18-22</div>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.63em;">P1<br>22-26</div>
+      <div class="gbar" style="background:#1565C0;width:32px;font-size:.63em;">P1<br>26-30</div>
+    </div>
+    <div class="nresult"><b style="color:#c084fc;">WT: P2=4ms, P3=7ms, P1=6ms → Avg WT = (4+7+6)/3 = 5.67ms</b><br><span style="color:#4ade80;font-size:.9em;">✅ FAIR! Equal chance for all! No starvation! Best for time-sharing!</span></div>
+  </div>
+</div>
+
+<!-- FIFO PAGE REPLACEMENT -->
+<div class="ncard">
+  <div class="nc-hdr" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);">
+    <b>📌 Numerical 4: FIFO Page Replacement — 3 Frames</b>
+    <span>Reference String: 7,0,1,2,0,3,0,4,2,3,0,3 | Frames = 3</span>
+  </div>
+  <div class="nc-body" style="overflow-x:auto;">
+    <table class="ntbl" style="min-width:580px;">
+      <tr><th>Frame</th><th>7</th><th>0</th><th>1</th><th>2</th><th>0</th><th>3</th><th>0</th><th>4</th><th>2</th><th>3</th><th>0</th><th>3</th></tr>
+      <tr><td style="color:#c084fc;font-weight:700;">F1</td><td>7</td><td>7</td><td>7</td><td>2</td><td>2</td><td>2</td><td>2</td><td>4</td><td>4</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td style="color:#c084fc;font-weight:700;">F2</td><td>-</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td style="color:#c084fc;font-weight:700;">F3</td><td>-</td><td>-</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>3</td><td>3</td><td>3</td></tr>
+      <tr>
+        <td style="color:#F9A825;font-weight:700;">Result</td>
+        <td><span class="fault">F</span></td><td><span class="fault">F</span></td><td><span class="fault">F</span></td>
+        <td><span class="fault">F</span></td><td><span class="hit">H</span></td><td><span class="fault">F</span></td>
+        <td><span class="fault">F</span></td><td><span class="fault">F</span></td><td><span class="hit">H</span></td>
+        <td><span class="hit">H</span></td><td><span class="fault">F</span></td><td><span class="hit">H</span></td>
+      </tr>
+    </table>
+    <div class="nresult">
+      <b style="color:#fca5a5;">Total Page FAULTS = 9 | Total HITS = 4 | Hit Ratio = 4/12 = 33%</b><br>
+      <span style="color:#ef4444;font-size:.9em;">⚠️ Belady's Anomaly: FIFO can give MORE faults with MORE frames! Use LRU instead!</span>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<button id="btop">↑</button>
 <script>
-// Progress bar
-window.addEventListener('scroll',()=>{
-  const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
-  document.getElementById('progress').style.width=p+'%';
-  document.getElementById('backtop').classList.toggle('show',window.scrollY>400);
+(function(){
+  var c=document.getElementById('hcv');
+  if(!c)return;
+  var x=c.getContext('2d'),pts=[];
+  function sz(){c.width=innerWidth;c.height=innerHeight;}
+  function init(){pts=[];for(var i=0;i<80;i++)pts.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2+.5,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45,a:Math.random()*.7+.2});}
+  function draw(){x.clearRect(0,0,c.width,c.height);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;x.beginPath();x.arc(p.x,p.y,p.r,0,6.28);x.fillStyle='rgba(249,168,37,'+p.a*.5+')';x.fill();});requestAnimationFrame(draw);}
+  sz();init();draw();addEventListener('resize',function(){sz();init();});
+})();
+
+function tick(){
+  var e=new Date('2026-09-16T10:00:00+05:30'),d=e-new Date();
+  if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(function(i){document.getElementById(i).textContent='00';});return;}
+  function p(n){return String(Math.floor(n)).padStart(2,'0');}
+  document.getElementById('cd-d').textContent=p(d/86400000);
+  document.getElementById('cd-h').textContent=p((d%86400000)/3600000);
+  document.getElementById('cd-m').textContent=p((d%3600000)/60000);
+  document.getElementById('cd-s').textContent=p((d%60000)/1000);
+}
+setInterval(tick,1000);tick();
+
+window.addEventListener('scroll',function(){
+  var e=document.documentElement;
+  document.getElementById('pb').style.width=(e.scrollTop/(e.scrollHeight-e.clientHeight)*100)+'%';
+  document.getElementById('btop').classList.toggle('show',e.scrollTop>400);
+  document.querySelectorAll('.unit').forEach(function(u){
+    var r=u.getBoundingClientRect();
+    if(r.top<=90&&r.bottom>=90){
+      document.querySelectorAll('.nl').forEach(function(a){a.classList.remove('on');});
+      var a=document.querySelector('.nl[href="#'+u.id+'"]');
+      if(a)a.classList.add('on');
+    }
+  });
 });
+document.getElementById('btop').onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
 
-// Toggle Q&A
-function toggleAns(header){
-  const body=header.nextElementSibling;
-  header.classList.toggle('open');
-  body.classList.toggle('show');
+function swTab(btn,id){
+  var w=btn.closest('.tabwrap');
+  w.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('on');b.style.borderBottomColor='transparent';});
+  w.querySelectorAll('.tp').forEach(function(p){p.classList.remove('on');});
+  btn.classList.add('on');
+  btn.style.borderBottomColor=btn.dataset.col||'#1565C0';
+  document.getElementById(id).classList.add('on');
 }
 
-// Expand/collapse all
-function expandAll(){
-  document.querySelectorAll('.q-header').forEach(h=>{h.classList.add('open');h.nextElementSibling.classList.add('show')});
-}
-function collapseAll(){
-  document.querySelectorAll('.q-header').forEach(h=>{h.classList.remove('open');h.nextElementSibling.classList.remove('show')});
+function chk(el,ch,cr,id){
+  var item=document.getElementById(id);
+  if(item.querySelector('.right'))return;
+  item.querySelectorAll('.mopt').forEach(function(o,i){
+    o.onclick=null;o.style.cursor='default';
+    if(i===cr)o.classList.add('right');
+    else if(i===ch)o.classList.add('wrong');
+  });
+  var r=document.getElementById('r'+id);
+  if(r){r.classList.add('show');}
 }
 
-// Scroll reveal
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:0.08});
-document.querySelectorAll('.unit-section').forEach(s=>observer.observe(s));
-
-// Auto-open first Q of each unit
-document.querySelectorAll('.qa-card:first-of-type .q-header').forEach(h=>{
-  h.classList.add('open');h.nextElementSibling.classList.add('show');
-});
+function tog(hd){
+  var b=hd.closest('.qcard').querySelector('.qbody');
+  var ic=hd.querySelector('.togico');
+  var op=b.classList.toggle('op');
+  if(ic)ic.textContent=op?'▲':'▼';
+}
+function expAll(){
+  document.querySelectorAll('.qbody').forEach(function(b){b.classList.add('op');});
+  document.querySelectorAll('.togico').forEach(function(i){i.textContent='▲';});
+}
+function colAll(){
+  document.querySelectorAll('.qbody').forEach(function(b){b.classList.remove('op');});
+  document.querySelectorAll('.togico').forEach(function(i){i.textContent='▼';});
+}
 </script>
 </body>
 </html>
