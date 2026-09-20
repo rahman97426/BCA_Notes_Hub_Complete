@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin Dashboard — Arrahman Study Hub</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --bg:#050510; --sidebar:#0a0a1a; --card:rgba(255,255,255,.04);
+      --border:rgba(255,255,255,.08); --txt:#fff; --muted:#64748b;
+      --primary:#6366f1; --success:#10b981; --danger:#f43f5e;
+      --warning:#f59e0b; --info:#06b6d4;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--txt);display:flex;min-height:100vh;overflow-x:hidden}
+    button,input,select,textarea{font-family:inherit}
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+
+    /* ── SIDEBAR ─────────────────────────────────────── */
+    .sidebar{
+      width:240px;background:var(--sidebar);border-right:1px solid var(--border);
+      display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;
+      z-index:100;transition:transform .3s;overflow-y:auto;
+    }
+    .sidebar.hidden{transform:translateX(-100%)}
+    .sb-brand{
+      display:flex;align-items:center;gap:10px;
+      padding:20px 18px 16px;border-bottom:1px solid var(--border);
+    }
+    .sb-logo{
+      width:36px;height:36px;border-radius:10px;flex-shrink:0;overflow:hidden;
+      background:linear-gradient(135deg,#4f46e5,#7c3aed);
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+    }
+    .sb-logo img{width:100%;height:100%;object-fit:cover}
+    .sb-name{font-family:'Outfit';font-size:.95rem;font-weight:800;line-height:1.2}
+    .sb-role{font-size:.65rem;color:var(--muted);font-weight:600}
+    .sb-section{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:14px 18px 6px}
+    .sb-btn{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 18px;color:var(--muted);
+      font-size:.84rem;font-weight:600;cursor:pointer;
+      border-radius:0;border:none;background:none;width:100%;text-align:left;
+      transition:background .15s,color .15s;position:relative;
+    }
+    .sb-btn:hover{background:rgba(255,255,255,.04);color:var(--txt)}
+    .sb-btn.active{background:rgba(99,102,241,.15);color:var(--primary)}
+    .sb-btn.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary);border-radius:0 3px 3px 0}
+    .sb-btn i{width:16px;text-align:center;flex-shrink:0}
+    .sb-badge{margin-left:auto;background:rgba(99,102,241,.25);color:#a5b4fc;border-radius:8px;padding:1px 7px;font-size:.65rem;font-weight:800}
+    .sb-logout{
+      margin-top:auto;padding:14px 18px;border-top:1px solid var(--border);
+      display:flex;align-items:center;gap:10px;cursor:pointer;
+      font-size:.82rem;font-weight:600;color:var(--danger);background:none;border-left:none;border-right:none;border-bottom:none;width:100%;
+      transition:background .15s;
+    }
+    .sb-logout:hover{background:rgba(244,63,94,.08)}
+
+    /* ── MAIN ────────────────────────────────────────── */
+    .main{margin-left:240px;flex:1;min-height:100vh;display:flex;flex-direction:column}
+    .topbar{
+      background:rgba(5,5,16,.9);border-bottom:1px solid var(--border);
+      padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);flex-shrink:0;
+    }
+    .topbar-left{display:flex;align-items:center;gap:12px}
+    .menu-toggle{
+      background:rgba(255,255,255,.06);border:1px solid var(--border);
+      color:var(--muted);width:36px;height:36px;border-radius:9px;
+      display:none;align-items:center;justify-content:center;cursor:pointer;
+      font-size:.9rem;
+    }
+    .page-title{font-family:'Outfit';font-size:1.05rem;font-weight:800}
+    .topbar-right{display:flex;align-items:center;gap:10px}
+    .admin-pill{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);
+      border-radius:20px;padding:5px 12px 5px 6px;
+      font-size:.76rem;font-weight:600;color:#a5b4fc;
+    }
+    .admin-avatar{
+      width:26px;height:26px;border-radius:50%;
+      background:linear-gradient(135deg,#6366f1,#7c3aed);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.8rem;
+    }
+
+    /* ── CONTENT ─────────────────────────────────────── */
+    .content{padding:24px;flex:1}
+    .view{display:none}
+    .view.active{display:block;animation:fadeIn .25s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── STAT CARDS ──────────────────────────────────── */
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+    .stat-card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;
+      padding:18px 20px;display:flex;align-items:center;gap:14px;
+    }
+    .stat-icon{
+      width:44px;height:44px;border-radius:12px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+    }
+    .stat-val{font-family:'Outfit';font-size:1.5rem;font-weight:900;line-height:1}
+    .stat-label{font-size:.73rem;color:var(--muted);margin-top:3px;font-weight:600}
+
+    /* ── PANELS ──────────────────────────────────────── */
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px}
+    .panel-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 20px;border-bottom:1px solid var(--border);
+    }
+    .panel-title{font-family:'Outfit';font-size:1rem;font-weight:800}
+    .panel-body{padding:20px}
+
+    /* ── UPLOAD ZONE ─────────────────────────────────── */
+    .upload-zone{
+      border:2px dashed rgba(99,102,241,.4);border-radius:14px;
+      padding:40px 20px;text-align:center;cursor:pointer;
+      transition:border-color .2s,background .2s;background:rgba(99,102,241,.03);
+    }
+    .upload-zone:hover,.upload-zone.drag-over{border-color:var(--primary);background:rgba(99,102,241,.08)}
+    .upload-zone-icon{font-size:2.5rem;margin-bottom:12px}
+    .upload-zone h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+    .upload-zone p{font-size:.8rem;color:var(--muted)}
+    input[type="file"].file-input{display:none}
+
+    /* ── FORM ELEMENTS ───────────────────────────────── */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-field{margin-bottom:14px}
+    .form-field label{display:block;font-size:.73rem;font-weight:700;color:#94a3b8;margin-bottom:6px;text-transform:uppercase;letter-spacing:.7px}
+    .form-field input,
+    .form-field select,
+    .form-field textarea{
+      width:100%;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);border-radius:10px;
+      padding:10px 13px;color:var(--txt);font-size:.86rem;outline:none;
+      transition:border-color .2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+    .form-field select option{background:#1e293b}
+    .form-field textarea{min-height:80px;resize:vertical}
+    .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px}
+    .toggle-label{font-size:.85rem;font-weight:600}
+    .toggle-sub{font-size:.73rem;color:var(--muted)}
+
+    /* Toggle switch */
+    .switch{position:relative;width:40px;height:22px;flex-shrink:0}
+    .switch input{opacity:0;width:0;height:0}
+    .switch-slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:22px;transition:.3s}
+    .switch-slider:before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+    input:checked + .switch-slider{background:var(--primary)}
+    input:checked + .switch-slider:before{transform:translateX(18px)}
+
+    /* ── BUTTONS ─────────────────────────────────────── */
+    .btn{padding:9px 18px;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:6px;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.88;transform:translateY(-1px)}
+    .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+    .btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
+    .btn-success{background:var(--success);border-color:var(--success);color:#fff}
+    .btn-danger {background:var(--danger); border-color:var(--danger); color:#fff}
+    .btn-ghost  {background:transparent; border-color:var(--border);   color:var(--muted)}
+    .btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+    .btn-sm{padding:5px 12px;font-size:.75rem}
+    .btn-full{width:100%;justify-content:center;padding:13px}
+
+    /* ── PROGRESS BAR ────────────────────────────────── */
+    .progress-wrap{margin:12px 0;display:none}
+    .progress-wrap.show{display:block}
+    .progress-bar{height:6px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,#6366f1,#10b981);border-radius:6px;transition:width .3s;width:0}
+    .progress-label{font-size:.73rem;color:var(--muted);margin-top:5px;text-align:center}
+
+    /* ── FILE PREVIEW ────────────────────────────────── */
+    .file-preview{
+      background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);
+      border-radius:12px;padding:13px 15px;margin-top:12px;
+      display:none;align-items:center;gap:12px;
+    }
+    .file-preview.show{display:flex}
+    .fp-icon{font-size:1.5rem;flex-shrink:0}
+    .fp-name{font-weight:700;font-size:.85rem;margin-bottom:2px;word-break:break-all}
+    .fp-size{font-size:.73rem;color:var(--muted)}
+    .fp-remove{margin-left:auto;background:none;border:none;color:var(--danger);cursor:pointer;font-size:.9rem}
+
+    /* ── TABLE ───────────────────────────────────────── */
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    thead tr{border-bottom:2px solid var(--border)}
+    th{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);padding:10px 14px;text-align:left}
+    td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:.83rem;vertical-align:middle}
+    tbody tr:hover{background:rgba(255,255,255,.02)}
+    tbody tr:last-child td{border-bottom:none}
+    .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:8px;font-size:.7rem;font-weight:700}
+    .badge-html{background:rgba(99,102,241,.15);color:#a5b4fc}
+    .badge-pdf {background:rgba(244,63,94,.15); color:#fca5a5}
+    .badge-free{background:rgba(16,185,129,.15);color:#6ee7b7}
+    .badge-paid{background:rgba(245,158,11,.15);color:#fcd34d}
+
+    /* ── SEARCH BAR ──────────────────────────────────── */
+    .search-bar{
+      display:flex;align-items:center;gap:10px;
+      background:rgba(255,255,255,.05);border:1px solid var(--border);
+      border-radius:10px;padding:8px 13px;margin-bottom:16px;
+    }
+    .search-bar i{color:var(--muted);font-size:.85rem}
+    .search-bar input{background:transparent;border:none;color:var(--txt);flex:1;outline:none;font-size:.85rem}
+
+    /* ── EMPTY STATE ─────────────────────────────────── */
+    .empty-state{text-align:center;padding:48px 20px;color:var(--muted)}
+    .empty-state .ei{font-size:2.5rem;margin-bottom:12px;opacity:.4}
+    .empty-state h3{font-size:1rem;color:var(--txt);opacity:.5;margin-bottom:6px}
+
+    /* ── TOAST ───────────────────────────────────────── */
+    #adminToast{
+      position:fixed;bottom:24px;right:24px;z-index:9999;
+      background:#1e293b;border:1px solid rgba(255,255,255,.1);
+      border-radius:13px;padding:12px 20px;font-size:.83rem;font-weight:600;
+      display:flex;align-items:center;gap:10px;
+      box-shadow:0 8px 32px rgba(0,0,0,.5);max-width:320px;
+      transform:translateY(20px);opacity:0;transition:.3s;pointer-events:none;
+    }
+    #adminToast.show{transform:translateY(0);opacity:1}
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media(max-width:768px){
+      .sidebar{transform:translateX(-100%)}
+      .sidebar.open{transform:translateX(0)}
+      .main{margin-left:0}
+      .menu-toggle{display:flex}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .stats-grid{grid-template-columns:1fr}
+      .content{padding:14px}
+    }
+
+    .mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+    .mob-overlay.show{display:block}
+  </style>
+</head>
+<body>
+
+<!-- Mobile overlay -->
+<div class="mob-overlay" id="mobOverlay" onclick="toggleSidebar()"></div>
+
+<!-- ════════ SIDEBAR ════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <img src="/icons/icon-192.png" alt="AR" onerror="this.parentElement.textContent='📚'"/>
+    </div>
+    <div>
+      <div class="sb-name">Admin Panel</div>
+      <div class="sb-role">Arrahman Study Hub</div>
+    </div>
+  </div>
+
+  <div class="sb-section">Main</div>
+  <button class="sb-btn active" onclick="showView('dashboard',this)"><i class="fa-solid fa-chart-pie"></i> Dashboard</button>
+
+  <div class="sb-section">Notes Management</div>
+  <button class="sb-btn" onclick="showView('upload',this)"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Notes <span class="sb-badge">+</span></button>
+  <button class="sb-btn" onclick="showView('notes',this)"><i class="fa-solid fa-file-lines"></i> All Notes <span class="sb-badge" id="notesCountBadge">0</span></button>
+  <button class="sb-btn" onclick="showView('subjects',this)"><i class="fa-solid fa-book"></i> Subjects</button>
+
+  <div class="sb-section">Site</div>
+  <button class="sb-btn" onclick="showView('payments',this)"><i class="fa-solid fa-indian-rupee-sign"></i> Payments</button>
+  <button class="sb-btn" onclick="showView('settings',this)"><i class="fa-solid fa-gear"></i> Settings</button>
+  <button class="sb-btn" onclick="window.open('/',target='_blank')"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Website</button>
+
+  <button class="sb-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+</aside>
+
+<!-- ════════ MAIN ════════ -->
+<div class="main">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="page-title" id="pageTitle">Dashboard</div>
+    </div>
+    <div class="topbar-right">
+      <div class="admin-pill">
+        <div class="admin-avatar">A</div>
+        <span id="adminEmail">Admin</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ════ DASHBOARD VIEW ════ -->
+    <div class="view active" id="view-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(99,102,241,.15)">📄</div>
+          <div>
+            <div class="stat-val" id="statNotes">0</div>
+            <div class="stat-label">Total Notes</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(16,185,129,.15)">📚</div>
+          <div>
+            <div class="stat-val" id="statSubjects">5</div>
+            <div class="stat-label">Subjects</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(245,158,11,.15)">💰</div>
+          <div>
+            <div class="stat-val" id="statPaid">0</div>
+            <div class="stat-label">Paid Notes</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(6,182,212,.15)">⬇️</div>
+          <div>
+            <div class="stat-val" id="statDownloads">0</div>
+            <div class="stat-label">Downloads</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📋 Recent Uploads</div>
+          <button class="btn btn-ghost btn-sm" onclick="showView('upload',null)"><i class="fa-solid fa-plus"></i> Add Notes</button>
+        </div>
+        <div class="panel-body">
+          <div id="recentList">
+            <div class="empty-state"><div class="ei">📂</div><h3>No notes uploaded yet</h3><p>Click "Upload Notes" to get started</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ UPLOAD VIEW ════ -->
+    <div class="view" id="view-upload">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📤 Upload Notes / PDF</div>
+        </div>
+        <div class="panel-body">
+
+          <!-- Drop zone -->
+          <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+            <input type="file" id="fileInput" class="file-input" accept=".pdf,.html,.htm" onchange="onFileSelect(event)"/>
+            <div class="upload-zone-icon">📂</div>
+            <h3>Drop file here or click to browse</h3>
+            <p>Supports: PDF, HTML · Max size: 50MB</p>
+          </div>
+
+          <!-- File preview -->
+          <div class="file-preview" id="filePreview">
+            <div class="fp-icon" id="fpIcon">📄</div>
+            <div>
+              <div class="fp-name" id="fpName">filename.pdf</div>
+              <div class="fp-size" id="fpSize">2.5 MB</div>
+            </div>
+            <button class="fp-remove" onclick="clearFile()" title="Remove">✕</button>
+          </div>
+
+          <!-- Upload form -->
+          <div style="margin-top:20px">
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Note Title *</label>
+                <input type="text" id="noteTitle" placeholder="e.g. Complete Exam Guide"/>
+              </div>
+              <div class="form-field">
+                <label>Subject *</label>
+                <select id="noteSubject">
+                  <option value="">— Select Subject —</option>
+                  <option value="bca201">BCA-201 Business English</option>
+                  <option value="bca202">BCA-202 Numerical Techniques</option>
+                  <option value="bca203">BCA-203 System Analysis & Design</option>
+                  <option value="bca204">BCA-204 Programming in C</option>
+                  <option value="bca205">BCA-205 Operating System & UNIX</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Note Type</label>
+                <select id="noteType">
+                  <option value="notes">📖 Notes</option>
+                  <option value="pyq">🔥 PYQ (Previous Year Questions)</option>
+                  <option value="syllabus">📕 Syllabus</option>
+                  <option value="vvi">⭐ VVI Questions</option>
+                  <option value="cheatsheet">📝 Cheatsheet</option>
+                  <option value="lastMinute">⚡ Last-Minute Notes</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Semester</label>
+                <select id="noteSem">
+                  <option value="2">Semester II</option>
+                  <option value="1">Semester I</option>
+                  <option value="3">Semester III</option>
+                  <option value="4">Semester IV</option>
+                  <option value="5">Semester V</option>
+                  <option value="6">Semester VI</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Description</label>
+              <textarea id="noteDesc" placeholder="Short description of what this note covers..."></textarea>
+            </div>
+
+            <div class="toggle-row" style="margin-bottom:14px">
+              <div>
+                <div class="toggle-label">💰 Paid Note</div>
+                <div class="toggle-sub">Toggle ON if this note requires payment</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="noteIsPaid" onchange="togglePriceField()"/>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-field" id="priceField" style="display:none">
+              <label>Price (₹)</label>
+              <input type="number" id="notePrice" placeholder="99" min="1" max="9999"/>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-wrap" id="uploadProgress">
+              <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+              <div class="progress-label" id="progressLabel">Uploading... 0%</div>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="uploadBtn" onclick="uploadNote()" style="margin-top:6px">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Note
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ ALL NOTES VIEW ════ -->
+    <div class="view" id="view-notes">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📋 All Notes</div>
+          <button class="btn btn-primary btn-sm" onclick="showView('upload',null)"><i class="fa-solid fa-plus"></i> Upload New</button>
+        </div>
+        <div class="panel-body">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="notesSearch" placeholder="Search notes..." oninput="filterNotes(this.value)"/>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Subject</th>
+                  <th>Type</th>
+                  <th>Format</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="notesTableBody">
+                <tr><td colspan="6"><div class="empty-state"><div class="ei">📂</div><h3>No notes yet</h3><p>Upload your first note above</p></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SUBJECTS VIEW ════ -->
+    <div class="view" id="view-subjects">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📚 Subjects Management</div>
+        </div>
+        <div class="panel-body">
+          <div id="subjectCards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ PAYMENTS VIEW ════ -->
+    <div class="view" id="view-payments">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(16,185,129,.15)">💰</div>
+          <div><div class="stat-val" id="payTotal">₹0</div><div class="stat-label">Total Revenue</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(99,102,241,.15)">🧾</div>
+          <div><div class="stat-val" id="payCount">0</div><div class="stat-label">Total Orders</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><div class="panel-title">💳 Payment Config (Razorpay)</div></div>
+        <div class="panel-body">
+          <div class="form-field">
+            <label>Razorpay Key ID</label>
+            <input type="text" id="rzpKey" placeholder="rzp_live_XXXXXXXX"/>
+          </div>
+          <div class="form-field">
+            <label>UPI ID</label>
+            <input type="text" id="upiId" placeholder="yourname@paytm"/>
+          </div>
+          <div class="form-field">
+            <label>WhatsApp Number</label>
+            <input type="text" id="wpNum" value="918936875243"/>
+          </div>
+          <button class="btn btn-success" onclick="savePayConfig()"><i class="fa-solid fa-floppy-disk"></i> Save Config</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SETTINGS VIEW ════ -->
+    <div class="view" id="view-settings">
+      <div class="panel">
+        <div class="panel-header"><div class="panel-title">⚙️ Site Settings</div></div>
+        <div class="panel-body">
+          <div class="form-field"><label>Site Name</label><input type="text" id="siteName" value="Arrahman Study Hub"/></div>
+          <div class="form-field"><label>Admin Email</label><input type="email" id="adminEmailSet" placeholder="admin@arrahmanstudyhub.tech"/></div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label>New Password</label>
+              <input type="password" id="newPass" placeholder="New password"/>
+            </div>
+            <div class="form-field">
+              <label>Confirm Password</label>
+              <input type="password" id="confPass" placeholder="Confirm new password"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="updatePassword()"><i class="fa-solid fa-key"></i> Update Password</button>
+          &nbsp;
+          <button class="btn btn-success" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+          <hr style="border-color:rgba(255,255,255,.07);margin:20px 0"/>
+          <h3 style="font-size:.9rem;margin-bottom:12px;color:var(--danger)">⚠️ Danger Zone</h3>
+          <button class="btn btn-danger" onclick="if(confirm('Delete ALL notes from database?'))deleteAllNotes()">
+            <i class="fa-solid fa-trash"></i> Delete All Notes
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- Toast -->
+<div id="adminToast"></div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="/firebase-config.js"></script>
+
+<script>
+/* ── Init Firebase ───────────────────────────────────── */
+firebase.initializeApp(FIREBASE_CONFIG);
+const auth    = firebase.auth();
+const db      = firebase.firestore();
+const storage = firebase.storage();
+
+let currentUser = null;
+let allNotes    = [];
+let selectedFile = null;
+
+/* ── Auth Guard ──────────────────────────────────────── */
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    window.location.href = '/admin/login.html';
+    return;
+  }
+  currentUser = user;
+  document.getElementById('adminEmail').textContent = user.email;
+  loadDashboard();
+  loadNotes();
+  loadSubjectCards();
+});
+
+/* ── NAVIGATION ──────────────────────────────────────── */
+const viewTitles = {
+  dashboard:'Dashboard', upload:'Upload Notes',
+  notes:'All Notes', subjects:'Subjects',
+  payments:'Payments', settings:'Settings',
+};
+
+function showView(id, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('pageTitle').textContent = viewTitles[id] || id;
+  closeSidebarMob();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('mobOverlay').classList.toggle('show');
+}
+function closeSidebarMob() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobOverlay').classList.remove('show');
+}
+
+/* ── LOGOUT ──────────────────────────────────────────── */
+function doLogout() {
+  if (!confirm('Are you sure you want to logout?')) return;
+  auth.signOut().then(() => { window.location.href = '/admin/login.html'; });
+}
+
+/* ── LOAD DASHBOARD ──────────────────────────────────── */
+async function loadDashboard() {
+  try {
+    const snap = await db.collection('notes').get();
+    const notes = snap.docs.map(d => ({id:d.id,...d.data()}));
+    const paid  = notes.filter(n => n.isPaid);
+    const dl    = notes.reduce((a,n) => a+(n.downloads||0), 0);
+
+    document.getElementById('statNotes').textContent     = notes.length;
+    document.getElementById('statPaid').textContent      = paid.length;
+    document.getElementById('statDownloads').textContent = dl;
+    document.getElementById('notesCountBadge').textContent = notes.length;
+
+    /* Recent list */
+    const recent = [...notes].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,5);
+    const rl = document.getElementById('recentList');
+    if (!recent.length) {
+      rl.innerHTML = '<div class="empty-state"><div class="ei">📂</div><h3>No notes yet</h3></div>';
+      return;
+    }
+    rl.innerHTML = recent.map(n => `
+      <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+        <span style="font-size:1.2rem">${n.fileType==='pdf'?'📄':'📖'}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${n.title}</div>
+          <div style="font-size:.72rem;color:var(--muted)">${n.subjectCode||''} · ${n.noteType||''}</div>
+        </div>
+        ${n.isPaid ? '<span class="badge badge-paid">₹'+n.price+'</span>' : '<span class="badge badge-free">Free</span>'}
+      </div>`).join('');
+  } catch(e) { console.warn('Dashboard load error:', e); }
+}
+
+/* ── FILE SELECT ─────────────────────────────────────── */
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  setSelectedFile(file);
+}
+
+function setSelectedFile(file) {
+  selectedFile = file;
+  const ext = file.name.split('.').pop().toLowerCase();
+  document.getElementById('fpIcon').textContent  = ext==='pdf' ? '📄' : '📖';
+  document.getElementById('fpName').textContent  = file.name;
+  document.getElementById('fpSize').textContent  = formatBytes(file.size);
+  document.getElementById('filePreview').classList.add('show');
+  if (!document.getElementById('noteType').value) {
+    document.getElementById('noteType').value = ext==='pdf' ? 'notes' : 'notes';
+  }
+}
+
+function clearFile() {
+  selectedFile = null;
+  document.getElementById('fileInput').value = '';
+  document.getElementById('filePreview').classList.remove('show');
+}
+
+/* Drag & drop */
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) setSelectedFile(file);
+});
+
+/* ── UPLOAD NOTE ─────────────────────────────────────── */
+async function uploadNote() {
+  const title    = document.getElementById('noteTitle').value.trim();
+  const subject  = document.getElementById('noteSubject').value;
+  const noteType = document.getElementById('noteType').value;
+  const sem      = document.getElementById('noteSem').value;
+  const desc     = document.getElementById('noteDesc').value.trim();
+  const isPaid   = document.getElementById('noteIsPaid').checked;
+  const price    = parseInt(document.getElementById('notePrice').value)||0;
+
+  if (!title)       { toast('⚠️ Please enter a title', 'danger');   return; }
+  if (!subject)     { toast('⚠️ Please select a subject', 'danger'); return; }
+  if (!selectedFile){ toast('⚠️ Please select a file', 'danger');   return; }
+  if (isPaid && price < 1){ toast('⚠️ Please enter a valid price', 'danger'); return; }
+
+  const btn = document.getElementById('uploadBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+
+  const prog = document.getElementById('uploadProgress');
+  prog.classList.add('show');
+
+  try {
+    /* Upload file to Firebase Storage */
+    const ext      = selectedFile.name.split('.').pop().toLowerCase();
+    const fileName = `${Date.now()}_${selectedFile.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
+    const filePath = `notes/${subject}/${fileName}`;
+    const ref      = storage.ref(filePath);
+    const task     = ref.put(selectedFile);
+
+    task.on('state_changed',
+      snap => {
+        const pct = Math.round(snap.bytesTransferred / snap.totalBytes * 100);
+        document.getElementById('progressFill').style.width  = pct + '%';
+        document.getElementById('progressLabel').textContent = `Uploading… ${pct}%`;
+      },
+      err => { throw err; }
+    );
+
+    await task;
+    const fileUrl = await ref.getDownloadURL();
+
+    /* Save metadata to Firestore */
+    const SUBJECT_MAP = {
+      bca201:{code:'BCA-201',name:'Business English',icon:'📘'},
+      bca202:{code:'BCA-202',name:'Numerical Techniques',icon:'🔢'},
+      bca203:{code:'BCA-203',name:'System Analysis & Design',icon:'🗂️'},
+      bca204:{code:'BCA-204',name:'Programming in C',icon:'💻'},
+      bca205:{code:'BCA-205',name:'Operating System & UNIX',icon:'⚙️'},
+    };
+    const subInfo = SUBJECT_MAP[subject] || {};
+
+    await db.collection('notes').add({
+      title, desc, fileUrl, fileName,
+      fileType:    ext === 'pdf' ? 'pdf' : 'html',
+      noteType, semester: parseInt(sem),
+      subject, subjectCode: subInfo.code||'',
+      subjectName: subInfo.name||'', subjectIcon: subInfo.icon||'',
+      isPaid, price: isPaid ? price : 0,
+      downloads:   0, views: 0,
+      uploadedBy:  currentUser.email,
+      createdAt:   firebase.firestore.FieldValue.serverTimestamp(),
+    });
+
+    toast('✅ Note uploaded successfully!', 'success');
+
+    /* Reset form */
+    clearFile();
+    ['noteTitle','noteDesc','notePrice'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('noteSubject').value = '';
+    document.getElementById('noteIsPaid').checked = false;
+    document.getElementById('priceField').style.display = 'none';
+    prog.classList.remove('show');
+    document.getElementById('progressFill').style.width = '0';
+
+    loadDashboard();
+    loadNotes();
+
+  } catch(e) {
+    toast('❌ Upload failed: ' + e.message, 'danger');
+    prog.classList.remove('show');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Note';
+}
+
+/* ── LOAD NOTES TABLE ────────────────────────────────── */
+async function loadNotes() {
+  try {
+    const snap = await db.collection('notes').orderBy('createdAt','desc').get();
+    allNotes   = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderNotesTable(allNotes);
+    document.getElementById('notesCountBadge').textContent = allNotes.length;
+    document.getElementById('statNotes').textContent       = allNotes.length;
+  } catch(e) { console.warn('Notes load error:', e); }
+}
+
+function renderNotesTable(notes) {
+  const tbody = document.getElementById('notesTableBody');
+  if (!notes.length) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="ei">📂</div><h3>No notes found</h3></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = notes.map(n => `
+    <tr>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600">${n.title}</td>
+      <td>${n.subjectIcon||''} ${n.subjectCode||n.subject||'—'}</td>
+      <td>${n.noteType||'—'}</td>
+      <td><span class="badge ${n.fileType==='pdf'?'badge-pdf':'badge-html'}">${(n.fileType||'html').toUpperCase()}</span></td>
+      <td>${n.isPaid ? '<span class="badge badge-paid">₹'+n.price+'</span>' : '<span class="badge badge-free">Free</span>'}</td>
+      <td style="display:flex;gap:7px;flex-wrap:wrap">
+        <a href="${n.fileUrl}" target="_blank" class="btn btn-ghost btn-sm" title="View"><i class="fa-solid fa-eye"></i></a>
+        <button class="btn btn-danger btn-sm" onclick="deleteNote('${n.id}','${n.fileName||''}')" title="Delete"><i class="fa-solid fa-trash"></i></button>
+      </td>
+    </tr>`).join('');
+}
+
+function filterNotes(q) {
+  const lq = q.toLowerCase();
+  const filtered = allNotes.filter(n =>
+    n.title.toLowerCase().includes(lq) ||
+    (n.subjectCode||'').toLowerCase().includes(lq) ||
+    (n.noteType||'').toLowerCase().includes(lq)
+  );
+  renderNotesTable(filtered);
+}
+
+async function deleteNote(id, fileName) {
+  if (!confirm('Delete this note permanently?')) return;
+  try {
+    await db.collection('notes').doc(id).delete();
+    if (fileName) {
+      try { await storage.ref('notes/' + fileName).delete(); } catch {}
+    }
+    toast('🗑️ Note deleted', 'success');
+    loadNotes(); loadDashboard();
+  } catch(e) { toast('❌ Delete failed: '+e.message, 'danger'); }
+}
+
+/* ── SUBJECTS CARDS ──────────────────────────────────── */
+function loadSubjectCards() {
+  const subjects = [
+    {code:'BCA-201',name:'Business English',         icon:'📘',color:'#6366f1'},
+    {code:'BCA-202',name:'Numerical Techniques',     icon:'🔢',color:'#f59e0b'},
+    {code:'BCA-203',name:'System Analysis & Design', icon:'🗂️',color:'#06b6d4'},
+    {code:'BCA-204',name:'Programming in C',         icon:'💻',color:'#f43f5e'},
+    {code:'BCA-205',name:'Operating System & UNIX',  icon:'⚙️',color:'#10b981'},
+  ];
+  document.getElementById('subjectCards').innerHTML = subjects.map(s => `
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;border-top:3px solid ${s.color};padding:18px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:1.6rem">${s.icon}</span>
+        <div>
+          <div style="font-weight:800;font-size:.85rem;color:${s.color}">${s.code}</div>
+          <div style="font-weight:700;font-size:.9rem">${s.name}</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center"
+        onclick="showView('upload',null);document.getElementById('noteSubject').value='${s.code.toLowerCase().replace('-','')}'"
+      ><i class="fa-solid fa-plus"></i> Add Notes</button>
+    </div>`).join('');
+}
+
+/* ── PAYMENT CONFIG ──────────────────────────────────── */
+async function savePayConfig() {
+  const config = {
+    razorpayKey: document.getElementById('rzpKey').value.trim(),
+    upiId:       document.getElementById('upiId').value.trim(),
+    whatsapp:    document.getElementById('wpNum').value.trim(),
+  };
+  try {
+    await db.collection('settings').doc('payment').set(config, {merge:true});
+    toast('✅ Payment config saved!', 'success');
+  } catch(e) { toast('❌ Save failed: '+e.message, 'danger'); }
+}
+
+/* ── SETTINGS ────────────────────────────────────────── */
+async function updatePassword() {
+  const np = document.getElementById('newPass').value;
+  const cp = document.getElementById('confPass').value;
+  if (!np || np !== cp) { toast('⚠️ Passwords do not match', 'danger'); return; }
+  if (np.length < 8)    { toast('⚠️ Password must be at least 8 characters', 'danger'); return; }
+  try {
+    await currentUser.updatePassword(np);
+    document.getElementById('newPass').value = '';
+    document.getElementById('confPass').value = '';
+    toast('✅ Password updated!', 'success');
+  } catch(e) { toast('❌ '+e.message, 'danger'); }
+}
+
+async function saveSettings() {
+  try {
+    await db.collection('settings').doc('site').set({
+      siteName: document.getElementById('siteName').value.trim(),
+    }, {merge:true});
+    toast('✅ Settings saved!', 'success');
+  } catch(e) { toast('❌ '+e.message, 'danger'); }
+}
+
+async function deleteAllNotes() {
+  try {
+    const snap = await db.collection('notes').get();
+    const batch = db.batch();
+    snap.docs.forEach(d => batch.delete(d.ref));
+    await batch.commit();
+    toast('🗑️ All notes deleted', 'success');
+    loadNotes(); loadDashboard();
+  } catch(e) { toast('❌ '+e.message, 'danger'); }
+}
+
+/* ── HELPERS ─────────────────────────────────────────── */
+function togglePriceField() {
+  document.getElementById('priceField').style.display =
+    document.getElementById('noteIsPaid').checked ? 'block' : 'none';
+}
+
+function formatBytes(b) {
+  if (b < 1024)       return b + ' B';
+  if (b < 1048576)    return (b/1024).toFixed(1) + ' KB';
+  return (b/1048576).toFixed(1) + ' MB';
+}
+
+function toast(msg, type='success') {
+  const t   = document.getElementById('adminToast');
+  const col = {success:'#10b981',danger:'#f43f5e',info:'#06b6d4'}[type]||'#6366f1';
+  t.style.borderColor = col + '55';
+  t.innerHTML         = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
