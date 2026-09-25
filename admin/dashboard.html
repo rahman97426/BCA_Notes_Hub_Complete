@@ -381,11 +381,6 @@
                 <label>Subject *</label>
                 <select id="noteSubject">
                   <option value="">— Select Subject —</option>
-                  <option value="bca201">BCA-201 Business English</option>
-                  <option value="bca202">BCA-202 Numerical Techniques</option>
-                  <option value="bca203">BCA-203 System Analysis & Design</option>
-                  <option value="bca204">BCA-204 Programming in C</option>
-                  <option value="bca205">BCA-205 Operating System & UNIX</option>
                 </select>
               </div>
             </div>
@@ -405,8 +400,8 @@
               <div class="form-field">
                 <label>Semester</label>
                 <select id="noteSem">
-                  <option value="2">Semester II</option>
                   <option value="1">Semester I</option>
+                  <option value="2" selected>Semester II</option>
                   <option value="3">Semester III</option>
                   <option value="4">Semester IV</option>
                   <option value="5">Semester V</option>
@@ -580,6 +575,81 @@ let currentUser = null;
 let allNotes    = [];
 let selectedFile = null;
 
+/* ══════════════════════════════════════════════════════
+   SEMESTER → SUBJECT MASTER DATA (single source of truth)
+   Mirrors the SEMESTERS[] subject list in /script.js (public
+   site) so codes/names/icons/ids stay identical everywhere.
+   Subject ids (e.g. "bca301") are derived from the code and
+   MUST keep matching existing Firestore docs + Storage paths
+   ("notes/bca201/...") — do not change the derivation rule.
+══════════════════════════════════════════════════════ */
+const SEMESTER_SUBJECTS = {
+  1: [
+    { code:'BCA-101', name:'Communication Skills in English', icon:'📝' },
+    { code:'BCA-102', name:'Mathematics-I',                    icon:'📐' },
+    { code:'BCA-103', name:'IT Fundamentals',                  icon:'🖥️' },
+    { code:'BCA-104', name:'Principles of Management',         icon:'📊' },
+    { code:'BCA-105', name:'Python Programming',                icon:'🐍' },
+  ],
+  2: [
+    { code:'BCA-201', name:'Business English',                 icon:'📘' },
+    { code:'BCA-202', name:'Numerical Techniques',              icon:'🔢' },
+    { code:'BCA-203', name:'System Analysis & Design',          icon:'🗂️' },
+    { code:'BCA-204', name:'Programming in C',                  icon:'💻' },
+    { code:'BCA-205', name:'Operating System & UNIX',           icon:'⚙️' },
+  ],
+  3: [
+    { code:'BCA-301', name:'OOPs with C++',                     icon:'🔵' },
+    { code:'BCA-302', name:'Data Structures',                   icon:'🌳' },
+    { code:'BCA-303', name:'Java Programming',                  icon:'☕' },
+    { code:'BCA-304', name:'Computer Networks-I',                icon:'🌐' },
+    { code:'BCA-305', name:'Software Engineering',               icon:'⚙️' },
+  ],
+  4: [
+    { code:'BCA-401', name:'Database Management System',        icon:'🗄️' },
+    { code:'BCA-402', name:'Computer Organization',              icon:'🔌' },
+    { code:'BCA-403', name:'Design & Analysis of Algorithms',    icon:'📈' },
+    { code:'BCA-404', name:'Web Technology',                     icon:'🌍' },
+    { code:'BCA-405', name:'Computer Graphics',                  icon:'🎨' },
+  ],
+  5: [
+    { code:'BCA-501', name:'Visual Basic .NET',                  icon:'🟦' },
+    { code:'BCA-502', name:'Internet Technology',                icon:'📡' },
+    { code:'BCA-503', name:'Computer Networks-II',               icon:'🔒' },
+    { code:'BCA-504', name:'Theory of Computation',              icon:'🧮' },
+    { code:'BCA-505', name:'Software Testing',                   icon:'🧪' },
+  ],
+  6: [
+    { code:'BCA-601', name:'Cloud Computing',                    icon:'☁️' },
+    { code:'BCA-602', name:'Artificial Intelligence',            icon:'🤖' },
+    { code:'BCA-603', name:'E-Commerce',                         icon:'🛒' },
+    { code:'BCA-604', name:'Cyber Security',                     icon:'🛡️' },
+    { code:'BCA-605', name:'Project Work',                       icon:'🚀' },
+  ],
+};
+
+/* "BCA-301" -> "bca301" — same rule used by the pre-existing SUBJECT_MAP */
+function subjectId(code) { return code.toLowerCase().replace('-', ''); }
+
+/* Look up a subject's {code,name,icon} by its id, across all semesters */
+function getSubjectInfo(id) {
+  for (const sem in SEMESTER_SUBJECTS) {
+    const found = SEMESTER_SUBJECTS[sem].find(s => subjectId(s.code) === id);
+    if (found) return found;
+  }
+  return null;
+}
+
+/* Refill #noteSubject with only the subjects that belong to the
+   currently selected #noteSem. Called on load and on semester change. */
+function populateSubjectDropdown() {
+  const sem  = document.getElementById('noteSem').value;
+  const list = SEMESTER_SUBJECTS[sem] || [];
+  const sel  = document.getElementById('noteSubject');
+  sel.innerHTML = '<option value="">— Select Subject —</option>' +
+    list.map(s => `<option value="${subjectId(s.code)}">${s.code} ${s.name}</option>`).join('');
+}
+
 /* ── Auth Guard ──────────────────────────────────────── */
 auth.onAuthStateChanged(user => {
   if (!user) {
@@ -592,6 +662,15 @@ auth.onAuthStateChanged(user => {
   loadNotes();
   loadSubjectCards();
 });
+
+/* ── SEMESTER → SUBJECT dropdown wiring ─────────────────
+   Fixes: selecting a semester did nothing because #noteSem had
+   no change listener and #noteSubject was a static Sem-II-only list. */
+document.getElementById('noteSem').addEventListener('change', () => {
+  document.getElementById('noteSubject').value = '';
+  populateSubjectDropdown();
+});
+populateSubjectDropdown(); // initial fill for the default-selected semester
 
 /* ── NAVIGATION ──────────────────────────────────────── */
 const viewTitles = {
@@ -734,14 +813,7 @@ async function uploadNote() {
     const fileUrl = await ref.getDownloadURL();
 
     /* Save metadata to Firestore */
-    const SUBJECT_MAP = {
-      bca201:{code:'BCA-201',name:'Business English',icon:'📘'},
-      bca202:{code:'BCA-202',name:'Numerical Techniques',icon:'🔢'},
-      bca203:{code:'BCA-203',name:'System Analysis & Design',icon:'🗂️'},
-      bca204:{code:'BCA-204',name:'Programming in C',icon:'💻'},
-      bca205:{code:'BCA-205',name:'Operating System & UNIX',icon:'⚙️'},
-    };
-    const subInfo = SUBJECT_MAP[subject] || {};
+    const subInfo = getSubjectInfo(subject) || {};
 
     await db.collection('notes').add({
       title, desc, fileUrl, fileName,
@@ -833,13 +905,10 @@ async function deleteNote(id, fileName) {
 
 /* ── SUBJECTS CARDS ──────────────────────────────────── */
 function loadSubjectCards() {
-  const subjects = [
-    {code:'BCA-201',name:'Business English',         icon:'📘',color:'#6366f1'},
-    {code:'BCA-202',name:'Numerical Techniques',     icon:'🔢',color:'#f59e0b'},
-    {code:'BCA-203',name:'System Analysis & Design', icon:'🗂️',color:'#06b6d4'},
-    {code:'BCA-204',name:'Programming in C',         icon:'💻',color:'#f43f5e'},
-    {code:'BCA-205',name:'Operating System & UNIX',  icon:'⚙️',color:'#10b981'},
-  ];
+  /* "Subjects" tab still shows Semester II (most-complete semester),
+     now sourced from SEMESTER_SUBJECTS instead of its own hardcoded copy. */
+  const cardColors = ['#6366f1','#f59e0b','#06b6d4','#f43f5e','#10b981'];
+  const subjects = SEMESTER_SUBJECTS[2].map((s,i) => ({ ...s, color: cardColors[i % cardColors.length] }));
   document.getElementById('subjectCards').innerHTML = subjects.map(s => `
     <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;border-top:3px solid ${s.color};padding:18px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
@@ -850,7 +919,7 @@ function loadSubjectCards() {
         </div>
       </div>
       <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center"
-        onclick="showView('upload',null);document.getElementById('noteSubject').value='${s.code.toLowerCase().replace('-','')}'"
+        onclick="showView('upload',null);document.getElementById('noteSem').value='2';populateSubjectDropdown();document.getElementById('noteSubject').value='${subjectId(s.code)}'"
       ><i class="fa-solid fa-plus"></i> Add Notes</button>
     </div>`).join('');
 }
