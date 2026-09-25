@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Terms of Use | BCA Notes Hub</title>
+  <meta name="description" content="Terms of Use for BCA Notes Hub — guidelines for using this educational resource for BCA AKU Patna students."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://arrahmanstudyhub.tech/terms.html"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="space"><div class="stars"></div><div class="nebula"></div><div class="nebula2"></div></div>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="BCA Notes Hub Home">
+      <div class="logo-icon">📚</div>
+      <div>BCA Notes Hub<span class="logo-sub">Abdul Rahman · AKU Patna 2026–28</span></div>
+    </a>
+    <div style="flex:1"></div>
+    <div class="header-right">
+      <a class="icon-btn" href="index.html" title="Home"><i class="fa-solid fa-house"></i></a>
+      <button class="icon-btn" onclick="togglePageTheme()" title="Toggle Theme">
+        <i class="fa-solid fa-moon" id="pageThemeIcon"></i>
+      </button>
+    </div>
+  </header>
+  <main class="page-main">
+    <nav class="page-breadcrumb"><a href="index.html">🏠 Home</a><span class="sep">/</span><span>Terms of Use</span></nav>
+    <h1 class="page-h1">Terms of Use</h1>
+    <p class="page-lead">Last updated: September 2026 · Please read these terms carefully before using BCA Notes Hub.</p>
+
+    <section class="page-section">
+      <h2 class="page-h2">1. Acceptance of Terms</h2>
+      <p class="page-p">By accessing or using BCA Notes Hub (https://arrahmanstudyhub.tech/), you agree to be bound by these Terms of Use. If you do not agree, please do not use this website.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">2. Educational Purpose Only</h2>
+      <p class="page-p">BCA Notes Hub is an independent educational resource created for BCA students. All content is provided solely for personal, non-commercial educational use. You may use the materials for your own study and exam preparation.</p>
+      <p class="page-p">You may <strong>not</strong>:</p>
+      <ul class="page-ul">
+        <li>Redistribute, sell or commercially exploit any content from this website</li>
+        <li>Claim ownership over notes, PDFs or other materials not created by you</li>
+        <li>Use this website or its content for any unlawful purpose</li>
+        <li>Attempt to interfere with, hack or disrupt the website</li>
+      </ul>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">3. Intellectual Property</h2>
+      <p class="page-p">The website design, code, original notes and branding created by Abdul Rahman are protected by copyright. Third-party materials (official university syllabuses, previous year questions) remain the property of their respective owners. BCA Notes Hub does not claim ownership over official university content.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">4. Content Accuracy</h2>
+      <p class="page-p">While we strive to provide accurate and up-to-date study materials, we make no guarantees about the completeness, accuracy or currentness of the content. Always verify important information with your college, official university sources or qualified instructors before examinations.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">5. No Exam Guarantee</h2>
+      <p class="page-p">BCA Notes Hub does not guarantee examination results, grades or academic outcomes. Study materials are provided as supplementary resources only. Academic performance depends on many factors beyond the content of this website.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">6. Third-Party Content and Links</h2>
+      <p class="page-p">Our website may contain links to external websites and third-party resources. We are not responsible for the content, accuracy or availability of these external resources.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">7. Limitation of Liability</h2>
+      <p class="page-p">To the fullest extent permitted by law, Abdul Rahman and BCA Notes Hub shall not be liable for any direct, indirect, incidental or consequential damages arising from your use of this website or its content.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">8. Changes to Terms</h2>
+      <p class="page-p">We may update these Terms of Use at any time. Continued use of the website after changes are posted constitutes your acceptance of the revised terms.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">9. Contact</h2>
+      <p class="page-p">Questions about these Terms? Contact us via our <a href="contact.html" style="color:#6366f1">Contact page</a> or email <a href="mailto:arrahman97426@gmail.com" style="color:#6366f1">arrahman97426@gmail.com</a>.</p>
+    </section>
+  </main>
+  <footer class="page-simple-footer">
+    © 2026 Abdul Rahman. All Rights Reserved. &nbsp;·&nbsp;
+    <a href="index.html">Home</a> <a href="about.html">About</a>
+    <a href="contact.html">Contact</a> <a href="privacy-policy.html">Privacy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </footer>
+  <script>
+    function togglePageTheme(){document.body.classList.toggle('light');const l=document.body.classList.contains('light');document.getElementById('pageThemeIcon').className=l?'fa-solid fa-sun':'fa-solid fa-moon';localStorage.setItem('hub_theme',l?'light':'dark');}
+    if(localStorage.getItem('hub_theme')==='light'){document.body.classList.add('light');document.getElementById('pageThemeIcon').className='fa-solid fa-sun';}
+  </script>
+</body>
+</html>

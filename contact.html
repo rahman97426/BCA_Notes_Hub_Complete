@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Contact | BCA Notes Hub</title>
+  <meta name="description" content="Contact Abdul Rahman — creator of BCA Notes Hub. Reach out for study queries, collaborations or suggestions related to BCA notes and exam preparation."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://arrahmanstudyhub.tech/contact.html"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="space"><div class="stars"></div><div class="nebula"></div><div class="nebula2"></div></div>
+
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="BCA Notes Hub Home">
+      <div class="logo-icon">📚</div>
+      <div>BCA Notes Hub<span class="logo-sub">Abdul Rahman · AKU Patna 2026–28</span></div>
+    </a>
+    <div style="flex:1"></div>
+    <div class="header-right">
+      <a class="icon-btn" href="index.html" title="Home" aria-label="Go to homepage"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+      <button class="icon-btn" title="Toggle Theme" aria-label="Toggle dark/light theme" onclick="togglePageTheme()">
+        <i class="fa-solid fa-moon" id="pageThemeIcon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <nav class="page-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">🏠 Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>Contact</span>
+    </nav>
+
+    <h1 class="page-h1">Get in Touch</h1>
+    <p class="page-lead">Have a question about BCA notes, want to share study materials or suggest improvements? Reach out directly.</p>
+
+    <section class="page-section">
+      <h2 class="page-h2">Contact Information</h2>
+      <div class="page-card">
+        <div class="page-contact-item">
+          <i class="fa-solid fa-user" style="color:#6366f1" aria-hidden="true"></i>
+          <span><strong>Abdul Rahman</strong> — BCA Student, IIBM Patna (AKU)</span>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-solid fa-phone" style="color:#10b981" aria-hidden="true"></i>
+          <span><a href="tel:+918936875243">+91-8936875243</a></span>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-solid fa-envelope" style="color:#f59e0b" aria-hidden="true"></i>
+          <span><a href="mailto:arrahman97426@gmail.com">arrahman97426@gmail.com</a></span>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366" aria-hidden="true"></i>
+          <span><a href="https://wa.me/918936875243" target="_blank" rel="noopener">WhatsApp Chat</a></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">Social Media</h2>
+      <div class="page-card">
+        <div class="page-contact-item">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <a href="https://github.com/rahman97426" target="_blank" rel="noopener">github.com/rahman97426</a>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-brands fa-linkedin-in" style="color:#0a66c2" aria-hidden="true"></i>
+          <a href="https://linkedin.com/in/arrahmanraza" target="_blank" rel="noopener">linkedin.com/in/arrahmanraza</a>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-brands fa-facebook-f" style="color:#1877f2" aria-hidden="true"></i>
+          <a href="https://www.facebook.com/Siddique.0086" target="_blank" rel="noopener">facebook.com/Siddique.0086</a>
+        </div>
+        <div class="page-contact-item">
+          <i class="fa-brands fa-instagram" style="color:#e1306c" aria-hidden="true"></i>
+          <a href="https://www.instagram.com/zoha__.rahman_/" target="_blank" rel="noopener">instagram.com/zoha__.rahman_</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">What I Can Help With</h2>
+      <ul class="page-ul">
+        <li>Questions about BCA Semester I–VI notes and subjects</li>
+        <li>Sharing or contributing notes, PYQs and study materials</li>
+        <li>Suggesting corrections or improvements to existing notes</li>
+        <li>General AKU Patna BCA exam preparation guidance</li>
+        <li>Website feedback and feature suggestions</li>
+      </ul>
+      <p class="page-p" style="margin-top:12px;font-style:italic">Note: Response times may vary. WhatsApp is the fastest way to reach me.</p>
+    </section>
+  </main>
+
+  <footer class="page-simple-footer">
+    © 2026 Abdul Rahman. All Rights Reserved. &nbsp;·&nbsp;
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </footer>
+
+  <script>
+    function togglePageTheme() {
+      document.body.classList.toggle('light');
+      const l = document.body.classList.contains('light');
+      document.getElementById('pageThemeIcon').className = l ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      localStorage.setItem('hub_theme', l ? 'light' : 'dark');
+    }
+    if (localStorage.getItem('hub_theme') === 'light') {
+      document.body.classList.add('light');
+      document.getElementById('pageThemeIcon').className = 'fa-solid fa-sun';
+    }
+  </script>
+</body>
+</html>

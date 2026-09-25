@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA-204 C Programming — VVI Exam Guide | AKU Patna 2026</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0F172A;font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
+  #root{min-height:100vh}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:#1E293B}
+  ::-webkit-scrollbar-thumb{background:#475569;border-radius:3px}
+  ::-webkit-scrollbar-thumb:hover{background:#64748B}
+</style>
+</head>
+<body>
+<div id="root"><div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#F59E0B;font-size:1.2rem;font-family:system-ui">⏳ Loading BCA-204 Guide...</div></div>
+<script type="text/babel">
+const { useState } = React;
+
+
+const DATA = {
+  1: {
+    color:"#3B82F6", title:"Unit 1 — Fundamentals of C",
+    vvi:[
+      { id:"u1q1", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2019✓ 2021✓ 2025✓",
+        q:"What is C language? Features? Structure of C program?",
+        ans:`DEFINITION:
+C is a structured, procedural, middle-level programming language.
+Developed by Dennis Ritchie in 1972 at AT&T Bell Labs.
+
+FEATURES:
+1. Structured Language — Functions se divide hota hai
+2. Middle Level — Low + High level dono
+3. Portable — Different hardware mein chalta hai
+4. Fast & Efficient
+5. Rich Library Functions
+6. Case Sensitive — 'A' ≠ 'a'
+7. Extensible — New functions add kar sakte hain
+
+STRUCTURE:
+#include <stdio.h>    ← Preprocessor Directive
+int main()            ← Main Function
+{
+   int a;             ← Declaration
+   printf("Hello");   ← Statement
+   return 0;          ← Exit Status (0=success)
+}
+
+CONCLUSION:
+C = Foundation of all modern languages.
+Dennis Ritchie = Father of C. Hamesha yaad rakho!` },
+      { id:"u1q2", fire:3, marks:"4", pyq:"2014✓ 2017✓ 2019✓ 2021✓",
+        q:"Explain data types in C with size and range.",
+        ans:`DEFINITION: Data type = variable mein kaun sa data store hoga.
+
+BASIC DATA TYPES:
+Type   | Size | Range/Description
+-------|------|---------------------------
+int    | 4 B  | -2,147,483,648 to +2,147,483,647
+float  | 4 B  | 6-7 decimal digits
+double | 8 B  | 15-16 decimal digits
+char   | 1 B  | -128 to 127
+void   |  —   | No value
+
+MODIFIERS: short, long, signed, unsigned
+Example: long int = 8 bytes, unsigned int = 0 to 4B
+
+DERIVED TYPES: array, pointer, function
+USER-DEFINED: struct, union, enum, typedef
+
+FORMAT SPECIFIERS:
+%d=int, %f=float, %lf=double, %c=char, %s=string
+
+CONCLUSION: Sahi data type use karo — memory aur range dono important!` },
+      { id:"u1q3", fire:3, marks:"4", pyq:"2014✓ 2017✓ 2022✓",
+        q:"Differentiate between break and continue with examples.",
+        ans:`DEFINITION: Dono loop control statements hain jo flow change karte hain.
+
+DIFFERENCE:
+Feature  | break                  | continue
+---------|------------------------|------------------------
+Action   | Loop/switch BAND karo  | Current iteration SKIP
+Goes to  | Loop ke baad ka code   | Same loop ka next round
+Use in   | Loop AND switch both   | Only in loops
+
+BREAK EXAMPLE:
+for(i=1; i<=5; i++) {
+   if(i==3) break;
+   printf("%d ", i);  // Output: 1 2
+}
+
+CONTINUE EXAMPLE:
+for(i=1; i<=5; i++) {
+   if(i==3) continue;
+   printf("%d ", i);  // Output: 1 2 4 5
+}
+
+SHORT TRICK: break = bahar jaao, continue = agla round` },
+      { id:"u1q4", fire:2, marks:"12", pyq:"2015✓ 2016✓ 2019✓",
+        q:"Explain all types of operators in C with examples.",
+        ans:`DEFINITION: Operator = operation perform karne wala symbol.
+
+TYPES:
+1. Arithmetic: + - * / %
+   a=10, b=3 → a+b=13, a%b=1, a/b=3
+
+2. Relational: == != > < >= <=
+   Returns TRUE(1) or FALSE(0)
+
+3. Logical: && (AND) || (OR) ! (NOT)
+   if(a>0 && b>0) — dono positive check
+
+4. Assignment: = += -= *= /= %=
+   a += 5; means a = a + 5;
+
+5. Unary: ++ -- (increment/decrement)
+   a++; (post-increment), ++a; (pre-increment)
+
+6. Conditional/Ternary: cond ? val1 : val2
+   max = (a>b) ? a : b;
+
+7. Bitwise: & | ^ ~ << >>
+   Works directly on binary bits
+
+8. Special: sizeof(), comma(,), & (address), * (deref)
+   sizeof(int) = 4
+
+PRECEDENCE (High → Low):
+() → Unary → */% → +- → Relational → && → || → ?: → =` },
+      { id:"u1q5", fire:3, marks:"12", pyq:"2019✓ 2021✓ 2022✓",
+        q:"Explain if, if-else, switch, while, do-while, for loops.",
+        ans:`SELECTION STATEMENTS:
+
+if(cond) { ... }
+
+if(cond) { true_part; } else { false_part; }
+
+if(c1) { s1; } else if(c2) { s2; } else { sn; }
+
+switch(expr) {
+   case 1: ...; break;
+   case 2: ...; break;
+   default: ...;
+}
+NOTE: switch = int/char/enum ONLY — float NAHI! (PYQ 2015✓ 2017✓)
+
+LOOPING STATEMENTS:
+while(condition) { ...; update; }
+→ Entry controlled — may NOT execute if false
+
+do { ...; update; } while(condition);
+→ Exit controlled — executes AT LEAST ONCE
+
+for(init; condition; update) { ...; }
+→ When iteration count is known
+
+COMPARISON TABLE:
+if = 1 condition, switch = multiple discrete values
+while = condition first, do-while = body first` }
+    ],
+    pyqTable:[
+      {year:2014,q:"C developed by Dennis Ritchie (MCQ)",type:"MCQ",m:2},
+      {year:2014,q:"char range = -128 to 127 (MCQ)",type:"MCQ",m:2},
+      {year:2014,q:"8%10 = 8 (MCQ)",type:"MCQ",m:2},
+      {year:2014,q:"switch case separated by break (MCQ)",type:"MCQ",m:2},
+      {year:2014,q:"char array ends with null character (MCQ)",type:"MCQ",m:2},
+      {year:2014,q:"Distinguish break vs continue",type:"Short",m:4},
+      {year:2014,q:"Relational operators",type:"Short",m:4},
+      {year:2015,q:"Underscore allowed in variable (MCQ)",type:"MCQ",m:2},
+      {year:2015,q:"switch cannot check Float (MCQ)",type:"MCQ",m:2},
+      {year:2015,q:"Unary ops: !, Sizeof, ~ (MCQ)",type:"MCQ",m:2},
+      {year:2015,q:"Discuss various operators in C",type:"Long",m:12},
+      {year:2016,q:"Tokens = individual units of C (MCQ)",type:"MCQ",m:2},
+      {year:2016,q:"Discuss types of operators",type:"Short",m:4},
+      {year:2017,q:"= vs == difference",type:"Short",m:4},
+      {year:2019,q:"Explain if and switch with example",type:"Long",m:12},
+      {year:2019,q:"Types of loops in C",type:"Long",m:12},
+      {year:2021,q:"Key features of C",type:"Short",m:4},
+      {year:2021,q:"Algorithm vs Flowchart",type:"Long",m:12},
+      {year:2021,q:"Palindrome program",type:"Long",m:12},
+      {year:2022,q:"Tokens in C",type:"Short",m:4},
+      {year:2022,q:"if/if-else/nested/cascaded syntax",type:"Long",m:12},
+      {year:2022,q:"Loops with break and continue",type:"Long",m:12},
+      {year:2025,q:"break statement role in C",type:"Short",m:2},
+      {year:2025,q:"goto statement use",type:"Short",m:2},
+      {year:2025,q:"sizeof(int)>-1 = True (MCQ)",type:"MCQ",m:2},
+    ],
+    programs:[
+      { name:"1. Armstrong Number", pyq:"2014✓ 2015✓",
+        code:`#include <stdio.h>
+#include <math.h>
+int main() {
+    int n, temp, sum=0, r, d=0;
+    printf("Enter number: ");
+    scanf("%d", &n);
+    temp = n;
+    while(temp) { d++; temp/=10; }
+    temp = n;
+    while(temp) {
+        r = temp % 10;
+        sum += pow(r, d);
+        temp /= 10;
+    }
+    if(sum==n) printf("Armstrong");
+    else printf("Not Armstrong");
+    return 0;
+}
+// 153 = 1^3+5^3+3^3 = 153 ✓ Armstrong!` },
+      { name:"2. Palindrome Number Check", pyq:"2021✓",
+        code:`#include <stdio.h>
+int main() {
+    int n, rev=0, r, temp;
+    printf("Enter number: ");
+    scanf("%d", &n);
+    temp = n;
+    while(temp) {
+        r = temp % 10;
+        rev = rev*10 + r;
+        temp /= 10;
+    }
+    if(n==rev) printf("Palindrome");
+    else printf("Not Palindrome");
+    return 0;
+}
+// 121 → rev=121 → Palindrome!` },
+      { name:"3. Multiplication Table", pyq:"2014✓",
+        code:`#include <stdio.h>
+int main() {
+    int n, i;
+    printf("Enter number: ");
+    scanf("%d", &n);
+    for(i=1; i<=10; i++)
+        printf("%d x %d = %d\\n", n, i, n*i);
+    return 0;
+}` }
+    ],
+    tricks:["🧠 C = Dennis Ritchie, 1972, Bell Labs — hamesha yaad!","🧠 switch = ONLY int/char/enum (float NAHI! — PYQ trick)","🧠 break = bahar, continue = agla round","🧠 Size: char=1B, int=4B, float=4B, double=8B","🧠 & = bitwise AND (single), && = logical AND (double)"],
+    mistakes:["❌ Semicolon bhoolna after statements","❌ if(a=5) instead of if(a==5) — assignment vs comparison!","❌ switch mein break bhoolna → fall-through problem","❌ float ko switch mein use karna → compiler error"],
+    revision:["C = Dennis Ritchie, 1972, Bell Labs, Structured + Middle Level","int=4B, float=4B, double=8B, char=1B, void=no value","Operators: Arithmetic, Relational, Logical, Assignment, Unary, Bitwise, Ternary","if-else-switch = Selection; while/do-while/for = Looping","switch = int/char/enum ONLY (no float — most asked MCQ!)","break = exit loop/switch, continue = skip current iteration"]
+  },
+  2: {
+    color:"#10B981", title:"Unit 2 — Functions",
+    vvi:[
+      { id:"u2q1", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2019✓",
+        q:"What is a function? Types, syntax, and complete example.",
+        ans:`DEFINITION:
+Function = specific kaam karne wala code block.
+Jab call karo, woh kaam ho jaata hai. Code reusable hota hai.
+
+TYPES:
+1. Library Functions — Pehle se bani hain (printf, scanf, strlen)
+2. User Defined Functions — Hum khud banate hain
+
+THREE PARTS:
+1. Prototype (Declaration — compiler ko pehle batao):
+   int add(int a, int b);   ← semicolon hota hai
+
+2. Definition (Actual code):
+   int add(int a, int b) { return a + b; }
+
+3. Function Call:
+   result = add(5, 3);      ← arguments pass karo
+
+COMPLETE EXAMPLE:
+#include <stdio.h>
+int add(int a, int b);    // Prototype
+int main() {
+   printf("Sum = %d", add(5, 3));  // Call → 8
+   return 0;
+}
+int add(int a, int b) {   // Definition
+   return a + b;
+}
+
+CONCLUSION: Functions = code modular + reusable + easy to debug.` },
+      { id:"u2q2", fire:3, marks:"4-12", pyq:"2015✓ 2016✓ 2017✓ 2021✓ 2025✓",
+        q:"Differentiate Call by Value vs Call by Reference with programs.",
+        ans:`DEFINITION: Function mein arguments pass karne ke 2 methods.
+
+DIFFERENCE:
+Feature    | Call by Value       | Call by Reference
+-----------|---------------------|-------------------
+What sent  | Copy of value       | Address (&) of var
+Original   | NOT changed         | CHANGED!
+Memory     | Extra copy banata   | Same memory use
+Safe?      | SAFE (default)      | Original changes
+Syntax     | func(x)             | func(&x) with *param
+
+CALL BY VALUE (original unchanged):
+void swap(int a, int b) {
+   int t = a; a = b; b = t;
+}
+int main() { int x=5, y=10; swap(x,y); }
+// x=5, y=10 — UNCHANGED! (copy gaya tha)
+
+CALL BY REFERENCE (original changes):
+void swap(int *a, int *b) {
+   int t = *a; *a = *b; *b = t;
+}
+int main() {
+   int x=5, y=10;
+   swap(&x, &y);  // x=10, y=5 now!
+}
+
+SHORT TRICK: Value = copy (safe), Reference = address & (changes original)` },
+      { id:"u2q3", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2019✓",
+        q:"What is recursion? Write factorial program. Advantages/disadvantages.",
+        ans:`DEFINITION:
+Recursion = function khud apne aap ko call kare.
+BASE CASE zaroor honi chahiye — warna infinite recursion = crash!
+
+ADVANTAGES:
+1. Complex problems simple ho jaate hain
+2. Code clean aur small hota hai
+3. Tree, graph problems ke liye best
+
+DISADVANTAGES:
+1. Stack overflow ka risk (too many calls)
+2. Memory zyada use hoti hai
+3. Debug karna mushkil
+
+FACTORIAL PROGRAM:
+#include <stdio.h>
+int fact(int n) {
+   if(n==0 || n==1) return 1;  // BASE CASE
+   return n * fact(n-1);        // Recursive call
+}
+int main() {
+   int n; scanf("%d", &n);
+   printf("Factorial = %d", fact(n));
+}
+
+RECURSION TREE (fact(4)):
+fact(4) → 4 * fact(3)
+           → 3 * fact(2)
+              → 2 * fact(1) → 1 ← BASE CASE
+= 4*3*2*1 = 24
+
+CONCLUSION: Base case bhoolna = infinite recursion = stack overflow!` },
+      { id:"u2q4", fire:3, marks:"4-12", pyq:"2015✓ 2016✓ 2017✓ 2021✓ 2025✓",
+        q:"What are storage classes? Explain all four with examples.",
+        ans:`DEFINITION:
+Storage class = variable ki scope, lifetime, default value define karta hai.
+
+4 STORAGE CLASSES:
+Class    | Scope  | Lifetime     | Default | Keyword
+---------|--------|--------------|---------|---------------
+auto     | Block  | Block        | Garbage | auto int x;
+register | Block  | Block        | Garbage | register int i;
+static   | Block  | Entire prog  | 0       | static int c;
+extern   | Global | Entire prog  | 0       | extern int g;
+
+KEY POINTS:
+• auto = DEFAULT (sab local variables auto hi hote hain)
+• register = CPU register mein (fast, limited count)
+• static = value retain karta hai (0 se start hota hai)
+• extern = doosri file ka global variable use karna
+
+STATIC EXAMPLE (Exam mein zyada aata hai!):
+void counter() {
+   static int c = 0;   // Value retain hoti hai!
+   c++;
+   printf("Count = %d\n", c);
+}
+// 3 baar call karo: Count=1, Count=2, Count=3
+
+SHORT TRICK: CARS = auto, register, static, extern` }
+    ],
+    pyqTable:[
+      {year:2014,q:"Recursion? Explain advantages",type:"Short",m:4},
+      {year:2015,q:"Function? User-defined functions?",type:"Short",m:4},
+      {year:2015,q:"Storage class? Discuss all classes",type:"Short",m:4},
+      {year:2015,q:"Functions vs Macros difference",type:"Short",m:4},
+      {year:2015,q:"Recursion + Fibonacci up to 1000",type:"Long",m:12},
+      {year:2016,q:"Call by value/reference with swap program",type:"Short",m:4},
+      {year:2016,q:"Recursive function: adv/disadv + sum of n",type:"Long",m:12},
+      {year:2017,q:"Macro? Why use macro?",type:"Short",m:4},
+      {year:2017,q:"Scope & storage: register, static, local",type:"Long",m:12},
+      {year:2017,q:"Scope, lifetime, default — all 4 classes",type:"Long",m:12},
+      {year:2017,q:"Formal vs actual arguments",type:"Long",m:12},
+      {year:2018,q:"Prototype function explanation",type:"Short",m:4},
+      {year:2019,q:"Define recursion",type:"Short",m:2},
+      {year:2021,q:"Call by value vs call by reference",type:"Long",m:12},
+      {year:2025,q:"Pass by value vs pass by reference",type:"Short",m:4},
+      {year:2025,q:"Scope: global, extern, static, local, register",type:"Long",m:12},
+    ],
+    programs:[
+      { name:"1. Fibonacci Series (Recursion)", pyq:"2015✓ 2016✓",
+        code:`#include <stdio.h>
+int fib(int n) {
+    if(n <= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+int main() {
+    int i;
+    printf("Fibonacci: ");
+    for(i=0; i<8; i++)
+        printf("%d ", fib(i));
+    return 0;
+}
+// Output: 0 1 1 2 3 5 8 13` },
+      { name:"2. Sum of N Numbers (Recursion)", pyq:"2016✓",
+        code:`#include <stdio.h>
+int sum(int n) {
+    if(n == 0) return 0;
+    return n + sum(n-1);
+}
+int main() {
+    int n;
+    printf("Enter n: "); scanf("%d", &n);
+    printf("Sum = %d", sum(n));
+    return 0;
+}
+// n=5: Sum = 15` },
+      { name:"3. Swap Using Call by Reference", pyq:"2016✓ 2021✓",
+        code:`#include <stdio.h>
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+int main() {
+    int x=5, y=10;
+    printf("Before: x=%d y=%d\\n", x, y);
+    swap(&x, &y);
+    printf("After:  x=%d y=%d", x, y);
+    return 0;
+}
+// Before: x=5 y=10
+// After:  x=10 y=5` }
+    ],
+    tricks:["🧠 CARS = auto, Register, Static, Extern (order yaad karo)","🧠 Static = 0 se start, value retain karta hai throughout!","🧠 Call by Value = copy, Reference = address (&)","🧠 Recursion mein BASE CASE bhoolna = Stack Overflow!","🧠 Prototype = function ka pehle ka introduction (with semicolon)"],
+    mistakes:["❌ Recursion mein base case bhoolna → infinite crash","❌ Call by value mein original change expect karna","❌ Static aur Global variables confuse karna (different scope)","❌ Prototype mein semicolon bhoolna"],
+    revision:["Function = block of code for specific task (reusable)","Prototype = declaration before use, has semicolon","Call by Value = copy sent (safe, original unchanged)","Call by Reference = address (&) sent (original changes!)","Recursion = function calls itself (BASE CASE MUST!)","auto=default/garbage, register=fast/CPU, static=retain/0, extern=global/0","Formal = function parameters, Actual = arguments passed in call"]
+  },
+  3: {
+    color:"#F59E0B", title:"Unit 3 — Arrays & Strings",
+    vvi:[
+      { id:"u3q1", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2019✓ 2022✓",
+        q:"What is array? Explain 1D and 2D arrays with memory and examples.",
+        ans:`DEFINITION:
+Array = same data type ke multiple values ko ek naam se store karna.
+Contiguous (connected) memory locations mein hote hain.
+
+PROPERTIES:
+• Index 0 se start (last = size-1)
+• All elements same data type
+• Fixed size at compile time
+
+1D ARRAY:
+Syntax: data_type name[size];
+int marks[5] = {80, 75, 90, 65, 88};
+
+Memory Layout:
+Index:   0    1    2    3    4
+Value:   80   75   90   65   88
+Addr:    100  104  108  112  116
+         (each int = 4 bytes)
+
+Access: marks[2] = 90 (3rd element)
+
+2D ARRAY:
+Syntax: data_type name[rows][cols];
+int m[2][3] = {{1,2,3},{4,5,6}};
+       Col0 Col1 Col2
+Row0:    1    2    3
+Row1:    4    5    6
+Access: m[1][2] = 6
+
+TRAVERSAL 1D:
+for(i=0; i<5; i++) printf("%d ", marks[i]);
+
+TRAVERSAL 2D:
+for(i=0; i<2; i++)
+   for(j=0; j<3; j++) printf("%d ", m[i][j]);
+
+CONCLUSION: Array = homogeneous collection. Index 0 se start hamesha!` },
+      { id:"u3q2", fire:2, marks:"4-12", pyq:"2014✓ 2021✓ 2022✓",
+        q:"What are strings in C? Explain string functions with examples.",
+        ans:`DEFINITION:
+String = character ka 1D array jo '\0' (null character) se end hota hai.
+
+DECLARATION:
+char name[20];
+char name[] = "Sana";  // '\0' automatically add hota hai
+
+MEMORY:
+'S' 'a' 'n' 'a' '\0'
+ 0   1   2   3    4
+
+I/O:
+scanf("%s", str);    // Space tak input
+gets(str);           // Full line (space included)
+printf("%s", str);   // Print
+
+STRING FUNCTIONS (string.h):
+Function     | Use
+-------------|----------------------------------
+strlen(s)    | Length (null count NAHI karta)
+strcpy(d,s)  | s ko d mein copy
+strcat(d,s)  | s ko d ke end mein add
+strcmp(s1,s2)| 0=equal, else not equal
+strrev(s)    | String reverse
+
+EXAMPLE:
+char s[20] = "Hello";
+printf("%d", strlen(s));  // 5
+strcat(s, " AKU");
+printf("%s", s);  // Hello AKU
+
+KEY: String '\0' se end hoti hai — yahi arrays se different banata hai!` },
+      { id:"u3q3", fire:2, marks:"4", pyq:"2015✓ 2016✓",
+        q:"How are arrays passed to functions?",
+        ans:`KEY CONCEPT:
+Arrays C mein BY REFERENCE pass hote hain.
+Array name = base address (first element ka address).
+
+arr == &arr[0]  ← SAME cheez hai!
+
+SYNTAX:
+void printArr(int a[], int n) {
+   for(int i=0; i<n; i++)
+      printf("%d ", a[i]);
+}
+int main() {
+   int arr[5] = {1,2,3,4,5};
+   printArr(arr, 5);  // arr = base address, no & needed
+}
+// Output: 1 2 3 4 5
+
+IMPORTANT RULES:
+1. Array pass karte waqt & mat likho (already address hai)
+2. Size separately pass karo (sizeof inside func = pointer size)
+3. Function mein changes original array affect karte hain
+4. arr[i] == *(arr+i) — same value!
+
+NOTE: This is WHY pointers and arrays are closely related!` }
+    ],
+    pyqTable:[
+      {year:2014,q:"Smallest number in array of 10 elements",type:"Program",m:12},
+      {year:2014,q:"String length using pointer",type:"Program",m:12},
+      {year:2015,q:"Array? 2D? Initialization? Access?",type:"Short",m:4},
+      {year:2015,q:"Array using pointers — advantages + program",type:"Long",m:12},
+      {year:2016,q:"Array merits/demerits, 2D, access",type:"Short",m:4},
+      {year:2016,q:"Array using pointers — program",type:"Long",m:12},
+      {year:2016,q:"Second largest among 10 numbers",type:"Long",m:12},
+      {year:2019,q:"Array? Explain types with example",type:"Long",m:12},
+      {year:2022,q:"Pointer declaration, init, array of pointers",type:"Long",m:12},
+    ],
+    programs:[
+      { name:"1. Find Smallest in Array", pyq:"2014✓",
+        code:`#include <stdio.h>
+int main() {
+    int arr[10], i, min;
+    printf("Enter 10 elements:\\n");
+    for(i=0; i<10; i++) scanf("%d", &arr[i]);
+    min = arr[0];
+    for(i=1; i<10; i++)
+        if(arr[i] < min) min = arr[i];
+    printf("Smallest = %d", min);
+    return 0;
+}` },
+      { name:"2. Bubble Sort", pyq:"2022✓",
+        code:`#include <stdio.h>
+int main() {
+    int arr[5], i, j, temp;
+    printf("Enter 5 elements: ");
+    for(i=0; i<5; i++) scanf("%d", &arr[i]);
+    for(i=0; i<4; i++)
+        for(j=0; j<4-i; j++)
+            if(arr[j] > arr[j+1]) {
+                temp=arr[j]; arr[j]=arr[j+1]; arr[j+1]=temp;
+            }
+    printf("Sorted: ");
+    for(i=0; i<5; i++) printf("%d ", arr[i]);
+    return 0;
+}` },
+      { name:"3. String Reverse", pyq:"2022✓",
+        code:`#include <stdio.h>
+#include <string.h>
+int main() {
+    char str[100], rev[100];
+    int len, i;
+    printf("Enter string: "); gets(str);
+    len = strlen(str);
+    for(i=0; i<len; i++)
+        rev[i] = str[len-1-i];
+    rev[len] = '\\0';
+    printf("Reverse = %s", rev);
+    return 0;
+}` }
+    ],
+    tricks:["🧠 Index ALWAYS 0 to (size-1) — kabhi 'size' index nahi!","🧠 Array name = base address of first element","🧠 arr[i] = *(arr+i) — SAME cheez, alag notation","🧠 String ends with '\\0' (null terminator) — compulsory!","🧠 strlen() null count NAHI karta"],
+    mistakes:["❌ arr[n] access karna (valid: 0 to n-1 only!)","❌ String mein null character bhoolna → garbage print","❌ Array size function ko pass karna bhoolna","❌ 2D access: m[col][row] instead of m[row][col]"],
+    revision:["Array = same type, contiguous memory, index 0 se start","1D: int a[5]; 2D: int m[3][4]; Access: a[i], m[i][j]","String = char array ending with '\\0' null character","strlen/strcpy/strcat/strcmp — string.h mein hain","Array to function = base address (no &) pass hota hai","2D memory layout = Row-Major Order (row by row)"]
+  },
+  4: {
+    color:"#EF4444", title:"Unit 4 — Structures & Unions",
+    vvi:[
+      { id:"u4q1", fire:3, marks:"4-12", pyq:"2015✓ 2016✓ 2019✓ 2021✓ 2022✓ 2025✓",
+        q:"What is structure? What is union? Differentiate between them.",
+        ans:`STRUCTURE DEFINITION:
+Different data types ko ek naam se group karna.
+Har member ka ALAG (separate) memory hota hai.
+
+struct Student {
+   int roll;       // 4 bytes
+   char name[20];  // 20 bytes
+   float marks;    // 4 bytes
+};  // TOTAL = 28 bytes
+struct Student s1;
+s1.roll = 1;       // Dot operator se access
+s1.marks = 85.5;
+
+UNION DEFINITION:
+Sabhi members EK HI MEMORY share karte hain.
+Size = largest member ka size.
+
+union Data {
+   int i;     // 4 bytes
+   float f;   // 4 bytes
+   char ch;   // 1 byte
+};  // SIZE = 4 bytes (largest = int/float)
+
+DIFFERENCE TABLE:
+Feature      | Structure           | Union
+-------------|---------------------|--------------------
+Memory       | Each member alag    | All share same
+Size         | Sum of all members  | Largest member only
+Members      | All active at once  | ONE at a time
+Value stored | All stored          | Last assigned only
+Keyword      | struct              | union
+
+TRICK: Structure = "Sab ke alag ghar"
+        Union = "Ek kamra — ek waqt ek banda"` },
+      { id:"u4q2", fire:3, marks:"4-12", pyq:"2016✓ 2022✓ 2025✓",
+        q:"How to pass structures to functions? Explain both methods.",
+        ans:`METHOD 1 — PASS BY VALUE (copy pass hoti hai):
+void display(struct Student s) {
+   printf("Roll:%d Name:%s\\n", s.roll, s.name);
+}
+// Call: display(s1); — s1 ki copy jaati hai
+// Original s1 UNCHANGED
+
+METHOD 2 — PASS BY REFERENCE (Pointer):
+void display(struct Student *p) {
+   printf("Roll:%d Name:%s\\n", p->roll, p->name);
+}
+// Call: display(&s1); — s1 ka address jaata hai
+// Changes affect original!
+
+COMPLETE PROGRAM:
+#include <stdio.h>
+struct Student {
+   int roll; char name[20]; float marks;
+};
+void show(struct Student *p) {
+   printf("Roll: %d\\nName: %s\\nMarks: %.1f",
+          p->roll, p->name, p->marks);
+}
+int main() {
+   struct Student s = {1, "Sana", 90.5};
+   show(&s);
+   return 0;
+}
+// Roll: 1  Name: Sana  Marks: 90.5
+
+KEY:
+Dot (.) = struct var direct access
+Arrow (->) = struct pointer access
+By Reference = FAST (direct memory, no copy)` },
+      { id:"u4q3", fire:2, marks:"4", pyq:"2015✓ 2019✓",
+        q:"Explain bitwise operators with examples.",
+        ans:`DEFINITION: Integer data ke bits pe directly operate karte hain.
+
+OPERATORS (a=5=0101, b=3=0011 in binary):
+Op | Name        | Example         | Result
+---|-------------|-----------------|-------
+&  | AND         | a & b = 0001    | 1
+|  | OR          | a | b = 0111    | 7
+^  | XOR         | a ^ b = 0110    | 6
+~  | NOT (invert)| ~a = ...1111010 | -6
+<< | Left Shift  | a<<1 = 1010     | 10 (x2)
+>> | Right Shift | a>>1 = 0010     | 2  (÷2)
+
+RULES:
+& = 1 when BOTH bits are 1
+| = 1 when ANY bit is 1
+^ = 1 when bits are DIFFERENT
+<< n = multiply by 2^n
+>> n = divide by 2^n
+
+PRACTICAL USE:
+(n & 1) = 0 → n is even, = 1 → odd
+a<<2 = a*4 (fast multiplication by power of 2)` }
+    ],
+    pyqTable:[
+      {year:2015,q:"User defined data types? Structure vs Union",type:"Short",m:4},
+      {year:2016,q:"Structure variable. Structure vs Union differences",type:"Short",m:4},
+      {year:2017,q:"Enumeration and structure with examples",type:"Long",m:12},
+      {year:2018,q:"Structure within structure",type:"Long",m:12},
+      {year:2019,q:"Define union. Explain with example",type:"Short",m:4},
+      {year:2019,q:"Explain structure with example",type:"Short",m:4},
+      {year:2022,q:"Structure variable passed as parameter",type:"Long",m:12},
+      {year:2025,q:"Structure and union? Differences?",type:"Short",m:4},
+    ],
+    programs:[
+      { name:"1. Student Structure Program", pyq:"2016✓ 2017✓",
+        code:`#include <stdio.h>
+struct Student {
+    int roll;
+    char name[20];
+    float marks;
+};
+int main() {
+    struct Student s1;
+    printf("Enter roll name marks: ");
+    scanf("%d %s %f", &s1.roll, s1.name, &s1.marks);
+    printf("Roll: %d\\nName: %s\\nMarks: %.1f",
+           s1.roll, s1.name, s1.marks);
+    return 0;
+}` },
+      { name:"2. Union Example", pyq:"2019✓ 2025✓",
+        code:`#include <stdio.h>
+union Data {
+    int i;
+    float f;
+    char ch;
+};
+int main() {
+    union Data d;
+    printf("Size = %lu\\n", sizeof(d)); // 4 bytes
+    d.i = 10;
+    printf("i = %d\\n", d.i);           // 10
+    d.f = 3.14;   // i now corrupted!
+    printf("f = %.2f\\n", d.f);         // 3.14
+    return 0;
+}` }
+    ],
+    tricks:["🧠 Structure = 'Alag ghar' (separate memory for each member)","🧠 Union = 'Ek kamra' (all share same memory)","🧠 struct size = sum of all members (+padding maybe)","🧠 union size = ONLY largest member","🧠 Dot (.) = struct var, Arrow (->) = struct pointer"],
+    mistakes:["❌ struct/union closing brace ke baad semicolon ZAROOR: };","❌ Struct pointer mein dot use karna instead of arrow (->)","❌ Union mein 2 members ek saath use karna → corrupted value!"],
+    revision:["struct = different types, each has own memory","union = all members share same memory","struct size = sum of members, union size = largest member","s.member (direct access), p->member (pointer access)","Bitwise: & | ^ ~ << >>","Self-referential structure = linked list ke liye (pointer to itself)"]
+  },
+  5: {
+    color:"#8B5CF6", title:"Unit 5 — Pointers ⭐ HIGHEST PRIORITY",
+    vvi:[
+      { id:"u5q1", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2018✓ 2019✓ 2021✓ 2022✓ 2025✓",
+        q:"What is a pointer? Declaration, initialization, arithmetic with examples.",
+        ans:`DEFINITION:
+Pointer = ek variable jo doosre variable ka ADDRESS store karta hai.
+
+DECLARATION:
+data_type *variable_name;
+int *p;     // integer pointer
+float *fp;  // float pointer
+char *cp;   // char pointer
+
+INITIALIZATION:
+int a = 10;
+int *p = &a;   // p = a ka address (e.g. 1000)
+
+TWO KEY OPERATORS:
+& = Address of: &a = a ka memory address
+* = Dereference: *p = value at address stored in p
+
+EXAMPLE:
+int a = 10;
+int *p = &a;
+printf("%d", a);    // 10  (direct value)
+printf("%d", *p);   // 10  (value via pointer)
+printf("%p", p);    // 1000 (address in p)
+*p = 50;            // a ki value ab 50!
+
+POINTER ARITHMETIC:
+int arr[5] = {10,20,30,40,50};
+int *p = arr;        // p points to arr[0]
+
+Memory (int = 4 bytes):
+Addr: 2000  2004  2008  2012  2016
+Val:   10    20    30    40    50
+        ↑
+        p   p+1   p+2
+
+*(p)   = 10, *(p+1) = 20, *(p+2) = 30
+p+1 means p + sizeof(int) = 2000 + 4 = 2004
+
+CONCLUSION: & = give address, * = take value` },
+      { id:"u5q2", fire:3, marks:"4-12", pyq:"2015✓ 2016✓ 2019✓ 2022✓",
+        q:"Explain pointers with arrays. 4 ways to access elements.",
+        ans:`KEY CONCEPT:
+Array name = constant pointer to first element.
+arr == &arr[0]  ← SAME cheez!
+
+4 WAYS TO ACCESS arr[2]:
+int arr[5] = {5,10,15,20,25};
+int *p = arr;
+
+arr[2]    = 15  // Array notation
+*(arr+2)  = 15  // Pointer with array name
+p[2]      = 15  // Array notation with pointer
+*(p+2)    = 15  // Pointer notation — all same!
+
+ACCESS ALL ELEMENTS:
+for(i=0; i<5; i++)
+   printf("%d ", *(p+i));
+// 5 10 15 20 25
+
+ADDRESS RELATIONS:
+arr+i == p+i == &arr[i]  ← all equal addresses!
+arr[i] == *(arr+i)       ← same values!
+
+PROGRAM — String Length via Pointer:
+char *s = "Hello";
+int len = 0;
+while(*s != '\\0') { len++; s++; }
+printf("Length = %d", len);  // 5
+
+CONCLUSION: arr[i] = *(arr+i) — most important relation!` },
+      { id:"u5q3", fire:3, marks:"4-12", pyq:"2014✓ 2022✓",
+        q:"Explain pointers with structures. What is arrow operator (->)?",
+        ans:`DEFINITION:
+Structure pointer = structure variable ka address store karne wala pointer.
+
+DECLARATION:
+struct Student *ps;   // Pointer to struct Student
+ps = &s;             // s ka address assign
+
+ACCESS MEMBERS — 2 equivalent ways:
+(*ps).roll = 1;   // Method 1: dereference + dot
+ps->roll = 1;     // Method 2: ARROW OPERATOR (preferred!)
+// ps->member = (*ps).member — IDENTICAL!
+
+COMPLETE PROGRAM:
+#include <stdio.h>
+struct Student {
+   int roll; char name[20]; float marks;
+};
+int main() {
+   struct Student s = {1, "Sana", 90.5};
+   struct Student *ps = &s;
+   printf("Roll: %d\\n", ps->roll);    // 1
+   printf("Name: %s\\n", ps->name);    // Sana
+   printf("Marks: %.1f", ps->marks);  // 90.5
+   return 0;
+}
+
+KEY RULE:
+Struct variable  → use . (dot)
+Struct pointer   → use -> (arrow)
+
+TRICK: Arrow (->) = pointer wala dot operator!` },
+      { id:"u5q4", fire:2, marks:"4-12", pyq:"2018✓ 2022✓",
+        q:"What are arrays of pointers? What is pointer to function?",
+        ans:`ARRAYS OF POINTERS:
+Array jisme har element ek pointer ho.
+Most common use = String arrays.
+
+char *names[3] = {"Ram", "Shyam", "Mohan"};
+printf("%s", names[1]);    // Shyam
+printf("%c", names[0][1]); // a (from Ram)
+
+Memory:
+names[0] → [addr] → "Ram"
+names[1] → [addr] → "Shyam"
+names[2] → [addr] → "Mohan"
+
+WHY BETTER than 2D char array?
+char names[3][20] — wastes memory (each row = 20 chars)
+char *names[3]    — efficient (exact memory used)
+
+POINTER TO FUNCTION:
+int add(int a, int b) { return a+b; }
+int main() {
+   int (*fp)(int, int) = add;  // Function pointer
+   printf("%d", fp(5,3));       // 8
+}
+// Use: callback functions, function tables` }
+    ],
+    pyqTable:[
+      {year:2014,q:"What are pointers? Why important?",type:"Short",m:4},
+      {year:2014,q:"String length using pointer (program)",type:"Program",m:12},
+      {year:2015,q:"Array using pointers — advantages + program",type:"Long",m:12},
+      {year:2016,q:"Array using pointers — program",type:"Long",m:12},
+      {year:2018,q:"Structure pointer uses -> operator (MCQ)",type:"MCQ",m:2},
+      {year:2018,q:"Pointer to function (Q2d)",type:"Short",m:4},
+      {year:2018,q:"Pointers — advantages and examples",type:"Long",m:12},
+      {year:2019,q:"Define pointer",type:"Short",m:2},
+      {year:2019,q:"Pointer + passing pointer to function",type:"Long",m:12},
+      {year:2021,q:"What is a pointer? (MCQ)",type:"MCQ",m:2},
+      {year:2022,q:"Pointer: declaration, init, array of pointers",type:"Long",m:12},
+      {year:2022,q:"* vs & in C pointer",type:"Short",m:4},
+      {year:2025,q:"Pointer and its uses",type:"Short",m:4},
+      {year:2025,q:"Pointer to pointer, realloc",type:"Long",m:12},
+    ],
+    programs:[
+      { name:"1. Swap Using Pointers", pyq:"2015✓ 2016✓",
+        code:`#include <stdio.h>
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+int main() {
+    int a=5, b=10;
+    printf("Before: a=%d b=%d\\n", a, b);
+    swap(&a, &b);
+    printf("After:  a=%d b=%d", a, b);
+    return 0;
+}
+// Before: a=5 b=10
+// After:  a=10 b=5` },
+      { name:"2. Array Access Using Pointer", pyq:"2015✓ 2016✓",
+        code:`#include <stdio.h>
+int main() {
+    int arr[5] = {10,20,30,40,50};
+    int *p = arr, i, sum=0;
+    printf("Elements:\\n");
+    for(i=0; i<5; i++) {
+        printf("arr[%d] = %d\\n", i, *(p+i));
+        sum += *(p+i);
+    }
+    printf("Sum = %d", sum);
+    return 0;
+}` },
+      { name:"3. String Length Using Pointer", pyq:"2014✓",
+        code:`#include <stdio.h>
+int main() {
+    char str[50], *p;
+    int len = 0;
+    printf("Enter string: ");
+    gets(str);
+    p = str;
+    while(*p != '\\0') { len++; p++; }
+    printf("Length = %d", len);
+    return 0;
+}` }
+    ],
+    tricks:["🧠 & = Address lo (give address), * = Value lo (take value)","🧠 arr[i] = *(arr+i) = *(p+i) — ALL SAME!","🧠 -> = Arrow = pointer wala dot (for struct pointer)","🧠 NULL pointer = kisi valid memory ko point nahi karta","🧠 p+1 moves sizeof(data_type) bytes, NOT just 1 byte!"],
+    mistakes:["❌ *p use karna bina initialize kiye (wild/dangling pointer = crash!)","❌ Array pass karte waqt & use karna (arr already base address hai)","❌ Struct pointer mein dot (.) use karna instead of arrow (->)","❌ Memory leak: malloc ke baad free() nahi karna"],
+    revision:["Pointer = variable storing address of another variable","& = address operator, * = dereference (value at address)","int *p = &a; → p=address of a, *p=value of a (10)","arr[i] = *(arr+i) — arrays and pointers closely related!","p->member = (*p).member — for structure pointers","NULL = no valid address, Dangling = freed memory (dangerous!)","Pointer arithmetic: p+n moves n*sizeof(type) bytes forward"]
+  },
+  6: {
+    color:"#EC4899", title:"Unit 6 — C Preprocessor",
+    vvi:[
+      { id:"u6q1", fire:3, marks:"4-12", pyq:"2016✓ 2021✓ 2025✓",
+        q:"What is C Preprocessor? Explain role and common directives.",
+        ans:`DEFINITION:
+Preprocessor = actual compilation se PEHLE source code process karne wala program.
+Commands # se start hote hain. Koi semicolon NAHI!
+
+ROLE:
+1. Constants aur macros define karna (#define)
+2. Header files insert karna (#include)
+3. Conditional compilation karna (#ifdef)
+4. Code expand karke compiler ko dena
+
+FLOW:
+Source.c → PREPROCESSOR → Modified.i → COMPILER → .o → LINKER → .exe
+
+COMMON DIRECTIVES:
+Directive | Purpose              | Example
+----------|----------------------|---------------------
+#include  | Header file include  | #include <stdio.h>
+#define   | Macro/constant       | #define PI 3.14
+#undef    | Undefine macro       | #undef PI
+#ifdef    | If macro defined     | #ifdef DEBUG
+#ifndef   | If NOT defined       | #ifndef HEADER_H
+#if       | Condition check      | #if MAX > 100
+#else     | Alternative          | #else
+#endif    | End condition        | #endif
+#error    | Custom error         | #error "Wrong!"
+#pragma   | Compiler specific    | #pragma once
+
+MEMORY TRICK: "DICOMP"
+D=Define, I=Include, C=Conditional, O=Other, M=Macros, P=Process first!` },
+      { id:"u6q2", fire:3, marks:"4-12", pyq:"2014✓ 2015✓ 2016✓ 2017✓ 2025✓",
+        q:"Explain #define for constants and functional macros.",
+        ans:`#define FOR CONSTANTS:
+Syntax: #define MACRO_NAME value  ← NO semicolon EVER!
+
+EXAMPLES:
+#define PI 3.14159
+#define MAX 100
+
+USAGE:
+float area = PI * r * r;   // PI replaced by 3.14159
+int arr[MAX];               // MAX replaced by 100
+
+#define FOR FUNCTIONAL MACROS:
+Syntax: #define NAME(args) (expression)
+
+EXAMPLES:
+#define SQUARE(x)  ((x)*(x))
+#define MAX2(a,b)  ((a)>(b)?(a):(b))
+#define CUBE(x)    ((x)*(x)*(x))
+
+USAGE:
+printf("%d", SQUARE(5));   // 25
+printf("%d", MAX2(10,20)); // 20
+
+⚠️ PARENTHESES ZAROOR LAGAO!
+WRONG:  #define SQ(x) x*x
+SQ(2+3) = 2+3*2+3 = 11 ← WRONG!
+
+CORRECT: #define SQ(x) ((x)*(x))
+SQ(2+3) = ((2+3)*(2+3)) = 25 ← CORRECT!
+
+CONCLUSION: #define mein KABHIE semicolon mat lagao!` },
+      { id:"u6q3", fire:3, marks:"4", pyq:"2015✓ 2016✓ 2017✓ 2025✓",
+        q:"Differentiate Macros vs Functions with comparison table.",
+        ans:`MACRO vs FUNCTION — COMPLETE TABLE:
+Feature      | Macro               | Function
+-------------|---------------------|---------------------
+Processed by | Preprocessor        | Compiler
+Execution    | Inline (text replace)| Actual function call
+Speed        | FASTER              | Slower (overhead)
+Type check   | NO                  | YES
+Return type  | NO                  | YES
+Memory       | No extra memory     | Uses stack
+Arguments    | No type check       | Type checked
+Debugging    | Difficult           | Easy
+Safety       | Less safe           | More safe
+
+MACRO:
+#define SQ(x) ((x)*(x))
+int s = SQ(5);  // Becomes ((5)*(5)) — inline!
+
+FUNCTION:
+int sq(int x) { return x*x; }
+int s = sq(5);  // Actual function call
+
+WHEN TO USE:
+Macro → Simple, small, speed-critical tasks
+Function → Complex, large, need type-safety
+
+SHORT TRICK:
+Macro = Fast + Risky (no type check)
+Function = Slow + Safe (type checked)` },
+      { id:"u6q4", fire:2, marks:"4-12", pyq:"2016✓ 2017✓",
+        q:"Explain conditional compilation using #ifdef.",
+        ans:`DEFINITION:
+Conditional compilation = code ke kuch parts ko selectively compile karna.
+Platform-specific code aur debug mode ke liye useful.
+
+SYNTAX:
+#ifdef MACRO_NAME
+   // Code if MACRO_NAME is defined
+#else
+   // Code if NOT defined
+#endif
+
+DEBUG MODE EXAMPLE:
+#define DEBUG   // Comment this to disable debug
+
+int main() {
+   int x = 5;
+   #ifdef DEBUG
+      printf("DEBUG: x = %d\\n", x);
+   #else
+      printf("Release Mode\\n");
+   #endif
+   printf("Running!\\n");
+}
+
+#ifndef EXAMPLE (Header Guard — prevent double inclusion):
+#ifndef MYHEADER_H
+#define MYHEADER_H
+// Header file content
+#endif
+
+#if EXAMPLE:
+#define MAX 100
+#if MAX > 50
+   printf("MAX is big");
+#else
+   printf("MAX is small");
+#endif
+
+USE CASES:
+Debug/Release switching, Platform-specific code, Header guards` }
+    ],
+    pyqTable:[
+      {year:2014,q:"Explain #define with examples",type:"Short/Long",m:4},
+      {year:2015,q:"Functions vs Macros difference",type:"Short",m:4},
+      {year:2016,q:"Preprocessor commands + functions vs macros",type:"Long",m:12},
+      {year:2017,q:"Macro? Why use macro?",type:"Short",m:4},
+      {year:2017,q:"Program using macros to swap",type:"Short",m:4},
+      {year:2018,q:"#include replaced during preprocessing (MCQ)",type:"MCQ",m:2},
+      {year:2021,q:"Variables vs constants, preprocessor directives",type:"Long",m:12},
+      {year:2025,q:"Preprocessor: advantages, facilities provided",type:"Long",m:12},
+      {year:2025,q:"Macros: advantages/disadvantages, fgets vs gets",type:"Long",m:12},
+      {year:2025,q:"#define and #include — why and when use? (MCQ)",type:"MCQ",m:2},
+    ],
+    programs:[
+      { name:"1. Area of Circle Using Macro", pyq:"2016✓ 2017✓",
+        code:`#include <stdio.h>
+#define PI 3.14159
+#define AREA(r) (PI*(r)*(r))
+int main() {
+    float r, a;
+    printf("Enter radius: ");
+    scanf("%f", &r);
+    a = AREA(r);
+    printf("Area = %.2f", a);
+    return 0;
+}
+// r=5: Area = 78.54` },
+      { name:"2. Debug with #ifdef", pyq:"2016✓",
+        code:`#include <stdio.h>
+#define DEBUG
+
+int main() {
+    int x=10, y=20;
+    #ifdef DEBUG
+        printf("DEBUG: x=%d y=%d\\n", x, y);
+    #else
+        printf("Release Mode\\n");
+    #endif
+    printf("Sum = %d", x+y);
+    return 0;
+}
+// With #define DEBUG: prints debug line
+// Comment it: prints Release Mode` }
+    ],
+    tricks:["🧠 #define mein NO semicolon — sabse common mistake!","🧠 Macro args mein parentheses ZAROOR: ((x)*(x))","🧠 Macro = Preprocessor, Function = Compiler","🧠 #include <> = system file, \"\" = user defined file","🧠 Preprocessing ALWAYS before Compilation"],
+    mistakes:["❌ #define PI 3.14;  ← semicolon mat lagao!","❌ Macro mein parentheses nahi lagana → precedence bug","❌ #ifdef ke baad #endif bhoolna","❌ Macro ko function samajhna (no type check, no return type)"],
+    revision:["#define = constants and macros (NO semicolon EVER!)","#include <stdio.h> = system, \"myfile.h\" = user defined","#ifdef = if defined, #ifndef = if NOT defined, #endif = close","Macro = fast/inline, Function = safe/type-checked","Preprocessing happens BEFORE compilation","Flow: .c → Preprocessor (.i) → Compiler (.o) → Linker (exe)"]
+  },
+  7: {
+    color:"#06B6D4", title:"Unit 7 — File Handling ⭐ HIGHEST PRIORITY",
+    vvi:[
+      { id:"u7q1", fire:3, marks:"4-12", pyq:"2015✓ 2016✓ 2019✓ 2022✓ 2025✓",
+        q:"What is file handling? fopen(), fclose(), and all file modes.",
+        ans:`DEFINITION:
+File = secondary storage (disk) mein permanently data store karna.
+Program band ho jaaye phir bhi data rehta hai.
+
+WHY FILES?
+• Permanent storage (RAM temp hai, disk permanent)
+• Large data handle ho sakta hai
+• Multiple programs data share kar sakte hain
+
+FILE POINTER: FILE *fp;
+
+OPENING — fopen():
+Syntax: FILE *fopen(const char *name, const char *mode);
+fp = fopen("data.txt", "w");
+if(fp == NULL) { printf("Error!"); return 1; }
+→ NULL check COMPULSORY hai!
+
+FILE MODES:
+Mode | Description
+-----|----------------------------------------------
+r    | Read only (file MUST exist already)
+w    | Write (create new OR clear existing)
+a    | Append (add at end, create if missing)
+r+   | Read + Write both
+w+   | Read + Write (clears existing)
+a+   | Read + Append
+rb   | Read binary
+wb   | Write binary
+ab   | Append binary
+
+MEMORY TRICK:
+r = Read, w = Write/New, a = Append
++ = both read+write, b = binary
+
+CLOSING — fclose():
+int fclose(FILE *fp);
+Returns: 0 on success, EOF on failure
+ALWAYS close — warna data save nahi hoga!` },
+      { id:"u7q2", fire:3, marks:"4-12", pyq:"2015✓ 2019✓ 2022✓ 2025✓",
+        q:"Explain fprintf, fscanf, fgetc, fputc, fgets, fputs with examples.",
+        ans:`TEXT I/O FUNCTIONS:
+
+1. fprintf(fp, format, vars) — Formatted write
+   fprintf(fp, "%d %s %.2f\\n", roll, name, marks);
+
+2. fscanf(fp, format, &vars) — Formatted read
+   fscanf(fp, "%d %s %f", &roll, name, &marks);
+
+3. fgetc(fp) — Read ONE character
+   char ch = fgetc(fp);
+   while(ch != EOF) { putchar(ch); ch=fgetc(fp); }
+
+4. fputc(ch, fp) — Write ONE character
+   fputc('A', fp);
+
+5. fgets(str, n, fp) — Read ONE full LINE (safe)
+   fgets(line, 100, fp);  // reads up to 99 chars
+
+6. fputs(str, fp) — Write a string to file
+   fputs("Hello World\\n", fp);
+
+BINARY I/O:
+fread(ptr, size, count, fp)   — read binary data
+fwrite(ptr, size, count, fp)  — write binary data
+
+WRITE EXAMPLE:
+FILE *fp = fopen("test.txt", "w");
+fprintf(fp, "Name: Sana\\nMarks: 90\\n");
+fclose(fp);  // ALWAYS close!
+
+READ EXAMPLE:
+FILE *fp = fopen("test.txt", "r");
+char line[100];
+while(fgets(line, 100, fp) != NULL)
+   printf("%s", line);
+fclose(fp);` },
+      { id:"u7q3", fire:3, marks:"4-12", pyq:"2022✓ 2025✓",
+        q:"Explain fseek(), ftell(), rewind(). Sequential vs random access.",
+        ans:`RANDOM ACCESS — Move to Any Position!
+
+fseek() — File pointer ko move karo:
+Syntax: int fseek(FILE *fp, long offset, int origin);
+
+ORIGINS (starting point):
+SEEK_SET = file beginning se (byte 0)
+SEEK_CUR = current position se
+SEEK_END = file end se
+
+EXAMPLES:
+fseek(fp, 0, SEEK_SET);    // Go to beginning
+fseek(fp, 10, SEEK_SET);   // Go to byte 10
+fseek(fp, 5, SEEK_CUR);    // Move 5 bytes ahead
+fseek(fp, -5, SEEK_END);   // 5 bytes before end
+
+ftell() — Current position kya hai?
+Syntax: long ftell(FILE *fp);
+long pos = ftell(fp);  // returns byte position
+
+FIND FILE SIZE:
+fseek(fp, 0, SEEK_END);
+long size = ftell(fp);   // file size in bytes
+
+rewind() — Back to very beginning:
+Syntax: void rewind(FILE *fp);
+rewind(fp);  // same as fseek(fp, 0, SEEK_SET)
+
+SEQUENTIAL vs RANDOM:
+Feature    | Sequential        | Random Access
+-----------|-------------------|-----------------
+Access     | Start to end only | Any position
+Functions  | fgets, fprintf    | fseek, ftell
+Speed      | Slow for specific | Fast for specific
+Use case   | Log files, CSV    | Database records` },
+      { id:"u7q4", fire:2, marks:"4", pyq:"2022✓",
+        q:"Differentiate Text Files vs Binary Files.",
+        ans:`TEXT FILE vs BINARY FILE:
+Feature      | Text File           | Binary File
+-------------|---------------------|--------------------
+Data stored  | Characters (ASCII)  | Binary (0s and 1s)
+Readable     | Human readable ✓    | NOT human readable
+End of line  | \\n (newline)        | No special char
+Size         | Larger              | Smaller
+Speed        | Slower              | FASTER
+Open mode    | r, w, a             | rb, wb, ab
+Functions    | fprintf, fgets      | fread, fwrite
+Examples     | .txt, .csv, .c      | .dat, .bin, .exe
+
+TEXT FILE:
+FILE *fp = fopen("data.txt", "w");
+fprintf(fp, "123");  // Stores as '1','2','3' (3 bytes)
+
+BINARY FILE:
+FILE *fp = fopen("data.bin", "wb");
+int n = 123;
+fwrite(&n, sizeof(int), 1, fp);  // Stores as 4 bytes
+
+CONCLUSION:
+Text = human readable (large), Binary = compact + fast` }
+    ],
+    pyqTable:[
+      {year:2015,q:"Open/close file? Discuss all modes (Q3)",type:"Long",m:12},
+      {year:2016,q:"Why files? fopen/fclose/modes (Q3)",type:"Long",m:12},
+      {year:2019,q:"File? Write its operations (Q2c)",type:"Short",m:4},
+      {year:2022,q:"Sequential vs random access files (Q7a)",type:"Short",m:4},
+      {year:2022,q:"Reverse content of file and print it (Q7b)",type:"Program",m:8},
+      {year:2022,q:"File opening modes in C (Q2e)",type:"Short",m:4},
+      {year:2025,q:"FILE? fopen? close? random? ftell? rewind? (Q7)",type:"Long",m:12},
+      {year:2025,q:"Macros adv/disadv + fgets vs gets (Q6)",type:"Long",m:12},
+    ],
+    programs:[
+      { name:"1. Write Data to File", pyq:"2015✓ 2016✓",
+        code:`#include <stdio.h>
+int main() {
+    FILE *fp;
+    fp = fopen("data.txt", "w");
+    if(fp == NULL) {
+        printf("Cannot open file!"); return 1;
+    }
+    fprintf(fp, "Name: Sana\\n");
+    fprintf(fp, "Roll: 101\\n");
+    fprintf(fp, "Marks: 90.5\\n");
+    fclose(fp);
+    printf("Written successfully!");
+    return 0;
+}` },
+      { name:"2. Read Data from File", pyq:"2016✓ 2022✓",
+        code:`#include <stdio.h>
+int main() {
+    FILE *fp;
+    char line[100];
+    fp = fopen("data.txt", "r");
+    if(fp == NULL) {
+        printf("File not found!"); return 1;
+    }
+    while(fgets(line, sizeof(line), fp) != NULL)
+        printf("%s", line);
+    fclose(fp);
+    return 0;
+}` },
+      { name:"3. File Copy (Char by Char)", pyq:"2022✓",
+        code:`#include <stdio.h>
+int main() {
+    FILE *src, *dest;
+    char ch;
+    src  = fopen("source.txt", "r");
+    dest = fopen("copy.txt",   "w");
+    if(src==NULL || dest==NULL) {
+        printf("File error!"); return 1;
+    }
+    while((ch = fgetc(src)) != EOF)
+        fputc(ch, dest);
+    fclose(src); fclose(dest);
+    printf("File copied successfully!");
+    return 0;
+}` }
+    ],
+    tricks:["🧠 Modes: r=Read, w=Write(new), a=Append — RWA!","🧠 + means read+write both, b means binary","🧠 ALWAYS: if(fp==NULL) check after fopen!","🧠 ALWAYS: fclose(fp) at end — data loss hoga warna!","🧠 fseek=move, ftell=where am I, rewind=back to start","🧠 EOF = -1 = End of File — while loop mein check karo"],
+    mistakes:["❌ fopen() ke baad NULL check nahi karna → crash!","❌ fclose() bhool jaana → data save nahi hoga!","❌ r mode se write karna ya w mode se read karna","❌ EOF check nahi karna in while loops → infinite loop"],
+    revision:["FILE *fp = fopen(\"name\", \"mode\"); — file pointer declare","Modes: r=read, w=write/clear, a=append, +=both, b=binary","ALWAYS: if(fp==NULL) — mandatory check after fopen!","ALWAYS: fclose(fp) — mandatory at end!","fprintf/fscanf=formatted, fgetc/fputc=char, fgets/fputs=string","fread/fwrite=binary, fseek=move, ftell=position, rewind=start","EOF = -1, Sequential=start-to-end, Random=fseek to any position"]
+  }
+};
+
+const top30 = [
+  {n:1,q:"C language: definition, features, structure of C program",u:1,m:"12",f:3,p:"Every Year"},
+  {n:2,q:"Pointer: declaration, initialization, arithmetic",u:5,m:"12",f:3,p:"2014-2025 all"},
+  {n:3,q:"Call by Value vs Call by Reference with programs",u:2,m:"4-12",f:3,p:"2015✓16✓17✓21✓25✓"},
+  {n:4,q:"Storage classes: auto, register, static, extern",u:2,m:"4-12",f:3,p:"2015✓16✓17✓21✓25✓"},
+  {n:5,q:"Structure vs Union: differences with examples",u:4,m:"4-12",f:3,p:"2015✓16✓19✓21✓22✓25✓"},
+  {n:6,q:"File handling: fopen/fclose/modes — complete",u:7,m:"12",f:3,p:"2015✓16✓19✓22✓25✓"},
+  {n:7,q:"Recursion with factorial/Fibonacci program",u:2,m:"12",f:3,p:"2014✓15✓16✓19✓"},
+  {n:8,q:"1D and 2D arrays with memory layout",u:3,m:"4-12",f:3,p:"2014✓15✓16✓19✓22✓"},
+  {n:9,q:"Preprocessor: role and common directives",u:6,m:"12",f:3,p:"2016✓21✓25✓"},
+  {n:10,q:"#define constants and functional macros",u:6,m:"4-12",f:3,p:"2014✓15✓16✓17✓25✓"},
+  {n:11,q:"Macros vs Functions — difference table",u:6,m:"4",f:3,p:"2015✓16✓17✓25✓"},
+  {n:12,q:"fseek(), ftell(), rewind() — random file access",u:7,m:"12",f:3,p:"2022✓25✓"},
+  {n:13,q:"Pointers with arrays: 4 ways to access elements",u:5,m:"12",f:3,p:"2015✓16✓19✓22✓"},
+  {n:14,q:"All types of operators in C with examples",u:1,m:"12",f:2,p:"2015✓16✓19✓"},
+  {n:15,q:"if-else, switch statement — syntax + examples",u:1,m:"4-12",f:2,p:"2019✓22✓"},
+  {n:16,q:"All loops: while/do-while/for + break/continue",u:1,m:"12",f:2,p:"2015✓19✓22✓"},
+  {n:17,q:"Function definition, prototype, types of functions",u:2,m:"4-12",f:2,p:"2014✓15✓16✓"},
+  {n:18,q:"Pointers with structures + arrow operator (->)",u:5,m:"4-12",f:2,p:"2014✓22✓"},
+  {n:19,q:"Passing structures to functions (both methods)",u:4,m:"12",f:2,p:"2016✓22✓25✓"},
+  {n:20,q:"Data types in C: size and range table",u:1,m:"4",f:2,p:"2014✓17✓19✓"},
+  {n:21,q:"fprintf, fscanf, fgetc, fputc, fgets, fputs",u:7,m:"12",f:2,p:"2015✓19✓22✓25✓"},
+  {n:22,q:"Conditional compilation: #ifdef with example",u:6,m:"12",f:2,p:"2016✓17✓"},
+  {n:23,q:"Array of pointers + pointer to function",u:5,m:"4-12",f:2,p:"2018✓22✓"},
+  {n:24,q:"String functions: strlen strcpy strcat strcmp",u:3,m:"4",f:2,p:"2014✓21✓22✓"},
+  {n:25,q:"Bitwise operators with examples",u:4,m:"4",f:2,p:"2015✓19✓"},
+  {n:26,q:"Sequential vs random access files",u:7,m:"4",f:2,p:"2022✓25✓"},
+  {n:27,q:"Armstrong number program",u:1,m:"12",f:2,p:"2014✓15✓"},
+  {n:28,q:"Palindrome number/string program",u:1,m:"12",f:2,p:"2021✓"},
+  {n:29,q:"Bubble sort program",u:3,m:"12",f:2,p:"2022✓"},
+  {n:30,q:"Self-referential structure (linked list concept)",u:4,m:"4",f:2,p:"EXPECTED VVI"},
+];
+
+const top10Programs = [
+  {n:1,name:"Swap Using Call by Reference (Pointers)",pyq:"2016✓ 2021✓",u:"U2+U5"},
+  {n:2,name:"Factorial using Recursion",pyq:"2014✓ 2015✓ 2016✓",u:"U2"},
+  {n:3,name:"Fibonacci Series using Recursion",pyq:"2015✓ 2016✓",u:"U2"},
+  {n:4,name:"Armstrong Number Check",pyq:"2014✓ 2015✓",u:"U1"},
+  {n:5,name:"Palindrome Number Check",pyq:"2021✓",u:"U1"},
+  {n:6,name:"Find Smallest/Largest in Array",pyq:"2014✓ 2016✓",u:"U3"},
+  {n:7,name:"Bubble Sort",pyq:"2022✓",u:"U3"},
+  {n:8,name:"File Read and Write Program",pyq:"2015✓ 2016✓ 2019✓",u:"U7"},
+  {n:9,name:"Array Access Using Pointer",pyq:"2015✓ 2016✓",u:"U5"},
+  {n:10,name:"Student Structure Program",pyq:"2016✓ 2017✓ 2022✓",u:"U4"},
+];
+
+const crashPoints = [
+  {unit:"U1 — Fundamentals",color:"#3B82F6",pts:["C = Dennis Ritchie, 1972, Bell Labs","int=4B, float=4B, double=8B, char=1B","switch = int/char/enum ONLY (float NAHI!)","break = exit loop, continue = skip iteration","Tokens = Keywords+Identifiers+Constants+Operators+Punctuators"]},
+  {unit:"U2 — Functions",color:"#10B981",pts:["Prototype = declaration with semicolon","Call by Value = copy (safe, original unchanged)","Call by Reference = address & (original changes!)","Recursion = BASE CASE MUST (warna stack overflow)","auto=garbage, register=CPU, static=retain/0, extern=global/0"]},
+  {unit:"U3 — Arrays & Strings",color:"#F59E0B",pts:["Array index 0 to (size-1) — NEVER use index 'size'!","arr[i] = *(arr+i) — same thing (pointer relation)","String ends with \\0 (null terminator) — compulsory!","strlen() null count NAHI karta","Array to function = base address (no & needed)"]},
+  {unit:"U4 — Structures & Unions",color:"#EF4444",pts:["struct = separate memory, union = shared memory","struct size = sum of all, union size = largest only","Dot (.) = var access, Arrow (->) = pointer access","Closing brace ke baad semicolon ZAROOR: };","Union mein sirf last assigned member valid hota hai"]},
+  {unit:"U5 — Pointers ⭐",color:"#8B5CF6",pts:["& = address lo, * = value lo (dereference)","int *p = &a; → p=address, *p=value of a","arr[i] = *(arr+i) = *(p+i) — all same!","p->member = (*p).member for struct pointer","p+1 moves sizeof(type) bytes (NOT just 1 byte)"]},
+  {unit:"U6 — Preprocessor",color:"#EC4899",pts:["#define mein KABHIE semicolon mat lagao!","Macro = Preprocessor (fast), Function = Compiler (safe)","Macro = no type check, Function = type checked","#include <> = system, \"\" = user defined file","#ifdef = if defined, #endif ZAROOR lagao"]},
+  {unit:"U7 — File Handling ⭐",color:"#06B6D4",pts:["r=read, w=write/new, a=append, +=both, b=binary","ALWAYS: if(fp==NULL) check after fopen!","ALWAYS: fclose(fp) at the very end!","fseek=move, ftell=position, rewind=back to start","EOF = -1 = End of File marker"]}
+];
+
+const syllabus = [
+  {unit:"U1 — Fundamentals of C",topics:["Identifiers & Keywords","Data Types (int/float/double/char/void)","Constants & Variables","Declarations","Expressions","Arithmetic Operators","Unary Operators","Relational Operators","Logical Operators","Assignment Operators","Conditional/Ternary Operator","Comma Operator","Library Functions","if Statement","if-else Statement","else-if Ladder","switch Statement","while Loop","do-while Loop","for Loop","Nested Loops","break Statement","continue Statement","goto Statement","Simple Programs"]},
+  {unit:"U2 — Functions",topics:["Function Definition","Function Prototypes","Passing Arguments","Call by Value","Call by Reference","Recursion","Recursive Factorial","Recursive Fibonacci","Storage Class: auto","Storage Class: register","Storage Class: static","Storage Class: extern","Local & Global Variables","Formal vs Actual Arguments"]},
+  {unit:"U3 — Arrays & Strings",topics:["1D Array Declaration & Processing","Passing 1D Arrays to Functions","Multi-dimensional Arrays (2D)","2D Array Declaration","2D Array Initialization","2D Array Traversal","Strings as Char Array","String Input/Output","strlen()","strcpy()","strcat()","strcmp()","strrev()"]},
+  {unit:"U4 — Structures & Unions",topics:["Structure Definition & Variables","Passing Structures by Value","Passing Structures by Reference","Self-referential Structures","Unions","Structure vs Union Difference","Bitwise AND (&)","Bitwise OR (|)","Bitwise XOR (^)","Bitwise NOT (~)","Left Shift (<<)","Right Shift (>>)"]},
+  {unit:"U5 — Pointers",topics:["Pointer Declaration","Pointer Initialization","Dereferencing (*)","Address Operator (&)","Pointer Arithmetic","Pointers with Arrays","Arrays of Pointers","Pointers with Functions","Pointers with Structures","Arrow Operator (->)","NULL Pointer","Dangling Pointer","Pointer to Pointer"]},
+  {unit:"U6 — C Preprocessor",topics:["Preprocessor Definition & Role","#define Constants","#define Functional Macros","#include System Files","#include User Files","#ifdef Directive","#ifndef Directive","#if/#else/#endif","#undef Directive","#error Directive","Macro vs Function Difference","Predefined Macros"]},
+  {unit:"U7 — File Handling",topics:["File Concept & Advantages","FILE Pointer","fopen() & File Modes","fclose()","fprintf()","fscanf()","fgetc()","fputc()","fgets()","fputs()","fread() & fwrite()","fseek()","ftell()","rewind()","EOF","Sequential Access","Random Access","Text vs Binary Files"]}
+];
+
+function BCA204Guide() {
+  const [unit, setUnit] = useState(1);
+  const [tab, setTab] = useState("vvi");
+  const [openQ, setOpenQ] = useState(null);
+  const [sumTab, setSumTab] = useState("top30");
+  const [checks, setChecks] = useState({});
+
+  const toggleQ = (id) => setOpenQ(openQ === id ? null : id);
+  const toggleCheck = (key) => setChecks(c => ({...c, [key]: !c[key]}));
+
+  const uBtns = [
+    {id:1,label:"U1 🖥️"},{id:2,label:"U2 ⚙️"},{id:3,label:"U3 📊"},
+    {id:4,label:"U4 🏗️"},{id:5,label:"U5 👆⭐"},{id:6,label:"U6 #️⃣"},
+    {id:7,label:"U7 📁⭐"},{id:8,label:"📋 Summary"}
+  ];
+  const tabs = [
+    {id:"vvi",label:"🔥 VVI Q&A"},{id:"pyq",label:"📜 PYQs"},
+    {id:"prog",label:"💻 Programs"},{id:"rev",label:"⚡ Revision"}
+  ];
+  const sTabs = [
+    {id:"top30",label:"🏆 Top 30"},{id:"prog10",label:"💻 Top 10"},
+    {id:"crash",label:"⚡ Crash"},{id:"check",label:"✅ Check"}
+  ];
+
+  const cu = DATA[unit];
+  const C = cu?.color || "#84CC16";
+  const UCOLORS = [,"#3B82F6","#10B981","#F59E0B","#EF4444","#8B5CF6","#EC4899","#06B6D4"];
+
+  const UB = ({id,label}) => (
+    <button onClick={() => {setUnit(id);setTab("vvi");setOpenQ(null);}}
+      style={{padding:"8px 10px",borderRadius:"8px",border:"none",cursor:"pointer",fontSize:"11px",
+        fontWeight:unit===id?"900":"600",whiteSpace:"nowrap",
+        background:unit===id?"#F59E0B":"#334155",color:unit===id?"#0F172A":"#E2E8F0"}}>
+      {label}
+    </button>
+  );
+
+  const TB = ({id,label,active,setA}) => (
+    <button onClick={() => {setA(id);setOpenQ(null);}}
+      style={{flex:1,padding:"10px 2px",border:"none",cursor:"pointer",fontSize:"11px",
+        background:active===id?"#2D1B69":"transparent",color:active===id?"#F59E0B":"#94A3B8",
+        fontWeight:active===id?"700":"400",borderBottom:active===id?"2px solid #F59E0B":"2px solid transparent"}}>
+      {label}
+    </button>
+  );
+
+  const Bdg = ({txt,col}) => (
+    <span style={{background:`${col}22`,color:col,fontSize:"10px",fontWeight:"700",
+      padding:"1px 6px",borderRadius:"4px",marginRight:"4px"}}>{txt}</span>
+  );
+
+  const card = {background:"#1E293B",borderRadius:"10px",marginBottom:"10px",overflow:"hidden",border:"1px solid #334155"};
+
+  return (
+    <div style={{background:"#0F172A",minHeight:"100vh",color:"#E2E8F0",fontFamily:"system-ui,sans-serif"}}>
+      {/* HEADER */}
+      <div style={{background:"linear-gradient(135deg,#1E3A5F,#2D1B69)",padding:"14px 16px",textAlign:"center",borderBottom:"2px solid #F59E0B"}}>
+        <div style={{color:"#F59E0B",fontSize:"11px",fontWeight:"700"}}>BCA-204 • AKU PATNA • CODE 303204</div>
+        <div style={{color:"white",fontWeight:"900",fontSize:"18px",margin:"4px 0"}}>📘 C Programming Exam Guide</div>
+        <div style={{color:"#94A3B8",fontSize:"11px"}}>📅 23 Sept 2026 | 10 AM–1 PM | Full Marks: 60 | 7 Units</div>
+      </div>
+
+      {/* UNIT NAV */}
+      <div style={{overflowX:"auto",padding:"10px 12px",background:"#1E293B"}}>
+        <div style={{display:"flex",gap:"8px",minWidth:"max-content"}}>
+          {uBtns.map(b => <UB key={b.id} {...b} />)}
+        </div>
+      </div>
+
+      {/* SECTION TABS */}
+      {unit <= 7 && (
+        <div style={{display:"flex",background:"#1E293B",borderBottom:"1px solid #334155"}}>
+          {tabs.map(t => <TB key={t.id} {...t} active={tab} setA={setTab} />)}
+        </div>
+      )}
+
+      {/* MAIN CONTENT */}
+      <div style={{padding:"14px",maxWidth:"820px",margin:"0 auto"}}>
+
+        {/* UNITS 1–7 */}
+        {unit <= 7 && cu && (
+          <>
+            <div style={{background:`${C}18`,border:`1px solid ${C}44`,borderRadius:"10px",padding:"10px 14px",marginBottom:"14px"}}>
+              <div style={{color:C,fontWeight:"900",fontSize:"15px"}}>{cu.title}</div>
+            </div>
+
+            {/* VVI Q&A */}
+            {tab === "vvi" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  🔥 TOP VVI QUESTIONS — Tap to see full exam-ready answer!
+                </div>
+                {cu.vvi.map((q, idx) => (
+                  <div key={q.id} style={{...card,border:`1px solid ${openQ===q.id?C:"#334155"}`}}>
+                    <button onClick={() => toggleQ(q.id)}
+                      style={{width:"100%",padding:"13px 14px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                        <div style={{flex:1,marginRight:"8px"}}>
+                          <div style={{marginBottom:"4px"}}>
+                            <span style={{color:"#F59E0B",fontSize:"12px",fontWeight:"700"}}>Q{idx+1} </span>
+                            <span style={{color:"#F59E0B"}}>{"🔥".repeat(q.fire)}</span>
+                            <span style={{color:"#94A3B8",fontSize:"11px"}}> [{q.marks} marks]</span>
+                          </div>
+                          <div style={{fontSize:"13px",color:"#E2E8F0",lineHeight:"1.4"}}>{q.q}</div>
+                          <div style={{fontSize:"10px",color:"#10B981",marginTop:"4px"}}>✓ PYQ: {q.pyq}</div>
+                        </div>
+                        <span style={{color:C,fontSize:"14px"}}>{openQ===q.id?"▲":"▼"}</span>
+                      </div>
+                    </button>
+                    {openQ === q.id && (
+                      <div style={{padding:"0 14px 14px",borderTop:"1px solid #334155"}}>
+                        <pre style={{fontFamily:"system-ui,sans-serif",fontSize:"12px",color:"#CBD5E1",whiteSpace:"pre-wrap",margin:0,padding:"12px 0",lineHeight:"1.7"}}>{q.ans}</pre>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                <div style={{...card,marginTop:"6px"}}>
+                  <div style={{padding:"10px 14px",borderBottom:"1px solid #334155"}}>
+                    <div style={{color:"#10B981",fontWeight:"700",fontSize:"13px"}}>🧠 Memory Tricks</div>
+                  </div>
+                  <div style={{padding:"10px 14px"}}>
+                    {cu.tricks.map((t,i) => <div key={i} style={{fontSize:"12px",color:"#CBD5E1",padding:"3px 0"}}>{t}</div>)}
+                  </div>
+                </div>
+
+                <div style={card}>
+                  <div style={{padding:"10px 14px",borderBottom:"1px solid #334155"}}>
+                    <div style={{color:"#EF4444",fontWeight:"700",fontSize:"13px"}}>⚠️ Common Mistakes — Avoid these!</div>
+                  </div>
+                  <div style={{padding:"10px 14px"}}>
+                    {cu.mistakes.map((m,i) => <div key={i} style={{fontSize:"12px",color:"#CBD5E1",padding:"3px 0"}}>{m}</div>)}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* PYQs */}
+            {tab === "pyq" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  📜 VERIFIED PYQs — Actual Papers 2014–2025
+                </div>
+                <div style={card}>
+                  {cu.pyqTable.map((r, i) => (
+                    <div key={i} style={{padding:"10px 14px",borderBottom:i<cu.pyqTable.length-1?"1px solid #334155":"none",
+                      background:i%2===0?"#1E293B":"#1a2540"}}>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:"4px",marginBottom:"4px"}}>
+                        <Bdg txt={r.year} col="#F59E0B" />
+                        <Bdg txt={`${r.type} [${r.m}M]`}
+                          col={r.type==="MCQ"?"#10B981":r.type==="Long"||r.type==="Program"?"#EF4444":"#3B82F6"} />
+                      </div>
+                      <div style={{fontSize:"12px",color:"#E2E8F0"}}>{r.q}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* PROGRAMS */}
+            {tab === "prog" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  💻 IMPORTANT PROGRAMS — Khud likhke practice karo!
+                </div>
+                {cu.programs.map((p, i) => (
+                  <div key={i} style={card}>
+                    <div style={{padding:"10px 14px",background:"#243447",borderBottom:"1px solid #334155"}}>
+                      <div style={{color:"#F59E0B",fontWeight:"700",fontSize:"13px"}}>{p.name}</div>
+                      <div style={{color:"#10B981",fontSize:"11px"}}>PYQ: {p.pyq}</div>
+                    </div>
+                    <pre style={{fontFamily:"'Courier New',monospace",fontSize:"11px",color:"#7DD3FC",padding:"12px 14px",margin:0,overflowX:"auto",whiteSpace:"pre-wrap",lineHeight:"1.6"}}>{p.code}</pre>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* REVISION */}
+            {tab === "rev" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  ⚡ 5-MINUTE REVISION — Exam se pehle padh lo!
+                </div>
+                <div style={card}>
+                  <div style={{padding:"14px"}}>
+                    {cu.revision.map((r, i) => (
+                      <div key={i} style={{padding:"7px 0",borderBottom:i<cu.revision.length-1?"1px solid #334155":"none",
+                        fontSize:"12px",color:"#E2E8F0",display:"flex",alignItems:"flex-start",gap:"8px"}}>
+                        <span style={{color:C,fontWeight:"900",fontSize:"14px",flexShrink:0}}>✓</span>
+                        <span style={{lineHeight:"1.5"}}>{r}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* SUMMARY SECTION */}
+        {unit === 8 && (
+          <div>
+            <div style={{background:"#16332244",border:"1px solid #84CC1644",borderRadius:"10px",padding:"10px 14px",marginBottom:"14px"}}>
+              <div style={{color:"#84CC16",fontWeight:"900",fontSize:"15px"}}>📋 Complete Summary & Revision</div>
+              <div style={{color:"#94A3B8",fontSize:"11px"}}>Top 30 VVI · Programs · Crash Sheet · Checklist</div>
+            </div>
+
+            <div style={{display:"flex",background:"#1E293B",borderRadius:"8px",marginBottom:"14px",overflow:"hidden"}}>
+              {sTabs.map(t => (
+                <button key={t.id} onClick={() => setSumTab(t.id)}
+                  style={{flex:1,padding:"10px 2px",border:"none",cursor:"pointer",fontSize:"10px",
+                    background:sumTab===t.id?"#163322":"transparent",color:sumTab===t.id?"#84CC16":"#94A3B8",
+                    fontWeight:sumTab===t.id?"700":"400",borderBottom:sumTab===t.id?"2px solid #84CC16":"2px solid transparent"}}>
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* TOP 30 */}
+            {sumTab === "top30" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  🏆 TOP 30 VVI QUESTIONS — Unit + Marks + PYQ Year
+                </div>
+                {top30.map(q => (
+                  <div key={q.n} style={{...card,marginBottom:"8px"}}>
+                    <div style={{padding:"10px 14px"}}>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:"4px",marginBottom:"4px",alignItems:"center"}}>
+                        <span style={{color:"#F59E0B",fontSize:"12px",fontWeight:"700"}}>#{q.n}</span>
+                        <Bdg txt={`U${q.u}`} col={UCOLORS[q.u]} />
+                        <Bdg txt={`${q.m}M`} col="#94A3B8" />
+                        <span style={{color:"#F59E0B",fontSize:"11px"}}>{"🔥".repeat(q.f)}</span>
+                      </div>
+                      <div style={{fontSize:"12px",color:"#E2E8F0",lineHeight:"1.4",marginBottom:"4px"}}>{q.q}</div>
+                      <div style={{fontSize:"10px",color:"#10B981"}}>PYQ: {q.p}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* TOP 10 PROGRAMS */}
+            {sumTab === "prog10" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  💻 TOP 10 PROGRAMS — Sab likhna aana chahiye!
+                </div>
+                {top10Programs.map(p => (
+                  <div key={p.n} style={{...card,padding:"12px 14px",marginBottom:"8px"}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                      <div style={{flex:1}}>
+                        <div style={{color:"#F59E0B",fontWeight:"700",fontSize:"13px"}}>#{p.n} {p.name}</div>
+                        <div style={{fontSize:"11px",color:"#10B981",marginTop:"3px"}}>PYQ: {p.pyq}</div>
+                      </div>
+                      <Bdg txt={p.u} col="#8B5CF6" />
+                    </div>
+                  </div>
+                ))}
+                <div style={{...card,padding:"14px",background:"#1a1a2e",border:"1px solid #F59E0B44",marginTop:"12px"}}>
+                  <div style={{color:"#F59E0B",fontWeight:"700",fontSize:"13px",marginBottom:"8px"}}>
+                    🎯 EXAM DAY STRATEGY — 60 Marks Plan
+                  </div>
+                  {["Q1: MCQs — Any 6 (2×6=12 marks)","Q2: Short Answers — Any 3 (4×3=12 marks)","Q3–Q7: Long Answers — Any 3 (12×3=36 marks)","Total = 12+12+36 = 60 marks","Q1 aur Q2 COMPULSORY hain!","Time: 3 hours — 4 mins per mark","Definitions + Syntax + Example + Conclusion"].map((s,i) => (
+                    <div key={i} style={{fontSize:"12px",color:"#E2E8F0",padding:"4px 0",borderBottom:i<6?"1px solid #334155":"none",display:"flex",gap:"8px",alignItems:"flex-start"}}>
+                      <span style={{color:"#F59E0B",flexShrink:0}}>→</span>{s}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CRASH SHEET */}
+            {sumTab === "crash" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  ⚡ ONE-DAY CRASH SHEET — Exam se ek din pehle yahi padho!
+                </div>
+                {crashPoints.map((cp, idx) => (
+                  <div key={idx} style={{...card,marginBottom:"10px",border:`1px solid ${cp.color}33`}}>
+                    <div style={{padding:"10px 14px",background:`${cp.color}18`,borderBottom:`1px solid ${cp.color}33`}}>
+                      <div style={{color:cp.color,fontWeight:"700",fontSize:"13px"}}>📌 {cp.unit}</div>
+                    </div>
+                    <div style={{padding:"10px 14px"}}>
+                      {cp.pts.map((pt, i) => (
+                        <div key={i} style={{fontSize:"12px",color:"#E2E8F0",padding:"4px 0",
+                          borderBottom:i<cp.pts.length-1?"1px solid #334155":"none",
+                          display:"flex",alignItems:"flex-start",gap:"8px"}}>
+                          <span style={{color:cp.color,flexShrink:0}}>→</span><span>{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <div style={{...card,padding:"16px",background:"#1a1a2e",border:"1px solid #F59E0B",marginTop:"4px"}}>
+                  <div style={{color:"#F59E0B",fontWeight:"900",fontSize:"14px",marginBottom:"10px",textAlign:"center"}}>
+                    🏆 SUCCESS FORMULA — Exam mein top karo!
+                  </div>
+                  {["📝 Definition likho → explains what it is","📋 Numbered points → easy to read","💻 Syntax + Code → shows understanding","📊 Table/Comparison → if applicable","✅ Conclusion → 1-2 lines summary","⭐ Pointers + File Handling = most marks!","⚡ MCQs mein switch/float = almost always asked"].map((s,i) => (
+                    <div key={i} style={{fontSize:"12px",color:"#E2E8F0",padding:"4px 0",lineHeight:"1.5"}}>{s}</div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CHECKLIST */}
+            {sumTab === "check" && (
+              <div>
+                <div style={{color:"#F59E0B",fontWeight:"700",marginBottom:"10px",fontSize:"13px"}}>
+                  ✅ FULL SYLLABUS CHECKLIST — Tap to tick completed topics!
+                </div>
+                {syllabus.map((s, sidx) => {
+                  const uc = UCOLORS[sidx+1];
+                  const done = s.topics.filter((_,i) => checks[`${s.unit}-${i}`]).length;
+                  return (
+                    <div key={s.unit} style={{...card,marginBottom:"10px"}}>
+                      <div style={{padding:"10px 14px",background:`${uc}18`,borderBottom:`1px solid ${uc}33`}}>
+                        <div style={{color:uc,fontWeight:"700",fontSize:"13px"}}>{s.unit}</div>
+                        <div style={{color:"#94A3B8",fontSize:"11px",marginTop:"2px"}}>
+                          {done}/{s.topics.length} completed
+                          {done === s.topics.length && " 🎉 Done!"}
+                        </div>
+                      </div>
+                      <div style={{padding:"10px 14px"}}>
+                        {s.topics.map((t, ti) => {
+                          const key = `${s.unit}-${ti}`;
+                          const checked = checks[key];
+                          return (
+                            <div key={ti} onClick={() => toggleCheck(key)}
+                              style={{display:"flex",alignItems:"center",gap:"8px",padding:"5px 0",
+                                borderBottom:ti<s.topics.length-1?"1px solid #334155":"none",cursor:"pointer"}}>
+                              <div style={{width:"16px",height:"16px",borderRadius:"3px",flexShrink:0,
+                                border:`2px solid ${checked?uc:"#475569"}`,background:checked?uc:"transparent",
+                                display:"flex",alignItems:"center",justifyContent:"center"}}>
+                                {checked && <span style={{color:"white",fontSize:"10px",fontWeight:"900"}}>✓</span>}
+                              </div>
+                              <span style={{fontSize:"12px",color:checked?"#6B7280":"#E2E8F0",
+                                textDecoration:checked?"line-through":"none"}}>{t}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div style={{textAlign:"center",padding:"16px",color:"#475569",fontSize:"11px",borderTop:"1px solid #1E293B"}}>
+        📘 BCA-204 AKU Patna 2026 · Concept Clear → Practice More → Score High 🏆
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<BCA204Guide />);
+</script>
+</body>
+</html>

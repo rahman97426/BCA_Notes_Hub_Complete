@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA-203 System Analysis & Design | AKU Patna 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --u1:#3b82f6;--u2:#10b981;--u3:#8b5cf6;--u4:#f59e0b;
+  --u5:#ef4444;--u6:#06b6d4;--u7:#ec4899;
+  --bg:#0f172a;--surface:#1e293b;--card:#263548;
+  --text:#e2e8f0;--muted:#94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;overflow:hidden;text-align:center;padding:20px}
+.grad-bg{position:absolute;inset:0;
+  background:linear-gradient(135deg,#1e3a8a,#4c1d95,#7f1d1d,#1e3a8a);
+  background-size:400% 400%;animation:gradMove 8s ease infinite}
+@keyframes gradMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.particles{position:absolute;inset:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;animation:float linear infinite;opacity:0.3}
+@keyframes float{0%{transform:translateY(100vh) rotate(0deg)}100%{transform:translateY(-100px) rotate(360deg)}}
+.hero-content{position:relative;z-index:2}
+.subject-name{font-family:'Caveat',cursive;font-size:clamp(2.5rem,7vw,5rem);
+  color:#fff;text-shadow:0 0 30px rgba(255,255,255,0.5);line-height:1.1;margin-bottom:8px}
+.subject-code{font-size:1rem;color:#a5b4fc;letter-spacing:4px;margin-bottom:24px;text-transform:uppercase}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px}
+.pill{padding:8px 18px;border-radius:999px;font-size:0.8rem;font-weight:600;
+  backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1)}
+.pill.date{background:rgba(239,68,68,0.3);border-color:#ef4444}
+.pill.time{background:rgba(16,185,129,0.3);border-color:#10b981}
+.pill.marks{background:rgba(245,158,11,0.3);border-color:#f59e0b}
+.pill.uni{background:rgba(139,92,246,0.3);border-color:#8b5cf6}
+.countdown{display:flex;gap:16px;justify-content:center;margin-top:8px}
+.cd-box{background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;padding:12px 20px;min-width:80px;text-align:center}
+.cd-num{font-size:2rem;font-weight:700;color:#fbbf24;font-family:'Caveat',cursive}
+.cd-lbl{font-size:0.65rem;color:#94a3b8;text-transform:uppercase;letter-spacing:2px}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,0.5);font-size:0.75rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* PROGRESS */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ef4444);
+  width:0%;z-index:9999;transition:width 0.1s}
+
+/* NAV */
+#navbar{position:sticky;top:0;z-index:100;background:#0f172aee;backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.05);padding:0 16px;overflow-x:auto}
+.nav-inner{display:flex;gap:4px;min-width:max-content;padding:8px 0}
+.nav-link{padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;
+  color:#94a3b8;transition:all 0.2s;white-space:nowrap;cursor:pointer}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,0.1)}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:24px 16px}
+
+/* CONTROLS */
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;justify-content:center}
+.btn{padding:8px 18px;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;
+  border:none;transition:all 0.2s}
+.btn-expand{background:#3b82f6;color:#fff}
+.btn-collapse{background:#64748b;color:#fff}
+.btn:hover{opacity:0.85;transform:translateY(-1px)}
+
+/* UNIT CARD */
+.unit-card{border-radius:16px;overflow:hidden;margin-bottom:36px;
+  background:var(--surface);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+.unit-header{padding:20px 24px;display:flex;align-items:center;gap:14px;cursor:pointer}
+.unit-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;flex-shrink:0;background:rgba(255,255,255,0.15)}
+.unit-info h2{font-size:1.15rem;font-weight:700;color:#fff}
+.unit-info p{font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:2px}
+.unit-badge{margin-left:auto;font-size:0.7rem;font-weight:700;padding:4px 10px;
+  border-radius:999px;background:rgba(0,0,0,0.3);white-space:nowrap}
+
+/* PYQ ALERT */
+.pyq-alert{margin:0 16px 0;padding:10px 16px;border-radius:10px;
+  background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+  font-size:0.78rem;color:#fca5a5;display:flex;align-items:center;gap:8px}
+.pyq-alert span{font-weight:700;color:#ef4444}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.07);padding:0 16px;margin-top:12px}
+.tab-btn{padding:12px 18px;font-size:0.82rem;font-weight:600;cursor:pointer;
+  border:none;background:none;color:#64748b;border-bottom:2px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:#fff;border-bottom-color:currentColor}
+.tab-content{display:none;padding:16px}
+.tab-content.active{display:block}
+
+/* MCQ */
+.mcq-item{background:var(--card);border-radius:12px;padding:16px;margin-bottom:14px;
+  border:1px solid rgba(255,255,255,0.06)}
+.mcq-q{font-size:0.88rem;font-weight:600;color:#e2e8f0;margin-bottom:10px;line-height:1.5}
+.mcq-src{font-size:0.7rem;color:#64748b;margin-bottom:10px}
+.options{display:flex;flex-direction:column;gap:6px}
+.option{padding:8px 14px;border-radius:8px;font-size:0.82rem;cursor:pointer;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  transition:all 0.2s;text-align:left;color:#cbd5e1}
+.option:hover:not(.used){background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+.option.correct{background:rgba(16,185,129,0.2)!important;border-color:#10b981!important;color:#6ee7b7!important}
+.option.wrong{background:rgba(239,68,68,0.2)!important;border-color:#ef4444!important;color:#fca5a5!important}
+.option.reveal{background:rgba(16,185,129,0.1)!important;border-color:#10b981!important;color:#6ee7b7!important}
+.mcq-feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:0.8rem;
+  display:none;line-height:1.5}
+.mcq-feedback.show{display:block}
+.fb-correct{background:rgba(16,185,129,0.15);border:1px solid #10b981;color:#a7f3d0}
+.fb-wrong{background:rgba(239,68,68,0.15);border:1px solid #ef4444;color:#fca5a5}
+
+/* ANSWER PAPER */
+.ans-item{margin-bottom:14px;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08)}
+.ans-toggle{width:100%;padding:14px 18px;text-align:left;background:var(--card);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-size:0.88rem;font-weight:600;color:#e2e8f0;border:none;gap:12px}
+.ans-toggle:hover{background:rgba(255,255,255,0.05)}
+.ans-badges{display:flex;gap:6px;flex-shrink:0}
+.marks-badge{padding:3px 10px;border-radius:999px;font-size:0.68rem;font-weight:700}
+.pyq-yr{padding:3px 8px;border-radius:999px;font-size:0.68rem;
+  background:rgba(239,68,68,0.2);color:#fca5a5;border:1px solid #ef4444}
+.chevron{transition:transform 0.3s;flex-shrink:0;color:#64748b}
+.ans-toggle.open .chevron{transform:rotate(180deg)}
+
+.ans-body{display:none;padding:0}
+.ans-body.open{display:block}
+.paper{background:#fefce8;background-image:repeating-linear-gradient(transparent,transparent 27px,#93c5fd 27px,#93c5fd 28px);
+  padding:20px 20px 20px 60px;position:relative;line-height:28px;color:#1e293b}
+.paper::before{content:'';position:absolute;left:50px;top:0;bottom:0;width:2px;background:#ef4444}
+.paper h4{font-size:0.95rem;font-weight:700;color:#1e40af;margin-bottom:4px;line-height:28px}
+.paper p{font-size:0.88rem;margin-bottom:0;line-height:28px}
+.paper ol,.paper ul{margin-left:18px;font-size:0.88rem}
+.paper li{margin-bottom:2px;line-height:28px}
+
+.box{margin:8px 0;padding:10px 14px;border-radius:8px;font-size:0.85rem;line-height:1.6}
+.box-blue{background:#dbeafe;border-left:4px solid #3b82f6;color:#1e3a8a}
+.box-orange{background:#fff7ed;border-left:4px solid #f97316;color:#7c2d12}
+.box-green{background:#dcfce7;border-left:4px solid #22c55e;color:#14532d}
+.box-red{background:#fee2e2;border-left:4px solid #ef4444;color:#7f1d1d}
+.box-purple{background:#f3e8ff;border-left:4px solid #a855f7;color:#3b0764}
+
+/* TABLE */
+.styled-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:0.8rem}
+.styled-table th{background:#1e40af;color:#fff;padding:8px 10px;text-align:left}
+.styled-table td{padding:7px 10px;border-bottom:1px solid #e2e8f0;color:#1e293b}
+.styled-table tr:nth-child(even) td{background:#dbeafe}
+.styled-table tr:hover td{background:#bfdbfe}
+
+/* DIAGRAM ASCII */
+.diagram{background:#0f1729;border:1px solid #334155;border-radius:10px;
+  padding:16px;font-family:monospace;font-size:0.75rem;color:#93c5fd;
+  white-space:pre;overflow-x:auto;margin:8px 0;line-height:1.6}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);cursor:pointer;
+  display:none;align-items:center;justify-content:center;font-size:1.2rem;
+  box-shadow:0 4px 14px rgba(59,130,246,0.5);border:none;color:#fff;
+  transition:all 0.2s;z-index:200}
+#btt:hover{transform:scale(1.1)}
+#btt.show{display:flex}
+
+/* FOOTER */
+footer{text-align:center;padding:32px 16px;color:#475569;font-size:0.8rem;
+  border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .unit-header{padding:14px}
+  .paper{padding:16px 16px 16px 48px}
+  .paper::before{left:40px}
+  .countdown{gap:8px}
+  .cd-box{padding:8px 14px;min-width:64px}
+  .cd-num{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grad-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="subject-code">AKU Patna &bull; BCA 2nd Semester &bull; Code: 303203</div>
+    <div class="subject-name">System Analysis<br>&amp; Design</div>
+    <div class="pills">
+      <span class="pill date">📅 21 September 2026</span>
+      <span class="pill time">⏰ 10:00 AM – 1:00 PM</span>
+      <span class="pill marks">📝 Full Marks: 60</span>
+      <span class="pill uni">🎓 AKU Patna</span>
+    </div>
+    <div style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-bottom:14px;font-weight:600">⏳ Time Remaining for Exam</div>
+    <div class="countdown">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Mins</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Secs</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">▼ Scroll to Study ▼</div>
+</section>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-link" onclick="scrollTo('u1')" style="color:var(--u1)">U1 Intro to SAD</div>
+    <div class="nav-link" onclick="scrollTo('u2')" style="color:var(--u2)">U2 System Analyst</div>
+    <div class="nav-link" onclick="scrollTo('u3')" style="color:var(--u3)">U3 SDLC</div>
+    <div class="nav-link" onclick="scrollTo('u4')" style="color:var(--u4)">U4 Documentation</div>
+    <div class="nav-link" onclick="scrollTo('u5')" style="color:var(--u5)">U5 Planning</div>
+    <div class="nav-link" onclick="scrollTo('u6')" style="color:var(--u6)">U6 Design & Modelling</div>
+    <div class="nav-link" onclick="scrollTo('u7')" style="color:var(--u7)">U7 Forms & Audit</div>
+  </div>
+</nav>
+
+<main>
+<div class="controls">
+  <button class="btn btn-expand" onclick="expandAll()">📖 Expand All Answers</button>
+  <button class="btn btn-collapse" onclick="collapseAll()">📕 Collapse All</button>
+</div>
+
+<div class="unit-card" id="u1">
+  <div class="unit-header" style="background:linear-gradient(135deg,#3b82f6dd,#3b82f688)">
+    <div class="unit-icon">🖥️</div>
+    <div class="unit-info">
+      <h2>Unit 1 — Introduction to SAD</h2>
+      <p>Fundamentals of System | Classification | RTS | Distributed | SAD Approach | Prototype | JAD</p>
+    </div>
+    <div class="unit-badge" style="color:#3b82f6;border:1px solid #3b82f640">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#3b82f6">2014, 2015, 2016, 2017, 2018, 2021, 2022, 2023</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#3b82f6" onclick="switchTab('u1','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u1','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u1','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u1-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. How many phases are there in the Systems Development Life Cycle (SDLC)?</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q0',0,2,this)">A) 4</button>
+<button class="option" onclick="checkMCQ('u1q0',1,2,this)">B) 5</button>
+<button class="option" onclick="checkMCQ('u1q0',2,2,this)">C) 6</button>
+<button class="option" onclick="checkMCQ('u1q0',3,2,this)">D) 10</button>
+</div>
+<div class="mcq-feedback" id="u1q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. Which of the following is an example of a CLOSED system?</div>
+<div class="mcq-src">Source: PYQ 2017</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q1',0,2,this)">A) A business organization</button>
+<button class="option" onclick="checkMCQ('u1q1',1,2,this)">B) River ecosystem</button>
+<button class="option" onclick="checkMCQ('u1q1',2,2,this)">C) Watch internal mechanism (isolated)</button>
+<button class="option" onclick="checkMCQ('u1q1',3,2,this)">D) School system</button>
+</div>
+<div class="mcq-feedback" id="u1q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. Hard Real-Time System is one where:</div>
+<div class="mcq-src">Source: PYQ 2014, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q2',0,1,this)">A) Deadline miss = degraded performance</button>
+<button class="option" onclick="checkMCQ('u1q2',1,1,this)">B) Deadline miss = catastrophic failure</button>
+<button class="option" onclick="checkMCQ('u1q2',2,1,this)">C) Time does not matter</button>
+<button class="option" onclick="checkMCQ('u1q2',3,1,this)">D) System runs slowly</button>
+</div>
+<div class="mcq-feedback" id="u1q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. Which of the following is a fact-finding technique?</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q3',0,2,this)">A) Systems Requirement Specification</button>
+<button class="option" onclick="checkMCQ('u1q3',1,2,this)">B) Quality Assurance</button>
+<button class="option" onclick="checkMCQ('u1q3',2,2,this)">C) Sampling of Existing Documents</button>
+<button class="option" onclick="checkMCQ('u1q3',3,2,this)">D) Prototyping</button>
+</div>
+<div class="mcq-feedback" id="u1q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. Prototype is:</div>
+<div class="mcq-src">Source: PYQ 2016, 2018</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q4',0,1,this)">A) Final system delivered to user</button>
+<button class="option" onclick="checkMCQ('u1q4',1,1,this)">B) A sample model built for user feedback</button>
+<button class="option" onclick="checkMCQ('u1q4',2,1,this)">C) A document describing requirements</button>
+<button class="option" onclick="checkMCQ('u1q4',3,1,this)">D) A testing technique</button>
+</div>
+<div class="mcq-feedback" id="u1q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. JAD stands for:</div>
+<div class="mcq-src">Source: PYQ 2016, 2021, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q5',0,1,this)">A) Java Application Design</button>
+<button class="option" onclick="checkMCQ('u1q5',1,1,this)">B) Joint Application Development</button>
+<button class="option" onclick="checkMCQ('u1q5',2,1,this)">C) Joint Analysis Document</button>
+<button class="option" onclick="checkMCQ('u1q5',3,1,this)">D) Job and Duty</button>
+</div>
+<div class="mcq-feedback" id="u1q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. Distributed System is:</div>
+<div class="mcq-src">Source: PYQ 2016, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q6',0,1,this)">A) A single computer system</button>
+<button class="option" onclick="checkMCQ('u1q6',1,1,this)">B) Multiple networked computers appearing as ONE unified system</button>
+<button class="option" onclick="checkMCQ('u1q6',2,1,this)">C) A system with distributed files only</button>
+<button class="option" onclick="checkMCQ('u1q6',3,1,this)">D) Only used in cloud computing</button>
+</div>
+<div class="mcq-feedback" id="u1q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. Throwaway Prototype is:</div>
+<div class="mcq-src">Source: PYQ 2018, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u1q7',0,1,this)">A) Built and improved to become final system</button>
+<button class="option" onclick="checkMCQ('u1q7',1,1,this)">B) Built to understand requirements then discarded</button>
+<button class="option" onclick="checkMCQ('u1q7',2,1,this)">C) Used only for testing</button>
+<button class="option" onclick="checkMCQ('u1q7',3,1,this)">D) A document prototype</button>
+</div>
+<div class="mcq-feedback" id="u1q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u1-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u1a40',this)">
+  <span>What is a Real-Time System? Differentiate between Hard and Soft RTS.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f666">4 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2023</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u1a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> A Real-Time System is one that processes input and produces output within a strict time deadline. Missing the deadline results in system failure or performance degradation.</div>
+<h4>Types of Real-Time Systems:</h4>
+<table class="styled-table"><tr><th>Feature</th><th>Hard RTS</th><th>Soft RTS</th></tr>
+<tr><td>Deadline Miss</td><td>CATASTROPHIC failure</td><td>Performance degrades only</td></tr>
+<tr><td>Example</td><td>Aircraft, Pacemaker, Nuclear reactor</td><td>Video streaming, Online gaming, UPI</td></tr>
+<tr><td>Tolerance</td><td>ZERO delay allowed</td><td>Some delay acceptable</td></tr></table>
+<div class="box box-green"><strong>✅ Conclusion:</strong> Hard RTS = Hazardous if late. Soft RTS = Slight delay Survivable.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u1a41',this)">
+  <span>What is Prototyping? Explain its types and advantages.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f666">4 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2016, 2018, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u1a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Prototype is an early working model of the system built quickly to gather user feedback BEFORE full development begins.</div>
+<h4>Types:</h4>
+<ol><li><strong>Throwaway Prototype:</strong> Built to understand requirements → then DISCARDED. Final system built fresh.</li>
+<li><strong>Evolutionary Prototype:</strong> Built → improved repeatedly → BECOMES the final system.</li></ol>
+<h4>Advantages:</h4>
+<ul><li>User sees system early → misunderstandings reduced</li>
+<li>Errors found cheaply before full investment</li>
+<li>Higher user satisfaction</li>
+<li>Shorter overall development time</li></ul>
+<div class="box box-green"><strong>✅ Conclusion:</strong> Prototype = Preview before Production! Reduces risk of building wrong system.</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u1-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u1a120',this)">
+  <span>What is a System? Explain its characteristics and types in detail.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f666">12 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2017, 2018, 2021, 2022</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u1a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> A System is a set of interrelated components working together to achieve a common goal. It accepts input from the environment, processes it, and produces output with feedback for control.<br><strong>Formula:</strong> INPUT → PROCESS → OUTPUT → FEEDBACK</div>
+<div class="box box-orange"><strong>📐 Basic System Model:</strong><br>Card + PIN (Input) → Bank verification (Process) → Cash dispensed (Output) → Wrong PIN error (Feedback) [ATM Example]</div>
+<h4>Characteristics of System:</h4>
+<ol><li><strong>Organization:</strong> Parts arranged in a structured order.</li>
+<li><strong>Interaction:</strong> Parts communicate and work with each other.</li>
+<li><strong>Interdependence:</strong> Parts depend on each other to function.</li>
+<li><strong>Integration:</strong> All parts function together as one unit.</li>
+<li><strong>Central Objective:</strong> Every system has a defined purpose/goal.</li>
+<li><strong>Boundary:</strong> Line separating system from external environment.</li></ol>
+<h4>Types of Systems:</h4>
+<table class="styled-table"><tr><th>Type</th><th>Definition</th><th>Example</th></tr>
+<tr><td>Physical</td><td>Tangible — can be touched</td><td>Computer hardware, machines</td></tr>
+<tr><td>Abstract</td><td>Conceptual — cannot be touched</td><td>Software, programs</td></tr>
+<tr><td>Open</td><td>Interacts with environment</td><td>Business organization, School</td></tr>
+<tr><td>Closed</td><td>No external interaction</td><td>Sealed watch mechanism</td></tr>
+<tr><td>Deterministic</td><td>Same input → same output always</td><td>Calculator (2+2=4 always)</td></tr>
+<tr><td>Probabilistic</td><td>Same input → uncertain output</td><td>Weather forecast</td></tr>
+<tr><td>Man-made</td><td>Created by humans</td><td>Railway, Information System</td></tr>
+<tr><td>Natural</td><td>Exists in nature</td><td>Solar system, Ecosystem</td></tr></table>
+<div class="box box-green"><strong>🏠 Example:</strong> ATM Machine is a Physical + Man-made + Open + Deterministic system. It interacts with bank servers (open), always gives correct cash for correct PIN (deterministic).</div>
+<div class="box box-red"><strong>✅ Conclusion:</strong> SAD is needed to build correct, efficient, cost-effective IS on time. Without SAD → requirements misunderstood → project fails → money wasted.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u1a121',this)">
+  <span>What is JAD? How is it different from traditional analysis? Explain benefits.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f666">12 Marks</span>
+    <span class="pyq-yr">PYQ 2016, 2021, 2022</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u1a121">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> JAD (Joint Application Development) is a structured group workshop approach where end users, managers, and IT analysts collaborate intensively (1–5 days) to define requirements and design the system TOGETHER. A trained Facilitator guides the session.</div>
+<h4>JAD Participants:</h4>
+<ol><li><strong>End Users:</strong> Know business needs firsthand.</li>
+<li><strong>Business Managers:</strong> Provide priorities and business context.</li>
+<li><strong>IT Analysts:</strong> Understand technical possibilities.</li>
+<li><strong>Facilitator:</strong> Neutral guide who manages the session.</li>
+<li><strong>Scribe:</strong> Documents all decisions in real-time.</li></ol>
+<h4>JAD vs Traditional Analysis:</h4>
+<table class="styled-table"><tr><th>Feature</th><th>Traditional Analysis</th><th>JAD Workshop</th></tr>
+<tr><td>Method</td><td>One-on-one interviews</td><td>Group intensive sessions</td></tr>
+<tr><td>Time</td><td>Weeks to months</td><td>1–5 day workshops</td></tr>
+<tr><td>Conflicts</td><td>Discovered late</td><td>Resolved immediately</td></tr>
+<tr><td>Ownership</td><td>Individual views</td><td>Shared group decisions</td></tr>
+<tr><td>Documentation</td><td>After interviews</td><td>Real-time in session</td></tr></table>
+<h4>Benefits of JAD:</h4>
+<ol><li>All stakeholders present → immediate conflict resolution.</li>
+<li>One session replaces weeks of individual interviews.</li>
+<li>Shared ownership → everyone agrees on decisions.</li>
+<li>Higher user satisfaction — users actively participate.</li>
+<li>Better requirements → fewer revisions during development.</li></ol>
+<div class="box box-green"><strong>🏠 Example:</strong> A bank needs new online banking system. JAD: Branch manager + customers + IT team + security expert sit together for 3 days and design the system collaboratively.</div>
+<div class="box box-red"><strong>✅ Conclusion:</strong> JAD = Join And Decide together. Faster, better requirements, higher user satisfaction than traditional approach.</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u2">
+  <div class="unit-header" style="background:linear-gradient(135deg,#10b981dd,#10b98188)">
+    <div class="unit-icon">👨‍💼</div>
+    <div class="unit-info">
+      <h2>Unit 2 — Systems Analyst — A Profession</h2>
+      <p>Role | Duties | Qualifications | Analytical | Technical | Management | Interpersonal Skills</p>
+    </div>
+    <div class="unit-badge" style="color:#10b981;border:1px solid #10b98140">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#10b981">2015, 2016, 2017, 2021, 2022, 2023, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#10b981" onclick="switchTab('u2','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u2','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u2','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u2-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. System Analyst primarily acts as:</div>
+<div class="mcq-src">Source: PYQ 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q0',0,1,this)">A) A programmer only</button>
+<button class="option" onclick="checkMCQ('u2q0',1,1,this)">B) Bridge between business and technology</button>
+<button class="option" onclick="checkMCQ('u2q0',2,1,this)">C) Database administrator</button>
+<button class="option" onclick="checkMCQ('u2q0',3,1,this)">D) Network specialist</button>
+</div>
+<div class="mcq-feedback" id="u2q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. Which skill may NOT be required by a Systems Analyst?</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q1',0,0,this)">A) Programming Language Skill</button>
+<button class="option" onclick="checkMCQ('u2q1',1,0,this)">B) Technical Skill</button>
+<button class="option" onclick="checkMCQ('u2q1',2,0,this)">C) Communication Skill</button>
+<button class="option" onclick="checkMCQ('u2q1',3,0,this)">D) Management Skill</button>
+</div>
+<div class="mcq-feedback" id="u2q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. ATMI stands for (4 skills of System Analyst):</div>
+<div class="mcq-src">Source: PYQ 2015, 2016, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q2',0,1,this)">A) Analysis, Technology, Method, Investigation</button>
+<button class="option" onclick="checkMCQ('u2q2',1,1,this)">B) Analytical, Technical, Management, Interpersonal</button>
+<button class="option" onclick="checkMCQ('u2q2',2,1,this)">C) Abstract, Technical, Modular, Integrated</button>
+<button class="option" onclick="checkMCQ('u2q2',3,1,this)">D) None of the above</button>
+</div>
+<div class="mcq-feedback" id="u2q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. Which is NOT a duty of a System Analyst?</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q3',0,1,this)">A) Gather user requirements</button>
+<button class="option" onclick="checkMCQ('u2q3',1,1,this)">B) Write source code of the application</button>
+<button class="option" onclick="checkMCQ('u2q3',2,1,this)">C) Prepare SRS document</button>
+<button class="option" onclick="checkMCQ('u2q3',3,1,this)">D) Train end users</button>
+</div>
+<div class="mcq-feedback" id="u2q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. End Users in an IS are:</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q4',0,2,this)">A) Top executives using EIS</button>
+<button class="option" onclick="checkMCQ('u2q4',1,2,this)">B) Middle managers using MIS reports</button>
+<button class="option" onclick="checkMCQ('u2q4',2,2,this)">C) Daily users doing data entry and processing</button>
+<button class="option" onclick="checkMCQ('u2q4',3,2,this)">D) System administrators</button>
+</div>
+<div class="mcq-feedback" id="u2q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. Management Skill of System Analyst includes:</div>
+<div class="mcq-src">Source: PYQ 2014, 2022, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q5',0,2,this)">A) Active listening and negotiation</button>
+<button class="option" onclick="checkMCQ('u2q5',1,2,this)">B) Knowledge of programming and DBMS</button>
+<button class="option" onclick="checkMCQ('u2q5',2,2,this)">C) Project planning, budgeting, risk management</button>
+<button class="option" onclick="checkMCQ('u2q5',3,2,this)">D) Logical thinking and data analysis</button>
+</div>
+<div class="mcq-feedback" id="u2q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. Interpersonal Skill of System Analyst includes:</div>
+<div class="mcq-src">Source: PYQ 2015, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q6',0,2,this)">A) Knowledge of CASE tools</button>
+<button class="option" onclick="checkMCQ('u2q6',1,2,this)">B) Time management and budgeting</button>
+<button class="option" onclick="checkMCQ('u2q6',2,2,this)">C) Communication, interviewing, presentation, negotiation</button>
+<button class="option" onclick="checkMCQ('u2q6',3,2,this)">D) Data analysis and logical reasoning</button>
+</div>
+<div class="mcq-feedback" id="u2q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. The System Analyst is called 'Change Agent' because:</div>
+<div class="mcq-src">Source: PYQ 2016, 2017</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u2q7',0,1,this)">A) He/she changes the programming language</button>
+<button class="option" onclick="checkMCQ('u2q7',1,1,this)">B) He/she identifies need for change and helps users adapt</button>
+<button class="option" onclick="checkMCQ('u2q7',2,1,this)">C) He/she changes the hardware</button>
+<button class="option" onclick="checkMCQ('u2q7',3,1,this)">D) He/she changes the database</button>
+</div>
+<div class="mcq-feedback" id="u2q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u2-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u2a40',this)">
+  <span>What are the types of users in an Information System?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98166">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u2a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Users are persons who interact with or benefit from an Information System. Different user levels have different information needs.</div>
+<h4>Four Types of Users:</h4>
+<ol><li><strong>End Users (Operational):</strong> Daily users — data entry, transactions. Example: Bank tellers, cashiers.</li>
+<li><strong>Operational Users:</strong> Handle operational data and reports. Example: Branch supervisors.</li>
+<li><strong>Managerial Users (Middle Mgmt):</strong> Use MIS reports for planning. Example: Department managers.</li>
+<li><strong>Executive Users (Top Mgmt):</strong> Use EIS summary for strategy. Example: CEO, Directors, Chairman.</li></ol>
+<div class="box box-green"><strong>✅ Trick:</strong> EOME pyramid — End → Operational → Managerial → Executive (bottom to top). More detail at bottom, more summary at top.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u2a41',this)">
+  <span>Explain the role of the System Analyst.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98166">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2017, 2021, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u2a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> System Analyst = Bridge between business users and technical developers. Translates business requirements into technical specifications.</div>
+<h4>Six Roles of System Analyst (CCIACL):</h4>
+<ol><li><strong>Consultant:</strong> Provides expert IS advice to management.</li>
+<li><strong>Change Agent:</strong> Identifies need for change, helps users adapt.</li>
+<li><strong>Investigator:</strong> Studies and documents current system problems.</li>
+<li><strong>Architect:</strong> Creates logical and physical system design.</li>
+<li><strong>Coordinator:</strong> Links users, developers, and management.</li>
+<li><strong>Liaison:</strong> Translates technical ↔ business language.</li></ol>
+<div class="box box-green"><strong>✅ Memory Trick:</strong> CCIACL = Consultant, Change agent, Investigator, Architect, Coordinator, Liaison</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u2-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u2a120',this)">
+  <span>Who is a System Analyst? Discuss roles, duties, and all 4 skills (ATMI) in detail.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98166">12 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2017, 2021, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u2a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> System Analyst is an IT professional who acts as BRIDGE between business users and technical developers. Business knows WHAT they need; IT knows HOW to build; Analyst translates between both to ensure the RIGHT system is built efficiently.</div>
+<h4>Why Businesses Need System Analysts:</h4>
+<ol><li>Business users cannot write technical specifications.</li>
+<li>IT professionals don't understand business workflows.</li>
+<li>Without analyst → wrong system built → money and time wasted.</li>
+<li>Analyst prevents expensive mistakes and manages project complexity.</li></ol>
+<h4>Six Roles (CCIACL):</h4>
+<ol><li><strong>Consultant:</strong> Expert IS advice and recommendations to management.</li>
+<li><strong>Change Agent:</strong> Identifies and manages organizational change from new systems.</li>
+<li><strong>Investigator:</strong> Studies and documents current system problems.</li>
+<li><strong>Architect:</strong> Creates logical and physical system design (DFD, ER).</li>
+<li><strong>Coordinator:</strong> Links users, developers, and management together.</li>
+<li><strong>Liaison:</strong> Translates technical language ↔ business language.</li></ol>
+<h4>11 Duties of System Analyst:</h4>
+<ol><li>Investigate existing system — understand current processes.</li>
+<li>Collect requirements using interviews, questionnaires, observation.</li>
+<li>Analyze collected information and identify problems.</li>
+<li>Prepare SRS (System Requirements Specification).</li>
+<li>Design system — DFD, ER Diagram, logical and physical design.</li>
+<li>Evaluate hardware and software alternatives.</li>
+<li>Prepare Cost-Benefit Analysis and present to management.</li>
+<li>Coordinate and supervise development team.</li>
+<li>Prepare test plans and test the system.</li>
+<li>Train end users — conduct training sessions.</li>
+<li>Prepare all documentation — user manual, technical manual.</li></ol>
+<h4>Four Skills of System Analyst (ATMI):</h4>
+<table class="styled-table"><tr><th>Skill</th><th>What It Includes</th><th>Why Needed</th></tr>
+<tr><td><strong>Analytical</strong></td><td>Logical thinking, problem decomposition, data analysis, cause-effect reasoning</td><td>Understand complex business processes, find root causes</td></tr>
+<tr><td><strong>Technical</strong></td><td>Programming knowledge, DBMS, networking, CASE tools, system design</td><td>Communicate with programmers, understand technology constraints</td></tr>
+<tr><td><strong>Management</strong></td><td>Project planning, scheduling, budgeting, risk management, leadership</td><td>Manage IS projects within time, cost, and quality constraints</td></tr>
+<tr><td><strong>Interpersonal</strong></td><td>Communication, interviewing, presentation, negotiation, teamwork</td><td>Work with CEO, managers, programmers, and end users at all levels</td></tr></table>
+<div class="box box-green"><strong>🏠 Example:</strong> Hospital wants computerized billing. Doctors know billing rules but not coding. Programmers know coding but not medical billing. System Analyst: interviews doctors → understands billing → writes technical specs → programmers build correct system.</div>
+<div class="box box-red"><strong>✅ Conclusion:</strong> System Analyst = Bridge! CCIACL = 6 Roles. ATMI = 4 Skills. 11 Duties. Without analyst, project failure risk is very high.</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u3">
+  <div class="unit-header" style="background:linear-gradient(135deg,#8b5cf6dd,#8b5cf688)">
+    <div class="unit-icon">🔄</div>
+    <div class="unit-info">
+      <h2>Unit 3 — Process of System Development — SDLC</h2>
+      <p>SDLC 6 Phases | Project Identification | Analysis | Logical/Physical Design | Implementation | Maintenance | Participatory Design</p>
+    </div>
+    <div class="unit-badge" style="color:#8b5cf6;border:1px solid #8b5cf640">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#8b5cf6">2014, 2015, 2016, 2018, 2019, 2021, 2022, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#8b5cf6" onclick="switchTab('u3','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u3','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u3','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u3-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. In which SDLC step does actual programming of software code occur?</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q0',0,3,this)">A) Maintenance and Evaluation</button>
+<button class="option" onclick="checkMCQ('u3q0',1,3,this)">B) Design</button>
+<button class="option" onclick="checkMCQ('u3q0',2,3,this)">C) Analysis</button>
+<button class="option" onclick="checkMCQ('u3q0',3,3,this)">D) Implementation</button>
+</div>
+<div class="mcq-feedback" id="u3q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. Make-or-buy decision in SDLC is associated with:</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q1',0,1,this)">A) Problem Opportunity</button>
+<button class="option" onclick="checkMCQ('u3q1',1,1,this)">B) Design</button>
+<button class="option" onclick="checkMCQ('u3q1',2,1,this)">C) Analysis</button>
+<button class="option" onclick="checkMCQ('u3q1',3,1,this)">D) Implementation</button>
+</div>
+<div class="mcq-feedback" id="u3q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. Which is NOT an activity of the Implementation phase of SDLC?</div>
+<div class="mcq-src">Source: PYQ 2021</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q2',0,3,this)">A) File conversion</button>
+<button class="option" onclick="checkMCQ('u3q2',1,3,this)">B) Program testing</button>
+<button class="option" onclick="checkMCQ('u3q2',2,3,this)">C) User training</button>
+<button class="option" onclick="checkMCQ('u3q2',3,3,this)">D) All of the above are implementation activities</button>
+</div>
+<div class="mcq-feedback" id="u3q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. During which phase is requirement analysis performed?</div>
+<div class="mcq-src">Source: PYQ 2021</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q3',0,2,this)">A) System design phase</button>
+<button class="option" onclick="checkMCQ('u3q3',1,2,this)">B) System development phase</button>
+<button class="option" onclick="checkMCQ('u3q3',2,2,this)">C) System analysis phase</button>
+<button class="option" onclick="checkMCQ('u3q3',3,2,this)">D) System investigation phase</button>
+</div>
+<div class="mcq-feedback" id="u3q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. SDLC stands for:</div>
+<div class="mcq-src">Source: PYQ 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q4',0,2,this)">A) Software Development Logical Cycle</button>
+<button class="option" onclick="checkMCQ('u3q4',1,2,this)">B) System Design and Layout Concept</button>
+<button class="option" onclick="checkMCQ('u3q4',2,2,this)">C) System Development Life Cycle</button>
+<button class="option" onclick="checkMCQ('u3q4',3,2,this)">D) Structured Design Life Cycle</button>
+</div>
+<div class="mcq-feedback" id="u3q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. Logical Design in SDLC focuses on:</div>
+<div class="mcq-src">Source: PYQ 2015, 2017, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q5',0,1,this)">A) HOW the system will be implemented (specific technology)</button>
+<button class="option" onclick="checkMCQ('u3q5',1,1,this)">B) WHAT the system will do (technology-independent)</button>
+<button class="option" onclick="checkMCQ('u3q5',2,1,this)">C) Physical hardware configuration</button>
+<button class="option" onclick="checkMCQ('u3q5',3,1,this)">D) Writing source code</button>
+</div>
+<div class="mcq-feedback" id="u3q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. The main objective of system evaluation is:</div>
+<div class="mcq-src">Source: PYQ 2021</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q6',0,0,this)">A) To see whether system met specification</button>
+<button class="option" onclick="checkMCQ('u3q6',1,0,this)">B) To improve system based on operational experience</button>
+<button class="option" onclick="checkMCQ('u3q6',2,0,this)">C) To remove bugs in programs</button>
+<button class="option" onclick="checkMCQ('u3q6',3,0,this)">D) To assess efficiency of system</button>
+</div>
+<div class="mcq-feedback" id="u3q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. Participatory Design involves:</div>
+<div class="mcq-src">Source: PYQ 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u3q7',0,1,this)">A) Only developers designing the system</button>
+<button class="option" onclick="checkMCQ('u3q7',1,1,this)">B) Users as active co-designers throughout the process</button>
+<button class="option" onclick="checkMCQ('u3q7',2,1,this)">C) Managers designing without user input</button>
+<button class="option" onclick="checkMCQ('u3q7',3,1,this)">D) Automated design by software tools</button>
+</div>
+<div class="mcq-feedback" id="u3q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u3-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u3a40',this)">
+  <span>What is Participatory Design? What are its benefits?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf666">4 Marks</span>
+    <span class="pyq-yr">PYQ 2023</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u3a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Participatory Design (PD) is an approach where end users are ACTIVE CO-DESIGNERS throughout the entire design process — not just information sources. Originated in Scandinavia (1970s).</div>
+<h4>PD vs Traditional:</h4>
+<ul><li><strong>Traditional:</strong> Analyst designs → shows to users → users comment.</li>
+<li><strong>PD:</strong> Users and analyst design TOGETHER from the beginning.</li></ul>
+<h4>Benefits:</h4>
+<ol><li>System fits ACTUAL work practices — not analyst's assumptions.</li>
+<li>High user acceptance — "WE built this together!"</li>
+<li>Reduced training time — users already familiar.</li>
+<li>Better quality — real problems solved.</li></ol>
+<div class="box box-orange"><strong>Challenge:</strong> Time-consuming, needs skilled facilitation.</div>
+<div class="box box-green"><strong>✅ Trick:</strong> PD = People Designing their own system! Users = Co-designers, NOT informants.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u3a41',this)">
+  <span>What is Logical Design? How is it different from Physical Design?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf666">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2017, 2023</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u3a41">
+<div class="paper">
+<table class="styled-table"><tr><th>Parameter</th><th>Logical Design</th><th>Physical Design</th></tr>
+<tr><td>Focus</td><td>WHAT system will do</td><td>HOW system will be built</td></tr>
+<tr><td>Technology</td><td>Technology-independent</td><td>Technology-specific (MySQL, Java)</td></tr>
+<tr><td>Tools</td><td>DFD, ER Diagram, Data Dictionary</td><td>DB schema, UI designs, Hardware specs</td></tr>
+<tr><td>Reviewed by</td><td>Business users</td><td>Technical team + Architects</td></tr>
+<tr><td>Change Cost</td><td>Cheap and easy</td><td>Expensive to change</td></tr></table>
+<div class="box box-green"><strong>✅ Trick:</strong> Logical = WHAT (chef's recipe plan). Physical = HOW (actual cooking with real ingredients).</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u3-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u3a120',this)">
+  <span>Explain all phases of SDLC in detail. Draw the SDLC cycle diagram.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf666">12 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2015, 2016, 2018, 2019, 2021, 2022, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u3a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> SDLC (System Development Life Cycle) is a structured, phase-by-phase process for planning, creating, testing, and deploying information systems. It ensures quality, cost control, and timely delivery. SDLC is CYCLIC — maintenance may trigger a new development cycle.</div>
+<div class="diagram">  ┌─────────────────────────────────────────────────────────────┐
+  │                     SDLC LIFE CYCLE                          │
+  │  ┌────────────┐    ┌────────────┐    ┌──────────────────┐   │
+  │  │ 1.PLANNING  │───▶│ 2.ANALYSIS  │───▶│ 3.LOGICAL DESIGN │   │
+  │  │ Feasibility │    │ SRS + DFDs  │    │  DFD+ER+DD       │   │
+  │  └────────────┘    └────────────┘    └────────┬─────────┘   │
+  │       ▲                                        │              │
+  │       │                                        ▼              │
+  │  ┌──────────────┐  ┌─────────────┐  ┌──────────────────┐   │
+  │  │ 6.MAINTENANCE │◀─│ 5.IMPLEMENT  │◀─│ 4.PHYSICAL DESIGN│   │
+  │  │ CAPP types   │  │Code+Test+   │  │  DB+UI+Hardware  │   │
+  │  └──────────────┘  │ Train+Deploy│  └──────────────────┘   │
+  │                     └─────────────┘                          │
+  └─────────────────────────────────────────────────────────────┘</div>
+<h4>Phase 1 — PLANNING:</h4>
+<ul><li>Identify project need. Conduct Feasibility Study (TOELS).</li>
+<li>Plan resources, budget, and project timeline.</li>
+<li><strong>Output:</strong> Project Charter + Feasibility Report.</li></ul>
+<h4>Phase 2 — ANALYSIS:</h4>
+<ul><li>Study existing system. Gather user requirements.</li>
+<li>Create DFD of current system. Write and get SRS approved.</li>
+<li><strong>Output:</strong> SRS Document.</li></ul>
+<h4>Phase 3 — LOGICAL DESIGN:</h4>
+<ul><li>Design WHAT system will do — technology-independent.</li>
+<li>Create DFD Level 1+, ER Diagram, Data Dictionary.</li>
+<li>Reviewed by USERS. <strong>Output:</strong> Logical Design Document.</li></ul>
+<h4>Phase 4 — PHYSICAL DESIGN:</h4>
+<ul><li>Design HOW system will be built — technology-specific.</li>
+<li>Choose DBMS (MySQL), language (Java), hardware.</li>
+<li>Reviewed by TECHNICAL TEAM. <strong>Output:</strong> Physical Design Specification.</li></ul>
+<h4>Phase 5 — IMPLEMENTATION:</h4>
+<ul><li>Code the system. Test (Unit→Integration→System→UAT).</li>
+<li>Train users. Convert data. Deploy system.</li>
+<li>Changeover types: Direct, Parallel, Phased, Pilot.</li>
+<li><strong>Output:</strong> Working System + User Manual.</li></ul>
+<h4>Phase 6 — MAINTENANCE:</h4>
+<ul><li><strong>Corrective:</strong> Fix bugs after deployment.</li>
+<li><strong>Adaptive:</strong> Modify for environment changes (new laws, new OS).</li>
+<li><strong>Perfective:</strong> Add new features, improve performance.</li>
+<li><strong>Preventive:</strong> Changes to prevent future problems.</li>
+<li><strong>Output:</strong> Updated System + Maintenance Reports.</li></ul>
+<table class="styled-table"><tr><th>Phase</th><th>Key Activity</th><th>Deliverable</th></tr>
+<tr><td>Planning</td><td>Feasibility study</td><td>Project Charter, Feasibility Report</td></tr>
+<tr><td>Analysis</td><td>Requirements gathering</td><td>SRS Document</td></tr>
+<tr><td>Logical Design</td><td>DFD, ER, Data Dictionary</td><td>Logical Design Document</td></tr>
+<tr><td>Physical Design</td><td>DB schema, UI design</td><td>Physical Design Specification</td></tr>
+<tr><td>Implementation</td><td>Code, test, train, deploy</td><td>Working System + User Manual</td></tr>
+<tr><td>Maintenance</td><td>Bug fixes, updates</td><td>Updated System + Reports</td></tr></table>
+<div class="box box-red"><strong>✅ Memory Trick:</strong> PALDIM = Plan, Analyze, Logical, Design, Implement, Maintain. CAPP = Corrective, Adaptive, Perfective, Preventive (maintenance types).</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u4">
+  <div class="unit-header" style="background:linear-gradient(135deg,#f59e0bdd,#f59e0b88)">
+    <div class="unit-icon">📄</div>
+    <div class="unit-info">
+      <h2>Unit 4 — Introduction to Documentation of Systems</h2>
+      <p>Concepts | Types | SRS | SDS | Test Design Document | User Manual | Standards | Quality | Good Practices</p>
+    </div>
+    <div class="unit-badge" style="color:#f59e0b;border:1px solid #f59e0b40">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#f59e0b">2014, 2015, 2016, 2021, 2022, 2023, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#f59e0b" onclick="switchTab('u4','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u4','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u4','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u4-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. What does SRS stand for?</div>
+<div class="mcq-src">Source: PYQ 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q0',0,1,this)">A) Software Requirement Solution</button>
+<button class="option" onclick="checkMCQ('u4q0',1,1,this)">B) System Requirement Specification</button>
+<button class="option" onclick="checkMCQ('u4q0',2,1,this)">C) Software Registration System</button>
+<button class="option" onclick="checkMCQ('u4q0',3,1,this)">D) System Resource Summary</button>
+</div>
+<div class="mcq-feedback" id="u4q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. Which documentation describes HOW the system will be built?</div>
+<div class="mcq-src">Source: PYQ 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q1',0,2,this)">A) SRS</button>
+<button class="option" onclick="checkMCQ('u4q1',1,2,this)">B) Test Design Document</button>
+<button class="option" onclick="checkMCQ('u4q1',2,2,this)">C) SDS (System Design Specification)</button>
+<button class="option" onclick="checkMCQ('u4q1',3,2,this)">D) User Manual</button>
+</div>
+<div class="mcq-feedback" id="u4q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. User Manual is for:</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q2',0,1,this)">A) IT administrators and support staff</button>
+<button class="option" onclick="checkMCQ('u4q2',1,1,this)">B) End-users to learn how to use the system</button>
+<button class="option" onclick="checkMCQ('u4q2',2,1,this)">C) Project managers to track progress</button>
+<button class="option" onclick="checkMCQ('u4q2',3,1,this)">D) Database administrators</button>
+</div>
+<div class="mcq-feedback" id="u4q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. Which document describes testing approach, test cases, and expected results?</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q3',0,2,this)">A) SRS</button>
+<button class="option" onclick="checkMCQ('u4q3',1,2,this)">B) SDS</button>
+<button class="option" onclick="checkMCQ('u4q3',2,2,this)">C) Test Design Document</button>
+<button class="option" onclick="checkMCQ('u4q3',3,2,this)">D) User Manual</button>
+</div>
+<div class="mcq-feedback" id="u4q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. Good documentation should be:</div>
+<div class="mcq-src">Source: PYQ 2022, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q4',0,1,this)">A) Complex and technical</button>
+<button class="option" onclick="checkMCQ('u4q4',1,1,this)">B) Clear, Complete, Consistent, Correct, Current</button>
+<button class="option" onclick="checkMCQ('u4q4',2,1,this)">C) Only for programmers</button>
+<button class="option" onclick="checkMCQ('u4q4',3,1,this)">D) Written at end of project only</button>
+</div>
+<div class="mcq-feedback" id="u4q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. What is process documentation?</div>
+<div class="mcq-src">Source: PYQ 2022, 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q5',0,1,this)">A) Only user manuals</button>
+<button class="option" onclick="checkMCQ('u4q5',1,1,this)">B) Recording all information about system throughout lifecycle</button>
+<button class="option" onclick="checkMCQ('u4q5',2,1,this)">C) Only code comments</button>
+<button class="option" onclick="checkMCQ('u4q5',3,1,this)">D) Test cases only</button>
+</div>
+<div class="mcq-feedback" id="u4q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. IEEE 830 standard is used for:</div>
+<div class="mcq-src">Source: Syllabus</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q6',0,0,this)">A) Writing SRS documents</button>
+<button class="option" onclick="checkMCQ('u4q6',1,0,this)">B) Software Design Descriptions</button>
+<button class="option" onclick="checkMCQ('u4q6',2,0,this)">C) User Documentation</button>
+<button class="option" onclick="checkMCQ('u4q6',3,0,this)">D) Test Documentation</button>
+</div>
+<div class="mcq-feedback" id="u4q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. Which type of document acts as a contract between users and developers?</div>
+<div class="mcq-src">Source: PYQ 2015, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u4q7',0,2,this)">A) User Manual</button>
+<button class="option" onclick="checkMCQ('u4q7',1,2,this)">B) Test Document</button>
+<button class="option" onclick="checkMCQ('u4q7',2,2,this)">C) SRS (System Requirements Specification)</button>
+<button class="option" onclick="checkMCQ('u4q7',3,2,this)">D) Maintenance Report</button>
+</div>
+<div class="mcq-feedback" id="u4q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u4-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u4a40',this)">
+  <span>What is SRS? What does it contain?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b66">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2022, 2023</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u4a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> SRS (System Requirements Specification) is a formal document describing WHAT the system must do. It is the official CONTRACT between users and developers. Users sign it after review.</div>
+<h4>Contents of SRS:</h4>
+<ol><li><strong>Introduction:</strong> Purpose, scope, definitions.</li>
+<li><strong>Functional Requirements:</strong> Specific features system SHALL do.</li>
+<li><strong>Non-functional Requirements:</strong> Performance, security, reliability.</li>
+<li><strong>Constraints:</strong> Hardware/software/budget limitations.</li>
+<li><strong>External Interfaces:</strong> How system connects to other systems.</li>
+<li><strong>Acceptance Criteria:</strong> Conditions confirming system is complete.</li></ol>
+<div class="box box-green"><strong>✅ Conclusion:</strong> SRS = WHAT system must do. Users sign it. Basis for all design, development, testing, and acceptance.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u4a41',this)">
+  <span>What is process documentation? Why is it needed?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b66">4 Marks</span>
+    <span class="pyq-yr">PYQ 2022, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u4a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Documentation = systematically recording ALL information about a system throughout its entire lifecycle. Golden Rule: "If it is not documented, it does not exist."</div>
+<h4>Why Documentation is Needed:</h4>
+<ol><li><strong>Knowledge Transfer:</strong> If developer leaves, new person can continue.</li>
+<li><strong>Maintenance:</strong> Future developers can understand and modify system.</li>
+<li><strong>User Training:</strong> Users need guides to operate system correctly.</li>
+<li><strong>Legal Compliance:</strong> Contracts, audits, regulations need documented evidence.</li>
+<li><strong>Quality:</strong> Ensures standards followed at every development stage.</li></ol>
+<div class="box box-green"><strong>✅ 5 Cs of Good Documentation:</strong> Clear, Consistent, Complete, Correct, Current (up-to-date).</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u4-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u4a120',this)">
+  <span>What is Documentation? Why is it needed? Explain all types of documentation.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b66">12 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2015, 2016, 2021, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u4a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Documentation is the process of systematically recording ALL information about an information system throughout its lifecycle. It serves as the collective memory of the project. Golden Rule: "If it is not documented, it does not exist."</div>
+<h4>Why Documentation is Needed:</h4>
+<ol><li><strong>Knowledge Transfer:</strong> If original developer leaves, new person can continue work.</li>
+<li><strong>Maintenance:</strong> Future developers can understand and modify the system.</li>
+<li><strong>User Training:</strong> Users need guides to operate the system correctly.</li>
+<li><strong>Legal Compliance:</strong> Contracts, audits, and regulations require documented evidence.</li>
+<li><strong>Quality Assurance:</strong> Ensures standards are followed at every development stage.</li></ol>
+<h4>Seven Types of Documentation:</h4>
+<table class="styled-table"><tr><th>Type</th><th>What It Contains</th><th>Phase</th><th>Who Uses It</th></tr>
+<tr><td><strong>Planning Documents</strong></td><td>Project charter, feasibility report, project plan</td><td>Planning</td><td>Management</td></tr>
+<tr><td><strong>SRS</strong> (Requirements)</td><td>Functional + non-functional requirements — WHAT system does</td><td>Analysis</td><td>Users + Analysts</td></tr>
+<tr><td><strong>SDS</strong> (Design Spec)</td><td>Database design, UI design, architecture — HOW system is built</td><td>Design</td><td>Developers</td></tr>
+<tr><td><strong>Test Documents</strong></td><td>Test plan, test cases, test results, bug reports</td><td>Implementation</td><td>Testers</td></tr>
+<tr><td><strong>User Manual</strong></td><td>Step-by-step guide with screenshots — how to use system</td><td>Deployment</td><td>End Users</td></tr>
+<tr><td><strong>Technical Manual</strong></td><td>Admin guide — configuration, error handling, maintenance</td><td>Maintenance</td><td>IT Support</td></tr>
+<tr><td><strong>Maintenance Docs</strong></td><td>Change logs, updated specifications</td><td>Maintenance</td><td>IT Staff</td></tr></table>
+<h4>SRS vs SDS Comparison:</h4>
+<table class="styled-table"><tr><th>Parameter</th><th>SRS</th><th>SDS</th></tr>
+<tr><td>Answers</td><td>WHAT system will do</td><td>HOW system will be built</td></tr>
+<tr><td>Technology</td><td>Technology-independent</td><td>Technology-specific (MySQL, Java)</td></tr>
+<tr><td>Reviewed by</td><td>Business users — they sign it</td><td>Technical team + Architects</td></tr>
+<tr><td>Phase</td><td>Analysis (Phase 2)</td><td>Design (Phase 3 & 4)</td></tr></table>
+<h4>5 Qualities of Good Documentation (5 Cs):</h4>
+<ol><li><strong>Clear:</strong> Easy to understand, no jargon.</li>
+<li><strong>Consistent:</strong> Same format, terminology, style throughout.</li>
+<li><strong>Complete:</strong> All necessary information included.</li>
+<li><strong>Correct:</strong> Accurate and verified information.</li>
+<li><strong>Current:</strong> Updated within 2 weeks of any system change.</li></ol>
+<div class="box box-red"><strong>✅ Memory Trick:</strong> SRS=WHAT. SDS=HOW. Test Doc=HOW TO TEST. User Manual=HOW TO USE. 5 Cs = Clear, Consistent, Complete, Correct, Current.</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u5">
+  <div class="unit-header" style="background:linear-gradient(135deg,#ef4444dd,#ef444488)">
+    <div class="unit-icon">🎯</div>
+    <div class="unit-info">
+      <h2>Unit 5 — Planning and Designing Systems</h2>
+      <p>Fact-Finding (6 types) | Feasibility Study (5 types) | Cost-Benefit Analysis | Requirements Gathering</p>
+    </div>
+    <div class="unit-badge" style="color:#ef4444;border:1px solid #ef444440">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#ef4444">2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#ef4444" onclick="switchTab('u5','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u5','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u5','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u5-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. Cost-Benefit Analysis is performed during which phase?</div>
+<div class="mcq-src">Source: PYQ 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q0',0,2,this)">A) Analysis phase</button>
+<button class="option" onclick="checkMCQ('u5q0',1,2,this)">B) Design phase</button>
+<button class="option" onclick="checkMCQ('u5q0',2,2,this)">C) Feasibility study phase</button>
+<button class="option" onclick="checkMCQ('u5q0',3,2,this)">D) Implementation phase</button>
+</div>
+<div class="mcq-feedback" id="u5q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. Technical Feasibility checks:</div>
+<div class="mcq-src">Source: PYQ 2014, 2015, 2016, 2021</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q1',0,2,this)">A) Whether users will accept the system</button>
+<button class="option" onclick="checkMCQ('u5q1',1,2,this)">B) Whether investment is financially justified</button>
+<button class="option" onclick="checkMCQ('u5q1',2,2,this)">C) Whether required technology is available</button>
+<button class="option" onclick="checkMCQ('u5q1',3,2,this)">D) Whether project complies with laws</button>
+</div>
+<div class="mcq-feedback" id="u5q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. Which fact-finding technique involves watching actual work being done?</div>
+<div class="mcq-src">Source: PYQ 2014</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q2',0,2,this)">A) Interview</button>
+<button class="option" onclick="checkMCQ('u5q2',1,2,this)">B) Questionnaire</button>
+<button class="option" onclick="checkMCQ('u5q2',2,2,this)">C) Observation</button>
+<button class="option" onclick="checkMCQ('u5q2',3,2,this)">D) Document Review</button>
+</div>
+<div class="mcq-feedback" id="u5q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. The main objective of Feasibility Study is:</div>
+<div class="mcq-src">Source: PYQ 2021</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q3',0,1,this)">A) To solve the problem completely</button>
+<button class="option" onclick="checkMCQ('u5q3',1,1,this)">B) To assess if system can meet requirements within constraints</button>
+<button class="option" onclick="checkMCQ('u5q3',2,1,this)">C) To write the SRS</button>
+<button class="option" onclick="checkMCQ('u5q3',3,1,this)">D) To train users</button>
+</div>
+<div class="mcq-feedback" id="u5q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. Structured and Unstructured interviews are types of:</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q4',0,1,this)">A) System testing</button>
+<button class="option" onclick="checkMCQ('u5q4',1,1,this)">B) Fact-finding techniques</button>
+<button class="option" onclick="checkMCQ('u5q4',2,1,this)">C) Documentation methods</button>
+<button class="option" onclick="checkMCQ('u5q4',3,1,this)">D) Design approaches</button>
+</div>
+<div class="mcq-feedback" id="u5q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. CBA formula for Payback Period is:</div>
+<div class="mcq-src">Source: PYQ 2016, 2021, 2023, 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q5',0,1,this)">A) Total Benefits − Total Costs</button>
+<button class="option" onclick="checkMCQ('u5q5',1,1,this)">B) Total Investment ÷ Annual Net Savings</button>
+<button class="option" onclick="checkMCQ('u5q5',2,1,this)">C) (Net Benefit ÷ Total Cost) × 100</button>
+<button class="option" onclick="checkMCQ('u5q5',3,1,this)">D) Total Cost × Benefits</button>
+</div>
+<div class="mcq-feedback" id="u5q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. Operational Feasibility checks:</div>
+<div class="mcq-src">Source: PYQ 2015, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q6',0,1,this)">A) Whether technology is available</button>
+<button class="option" onclick="checkMCQ('u5q6',1,1,this)">B) Whether users will accept and use the system</button>
+<button class="option" onclick="checkMCQ('u5q6',2,1,this)">C) Whether project is profitable</button>
+<button class="option" onclick="checkMCQ('u5q6',3,1,this)">D) Whether project is legal</button>
+</div>
+<div class="mcq-feedback" id="u5q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. In Feasibility Study, TOELS stands for:</div>
+<div class="mcq-src">Source: PYQ 2015, 2016, 2019, 2021, 2022, 2023, 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u5q7',0,0,this)">A) Technical, Operational, Economic, Legal, Schedule</button>
+<button class="option" onclick="checkMCQ('u5q7',1,0,this)">B) Total, Operational, Estimation, Legal, System</button>
+<button class="option" onclick="checkMCQ('u5q7',2,0,this)">C) Technical, Objective, Evaluation, Logical, System</button>
+<button class="option" onclick="checkMCQ('u5q7',3,0,this)">D) None of the above</button>
+</div>
+<div class="mcq-feedback" id="u5q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u5-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u5a40',this)">
+  <span>What is Cost-Benefit Analysis? Explain with formulas.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444466">4 Marks</span>
+    <span class="pyq-yr">PYQ 2016, 2021, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u5a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> CBA compares total costs of system development against total expected benefits to determine financial viability. Proceed only if Net Benefit > 0.</div>
+<div class="box box-orange"><strong>📐 Three Key Formulas:</strong><br>
+1. <strong>Net Benefit = Total Benefits − Total Costs</strong> (must be POSITIVE ✅)<br>
+2. <strong>Payback Period = Total Investment ÷ Annual Net Savings</strong><br>
+3. <strong>ROI (%) = (Net Benefit ÷ Total Cost) × 100</strong></div>
+<h4>Example:</h4>
+<p>College Fee Portal: Investment = Rs 8 lakh | Annual savings = Rs 4 lakh</p>
+<p>Payback = 8 ÷ 4 = <strong>2 years</strong> | ROI = (4÷8)×100 = <strong>50% per year</strong> → Decision: PROCEED ✅</p>
+<div class="box box-green"><strong>✅ Conclusion:</strong> CBA: Net=B−C | Payback=I÷S | ROI=(Net÷Cost)×100. Positive ROI = Project is economically feasible.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u5a41',this)">
+  <span>What are Fact-Finding Techniques? Name all types.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444466">4 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2015, 2016, 2017, 2023</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u5a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Fact-Finding Techniques are methods used by analysts to collect information about existing systems and user requirements. Best practice: Use MULTIPLE techniques for complete picture.</div>
+<h4>Six Techniques (I-Q-O-D-G-S):</h4>
+<ol><li><strong>Interview:</strong> Face-to-face questioning. Rich data but time-consuming.</li>
+<li><strong>Questionnaire:</strong> Written surveys for many users. Cheap but low response.</li>
+<li><strong>Observation:</strong> Watch actual work. Reveals real behavior.</li>
+<li><strong>Document Review:</strong> Study existing forms, reports, manuals.</li>
+<li><strong>Group Discussion / JAD:</strong> Multiple stakeholders together.</li>
+<li><strong>Site Visits:</strong> Visit similar organizations for benchmarking.</li></ol>
+<div class="box box-green"><strong>✅ Trick:</strong> I-Q-O-D-G-S = Interview, Questionnaire, Observation, Document, Group, Site visit.</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u5-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u5a120',this)">
+  <span>Why is Feasibility Study essential? Discuss all 5 types with examples.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444466">12 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2015, 2016, 2019, 2021, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u5a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Feasibility Study is a pre-project evaluation conducted BEFORE committing full resources, to determine if the proposed system is practical, affordable, and worth developing. Output: Feasibility Report with Go/No-Go recommendation.</div>
+<h4>Why Feasibility Study is Essential:</h4>
+<ol><li>Prevents wasting money on impractical projects.</li>
+<li>Identifies problems early — when cheap to fix.</li>
+<li>Provides management with evidence-based decision support.</li>
+<li>Reduces risk of project failure due to unforeseen constraints.</li></ol>
+<h4>Issues Involved in Feasibility Study:</h4>
+<ul><li>Lack of accurate initial information.</li>
+<li>Resistance to change from users and staff.</li>
+<li>High initial cost before returns.</li>
+<li>Uncertainty of future benefits.</li>
+<li>Time constraints — deadline may be unrealistic.</li></ul>
+<h4>Five Types of Feasibility (TOELS):</h4>
+<table class="styled-table"><tr><th>Type</th><th>Key Question</th><th>What Checked</th><th>Example</th></tr>
+<tr><td><strong>Technical</strong></td><td>Can we build it?</td><td>Hardware, software, skills availability</td><td>Cloud servers available? Team knows Python?</td></tr>
+<tr><td><strong>Operational</strong></td><td>Will users use it?</td><td>User acceptance, workflow compatibility, management support</td><td>Village shop owners can use smartphones?</td></tr>
+<tr><td><strong>Economic</strong></td><td>Is it affordable?</td><td>Cost-Benefit Analysis — benefits &gt; costs?</td><td>Rs 10L invest, Rs 4L/yr save → 2.5yr payback</td></tr>
+<tr><td><strong>Legal</strong></td><td>Is it legal?</td><td>IT laws, data privacy, industry regulations</td><td>Patient data complies with DPDP Act 2023?</td></tr>
+<tr><td><strong>Schedule</strong></td><td>Can we finish on time?</td><td>Project timeline vs required deadline</td><td>Can 8-month project fit in 6 months?</td></tr></table>
+<h4>Cost-Benefit Analysis (Economic Feasibility):</h4>
+<div class="box box-orange"><strong>Formulas:</strong><br>
+Net Benefit = Total Benefits − Total Costs (must be POSITIVE)<br>
+Payback Period = Total Investment ÷ Annual Net Savings<br>
+ROI (%) = (Net Benefit ÷ Total Cost) × 100</div>
+<div class="box box-green"><strong>🏠 Example:</strong> Bihar Digital Ration System: Technical ✅ (cloud available), Operational ✗ (shop owners need training), Economic ✅ (saves Rs 50 Cr fraud), Legal ✅ (Aadhaar Act complied). Mixed result → proceed with operational training plan.</div>
+<div class="box box-red"><strong>✅ Memory Trick:</strong> TOELS = Technical, Operational, Economic, Legal, Schedule. CBA: Net=B−C | Payback=I÷S | ROI=(Net÷Cost)×100</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u6">
+  <div class="unit-header" style="background:linear-gradient(135deg,#06b6d4dd,#06b6d488)">
+    <div class="unit-icon">⚙️</div>
+    <div class="unit-info">
+      <h2>Unit 6 — Modular Design + System Design & Modelling</h2>
+      <p>Top-Down | Bottom-Up | Coupling (5 types) | Cohesion (7 types) | DFD | ER Diagram | Decision Table | Decision Tree | Data Dictionary</p>
+    </div>
+    <div class="unit-badge" style="color:#06b6d4;border:1px solid #06b6d440">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#06b6d4">2014, 2015, 2016, 2017, 2018, 2021, 2022, 2023, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#06b6d4" onclick="switchTab('u6','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u6','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u6','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u6-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. LOW Coupling is desirable because:</div>
+<div class="mcq-src">Source: PYQ 2016, 2022, 2023, 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q0',0,2,this)">A) Modules share data freely</button>
+<button class="option" onclick="checkMCQ('u6q0',1,2,this)">B) It means high inter-module dependency</button>
+<button class="option" onclick="checkMCQ('u6q0',2,2,this)">C) Modules are mostly independent of each other</button>
+<button class="option" onclick="checkMCQ('u6q0',3,2,this)">D) One module controls another's logic</button>
+</div>
+<div class="mcq-feedback" id="u6q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. HIGH Cohesion means:</div>
+<div class="mcq-src">Source: PYQ 2015, 2016, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q1',0,1,this)">A) Module is dependent on other modules</button>
+<button class="option" onclick="checkMCQ('u6q1',1,1,this)">B) Elements within module are closely related and do one thing</button>
+<button class="option" onclick="checkMCQ('u6q1',2,1,this)">C) Module has many unrelated functions</button>
+<button class="option" onclick="checkMCQ('u6q1',3,1,this)">D) Modules share global variables</button>
+</div>
+<div class="mcq-feedback" id="u6q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. Top-Down Design uses _____ for testing:</div>
+<div class="mcq-src">Source: PYQ 2014, 2016, 2018, 2021, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q2',0,2,this)">A) Drivers</button>
+<button class="option" onclick="checkMCQ('u6q2',1,2,this)">B) Prototypes</button>
+<button class="option" onclick="checkMCQ('u6q2',2,2,this)">C) Stubs</button>
+<button class="option" onclick="checkMCQ('u6q2',3,2,this)">D) Interfaces</button>
+</div>
+<div class="mcq-feedback" id="u6q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. In DFD, an External Entity is shown as:</div>
+<div class="mcq-src">Source: PYQ 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q3',0,3,this)">A) Circle</button>
+<button class="option" onclick="checkMCQ('u6q3',1,3,this)">B) Arrow</button>
+<button class="option" onclick="checkMCQ('u6q3',2,3,this)">C) Open rectangle</button>
+<button class="option" onclick="checkMCQ('u6q3',3,3,this)">D) Rectangle or square</button>
+</div>
+<div class="mcq-feedback" id="u6q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. Content Coupling is:</div>
+<div class="mcq-src">Source: PYQ 2016, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q4',0,1,this)">A) The best type of coupling</button>
+<button class="option" onclick="checkMCQ('u6q4',1,1,this)">B) The WORST — one module accesses internals of another</button>
+<button class="option" onclick="checkMCQ('u6q4',2,1,this)">C) When modules share only data parameters</button>
+<button class="option" onclick="checkMCQ('u6q4',3,1,this)">D) When modules are independent</button>
+</div>
+<div class="mcq-feedback" id="u6q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. Decision Table is used when:</div>
+<div class="mcq-src">Source: PYQ 2017, 2021, 2023, 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q5',0,1,this)">A) Only one condition determines outcome</button>
+<button class="option" onclick="checkMCQ('u6q5',1,1,this)">B) Multiple conditions interact to determine actions</button>
+<button class="option" onclick="checkMCQ('u6q5',2,1,this)">C) Graphical presentation is preferred</button>
+<button class="option" onclick="checkMCQ('u6q5',3,1,this)">D) No business rules exist</button>
+</div>
+<div class="mcq-feedback" id="u6q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. DFD is normally levelled as:</div>
+<div class="mcq-src">Source: PYQ 2025</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q6',0,3,this)">A) It is a good idea in design</button>
+<button class="option" onclick="checkMCQ('u6q6',1,3,this)">B) It is recommended by many experts</button>
+<button class="option" onclick="checkMCQ('u6q6',2,3,this)">C) It is easy to do</button>
+<button class="option" onclick="checkMCQ('u6q6',3,3,this)">D) It is easier to read many smaller DFDs than one large DFD</button>
+</div>
+<div class="mcq-feedback" id="u6q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. In ER diagram, Attribute is shown as:</div>
+<div class="mcq-src">Source: PYQ 2015, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u6q7',0,2,this)">A) Rectangle</button>
+<button class="option" onclick="checkMCQ('u6q7',1,2,this)">B) Diamond</button>
+<button class="option" onclick="checkMCQ('u6q7',2,2,this)">C) Ellipse/Oval</button>
+<button class="option" onclick="checkMCQ('u6q7',3,2,this)">D) Arrow</button>
+</div>
+<div class="mcq-feedback" id="u6q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u6-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u6a40',this)">
+  <span>What is Coupling? Explain all types.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d466">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u6a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Coupling = degree of interdependence (dependency) BETWEEN different modules. LOW Coupling = GOOD design (modules are independent).</div>
+<h4>Five Types (Best → Worst):</h4>
+<table class="styled-table"><tr><th>#</th><th>Type</th><th>Description</th><th>Rating</th></tr>
+<tr><td>1</td><td><strong>Data Coupling</strong></td><td>Share only specific data via parameters</td><td>⭐⭐⭐⭐⭐ BEST</td></tr>
+<tr><td>2</td><td>Stamp Coupling</td><td>Share data structure — module uses only part</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>3</td><td>Control Coupling</td><td>One passes control flag to direct another</td><td>⭐⭐⭐</td></tr>
+<tr><td>4</td><td>Common Coupling</td><td>Modules share global data variables</td><td>⭐⭐</td></tr>
+<tr><td>5</td><td><strong>Content Coupling</strong></td><td>One module accesses internals of another</td><td>☆ WORST</td></tr></table>
+<div class="box box-green"><strong>✅ Trick:</strong> D-S-C-C-C from best to worst. LOW Coupling = GOOD. HIGH Coupling = BAD!</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u6a41',this)">
+  <span>What is a DFD? Explain its symbols and levels.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d466">4 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2016, 2018, 2021, 2022, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u6a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> DFD (Data Flow Diagram) = graphical tool showing how data FLOWS through an information system. Shows processes, data stores, external entities, and data flows — the LOGICAL view.</div>
+<h4>4 DFD Symbols:</h4>
+<table class="styled-table"><tr><th>Symbol</th><th>Shape</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>External Entity</td><td>Rectangle</td><td>Person/system outside boundary</td><td>Student, Manager</td></tr>
+<tr><td>Process</td><td>Circle</td><td>Transforms data</td><td>"Issue Book"</td></tr>
+<tr><td>Data Store</td><td>Open rectangle</td><td>Where data is stored</td><td>Student Database</td></tr>
+<tr><td>Data Flow</td><td>Arrow</td><td>Direction of data movement</td><td>→ "Book Request"</td></tr></table>
+<h4>DFD Levels:</h4>
+<ul><li><strong>Level 0 (Context):</strong> Entire system = ONE circle.</li>
+<li><strong>Level 1:</strong> Sub-processes visible with data flows.</li>
+<li><strong>Level 2:</strong> Each Level 1 process expanded further.</li></ul>
+<div class="box box-green"><strong>✅ Trick:</strong> R-C-O-A = Rectangle, Circle, Open-box, Arrow (4 DFD symbols). Level 0 = 1 circle = entire system!</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u6-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u6a120',this)">
+  <span>What is Cohesion? Explain all 7 types of cohesion in detail.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d466">12 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u6a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Cohesion = degree of relatedness of elements WITHIN a single module. HIGH Cohesion = GOOD design (module does ONE thing well). DESIGN GOAL: LOW Coupling + HIGH Cohesion = BEST design.</div>
+<h4>Seven Types of Cohesion (BEST → WORST):</h4>
+<table class="styled-table"><tr><th>#</th><th>Type</th><th>Description</th><th>Example</th><th>Rating</th></tr>
+<tr><td>1</td><td><strong>Functional</strong></td><td>ONE specific well-defined function only</td><td>"Calculate Tax" does ONLY tax calc</td><td>⭐⭐⭐⭐⭐ BEST</td></tr>
+<tr><td>2</td><td>Sequential</td><td>Output of one element = input to next (pipeline)</td><td>Parse → Validate → Store data</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>3</td><td>Communicational</td><td>All elements work on same data or produce same output</td><td>All functions update same customer record</td><td>⭐⭐⭐</td></tr>
+<tr><td>4</td><td>Procedural</td><td>Elements execute in sequence as procedure steps</td><td>Login: verify→log→redirect</td><td>⭐⭐⭐</td></tr>
+<tr><td>5</td><td>Temporal</td><td>Elements executed at the same time (grouped by timing)</td><td>All system startup routines together</td><td>⭐⭐</td></tr>
+<tr><td>6</td><td>Logical</td><td>Logically similar functions grouped — flag selects which</td><td>All input types (keyboard, mouse, touch) in one module</td><td>⭐</td></tr>
+<tr><td>7</td><td><strong>Coincidental</strong></td><td>NO meaningful relationship — random grouping</td><td>"Miscellaneous" module with unrelated tasks</td><td>☆ WORST</td></tr></table>
+<h4>Coupling vs Cohesion Comparison:</h4>
+<table class="styled-table"><tr><th>Parameter</th><th>Coupling</th><th>Cohesion</th></tr>
+<tr><td>Definition</td><td>Interdependence BETWEEN modules</td><td>Relatedness WITHIN one module</td></tr>
+<tr><td>Good Value</td><td>LOW is desirable</td><td>HIGH is desirable</td></tr>
+<tr><td>Best Type</td><td>Data Coupling</td><td>Functional Cohesion</td></tr>
+<tr><td>Worst Type</td><td>Content Coupling</td><td>Coincidental Cohesion</td></tr></table>
+<div class="box box-orange"><strong>📐 Design Goal:</strong> LOW Coupling + HIGH Cohesion = BEST Modular Design ✅</div>
+<div class="box box-green"><strong>🏠 Example:</strong> Good design: "Calculate Tax" module — does ONLY tax calculation (Functional Cohesion). Bad design: "Miscellaneous" module — does login + tax + email + print (Coincidental Cohesion).</div>
+<div class="box box-red"><strong>✅ Memory Trick:</strong> Cohesion: F-S-C-P-T-L-C (Functional→Coincidental = BEST to WORST). Coupling: D-S-C-C-C (Data→Content = BEST to WORST).</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u6a121',this)">
+  <span>What is Decision Table? Explain with example. Draw Decision Tree for same example.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d466">12 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2017, 2021, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u6a121">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Decision Table Definition:</strong> Tabular representation showing ALL possible condition combinations and their corresponding actions. Ensures no combination is missed.</div>
+<div class="box box-purple"><strong>📘 Decision Tree Definition:</strong> Graphical tree showing conditions as branches and actions as leaves. Same logic as Decision Table — different visual format.</div>
+<h4>Decision Table Structure:</h4>
+<ul><li><strong>Condition Stubs:</strong> List of all conditions (top-left).</li>
+<li><strong>Condition Entries:</strong> Y (True) or N (False) for each rule (top-right).</li>
+<li><strong>Action Stubs:</strong> List of all possible actions (bottom-left).</li>
+<li><strong>Action Entries:</strong> X = action taken for that rule (bottom-right).</li>
+<li>Each COLUMN = one complete business rule.</li>
+<li>2 conditions → 4 rules (2²). 3 conditions → 8 rules (2³).</li></ul>
+<div class="diagram">  DECISION TABLE — Loan Approval System:
+  ┌─────────────────────────────┬──────┬──────┬──────┬──────┐
+  │ CONDITIONS                  │ Rule1│ Rule2│ Rule3│ Rule4│
+  ├─────────────────────────────┼──────┼──────┼──────┼──────┤
+  │ Income > 5 Lakh?            │  Y   │  Y   │  N   │  N   │
+  │ Credit Score > 700?         │  Y   │  N   │  Y   │  N   │
+  ├─────────────────────────────┼──────┼──────┼──────┼──────┤
+  │ ACTIONS                     │      │      │      │      │
+  │ Approve Loan Fully          │  X   │      │      │      │
+  │ Conditional Approval        │      │  X   │  X   │      │
+  │ Reject Loan Application     │      │      │      │  X   │
+  └─────────────────────────────┴──────┴──────┴──────┴──────┘
+  Y = Condition True  │  N = Condition False  │  X = Action Taken
+
+  DECISION TREE — Same Logic in Tree Format:
+                      [Income > 5 Lakh?]
+                     /                   \
+                  YES                     NO
+          [Credit > 700?]         [Credit > 700?]
+           /           \            /           \
+         YES             NO        YES             NO
+      [APPROVE]    [CONDITIONAL] [CONDITIONAL]  [REJECT]</div>
+<h4>Decision Table vs Decision Tree:</h4>
+<table class="styled-table"><tr><th>Feature</th><th>Decision Table</th><th>Decision Tree</th></tr>
+<tr><td>Format</td><td>Table (rows + columns)</td><td>Tree (branches + leaves)</td></tr>
+<tr><td>Completeness</td><td>Easy to verify all combinations</td><td>Hard to verify all combinations</td></tr>
+<tr><td>Best For</td><td>Many conditions (complex)</td><td>Fewer conditions (visual clarity)</td></tr>
+<tr><td>Audience</td><td>Technical analysts</td><td>Non-technical stakeholders</td></tr></table>
+<div class="box box-red"><strong>✅ Conclusion:</strong> Decision Table = ALL rules in GRID (Y/N, X). Decision Tree = Tree of Decisions. Same logic, different format!</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="unit-card" id="u7">
+  <div class="unit-header" style="background:linear-gradient(135deg,#ec4899dd,#ec489988)">
+    <div class="unit-icon">📊</div>
+    <div class="unit-info">
+      <h2>Unit 7 — Forms, Reports, CASE Tools & Audit</h2>
+      <p>Forms vs Reports | Design Guidelines | Criteria | CASE Tools | Audit Definition | Audit Objectives | CIA Triad</p>
+    </div>
+    <div class="unit-badge" style="color:#ec4899;border:1px solid #ec489940">⭐ PYQ Active</div>
+  </div>
+  <div class="pyq-alert">
+    <span>🔴 PYQ ALERT:</span> This unit's topics appeared in AKU exams: <strong style="color:#ec4899">2014, 2015, 2016, 2018, 2022, 2023, 2025</strong>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" style="border-bottom-color:#ec4899" onclick="switchTab('u7','mcq',this)">❓ MCQ Solved (8)</button>
+    <button class="tab-btn" onclick="switchTab('u7','a4',this)">✏️ 4-Mark Answers</button>
+    <button class="tab-btn" onclick="switchTab('u7','a12',this)">📝 12-Mark Answers</button>
+  </div>
+<div class="tab-content active" id="u7-mcq">
+<div class="mcq-item"><div class="mcq-q">Q1. Forms are used for:</div>
+<div class="mcq-src">Source: PYQ 2015, 2023</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q0',0,1,this)">A) Presenting output information to management</button>
+<button class="option" onclick="checkMCQ('u7q0',1,1,this)">B) Collecting INPUT data from users</button>
+<button class="option" onclick="checkMCQ('u7q0',2,1,this)">C) Database backup</button>
+<button class="option" onclick="checkMCQ('u7q0',3,1,this)">D) System testing</button>
+</div>
+<div class="mcq-feedback" id="u7q0-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q2. CASE stands for:</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q1',0,1,this)">A) Computer Application for Software Execution</button>
+<button class="option" onclick="checkMCQ('u7q1',1,1,this)">B) Computer-Aided Software Engineering</button>
+<button class="option" onclick="checkMCQ('u7q1',2,1,this)">C) Common Access to System Environment</button>
+<button class="option" onclick="checkMCQ('u7q1',3,1,this)">D) Centralized Application System Engine</button>
+</div>
+<div class="mcq-feedback" id="u7q1-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q3. A graphic representation of an information system is called:</div>
+<div class="mcq-src">Source: PYQ 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q2',0,2,this)">A) Flowchart</button>
+<button class="option" onclick="checkMCQ('u7q2',1,2,this)">B) Pictogram</button>
+<button class="option" onclick="checkMCQ('u7q2',2,2,this)">C) Data Flow Diagram</button>
+<button class="option" onclick="checkMCQ('u7q2',3,2,this)">D) Histogram</button>
+</div>
+<div class="mcq-feedback" id="u7q2-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q4. Main objectives of Computer System Audit include:</div>
+<div class="mcq-src">Source: PYQ 2015, 2016, 2018, 2022</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q3',0,1,this)">A) Writing new programs</button>
+<button class="option" onclick="checkMCQ('u7q3',1,1,this)">B) Verifying accuracy, security, and compliance of systems</button>
+<button class="option" onclick="checkMCQ('u7q3',2,1,this)">C) Training new employees</button>
+<button class="option" onclick="checkMCQ('u7q3',3,1,this)">D) Hardware installation only</button>
+</div>
+<div class="mcq-feedback" id="u7q3-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q5. CIA Triad in Security stands for:</div>
+<div class="mcq-src">Source: PYQ 2016, 2018</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q4',0,1,this)">A) Control, Integrity, Access</button>
+<button class="option" onclick="checkMCQ('u7q4',1,1,this)">B) Confidentiality, Integrity, Availability</button>
+<button class="option" onclick="checkMCQ('u7q4',2,1,this)">C) Confidentiality, Integration, Accuracy</button>
+<button class="option" onclick="checkMCQ('u7q4',3,1,this)">D) Control, Information, Audit</button>
+</div>
+<div class="mcq-feedback" id="u7q4-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q6. Which is NOT a type of report?</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q5',0,2,this)">A) Scheduled report</button>
+<button class="option" onclick="checkMCQ('u7q5',1,2,this)">B) Exception report</button>
+<button class="option" onclick="checkMCQ('u7q5',2,2,this)">C) Input report</button>
+<button class="option" onclick="checkMCQ('u7q5',3,2,this)">D) On-demand report</button>
+</div>
+<div class="mcq-feedback" id="u7q5-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q7. Upper CASE Tools support:</div>
+<div class="mcq-src">Source: PYQ 2015</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q6',0,1,this)">A) Code generation and testing</button>
+<button class="option" onclick="checkMCQ('u7q6',1,1,this)">B) Analysis and Design phases</button>
+<button class="option" onclick="checkMCQ('u7q6',2,1,this)">C) Hardware installation</button>
+<button class="option" onclick="checkMCQ('u7q6',3,1,this)">D) Database maintenance</button>
+</div>
+<div class="mcq-feedback" id="u7q6-fb"></div>
+</div>
+<div class="mcq-item"><div class="mcq-q">Q8. Audit Trail is:</div>
+<div class="mcq-src">Source: PYQ 2015, 2016</div>
+<div class="options">
+<button class="option" onclick="checkMCQ('u7q7',0,1,this)">A) A hiking path through the audit office</button>
+<button class="option" onclick="checkMCQ('u7q7',1,1,this)">B) Electronic log recording ALL user actions in the system</button>
+<button class="option" onclick="checkMCQ('u7q7',2,1,this)">C) A type of software testing</button>
+<button class="option" onclick="checkMCQ('u7q7',3,1,this)">D) A backup procedure</button>
+</div>
+<div class="mcq-feedback" id="u7q7-fb"></div>
+</div>
+</div>
+<div class="tab-content" id="u7-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u7a40',this)">
+  <span>What is Audit? State objectives of Computer System Audit.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ec489922;color:#ec4899;border:1px solid #ec489966">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015, 2016, 2018, 2022</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u7a40">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Audit = Systematic, independent examination and evaluation of computer systems, operations, and records to verify accuracy, security, and compliance with policies and laws.</div>
+<h4>8 Objectives of Computer System Audit:</h4>
+<ol><li>Verify data accuracy, completeness, and integrity.</li>
+<li>Ensure security — check access controls prevent unauthorized access.</li>
+<li>Detect fraud — identify unauthorized or fraudulent transactions.</li>
+<li>Detect errors — find processing mistakes in systems.</li>
+<li>Check legal compliance — IT Act, data privacy, industry regulations.</li>
+<li>Evaluate efficiency — assess system performance.</li>
+<li>Review backup — ensure data backups are adequate.</li>
+<li>Recommend improvements — suggest better controls.</li></ol>
+<div class="box box-green"><strong>✅ CIA Triad:</strong> Confidentiality + Integrity + Availability = 3 pillars of computer security.</div></div>
+</div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u7a41',this)">
+  <span>What are CASE Tools? Explain their role with examples.</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ec489922;color:#ec4899;border:1px solid #ec489966">4 Marks</span>
+    <span class="pyq-yr">PYQ 2015</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u7a41">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> CASE = Computer-Aided Software Engineering. Tools that support SDLC activities — automating tasks, improving productivity, and ensuring quality.</div>
+<table class="styled-table"><tr><th>Type</th><th>Phase</th><th>Examples</th><th>What They Do</th></tr>
+<tr><td>Upper CASE</td><td>Analysis + Design</td><td>MS Visio, IBM Rational Rose, ERwin</td><td>Draw DFD, ER diagrams, architecture</td></tr>
+<tr><td>Lower CASE</td><td>Code + Testing</td><td>Eclipse, IntelliJ, JUnit, Selenium</td><td>IDE for coding, automated testing</td></tr>
+<tr><td>I-CASE</td><td>All phases</td><td>IBM Rational Suite</td><td>Complete integrated environment</td></tr>
+<tr><td>Project Mgmt</td><td>All phases</td><td>JIRA, Git, MS Project</td><td>Bug tracking, version control</td></tr></table>
+<div class="box box-green"><strong>✅ Trick:</strong> CASE = Computers Assisting Software Engineers! Upper=Design, Lower=Code+Test.</div></div>
+</div></div>
+</div>
+<div class="tab-content" id="u7-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="toggleAns('u7a120',this)">
+  <span>What is Form Design? Types of forms? Guidelines for good form design? Criteria for Report Design?</span>
+  <div class="ans-badges">
+    <span class="marks-badge" style="background:#ec489922;color:#ec4899;border:1px solid #ec489966">12 Marks</span>
+    <span class="pyq-yr">PYQ 2014, 2015, 2022, 2023, 2025</span>
+    <span class="chevron">▼</span>
+  </div>
+</button>
+<div class="ans-body" id="u7a120">
+<div class="paper">
+<div class="box box-blue"><strong>📘 Definition:</strong> Form = Structured INPUT document to collect data FROM users INTO system. Report = Formatted OUTPUT document presenting processed information FROM system TO users. <strong>Simple rule: Form = Fill In (Input). Report = Read Out (Output).</strong></div>
+<h4>Types of Forms:</h4>
+<ol><li><strong>Paper Forms:</strong> Physical printed forms filled by hand (offline).</li>
+<li><strong>Electronic Forms:</strong> Screen-based forms in software applications.</li>
+<li><strong>Web Forms:</strong> Online forms on websites and mobile apps.</li>
+<li><strong>Turnaround Documents:</strong> Sent out, filled, and returned (feedback forms).</li></ol>
+<h4>Types of Reports:</h4>
+<ol><li><strong>Scheduled Reports:</strong> Generated at fixed intervals (daily, weekly, monthly).</li>
+<li><strong>Exception Reports:</strong> Generated ONLY when something unusual occurs.</li>
+<li><strong>On-demand Reports:</strong> Generated when specifically requested.</li>
+<li><strong>Summary Reports:</strong> High-level totals and overview.</li>
+<li><strong>Detail Reports:</strong> Complete line-by-line data.</li></ol>
+<h4>Guidelines for Good FORM Design (8 Points):</h4>
+<ol><li><strong>Meaningful Title:</strong> Clear heading identifying form purpose.</li>
+<li><strong>Clear Labels:</strong> Every field clearly labeled — user knows what to enter.</li>
+<li><strong>Logical Sequence:</strong> Related fields grouped together in logical order.</li>
+<li><strong>Adequate Space:</strong> Enough room to write or type the required data.</li>
+<li><strong>Instructions:</strong> Guidance for complex or non-obvious fields.</li>
+<li><strong>Minimal Fields:</strong> Collect ONLY what is absolutely necessary.</li>
+<li><strong>Validation Rules:</strong> Prevent incorrect data entry with checks.</li>
+<li><strong>Professional Appearance:</strong> Consistent with organization branding.</li></ol>
+<h4>Criteria for Good REPORT Design:</h4>
+<ul><li><strong>Relevance:</strong> Include only information needed by the reader.</li>
+<li><strong>Accuracy:</strong> Data must be correct and verified.</li>
+<li><strong>Timeliness:</strong> Delivered at the right time for decision-making.</li>
+<li><strong>Clarity:</strong> Easy to read and understand at a glance.</li>
+<li><strong>Completeness:</strong> All necessary information included.</li></ul>
+<h4>Forms vs Reports Comparison:</h4>
+<table class="styled-table"><tr><th>Parameter</th><th>Forms</th><th>Reports</th></tr>
+<tr><td>Purpose</td><td>Collect INPUT data</td><td>Present OUTPUT information</td></tr>
+<tr><td>Direction</td><td>User → System</td><td>System → User</td></tr>
+<tr><td>Design Focus</td><td>Ease of entry, validation</td><td>Clarity, relevance, accuracy</td></tr>
+<tr><td>Frequency</td><td>Every transaction</td><td>Periodic (daily/monthly)</td></tr>
+<tr><td>Example</td><td>Application form, Bank deposit slip</td><td>Bank statement, Marksheet</td></tr></table>
+<div class="box box-red"><strong>✅ Memory Trick:</strong> Form = FILL IN (Input→System). Report = READ OUT (System→Output). F=Feeding data. R=Reading results!</div></div>
+</div></div>
+</div>
+</div>
+</main>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+<footer>
+  <strong>BCA-203 System Analysis &amp; Design</strong> | AKU Patna | Code: 303203<br>
+  Exam: 21 September 2026, 10:00 AM – 1:00 PM | Full Marks: 60<br>
+  <span style="color:#475569">PYQ Years Used: 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2025 (All Verified)</span><br>
+  <span style="color:#334155;font-size:0.75rem">No internet required • Single HTML file • Open on any device</span>
+</footer>
+
+<script>
+// Particles
+(function(){
+  const p=document.getElementById('particles');
+  for(let i=0;i<22;i++){
+    const d=document.createElement('div');
+    const sz=Math.random()*14+5;
+    const colors=['#3b82f6','#8b5cf6','#ef4444','#10b981','#f59e0b','#ec4899','#06b6d4'];
+    d.className='particle';
+    d.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*8}s`;
+    p.appendChild(d);
+  }
+})();
+
+// Countdown
+function updateClock(){
+  const exam=new Date('2026-09-21T10:00:00');
+  const now=new Date();
+  const diff=exam-now;
+  if(diff<=0){
+    document.getElementById('cd-d').textContent='00';
+    document.getElementById('cd-h').textContent='00';
+    document.getElementById('cd-m').textContent='00';
+    document.getElementById('cd-s').textContent='00';
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+updateClock(); setInterval(updateClock,1000);
+
+// Progress bar
+window.addEventListener('scroll',function(){
+  const doc=document.documentElement;
+  const pct=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight))*100;
+  document.getElementById('progress-bar').style.width=pct+'%';
+  const btt=document.getElementById('btt');
+  if(doc.scrollTop>300) btt.classList.add('show'); else btt.classList.remove('show');
+});
+
+// Scroll to unit
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Tab switching
+function switchTab(uid,tab,btn){
+  document.querySelectorAll('#'+uid+' .tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('#'+uid+' .tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(uid+'-'+tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+// MCQ checker
+function checkMCQ(qid,chosen,correct,btn){
+  const container=btn.closest('.mcq-item');
+  if(container.classList.contains('answered')) return;
+  container.classList.add('answered');
+  const opts=container.querySelectorAll('.option');
+  opts.forEach(o=>o.classList.add('used'));
+  opts[correct].classList.add('correct');
+  const fb=document.getElementById(qid+'-fb');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.className='mcq-feedback fb-correct show';
+    fb.innerHTML='✅ <strong>Correct!</strong> '+btn.textContent+' — '+fb.parentElement.querySelector('.mcq-src').textContent;
+  } else {
+    btn.classList.add('wrong');
+    fb.className='mcq-feedback fb-wrong show';
+    fb.innerHTML='❌ <strong>Wrong.</strong> Correct answer: <strong>'+opts[correct].textContent+'</strong><br>'+fb.parentElement.querySelector('.mcq-src').textContent;
+  }
+  
+}
+
+// Answer toggle
+function toggleAns(id,btn){
+  const body=document.getElementById(id);
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// Expand / Collapse all
+function expandAll(){
+  document.querySelectorAll('.ans-body').forEach(b=>b.classList.add('open'));
+  document.querySelectorAll('.ans-toggle').forEach(b=>b.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.ans-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.ans-toggle').forEach(b=>b.classList.remove('open'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin Login — Arrahman Study Hub</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:#050510;color:#fff;
+      min-height:100vh;display:flex;align-items:center;
+      justify-content:center;padding:20px;
+      background-image:
+        radial-gradient(ellipse at 20% 20%,rgba(99,102,241,.15) 0%,transparent 50%),
+        radial-gradient(ellipse at 80% 80%,rgba(139,92,246,.1) 0%,transparent 50%);
+    }
+
+    .card{
+      width:100%;max-width:420px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:24px;padding:40px 36px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 32px 80px rgba(0,0,0,.5);
+    }
+
+    .logo-wrap{text-align:center;margin-bottom:32px}
+    .logo-img{
+      width:72px;height:72px;border-radius:18px;
+      background:linear-gradient(135deg,#4f46e5,#7c3aed);
+      display:flex;align-items:center;justify-content:center;
+      font-size:2rem;margin:0 auto 14px;
+      box-shadow:0 0 32px rgba(99,102,241,.4);
+    }
+    .logo-img img{width:100%;height:100%;border-radius:18px;object-fit:cover}
+    h1{font-family:'Outfit';font-size:1.6rem;font-weight:900;margin-bottom:4px}
+    .sub{font-size:.82rem;color:#64748b}
+
+    .field{margin-bottom:18px}
+    label{display:block;font-size:.78rem;font-weight:700;color:#94a3b8;margin-bottom:7px;text-transform:uppercase;letter-spacing:.8px}
+    input{
+      width:100%;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:13px 16px;
+      color:#fff;font-size:.9rem;font-family:inherit;outline:none;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+    input::placeholder{color:#475569}
+
+    .show-pass{position:relative}
+    .show-pass input{padding-right:44px}
+    .toggle-pass{
+      position:absolute;right:14px;top:50%;transform:translateY(-50%);
+      background:none;border:none;color:#64748b;cursor:pointer;font-size:1rem;
+    }
+
+    .error-msg{
+      background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+      border-radius:10px;padding:10px 14px;font-size:.8rem;color:#fca5a5;
+      margin-bottom:16px;display:none;
+    }
+    .error-msg.show{display:block}
+
+    .btn-login{
+      width:100%;background:linear-gradient(135deg,#6366f1,#7c3aed);
+      color:#fff;border:none;padding:14px;border-radius:13px;
+      font-size:.95rem;font-weight:700;font-family:inherit;
+      cursor:pointer;transition:opacity .2s,transform .15s;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      margin-top:6px;
+    }
+    .btn-login:hover{opacity:.88;transform:translateY(-1px)}
+    .btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+    .spinner{
+      width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
+      border-top-color:#fff;border-radius:50%;
+      animation:spin .7s linear infinite;display:none;
+    }
+    .btn-login.loading .spinner{display:block}
+    .btn-login.loading .btn-txt{display:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .back-link{
+      display:block;text-align:center;margin-top:20px;
+      font-size:.78rem;color:#475569;text-decoration:none;
+      transition:color .2s;
+    }
+    .back-link:hover{color:#94a3b8}
+
+    .security-note{
+      display:flex;align-items:center;gap:8px;
+      margin-top:24px;padding:10px 14px;
+      background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);
+      border-radius:10px;font-size:.73rem;color:#6ee7b7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-wrap">
+      <div class="logo-img">
+        <img src="/icons/icon-192.png" alt="AR" onerror="this.parentElement.textContent='📚'"/>
+      </div>
+      <h1>Admin Panel</h1>
+      <p class="sub">Arrahman Study Hub · Secure Access</p>
+    </div>
+
+    <div class="error-msg" id="errorMsg">
+      ⚠️ <span id="errorTxt">Invalid email or password</span>
+    </div>
+
+    <div class="field">
+      <label>Admin Email</label>
+      <input type="email" id="emailInput" placeholder="admin@arrahmanstudyhub.tech" autocomplete="email"/>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <div class="show-pass">
+        <input type="password" id="passInput" placeholder="••••••••••••" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter')doLogin()"/>
+        <button class="toggle-pass" onclick="togglePass()" type="button" id="eyeBtn">👁</button>
+      </div>
+    </div>
+
+    <button class="btn-login" id="loginBtn" onclick="doLogin()">
+      <div class="spinner"></div>
+      <span class="btn-txt">🔐 Login to Admin Panel</span>
+    </button>
+
+    <div class="security-note">
+      🔒 This page is for authorized admin only. Unauthorized access is prohibited.
+    </div>
+
+    <a class="back-link" href="/">← Back to Website</a>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="/firebase-config.js"></script>
+  <script>
+    /* Init Firebase */
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const auth = firebase.auth();
+
+    /* Check already logged in */
+    auth.onAuthStateChanged(user => {
+      if (user) window.location.href = '/admin/dashboard.html';
+    });
+
+    function doLogin() {
+      const email = document.getElementById('emailInput').value.trim();
+      const pass  = document.getElementById('passInput').value;
+      const btn   = document.getElementById('loginBtn');
+      const err   = document.getElementById('errorMsg');
+
+      if (!email || !pass) {
+        showError('Please enter email and password');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+      err.classList.remove('show');
+
+      auth.signInWithEmailAndPassword(email, pass)
+        .then(() => {
+          window.location.href = '/admin/dashboard.html';
+        })
+        .catch(e => {
+          btn.classList.remove('loading');
+          btn.disabled = false;
+          const msgs = {
+            'auth/user-not-found':   'No admin account found with this email.',
+            'auth/wrong-password':   'Incorrect password. Please try again.',
+            'auth/too-many-requests':'Too many attempts. Please wait and try again.',
+            'auth/invalid-email':    'Invalid email address.',
+          };
+          showError(msgs[e.code] || 'Login failed: ' + e.message);
+        });
+    }
+
+    function showError(msg) {
+      document.getElementById('errorTxt').textContent = msg;
+      document.getElementById('errorMsg').classList.add('show');
+    }
+
+    function togglePass() {
+      const inp = document.getElementById('passInput');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+      document.getElementById('eyeBtn').textContent = inp.type === 'password' ? '👁' : '🙈';
+    }
+  </script>
+</body>
+</html>

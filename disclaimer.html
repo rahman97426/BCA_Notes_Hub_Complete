@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Disclaimer | BCA Notes Hub</title>
+  <meta name="description" content="Disclaimer for BCA Notes Hub — an independent educational resource for AKU Patna BCA students. Not officially affiliated with AKU Patna."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://arrahmanstudyhub.tech/disclaimer.html"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="space"><div class="stars"></div><div class="nebula"></div><div class="nebula2"></div></div>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="BCA Notes Hub Home">
+      <div class="logo-icon">📚</div>
+      <div>BCA Notes Hub<span class="logo-sub">Abdul Rahman · AKU Patna 2026–28</span></div>
+    </a>
+    <div style="flex:1"></div>
+    <div class="header-right">
+      <a class="icon-btn" href="index.html" title="Home"><i class="fa-solid fa-house"></i></a>
+      <button class="icon-btn" onclick="togglePageTheme()" title="Toggle Theme">
+        <i class="fa-solid fa-moon" id="pageThemeIcon"></i>
+      </button>
+    </div>
+  </header>
+  <main class="page-main">
+    <nav class="page-breadcrumb"><a href="index.html">🏠 Home</a><span class="sep">/</span><span>Disclaimer</span></nav>
+    <h1 class="page-h1">Disclaimer</h1>
+    <p class="page-lead">Please read this disclaimer carefully before using the content available on BCA Notes Hub.</p>
+
+    <section class="page-section">
+      <h2 class="page-h2">1. Educational Resource Disclaimer</h2>
+      <p class="page-p">BCA Notes Hub is an independent, student-created educational resource. All study materials, notes, previous year questions, cheatsheets and related content are provided for personal, non-commercial educational purposes only.</p>
+      <p class="page-p">The content is intended to assist BCA students in understanding their subjects and preparing for examinations. It is not a substitute for attending classes, consulting official university resources or seeking guidance from qualified instructors.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">2. Not the Official AKU Website</h2>
+      <div class="page-card" style="border-left:4px solid #f43f5e">
+        <p class="page-p" style="margin:0;color:var(--txt);font-weight:600;">⚠️ Important Notice</p>
+        <p class="page-p" style="margin-top:8px;margin-bottom:0">BCA Notes Hub (<a href="https://arrahmanstudyhub.tech/" style="color:#6366f1">arrahmanstudyhub.tech</a>) is <strong>NOT</strong> the official website of Aryabhatta Knowledge University (AKU) Patna, nor is it affiliated with, endorsed by, or approved by AKU or any government educational body. For official university information, results, admissions and official notices, please visit the official AKU Patna website directly.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">3. Information Accuracy</h2>
+      <p class="page-p">While every effort is made to ensure that the study materials and information provided are accurate and current, we make no warranties or representations about:</p>
+      <ul class="page-ul">
+        <li>The completeness or accuracy of the notes and study materials</li>
+        <li>The currency of syllabus information (syllabus changes are made by AKU and may not be reflected immediately)</li>
+        <li>The correctness of answers in PYQ solutions or notes</li>
+        <li>The applicability of information to specific examination years or patterns</li>
+      </ul>
+      <p class="page-p">Always verify critical academic information with your college or official AKU sources before examinations.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">4. Third-Party Copyright</h2>
+      <p class="page-p">Previous year question papers, official syllabuses and other official documents made available on this website remain the intellectual property of their respective copyright holders (including AKU Patna and relevant government bodies). These materials are shared solely for educational, non-commercial student reference purposes.</p>
+      <p class="page-p">If you are a copyright owner and believe your material has been used inappropriately, please contact us at <a href="mailto:arrahman97426@gmail.com" style="color:#6366f1">arrahman97426@gmail.com</a> and we will address your concern promptly.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">5. No Guarantee of Results</h2>
+      <p class="page-p">BCA Notes Hub does not guarantee any specific examination results, grades, academic outcomes or university admission outcomes. Academic performance is a function of individual effort, understanding, preparation and many other factors. Study materials provided here are supplementary resources only.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">6. External Links</h2>
+      <p class="page-p">This website may contain links to external resources, platforms and social media. We are not responsible for the content, privacy practices or availability of these external resources.</p>
+    </section>
+
+    <section class="page-section">
+      <h2 class="page-h2">7. Contact</h2>
+      <p class="page-p">For questions or concerns related to this disclaimer, please visit our <a href="contact.html" style="color:#6366f1">Contact page</a>.</p>
+    </section>
+  </main>
+  <footer class="page-simple-footer">
+    © 2026 Abdul Rahman. All Rights Reserved. &nbsp;·&nbsp;
+    <a href="index.html">Home</a> <a href="about.html">About</a>
+    <a href="contact.html">Contact</a> <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </footer>
+  <script>
+    function togglePageTheme(){document.body.classList.toggle('light');const l=document.body.classList.contains('light');document.getElementById('pageThemeIcon').className=l?'fa-solid fa-sun':'fa-solid fa-moon';localStorage.setItem('hub_theme',l?'light':'dark');}
+    if(localStorage.getItem('hub_theme')==='light'){document.body.classList.add('light');document.getElementById('pageThemeIcon').className='fa-solid fa-sun';}
+  </script>
+</body>
+</html>
