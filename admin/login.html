@@ -169,6 +169,14 @@
       btn.disabled = true;
       err.classList.remove('show');
 
+            // Config check
+      if (typeof FIREBASE_CONFIG === 'undefined' || !FIREBASE_CONFIG.apiKey || FIREBASE_CONFIG.apiKey.includes('YOUR_')) {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        err.textContent = '🔧 Setup needed! firebase-config.js mein apna real Firebase API key fill karo. See SETUP_GUIDE.md';
+        err.classList.add('show');
+        return;
+      }
       auth.signInWithEmailAndPassword(email, pass)
         .then(() => {
           window.location.href = '/admin/dashboard.html';
@@ -177,8 +185,11 @@
           btn.classList.remove('loading');
           btn.disabled = false;
           const msgs = {
-            'auth/user-not-found':   'No admin account found with this email.',
-            'auth/wrong-password':   'Incorrect password. Please try again.',
+            'auth/api-key-not-valid.-please-pass-a-valid-api-key.': '🔧 Firebase not configured! Please fill firebase-config.js with your real API key from Firebase Console. See SETUP_GUIDE.md',
+            'auth/invalid-api-key':  '🔧 Invalid API key! Fill firebase-config.js with real Firebase values.',
+            'auth/user-not-found':   '❌ Admin user not found. Create user in Firebase Console → Authentication → Users.',
+            'auth/wrong-password':   '❌ Incorrect password. Check your Firebase Auth password.',
+            'auth/invalid-credential': '❌ Wrong email or password. Check Firebase Auth credentials.',
             'auth/too-many-requests':'Too many attempts. Please wait and try again.',
             'auth/invalid-email':    'Invalid email address.',
           };

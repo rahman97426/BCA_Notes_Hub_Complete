@@ -1,50 +1,31 @@
-/**
- * firebase-config.js
- * ─────────────────────────────────────────────────────────────────
- * Arrahman Study Hub — Firebase Web App Configuration
- * Project: arrahman-study-hub
- * ─────────────────────────────────────────────────────────────────
- *
- * HOW TO FILL THIS FILE (one-time setup):
- *
- * 1. Open: https://console.firebase.google.com/
- * 2. Select project: arrahman-study-hub
- * 3. Click the gear icon ⚙️ → "Project settings"
- * 4. Scroll down to "Your apps" → click your Web app (</>)
- *    If no web app exists yet:
- *    Click "Add app" → choose Web → name it "BCA Hub Web"
- * 5. Copy the firebaseConfig values into this file below.
- *
- * Values to find in Firebase Console:
- *   apiKey:            "AIzaSyB5uZ-kRtOa75TqD0psKdYSCMSlVs_TigU",
- *   messagingSenderId: "496381846677",
- *   appId:             "1:496381846677:web:99add0ff5f6dd789b7a79c",
- *   measurementId     → optional, looks like "G-XXXXXXXXXX"
- *
- * The other three values are derived from your Project ID and
- * are already filled in below. Do NOT change them.
- *
- * ⚠️  SECURITY NOTE:
- * Firebase web API keys are designed to be public-facing.
- * They identify your project to Firebase but do NOT grant access
- * to your data — that is controlled by Firebase Security Rules.
- * Make sure your Firestore and Storage Security Rules are set
- * correctly in the Firebase Console before going live.
- * ─────────────────────────────────────────────────────────────────
- */
+/* ================================================================
+   FIREBASE CONFIG — Arrahman Study Hub
+   © 2026 Abdul Rahman | arrahmanstudyhub.tech
+
+   ⚠️  IMPORTANT: YE FILE FILL KARO APNI REAL VALUES SE!
+   Steps:
+   1. firebase.google.com → apna project open karo
+   2. Gear icon ⚙️ → Project Settings → Your apps
+   3. Web app </> → config copy karo → neeche paste karo
+================================================================ */
 
 const FIREBASE_CONFIG = {
-
-  // ── FILL THESE THREE in from Firebase Console ──────────────────
-  apiKey:            "AIzaSyB5uZ-kRtOa75TqD0psKdYSCMSlVs_TigU",
-  messagingSenderId: "496381846677",
-  appId:             "1:496381846677:web:99add0ff5f6dd789b7a79c",
-
-  // ── These are already correct for project: arrahman-study-hub ──
-  authDomain:        "arrahman-study-hub.firebaseapp.com",
-  projectId:         "arrahman-study-hub",
-  storageBucket:     "arrahman-study-hub.appspot.com",
-
-  // ── Optional: paste measurementId if you use Firebase Analytics ─
-  // measurementId: "G-XXXXXXXXXX",
+  apiKey:            "YOUR_API_KEY_HERE",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
 };
+
+/*
+  FIREBASE CONFIG KAISE MILEGA? STEP BY STEP:
+
+  STEP 1: https://console.firebase.google.com
+  STEP 2: Apna project open karo
+  STEP 3: Gear icon (top-left) → Project settings
+  STEP 4: Scroll down → "Your apps" → </> Web icon click
+  STEP 5: App nickname: "arrahman-web" → Register app
+  STEP 6: firebaseConfig copy karo → upar paste karo
+  STEP 7: File save → GitHub upload
+*/

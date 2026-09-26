@@ -1,0 +1,21 @@
+[
+  {
+    "origin": [
+      "https://arrahman-study-hub.web.app",
+      "https://arrahman-study-hub.firebaseapp.com"
+    ],
+    "method": [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "HEAD"
+    ],
+    "responseHeader": [
+      "Content-Type",
+      "Authorization",
+      "x-goog-resumable"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]
