@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA-304 Software Engineering | AKU Patna | Interactive Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0f1a;--surf:#12192b;--card:#1a2236;--border:rgba(255,255,255,0.07);--text:#e2e8f0;--muted:#94a3b8}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* Progress */
+#prg{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#f59e0b,#ef4444,#8b5cf6);width:0%;z-index:9999;transition:width .1s}
+
+/* Hero */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:20px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(139,92,246,.18) 0%,transparent 70%),
+  radial-gradient(ellipse 50% 40% at 20% 80%,rgba(245,158,11,.12) 0%,transparent 60%),#0b0f1a}
+.particles{position:absolute;inset:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;animation:rise linear infinite;opacity:.25}
+@keyframes rise{0%{transform:translateY(100vh)}100%{transform:translateY(-120px)}}
+.hero-inner{position:relative;z-index:2}
+.hero-code{font-size:.85rem;color:#94a3b8;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px}
+.hero-name{font-family:'Caveat',cursive;font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;line-height:1.1;
+  text-shadow:0 0 40px rgba(245,158,11,.4);margin-bottom:24px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
+.pill{padding:7px 16px;border-radius:999px;font-size:.78rem;font-weight:600;
+  backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15)}
+.pill-red{background:rgba(239,68,68,.2);border-color:#ef4444}
+.pill-green{background:rgba(16,185,129,.2);border-color:#10b981}
+.pill-amber{background:rgba(245,158,11,.2);border-color:#f59e0b}
+.pill-purple{background:rgba(139,92,246,.2);border-color:#8b5cf6}
+.cd{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cd-box{background:rgba(0,0,0,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:12px 18px;min-width:76px;text-align:center}
+.cd-num{font-size:1.9rem;font-weight:700;color:#fbbf24;font-family:'Caveat',cursive;line-height:1}
+.cd-lbl{font-size:.6rem;color:#94a3b8;text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+
+/* Navbar */
+#nav{position:sticky;top:0;z-index:100;background:rgba(11,15,26,.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:0 16px;overflow-x:auto}
+.nav-inner{display:flex;gap:2px;min-width:max-content;padding:8px 0}
+.nav-link{padding:8px 14px;border-radius:8px;font-size:.76rem;font-weight:600;
+  color:#64748b;cursor:pointer;transition:all .2s;white-space:nowrap;border:none;background:none}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+
+/* Main */
+main{max-width:1100px;margin:0 auto;padding:24px 16px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.btn{padding:8px 20px;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn:hover{transform:translateY(-1px);opacity:.9}
+
+/* Unit Card */
+.unit{border-radius:16px;overflow:hidden;margin-bottom:36px;background:var(--surf);
+  box-shadow:0 4px 30px rgba(0,0,0,.4);border:1px solid var(--border)}
+.unit-hdr{padding:20px 24px;display:flex;align-items:center;gap:14px}
+.unit-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:1.5rem;flex-shrink:0;background:rgba(255,255,255,.12)}
+.unit-info h2{font-size:1.05rem;font-weight:700;color:#fff}
+.unit-info p{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:3px;line-height:1.4}
+.pyq-strip{margin:0 16px 4px;padding:8px 14px;border-radius:8px;
+  background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);
+  font-size:.77rem;color:#fca5a5;display:flex;align-items:center;gap:6px}
+.pyq-strip b{color:#ef4444}
+
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 14px;margin-top:10px}
+.tab{padding:11px 16px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;
+  background:none;color:#64748b;border-bottom:2px solid transparent;transition:all .2s}
+.tab.on{color:#fff;border-bottom-color:currentColor}
+.tab-pane{display:none;padding:16px}
+.tab-pane.on{display:block}
+
+/* MCQ Game */
+.mcq-wrap{background:var(--card);border-radius:14px;padding:18px;margin-bottom:14px;border:1px solid var(--border)}
+.mcq-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.mcq-qn{font-size:.72rem;font-weight:700;color:#64748b}
+.mcq-pyq{font-size:.7rem;font-weight:700;color:#ef4444;background:rgba(239,68,68,.1);
+  padding:3px 8px;border-radius:6px;border:1px solid rgba(239,68,68,.3)}
+.mcq-q{font-size:.9rem;font-weight:600;color:#e2e8f0;margin-bottom:14px;line-height:1.6}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:10px 14px;border-radius:10px;font-size:.83rem;cursor:pointer;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  transition:all .2s;text-align:left;color:#cbd5e1;display:flex;align-items:center;gap:10px}
+.opt:hover:not(.locked){background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateY(-1px)}
+.opt .badge{min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.72rem;font-weight:700;background:rgba(255,255,255,.1);color:#94a3b8;flex-shrink:0}
+.opt.correct{background:rgba(16,185,129,.18)!important;border-color:#10b981!important;color:#a7f3d0!important}
+.opt.correct .badge{background:#10b981;color:#fff}
+.opt.wrong{background:rgba(239,68,68,.18)!important;border-color:#ef4444!important;color:#fca5a5!important}
+.opt.wrong .badge{background:#ef4444;color:#fff}
+.opt.reveal{background:rgba(16,185,129,.1)!important;border-color:rgba(16,185,129,.4)!important;color:#6ee7b7!important}
+.mcq-fb{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:.82rem;display:none;line-height:1.6}
+.mcq-fb.on{display:block}
+.fb-ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#a7f3d0}
+.fb-no{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
+
+/* Answers — ruled paper */
+.ans-item{border-radius:12px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border)}
+.ans-toggle{width:100%;padding:14px 18px;text-align:left;background:var(--card);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-size:.87rem;font-weight:600;color:#e2e8f0;border:none;gap:12px}
+.ans-toggle:hover{background:rgba(255,255,255,.04)}
+.ans-badges{display:flex;gap:6px;flex-shrink:0}
+.marks-b{padding:3px 10px;border-radius:999px;font-size:.68rem;font-weight:700}
+.pyq-b{padding:3px 8px;border-radius:999px;font-size:.68rem;
+  background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
+.chev{transition:transform .3s;color:#64748b;flex-shrink:0}
+.ans-toggle.open .chev{transform:rotate(180deg)}
+.ans-body{display:none}
+.ans-body.open{display:block}
+.paper{background:#fefce8;
+  background-image:repeating-linear-gradient(transparent,transparent 27px,#93c5fd 27px,#93c5fd 28px);
+  padding:20px 20px 20px 58px;position:relative;line-height:28px;color:#1e293b}
+.paper::before{content:'';position:absolute;left:46px;top:0;bottom:0;width:2px;background:#ef4444}
+.paper p,.paper li{font-size:.88rem;line-height:28px}
+.paper h4{font-size:.92rem;font-weight:700;color:#1e40af;line-height:28px}
+.paper ul,.paper ol{margin-left:18px}
+.paper li{margin-bottom:0}
+.paper .code{font-family:monospace;background:#e0e7ff;padding:2px 6px;border-radius:4px;font-size:.82rem}
+
+/* Cheat Sheet */
+.cheat-card{background:var(--surf);border-radius:16px;overflow:hidden;margin-bottom:20px;border:1px solid var(--border)}
+.cheat-hdr{padding:16px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.cheat-body{display:none;padding:18px 22px}
+.cheat-body.open{display:block}
+.trick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:16px}
+.trick{background:var(--card);border-radius:10px;padding:12px 14px;border-left:4px solid}
+.trick .t-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.trick .t-val{font-size:.83rem;color:#e2e8f0;line-height:1.5;font-weight:600}
+.vvi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px}
+.vvi-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;
+  background:var(--card);border:1px solid var(--border)}
+.vvi-num{min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.75rem;font-weight:700;color:#fff;flex-shrink:0}
+.vvi-txt{font-size:.83rem;color:#cbd5e1;line-height:1.5}
+.vvi-yr{font-size:.7rem;color:#64748b;margin-top:2px}
+
+/* Footer */
+footer{text-align:center;padding:28px 16px;color:#475569;font-size:.78rem;border-top:1px solid var(--border)}
+
+/* Back to top */
+#btt{position:fixed;bottom:22px;right:22px;width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,#f59e0b,#ef4444);cursor:pointer;display:none;
+  align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 14px rgba(245,158,11,.4);
+  border:none;color:#fff;transition:all .2s;z-index:200}
+#btt.show{display:flex}
+#btt:hover{transform:scale(1.1)}
+
+@media(max-width:600px){
+  .opts{grid-template-columns:1fr}
+  .paper{padding:14px 14px 14px 46px}
+  .paper::before{left:36px}
+  .unit-hdr{padding:14px}
+  .cd-box{min-width:60px;padding:8px 12px}
+  .cd-num{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<div id="prg"></div>
+
+<section id="hero">
+<div class="hero-bg"></div>
+<div class="particles" id="ptcls"></div>
+<div class="hero-inner">
+  <div class="hero-code">AKU Patna &bull; BCA 3rd Semester &bull; Code: 303304</div>
+  <div class="hero-name">Software<br>Engineering</div>
+  <div class="pills">
+    <span class="pill pill-red">📅 BCA-304</span>
+    <span class="pill pill-green">⏰ 3 Hours</span>
+    <span class="pill pill-amber">📝 Full Marks: 60</span>
+    <span class="pill pill-purple">🎓 AKU Patna</span>
+  </div>
+  <div style="color:rgba(255,255,255,.5);font-size:.82rem;margin-bottom:12px;font-weight:600">
+    PYQ Years: 2014 · 2017 · 2018 · 2019 · 2020 · 2022 · 2024 · 2025
+  </div>
+  <div class="cd">
+    <div class="cd-box"><div class="cd-num" id="dd">00</div><div class="cd-lbl">Days</div></div>
+    <div class="cd-box"><div class="cd-num" id="hh">00</div><div class="cd-lbl">Hrs</div></div>
+    <div class="cd-box"><div class="cd-num" id="mm">00</div><div class="cd-lbl">Mins</div></div>
+    <div class="cd-box"><div class="cd-num" id="ss">00</div><div class="cd-lbl">Secs</div></div>
+  </div>
+  <div style="color:rgba(255,255,255,.35);font-size:.72rem;margin-top:12px">⬇ Scroll to Study</div>
+</div>
+</section>
+<nav id="nav"><div class="nav-inner">
+<button class="nav-link" style="color:#f59e0b" onclick="gto('u1')">U1 Introduction to Softwa…</button>
+<button class="nav-link" style="color:#10b981" onclick="gto('u2')">U2 Software Project Manag…</button>
+<button class="nav-link" style="color:#8b5cf6" onclick="gto('u3')">U3 Software Design…</button>
+<button class="nav-link" style="color:#ef4444" onclick="gto('u4')">U4 Coding and Testing + S…</button>
+<button class="nav-link" style="color:#06b6d4" onclick="gto('u5')">U5 Software Quality Assur…</button>
+<button class="nav-link" style="color:#fbbf24" onclick="gto('cheat')">🌙 Cheat Sheet</button>
+</div></nav>
+<main>
+<div class="ctrl">
+  <button class="btn" style="background:#10b981;color:#fff" onclick="expandAll()">📖 Expand All Answers</button>
+  <button class="btn" style="background:#64748b;color:#fff" onclick="collapseAll()">📕 Collapse All</button>
+</div>
+<div class="unit" id="u1">
+<div class="unit-hdr" style="background:linear-gradient(135deg,#f59e0bcc,#f59e0b55)">
+  <div class="unit-icon">🖥️</div>
+  <div class="unit-info"><h2>Unit 1 — Introduction to Software Engineering + Life Cycle Models</h2><p>Software Characteristics | Software Crisis | Process & Product Metrics | Waterfall | Prototype | Spiral</p></div>
+</div>
+<div class="pyq-strip"><b>⭐ PYQ YEARS:</b> 2014, 2017, 2018, 2019, 2020, 2022, 2024, 2025 — Topics from this unit were asked in these exams.</div>
+<div class="tabs">
+  <button class="tab on" style="color:#f59e0b" onclick="tab('u1','mcq',this)">❓ MCQ Solved (8)</button>
+  <button class="tab" onclick="tab('u1','a4',this)">✏️ 4-Mark Answers</button>
+  <button class="tab" onclick="tab('u1','a12',this)">📝 12-Mark Answers</button>
+</div>
+<div class="tab-pane on" id="u1-mcq">
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q1 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">What is the main concern of Software Engineering?</div>
+  <div class="opts">
+    <button class="opt" id="u1q0o0" onclick="pick('u1q0',0,1,this)"><span class="badge">A</span>Hardware configuration</button>
+    <button class="opt" id="u1q0o1" onclick="pick('u1q0',1,1,this)"><span class="badge">B</span>Software Production</button>
+    <button class="opt" id="u1q0o2" onclick="pick('u1q0',2,1,this)"><span class="badge">C</span>Network Configuration</button>
+    <button class="opt" id="u1q0o3" onclick="pick('u1q0',3,1,this)"><span class="badge">D</span>Software Reusability</button>
+  </div>
+  <div class="mcq-fb" id="u1q0fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q2 of 8</span><span class="mcq-pyq">⭐ 2014, 2019</span></div>
+  <div class="mcq-q">The WORST type of coupling is:</div>
+  <div class="opts">
+    <button class="opt" id="u1q1o0" onclick="pick('u1q1',0,3,this)"><span class="badge">A</span>Data coupling</button>
+    <button class="opt" id="u1q1o1" onclick="pick('u1q1',1,3,this)"><span class="badge">B</span>Control coupling</button>
+    <button class="opt" id="u1q1o2" onclick="pick('u1q1',2,3,this)"><span class="badge">C</span>Stamp coupling</button>
+    <button class="opt" id="u1q1o3" onclick="pick('u1q1',3,3,this)"><span class="badge">D</span>Content coupling</button>
+  </div>
+  <div class="mcq-fb" id="u1q1fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q3 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">Requirements can be refined using which model?</div>
+  <div class="opts">
+    <button class="opt" id="u1q2o0" onclick="pick('u1q2',0,1,this)"><span class="badge">A</span>Waterfall model</button>
+    <button class="opt" id="u1q2o1" onclick="pick('u1q2',1,1,this)"><span class="badge">B</span>Prototyping model</button>
+    <button class="opt" id="u1q2o2" onclick="pick('u1q2',2,1,this)"><span class="badge">C</span>Evolutionary model</button>
+    <button class="opt" id="u1q2o3" onclick="pick('u1q2',3,1,this)"><span class="badge">D</span>Spiral model</button>
+  </div>
+  <div class="mcq-fb" id="u1q2fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q4 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">The most important feature of the Spiral Model is:</div>
+  <div class="opts">
+    <button class="opt" id="u1q3o0" onclick="pick('u1q3',0,2,this)"><span class="badge">A</span>Efficiency management</button>
+    <button class="opt" id="u1q3o1" onclick="pick('u1q3',1,2,this)"><span class="badge">B</span>Quality management</button>
+    <button class="opt" id="u1q3o2" onclick="pick('u1q3',2,2,this)"><span class="badge">C</span>Risk management</button>
+    <button class="opt" id="u1q3o3" onclick="pick('u1q3',3,2,this)"><span class="badge">D</span>Performance management</button>
+  </div>
+  <div class="mcq-fb" id="u1q3fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q5 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">Waterfall model is NOT suitable for:</div>
+  <div class="opts">
+    <button class="opt" id="u1q4o0" onclick="pick('u1q4',0,2,this)"><span class="badge">A</span>Small projects</button>
+    <button class="opt" id="u1q4o1" onclick="pick('u1q4',1,2,this)"><span class="badge">B</span>Complex projects</button>
+    <button class="opt" id="u1q4o2" onclick="pick('u1q4',2,2,this)"><span class="badge">C</span>Accommodating changes</button>
+    <button class="opt" id="u1q4o3" onclick="pick('u1q4',3,2,this)"><span class="badge">D</span>None of above</button>
+  </div>
+  <div class="mcq-fb" id="u1q4fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q6 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">SDLC stands for:</div>
+  <div class="opts">
+    <button class="opt" id="u1q5o0" onclick="pick('u1q5',0,3,this)"><span class="badge">A</span>Software Design Life Cycle</button>
+    <button class="opt" id="u1q5o1" onclick="pick('u1q5',1,3,this)"><span class="badge">B</span>Software Development Life Cycle</button>
+    <button class="opt" id="u1q5o2" onclick="pick('u1q5',2,3,this)"><span class="badge">C</span>System Development Life Cycle</button>
+    <button class="opt" id="u1q5o3" onclick="pick('u1q5',3,3,this)"><span class="badge">D</span>Both B and C</button>
+  </div>
+  <div class="mcq-fb" id="u1q5fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q7 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">The tool that supports different stages of SDLC is called:</div>
+  <div class="opts">
+    <button class="opt" id="u1q6o0" onclick="pick('u1q6',0,0,this)"><span class="badge">A</span>CASE tool</button>
+    <button class="opt" id="u1q6o1" onclick="pick('u1q6',1,0,this)"><span class="badge">B</span>CAME tool</button>
+    <button class="opt" id="u1q6o2" onclick="pick('u1q6',2,0,this)"><span class="badge">C</span>CAQE tool</button>
+    <button class="opt" id="u1q6o3" onclick="pick('u1q6',3,0,this)"><span class="badge">D</span>CARE tool</button>
+  </div>
+  <div class="mcq-fb" id="u1q6fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q8 of 8</span><span class="mcq-pyq">⭐ 2017, 2022</span></div>
+  <div class="mcq-q">Which life cycle model combines Waterfall + Prototyping with risk analysis?</div>
+  <div class="opts">
+    <button class="opt" id="u1q7o0" onclick="pick('u1q7',0,2,this)"><span class="badge">A</span>Incremental model</button>
+    <button class="opt" id="u1q7o1" onclick="pick('u1q7',1,2,this)"><span class="badge">B</span>RAD model</button>
+    <button class="opt" id="u1q7o2" onclick="pick('u1q7',2,2,this)"><span class="badge">C</span>Spiral model</button>
+    <button class="opt" id="u1q7o3" onclick="pick('u1q7',3,2,this)"><span class="badge">D</span>Agile model</button>
+  </div>
+  <div class="mcq-fb" id="u1q7fb"></div>
+</div>
+</div>
+<div class="tab-pane" id="u1-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a40',this)">
+  <span>What is the Prototype Model? Under what circumstances is it beneficial?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">4 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a40"><div class="paper">
+<p><b>Definition:</b> Prototype model is an iterative approach where a preliminary working version (prototype) is built quickly to gather user feedback <u>before</u> full development begins.</p>
+<p><b>When Beneficial:</b></p>
+<p>1. When requirements are <b>unclear or incomplete</b> and users cannot define them precisely.</p>
+<p>2. When <b>new/unproven technology</b> is being used and feasibility is uncertain.</p>
+<p>3. When the system needs <b>high user interaction</b> — UI-heavy apps, games.</p>
+<p>4. When <b>high-risk elements</b> need to be validated early before full investment.</p>
+<p><b>Process:</b> Gather basics → Build prototype → Show user → Get feedback → Refine → Repeat → Final system.</p>
+<p><b>Advantage:</b> Reduces misunderstanding. Finds errors early when cheap to fix.</p>
+<p><b>Disadvantage:</b> Can lead to scope creep and poor code structure if prototype code is reused.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a41',this)">
+  <span>List shortcomings of LOC (Lines of Code) as a software size metric.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">4 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a41"><div class="paper">
+<p><b>LOC Shortcomings:</b></p>
+<p>1. <b>Language dependent</b> — same work needs more lines in C++ than Python. Unfair comparison.</p>
+<p>2. <b>Available only after coding</b> — cannot estimate project size in planning phase.</p>
+<p>3. <b>Penalizes efficient programmers</b> — 100 lines may do more than 1000 lines.</p>
+<p>4. <b>Programmer style varies</b> — compact vs verbose coding — no consistency.</p>
+<p>5. <b>Does not reflect functionality</b> — more lines ≠ more useful software.</p>
+<p>6. <b>Counting method varies</b> — blank lines, comments counted or not?</p>
+<p><b>Alternative:</b> Function Points (FP) overcome these — language-independent, measures user functionality.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a42',this)">
+  <span>What is the Software Crisis? How did it lead to Software Engineering?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">4 Marks</span>
+    <span class="pyq-b">PYQ 2017, 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a42"><div class="paper">
+<p><b>Software Crisis (1960s–70s):</b> Series of serious problems that affected the software industry.</p>
+<p><b>Problems:</b></p>
+<p>1. Projects delivered <b>very late</b> — months or years behind schedule.</p>
+<p>2. Projects <b>exceeded budgets</b> — sometimes by 100% or more.</p>
+<p>3. Software was <b>unreliable</b> — full of bugs, crashed frequently.</p>
+<p>4. Code was <b>very hard to maintain</b> — poor documentation, no structure.</p>
+<p>5. Software did <b>NOT meet user needs</b> — wrong system was built.</p>
+<p><b>How SE Solved It:</b></p>
+<p>1. Introduced <b>systematic SDLC phases</b> — Planning, Analysis, Design, Testing.</p>
+<p>2. Defined formal lifecycle models — Waterfall, Prototype, Spiral.</p>
+<p>IEEE defined SE: "Systematic, disciplined, quantifiable approach to software development."</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a43',this)">
+  <span>What are Process Metrics and Product Metrics? Give examples.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">4 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2020</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a43"><div class="paper">
+<p><b>Process Metrics:</b> Measure efficiency of the <b>development process</b> itself.</p>
+<p>1. Defect Removal Efficiency = (Defects found before delivery ÷ Total defects) × 100%</p>
+<p>2. Effort Variance = Actual effort − Estimated effort</p>
+<p>3. Schedule Variance = Actual time − Planned time</p>
+<p><b>Product Metrics:</b> Measure characteristics of the <b>software product</b> itself.</p>
+<p>1. <b>Size Metrics</b> — Lines of Code (LOC), Function Points (FP)</p>
+<p>2. <b>Complexity Metrics</b> — Cyclomatic complexity, nesting depth</p>
+<p>3. <b>Quality Metrics</b> — Reliability score, maintainability index, usability ratings</p>
+<p><b>Key Rule:</b> "You cannot control what you cannot measure." — Metrics are essential for project management.</p>
+</div></div></div>
+</div>
+<div class="tab-pane" id="u1-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a120',this)">
+  <span>Explain the Waterfall Model with diagram. Advantages, disadvantages, and when to use it.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">12 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2017, 2018, 2019, 2020, 2022, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a120"><div class="paper">
+<p><b>Introduction:</b> Waterfall Model is the oldest and most known software development model. It follows a <b>linear sequential approach</b> — each phase must be completed fully before the next begins.</p>
+<p><b>Definition:</b> A linear sequential development process where phases flow downward (like a waterfall) with minimal backward movement between phases.</p>
+<p>&nbsp;</p>
+<p><b>Six Phases:</b></p>
+<p>1. <b>Requirements Gathering</b> — Document ALL user requirements completely. <i>Output: SRS Document.</i></p>
+<p>2. <b>System Design</b> — Architecture, data structures, interfaces, algorithms. <i>Output: Design Document.</i></p>
+<p>3. <b>Implementation (Coding)</b> — Developers write code based on design. <i>Output: Software modules.</i></p>
+<p>4. <b>Testing</b> — Unit, Integration, System, UAT testing. <i>Output: Test Reports.</i></p>
+<p>5. <b>Deployment</b> — Release to production environment. <i>Output: Live system.</i></p>
+<p>6. <b>Maintenance</b> — Bug fixes, updates, enhancements. <i>Output: Updated system.</i></p>
+<p>&nbsp;</p>
+<p style="font-family:monospace;font-size:.78rem;white-space:pre-wrap;color:#1e3a8a;background:#eff6ff;padding:8px;border-radius:6px;border-left:3px solid #3b82f6">📐 DIAGRAM — WATERFALL MODEL:</p>
+<p>Requirements → System Design → Implementation → Testing → Deployment → Maintenance</p>
+<p>      ↓              ↓               ↓              ↓           ↓              ↓</p>
+<p> SRS Document   Design Doc      Source Code    Test Report  Live System  Updated System</p>
+<p>&nbsp;</p>
+<p><b>Advantages:</b></p>
+<p>1. Simple and easy to understand — linear, logical flow.</p>
+<p>2. Clear documentation at each phase.</p>
+<p>3. Well-suited for small projects with stable requirements.</p>
+<p>4. Structured and predictable timeline.</p>
+<p>&nbsp;</p>
+<p><b>Disadvantages:</b></p>
+<p>1. <b>Rigid and inflexible</b> — changing requirements is very expensive.</p>
+<p>2. <b>Late detection of defects</b> — testing happens at the end.</p>
+<p>3. <b>No working software until late</b> — stakeholders cannot see progress.</p>
+<p>4. <b>High risk at end</b> — if requirements were wrong, entire project may fail.</p>
+<p>&nbsp;</p>
+<p><b>When to Use:</b></p>
+<p>1. Requirements are clear, stable, and well-documented.</p>
+<p>2. Project is small to medium in size.</p>
+<p>3. Technology is well-understood by the team.</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> Waterfall is simple and disciplined but too rigid for modern projects. For evolving requirements, Spiral or Agile models are preferred.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u1a121',this)">
+  <span>Explain the Spiral Model with its 4 quadrants. How does it handle risk? Compare with Waterfall.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">12 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2017, 2019, 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u1a121"><div class="paper">
+<p><b>Introduction:</b> Spiral Model, proposed by Barry Boehm in 1986, is a <b>risk-driven iterative model</b> combining Waterfall's structure with Prototyping's flexibility. Every cycle explicitly focuses on risk analysis.</p>
+<p><b>Definition:</b> A risk-driven iterative model where each spiral cycle passes through 4 quadrants: Planning → Risk Analysis → Development → Evaluation.</p>
+<p>&nbsp;</p>
+<p><b>Four Quadrants of Each Spiral Cycle:</b></p>
+<p>1. <b>Planning (Objectives):</b> Define objectives, alternatives, constraints for current iteration.</p>
+<p>2. <b>Risk Analysis:</b> Identify, analyze, prioritize risks. Build prototypes to resolve high-risk areas.</p>
+<p>3. <b>Development & Testing:</b> Develop the product for current iteration. Test to verify correctness.</p>
+<p>4. <b>Evaluation & Review:</b> Customer evaluates output. Plans for next iteration based on feedback.</p>
+<p>&nbsp;</p>
+<p style="font-family:monospace;font-size:.78rem;white-space:pre-wrap;color:#1e3a8a;background:#eff6ff;padding:8px;border-radius:6px;border-left:3px solid #3b82f6">📐 DIAGRAM — SPIRAL MODEL:</p>
+<p>         PLANNING          |    RISK ANALYSIS</p>
+<p>    Define objectives       |  Identify & resolve risks</p>
+<p>  ─────────────────────────────────────────────</p>
+<p>   EVALUATION & REVIEW     |  DEVELOPMENT & TESTING</p>
+<p>  Customer reviews output   |  Code, test, integrate</p>
+<p>  Plan next iteration       |  Produce working build</p>
+<p>&nbsp;</p>
+<p><b>Risk Management in Spiral:</b></p>
+<p>1. Risk is <b>explicitly identified</b> at start of EVERY cycle.</p>
+<p>2. Prototypes built to address high-risk unclear requirements early.</p>
+<p>3. If risk too high, project can be <b>stopped</b> — saving resources.</p>
+<p>&nbsp;</p>
+<p><b>Waterfall vs Spiral:</b></p>
+<p>• Waterfall: sequential, rigid, ONE pass. | Spiral: iterative, flexible, MULTIPLE cycles.</p>
+<p>• Waterfall: risk found late. | Spiral: risk analyzed every cycle.</p>
+<p>• Waterfall: for stable projects. | Spiral: for large complex risky projects.</p>
+<p>&nbsp;</p>
+<p><b>Advantages:</b> Flexible, risk-focused, customer involvement every iteration.</p>
+<p><b>Disadvantages:</b> Expensive, complex to manage, needs skilled risk analysts.</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> Spiral model is ideal for large, complex, high-risk projects where risk management is critical to project success.</p>
+</div></div></div>
+</div>
+</div>
+<div class="unit" id="u2">
+<div class="unit-hdr" style="background:linear-gradient(135deg,#10b981cc,#10b98155)">
+  <div class="unit-icon">📊</div>
+  <div class="unit-info"><h2>Unit 2 — Software Project Management + SRS</h2><p>LOC | Function Points | COCOMO | Delphi | Halstead | Putnam SLIM | SRS Document</p></div>
+</div>
+<div class="pyq-strip"><b>⭐ PYQ YEARS:</b> 2014, 2018, 2019, 2020, 2022, 2024, 2025 — Topics from this unit were asked in these exams.</div>
+<div class="tabs">
+  <button class="tab on" style="color:#10b981" onclick="tab('u2','mcq',this)">❓ MCQ Solved (8)</button>
+  <button class="tab" onclick="tab('u2','a4',this)">✏️ 4-Mark Answers</button>
+  <button class="tab" onclick="tab('u2','a12',this)">📝 12-Mark Answers</button>
+</div>
+<div class="tab-pane on" id="u2-mcq">
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q1 of 8</span><span class="mcq-pyq">⭐ 2014, 2025</span></div>
+  <div class="mcq-q">COCOMO stands for:</div>
+  <div class="opts">
+    <button class="opt" id="u2q0o0" onclick="pick('u2q0',0,1,this)"><span class="badge">A</span>Computer Cost Model</button>
+    <button class="opt" id="u2q0o1" onclick="pick('u2q0',1,1,this)"><span class="badge">B</span>Constructive Cost Model</button>
+    <button class="opt" id="u2q0o2" onclick="pick('u2q0',2,1,this)"><span class="badge">C</span>Computed Cost Method</button>
+    <button class="opt" id="u2q0o3" onclick="pick('u2q0',3,1,this)"><span class="badge">D</span>Constructive Compute Model</button>
+  </div>
+  <div class="mcq-fb" id="u2q0fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q2 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">In size-oriented metrics, metrics are developed based on:</div>
+  <div class="opts">
+    <button class="opt" id="u2q1o0" onclick="pick('u2q1',0,2,this)"><span class="badge">A</span>Number of functions</button>
+    <button class="opt" id="u2q1o1" onclick="pick('u2q1',1,2,this)"><span class="badge">B</span>Number of user inputs</button>
+    <button class="opt" id="u2q1o2" onclick="pick('u2q1',2,2,this)"><span class="badge">C</span>Number of lines of code</button>
+    <button class="opt" id="u2q1o3" onclick="pick('u2q1',3,2,this)"><span class="badge">D</span>Amount of memory usage</button>
+  </div>
+  <div class="mcq-fb" id="u2q1fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q3 of 8</span><span class="mcq-pyq">⭐ 2018, 2024, 2025</span></div>
+  <div class="mcq-q">The final outcome of Requirement Analysis and Specification phase is:</div>
+  <div class="opts">
+    <button class="opt" id="u2q2o0" onclick="pick('u2q2',0,0,this)"><span class="badge">A</span>SRS document</button>
+    <button class="opt" id="u2q2o1" onclick="pick('u2q2',1,0,this)"><span class="badge">B</span>Source code</button>
+    <button class="opt" id="u2q2o2" onclick="pick('u2q2',2,0,this)"><span class="badge">C</span>User manual</button>
+    <button class="opt" id="u2q2o3" onclick="pick('u2q2',3,0,this)"><span class="badge">D</span>Design document</button>
+  </div>
+  <div class="mcq-fb" id="u2q2fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q4 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">Which is NOT a characteristic of a good SRS document?</div>
+  <div class="opts">
+    <button class="opt" id="u2q3o0" onclick="pick('u2q3',0,2,this)"><span class="badge">A</span>Traceable</button>
+    <button class="opt" id="u2q3o1" onclick="pick('u2q3',1,2,this)"><span class="badge">B</span>Verifiable</button>
+    <button class="opt" id="u2q3o2" onclick="pick('u2q3',2,2,this)"><span class="badge">C</span>Ambiguous</button>
+    <button class="opt" id="u2q3o3" onclick="pick('u2q3',3,2,this)"><span class="badge">D</span>Concise</button>
+  </div>
+  <div class="mcq-fb" id="u2q3fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q5 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">COCOMO Embedded category is used for:</div>
+  <div class="opts">
+    <button class="opt" id="u2q4o0" onclick="pick('u2q4',0,2,this)"><span class="badge">A</span>Small simple projects</button>
+    <button class="opt" id="u2q4o1" onclick="pick('u2q4',1,2,this)"><span class="badge">B</span>Medium complexity</button>
+    <button class="opt" id="u2q4o2" onclick="pick('u2q4',2,2,this)"><span class="badge">C</span>Real-time highly constrained projects</button>
+    <button class="opt" id="u2q4o3" onclick="pick('u2q4',3,2,this)"><span class="badge">D</span>Research projects</button>
+  </div>
+  <div class="mcq-fb" id="u2q4fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q6 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">Function Points (FP) measure software size based on:</div>
+  <div class="opts">
+    <button class="opt" id="u2q5o0" onclick="pick('u2q5',0,1,this)"><span class="badge">A</span>Lines of code written</button>
+    <button class="opt" id="u2q5o1" onclick="pick('u2q5',1,1,this)"><span class="badge">B</span>User-visible functionality</button>
+    <button class="opt" id="u2q5o2" onclick="pick('u2q5',2,1,this)"><span class="badge">C</span>Memory usage</button>
+    <button class="opt" id="u2q5o3" onclick="pick('u2q5',3,1,this)"><span class="badge">D</span>CPU execution time</button>
+  </div>
+  <div class="mcq-fb" id="u2q5fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q7 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">If every requirement in SRS can be checked by a cost-effective process, the SRS is:</div>
+  <div class="opts">
+    <button class="opt" id="u2q6o0" onclick="pick('u2q6',0,3,this)"><span class="badge">A</span>Traceable</button>
+    <button class="opt" id="u2q6o1" onclick="pick('u2q6',1,3,this)"><span class="badge">B</span>Modifiable</button>
+    <button class="opt" id="u2q6o2" onclick="pick('u2q6',2,3,this)"><span class="badge">C</span>Complete</button>
+    <button class="opt" id="u2q6o3" onclick="pick('u2q6',3,3,this)"><span class="badge">D</span>Verifiable</button>
+  </div>
+  <div class="mcq-fb" id="u2q6fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q8 of 8</span><span class="mcq-pyq">⭐ 2022</span></div>
+  <div class="mcq-q">Delphi technique for cost estimation involves:</div>
+  <div class="opts">
+    <button class="opt" id="u2q7o0" onclick="pick('u2q7',0,1,this)"><span class="badge">A</span>One expert giving estimate</button>
+    <button class="opt" id="u2q7o1" onclick="pick('u2q7',1,1,this)"><span class="badge">B</span>Multiple rounds of anonymous expert opinions</button>
+    <button class="opt" id="u2q7o2" onclick="pick('u2q7',2,1,this)"><span class="badge">C</span>Mathematical formula</button>
+    <button class="opt" id="u2q7o3" onclick="pick('u2q7',3,1,this)"><span class="badge">D</span>LOC counting only</button>
+  </div>
+  <div class="mcq-fb" id="u2q7fb"></div>
+</div>
+</div>
+<div class="tab-pane" id="u2-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u2a40',this)">
+  <span>Briefly explain the Delphi Cost Estimation Technique.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">4 Marks</span>
+    <span class="pyq-b">PYQ 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u2a40"><div class="paper">
+<p><b>Definition:</b> Delphi is a group estimation technique where multiple experts give independent cost estimates <b>anonymously</b> in multiple rounds until consensus is reached.</p>
+<p><b>Process (3 Rounds):</b></p>
+<p>1. <b>Round 1:</b> Each expert submits estimate privately — no group discussion, no peer influence.</p>
+<p>2. <b>Round 2:</b> Average results shared anonymously. Experts revise estimates seeing others' responses.</p>
+<p>3. <b>Repeat:</b> Continue until experts mostly agree (consensus).</p>
+<p><b>Why it works:</b> No one feels pressure to match boss or loudest person. Independent thinking leads to accurate estimates.</p>
+<p><b>Advantages:</b> Reduces bias, documents reasoning, valuable for novel projects with no historical data.</p>
+<p><b>Disadvantages:</b> Time-consuming (2-4 weeks), needs skilled facilitator, expert availability required.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u2a41',this)">
+  <span>What are the characteristics of a good SRS document?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">4 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2019, 2020</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u2a41"><div class="paper">
+<p><b>SRS = System Requirements Specification</b> — formal contract between users and developers describing WHAT system must do.</p>
+<p><b>6 Key Characteristics:</b></p>
+<p>1. <b>Correct:</b> Every requirement accurately reflects actual user needs.</p>
+<p>2. <b>Unambiguous:</b> Each requirement has ONLY ONE possible interpretation.</p>
+<p>3. <b>Complete:</b> ALL functional and non-functional requirements included — nothing missing.</p>
+<p>4. <b>Consistent:</b> No contradictions between any two requirements.</p>
+<p>5. <b>Verifiable:</b> Each requirement can be tested cost-effectively — measurable criteria stated.</p>
+<p>6. <b>Modifiable:</b> SRS can be updated easily while maintaining consistency.</p>
+<p><b>IEEE 830 Structure:</b> Section 1 (Introduction) → Section 2 (Overall Description) → Section 3 (Specific Requirements)</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u2a42',this)">
+  <span>Differentiate between LOC and Function Points (FP) as size metrics.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">4 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2020</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u2a42"><div class="paper">
+<p><b>LOC (Lines of Code):</b></p>
+<p>• Counts executable source code statements</p>
+<p>• Language dependent — same code = more lines in C++ vs Python</p>
+<p>• Available only AFTER design/coding phase</p>
+<p>• Disadvantage: penalizes efficient programmers writing less code</p>
+<p>&nbsp;</p>
+<p><b>Function Points (FP):</b></p>
+<p>• Counts user-visible functionality: Inputs + Outputs + Inquiries + Files + Interfaces</p>
+<p>• Language INDEPENDENT — same FP count regardless of language</p>
+<p>• Available EARLY — can estimate at requirements phase</p>
+<p>• Advantage: measures from USER perspective, not technical view</p>
+<p>&nbsp;</p>
+<p><b>Key Difference:</b> LOC = WHAT was written. FP = WHAT the user gets. FP is more accurate for early estimation.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u2a43',this)">
+  <span>Differentiate between Functional and Non-Functional Requirements with examples.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">4 Marks</span>
+    <span class="pyq-b">PYQ 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u2a43"><div class="paper">
+<p><b>Functional Requirements — WHAT the system must DO:</b></p>
+<p>• System shall allow user login with username and password</p>
+<p>• System shall calculate invoice including applicable taxes</p>
+<p>• System shall send SMS alert when stock falls below minimum level</p>
+<p>&nbsp;</p>
+<p><b>Non-Functional Requirements — HOW WELL the system performs:</b></p>
+<p>• <b>Performance:</b> System shall respond to any query within 2 seconds</p>
+<p>• <b>Reliability:</b> System shall have 99.9% uptime — max 9 hours downtime/year</p>
+<p>• <b>Security:</b> All data shall be encrypted using AES-256 standard</p>
+<p>• <b>Usability:</b> New users shall complete basic task in 10 minutes without training</p>
+<p>&nbsp;</p>
+<p><b>Key Difference:</b> Functional = features and behavior. Non-functional = quality attributes and constraints.</p>
+</div></div></div>
+</div>
+<div class="tab-pane" id="u2-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u2a120',this)">
+  <span>Explain Basic COCOMO model. Three categories, formulas, and a worked example.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">12 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u2a120"><div class="paper">
+<p><b>Introduction:</b> COCOMO (Constructive Cost Model) by Barry Boehm (1981) provides empirically-validated formulas to estimate software project effort and schedule based on size.</p>
+<p>&nbsp;</p>
+<p><b>Basic COCOMO Formula:</b></p>
+<p>     Effort (Person-Months) = a × (KLOC) ^ b</p>
+<p>     Duration (Months)      = c × (Effort) ^ d</p>
+<p>&nbsp;</p>
+<p><b>Three Project Categories:</b></p>
+<p>1. ORGANIC  — Small team, familiar tech, relaxed environment</p>
+<p>   Formula: Effort = 2.4 × (KLOC)^1.05  |  Duration = 2.5 × (Effort)^0.38</p>
+<p>   Example: Payroll system, inventory system</p>
+<p>&nbsp;</p>
+<p>2. SEMIDETACHED — Medium team, mixed experience, moderate constraints</p>
+<p>   Formula: Effort = 3.0 × (KLOC)^1.12  |  Duration = 2.5 × (Effort)^0.35</p>
+<p>   Example: Database management system, compiler</p>
+<p>&nbsp;</p>
+<p>3. EMBEDDED — Real-time, tight hardware/software constraints, strict deadlines</p>
+<p>   Formula: Effort = 3.6 × (KLOC)^1.20  |  Duration = 2.5 × (Effort)^0.32</p>
+<p>   Example: Flight control system, nuclear reactor control</p>
+<p>&nbsp;</p>
+<p><b>Worked Example (Semidetached — 50 KLOC):</b></p>
+<p>Step 1: Effort = 3.0 × (50)^1.12 = 3.0 × 56.7 = 170 person-months</p>
+<p>Step 2: Duration = 2.5 × (170)^0.35 ≈ 2.5 × 7.2 ≈ 18 months</p>
+<p>Step 3: Team Size ≈ 170 ÷ 18 ≈ 9–10 developers</p>
+<p>&nbsp;</p>
+<p><b>Advantages:</b></p>
+<p>1. Empirically validated against 63 real projects.</p>
+<p>2. Consistent and reproducible — same inputs, same estimate.</p>
+<p>3. Accommodates different project complexity levels.</p>
+<p>&nbsp;</p>
+<p><b>Limitations:</b></p>
+<p>1. Accuracy depends on correct KLOC estimation.</p>
+<p>2. Less accurate for novel projects with no historical data.</p>
+<p>3. Static coefficients may not reflect modern development practices.</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> COCOMO provides a systematic mathematical basis for cost estimation. For better accuracy, use Intermediate COCOMO which adds 15 cost driver multipliers.</p>
+</div></div></div>
+</div>
+</div>
+<div class="unit" id="u3">
+<div class="unit-hdr" style="background:linear-gradient(135deg,#8b5cf6cc,#8b5cf655)">
+  <div class="unit-icon">⚙️</div>
+  <div class="unit-info"><h2>Unit 3 — Software Design</h2><p>Classification | Function-Oriented Design | DFD | Structure Charts | OOD | Coupling | Cohesion</p></div>
+</div>
+<div class="pyq-strip"><b>⭐ PYQ YEARS:</b> 2014, 2017, 2018, 2019, 2022, 2024, 2025 — Topics from this unit were asked in these exams.</div>
+<div class="tabs">
+  <button class="tab on" style="color:#8b5cf6" onclick="tab('u3','mcq',this)">❓ MCQ Solved (8)</button>
+  <button class="tab" onclick="tab('u3','a4',this)">✏️ 4-Mark Answers</button>
+  <button class="tab" onclick="tab('u3','a12',this)">📝 12-Mark Answers</button>
+</div>
+<div class="tab-pane on" id="u3-mcq">
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q1 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">The primary tool used for Structured/Function-Oriented designing is:</div>
+  <div class="opts">
+    <button class="opt" id="u3q0o0" onclick="pick('u3q0',0,1,this)"><span class="badge">A</span>Program flowchart</button>
+    <button class="opt" id="u3q0o1" onclick="pick('u3q0',1,1,this)"><span class="badge">B</span>Structure chart</button>
+    <button class="opt" id="u3q0o2" onclick="pick('u3q0',2,1,this)"><span class="badge">C</span>Data Flow Diagram</button>
+    <button class="opt" id="u3q0o3" onclick="pick('u3q0',3,1,this)"><span class="badge">D</span>Entity-Relationship Diagram</button>
+  </div>
+  <div class="mcq-fb" id="u3q0fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q2 of 8</span><span class="mcq-pyq">⭐ 2018, 2025</span></div>
+  <div class="mcq-q">DFD (Data Flow Diagram) shows:</div>
+  <div class="opts">
+    <button class="opt" id="u3q1o0" onclick="pick('u3q1',0,3,this)"><span class="badge">A</span>Only the flow of data</button>
+    <button class="opt" id="u3q1o1" onclick="pick('u3q1',1,3,this)"><span class="badge">B</span>Only the processes</button>
+    <button class="opt" id="u3q1o2" onclick="pick('u3q1',2,3,this)"><span class="badge">C</span>Only the data stores</button>
+    <button class="opt" id="u3q1o3" onclick="pick('u3q1',3,3,this)"><span class="badge">D</span>All: data flows, processes, and data stores</button>
+  </div>
+  <div class="mcq-fb" id="u3q1fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q3 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">The context diagram of a DFD is also known as:</div>
+  <div class="opts">
+    <button class="opt" id="u3q2o0" onclick="pick('u3q2',0,0,this)"><span class="badge">A</span>Level 0 DFD</button>
+    <button class="opt" id="u3q2o1" onclick="pick('u3q2',1,0,this)"><span class="badge">B</span>Level 1 DFD</button>
+    <button class="opt" id="u3q2o2" onclick="pick('u3q2',2,0,this)"><span class="badge">C</span>Level 2 DFD</button>
+    <button class="opt" id="u3q2o3" onclick="pick('u3q2',3,0,this)"><span class="badge">D</span>None of the above</button>
+  </div>
+  <div class="mcq-fb" id="u3q2fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q4 of 8</span><span class="mcq-pyq">⭐ 2019, 2025</span></div>
+  <div class="mcq-q">Object-Oriented Design primarily uses which design approach?</div>
+  <div class="opts">
+    <button class="opt" id="u3q3o0" onclick="pick('u3q3',0,1,this)"><span class="badge">A</span>Top-Down</button>
+    <button class="opt" id="u3q3o1" onclick="pick('u3q3',1,1,this)"><span class="badge">B</span>Bottom-Up</button>
+    <button class="opt" id="u3q3o2" onclick="pick('u3q3',2,1,this)"><span class="badge">C</span>Structured programming</button>
+    <button class="opt" id="u3q3o3" onclick="pick('u3q3',3,1,this)"><span class="badge">D</span>Waterfall approach</button>
+  </div>
+  <div class="mcq-fb" id="u3q3fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q5 of 8</span><span class="mcq-pyq">⭐ 2024</span></div>
+  <div class="mcq-q">Which OOP principle bundles data and methods inside one unit?</div>
+  <div class="opts">
+    <button class="opt" id="u3q4o0" onclick="pick('u3q4',0,2,this)"><span class="badge">A</span>Abstraction</button>
+    <button class="opt" id="u3q4o1" onclick="pick('u3q4',1,2,this)"><span class="badge">B</span>Inheritance</button>
+    <button class="opt" id="u3q4o2" onclick="pick('u3q4',2,2,this)"><span class="badge">C</span>Encapsulation</button>
+    <button class="opt" id="u3q4o3" onclick="pick('u3q4',3,2,this)"><span class="badge">D</span>Polymorphism</button>
+  </div>
+  <div class="mcq-fb" id="u3q4fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q6 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">Which is NOT a DFD symbol?</div>
+  <div class="opts">
+    <button class="opt" id="u3q5o0" onclick="pick('u3q5',0,3,this)"><span class="badge">A</span>Rounded rectangle (Process)</button>
+    <button class="opt" id="u3q5o1" onclick="pick('u3q5',1,3,this)"><span class="badge">B</span>Arrow (Data Flow)</button>
+    <button class="opt" id="u3q5o2" onclick="pick('u3q5',2,3,this)"><span class="badge">C</span>Open rectangle (Data Store)</button>
+    <button class="opt" id="u3q5o3" onclick="pick('u3q5',3,3,this)"><span class="badge">D</span>Diamond (Decision)</button>
+  </div>
+  <div class="mcq-fb" id="u3q5fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q7 of 8</span><span class="mcq-pyq">⭐ 2017</span></div>
+  <div class="mcq-q">Transform Analysis and Transaction Analysis are strategies used in:</div>
+  <div class="opts">
+    <button class="opt" id="u3q6o0" onclick="pick('u3q6',0,1,this)"><span class="badge">A</span>Object-Oriented Design</button>
+    <button class="opt" id="u3q6o1" onclick="pick('u3q6',1,1,this)"><span class="badge">B</span>Function-Oriented Structured Design (DFD to Structure Chart)</button>
+    <button class="opt" id="u3q6o2" onclick="pick('u3q6',2,1,this)"><span class="badge">C</span>Requirements gathering</button>
+    <button class="opt" id="u3q6o3" onclick="pick('u3q6',3,1,this)"><span class="badge">D</span>Software testing</button>
+  </div>
+  <div class="mcq-fb" id="u3q6fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q8 of 8</span><span class="mcq-pyq">⭐ 2019, 2024</span></div>
+  <div class="mcq-q">Which OOP principle allows one method name to work differently for different objects?</div>
+  <div class="opts">
+    <button class="opt" id="u3q7o0" onclick="pick('u3q7',0,3,this)"><span class="badge">A</span>Abstraction</button>
+    <button class="opt" id="u3q7o1" onclick="pick('u3q7',1,3,this)"><span class="badge">B</span>Encapsulation</button>
+    <button class="opt" id="u3q7o2" onclick="pick('u3q7',2,3,this)"><span class="badge">C</span>Inheritance</button>
+    <button class="opt" id="u3q7o3" onclick="pick('u3q7',3,3,this)"><span class="badge">D</span>Polymorphism</button>
+  </div>
+  <div class="mcq-fb" id="u3q7fb"></div>
+</div>
+</div>
+<div class="tab-pane" id="u3-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u3a40',this)">
+  <span>Distinguish between DFD and Flowchart.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">4 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u3a40"><div class="paper">
+<p><b>DFD (Data Flow Diagram):</b></p>
+<p>• Shows how DATA flows between system processes</p>
+<p>• System-level view — models WHAT system does</p>
+<p>• No decision boxes, loops, or timing shown</p>
+<p>• Used in: System analysis and logical design phase</p>
+<p>• Symbols: Circle(process), Arrow(flow), Open-box(store), Rectangle(entity)</p>
+<p>&nbsp;</p>
+<p><b>Flowchart:</b></p>
+<p>• Shows sequence of LOGIC steps and control flow</p>
+<p>• Module-level view — models HOW it works internally</p>
+<p>• Decision boxes (diamonds), loops, timing shown</p>
+<p>• Used in: Detailed program design and coding phase</p>
+<p>• Symbols: Rectangle(process), Diamond(decision), Oval(start/end)</p>
+<p>&nbsp;</p>
+<p><b>Key Difference:</b> DFD = WHAT data is transformed. Flowchart = HOW algorithm/logic works.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u3a41',this)">
+  <span>Differentiate between Function-Oriented Design (FOD) and Object-Oriented Design (OOD).</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">4 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2019, 2024</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u3a41"><div class="paper">
+<p><b>FOD (Function-Oriented Design):</b></p>
+<p>• System viewed as set of FUNCTIONS</p>
+<p>• Data shared globally across functions</p>
+<p>• Top-Down approach — decomposition</p>
+<p>• Tools: DFD + Structure Charts</p>
+<p>• Best for: stable, procedural, computation-heavy systems</p>
+<p>&nbsp;</p>
+<p><b>OOD (Object-Oriented Design):</b></p>
+<p>• System viewed as set of OBJECTS (data + behavior together)</p>
+<p>• Data encapsulated inside objects — hidden from outside</p>
+<p>• Bottom-Up approach — composition</p>
+<p>• Tools: UML — Class Diagram, Sequence Diagram</p>
+<p>• Best for: complex, evolving, large-scale systems</p>
+<p>&nbsp;</p>
+<p><b>4 OOD Principles:</b> Abstraction | Encapsulation | Inheritance | Polymorphism</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u3a42',this)">
+  <span>What do you mean by balancing a DFD? Illustrate with example.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">4 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u3a42"><div class="paper">
+<p><b>Balancing DFD Definition:</b> Ensuring data flows entering/leaving a process in Level N DFD <b>exactly match</b> the data flows in its expanded Level N+1 DFD.</p>
+<p>&nbsp;</p>
+<p><b>Balancing Rule:</b> Inputs and outputs of a process at Level N = Inputs and outputs of same process at Level N+1.</p>
+<p>&nbsp;</p>
+<p><b>Example:</b></p>
+<p>Level 0: [Customer] → 'Order' → (ORDER SYSTEM) → 'Invoice' → [Customer]</p>
+<p>Level 1 MUST still show: receives 'Order' from [Customer] and produces 'Invoice' to [Customer]</p>
+<p>Level 1 expansion shows: (1.0 Validate Order) → (2.0 Process) → (3.0 Generate Invoice)</p>
+<p>External flows 'Order' in and 'Invoice' out are PRESERVED — Balanced ✓</p>
+<p>&nbsp;</p>
+<p><b>Unbalanced:</b> If Level 1 shows a new external flow 'Payment' that Level 0 doesn't have — ERROR.</p>
+<p><b>Why Important:</b> Unbalanced DFD = data mysteriously appears/disappears = design inconsistency error.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u3a43',this)">
+  <span>What are the four core principles of Object-Oriented Design?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">4 Marks</span>
+    <span class="pyq-b">PYQ 2019, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u3a43"><div class="paper">
+<p><b>4 Core OOD Principles:</b></p>
+<p>&nbsp;</p>
+<p>1. <b>Abstraction:</b> Hide complex implementation details, expose only essential features.</p>
+<p>   Example: Driver uses car.start() without knowing engine mechanics.</p>
+<p>&nbsp;</p>
+<p>2. <b>Encapsulation:</b> Bundle data + methods in one unit (object). Restrict direct access.</p>
+<p>   Example: Bank account balance hidden — only accessible via deposit() and withdraw().</p>
+<p>&nbsp;</p>
+<p>3. <b>Inheritance:</b> Child class acquires properties and methods of parent class.</p>
+<p>   Example: Sparrow and Pigeon inherit from Bird class — both have fly() method.</p>
+<p>&nbsp;</p>
+<p>4. <b>Polymorphism:</b> One interface, multiple implementations.</p>
+<p>   Example: draw() method works for Circle, Square, Triangle — each draws differently.</p>
+</div></div></div>
+</div>
+<div class="tab-pane" id="u3-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u3a120',this)">
+  <span>Explain DFD with symbols, levels, rules, and limitations. Draw Level 0 and Level 1 examples.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">12 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2018, 2019, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u3a120"><div class="paper">
+<p><b>Introduction:</b> DFD (Data Flow Diagram) is a graphical representation showing how data flows through a system — what processes exist, where data is stored, and what data enters/exits the system boundary.</p>
+<p><b>Definition:</b> DFD is a structured analysis tool using four basic symbols to model the logical flow of data through a system without showing implementation details.</p>
+<p>&nbsp;</p>
+<p><b>Four DFD Symbols (Gane-Sarson Notation):</b></p>
+<p>1. <b>Process (Rounded Rectangle/Circle):</b> Transforms input to output. Named with verb phrase.</p>
+<p>   Example: 'Validate Order', 'Calculate Tax', 'Generate Report'</p>
+<p>&nbsp;</p>
+<p>2. <b>Data Flow (Arrow with Label):</b> Movement of data between components.</p>
+<p>   Example: → 'Customer Name', → 'Invoice Amount', → 'Book Request'</p>
+<p>&nbsp;</p>
+<p>3. <b>Data Store (Open Rectangle):</b> Repository where data rests.</p>
+<p>   Example: [= Customer Database =], [= Order File =]</p>
+<p>&nbsp;</p>
+<p>4. <b>External Entity (Rectangle/Square):</b> Person or system OUTSIDE boundary.</p>
+<p>   Example: Customer, Manager, Supplier, Bank</p>
+<p>&nbsp;</p>
+<p><b>Three DFD Levels:</b></p>
+<p>• Level 0 — Context Diagram: Entire system = ONE process. Shows all external entities and boundary.</p>
+<p>• Level 1 DFD: Level 0 circle expanded — shows major sub-processes, data stores, flows.</p>
+<p>• Level 2+ DFD: Each Level 1 process further expanded into detailed sub-processes.</p>
+<p>&nbsp;</p>
+<p style="font-family:monospace;font-size:.78rem;white-space:pre-wrap;color:#1e3a8a;background:#eff6ff;padding:8px;border-radius:6px;border-left:3px solid #3b82f6">📐 LEVEL 0 — CONTEXT DIAGRAM (Library System):</p>
+<p>[Student] ──'Book Request'──▶ (LIBRARY SYSTEM) ──'Book Issued'──▶ [Student]</p>
+<p>[Librarian] ──'Catalogue Update'──▶ (LIBRARY SYSTEM) ──'Reports'──▶ [Librarian]</p>
+<p>&nbsp;</p>
+<p style="font-family:monospace;font-size:.78rem;white-space:pre-wrap;color:#1e3a8a;background:#eff6ff;padding:8px;border-radius:6px;border-left:3px solid #3b82f6">📐 LEVEL 1 DFD (Expanded):</p>
+<p>[Student]──'Request'──▶(1.0 Check Availability)──check──▶[=Book DB=]</p>
+<p>                           │</p>
+<p>                      'Available?'</p>
+<p>                           │</p>
+<p>                      (2.0 Issue Book)──update──▶[=Issue Records=]──'Slip'──▶[Student]</p>
+<p>                           │</p>
+<p>[Student]──'Return'──▶(3.0 Return Book)──▶[=Issue Records=]</p>
+<p>                           │</p>
+<p>                      (4.0 Calculate Fine)──'Fine Notice'──▶[Student]</p>
+<p>&nbsp;</p>
+<p><b>DFD Rules (Must Follow):</b></p>
+<p>1. Every process must have at least ONE input AND ONE output.</p>
+<p>2. Data CANNOT flow directly between two data stores.</p>
+<p>3. Data CANNOT flow directly between two external entities.</p>
+<p>4. DFD must be BALANCED across levels.</p>
+<p>&nbsp;</p>
+<p><b>Limitations of DFD:</b></p>
+<p>1. Cannot show control flow — no loops, if-else decisions, or timing.</p>
+<p>2. Cannot model real-time systems — no events or interrupts.</p>
+<p>3. No error handling shown.</p>
+<p>4. Becomes very complex for large systems.</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> DFD is an excellent logical analysis tool for data flow modeling. Must be leveled and balanced for consistency. Use flowcharts alongside DFDs for control flow logic.</p>
+</div></div></div>
+</div>
+</div>
+<div class="unit" id="u4">
+<div class="unit-hdr" style="background:linear-gradient(135deg,#ef4444cc,#ef444455)">
+  <div class="unit-icon">🧪</div>
+  <div class="unit-info"><h2>Unit 4 — Coding and Testing + Software Reliability</h2><p>Unit Testing | White-Box Testing | Black-Box Testing | Debugging | System Testing | Musa's Model</p></div>
+</div>
+<div class="pyq-strip"><b>⭐ PYQ YEARS:</b> 2014, 2017, 2019, 2022, 2024, 2025 — Topics from this unit were asked in these exams.</div>
+<div class="tabs">
+  <button class="tab on" style="color:#ef4444" onclick="tab('u4','mcq',this)">❓ MCQ Solved (8)</button>
+  <button class="tab" onclick="tab('u4','a4',this)">✏️ 4-Mark Answers</button>
+  <button class="tab" onclick="tab('u4','a12',this)">📝 12-Mark Answers</button>
+</div>
+<div class="tab-pane on" id="u4-mcq">
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q1 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">All modules integrated and tested as a complete system at once is called:</div>
+  <div class="opts">
+    <button class="opt" id="u4q0o0" onclick="pick('u4q0',0,1,this)"><span class="badge">A</span>Bottom-up testing</button>
+    <button class="opt" id="u4q0o1" onclick="pick('u4q0',1,1,this)"><span class="badge">B</span>Big-bang testing</button>
+    <button class="opt" id="u4q0o2" onclick="pick('u4q0',2,1,this)"><span class="badge">C</span>Top-down testing</button>
+    <button class="opt" id="u4q0o3" onclick="pick('u4q0',3,1,this)"><span class="badge">D</span>Sandwich testing</button>
+  </div>
+  <div class="mcq-fb" id="u4q0fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q2 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">The main purpose of Integration Testing is to find:</div>
+  <div class="opts">
+    <button class="opt" id="u4q1o0" onclick="pick('u4q1',0,3,this)"><span class="badge">A</span>Design errors</button>
+    <button class="opt" id="u4q1o1" onclick="pick('u4q1',1,3,this)"><span class="badge">B</span>Analysis errors</button>
+    <button class="opt" id="u4q1o2" onclick="pick('u4q1',2,3,this)"><span class="badge">C</span>Procedure errors</button>
+    <button class="opt" id="u4q1o3" onclick="pick('u4q1',3,3,this)"><span class="badge">D</span>Interface errors</button>
+  </div>
+  <div class="mcq-fb" id="u4q1fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q3 of 8</span><span class="mcq-pyq">⭐ 2014, 2019</span></div>
+  <div class="mcq-q">Black-box testing tests software based on:</div>
+  <div class="opts">
+    <button class="opt" id="u4q2o0" onclick="pick('u4q2',0,1,this)"><span class="badge">A</span>Internal code structure</button>
+    <button class="opt" id="u4q2o1" onclick="pick('u4q2',1,1,this)"><span class="badge">B</span>External inputs and expected outputs</button>
+    <button class="opt" id="u4q2o2" onclick="pick('u4q2',2,1,this)"><span class="badge">C</span>Database design only</button>
+    <button class="opt" id="u4q2o3" onclick="pick('u4q2',3,1,this)"><span class="badge">D</span>System architecture</button>
+  </div>
+  <div class="mcq-fb" id="u4q2fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q4 of 8</span><span class="mcq-pyq">⭐ 2017</span></div>
+  <div class="mcq-q">White-box testing is also known as:</div>
+  <div class="opts">
+    <button class="opt" id="u4q3o0" onclick="pick('u4q3',0,1,this)"><span class="badge">A</span>Functional testing</button>
+    <button class="opt" id="u4q3o1" onclick="pick('u4q3',1,1,this)"><span class="badge">B</span>Structural testing (Glass-box)</button>
+    <button class="opt" id="u4q3o2" onclick="pick('u4q3',2,1,this)"><span class="badge">C</span>System testing</button>
+    <button class="opt" id="u4q3o3" onclick="pick('u4q3',3,1,this)"><span class="badge">D</span>Acceptance testing</button>
+  </div>
+  <div class="mcq-fb" id="u4q3fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q5 of 8</span><span class="mcq-pyq">⭐ 2022</span></div>
+  <div class="mcq-q">Boundary Value Analysis focuses on testing:</div>
+  <div class="opts">
+    <button class="opt" id="u4q4o0" onclick="pick('u4q4',0,1,this)"><span class="badge">A</span>Random inputs</button>
+    <button class="opt" id="u4q4o1" onclick="pick('u4q4',1,1,this)"><span class="badge">B</span>Values at boundaries of input ranges</button>
+    <button class="opt" id="u4q4o2" onclick="pick('u4q4',2,1,this)"><span class="badge">C</span>Middle values only</button>
+    <button class="opt" id="u4q4o3" onclick="pick('u4q4',3,1,this)"><span class="badge">D</span>Maximum values only</button>
+  </div>
+  <div class="mcq-fb" id="u4q4fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q6 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">Musa's Basic Model is used for:</div>
+  <div class="opts">
+    <button class="opt" id="u4q5o0" onclick="pick('u4q5',0,1,this)"><span class="badge">A</span>Cost estimation</button>
+    <button class="opt" id="u4q5o1" onclick="pick('u4q5',1,1,this)"><span class="badge">B</span>Software reliability prediction based on execution time</button>
+    <button class="opt" id="u4q5o2" onclick="pick('u4q5',2,1,this)"><span class="badge">C</span>DFD creation</button>
+    <button class="opt" id="u4q5o3" onclick="pick('u4q5',3,1,this)"><span class="badge">D</span>Project scheduling</button>
+  </div>
+  <div class="mcq-fb" id="u4q5fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q7 of 8</span><span class="mcq-pyq">⭐ 2024, 2025</span></div>
+  <div class="mcq-q">The process of fixing bugs after they are detected is called:</div>
+  <div class="opts">
+    <button class="opt" id="u4q6o0" onclick="pick('u4q6',0,1,this)"><span class="badge">A</span>Testing</button>
+    <button class="opt" id="u4q6o1" onclick="pick('u4q6',1,1,this)"><span class="badge">B</span>Debugging</button>
+    <button class="opt" id="u4q6o2" onclick="pick('u4q6',2,1,this)"><span class="badge">C</span>Verification</button>
+    <button class="opt" id="u4q6o3" onclick="pick('u4q6',3,1,this)"><span class="badge">D</span>Validation</button>
+  </div>
+  <div class="mcq-fb" id="u4q6fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q8 of 8</span><span class="mcq-pyq">⭐ 2022</span></div>
+  <div class="mcq-q">Equivalence Partitioning in Black-box testing:</div>
+  <div class="opts">
+    <button class="opt" id="u4q7o0" onclick="pick('u4q7',0,1,this)"><span class="badge">A</span>Tests all possible input values</button>
+    <button class="opt" id="u4q7o1" onclick="pick('u4q7',1,1,this)"><span class="badge">B</span>Divides inputs into partitions, tests one value per partition</button>
+    <button class="opt" id="u4q7o2" onclick="pick('u4q7',2,1,this)"><span class="badge">C</span>Tests only boundary values</button>
+    <button class="opt" id="u4q7o3" onclick="pick('u4q7',3,1,this)"><span class="badge">D</span>Tests random values</button>
+  </div>
+  <div class="mcq-fb" id="u4q7fb"></div>
+</div>
+</div>
+<div class="tab-pane" id="u4-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u4a40',this)">
+  <span>Differentiate between Black-box and White-box Testing.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">4 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2019</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u4a40"><div class="paper">
+<p><b>Black-Box Testing:</b></p>
+<p>• Tests functionality WITHOUT knowing internal code</p>
+<p>• No source code knowledge required</p>
+<p>• Performed by: Software Testers / QA Team</p>
+<p>• Tests: Inputs vs expected outputs (requirements-based)</p>
+<p>• Techniques: Equivalence Partitioning, Boundary Value Analysis</p>
+<p>• Also called: Functional testing</p>
+<p>• Level: System testing, Acceptance testing</p>
+<p>&nbsp;</p>
+<p><b>White-Box Testing:</b></p>
+<p>• Tests internal CODE STRUCTURE and logic paths</p>
+<p>• Requires full source code access</p>
+<p>• Performed by: Software Developers</p>
+<p>• Tests: Logic paths, branches, code statements</p>
+<p>• Techniques: Statement, Branch, and Path coverage</p>
+<p>• Also called: Structural / Glass-box testing</p>
+<p>• Level: Unit testing, Integration testing</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u4a41',this)">
+  <span>What is Regression Testing? When done? Why necessary?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">4 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u4a41"><div class="paper">
+<p><b>Definition:</b> Regression testing is re-testing previously working software after making changes to ensure existing functionality still works correctly.</p>
+<p>&nbsp;</p>
+<p><b>When is it Done?</b></p>
+<p>1. After <b>bug fixes</b> — ensure fix didn't break other parts.</p>
+<p>2. After <b>adding new features</b> — ensure new code doesn't affect old features.</p>
+<p>3. After <b>code refactoring</b> — code restructured but should behave same.</p>
+<p>4. After <b>environment changes</b> — OS upgrade, new database version.</p>
+<p>&nbsp;</p>
+<p><b>Why Necessary?</b></p>
+<p>• A change to fix one bug can <b>accidentally break other working features</b> — called a 'regression'.</p>
+<p>• Regression testing catches these unintended side effects BEFORE they reach users.</p>
+<p>&nbsp;</p>
+<p><b>How Performed:</b></p>
+<p>• Run SAME old test cases + NEW test cases for the specific change made.</p>
+<p>• Often <b>automated</b> using tools like Selenium, JUnit, TestNG for efficiency.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u4a42',this)">
+  <span>What is Musa's Basic Model for Software Reliability?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">4 Marks</span>
+    <span class="pyq-b">PYQ 2014</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u4a42"><div class="paper">
+<p><b>Definition:</b> Musa's Basic Execution Time Model (1975) is a software reliability model predicting <b>failure intensity</b> (failure rate) as a function of CPU execution time — not calendar time.</p>
+<p>&nbsp;</p>
+<p><b>Core Formula:</b></p>
+<p>     λ(τ) = f × K × [N − μ(τ)]</p>
+<p>&nbsp;</p>
+<p><b>Where:</b></p>
+<p>• λ(τ) = Failure intensity (rate) at execution time τ</p>
+<p>• f    = Linear execution frequency of the program</p>
+<p>• K    = Fault exposure ratio (proportion causing failures)</p>
+<p>• N    = Total faults at start of testing</p>
+<p>• μ(τ) = Expected failures experienced by time τ</p>
+<p>&nbsp;</p>
+<p><b>Key Insight:</b> As faults are found and fixed, failure rate DECREASES exponentially over time.</p>
+<p><b>Based on:</b> Poisson process + exponential distribution of failures over execution time.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u4a43',this)">
+  <span>What are the different levels of Software Testing?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">4 Marks</span>
+    <span class="pyq-b">PYQ 2017, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u4a43"><div class="paper">
+<p><b>4 Levels of Software Testing:</b></p>
+<p>&nbsp;</p>
+<p>1. <b>Unit Testing:</b> Test individual modules/functions in isolation.</p>
+<p>   Done by: Developers | Tool: JUnit, NUnit</p>
+<p>&nbsp;</p>
+<p>2. <b>Integration Testing:</b> Test how modules work TOGETHER — find interface errors.</p>
+<p>   Methods: Top-down (Stubs), Bottom-up (Drivers), Big-bang, Sandwich</p>
+<p>&nbsp;</p>
+<p>3. <b>System Testing:</b> Test entire complete system against SRS requirements.</p>
+<p>   Done by: QA Team | Tests: functional, performance, security, stress</p>
+<p>&nbsp;</p>
+<p>4. <b>User Acceptance Testing (UAT):</b> End users test system in real environment.</p>
+<p>   Done by: Actual users/clients | Last gate before deployment</p>
+<p>&nbsp;</p>
+<p><b>Order:</b> Unit → Integration → System → UAT → Deployment</p>
+</div></div></div>
+</div>
+<div class="tab-pane" id="u4-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u4a120',this)">
+  <span>Explain White-box and Black-box testing in detail with all techniques, advantages, and disadvantages.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">12 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2019, 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u4a120"><div class="paper">
+<p><b>Introduction:</b> Software testing ensures quality and correctness. White-box (structural) and Black-box (functional) testing examine software from completely different perspectives. Modern quality assurance uses BOTH approaches.</p>
+<p>&nbsp;</p>
+<p><b>PART 1 — WHITE-BOX TESTING:</b></p>
+<p><b>Definition:</b> Testing method where tester has complete knowledge of and access to source code, internal structure, and design. Also called Glass-box, Clear-box, or Structural testing.</p>
+<p>&nbsp;</p>
+<p><b>Three White-Box Techniques:</b></p>
+<p>1. <b>Statement Coverage:</b> Execute every executable statement at least once.</p>
+<p>   Formula: Coverage% = (Statements executed ÷ Total statements) × 100</p>
+<p>   Weakness: Simplest form — doesn't test all outcomes of conditions.</p>
+<p>&nbsp;</p>
+<p>2. <b>Branch Coverage (Decision Coverage):</b> Execute every possible outcome of every decision point.</p>
+<p>   Tests BOTH TRUE and FALSE branches of every if-else and loop.</p>
+<p>   Stronger than statement coverage — catches more logic errors.</p>
+<p>&nbsp;</p>
+<p>3. <b>Path Coverage:</b> Execute EVERY possible path through the code.</p>
+<p>   Most thorough — guarantees all logic is tested.</p>
+<p>   Most expensive — number of paths can grow exponentially.</p>
+<p>&nbsp;</p>
+<p><b>White-Box Advantages:</b> Thorough code coverage | Finds hidden logic errors | Measures code quality | Identifies dead code</p>
+<p><b>White-Box Disadvantages:</b> Time-consuming | Needs programming expertise | Cannot find missing requirements</p>
+<p>&nbsp;</p>
+<p><b>PART 2 — BLACK-BOX TESTING:</b></p>
+<p><b>Definition:</b> Testing method where tester treats system as 'black box' — NO code knowledge. Only inputs and expected outputs are considered. Also called Functional testing.</p>
+<p>&nbsp;</p>
+<p><b>Two Key Black-Box Techniques:</b></p>
+<p>1. <b>Equivalence Partitioning:</b> Divide ALL inputs into partitions of valid/invalid values.</p>
+<p>   Test ONE representative value per partition.</p>
+<p>   Example — Age input (valid: 1-120):</p>
+<p>   Partition 1: <1 (invalid) | Partition 2: 1-120 (valid) | Partition 3: >120 (invalid)</p>
+<p>   Test: -5 (invalid), 50 (valid), 200 (invalid) — 3 test cases cover all possibilities.</p>
+<p>&nbsp;</p>
+<p>2. <b>Boundary Value Analysis (BVA):</b> Test at the EDGES of valid input ranges.</p>
+<p>   Errors occur most often at boundary values.</p>
+<p>   Example — Same Age input (1-120):</p>
+<p>   Test: 0, 1, 2, 119, 120, 121 — (min-1, min, min+1, max-1, max, max+1)</p>
+<p>&nbsp;</p>
+<p><b>Black-Box Advantages:</b> No code knowledge needed | Tests from user perspective | Finds requirement gaps</p>
+<p><b>Black-Box Disadvantages:</b> Cannot test all internal paths | May miss logic errors</p>
+<p>&nbsp;</p>
+<p><b>Comparison Summary:</b></p>
+<p>• Code knowledge: White-box = Required | Black-box = Not required</p>
+<p>• Performed by: White-box = Developers | Black-box = Testers</p>
+<p>• Tests: White-box = Internal logic | Black-box = External behavior</p>
+<p>• Level: White-box = Unit, Integration | Black-box = System, UAT</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> White-box and Black-box are COMPLEMENTARY — not competing. White-box ensures code quality; Black-box validates user requirements. Best practice: use both for comprehensive testing coverage.</p>
+</div></div></div>
+</div>
+</div>
+<div class="unit" id="u5">
+<div class="unit-hdr" style="background:linear-gradient(135deg,#06b6d4cc,#06b6d455)">
+  <div class="unit-icon">🏆</div>
+  <div class="unit-info"><h2>Unit 5 — Software Quality Assurance + Maintenance</h2><p>ISO 9000 | SEI CMM (5 Levels) | Maintenance Types | Process Models | Reverse Engineering | Maintenance Costs</p></div>
+</div>
+<div class="pyq-strip"><b>⭐ PYQ YEARS:</b> 2014, 2018, 2019, 2020, 2022, 2024, 2025 — Topics from this unit were asked in these exams.</div>
+<div class="tabs">
+  <button class="tab on" style="color:#06b6d4" onclick="tab('u5','mcq',this)">❓ MCQ Solved (8)</button>
+  <button class="tab" onclick="tab('u5','a4',this)">✏️ 4-Mark Answers</button>
+  <button class="tab" onclick="tab('u5','a12',this)">📝 12-Mark Answers</button>
+</div>
+<div class="tab-pane on" id="u5-mcq">
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q1 of 8</span><span class="mcq-pyq">⭐ 2019</span></div>
+  <div class="mcq-q">The primary aim of Software Engineering is to provide:</div>
+  <div class="opts">
+    <button class="opt" id="u5q0o0" onclick="pick('u5q0',0,3,this)"><span class="badge">A</span>Reliable software only</button>
+    <button class="opt" id="u5q0o1" onclick="pick('u5q0',1,3,this)"><span class="badge">B</span>Software meeting requirements only</button>
+    <button class="opt" id="u5q0o2" onclick="pick('u5q0',2,3,this)"><span class="badge">C</span>Cost-effective software only</button>
+    <button class="opt" id="u5q0o3" onclick="pick('u5q0',3,3,this)"><span class="badge">D</span>All of the above</button>
+  </div>
+  <div class="mcq-fb" id="u5q0fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q2 of 8</span><span class="mcq-pyq">⭐ 2024, 2025</span></div>
+  <div class="mcq-q">ISO 9000 is:</div>
+  <div class="opts">
+    <button class="opt" id="u5q1o0" onclick="pick('u5q1',0,1,this)"><span class="badge">A</span>A programming language standard</button>
+    <button class="opt" id="u5q1o1" onclick="pick('u5q1',1,1,this)"><span class="badge">B</span>An international quality management system standard</button>
+    <button class="opt" id="u5q1o2" onclick="pick('u5q1',2,1,this)"><span class="badge">C</span>A database standard</button>
+    <button class="opt" id="u5q1o3" onclick="pick('u5q1',3,1,this)"><span class="badge">D</span>A network protocol</button>
+  </div>
+  <div class="mcq-fb" id="u5q1fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q3 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">SEI CMM has how many maturity levels?</div>
+  <div class="opts">
+    <button class="opt" id="u5q2o0" onclick="pick('u5q2',0,2,this)"><span class="badge">A</span>3 levels</button>
+    <button class="opt" id="u5q2o1" onclick="pick('u5q2',1,2,this)"><span class="badge">B</span>4 levels</button>
+    <button class="opt" id="u5q2o2" onclick="pick('u5q2',2,2,this)"><span class="badge">C</span>5 levels</button>
+    <button class="opt" id="u5q2o3" onclick="pick('u5q2',3,2,this)"><span class="badge">D</span>6 levels</button>
+  </div>
+  <div class="mcq-fb" id="u5q2fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q4 of 8</span><span class="mcq-pyq">⭐ 2014</span></div>
+  <div class="mcq-q">Change to reduce future system failure chance is called:</div>
+  <div class="opts">
+    <button class="opt" id="u5q3o0" onclick="pick('u5q3',0,3,this)"><span class="badge">A</span>Corrective maintenance</button>
+    <button class="opt" id="u5q3o1" onclick="pick('u5q3',1,3,this)"><span class="badge">B</span>Adaptive maintenance</button>
+    <button class="opt" id="u5q3o2" onclick="pick('u5q3',2,3,this)"><span class="badge">C</span>Perfective maintenance</button>
+    <button class="opt" id="u5q3o3" onclick="pick('u5q3',3,3,this)"><span class="badge">D</span>Preventive maintenance</button>
+  </div>
+  <div class="mcq-fb" id="u5q3fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q5 of 8</span><span class="mcq-pyq">⭐ 2025</span></div>
+  <div class="mcq-q">The process of fixing defects in a released software product is called:</div>
+  <div class="opts">
+    <button class="opt" id="u5q4o0" onclick="pick('u5q4',0,2,this)"><span class="badge">A</span>Adaptive maintenance</button>
+    <button class="opt" id="u5q4o1" onclick="pick('u5q4',1,2,this)"><span class="badge">B</span>Perfective maintenance</button>
+    <button class="opt" id="u5q4o2" onclick="pick('u5q4',2,2,this)"><span class="badge">C</span>Corrective maintenance</button>
+    <button class="opt" id="u5q4o3" onclick="pick('u5q4',3,2,this)"><span class="badge">D</span>Preventive maintenance</button>
+  </div>
+  <div class="mcq-fb" id="u5q4fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q6 of 8</span><span class="mcq-pyq">⭐ 2018</span></div>
+  <div class="mcq-q">Which CMM level has processes documented and standardized organization-wide?</div>
+  <div class="opts">
+    <button class="opt" id="u5q5o0" onclick="pick('u5q5',0,1,this)"><span class="badge">A</span>Level 2 Repeatable</button>
+    <button class="opt" id="u5q5o1" onclick="pick('u5q5',1,1,this)"><span class="badge">B</span>Level 3 Defined</button>
+    <button class="opt" id="u5q5o2" onclick="pick('u5q5',2,1,this)"><span class="badge">C</span>Level 4 Managed</button>
+    <button class="opt" id="u5q5o3" onclick="pick('u5q5',3,1,this)"><span class="badge">D</span>Level 5 Optimizing</button>
+  </div>
+  <div class="mcq-fb" id="u5q5fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q7 of 8</span><span class="mcq-pyq">⭐ 2024, 2025</span></div>
+  <div class="mcq-q">What is Reverse Engineering in Software Maintenance?</div>
+  <div class="opts">
+    <button class="opt" id="u5q6o0" onclick="pick('u5q6',0,1,this)"><span class="badge">A</span>Creating software from scratch</button>
+    <button class="opt" id="u5q6o1" onclick="pick('u5q6',1,1,this)"><span class="badge">B</span>Recreating design specs from existing code when docs are missing</button>
+    <button class="opt" id="u5q6o2" onclick="pick('u5q6',2,1,this)"><span class="badge">C</span>Testing software in reverse</button>
+    <button class="opt" id="u5q6o3" onclick="pick('u5q6',3,1,this)"><span class="badge">D</span>Running software backwards</button>
+  </div>
+  <div class="mcq-fb" id="u5q6fb"></div>
+</div>
+<div class="mcq-wrap">
+  <div class="mcq-hdr"><span class="mcq-qn">Q8 of 8</span><span class="mcq-pyq">⭐ 2022</span></div>
+  <div class="mcq-q">Highest percentage of maintenance effort is spent on:</div>
+  <div class="opts">
+    <button class="opt" id="u5q7o0" onclick="pick('u5q7',0,2,this)"><span class="badge">A</span>Corrective maintenance</button>
+    <button class="opt" id="u5q7o1" onclick="pick('u5q7',1,2,this)"><span class="badge">B</span>Adaptive maintenance</button>
+    <button class="opt" id="u5q7o2" onclick="pick('u5q7',2,2,this)"><span class="badge">C</span>Perfective maintenance (enhancements)</button>
+    <button class="opt" id="u5q7o3" onclick="pick('u5q7',3,2,this)"><span class="badge">D</span>Preventive maintenance</button>
+  </div>
+  <div class="mcq-fb" id="u5q7fb"></div>
+</div>
+</div>
+<div class="tab-pane" id="u5-a4">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a40',this)">
+  <span>What are the 4 types of Software Maintenance? Give examples.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">4 Marks</span>
+    <span class="pyq-b">PYQ 2014, 2020, 2022</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a40"><div class="paper">
+<p><b>Software Maintenance</b> = Modifying software AFTER delivery. Accounts for 60-80% of total software cost!</p>
+<p>&nbsp;</p>
+<p>1. <b>Corrective (~21%):</b> Fix defects/bugs found after release. REACTIVE.</p>
+<p>   Example: App crashes on login → find and fix authentication bug.</p>
+<p>&nbsp;</p>
+<p>2. <b>Adaptive (~25%):</b> Modify for changed environment. REACTIVE.</p>
+<p>   Example: Update for new Android version | Adjust for new GST tax rate.</p>
+<p>&nbsp;</p>
+<p>3. <b>Perfective (~50%):</b> Add new features or improve performance.</p>
+<p>   Example: Add dark mode | Optimize slow database queries | Add multilingual support.</p>
+<p>&nbsp;</p>
+<p>4. <b>Preventive (~5%):</b> Proactive changes to prevent future failures.</p>
+<p>   Example: Refactor messy code | Add comprehensive error logging.</p>
+<p>&nbsp;</p>
+<p><b>Most common:</b> Perfective (50%) > Adaptive (25%) > Corrective (21%) > Preventive (5%)</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a41',this)">
+  <span>Differentiate between ISO 9000 and SEI CMM.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">4 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a41"><div class="paper">
+<p><b>ISO 9000:</b></p>
+<p>• International standard for Quality Management Systems</p>
+<p>• Focuses on: documenting and FOLLOWING defined processes</p>
+<p>• Applies to: ANY industry (manufacturing, services, software)</p>
+<p>• Result: Binary certification — Certified OR Not Certified</p>
+<p>• Third-party audit required for certification (valid 3 years)</p>
+<p>• Key principle: 'Say what you do. Do what you say. Prove it.'</p>
+<p>&nbsp;</p>
+<p><b>SEI CMM:</b></p>
+<p>• Framework for assessing software process MATURITY</p>
+<p>• Focuses on: IMPROVING software process over time</p>
+<p>• Applies to: Software organizations SPECIFICALLY</p>
+<p>• Result: Maturity level rating 1 to 5</p>
+<p>• Assessment-based — no formal certification</p>
+<p>• Goal: Continuously improving process capability</p>
+<p>&nbsp;</p>
+<p><b>Together:</b> ISO for customer certification + CMM for internal improvement = best strategy.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a42',this)">
+  <span>What is the significance of Reverse Engineering?</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">4 Marks</span>
+    <span class="pyq-b">PYQ 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a42"><div class="paper">
+<p><b>Definition:</b> Reverse Engineering is analyzing existing software to recreate design documents/specs when original documentation is unavailable or missing.</p>
+<p>&nbsp;</p>
+<p><b>Process:</b></p>
+<p>Source Code → Program Understanding → Design Recovery → Requirements Recovery</p>
+<p>&nbsp;</p>
+<p><b>5 Key Uses and Significance:</b></p>
+<p>1. <b>Legacy System Maintenance:</b> Old systems with no docs can be understood and maintained.</p>
+<p>2. <b>System Migration:</b> Move old system to new platform by understanding current design.</p>
+<p>3. <b>Security Analysis:</b> Analyze malware or third-party software for security vulnerabilities.</p>
+<p>4. <b>Component Reuse:</b> Find reusable components in existing code for new projects.</p>
+<p>5. <b>Documentation Recovery:</b> Create missing technical documentation for audits/compliance.</p>
+<p>&nbsp;</p>
+<p><b>Tools:</b> Doxygen (documentation), Understand, Rational Rose, Enterprise Architect.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a43',this)">
+  <span>Discuss the concept of Estimation of Maintenance Costs.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">4 Marks</span>
+    <span class="pyq-b">PYQ 2022, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a43"><div class="paper">
+<p><b>Why Estimate Maintenance Costs?</b></p>
+<p>Maintenance = 60-80% of total software lifecycle cost. Must plan and budget carefully.</p>
+<p>&nbsp;</p>
+<p><b>Factors Increasing Maintenance Cost:</b></p>
+<p>1. <b>Poor code quality</b> — messy, undocumented code costs more to understand and fix.</p>
+<p>2. <b>Missing documentation</b> — developers waste time figuring out the system.</p>
+<p>3. <b>Staff turnover</b> — new staff need time to learn system = higher cost.</p>
+<p>4. <b>Old/legacy systems</b> — older code = harder and costlier to modify.</p>
+<p>5. <b>Frequent requirement changes</b> — more changes = more maintenance cost.</p>
+<p>&nbsp;</p>
+<p><b>Estimation Approaches:</b></p>
+<p>• <b>Rule of thumb:</b> Annual maintenance ≈ 15-20% of original development cost per year.</p>
+<p>• <b>Per change request:</b> Estimate effort per bug fix or enhancement separately.</p>
+<p>• <b>Function Point approach:</b> Measure size of changes in FP, apply productivity rates.</p>
+<p>&nbsp;</p>
+<p><b>Lehman's Law:</b> Software must be continuously adapted or it becomes progressively less useful.</p>
+</div></div></div>
+</div>
+<div class="tab-pane" id="u5-a12">
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a120',this)">
+  <span>Explain ISO 9000 and SEI CMM. What are the 5 CMM levels? Compare them comprehensively.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">12 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2022, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a120"><div class="paper">
+<p><b>Introduction:</b> Software quality assurance requires systematic standards. ISO 9000 and SEI CMM are the two most important quality frameworks used globally to ensure and improve software quality.</p>
+<p>&nbsp;</p>
+<p><b>ISO 9000 — International Quality Management Standard:</b></p>
+<p><b>Definition:</b> ISO 9000 is a family of international standards defining requirements for a Quality Management System (QMS). It ensures consistent delivery of products meeting customer requirements.</p>
+<p>&nbsp;</p>
+<p><b>Key ISO Standards:</b></p>
+<p>• ISO 9001: Requirements for QMS — most important, covers production, development, servicing.</p>
+<p>• ISO 9000: Fundamentals and vocabulary of quality management systems.</p>
+<p>• ISO 9004: Guidelines for performance improvement beyond basic compliance.</p>
+<p>&nbsp;</p>
+<p><b>ISO 9000 Principles:</b></p>
+<p>1. Customer focus — primary aim is meeting customer requirements.</p>
+<p>2. Process approach — activities managed as processes with defined inputs and outputs.</p>
+<p>3. Continual improvement — ongoing improvement of QMS performance.</p>
+<p>4. Evidence-based decision making — decisions based on data and facts.</p>
+<p>Core Principle: 'Say what you do; Do what you say; Prove it.'</p>
+<p>&nbsp;</p>
+<p><b>SEI CMM — Capability Maturity Model:</b></p>
+<p><b>Definition:</b> CMM is a framework developed by Carnegie Mellon's SEI for assessing and improving the maturity of software development processes. Maturity ranges from Level 1 (chaotic) to Level 5 (optimized).</p>
+<p>&nbsp;</p>
+<p><b>Five CMM Maturity Levels:</b></p>
+<p>Level 1 — INITIAL:</p>
+<p>  • Ad-hoc, chaotic processes. Success depends on individuals, not process.</p>
+<p>  • No repeatable processes. Cannot predict outcomes.</p>
+<p>&nbsp;</p>
+<p>Level 2 — REPEATABLE:</p>
+<p>  • Basic project management established.</p>
+<p>  • Requirements managed. Past successes can be repeated on similar projects.</p>
+<p>&nbsp;</p>
+<p>Level 3 — DEFINED:</p>
+<p>  • Processes documented, standardized, and integrated ACROSS entire organization.</p>
+<p>  • Consistent approach used by all teams organization-wide.</p>
+<p>&nbsp;</p>
+<p>Level 4 — MANAGED:</p>
+<p>  • Quantitative control of processes using statistical data and metrics.</p>
+<p>  • Variation in process performance is identified and controlled.</p>
+<p>&nbsp;</p>
+<p>Level 5 — OPTIMIZING:</p>
+<p>  • Continuous process improvement based on quantitative feedback.</p>
+<p>  • Defect prevention through proactive identification of improvement opportunities.</p>
+<p>&nbsp;</p>
+<p><b>ISO 9000 vs SEI CMM — Key Differences:</b></p>
+<p>• Focus: ISO = document & follow processes | CMM = improve process maturity over time</p>
+<p>• Industry: ISO = any industry | CMM = software organizations specifically</p>
+<p>• Result: ISO = binary certified/not | CMM = 1-5 maturity level rating</p>
+<p>• Approach: ISO = standards compliance | CMM = improvement journey</p>
+<p>&nbsp;</p>
+<p><b>Best Strategy:</b> Pursue BOTH — ISO for customer certification + CMM for internal improvement.</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> ISO 9000 ensures processes are consistently followed. SEI CMM provides a roadmap for continuous process improvement. Together they form a comprehensive quality assurance framework. Most mature organizations aim for ISO certification + CMM Level 3 or above.</p>
+</div></div></div>
+<div class="ans-item">
+<button class="ans-toggle" onclick="tog('u5a121',this)">
+  <span>Explain Software Maintenance: types, process models, reverse engineering, and cost estimation.</span>
+  <div class="ans-badges">
+    <span class="marks-b" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d455">12 Marks</span>
+    <span class="pyq-b">PYQ 2018, 2019, 2020, 2022, 2024, 2025</span>
+    <span class="chev">▼</span></div></button>
+<div class="ans-body" id="u5a121"><div class="paper">
+<p><b>Introduction:</b> Software Maintenance is the most expensive phase of the software lifecycle, consuming 60-80% of total costs. It involves ALL modifications made AFTER delivery to correct faults, improve performance, or adapt to changing environments.</p>
+<p>&nbsp;</p>
+<p><b>Definition (IEEE 1219):</b> 'The process of modifying a software system after delivery to correct faults, improve performance, adapt to changed environment, or add new features.'</p>
+<p>&nbsp;</p>
+<p><b>4 Types of Software Maintenance:</b></p>
+<p>1. CORRECTIVE (~21%) — Fix defects/bugs found after release. REACTIVE.</p>
+<p>   Example: Mobile app crashes on login → investigate and fix authentication module.</p>
+<p>&nbsp;</p>
+<p>2. ADAPTIVE (~25%) — Modify software to work in changed environment. REACTIVE.</p>
+<p>   Example: Update payroll system for new income tax slabs.</p>
+<p>   Example: Migrate from MySQL 5 to MySQL 8 — update all queries.</p>
+<p>&nbsp;</p>
+<p>3. PERFECTIVE (~50%) — Add new features or improve performance. LARGEST portion.</p>
+<p>   Example: Add voice search feature users requested.</p>
+<p>   Example: Optimize database queries — reduce response time from 5s to 0.5s.</p>
+<p>&nbsp;</p>
+<p>4. PREVENTIVE (~5%) — Proactive changes to prevent future failures. PROACTIVE.</p>
+<p>   Example: Refactor spaghetti code before it causes maintenance nightmare.</p>
+<p>   Example: Update SSL certificates before expiry to prevent security breach.</p>
+<p>&nbsp;</p>
+<p><b>Maintenance Process Models:</b></p>
+<p>1. QUICK FIX MODEL:</p>
+<p>   Apply minimum fix immediately without full analysis.</p>
+<p>   Fast but creates technical debt. Risky — fix may introduce new bugs.</p>
+<p>&nbsp;</p>
+<p>2. ITERATIVE ENHANCEMENT MODEL (Best Practice):</p>
+<p>   Systematic: Understand system → Identify change → Design fix → Implement → Test → Deliver.</p>
+<p>   Proper analysis prevents introducing new defects.</p>
+<p>&nbsp;</p>
+<p>3. FULL REUSE MODEL:</p>
+<p>   Identify reusable components. Redesign using existing tested assets.</p>
+<p>   Promotes code reuse and reduces duplication.</p>
+<p>&nbsp;</p>
+<p><b>Reverse Engineering in Maintenance:</b></p>
+<p>When original documentation is missing — analyze code to recover design specifications.</p>
+<p>Process: Source Code → Program Understanding → Design Recovery → Documentation</p>
+<p>Used for legacy systems that must be maintained but have no documentation.</p>
+<p>&nbsp;</p>
+<p><b>Estimation of Maintenance Costs:</b></p>
+<p>• Annual maintenance cost ≈ 15-20% of original development cost per year.</p>
+<p>• Key factors raising cost: poor code quality, missing documentation, high staff turnover.</p>
+<p>• Lehman's Laws: Software must be continuously adapted or becomes less useful over time.</p>
+<p>• BEST SOLUTION: Plan for maintainability DURING design phase:</p>
+<p>  - Good documentation | Modular design | Clean coding standards | Proper testing</p>
+<p>&nbsp;</p>
+<p><b>Conclusion:</b> Software maintenance is inevitable and critical. Preventive and perfective maintenance — though often undervalued — are the best long-term investment in software health and reduced long-term costs.</p>
+</div></div></div>
+</div>
+</div>
+<div id="cheat">
+<div class="cheat-card">
+<div class="cheat-hdr" onclick="togCheat('tricks')" style="background:linear-gradient(135deg,#78350fcc,#92400e88)">
+  <span style="font-size:1rem;font-weight:700;color:#fde68a">🟡 Memory Tricks — Read Before Exam</span>
+  <span id="tchev" style="color:#fde68a;font-size:1.2rem">▼</span>
+</div>
+<div class="cheat-body" id="tricks">
+<div class="trick-grid">
+<div class="trick" style="border-color:#f59e0b"><div class="t-lbl" style="color:#f59e0b">Waterfall Phases</div><div class="t-val">Requirements → Design → Implementation → Testing → Deployment → Maintenance<br>'Really Dumb Idiots Try Doing More' (R-D-I-T-D-M)</div></div>
+<div class="trick" style="border-color:#10b981"><div class="t-lbl" style="color:#10b981">Maintenance Types (CAPP)</div><div class="t-val">C = Corrective (fix bugs) | A = Adaptive (environment changes)<br>P = Perfective (add features) | P = Preventive (prevent failures)</div></div>
+<div class="trick" style="border-color:#8b5cf6"><div class="t-lbl" style="color:#8b5cf6">CMM Levels 1→5</div><div class="t-val">I Really Do Master Optimizing<br>= Initial | Repeatable | Defined | Managed | Optimizing</div></div>
+<div class="trick" style="border-color:#ef4444"><div class="t-lbl" style="color:#ef4444">DFD Symbols</div><div class="t-val">APES = Arrow (data flow) | Process (circle)<br>External entity (rectangle) | Store (open box)</div></div>
+<div class="trick" style="border-color:#06b6d4"><div class="t-lbl" style="color:#06b6d4">COCOMO Categories</div><div class="t-val">OSE — Organic (a=2.4) | Semidetached (a=3.0) | Embedded (a=3.6)<br>Higher 'a' value = more complex project</div></div>
+<div class="trick" style="border-color:#ec4899"><div class="t-lbl" style="color:#ec4899">SRS Characteristics</div><div class="t-val">Correct + Unambiguous + Complete + Consistent + Verifiable + Modifiable<br>= Good SRS</div></div>
+<div class="trick" style="border-color:#f59e0b"><div class="t-lbl" style="color:#f59e0b">FOD vs OOD</div><div class="t-val">FOD = Functions first, Top-down, DFD + Structure Chart<br>OOD = Objects first, Bottom-up, UML diagrams</div></div>
+<div class="trick" style="border-color:#10b981"><div class="t-lbl" style="color:#10b981">Black vs White Box</div><div class="t-val">Black = Blind testing (no code seen)<br>White = See-through testing (code is visible)</div></div>
+<div class="trick" style="border-color:#8b5cf6"><div class="t-lbl" style="color:#8b5cf6">Testing Levels</div><div class="t-val">Unit → Integration → System → UAT → Deployment<br>'Useful Intelligent Students Use Discipline'</div></div>
+<div class="trick" style="border-color:#ef4444"><div class="t-lbl" style="color:#ef4444">Software Crisis</div><div class="t-val">Problems: Late + Over-budget + Unreliable + Hard to maintain + Wrong system<br>Solution: Software Engineering as a discipline</div></div>
+</div></div></div>
+<div class="cheat-card">
+<div class="cheat-hdr" onclick="togCheat('vvi')" style="background:linear-gradient(135deg,#7f1d1dcc,#991b1b88)">
+  <span style="font-size:1rem;font-weight:700;color:#fca5a5">🔴 Top 20 VVI Questions — PYQ Frequency</span>
+  <span id="vchev" style="color:#fca5a5;font-size:1.2rem">▼</span>
+</div>
+<div class="cheat-body" id="vvi">
+<div class="vvi-grid">
+<div class="vvi-item"><div class="vvi-num" style="background:#ef4444">1</div><div><div class="vvi-txt">Waterfall Model — phases, adv, disadv, diagram <b style="color:#ef4444">(🔴 8×)</b></div><div class="vvi-yr">U1 | PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#ef4444">2</div><div><div class="vvi-txt">Software Maintenance — types, models, costs <b style="color:#ef4444">(🔴 8×)</b></div><div class="vvi-yr">U5 | PYQ: 2014,2018,2019,2020,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#ef4444">3</div><div><div class="vvi-txt">ISO 9000 vs SEI CMM — compare <b style="color:#ef4444">(🔴 7×)</b></div><div class="vvi-yr">U5 | PYQ: 2018,2019,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#ef4444">4</div><div><div class="vvi-txt">SRS Document — characteristics, structure, IEEE 830 <b style="color:#ef4444">(🔴 6×)</b></div><div class="vvi-yr">U2 | PYQ: 2018,2019,2020,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#ef4444">5</div><div><div class="vvi-txt">Black-box vs White-box Testing <b style="color:#ef4444">(🔴 6×)</b></div><div class="vvi-yr">U4 | PYQ: 2014,2017,2019,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">6</div><div><div class="vvi-txt">Spiral Model — 4 quadrants, risk management <b style="color:#f97316">(🟠 5×)</b></div><div class="vvi-yr">U1 | PYQ: 2014,2017,2019,2020,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">7</div><div><div class="vvi-txt">Software Testing Levels — Unit, Integration, System, UAT <b style="color:#f97316">(🟠 5×)</b></div><div class="vvi-yr">U4 | PYQ: 2014,2017,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">8</div><div><div class="vvi-txt">DFD — symbols, levels, balancing, draw Level 0 & 1 <b style="color:#f97316">(🟠 5×)</b></div><div class="vvi-yr">U3 | PYQ: 2014,2018,2019,2020,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">9</div><div><div class="vvi-txt">COCOMO Model — categories, formulas, worked example <b style="color:#f97316">(🟠 5×)</b></div><div class="vvi-yr">U2 | PYQ: 2014,2018,2019,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">10</div><div><div class="vvi-txt">Prototype Model — types, process, benefits <b style="color:#f97316">(🟠 4×)</b></div><div class="vvi-yr">U1 | PYQ: 2014,2017,2019,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">11</div><div><div class="vvi-txt">Functional vs Non-Functional Requirements <b style="color:#f97316">(🟠 4×)</b></div><div class="vvi-yr">U2 | PYQ: 2018,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">12</div><div><div class="vvi-txt">Software Metrics — LOC shortcomings, FP advantages <b style="color:#f97316">(🟠 4×)</b></div><div class="vvi-yr">U2 | PYQ: 2014,2018,2020,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">13</div><div><div class="vvi-txt">Object-Oriented Design — 4 principles (AEIP) <b style="color:#f97316">(🟠 4×)</b></div><div class="vvi-yr">U3 | PYQ: 2018,2019,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#f97316">14</div><div><div class="vvi-txt">Software Quality Assurance — definition, importance <b style="color:#f97316">(🟠 4×)</b></div><div class="vvi-yr">U5 | PYQ: 2020,2022,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">15</div><div><div class="vvi-txt">Cohesion and Coupling in software design <b style="color:#eab308">(🟡 3×)</b></div><div class="vvi-yr">U3 | PYQ: 2014,2019,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">16</div><div><div class="vvi-txt">Reverse Engineering — definition, significance <b style="color:#eab308">(🟡 3×)</b></div><div class="vvi-yr">U5 | PYQ: 2019,2024,2025</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">17</div><div><div class="vvi-txt">Delphi Cost Estimation Technique <b style="color:#eab308">(🟡 3×)</b></div><div class="vvi-yr">U2 | PYQ: 2017,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">18</div><div><div class="vvi-txt">Software Crisis — problems and how SE solved it <b style="color:#eab308">(🟡 3×)</b></div><div class="vvi-yr">U1 | PYQ: 2017,2019,2022</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">19</div><div><div class="vvi-txt">Debugging Process — 5 steps, strategies <b style="color:#eab308">(🟡 2×)</b></div><div class="vvi-yr">U4 | PYQ: 2017,2020</div></div></div>
+<div class="vvi-item"><div class="vvi-num" style="background:#eab308">20</div><div><div class="vvi-txt">Musa's Basic Reliability Model — formula, purpose <b style="color:#eab308">(🟡 2×)</b></div><div class="vvi-yr">U4 | PYQ: 2014</div></div></div>
+</div></div></div>
+</div>
+</main>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+<footer>
+  <b>BCA-304 Software Engineering</b> | AKU Patna | Code: 303304<br>
+  PYQ Years: 2014 · 2017 · 2018 · 2019 · 2020 · 2022 · 2024 · 2025<br>
+  <span style="color:#334155;font-size:.72rem">No internet required • Single HTML file • Works on any device</span>
+</footer>
+<script>
+// Particles
+(function(){
+  const c=document.getElementById('ptcls');
+  const cols=['#f59e0b','#8b5cf6','#10b981','#ef4444','#06b6d4'];
+  for(let i=0;i<20;i++){
+    const d=document.createElement('div'),sz=Math.random()*12+4;
+    d.className='particle';
+    d.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${cols[i%cols.length]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*8}s`;
+    c.appendChild(d);
+  }
+})();
+
+// Countdown — open-ended (no target date)
+function tick(){
+  const now=new Date();
+  const d=now.getDate(),h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
+  document.getElementById('dd').textContent=String(d).padStart(2,'0');
+  document.getElementById('hh').textContent=String(h).padStart(2,'0');
+  document.getElementById('mm').textContent=String(m).padStart(2,'0');
+  document.getElementById('ss').textContent=String(s).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+// Progress bar + back to top
+window.addEventListener('scroll',function(){
+  const d=document.documentElement;
+  const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
+  document.getElementById('prg').style.width=pct+'%';
+  const b=document.getElementById('btt');
+  d.scrollTop>300?b.classList.add('show'):b.classList.remove('show');
+});
+
+// Nav scroll
+function gto(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// Tab switch
+function tab(uid,name,btn){
+  document.querySelectorAll('#'+uid+' .tab-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('#'+uid+' .tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(uid+'-'+name).classList.add('on');
+  btn.classList.add('on');
+}
+
+// MCQ
+function pick(qid,chosen,correct,btn){
+  const wrap=btn.closest('.mcq-wrap');
+  if(wrap.dataset.done)return;
+  wrap.dataset.done=1;
+  wrap.querySelectorAll('.opt').forEach(o=>o.classList.add('locked'));
+  document.getElementById(qid+'o'+correct).classList.add('correct');
+  const fb=document.getElementById(qid+'fb');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.className='mcq-fb fb-ok on';
+    fb.innerHTML='✅ <b>Correct!</b> '+btn.querySelector('.badge').parentNode.textContent.trim();
+  } else {
+    btn.classList.add('wrong');
+    fb.className='mcq-fb fb-no on';
+    const ca=document.getElementById(qid+'o'+correct);
+    fb.innerHTML='❌ <b>Wrong.</b> Correct answer: <b>'+ca.textContent.trim()+'</b>';
+  }
+}
+
+// Answer toggle
+function tog(id,btn){
+  document.getElementById(id).classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// Expand / Collapse all
+function expandAll(){
+  document.querySelectorAll('.ans-body').forEach(b=>b.classList.add('open'));
+  document.querySelectorAll('.ans-toggle').forEach(b=>b.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.ans-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.ans-toggle').forEach(b=>b.classList.remove('open'));
+}
+
+// Cheat toggles
+function togCheat(id){
+  const b=document.getElementById(id);
+  b.classList.toggle('open');
+  const chev=id==='tricks'?document.getElementById('tchev'):document.getElementById('vchev');
+  chev.textContent=b.classList.contains('open')?'▲':'▼';
+}
+</script>
+</body></html>

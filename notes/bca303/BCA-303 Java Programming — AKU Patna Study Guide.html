@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BCA-303 Java Programming — AKU Patna</title>
+<style>
+/* ── RESET & ROOT ─────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#040d2e;--navy2:#071040;--blue:#0f1f7a;
+  --gold:#ffd700;--orange:#ff6600;--orange2:#ff8c00;
+  --green:#00c853;--red:#d50000;--white:#fff;
+  --text:#dde3f0;--muted:#8899bb;
+  --card:#080f2a;--card2:#0c1535;
+  --border:#1a2f6a;
+  --code-bg:#020816;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{background:linear-gradient(160deg,#020820 0%,#071560 55%,#0a2090 100%);padding:56px 20px 0;text-align:center;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 35%,rgba(255,140,0,.13) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:linear-gradient(90deg,#ffd700,#ff8c00);color:#000;font-weight:800;font-size:12px;padding:5px 18px;border-radius:20px;letter-spacing:1.5px;margin-bottom:18px}
+.hero h1{font-size:clamp(26px,6vw,48px);font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:8px}
+.hero-sub{font-size:14px;color:#90b4f0;margin-bottom:22px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
+.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.25);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--gold);font-weight:600}
+.hero-prog-wrap{height:4px;background:rgba(255,255,255,.1)}
+.hero-prog{height:4px;background:linear-gradient(90deg,#ff6600,#ffd700);width:0;transition:width .6s ease}
+
+/* ── NAV ──────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:200;background:rgba(4,8,40,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,165,0,.2);display:flex;gap:2px;padding:0 8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{background:none;border:none;color:#8899bb;padding:13px 13px 11px;cursor:pointer;font-size:13px;font-weight:700;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;letter-spacing:.3px}
+.nav-btn:hover{color:#fff}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── UNIT WRAPPER ─────────────────────────────────── */
+.unit{padding:30px 16px 10px;max-width:960px;margin:0 auto}
+.unit-hdr{background:linear-gradient(90deg,#071060,#0e2490);border-left:4px solid var(--gold);border-radius:10px;padding:16px 20px;margin-bottom:22px}
+.unit-hdr h2{font-size:18px;color:var(--gold);font-weight:800;margin-bottom:4px}
+.unit-hdr p{color:#7090cc;font-size:12px}
+
+/* ── TABS ─────────────────────────────────────────── */
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{padding:8px 20px;border-radius:22px;border:1.5px solid rgba(255,215,0,.3);background:transparent;color:#8899bb;cursor:pointer;font-size:13px;font-weight:700;transition:all .2s}
+.tab-btn:hover{border-color:#ffd700;color:#fff}
+.tab-btn.active{background:linear-gradient(90deg,#ff6600,#ffd700);border-color:transparent;color:#000}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* ═══════════════════════════════════════════════════
+   KBC ARENA
+═══════════════════════════════════════════════════ */
+.kbc-arena{
+  background:#010a1a;
+  border:1.5px solid rgba(255,102,0,.45);
+  border-radius:18px;
+  padding:22px 20px 20px;
+  position:relative;overflow:hidden
+}
+.kbc-arena::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent 0%,#ff6600 20%,#ffd700 50%,#ff6600 80%,transparent 100%)
+}
+.kbc-arena::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 35%,rgba(255,130,0,.1) 0%,transparent 70%);
+  pointer-events:none
+}
+
+/* status bar */
+.kbc-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.kbc-left{display:flex;flex-direction:column;gap:5px}
+.kbc-qnum{font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.5px}
+.kbc-dots{display:flex;gap:4px}
+.kbc-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18);transition:background .3s}
+.kbc-dot.answered{background:var(--gold)}
+.kbc-dot.current{background:var(--orange);box-shadow:0 0 6px var(--orange)}
+.kbc-right{display:flex;align-items:center;gap:8px}
+.kbc-score{font-size:14px;font-weight:800;color:var(--gold)}
+.kbc-yr{background:#cc0000;color:#fff;font-size:10px;font-weight:800;padding:3px 9px;border-radius:10px}
+
+/* question card */
+.kbc-qcard{
+  background:rgba(0,5,30,.7);
+  border:1px solid rgba(255,102,0,.4);
+  border-radius:12px;padding:18px 20px;
+  text-align:center;margin-bottom:20px;
+  position:relative;z-index:1
+}
+.kbc-qtext{color:#fff;font-size:16px;font-weight:700;line-height:1.5}
+
+/* options grid */
+.kbc-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;position:relative;z-index:1}
+.kbc-opt{
+  display:flex;align-items:center;gap:10px;
+  background:#050d1f;
+  border-radius:28px;
+  border:1.5px solid;
+  border-image:linear-gradient(90deg,#ff6600,#ffd700) 1;
+  padding:11px 14px;cursor:pointer;
+  transition:all .2s;text-align:left
+}
+.kbc-opt:hover{box-shadow:0 0 18px rgba(255,102,0,.45);transform:scale(1.025)}
+.kbc-opt.locked{cursor:default;transform:none}
+.kbc-opt.sel{background:#ff6600;border-image:none;border-color:#ff6600}
+.kbc-opt.correct{background:#00c853;border-image:none;border-color:#00c853;box-shadow:0 0 22px rgba(0,200,83,.5)}
+.kbc-opt.wrong{background:#d50000;border-image:none;border-color:#d50000;box-shadow:0 0 22px rgba(213,0,0,.4)}
+.opt-badge{
+  background:linear-gradient(135deg,#ff6600,#ffd700);
+  color:#000;font-weight:900;border-radius:50%;
+  width:26px;height:26px;min-width:26px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0
+}
+.kbc-opt.sel .opt-badge,.kbc-opt.correct .opt-badge,.kbc-opt.wrong .opt-badge{background:rgba(255,255,255,.25);color:#fff}
+.opt-txt{color:#fff;font-size:13px;line-height:1.35}
+
+/* explanation */
+.kbc-exp{
+  background:rgba(0,200,83,.1);border:1px solid rgba(0,200,83,.4);
+  border-radius:10px;padding:12px 14px;
+  font-size:13px;color:#b0ffcc;
+  display:none;margin-bottom:12px;
+  position:relative;z-index:1
+}
+.kbc-exp.show{display:block}
+
+/* nav buttons */
+.kbc-nav{display:flex;gap:10px;justify-content:center;position:relative;z-index:1}
+.btn-prev{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#aaa;padding:9px 20px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.btn-prev:hover{background:rgba(255,255,255,.15);color:#fff}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(90deg,#ff6600,#ffd700);border:none;color:#000;padding:9px 24px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:800;display:none;transition:transform .2s}
+.btn-next.show{display:inline-block}
+.btn-next:hover{transform:scale(1.04)}
+
+/* finish screen */
+.kbc-finish{text-align:center;padding:28px 10px}
+.finish-score{font-size:56px;font-weight:900;background:linear-gradient(90deg,#ffd700,#ff6600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.finish-grade{font-size:26px;margin:8px 0}
+.finish-info{color:var(--muted);font-size:14px;margin-bottom:18px}
+.btn-replay{background:linear-gradient(90deg,#ff6600,#ffd700);border:none;color:#000;padding:11px 28px;border-radius:24px;cursor:pointer;font-size:15px;font-weight:800}
+
+/* ═══════════════════════════════════════════════════
+   ACCORDION Q&A
+═══════════════════════════════════════════════════ */
+.acc-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;transition:box-shadow .2s}
+.acc-item:hover{box-shadow:0 0 16px rgba(26,110,245,.2)}
+.acc-hdr{
+  background:linear-gradient(90deg,#071060,#0e2490);
+  padding:13px 16px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:10px
+}
+.acc-hdr h3{font-size:13.5px;color:#fff;font-weight:700;line-height:1.4;flex:1}
+.acc-meta{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.acc-yr{background:#cc0000;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px}
+.acc-marks{color:var(--gold);font-size:10px;font-weight:700}
+.acc-icon{color:var(--gold);font-size:20px;font-weight:300;transition:transform .3s;line-height:1}
+.acc-item.open .acc-icon{transform:rotate(45deg)}
+.acc-body{display:none;background:var(--card2)}
+.acc-body.show{display:block}
+
+/* answer card — notebook style */
+.ans-card{
+  padding:18px;
+  border-left:4px solid #1a6ef5;
+  background:
+    repeating-linear-gradient(
+      transparent,transparent 27px,
+      rgba(90,120,255,.08) 27px,rgba(90,120,255,.08) 28px
+    ),
+    var(--card2)
+}
+.ans-card h4{font-size:12px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid rgba(255,215,0,.2)}
+.ans-card h4:first-child{margin-top:0}
+.ans-card p{font-size:13.5px;color:#cdd5ee;margin-bottom:6px;line-height:1.65}
+.ans-card ul{margin:6px 0 10px 0;padding:0;list-style:none}
+.ans-card ul li{font-size:13.5px;color:#cdd5ee;padding:3px 0 3px 16px;position:relative;line-height:1.6}
+.ans-card ul li::before{content:"•";color:var(--orange);font-weight:900;position:absolute;left:0}
+.ans-card ul li b{color:#fff}
+.ans-card .code-box{background:#020816;border:1px solid rgba(255,102,0,.3);border-radius:8px;padding:14px;font-family:'Cascadia Code','Courier New',monospace;font-size:12px;color:#00e676;overflow-x:auto;margin:10px 0;white-space:pre;line-height:1.6}
+.ans-card .conclusion{background:rgba(255,215,0,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:8px 12px;font-size:13px;color:#ddd;margin-top:10px;font-style:italic}
+
+/* ═══════════════════════════════════════════════════
+   MOST REPEATED
+═══════════════════════════════════════════════════ */
+.section-wrap{padding:30px 16px;max-width:960px;margin:0 auto}
+.sec-title{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid rgba(255,215,0,.25)}
+.rep-table{width:100%;border-collapse:collapse;font-size:13px}
+.rep-table th{background:#071060;color:var(--gold);padding:11px 12px;text-align:left;font-size:12px;font-weight:800;letter-spacing:.5px}
+.rep-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.rep-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.rep-table tr:hover td{background:rgba(255,215,0,.04)}
+.vvi{background:linear-gradient(90deg,#ff6600,#ffd700);color:#000;font-size:10px;font-weight:900;padding:2px 8px;border-radius:10px;margin-right:6px}
+.yr-chip{display:inline-block;background:#cc0000;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;margin:2px 2px}
+.times-badge{color:#cc0000;font-weight:900;font-size:14px}
+
+/* ═══════════════════════════════════════════════════
+   CHEAT SHEET
+═══════════════════════════════════════════════════ */
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.cbox{background:linear-gradient(135deg,#060f3a,#0a1848);border:1px solid rgba(255,215,0,.18);border-radius:14px;padding:18px;transition:box-shadow .2s}
+.cbox:hover{box-shadow:0 0 20px rgba(255,215,0,.12)}
+.cbox h3{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,215,0,.18);letter-spacing:.3px}
+.cbox ul{list-style:none;padding:0}
+.cbox ul li{font-size:12.5px;color:#b8c8e8;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:6px;align-items:flex-start;line-height:1.45}
+.cbox ul li:last-child{border:none;padding-bottom:0}
+.cbox ul li .ck{color:var(--gold);font-weight:700;min-width:fit-content}
+.cbox code{background:rgba(0,255,100,.1);color:#00e676;padding:1px 6px;border-radius:4px;font-family:'Courier New',monospace;font-size:11px}
+.diff-tbl{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.diff-tbl th{background:rgba(255,215,0,.15);color:var(--gold);padding:5px 7px;text-align:left;font-size:11px}
+.diff-tbl td{padding:5px 7px;border:1px solid rgba(255,255,255,.08);color:#b8c8e8}
+
+/* ── UTILS ────────────────────────────────────────── */
+@media(max-width:600px){
+  .kbc-opts{grid-template-columns:1fr}
+  .cheat-grid{grid-template-columns:1fr}
+  .hero h1{font-size:28px}
+  .unit{padding:20px 12px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">AKU PATNA — BCA SEM III</div>
+  <h1>Java Programming</h1>
+  <p class="hero-sub">Paper Code: BCA-303 &nbsp;·&nbsp; Interactive Study Guide with PYQ MCQ Game</p>
+  <div class="pills">
+    <span class="pill">📅 2014 · 2017 · 2018 · 2019 · 2020 · 2022 · 2024 · 2025</span>
+    <span class="pill">✅ Full Marks: 60</span>
+    <span class="pill">⏱ Time: 3 Hours</span>
+    <span class="pill">📚 5 Units</span>
+  </div>
+  <div class="hero-prog-wrap"><div class="hero-prog" id="heroBar"></div></div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="goTo('u1',this)">U1</button>
+  <button class="nav-btn" onclick="goTo('u2',this)">U2</button>
+  <button class="nav-btn" onclick="goTo('u3',this)">U3</button>
+  <button class="nav-btn" onclick="goTo('u4',this)">U4</button>
+  <button class="nav-btn" onclick="goTo('u5',this)">U5</button>
+  <button class="nav-btn" onclick="goTo('most',this)">🌟 Most Repeated</button>
+  <button class="nav-btn" onclick="goTo('cheat',this)">📋 Cheat Sheet</button>
+</nav>
+
+<!-- ─── UNIT SECTIONS (rendered by JS) ─── -->
+<div id="u1" class="unit"></div>
+<div id="u2" class="unit"></div>
+<div id="u3" class="unit"></div>
+<div id="u4" class="unit"></div>
+<div id="u5" class="unit"></div>
+
+<!-- MOST REPEATED -->
+<div id="most" class="section-wrap">
+  <div class="sec-title">🌟 Most Repeated Topics — PYQ Analysis</div>
+  <div style="overflow-x:auto">
+  <table class="rep-table">
+    <thead><tr><th>Topic</th><th>Unit</th><th>Times</th><th>PYQ Years</th><th>Priority</th></tr></thead>
+    <tbody id="repBody"></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CHEAT SHEET -->
+<div id="cheat" class="section-wrap">
+  <div class="sec-title">📋 Cheat Sheet — Last Minute Revision</div>
+  <div class="cheat-grid" id="cheatGrid"></div>
+</div>
+<div style="height:60px"></div>
+
+<script>
+'use strict';
+/* ═══════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════ */
+const D={
+ units:[
+  /* ────────── UNIT 1 ────────── */
+  {id:'u1',n:1,title:'Java Evolution & Overview',
+   sub:'JVM · Bytecode · Features · Diff from C/C++ · Simple Java Program · Tokens',
+   mcqs:[
+    {q:'What does JVM stand for?',
+     opts:['Java Visual Machine','Java Virtual Machine','Java Valid Module','Java Verbose Machine'],
+     ans:1,yr:'2024',
+     exp:'JVM = Java Virtual Machine. It executes bytecode and makes Java platform-independent.'},
+    {q:'Which command COMPILES a Java program?',
+     opts:['java','javac','run','execute'],ans:1,yr:'2019',
+     exp:'"javac FileName.java" compiles. "java ClassName" runs the compiled .class bytecode file.'},
+    {q:'int a=5; int b=6;  Y = b++ + ++a;  What is Y?',
+     opts:['11','12','13','14'],ans:1,yr:'2014',
+     exp:'b++ uses b=6 first (post-increment), ++a makes a=6 first (pre-increment). Y = 6+6 = 12.'},
+    {q:'Java bytecode files use which extension?',
+     opts:['.java','.exe','.class','.byte'],ans:2,yr:'2017',
+     exp:'.class = compiled bytecode. .java = source code. javac creates .class from .java.'},
+    {q:'Java is platform-independent because of:',
+     opts:['Java compiler','JVM and Bytecode','Java syntax','IDE'],ans:1,yr:'2017',
+     exp:'JVM reads the same .class file on any OS — "Write Once, Run Anywhere."'},
+    {q:'Correct order of elements in a Java source file:',
+     opts:['Import, Package, Class','Class, Import, Package','Package, Import, Class','Any order'],ans:2,yr:'2019',
+     exp:'Always: (1) package statement (2) import statements (3) class declaration.'},
+    {q:'Who developed Java?',
+     opts:['Bill Gates','Dennis Ritchie','James Gosling','Bjarne Stroustrup'],ans:2,yr:'GEN',
+     exp:'James Gosling at Sun Microsystems (now Oracle) developed Java in 1991–1995.'},
+    {q:'Which is NOT a feature of Java?',
+     opts:['Platform Independent','Pointer-based','Object-Oriented','Multithreaded'],ans:1,yr:'GEN',
+     exp:'Java has NO pointers (unlike C/C++). This makes Java safer and more secure.'},
+    {q:'Java bytecode is executed by:',
+     opts:['CPU directly','Operating System','JVM','Compiler'],ans:2,yr:'GEN',
+     exp:'JVM (Java Virtual Machine) reads and executes bytecode — not the CPU directly.'},
+    {q:'JDK stands for?',
+     opts:['Java Debug Kit','Java Development Kit','Java Deploy Kit','Java Default Kit'],ans:1,yr:'GEN',
+     exp:'JDK = Java Development Kit. Contains JRE + compiler + tools needed to DEVELOP Java programs.'},
+   ],
+   four:[
+    {q:'How is Java strongly associated with the Internet?',yr:'2014',
+     intro:'Java was designed from the start to work with the Internet through several key features.',
+     pts:[
+      ['Applets','Small Java programs that run inside web browsers. Used for interactive web content.'],
+      ['Platform Independence','Java runs on any OS — Windows, Mac, Linux. All web users are covered.'],
+      ['Security','No pointers + bytecode verification prevents web-based attacks and malware.'],
+      ['java.net Package','Provides Socket, URL, URLConnection classes for internet programming.'],
+      ['Servlets and JSP','Server-side Java technologies for building dynamic, interactive websites.'],
+     ],code:null,
+     conc:'Java connects to the Internet on both client side (applets) and server side (servlets).'},
+
+    {q:'What is bytecode? Why is it important?',yr:'2017',
+     intro:'Bytecode is the intermediate code produced by the Java compiler (javac).',
+     pts:[
+      ['Not Machine Code','Bytecode is NOT native machine code. It is instructions written for the JVM.'],
+      ['Storage','Saved in .class files after compilation with "javac FileName.java".'],
+      ['Platform Independence','The SAME .class file runs on Windows, Mac, Linux — any OS with JVM installed.'],
+      ['Security','JVM verifies bytecode BEFORE executing it — blocks harmful or malicious code.'],
+      ['Portability','Compile once on any computer. Share the .class file. Run anywhere.'],
+     ],
+     code:'Flow:\n  MyFile.java  →  [javac]  →  MyFile.class (bytecode)  →  [JVM]  →  Any OS',
+     conc:'Bytecode is the reason Java achieves "Write Once, Run Anywhere."'},
+
+    {q:'Explain the role of JVM (Java Virtual Machine).',yr:'2024',
+     intro:'JVM = Java Virtual Machine. It is the engine that executes Java bytecode on any hardware.',
+     pts:[
+      ['Class Loading','Loads .class files into memory at runtime when they are needed.'],
+      ['Bytecode Verification','Checks if bytecode is safe, valid, and follows Java rules before running.'],
+      ['Execution','Converts bytecode to native machine instructions for the current CPU.'],
+      ['Memory Management','Garbage Collector automatically frees memory of unused objects.'],
+      ['Exception Handling','Manages runtime errors gracefully without crashing the program.'],
+      ['JIT Compilation','Just-In-Time compiler converts hot code to native code for speed.'],
+     ],
+     code:'JDK  =  JRE + compiler tools   (for DEVELOPERS)\nJRE  =  JVM + libraries        (for RUNNING Java)\nJVM  =  the virtual engine     (CORE of Java)',
+     conc:'JVM is the heart of Java. Without it, bytecode cannot execute on any machine.'},
+
+    {q:'How does Java differ from C and C++?',yr:'GEN',
+     intro:'Java was designed to improve upon C and C++ by removing dangerous features and adding safety.',
+     pts:[
+      ['vs C — Paradigm','Java is Object-Oriented. C is Procedural. Java organizes code into classes.'],
+      ['vs C — Pointers','Java has NO pointers. C uses pointers — which cause memory bugs and security issues.'],
+      ['vs C — Memory','Java has automatic Garbage Collection. C needs malloc/free (manual).'],
+      ['vs C — Platform','Java: platform-independent. C: needs recompilation for each OS.'],
+      ['vs C++ — Inheritance','Java: no multiple class inheritance (uses interfaces instead). C++: has it.'],
+      ['vs C++ — Overloading','Java: no operator overloading. C++: supports operator overloading.'],
+      ['vs C++ — GC','Java: automatic garbage collection. C++: manual memory management.'],
+     ],code:null,
+     conc:'Java removed dangerous C/C++ features (pointers, multiple inheritance) and added portability.'},
+   ],
+   twelve:[
+    {q:'★ Write a simple Java program. Explain the purpose of JVM.',yr:'2024, 2025',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Java is a platform-independent, object-oriented language. Every Java program requires JVM to execute. Java follows "Write Once, Run Anywhere" philosophy.'},
+      {h:'Simple Java Program',
+       code:['public class HelloWorld {',
+             '    public static void main(String[] args) {',
+             '        System.out.println("Hello, World!");',
+             '        System.out.println("BCA Sem 3 — AKU Patna");',
+             '    }',
+             '}']},
+      {h:'Explanation of Each Part',
+       pts:[
+        ['public class HelloWorld','Class definition. File name MUST match the class name.'],
+        ['public static void main(String[] args)','Program entry point. JVM calls this method first.'],
+        ['public','Accessible from anywhere — needed for JVM to call it.'],
+        ['static','Can be called without creating an object of the class.'],
+        ['void','Does not return any value back.'],
+        ['String[] args','Stores command-line arguments passed at runtime.'],
+        ['System.out.println()','Prints text to screen and moves cursor to next line.'],
+       ]},
+      {h:'How to Compile and Run',
+       code:['Step 1:  javac HelloWorld.java   →  creates HelloWorld.class (bytecode)',
+             'Step 2:  java HelloWorld         →  JVM reads .class and executes it',
+             '',
+             'Output:',
+             '  Hello, World!',
+             '  BCA Sem 3 — AKU Patna']},
+      {h:'Purpose of JVM — 6 Key Points',
+       pts:[
+        ['Platform Independence','Same .class file runs on Windows, Mac, Linux with any JVM installed.'],
+        ['Memory Management','Garbage Collector automatically frees memory of unused objects.'],
+        ['Security','Bytecode verifier checks code safety and validity before execution.'],
+        ['Class Loading','Loads required classes at runtime as they are needed.'],
+        ['Exception Handling','Catches and manages unexpected runtime errors gracefully.'],
+        ['JIT Compilation','Converts frequently-used bytecode to native code for better speed.'],
+       ]},
+      {h:'Conclusion',
+       body:'JVM is the core of Java\'s platform independence. It transforms bytecode into platform-specific machine code at runtime, making Java truly portable across all operating systems.'},
+     ]},
+
+    {q:'Explain the features of Java. How does it differ from C and C++?',yr:'2018',star:false,
+     secs:[
+      {h:'Introduction',
+       body:'Java is a powerful, general-purpose, object-oriented programming language designed by James Gosling at Sun Microsystems in 1995. It is used for web, mobile, and enterprise applications.'},
+      {h:'10 Key Features of Java',
+       pts:[
+        ['1. Simple','Easy syntax similar to C++, but no pointers or complex memory management.'],
+        ['2. Object-Oriented','Fully supports Encapsulation, Inheritance, Polymorphism, and Abstraction.'],
+        ['3. Platform Independent','"Write Once, Run Anywhere" — bytecode runs on any JVM.'],
+        ['4. Secure','No pointers, bytecode verification, security manager prevent attacks.'],
+        ['5. Robust','Exception handling, garbage collection, and strong type checking.'],
+        ['6. Multithreaded','Built-in support for multiple threads running simultaneously.'],
+        ['7. Distributed','java.net package for internet and network programming.'],
+        ['8. Portable','Identical bytecode on all platforms — no platform-specific changes needed.'],
+        ['9. High Performance','JIT compiler converts bytecode to native code at runtime for speed.'],
+        ['10. Dynamic','Classes loaded at runtime; supports dynamic method dispatch.'],
+       ]},
+      {h:'Comparison: Java vs C vs C++',
+       code:['Feature          Java          C               C++',
+             '------------     ----------    ----------      ----------',
+             'Paradigm         OOP           Procedural      OOP + Proc.',
+             'Pointers         NO            YES             YES',
+             'Memory Mgmt      Auto (GC)     Manual          Manual',
+             'Platform         Independent   Dependent       Dependent',
+             'Multi-Inherit.   NO (interface) NO             YES',
+             'Operator Overld  NO            NO              YES',
+             'Garbage Coll.    YES           NO              NO']},
+      {h:'Conclusion',
+       body:'Java\'s design removes the dangerous parts of C/C++ (pointers, multiple inheritance) while adding platform independence, automatic memory management, and built-in security.'},
+     ]},
+   ]},
+
+  /* ────────── UNIT 2 ────────── */
+  {id:'u2',n:2,title:'Constants, Variables & Data Types',
+   sub:'Primitive Types · Type Casting · Widening · Narrowing · Scope · Symbolic Constants',
+   mcqs:[
+    {q:'Literal can be of which data type?',
+     opts:['Integer only','Float only','Boolean only','All of the above'],ans:3,yr:'2018',
+     exp:'Literals can be integers (5), floats (3.14), booleans (true), chars (\'A\'), strings.'},
+    {q:'Which CANNOT be used as a variable name in Java?',
+     opts:['Identifier','Keyword','_underscore','num1'],ans:1,yr:'2018',
+     exp:'Keywords (int, class, for, while, etc.) are reserved by Java and cannot be variable names.'},
+    {q:'Decrement operator "--" decreases value by?',
+     opts:['1','2','3','4'],ans:0,yr:'2018',
+     exp:'-- always decreases by exactly 1. Example: int x=5; x--; now x=4.'},
+    {q:'Output type of relational operators (>, <, ==) is?',
+     opts:['Integer','Boolean','Character','Double'],ans:1,yr:'2018',
+     exp:'All relational operators always return true or false — that is Boolean type.'},
+    {q:'Which operator allocates memory for an object?',
+     opts:['malloc','alloc','new','create'],ans:2,yr:'2018',
+     exp:'"new" allocates heap memory for an object. Unlike C, no malloc needed in Java.'},
+    {q:'Default value of an int variable in Java is?',
+     opts:['null','1','0','-1'],ans:2,yr:'GEN',
+     exp:'Class-level int defaults to 0. boolean=false, float=0.0, Object=null, char=\'\\u0000\'.'},
+    {q:'Converting double to int is called?',
+     opts:['Widening','Narrowing','Promotion','Auto-casting'],ans:1,yr:'2022',
+     exp:'Narrowing = large type to small type. Needs explicit cast: int x = (int)3.14; x becomes 3.'},
+    {q:'Which data type stores a single character in Java?',
+     opts:['String','char','byte','text'],ans:1,yr:'2024',
+     exp:'char stores ONE Unicode character (2 bytes). String stores many characters.'},
+    {q:'Widening conversion in Java is?',
+     opts:['Explicit — needs cast','Implicit — automatic','Only in methods','Only for objects'],ans:1,yr:'GEN',
+     exp:'Widening is automatic (implicit). Java handles it without any cast operator.'},
+    {q:'Which of these is NOT a primitive data type?',
+     opts:['int','float','String','char'],ans:2,yr:'GEN',
+     exp:'String is a CLASS (object type), not a primitive. The 8 primitives: byte,short,int,long,float,double,char,boolean.'},
+   ],
+   four:[
+    {q:'Explain data type conversion and type casting in Java.',yr:'2017',
+     intro:'Data type conversion means changing a value from one type to another.',
+     pts:[
+      ['Widening (Implicit)','Small to large type. No data loss. Java does it AUTOMATICALLY.'],
+      ['Widening Order','byte → short → int → long → float → double'],
+      ['Widening Example','int a = 100;   double b = a;   // b = 100.0 (no cast needed)'],
+      ['Narrowing (Explicit)','Large to small type. Data may be LOST. Needs CAST OPERATOR.'],
+      ['Narrowing Syntax','( targetType ) value'],
+      ['Narrowing Example','double pi = 3.14159;   int x = (int) pi;   // x = 3 (loses 0.14!)'],
+     ],code:null,
+     conc:'Widening = safe, automatic. Narrowing = risky, requires explicit cast to compile.'},
+
+    {q:'What is the scope and lifetime of variables in Java?',yr:'2018',
+     intro:'Scope = where a variable can be accessed. Lifetime = how long it stays in memory.',
+     pts:[
+      ['1. Local Variable','Declared inside a method or block. Scope and lifetime = only that method/block.'],
+      ['2. Instance Variable','Declared inside class, outside methods. Lifetime = as long as object exists.'],
+      ['3. Static/Class Variable','Declared with "static". Shared by ALL objects. Lifetime = entire program.'],
+     ],
+     code:'class Example {\n    static int classVar  = 10;   // class scope — shared by all\n    int instanceVar      = 20;   // instance scope — per object\n    void method() {\n        int localVar = 30;       // local — only inside this method\n    }\n}',
+     conc:'Always declare variables in the smallest scope needed to save memory.'},
+
+    {q:'Define type conversion. Differentiate widening and narrowing.',yr:'2022',
+     intro:'Type conversion = changing a value from one data type to another compatible type.',
+     pts:[
+      ['Widening','Smaller type → Larger type. No data loss. Automatic. Safe.'],
+      ['Narrowing','Larger type → Smaller type. Data may be lost. Manual cast required.'],
+      ['Rule','Widening = safe (auto). Narrowing = risky (needs explicit cast).'],
+      ['Cast Syntax','( targetType ) value'],
+     ],code:null,
+     conc:'Always think about data loss before performing narrowing conversion.'},
+
+    {q:'What are symbolic constants in Java?',yr:'GEN',
+     intro:'Symbolic constants are named values that CANNOT be changed after declaration.',
+     pts:[
+      ['Keyword','Use the "final" keyword to declare a constant.'],
+      ['Syntax','final  dataType  CONSTANT_NAME = value;'],
+      ['Example 1','final double PI = 3.14159;   // PI cannot be changed'],
+      ['Example 2','final int MAX_SIZE = 100;'],
+      ['Benefits','Readable code (PI vs 3.14). Change value in one place. Prevents accidental changes.'],
+      ['Convention','Constant names are written in UPPER_CASE by convention.'],
+     ],code:null,
+     conc:'Using constants avoids "magic numbers" and makes code easier to read and maintain.'},
+   ],
+   twelve:[
+    {q:'★ Explain all primitive data types in Java. Discuss type casting with examples.',yr:'2018, 2022',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Java has 8 primitive data types. They directly store values in memory (not as objects) and are the building blocks of all Java programs.'},
+      {h:'8 Primitive Data Types',
+       code:['Type      Size      Range                   Default   Example',
+             '-------   -------   ---------------------   -------   ------------------',
+             'byte      1 byte    -128 to 127             0         byte b = 10;',
+             'short     2 bytes   -32768 to 32767         0         short s = 1000;',
+             'int       4 bytes   -2B to +2B              0         int i = 500;',
+             'long      8 bytes   very large              0L        long l = 123L;',
+             'float     4 bytes   7 decimal digits        0.0f      float f = 3.14f;',
+             'double    8 bytes   15 decimal digits       0.0       double d = 3.14;',
+             'char      2 bytes   Unicode 0-65535         \\u0000   char c = \'A\';',
+             'boolean   1 bit     true or false           false     boolean b = true;']},
+      {h:'Type Casting',
+       pts:[
+        ['Widening (Auto)','int x = 100;  double d = x;  // d = 100.0  (no cast needed)'],
+        ['Narrowing (Manual)','double pi = 3.14;  int x = (int)pi;  // x = 3  (loses .14!)'],
+        ['Cast Syntax','( targetType )  value'],
+       ]},
+      {h:'Complete Java Program',
+       code:['public class DataTypeDemo {',
+             '    public static void main(String[] args) {',
+             '        int age = 21;',
+             '        float marks = 85.5f;',
+             '        char grade = \'A\';',
+             '        boolean pass = true;',
+             '        double bigMarks = marks;       // widening (automatic)',
+             '        int approxMarks = (int) marks; // narrowing (manual cast)',
+             '        System.out.println("Age: "    + age);',
+             '        System.out.println("Marks: "  + marks);',
+             '        System.out.println("Grade: "  + grade);',
+             '        System.out.println("Pass: "   + pass);',
+             '        System.out.println("As double: " + bigMarks);',
+             '        System.out.println("As int: "    + approxMarks);',
+             '    }',
+             '}']},
+      {h:'Output',
+       code:['Age: 21',
+             'Marks: 85.5',
+             'Grade: A',
+             'Pass: true',
+             'As double: 85.5',
+             'As int: 85']},
+      {h:'Conclusion',
+       body:'Choose the right data type to save memory and avoid errors. Widening is always safe. Narrowing can lose data — always use explicit cast when narrowing.'},
+     ]},
+   ]},
+
+  /* ────────── UNIT 3 ────────── */
+  {id:'u3',n:3,title:'Operators, Branching & Looping',
+   sub:'Arithmetic · Relational · Logical · Bitwise · if-else · switch · for · while · do-while · break/continue',
+   mcqs:[
+    {q:'m = -14  and  n = -3.  What is  m % n ?',
+     opts:['4','2','-2','None of the above'],ans:2,yr:'2014',
+     exp:'In Java, % takes sign of the DIVIDEND. -14 = (-3)×4 + (-2). So -14 % -3 = -2.'},
+    {q:'Which operator is used for assignment in Java?',
+     opts:['==','=>','=',':='],ans:2,yr:'2024',
+     exp:'= is assignment. == is comparison. Java has no => or :=.'},
+    {q:'Math.ceil(9.7) produces?',
+     opts:['9','9.7','10','11'],ans:2,yr:'2014',
+     exp:'Math.ceil() rounds UP to nearest integer. ceil(9.7) = 10. Math.floor(9.7) = 9.'},
+    {q:'Which is NOT supported by OOP?',
+     opts:['Abstraction','Polymorphism','Encapsulation','Global variables'],ans:3,yr:'2019',
+     exp:'Global variables break encapsulation — a core OOP principle. OOP uses classes to contain data.'},
+    {q:'Which loop always runs at LEAST ONCE?',
+     opts:['for','while','do-while','All loops'],ans:2,yr:'GEN',
+     exp:'do-while checks condition AFTER the body — always runs at least once even if condition is false.'},
+    {q:'What does "break" do inside a loop?',
+     opts:['Pauses the loop','Restarts the loop','Exits the loop immediately','Skips current iteration'],ans:2,yr:'2017',
+     exp:'break exits the loop completely. continue only skips the current iteration.'},
+    {q:'switch statement in Java CANNOT use which type?',
+     opts:['int','char','float','String'],ans:2,yr:'GEN',
+     exp:'switch works with int, char, byte, short, String (Java 7+). Does NOT work with float or double.'},
+    {q:'int x=5; System.out.println(x++);  Output is?',
+     opts:['5','6','4','Error'],ans:0,yr:'GEN',
+     exp:'x++ is post-increment: prints x FIRST (5), then x becomes 6. Use ++x to print 6.'},
+    {q:'Which is the ternary (conditional) operator?',
+     opts:['if-else','&&','?:','::'],ans:2,yr:'GEN',
+     exp:'?: is the ternary operator. Syntax: condition ? valueIfTrue : valueIfFalse'},
+    {q:'What does "continue" do inside a loop?',
+     opts:['Exits the loop','Restarts the loop from beginning','Skips current iteration only','Pauses the loop'],ans:2,yr:'GEN',
+     exp:'continue skips only the CURRENT iteration and moves to the next one. The loop keeps running.'},
+   ],
+   four:[
+    {q:'Explain the for loop in Java with an example.',yr:'2017',
+     intro:'The for loop is used when you know the EXACT number of iterations in advance.',
+     pts:[
+      ['Syntax','for ( initialization ; condition ; update ) { body }'],
+      ['Initialization','Runs ONCE at the start. Example: int i = 1'],
+      ['Condition','Checked BEFORE each cycle. If false, loop stops.'],
+      ['Update','Runs AFTER each cycle. Example: i++'],
+     ],
+     code:'// Example 1: Print 1 to 5\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(i);\n}\n// Output: 1  2  3  4  5\n\n// Example 2: Sum of 1 to 10\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\n    sum += i;\n}\nSystem.out.println("Sum = " + sum);  // Sum = 55',
+     conc:'The for loop is the most used loop when iteration count is known.'},
+
+    {q:'What is empty statement? Explain its usefulness.',yr:'2014',
+     intro:'An empty statement is just a semicolon (;) with no code inside it.',
+     pts:[
+      ['What it is','A standalone semicolon — the simplest Java statement.'],
+      ['What it does','Does absolutely nothing. It is a placeholder.'],
+      ['Use 1','When a loop body is not needed — all work done in the loop header.'],
+      ['Use 2','When one branch of if-else needs to be empty.'],
+      ['Warning','Accidentally placing ; after for/while creates an empty-body loop — common bug!'],
+     ],
+     code:'for (int i = 0; i < 100; i++) ;  // loop runs 100 times, body is empty\n\nif (x > 0) ;   // do nothing\nelse System.out.println("Negative!");',
+     conc:'Empty statements are rare but important to understand to avoid accidental bugs.'},
+
+    {q:'Explain break and continue with examples.',yr:'2017',
+     intro:'Both are jump statements that change the normal flow of a loop.',
+     pts:[
+      ['break','Immediately EXITS the loop or switch. Execution continues after the loop.'],
+      ['continue','SKIPS the current iteration only. Loop continues with the next iteration.'],
+      ['Labeled break','Used to exit a specific outer loop in nested loops using a label.'],
+     ],
+     code:'// break example\nfor (int i = 1; i <= 10; i++) {\n    if (i == 5) break;\n    System.out.print(i + " ");\n}\n// Output: 1 2 3 4\n\n// continue example\nfor (int i = 1; i <= 10; i++) {\n    if (i == 5) continue;\n    System.out.print(i + " ");\n}\n// Output: 1 2 3 4 6 7 8 9 10',
+     conc:'break = full exit. continue = skip current round. Both are useful flow control tools.'},
+
+    {q:'Explain if-else and else-if ladder with examples.',yr:'GEN',
+     intro:'if-else is used for decision making — executing different code based on conditions.',
+     pts:[
+      ['Simple if','Executes block only if condition is TRUE.'],
+      ['if-else','First block if true, else block if false.'],
+      ['Nested if','An if-else inside another if-else.'],
+      ['else-if ladder','Multiple conditions checked one by one from top to bottom.'],
+     ],
+     code:'int marks = 75;\nif      (marks >= 90)  System.out.println("A+");\nelse if (marks >= 80)  System.out.println("A");\nelse if (marks >= 70)  System.out.println("B");\nelse if (marks >= 60)  System.out.println("C");\nelse                   System.out.println("Fail");\n// Output: B   (only ONE branch executes)',
+     conc:'Only ONE block executes in else-if. Java checks from top to bottom and stops at first true.'},
+   ],
+   twelve:[
+    {q:'★ Explain operators in Java: Arithmetic, Relational, Logical, Bitwise. Write a program.',yr:'2018',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Operators are special symbols that perform operations on values and variables. Java has 7 types of operators.'},
+      {h:'Types of Operators',
+       pts:[
+        ['1. Arithmetic','+  −  *  /  %     Example: 10+3=13,  10%3=1,  10/3=3 (integer division)'],
+        ['2. Relational','==  !=  >  <  >=  <=    Always return Boolean (true/false)'],
+        ['3. Logical','&&  ||  !    AND, OR, NOT operators for boolean expressions'],
+        ['   &&','Both must be true.  (5>3) && (8>2)  →  true'],
+        ['   ||','At least one true.  (5>3) || (8<2)  →  true'],
+        ['   !','Reverses boolean.   !(5>3)  →  false'],
+        ['4. Assignment','=  +=  -=  *=  /=  %=    Compound assignment operators'],
+        ['5. Increment/Decrement','i++  i--  ++i  --i    Post and pre forms'],
+        ['   Post (i++)','Use value THEN increment.  int x=5; println(x++) → prints 5, x becomes 6'],
+        ['   Pre (++i)','Increment THEN use value.  int x=5; println(++x) → x becomes 6, prints 6'],
+        ['6. Bitwise','&  |  ^  ~  <<  >>    Work on binary bits of integers'],
+        ['   Example','5(0101) & 3(0011) = 1(0001),   5|3 = 7(0111)'],
+        ['7. Ternary','condition ? value_if_true : value_if_false'],
+        ['   Example','int max = (a > b) ? a : b;'],
+       ]},
+      {h:'Complete Program',
+       code:['public class OperatorDemo {',
+             '    public static void main(String[] args) {',
+             '        int a = 10, b = 3;',
+             '        System.out.println("a + b = " + (a + b));   // 13',
+             '        System.out.println("a % b = " + (a % b));   // 1',
+             '        System.out.println("a > b : " + (a > b));   // true',
+             '        System.out.println("(a>b)&&(b<10): " + ((a>b) && (b<10))); // true',
+             '        System.out.println("a & b = " + (a & b));   // 2',
+             '        int max = (a > b) ? a : b;',
+             '        System.out.println("Max = " + max);         // 10',
+             '        a += 5;',
+             '        System.out.println("After a+=5: " + a);    // 15',
+             '    }',
+             '}']},
+      {h:'Conclusion',
+       body:'Operators are the building blocks of every Java program. Mastering all 7 types is essential for solving any Java problem.'},
+     ]},
+
+    {q:'Discuss looping statements in Java: while, do-while, for with examples.',yr:'2024',star:false,
+     secs:[
+      {h:'Introduction',
+       body:'Loops allow code to execute repeatedly. Java provides three types of loop statements. Choosing the right loop makes code cleaner and more efficient.'},
+      {h:'1. while Loop',
+       pts:[
+        ['Type','Entry-controlled — condition checked BEFORE body.'],
+        ['Min Runs','0 (if condition is false from start, body never runs).'],
+        ['Best Use','When number of iterations is UNKNOWN in advance.'],
+        ['Syntax','while (condition) { body }'],
+       ]},
+      {h:'2. do-while Loop',
+       pts:[
+        ['Type','Exit-controlled — condition checked AFTER body.'],
+        ['Min Runs','1 (always executes at least once — guaranteed).'],
+        ['Best Use','When body must execute at least once (e.g., input validation).'],
+        ['Syntax','do { body } while (condition);'],
+       ]},
+      {h:'3. for Loop',
+       pts:[
+        ['Type','Entry-controlled — condition checked BEFORE body.'],
+        ['Min Runs','0 (if condition is false from start).'],
+        ['Best Use','When number of iterations is KNOWN in advance.'],
+        ['Syntax','for (init; condition; update) { body }'],
+       ]},
+      {h:'Comparison Table',
+       code:['Loop        Check When    Min Runs   Best Use',
+             '----------  ----------    --------   ----------------------------',
+             'while       Before        0          Unknown count',
+             'do-while    After         1          Must run at least once',
+             'for         Before        0          Known count']},
+      {h:'Programs',
+       code:['// while: print 1 to 5\nint i = 1;\nwhile (i <= 5) { System.out.print(i + " "); i++; }\n// Output: 1 2 3 4 5\n',
+             '// do-while: runs at least once\nint n = 10;\ndo {\n    System.out.println("Runs once: " + n);\n} while (n < 5);\n// Output: Runs once: 10  (ran once even though n < 5 is false)\n',
+             '// for: sum of 1 to 100\nint sum = 0;\nfor (int j = 1; j <= 100; j++) sum += j;\nSystem.out.println("Sum = " + sum);  // Sum = 5050'].join('\n')},
+      {h:'Conclusion',
+       body:'Rule: for=known count, while=unknown count, do-while=must execute at least once. Always choose the loop that best matches your use case.'},
+     ]},
+   ]},
+
+  /* ────────── UNIT 4 ────────── */
+  {id:'u4',n:4,title:'Classes, Objects, Methods & Inheritance',
+   sub:'Constructor · Overloading · Inheritance · Overriding · Abstract · Interface · Access Modifiers',
+   mcqs:[
+    {q:'A method with the SAME NAME as its class is?',
+     opts:['Finalize','Delete','Class method','Constructor'],ans:3,yr:'2018',
+     exp:'Constructor: same name as class, no return type, auto-called when object is created with new.'},
+    {q:'All methods in an abstract class MUST be abstract.',
+     opts:['True','False','Only interfaces','Depends'],ans:1,yr:'2014',
+     exp:'FALSE. Abstract class can have BOTH abstract AND concrete (non-abstract) methods.'},
+    {q:'The "new" operator in Java:',
+     opts:['Returns a pointer','Creates a variable "new"','Obtains memory for a new object','Tells available memory'],ans:2,yr:'2019',
+     exp:'"new" allocates heap memory and returns a reference. Example: Student s = new Student();'},
+    {q:'Superclass of ALL Java classes?',
+     opts:['Main','Base','Object','Super'],ans:2,yr:'2024',
+     exp:'java.lang.Object is the root of all Java classes. It has toString(), equals(), hashCode().'},
+    {q:'Keyword to inherit a class in Java?',
+     opts:['inherit','implements','extends','super'],ans:2,yr:'2022',
+     exp:'"extends" for class inheritance. "implements" for interfaces.'},
+    {q:'Most restrictive access modifier?',
+     opts:['public','protected','default','private'],ans:3,yr:'2017',
+     exp:'private = only same class. Order: private < default < protected < public.'},
+    {q:'Given ABC(x=10), PQR extends ABC(x=20): ABC bd = new PQR(); bd.x = ?',
+     opts:['20','10','0','Error'],ans:1,yr:'2014',
+     exp:'bd is declared as ABC type → accesses ABC\'s x=10. Field access uses REFERENCE type, not actual object type.'},
+    {q:'Method overriding requires:',
+     opts:['Same name, different params','Different name, same params','Same name AND same params','Any combination'],ans:2,yr:'GEN',
+     exp:'Overriding: SAME name + SAME parameters + SAME return type in child class. Overloading uses DIFFERENT params.'},
+    {q:'Which keyword calls the parent class constructor?',
+     opts:['this()','parent()','super()','base()'],ans:2,yr:'GEN',
+     exp:'super() calls the parent class constructor. Must be the FIRST statement in child constructor.'},
+    {q:'An abstract class CAN be instantiated directly.',
+     opts:['True','False','Only with new','Only with interface'],ans:1,yr:'GEN',
+     exp:'FALSE. Abstract class CANNOT be instantiated with new. It must be extended and abstract methods implemented.'},
+   ],
+   four:[
+    {q:'★ What is a constructor? What are its special properties?',yr:'2014',star:true,
+     intro:'A constructor is a special method used to INITIALIZE an object when it is created.',
+     pts:[
+      ['Property 1 — Name','Same name as the class. Nothing else can have this restriction.'],
+      ['Property 2 — Return Type','NO return type — not even void. This distinguishes it from regular methods.'],
+      ['Property 3 — Auto-Called','Called AUTOMATICALLY by JVM when object is created with "new".'],
+      ['Property 4 — Overloading','Can be overloaded — multiple constructors with different parameters.'],
+      ['Property 5 — Default','If you define none, Java provides a default no-arg constructor automatically.'],
+      ['Type 1 — Default','Constructor with no parameters. Sets default initial values.'],
+      ['Type 2 — Parameterized','Constructor with parameters. Allows custom initialization.'],
+     ],
+     code:'class Student {\n    String name; int roll;\n    Student() {                      // Default constructor\n        name = "Unknown"; roll = 0;\n    }\n    Student(String n, int r) {       // Parameterized constructor\n        name = n; roll = r;\n    }\n}\nStudent s1 = new Student();           // calls default\nStudent s2 = new Student("Zoha", 1);  // calls parameterized',
+     conc:'Constructors ensure objects always start with valid initial values.'},
+
+    {q:'Explain constructor overloading with example.',yr:'2019',
+     intro:'Constructor overloading = having multiple constructors in the same class, each with DIFFERENT parameters.',
+     pts:[
+      ['How it works','Java picks the right constructor based on the number and type of arguments passed.'],
+      ['Benefit','Flexible object creation — different ways to initialize the same object.'],
+      ['this()','You can call one constructor from another using this() — called constructor chaining.'],
+     ],
+     code:'class Rectangle {\n    int length, width;\n    Rectangle()              { length = 1;    width = 1; }    // 1x1 default\n    Rectangle(int side)      { length = side; width = side; } // square\n    Rectangle(int l, int w)  { length = l;    width = w; }    // custom\n    void area() { System.out.println("Area = " + (length * width)); }\n}\nnew Rectangle().area();       // Area = 1\nnew Rectangle(5).area();      // Area = 25\nnew Rectangle(4, 6).area();   // Area = 24',
+     conc:'Constructor overloading makes object creation flexible without needing separate methods.'},
+
+    {q:'★ Differentiate abstract class and interface in Java.',yr:'2019, 2024',star:true,
+     intro:'Both abstract class and interface support abstraction, but they work differently.',
+     pts:[
+      ['Abstract Class','Declared with "abstract" keyword. Cannot be instantiated directly.'],
+      ['Interface','Declared with "interface" keyword. Acts as a pure contract.'],
+      ['Methods — Abstract class','Can have BOTH abstract (no body) AND concrete (with body) methods.'],
+      ['Methods — Interface','All methods are abstract by default (pre-Java 8). No method body.'],
+      ['Constructor','Abstract class: CAN have.   Interface: CANNOT have.'],
+      ['Inheritance','Abstract class: extends ONE class only.   Interface: implements MULTIPLE.'],
+      ['Variables','Abstract class: any type.   Interface: only public static final.'],
+      ['Use Case','Abstract class: shared code + closely related classes.   Interface: unrelated classes sharing a behavior.'],
+     ],code:null,
+     conc:'Rule: If related by nature → abstract class. If sharing a capability → interface.'},
+
+    {q:'Explain access modifiers in Java.',yr:'2017',
+     intro:'Access modifiers control WHERE a class member (variable or method) can be accessed from.',
+     pts:[
+      ['public','Accessible from ANY class in ANY package — no restrictions.'],
+      ['protected','Accessible in same package AND in subclasses (even in other packages).'],
+      ['default (no keyword)','Accessible only within the SAME PACKAGE. No other package can access.'],
+      ['private','Accessible ONLY within the SAME CLASS. Most restrictive.'],
+     ],
+     code:'//     Modifier     SameClass  SamePackage  Subclass  OtherPackage\n//     public       YES        YES          YES       YES\n//     protected    YES        YES          YES       NO\n//     default      YES        YES          NO        NO\n//     private      YES        NO           NO        NO\n\nclass Person {\n    public    String name;  // accessible everywhere\n    protected int    age;   // subclasses can access\n    int salary;             // same package only\n    private String   pwd;   // only inside Person\n}',
+     conc:'Use private for data (encapsulation). Use public for methods others need to call.'},
+
+    {q:'Differentiate extends and implements.',yr:'2019',
+     intro:'Both keywords are used for inheritance but in different contexts.',
+     pts:[
+      ['extends','Used for CLASS inheritance. A subclass extends ONE parent class only.'],
+      ['implements','Used when a class uses an INTERFACE. Can implement MULTIPLE interfaces.'],
+      ['extends for interface','An interface can extend another interface using extends.'],
+      ['Key Rule','extends: ONE class only.   implements: MULTIPLE interfaces allowed.'],
+      ['Relationship','extends = "is-a".   implements = "can-do".'],
+     ],
+     code:'class Dog extends Animal { ... }          // Dog IS-AN Animal\nclass Duck implements Flyable, Swimmable { // Duck CAN fly AND swim\n    public void fly()  { ... }\n    public void swim() { ... }\n}',
+     conc:'A class can both extend one class AND implement multiple interfaces simultaneously.'},
+   ],
+   twelve:[
+    {q:'★★ Define inheritance. Explain types. Write a Java program on single inheritance.',yr:'2017, 2020',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Inheritance allows a child class to acquire properties and methods of a parent class. It is a fundamental OOP concept that promotes code reuse and creates logical hierarchies.'},
+      {h:'Key Terms',
+       pts:[
+        ['Parent / Superclass / Base Class','The class being inherited from.'],
+        ['Child / Subclass / Derived Class','The class that inherits. Uses "extends" keyword.'],
+        ['super()','Calls the parent class constructor from inside the child constructor.'],
+       ]},
+      {h:'Types of Inheritance',
+       pts:[
+        ['1. Single','One parent, one child.   Animal → Dog'],
+        ['2. Multilevel','Chain of inheritance.   Animal → Dog → Puppy'],
+        ['3. Hierarchical','One parent, multiple children.   Animal → Dog, Cat, Bird'],
+        ['4. Multiple','Java does NOT support directly — use interfaces instead.'],
+        ['5. Hybrid','Combination of types. Achieved via interfaces in Java.'],
+       ]},
+      {h:'Java Program — Single Inheritance',
+       code:['class Animal {',
+             '    String name;',
+             '    Animal(String n) {',
+             '        name = n;',
+             '        System.out.println("Animal created: " + name);',
+             '    }',
+             '    void eat()     { System.out.println(name + " is eating"); }',
+             '    void breathe() { System.out.println(name + " is breathing"); }',
+             '}',
+             '',
+             'class Dog extends Animal {',
+             '    String breed;',
+             '    Dog(String n, String b) {',
+             '        super(n);    // call parent constructor — MUST be first',
+             '        breed = b;',
+             '    }',
+             '    void bark() { System.out.println(name + " says: Woof!"); }',
+             '    void eat()  { System.out.println(name + " eating dog food"); } // override',
+             '}',
+             '',
+             'public class InheritDemo {',
+             '    public static void main(String[] args) {',
+             '        Dog d = new Dog("Tommy", "Labrador");',
+             '        d.eat();      // overridden: "Tommy eating dog food"',
+             '        d.breathe();  // inherited:  "Tommy is breathing"',
+             '        d.bark();     // own:        "Tommy says: Woof!"',
+             '    }',
+             '}']},
+      {h:'Output',
+       code:['Animal created: Tommy',
+             'Tommy eating dog food',
+             'Tommy is breathing',
+             'Tommy says: Woof!']},
+      {h:'Conclusion',
+       body:'Inheritance creates "is-a" hierarchies and eliminates code duplication. Always call super() as the first statement in the child constructor to properly initialize parent fields.'},
+     ]},
+
+    {q:'★★ Explain OOP concepts supported by Java with examples.',yr:'2018, 2019',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Object-Oriented Programming (OOP) organizes software around objects and classes. Java fully supports four core OOP principles, often remembered as "A PIE."'},
+      {h:'1. Encapsulation — Bundling + Hiding',
+       pts:[
+        ['Definition','Bundling data (variables) and methods inside a class. Hiding data using private.'],
+        ['How','Use private for variables. Use public getter/setter methods to access them.'],
+        ['Purpose','Protects data from unauthorized access. Controls what is visible to outside.'],
+       ]},
+      {h:'Encapsulation Example',
+       code:['class BankAccount {\n    private double balance;          // hidden!\n    public void deposit(double a) {\n        if (a > 0) balance += a;     // controlled access\n    }\n    public double getBalance() { return balance; }\n}']},
+      {h:'2. Inheritance — Code Reuse',
+       pts:[
+        ['Definition','Child class acquires properties of parent class. Uses "extends" keyword.'],
+        ['Benefit','Code written once in parent is reused in all children.'],
+       ]},
+      {h:'3. Polymorphism — One Name, Many Forms',
+       pts:[
+        ['Definition','Same method name works differently in different contexts.'],
+        ['Overloading (Compile-time)','Same class, same name, DIFFERENT parameters.'],
+        ['Overriding (Runtime)','Child redefines parent method. Decided at RUNTIME.'],
+       ]},
+      {h:'Polymorphism Example',
+       code:['class Animal { void sound() { System.out.println("Generic"); } }\nclass Dog extends Animal  { void sound() { System.out.println("Woof!"); } }\nclass Cat extends Animal  { void sound() { System.out.println("Meow!"); } }\n\nAnimal a = new Dog();\na.sound();  // Woof!  — runtime decides based on actual object\na = new Cat();\na.sound();  // Meow!']},
+      {h:'4. Abstraction — Hide Details',
+       pts:[
+        ['Definition','Hiding implementation details, showing only what is necessary.'],
+        ['How','Use abstract classes or interfaces to define what to do without how.'],
+       ]},
+      {h:'Conclusion',
+       body:'Encapsulation=safety, Inheritance=reuse, Polymorphism=flexibility, Abstraction=simplicity. Together, these four principles make Java code organized, maintainable, and extensible.'},
+     ]},
+
+    {q:'★ Explain method overloading vs overriding with examples.',yr:'2019, 2020',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Both involve methods with the same name, but they serve very different purposes and work at different times.'},
+      {h:'Method Overloading',
+       pts:[
+        ['Definition','Same class, same method name, DIFFERENT parameters.'],
+        ['Resolved at','COMPILE TIME (also called static or early binding).'],
+        ['Also called','Compile-time polymorphism.'],
+        ['Return type','Can be different (but cannot overload by return type alone).'],
+       ]},
+      {h:'Method Overriding',
+       pts:[
+        ['Definition','Parent + Child class, same name, SAME parameters. Child redefines behavior.'],
+        ['Resolved at','RUNTIME (also called dynamic or late binding).'],
+        ['Also called','Runtime polymorphism.'],
+        ['@Override','Use this annotation to confirm you are overriding (optional but recommended).'],
+       ]},
+      {h:'Comparison Table',
+       code:['Feature          Overloading          Overriding',
+             '-----------      -------------------  -------------------',
+             'Class            Same class           Parent + Child',
+             'Parameters       DIFFERENT            SAME',
+             'Return type      Can differ           Must be same',
+             'Resolved         Compile time         Runtime',
+             'Type             Static polymorphism  Dynamic polymorphism']},
+      {h:'Programs',
+       code:['// OVERLOADING — same class, different params\nclass Calc {\n    int add(int a, int b)          { return a + b; }\n    double add(double a, double b) { return a + b; }\n    int add(int a, int b, int c)   { return a + b + c; }\n}\n\n// OVERRIDING — child redefines parent method\nclass Shape {\n    void draw() { System.out.println("Drawing shape"); }\n}\nclass Circle extends Shape {\n    void draw() { System.out.println("Drawing circle"); }\n}\nclass Square extends Shape {\n    void draw() { System.out.println("Drawing square"); }\n}\n\nShape s = new Circle();\ns.draw();  // Drawing circle  (runtime decides!)\ns = new Square();\ns.draw();  // Drawing square']},
+      {h:'Conclusion',
+       body:'Overloading = same class, same name, different jobs. Overriding = child redefines parent\'s behavior. Both are forms of polymorphism.'},
+     ]},
+   ]},
+
+  /* ────────── UNIT 5 ────────── */
+  {id:'u5',n:5,title:'Arrays, Strings, Multithreading, Exception & Applets',
+   sub:'Arrays · Vectors · Interfaces · Thread Lifecycle · Exception · Applet Lifecycle · File I/O',
+   mcqs:[
+    {q:'wait() and notify() are defined in?',
+     opts:['java.lang.String','java.lang.Runnable','java.lang.Object','java.lang.Thread'],ans:2,yr:'2014',
+     exp:'wait(), notify(), notifyAll() are in java.lang.Object. Every Java object inherits these methods.'},
+    {q:'Runnable interface MUST define which method?',
+     opts:['start()','init()','run()','runnable()'],ans:2,yr:'2014',
+     exp:'Runnable has ONE abstract method: run(). You must implement it. Then call thread.start() to launch.'},
+    {q:'Which is a valid array declaration in Java?',
+     opts:['int x();','float y[];','double () z;','t int[];'],ans:1,yr:'2014',
+     exp:'float y[]; is valid. Also valid: float[] y;  int x() is a method declaration, not an array.'},
+    {q:'Exceptions in Java arise at?',
+     opts:['Runtime','Compile time','During loading','Never'],ans:0,yr:'2018',
+     exp:'Exceptions are RUNTIME events that disrupt normal program flow. Compile errors are not exceptions.'},
+    {q:'Thread lifecycle — correct order?',
+     opts:['New→Running→Runnable→Dead','New→Runnable→Running→Blocked→Dead','Running→New→Runnable→Dead','New→Dead→Running'],ans:1,yr:'2017',
+     exp:'New → Runnable (start() called) → Running (CPU assigned) → Blocked → Dead (run() ends).'},
+    {q:'Which is NOT an Applet lifecycle method?',
+     opts:['init()','start()','paint()','main()'],ans:3,yr:'2020',
+     exp:'Applet lifecycle: init, start, paint, stop, destroy. NO main() method — that is for applications.'},
+    {q:'FileInputStream is used for?',
+     opts:['Reading raw bytes (binary files)','Reading text files only','Writing text','Writing binary'],ans:0,yr:'2019',
+     exp:'FileInputStream reads RAW BYTES — for binary files (images, audio). FileReader is for text (characters).'},
+    {q:'Which keyword defines an interface?',
+     opts:['Interface','interface','INTERFACE','intf'],ans:1,yr:'2018',
+     exp:'Java is case-sensitive. Correct keyword is lowercase "interface". "Interface" with capital I is not a keyword.'},
+    {q:'Which exception when class not found at runtime?',
+     opts:['ClassNotFoundException','ClassFoundException','NoClassDefFoundError','RuntimeException'],ans:0,yr:'2019',
+     exp:'ClassNotFoundException is thrown when JVM cannot find a class at runtime (e.g., Class.forName()).'},
+    {q:'String s1="one"; String s2=s1.concat("two"); s2 contains?',
+     opts:['one','two','onetwo','twoone'],ans:2,yr:'2018',
+     exp:'concat() joins strings. s1.concat("two") = "onetwo". The original s1 is unchanged (Strings are immutable).'},
+   ],
+   four:[
+    {q:'What is a Vector? How is it different from an array?',yr:'2014',
+     intro:'A Vector is a growable array from java.util package. Its size changes dynamically at runtime.',
+     pts:[
+      ['Vector Definition','Dynamic array whose size can grow or shrink at runtime.'],
+      ['Array Limitation','Fixed size set at creation — cannot grow or shrink.'],
+      ['Thread Safety','Vector is synchronized (thread-safe). Array is NOT.'],
+      ['Data Types','Array: primitives + objects.   Vector: objects only.'],
+      ['Methods','Array: no built-in methods.   Vector: addElement, removeElement, size, get, etc.'],
+      ['Speed','Array is faster. Vector is slightly slower due to synchronization.'],
+     ],
+     code:'import java.util.*;\nVector<String> v = new Vector<>();\nv.addElement("Alice");  // add element\nv.addElement("Bob");\nSystem.out.println(v.size());     // 2\nSystem.out.println(v.get(0));     // Alice\nv.removeElement("Alice");         // remove\nSystem.out.println(v.size());     // 1',
+     conc:'Use Array for known size and speed. Use Vector when size changes dynamically.'},
+
+    {q:'How do we tell Java to use a package in a file?',yr:'2014',
+     intro:'Use the "import" keyword at the top of the file to access classes from a package.',
+     pts:[
+      ['Specific import','import packageName.ClassName;   — imports ONE class only.'],
+      ['Wildcard import','import packageName.*;   — imports ALL classes from the package.'],
+      ['java.lang','Automatically imported by Java. No import needed (String, Math, System, etc.).'],
+      ['Custom package','Use "package" keyword at the very top to declare your own package.'],
+      ['CLASSPATH','JVM uses CLASSPATH to find package directories on disk.'],
+     ],
+     code:'import java.util.Scanner;       // import specific class\nimport java.io.*;               // import all of java.io\n\npublic class InputDemo {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print("Enter name: ");\n        String name = sc.nextLine();\n        System.out.println("Hello, " + name);\n    }\n}',
+     conc:'Always import at top: after package statement, before class declaration.'},
+
+    {q:'★ Explain the life cycle of a Thread in Java.',yr:'2017, 2018, 2020',star:true,
+     intro:'A thread is the smallest unit of execution. Its lifecycle has 5 distinct states.',
+     pts:[
+      ['State 1 — NEW','Thread object created. start() not yet called.'],
+      ['State 2 — RUNNABLE','start() called. Thread is ready. Waiting for CPU time.'],
+      ['State 3 — RUNNING','CPU assigned. Thread is executing its run() method.'],
+      ['State 4 — BLOCKED/WAITING','Paused. Waiting for: I/O, sleep(), wait(), or a lock.'],
+      ['State 5 — DEAD','run() method finished. Thread cannot be restarted.'],
+      ['Flow','NEW → [start()] → RUNNABLE → [CPU] → RUNNING → [run() ends] → DEAD'],
+     ],
+     code:'Key Methods:\n  start()     →  moves thread from New to Runnable\n  run()       →  contains the thread\'s actual task code\n  sleep(ms)   →  pauses thread for given milliseconds\n  wait()      →  thread waits until notify() is called\n  notify()    →  wakes one waiting thread\n  setPriority(n) →  set priority 1(min) to 10(max)',
+     conc:'Always call start() NOT run() directly. start() creates a NEW thread. run() executes in the CURRENT thread.'},
+
+    {q:'Define an Applet. How does it differ from an Application?',yr:'2017, 2020',
+     intro:'An applet is a small Java program that runs INSIDE a web browser.',
+     pts:[
+      ['Entry Point','Application: main() method.   Applet: init() method.'],
+      ['Browser','Application: no browser needed.   Applet: requires browser or Applet Viewer.'],
+      ['Security','Application: full system access.   Applet: restricted — cannot access local files.'],
+      ['extends','Application: extends nothing (usually).   Applet: extends java.applet.Applet.'],
+      ['HTML','Application: no HTML needed.   Applet: requires HTML applet tag to embed.'],
+     ],
+     code:'import java.applet.Applet;\nimport java.awt.Graphics;\n// HTML: <applet code="Hello.class" width="300" height="200"></applet>\npublic class Hello extends Applet {\n    public void paint(Graphics g) {\n        g.drawString("Hello, BCA!", 50, 50);\n    }\n}',
+     conc:'Note: Applets are deprecated in modern browsers due to security concerns but are still in the AKU syllabus.'},
+   ],
+   twelve:[
+    {q:'★★★ Explain exception handling in Java: try, catch, finally, throw, throws. Write a program.',yr:'2014, 2018, 2019, 2020, 2022',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'An exception is an unexpected event during program execution that disrupts normal program flow. Java provides structured exception handling to prevent program crashes and handle errors gracefully.'},
+      {h:'Exception Hierarchy',
+       pts:[
+        ['Throwable','Root class of all exceptions and errors in Java.'],
+        ['Error','Serious JVM problems. Do NOT catch. Example: OutOfMemoryError.'],
+        ['Exception','Program-level problems. SHOULD be handled.'],
+        ['Checked Exceptions','Must be handled at compile time. Example: IOException, SQLException.'],
+        ['Unchecked / Runtime','Optional to handle. Example: NullPointerException, ArithmeticException.'],
+       ]},
+      {h:'Five Keywords',
+       pts:[
+        ['try','Block that contains RISKY code that might throw an exception.'],
+        ['catch','Block that HANDLES a specific exception type.'],
+        ['finally','Block that ALWAYS runs — even if exception occurs or not. Used for cleanup.'],
+        ['throw','Used to MANUALLY throw an exception inside a method.'],
+        ['throws','Used in method SIGNATURE to declare it might throw a checked exception.'],
+       ]},
+      {h:'Complete Program',
+       code:['public class ExceptionDemo {',
+             '    public static void main(String[] args) {',
+             '',
+             '        // Example 1: ArithmeticException',
+             '        try {',
+             '            int a = 10, b = 0;',
+             '            int result = a / b;         // throws ArithmeticException!',
+             '            System.out.println(result);',
+             '        } catch (ArithmeticException e) {',
+             '            System.out.println("Error: " + e.getMessage());',
+             '        } finally {',
+             '            System.out.println("finally: always runs");',
+             '        }',
+             '',
+             '        // Example 2: Multiple catch',
+             '        try {',
+             '            int[] arr = {1, 2, 3};',
+             '            System.out.println(arr[10]);  // ArrayIndexOutOfBoundsException!',
+             '        } catch (ArrayIndexOutOfBoundsException e) {',
+             '            System.out.println("Array error: " + e.getMessage());',
+             '        } catch (Exception e) {',
+             '            System.out.println("General error: " + e.getMessage());',
+             '        }',
+             '',
+             '        // Example 3: throw keyword',
+             '        try {',
+             '            int age = -5;',
+             '            if (age < 0)',
+             '                throw new ArithmeticException("Invalid age!");',
+             '        } catch (ArithmeticException e) {',
+             '            System.out.println("Caught: " + e.getMessage());',
+             '        }',
+             '        System.out.println("Program continues normally!");',
+             '    }',
+             '}']},
+      {h:'Output',
+       code:['Error: / by zero',
+             'finally: always runs',
+             'Array error: Index 10 out of bounds for length 3',
+             'Caught: Invalid age!',
+             'Program continues normally!']},
+      {h:'Conclusion',
+       body:'Exception handling keeps programs robust. Separate error-handling code from normal code. Always use finally for cleanup (closing files, DB connections). Handle checked exceptions.'},
+     ]},
+
+    {q:'★★★ Explain the Applet Life Cycle with a complete program.',yr:'2018, 2019, 2020, 2022, 2024',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'An applet runs inside a web browser. Java automatically calls lifecycle methods at specific moments during the applet\'s existence. Understanding this lifecycle is essential.'},
+      {h:'5 Lifecycle Methods',
+       pts:[
+        ['1. init()','Called ONCE when applet first loads. Use for initialization and setup. Like a constructor.'],
+        ['2. start()','Called after init() AND every time the page becomes visible again. Start threads here.'],
+        ['3. paint(Graphics g)','Called every time the screen needs drawing or redrawing. Use for all drawing.'],
+        ['4. stop()','Called when user moves away from the page. Pause animations and threads.'],
+        ['5. destroy()','Called when applet is removed from memory. Final cleanup and resource release.'],
+       ]},
+      {h:'Lifecycle Flow',
+       code:['Browser loads page  →  init()  →  start()  →  paint()',
+             'User switches tab   →  stop()',
+             'User comes back     →  start()  →  paint()',
+             'Browser closes      →  stop()  →  destroy()']},
+      {h:'Complete Program',
+       code:['import java.applet.Applet;',
+             'import java.awt.*;',
+             '',
+             '// HTML to embed:',
+             '// <applet code="LifeCycle.class" width="400" height="300">',
+             '//     <param name="msg" value="AKU BCA Java">',
+             '// </applet>',
+             '',
+             'public class LifeCycle extends Applet {',
+             '    String message;',
+             '    int startCount = 0;',
+             '',
+             '    public void init() {              // called ONCE',
+             '        message = getParameter("msg");',
+             '        if (message == null) message = "Hello Applet!";',
+             '        setBackground(Color.LIGHT_GRAY);',
+             '    }',
+             '',
+             '    public void start() {             // called on each visit',
+             '        startCount++;',
+             '    }',
+             '',
+             '    public void paint(Graphics g) {   // called for drawing',
+             '        g.setColor(Color.BLUE);',
+             '        g.setFont(new Font("Arial", Font.BOLD, 20));',
+             '        g.drawString(message, 60, 100);',
+             '        g.setColor(Color.RED);',
+             '        g.drawString("Started " + startCount + " times", 60, 140);',
+             '    }',
+             '',
+             '    public void stop()    { System.out.println("stop called"); }',
+             '    public void destroy() { System.out.println("destroy called"); }',
+             '}']},
+      {h:'Conclusion',
+       body:'init()=setup once, start()=activate, paint()=draw, stop()=pause, destroy()=cleanup. The browser controls when each method is called — you just write the logic.'},
+     ]},
+
+    {q:'★★★ Explain multithreading. Write programs using Thread class and Runnable interface.',yr:'2014, 2017, 2022',star:true,
+     secs:[
+      {h:'Introduction',
+       body:'Multithreading allows multiple parts of a program to run at the same time. Each independent part is called a thread. Java provides built-in multithreading support.'},
+      {h:'Why Multithreading?',
+       pts:[
+        ['Better CPU use','CPU is not idle while waiting for I/O operations.'],
+        ['Non-blocking UI','Program does not freeze during slow operations.'],
+        ['Parallel tasks','Download a file while playing music simultaneously.'],
+        ['Server performance','Handle multiple client requests at the same time.'],
+       ]},
+      {h:'Method 1 — Extend Thread Class',
+       code:['class MyThread extends Thread {',
+             '    String name;',
+             '    MyThread(String n) { name = n; }',
+             '    public void run() {   // task code goes here',
+             '        for (int i = 1; i <= 3; i++) {',
+             '            System.out.println(name + ": " + i);',
+             '            try { Thread.sleep(300); }',
+             '            catch (InterruptedException e) {}',
+             '        }',
+             '    }',
+             '}',
+             'MyThread t1 = new MyThread("Thread-A");',
+             'MyThread t2 = new MyThread("Thread-B");',
+             't1.start(); t2.start();  // BOTH run simultaneously!']},
+      {h:'Method 2 — Implement Runnable (PREFERRED)',
+       code:['class MyTask implements Runnable {',
+             '    String taskName;',
+             '    MyTask(String n) { taskName = n; }',
+             '    public void run() {   // MUST implement this method',
+             '        for (int i = 1; i <= 3; i++) {',
+             '            System.out.println(taskName + " step " + i);',
+             '            try { Thread.sleep(300); }',
+             '            catch (InterruptedException e) {}',
+             '        }',
+             '    }',
+             '}',
+             'Thread t1 = new Thread(new MyTask("Download"));',
+             'Thread t2 = new Thread(new MyTask("Upload"));',
+             't1.start(); t2.start();']},
+      {h:'Thread vs Runnable Comparison',
+       pts:[
+        ['extends Thread','Cannot extend another class. Less flexible.'],
+        ['implements Runnable','Can extend another class. More flexible. PREFERRED approach.'],
+        ['Lambda (Java 8+)','Thread t = new Thread(() -> System.out.println("Lambda thread!"));'],
+       ]},
+      {h:'Conclusion',
+       body:'Use implements Runnable for better flexibility. Always call start(), NOT run() directly. start() creates a new thread; run() just runs in the current thread.'},
+     ]},
+   ]},
+ ],
+
+ mostRepeated:[
+  {topic:'Exception Handling (try-catch-finally)',unit:'Unit 5',times:5,yrs:['2014','2018','2019','2020','2022'],vvi:true},
+  {topic:'Applet Life Cycle (init, start, paint, stop, destroy)',unit:'Unit 5',times:6,yrs:['2017','2018','2019','2020','2022','2024'],vvi:true},
+  {topic:'Inheritance (types + Java program)',unit:'Unit 4',times:4,yrs:['2017','2018','2019','2020'],vvi:true},
+  {topic:'JVM & Bytecode explanation',unit:'Unit 1',times:3,yrs:['2017','2024','2025'],vvi:true},
+  {topic:'Multithreading + Thread Life Cycle',unit:'Unit 5',times:3,yrs:['2014','2017','2022'],vvi:true},
+  {topic:'Constructor & Constructor Overloading',unit:'Unit 4',times:4,yrs:['2014','2018','2019','2024'],vvi:true},
+  {topic:'OOP Concepts (all 4 pillars)',unit:'Unit 4',times:3,yrs:['2018','2019','2024'],vvi:true},
+  {topic:'Method Overloading vs Overriding',unit:'Unit 4',times:3,yrs:['2017','2019','2020'],vvi:true},
+  {topic:'Abstract Class vs Interface',unit:'Unit 4',times:2,yrs:['2019','2024'],vvi:false},
+  {topic:'Data Types & Type Casting',unit:'Unit 2',times:3,yrs:['2017','2018','2022'],vvi:false},
+  {topic:'Looping Statements (while, do-while, for)',unit:'Unit 3',times:2,yrs:['2024','2025'],vvi:false},
+  {topic:'File I/O (byte vs char streams)',unit:'Unit 5',times:2,yrs:['2022','2024'],vvi:false},
+  {topic:'Packages (create, import, access)',unit:'Unit 5',times:2,yrs:['2014','2022'],vvi:false},
+  {topic:'Simple Java Program + JVM',unit:'Unit 1',times:2,yrs:['2024','2025'],vvi:false},
+ ],
+
+ cheat:[
+  {t:'JVM / JRE / JDK',items:[
+   {k:'JVM',v:'Java Virtual Machine — runs bytecode, platform independence engine.'},
+   {k:'JRE',v:'JVM + libraries. Needed to RUN Java programs.'},
+   {k:'JDK',v:'JRE + compiler tools. Needed to DEVELOP Java programs.'},
+   {k:'Compile',v:'javac FileName.java → creates .class bytecode'},
+   {k:'Run',v:'java ClassName → JVM executes .class file'},
+  ]},
+  {t:'Applet Lifecycle — init Start Paint Stop Destroy',items:[
+   {k:'init()',v:'Called ONCE on load. Setup variables and UI.'},
+   {k:'start()',v:'Called on each page visit. Start threads.'},
+   {k:'paint()',v:'Called for all drawing. Gets Graphics g.'},
+   {k:'stop()',v:'Called when page hides. Pause threads.'},
+   {k:'destroy()',v:'Called on removal. Final cleanup.'},
+  ]},
+  {t:'Thread Lifecycle — New Runnable Running Blocked Dead',items:[
+   {k:'NEW',v:'Thread created. start() not called yet.'},
+   {k:'RUNNABLE',v:'start() called. Waiting for CPU.'},
+   {k:'RUNNING',v:'CPU assigned. run() executing.'},
+   {k:'BLOCKED',v:'Paused for I/O, sleep(), wait(), or lock.'},
+   {k:'DEAD',v:'run() finished. Cannot restart.'},
+  ]},
+  {t:'OOP Pillars — A PIE',items:[
+   {k:'Abstraction',v:'Hide implementation. Show only what is needed.'},
+   {k:'Polymorphism',v:'One name, many forms (Overloading + Overriding).'},
+   {k:'Inheritance',v:'Child acquires parent properties. Use extends.'},
+   {k:'Encapsulation',v:'Bundle data + methods. Use private for data.'},
+  ]},
+  {t:'Exception Keywords',items:[
+   {k:'try',v:'Contains risky code that might throw.'},
+   {k:'catch',v:'Handles a specific exception type.'},
+   {k:'finally',v:'ALWAYS runs. Used for cleanup.'},
+   {k:'throw',v:'Manually throw an exception inside method.'},
+   {k:'throws',v:'Declares method might throw checked exception.'},
+  ]},
+  {t:'Access Modifiers (widest → narrowest)',items:[
+   {k:'public',v:'Everywhere — any class, any package.'},
+   {k:'protected',v:'Same package + subclasses in other packages.'},
+   {k:'default',v:'Same package only. No keyword needed.'},
+   {k:'private',v:'Only same class. Most restrictive.'},
+  ]},
+  {t:'Common Exam Mistakes',items:[
+   {k:'Constructor',v:'Has NO return type — not even void.'},
+   {k:'String ==',v:'Use .equals() not == for string comparison.'},
+   {k:'Array start',v:'Arrays start at index 0, not 1.'},
+   {k:'float literal',v:'Write 3.14f not 3.14 for float type.'},
+   {k:'Multiple inherit',v:'Java classes cannot extend multiple classes.'},
+   {k:'start vs run',v:'Always call start() to create new thread, not run().'},
+  ]},
+  {t:'Key Differences',diff:{
+   h:['Feature','Overloading','Overriding'],
+   rows:[
+    ['Parameters','Different','Same'],
+    ['Class','Same class','Parent+Child'],
+    ['Resolved','Compile time','Runtime'],
+   ]},
+   items:[
+   {k:'extends',v:'Inherit a class (ONE class only)'},
+   {k:'implements',v:'Use an interface (MULTIPLE allowed)'},
+   {k:'abstract',v:'Cannot instantiate; has abstract methods'},
+   {k:'interface',v:'Pure contract; all methods abstract'},
+   {k:'final',v:'Variable: cannot change. Class: cannot extend.'},
+   {k:'static',v:'Shared by ALL objects of the class.'},
+  ]},
+ ]
+};
+
+/* ═══════════════════════════════════════════════════
+   KBC GAME ENGINE
+═══════════════════════════════════════════════════ */
+const kbcState={};
+function initKBC(uid){
+  kbcState[uid]={cur:0,score:0,locked:false};
+  renderKBC(uid);
+}
+function renderKBC(uid){
+  const unit=D.units.find(u=>u.id===uid);
+  const el=document.getElementById('kbc-'+uid);
+  if(!el)return;
+  const st=kbcState[uid];
+  const q=unit.mcqs[st.cur];
+  const total=unit.mcqs.length;
+  const dots=unit.mcqs.map((_,i)=>{
+    const cls=i<st.cur?'answered':i===st.cur?'current':'';
+    return`<span class="kbc-dot ${cls}"></span>`;
+  }).join('');
+  el.innerHTML=`
+    <div class="kbc-bar">
+      <div class="kbc-left">
+        <span class="kbc-qnum">Question ${st.cur+1} of ${total}</span>
+        <div class="kbc-dots">${dots}</div>
+      </div>
+      <div class="kbc-right">
+        <span class="kbc-score">⭐ ${st.score}/${total}</span>
+        <span class="kbc-yr">${q.yr}</span>
+      </div>
+    </div>
+    <div class="kbc-qcard"><div class="kbc-qtext">${q.q}</div></div>
+    <div class="kbc-opts">
+      ${['A','B','C','D'].map((l,i)=>`
+        <button class="kbc-opt" id="opt-${uid}-${i}" onclick="pickOpt('${uid}',${i})">
+          <span class="opt-badge">${l}</span>
+          <span class="opt-txt">${q.opts[i]}</span>
+        </button>`).join('')}
+    </div>
+    <div class="kbc-exp" id="exp-${uid}">💡 ${q.exp}</div>
+    <div class="kbc-nav">
+      <button class="btn-prev" onclick="kbcPrev('${uid}')" ${st.cur===0?'disabled':''}>← Prev</button>
+      <button class="btn-next ${st.locked?'show':''}" id="bnext-${uid}" onclick="kbcNext('${uid}')">
+        ${st.cur===total-1?'🏆 Finish':'Next →'}
+      </button>
+    </div>`;
+  kbcState[uid].locked=false;
+}
+function pickOpt(uid,i){
+  const st=kbcState[uid];
+  if(st.locked)return;
+  st.locked=true;
+  const unit=D.units.find(u=>u.id===uid);
+  const q=unit.mcqs[st.cur];
+  for(let k=0;k<4;k++){
+    const b=document.getElementById(`opt-${uid}-${k}`);
+    if(b){b.classList.add('locked');b.onclick=null;}
+  }
+  const sel=document.getElementById(`opt-${uid}-${i}`);
+  if(sel)sel.classList.add('sel');
+  setTimeout(()=>{
+    const correct=document.getElementById(`opt-${uid}-${q.ans}`);
+    if(correct){correct.classList.remove('sel');correct.classList.add('correct');}
+    if(i!==q.ans){
+      const wrong=document.getElementById(`opt-${uid}-${i}`);
+      if(wrong){wrong.classList.remove('sel');wrong.classList.add('wrong');}
+    } else {
+      st.score++;
+    }
+    const exp=document.getElementById(`exp-${uid}`);
+    if(exp)exp.classList.add('show');
+    const nb=document.getElementById(`bnext-${uid}`);
+    if(nb)nb.classList.add('show');
+    updateProgress();
+  },1100);
+}
+function kbcNext(uid){
+  const st=kbcState[uid];
+  const unit=D.units.find(u=>u.id===uid);
+  if(st.cur>=unit.mcqs.length-1){
+    const el=document.getElementById('kbc-'+uid);
+    const pct=Math.round(st.score/unit.mcqs.length*100);
+    const grade=pct===100?'🏆 Perfect Score!':pct>=80?'⭐ Excellent!':pct>=60?'👍 Good Job!':pct>=40?'📚 Keep Studying':'😤 Try Again!';
+    el.innerHTML=`<div class="kbc-finish">
+      <div style="color:var(--muted);font-size:14px;margin-bottom:6px">Unit ${unit.n} Complete!</div>
+      <div class="finish-score">${st.score}/${unit.mcqs.length}</div>
+      <div class="finish-grade">${grade}</div>
+      <div class="finish-info">Correct: ${st.score} &nbsp;|&nbsp; Wrong: ${unit.mcqs.length-st.score} &nbsp;|&nbsp; ${pct}%</div>
+      <button class="btn-replay" onclick="initKBC('${uid}')">🔄 Play Again</button>
+    </div>`;
+    return;
+  }
+  st.cur++;st.locked=false;
+  renderKBC(uid);
+}
+function kbcPrev(uid){
+  const st=kbcState[uid];
+  if(st.cur===0)return;
+  st.cur--;st.locked=false;
+  renderKBC(uid);
+}
+
+/* ═══════════════════════════════════════════════════
+   ACCORDION
+═══════════════════════════════════════════════════ */
+function toggleAcc(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const body=el.querySelector('.acc-body');
+  const icon=el.querySelector('.acc-icon');
+  el.classList.toggle('open');
+  if(body)body.classList.toggle('show');
+  if(icon)icon.textContent=el.classList.contains('open')?'×':'+';
+  updateProgress();
+}
+
+/* ═══════════════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════════════ */
+function switchTab(uid,pane,btn){
+  const wrap=document.getElementById(uid);
+  wrap.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  wrap.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const target=document.getElementById(`${uid}-${pane}`);
+  if(target)target.classList.add('active');
+  // init kbc if switching to mcq
+  if(pane==='mcq'&&!kbcState[uid])initKBC(uid);
+}
+
+/* ═══════════════════════════════════════════════════
+   BUILD UNIT HTML
+═══════════════════════════════════════════════════ */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function buildFour(unit){
+  return unit.four.map((q,i)=>{
+    const id=`acc-${unit.id}-4-${i}`;
+    let body=`<div class="ans-card">`;
+    body+=`<p><b>Ans.</b> ${esc(q.intro)}</p>`;
+    if(q.pts&&q.pts.length){
+      body+=`<ul>`;
+      q.pts.forEach(([k,v])=>{body+=`<li><b>${esc(k)}:</b> ${esc(v)}</li>`;});
+      body+=`</ul>`;
+    }
+    if(q.code){
+      body+=`<h4>Program / Syntax</h4><div class="code-box">${esc(q.code)}</div>`;
+    }
+    if(q.conc){
+      body+=`<div class="conclusion"><b>Conclusion:</b> ${esc(q.conc)}</div>`;
+    }
+    body+=`</div>`;
+    const star=q.star?'★ ':'';
+    return`<div class="acc-item" id="${id}">
+      <div class="acc-hdr" onclick="toggleAcc('${id}')">
+        <h3>${star}${esc(q.q)}</h3>
+        <div class="acc-meta">
+          <span class="acc-yr">${esc(q.yr)}</span>
+          <span class="acc-marks">4 Marks</span>
+          <span class="acc-icon">+</span>
+        </div>
+      </div>
+      <div class="acc-body"><div>${body}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function buildTwelve(unit){
+  return unit.twelve.map((q,i)=>{
+    const id=`acc-${unit.id}-12-${i}`;
+    let body=`<div class="ans-card">`;
+    q.secs.forEach(sec=>{
+      body+=`<h4>${esc(sec.h)}</h4>`;
+      if(sec.body){body+=`<p>${esc(sec.body)}</p>`;}
+      if(sec.pts){
+        body+=`<ul>`;
+        sec.pts.forEach(([k,v])=>{body+=`<li><b>${esc(k)}:</b> ${esc(v)}</li>`;});
+        body+=`</ul>`;
+      }
+      if(sec.code){
+        const codeStr=Array.isArray(sec.code)?sec.code.join('\n'):sec.code;
+        body+=`<div class="code-box">${esc(codeStr)}</div>`;
+      }
+    });
+    body+=`</div>`;
+    const star=q.star?'★ ':'';
+    return`<div class="acc-item" id="${id}">
+      <div class="acc-hdr" onclick="toggleAcc('${id}')">
+        <h3>${star}${esc(q.q)}</h3>
+        <div class="acc-meta">
+          <span class="acc-yr">${esc(q.yr)}</span>
+          <span class="acc-marks">12 Marks</span>
+          <span class="acc-icon">+</span>
+        </div>
+      </div>
+      <div class="acc-body"><div>${body}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function buildUnits(){
+  D.units.forEach(unit=>{
+    const wrap=document.getElementById(unit.id);
+    if(!wrap)return;
+    wrap.innerHTML=`
+      <div class="unit-hdr">
+        <h2>Unit ${unit.n} — ${esc(unit.title)}</h2>
+        <p>${esc(unit.sub)}</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('${unit.id}','mcq',this)">🎮 MCQ Game (${unit.mcqs.length} Qs)</button>
+        <button class="tab-btn" onclick="switchTab('${unit.id}','four',this)">📝 4-Mark Q&amp;A</button>
+        <button class="tab-btn" onclick="switchTab('${unit.id}','twelve',this)">📄 12-Mark Q&amp;A</button>
+      </div>
+      <div id="${unit.id}-mcq" class="tab-pane active">
+        <div class="kbc-arena" id="kbc-${unit.id}"></div>
+      </div>
+      <div id="${unit.id}-four" class="tab-pane">${buildFour(unit)}</div>
+      <div id="${unit.id}-twelve" class="tab-pane">${buildTwelve(unit)}</div>`;
+    initKBC(unit.id);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   MOST REPEATED
+═══════════════════════════════════════════════════ */
+function buildMostRepeated(){
+  const tbody=document.getElementById('repBody');
+  if(!tbody)return;
+  tbody.innerHTML=D.mostRepeated.map(r=>`
+    <tr>
+      <td>${r.vvi?'<span class="vvi">★ VVI</span>':''} ${esc(r.topic)}</td>
+      <td style="white-space:nowrap">${esc(r.unit)}</td>
+      <td style="text-align:center"><span class="times-badge">${r.times}×</span></td>
+      <td>${r.yrs.map(y=>`<span class="yr-chip">${y}</span>`).join('')}</td>
+      <td>${r.vvi?'🔥 Critical':'⚡ Important'}</td>
+    </tr>`).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   CHEAT SHEET
+═══════════════════════════════════════════════════ */
+function buildCheat(){
+  const grid=document.getElementById('cheatGrid');
+  if(!grid)return;
+  grid.innerHTML=D.cheat.map(box=>{
+    let html=`<div class="cbox"><h3>${esc(box.t)}</h3>`;
+    if(box.diff){
+      html+=`<table class="diff-tbl"><thead><tr>${box.diff.h.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>`;
+      box.diff.rows.forEach(row=>{
+        html+=`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`;
+      });
+      html+=`</tbody></table><ul style="margin-top:8px">`;
+    } else {
+      html+=`<ul>`;
+    }
+    box.items.forEach(it=>{
+      html+=`<li><span class="ck">${esc(it.k)}</span><span>${esc(it.v)}</span></li>`;
+    });
+    html+=`</ul></div>`;
+    return html;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   NAV + PROGRESS
+═══════════════════════════════════════════════════ */
+function goTo(id,btn){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById(id);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+function updateProgress(){
+  const opened=document.querySelectorAll('.acc-item.open').length;
+  const total=document.querySelectorAll('.acc-item').length||1;
+  const bar=document.getElementById('heroBar');
+  if(bar)bar.style.width=Math.min(100,Math.round(opened/total*100*1.5))+'%';
+}
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded',()=>{
+  buildUnits();
+  buildMostRepeated();
+  buildCheat();
+  // Highlight nav on scroll
+  const sections=['u1','u2','u3','u4','u5','most','cheat'];
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const idx=sections.indexOf(e.target.id);
+        if(idx>=0){
+          document.querySelectorAll('.nav-btn').forEach((b,i)=>{
+            b.classList.toggle('active',i===idx);
+          });
+        }
+      }
+    });
+  },{threshold:0.2,rootMargin:'-70px 0px -60% 0px'});
+  sections.forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el);});
+});
+</script>
+</body>
+</html>

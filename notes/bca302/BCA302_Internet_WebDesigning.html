@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BCA-302 Internet & Web Designing — AKU Patna</title>
+<style>
+:root{--navy:#0d1b2a;--blue:#1a5276;--gold:#f4c430;--green:#1e8449;--red:#c0392b;--bg:#f0f4f8;--white:#fff;--bd:#dde1e7;--text:#1c2833;--py:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+.hero{background:linear-gradient(135deg,#0d1b2a 0%,#1a5276 100%);color:#fff;padding:32px 16px 40px;text-align:center}
+.hbadge{display:inline-block;background:var(--gold);color:var(--navy);padding:3px 12px;border-radius:20px;font-weight:700;font-size:12px;margin-bottom:10px;letter-spacing:1px}
+.hero h1{font-size:clamp(20px,5vw,32px);font-weight:800;margin-bottom:6px}
+.hero p{font-size:13px;opacity:.85}
+.hinfo{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.hpill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:20px;font-size:12px}
+.pbar{background:rgba(255,255,255,.2);height:5px;margin:16px 0 0;border-radius:3px;overflow:hidden}
+.pfill{height:100%;background:var(--gold);transition:width .3s;border-radius:3px;width:0%}
+.snav{position:sticky;top:0;z-index:100;background:var(--navy);padding:0 8px;overflow-x:auto;scrollbar-width:none;display:flex;gap:2px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.snav::-webkit-scrollbar{display:none}
+.nbtn{padding:11px 14px;background:none;border:none;color:rgba(255,255,255,.6);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;letter-spacing:.5px}
+.nbtn:hover,.nbtn.on{color:var(--gold);border-bottom-color:var(--gold)}
+.unit,.spec{max-width:900px;margin:16px auto;padding:0 10px;display:none}
+.unit.on,.spec.on{display:block}
+.uhdr{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:16px 20px;border-radius:10px 10px 0 0}
+.uhdr h2{font-size:16px;font-weight:700}
+.uhdr p{font-size:11px;opacity:.8;margin-top:3px}
+.utopics{background:#e8f4fd;border-left:4px solid var(--blue);padding:10px 14px;margin-bottom:14px;border-radius:0 0 8px 8px;font-size:12px;line-height:1.8}
+.tbtns{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tbtn{padding:7px 16px;border-radius:20px;border:2px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;font-weight:700;font-size:12px;transition:all .2s}
+.tbtn.on{background:var(--blue);color:#fff}
+.tpane{display:none}.tpane.on{display:block}
+.pyb{background:var(--py);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;white-space:nowrap}
+/* ── KBC GAME ARENA ── */
+.kbc-arena{background:linear-gradient(160deg,#010a1a 0%,#020e2e 60%,#040818 100%);border-radius:16px;padding:18px 16px 14px;position:relative;overflow:hidden;border:1px solid rgba(255,140,0,.18)}
+.kbc-arena::before{content:'';position:absolute;top:40%;left:50%;width:380px;height:380px;background:radial-gradient(ellipse,rgba(255,140,0,.07) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
+.kbc-arena::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ff6600,#ffd700,#ff6600,transparent)}
+.kbc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
+.kbc-counter{color:rgba(255,255,255,.55);font-size:11px;font-weight:600;margin-bottom:5px}
+.kbc-dots{display:flex;gap:4px;flex-wrap:wrap}
+.kbc-dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.15);transition:all .3s}
+.kbc-dot.ok{background:#00c853;box-shadow:0 0 5px rgba(0,200,83,.6)}
+.kbc-dot.ng{background:#d50000;box-shadow:0 0 5px rgba(213,0,0,.5)}
+.kbc-dot.cur{background:#ffd700;transform:scale(1.4);box-shadow:0 0 8px rgba(255,215,0,.7)}
+.kbc-score{font-size:18px;font-weight:800;background:linear-gradient(135deg,#ff6600,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:right}
+.kbc-pyq{background:#c0392b;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-align:right;margin-top:4px}
+.kbc-qbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,140,0,.25);border-radius:12px;padding:16px 18px;margin-bottom:18px;min-height:68px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.kbc-qnum{position:absolute;top:-10px;left:16px;background:linear-gradient(135deg,#ff6600,#ffd700);color:#050d1f;font-size:9px;font-weight:800;padding:2px 10px;border-radius:10px}
+.kbc-qt{color:#fff;font-size:14px;font-weight:600;line-height:1.55;margin-top:4px}
+.kbc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.kbc-grid{grid-template-columns:1fr}}
+/* Option wrapper = gradient border */
+.kbc-ow{background:linear-gradient(135deg,#ff6600 0%,#ffd700 100%);border-radius:40px;padding:2px;cursor:pointer;transition:all .25s;position:relative}
+.kbc-ow:hover{box-shadow:0 0 18px rgba(255,140,0,.55);transform:scale(1.025)}
+.kbc-ow.sel .kbc-oi{background:linear-gradient(135deg,#e65c00,#f9a825)}
+.kbc-ow.sel .kbc-ol{background:rgba(0,0,0,.3);color:#fff}
+.kbc-ow.sel .kbc-ot{color:#050d1f;font-weight:700}
+.kbc-ow.cor{background:#00c853;box-shadow:0 0 22px rgba(0,200,83,.7)}
+.kbc-ow.cor .kbc-oi{background:linear-gradient(135deg,#00a843,#69f0ae)}
+.kbc-ow.cor .kbc-ol{background:rgba(0,0,0,.25);color:#fff}
+.kbc-ow.cor .kbc-ot{color:#050d1f;font-weight:700}
+.kbc-ow.wrg{background:#d50000;box-shadow:0 0 22px rgba(213,0,0,.65)}
+.kbc-ow.wrg .kbc-oi{background:linear-gradient(135deg,#b71c1c,#ef5350)}
+.kbc-ow.wrg .kbc-ol{background:rgba(0,0,0,.25);color:#fff}
+.kbc-ow.wrg .kbc-ot{color:#fff}
+.kbc-oi{background:#050d1f;border-radius:38px;padding:11px 14px;display:flex;align-items:center;gap:9px;transition:background .3s}
+.kbc-ol{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#ff6600,#ffd700);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#050d1f;flex-shrink:0;transition:all .3s}
+.kbc-ot{color:#fff;font-size:12.5px;font-weight:500;flex:1;text-align:left;transition:color .3s}
+.kbc-exp{margin-top:14px;background:rgba(0,200,83,.09);border:1px solid rgba(0,200,83,.3);border-left:4px solid #00c853;border-radius:8px;padding:11px 14px;color:#a0f0c0;font-size:11.5px;display:none;animation:kfade .4s ease}
+@keyframes kfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.kbc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.kbc-pbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);padding:8px 18px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .2s}
+.kbc-pbtn:disabled{opacity:.3;cursor:not-allowed}
+.kbc-pbtn:not(:disabled):hover{border-color:#ff8c00;color:#ffd700}
+.kbc-nbtn{background:linear-gradient(135deg,#ff6600,#ffd700);border:none;color:#050d1f;padding:9px 22px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:800;display:none;transition:all .2s}
+.kbc-nbtn:hover{transform:scale(1.06);box-shadow:0 0 16px rgba(255,140,0,.5)}
+.kbc-finish{text-align:center;padding:24px 10px 16px;color:#fff}
+.kbc-big{font-size:52px;font-weight:800;background:linear-gradient(135deg,#ff6600,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.kbc-grade{font-size:22px;margin:8px 0}
+.kbc-pct{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:18px}
+.kbc-replay{background:linear-gradient(135deg,#ff6600,#ffd700);border:none;color:#050d1f;padding:11px 28px;border-radius:22px;cursor:pointer;font-size:13px;font-weight:800;transition:all .2s}
+.kbc-replay:hover{transform:scale(1.07);box-shadow:0 0 18px rgba(255,140,0,.55)}
+.ac{background:#fff;border-radius:10px;border:1px solid var(--bd);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.ah{padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;border-bottom:1px solid transparent}
+.ah.open{border-bottom-color:var(--bd)}
+.aq{font-weight:700;font-size:12px;flex:1}
+.at{font-size:18px;color:var(--blue);transition:transform .2s;flex-shrink:0}
+.ah.open .at{transform:rotate(45deg)}
+.ab{padding:14px;display:none;background:#fff;background-image:repeating-linear-gradient(transparent,transparent 27px,#e8f0fe 27px,#e8f0fe 28px);background-size:100% 28px;line-height:28px}
+.ab.open{display:block}
+.ab p,.ab li{font-size:12px;line-height:1.7;margin-bottom:7px}
+.ab h4{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:5px;background:#fff;line-height:1.4}
+.ab pre,.ab code{font-family:'Courier New',monospace;font-size:11px;background:#1a1a2e;color:#a8d8ea;padding:9px;border-radius:6px;white-space:pre-wrap;overflow-x:auto;line-height:1.5;margin:7px 0;display:block}
+.ab ul,.ab ol{padding-left:16px}
+.kw{color:var(--blue);font-weight:700}
+.sbox{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:12px}
+.sbox h3{color:var(--navy);margin-bottom:10px;border-bottom:2px solid var(--gold);padding-bottom:7px;font-size:15px}
+.rtbl{width:100%;border-collapse:collapse;font-size:11px}
+.rtbl th{background:var(--navy);color:#fff;padding:7px 10px;text-align:left}
+.rtbl td{padding:7px 10px;border-bottom:1px solid var(--bd)}
+.rtbl tr:nth-child(even){background:#f8f9fa}
+.rcnt{font-weight:700;color:var(--red);font-size:13px}
+.vtag{background:var(--gold);color:var(--navy);padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cbox{background:#f0f4f8;border-radius:8px;padding:10px;border-left:4px solid var(--blue)}
+.cbox h4{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px;text-transform:uppercase}
+.cbox li{font-size:11px;line-height:1.7}
+.cbox ul{padding-left:12px}
+.foot{text-align:center;padding:20px;color:#666;font-size:11px;margin-top:16px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hbadge">🎓 AKU PATNA — BCA SEM III</div>
+  <h1>🌐 Internet &amp; Web Designing</h1>
+  <p>Complete Exam Study Material | Paper Code: BCA-302 / 303302</p>
+  <div class="hinfo">
+    <span class="hpill">📅 PYQs: 2014–2025</span>
+    <span class="hpill">📝 Full Marks: 60</span>
+    <span class="hpill">⏱ Time: 3 Hrs</span>
+    <span class="hpill">✅ 5 Units</span>
+  </div>
+  <div class="pbar"><div class="pfill" id="pf"></div></div>
+  <p id="pt" style="font-size:10px;opacity:.7;margin-top:5px">Progress: 0% complete</p>
+</div>
+
+<div class="snav">
+  <button class="nbtn on" onclick="show('u1',this)">U1: Internet</button>
+  <button class="nbtn" onclick="show('u2',this)">U2: HTML</button>
+  <button class="nbtn" onclick="show('u3',this)">U3: JavaScript</button>
+  <button class="nbtn" onclick="show('u4',this)">U4: XML</button>
+  <button class="nbtn" onclick="show('u5',this)">U5: JSP</button>
+  <button class="nbtn" onclick="show('rep',this)">🔥 Most Repeated</button>
+  <button class="nbtn" onclick="show('cheat',this)">📋 Cheat Sheet</button>
+</div>
+
+<div class="unit on" id="u1">
+  <div class="uhdr"><h2>📡 UNIT 1 — INTERNET BASICS</h2><p>TCP/IP · Web Server · Domain · Client IP · Internet Connectivity</p></div>
+  <div class="utopics"><strong>Topics:</strong> Basic concepts of Internet, Communication, Internet Domains, Server Identities, Establishing Connectivity, Client IP Address, TCP/IP and Services, Web Server, Web Client, Domain Registration</div>
+  <div class="tbtns">
+    <button class="tbtn on" onclick="tab(this,'u1m')">🎯 MCQ</button>
+    <button class="tbtn" onclick="tab(this,'u14')">✏️ 4-Mark</button>
+    <button class="tbtn" onclick="tab(this,'u112')">📖 12-Mark</button>
+  </div>
+  <div class="tpane on" id="u1m"></div>
+  <div class="tpane" id="u14"></div>
+  <div class="tpane" id="u112"></div>
+</div>
+
+<div class="unit" id="u2">
+  <div class="uhdr"><h2>🌍 UNIT 2 — INTRODUCTION TO HTML</h2><p>Tags · Formatting · Tables · Lists · Links · Frames · Forms</p></div>
+  <div class="utopics"><strong>Topics:</strong> HTML, HTML Tags, Commonly Used Commands, Title and Footers, Text Formatting, Text Style, Lists, Adding Graphics, Tables, Linking Documents, Frames</div>
+  <div class="tbtns">
+    <button class="tbtn on" onclick="tab(this,'u2m')">🎯 MCQ</button>
+    <button class="tbtn" onclick="tab(this,'u24')">✏️ 4-Mark</button>
+    <button class="tbtn" onclick="tab(this,'u212')">📖 12-Mark</button>
+  </div>
+  <div class="tpane on" id="u2m"></div>
+  <div class="tpane" id="u24"></div>
+  <div class="tpane" id="u212"></div>
+</div>
+
+<div class="unit" id="u3">
+  <div class="uhdr"><h2>⚡ UNIT 3 — JAVASCRIPT</h2><p>Data Types · Arrays · Functions · Operators · Conditional · Programs</p></div>
+  <div class="utopics"><strong>Topics:</strong> JavaScript in Web Pages, Advantages of JavaScript, Data Types and Literals, Type Casting, JavaScript Array, Operators and Expression, Conditional Checking, Function, User Defined Function</div>
+  <div class="tbtns">
+    <button class="tbtn on" onclick="tab(this,'u3m')">🎯 MCQ</button>
+    <button class="tbtn" onclick="tab(this,'u34')">✏️ 4-Mark</button>
+    <button class="tbtn" onclick="tab(this,'u312')">📖 12-Mark</button>
+  </div>
+  <div class="tpane on" id="u3m"></div>
+  <div class="tpane" id="u34"></div>
+  <div class="tpane" id="u312"></div>
+</div>
+
+<div class="unit" id="u4">
+  <div class="uhdr"><h2>📄 UNIT 4 — UNDERSTANDING XML</h2><p>SGML · XML · XML vs HTML · XML Structure · DOM &amp; SAX</p></div>
+  <div class="utopics"><strong>Topics:</strong> SGML (Standard Generalized Markup Language), XML (eXtensible Markup Language), Comparison of XML and HTML, XML document structure, XML Schema, DOM and SAX parsers</div>
+  <div class="tbtns">
+    <button class="tbtn on" onclick="tab(this,'u4m')">🎯 MCQ</button>
+    <button class="tbtn" onclick="tab(this,'u44')">✏️ 4-Mark</button>
+    <button class="tbtn" onclick="tab(this,'u412')">📖 12-Mark</button>
+  </div>
+  <div class="tpane on" id="u4m"></div>
+  <div class="tpane" id="u44"></div>
+  <div class="tpane" id="u412"></div>
+</div>
+
+<div class="unit" id="u5">
+  <div class="uhdr"><h2>☕ UNIT 5 — JSP (JavaServer Pages)</h2><p>Dynamic Pages · Scripting Elements · Directives · Standard Actions · Life Cycle</p></div>
+  <div class="utopics"><strong>Topics:</strong> Dynamic Web Page, Introduction to JSP, Pages Overview, JSP Scripting Elements, Standard Actions (&lt;jsp:include&gt;, &lt;jsp:forward&gt;, etc.), Page Directive, Include Directive</div>
+  <div class="tbtns">
+    <button class="tbtn on" onclick="tab(this,'u5m')">🎯 MCQ</button>
+    <button class="tbtn" onclick="tab(this,'u54')">✏️ 4-Mark</button>
+    <button class="tbtn" onclick="tab(this,'u512')">📖 12-Mark</button>
+  </div>
+  <div class="tpane on" id="u5m"></div>
+  <div class="tpane" id="u54"></div>
+  <div class="tpane" id="u512"></div>
+</div>
+
+<div class="spec" id="rep">
+  <div class="sbox">
+    <h3>🔥 Most Repeated Questions (PYQ 2014–2025)</h3>
+    <table class="rtbl"><thead><tr><th>Question</th><th>Unit</th><th>Count</th><th>Years</th></tr></thead>
+    <tbody id="rtb"></tbody></table>
+  </div>
+  <div class="sbox"><h3>⭐ Top VVI — Full Answers</h3><div id="vvi"></div></div>
+</div>
+
+<div class="spec" id="cheat">
+  <div class="sbox"><h3>📋 Last Minute Cheat Sheet</h3><div class="cgrid" id="cg"></div></div>
+</div>
+
+<div class="foot">📚 AKU Patna | BCA-302 Internet &amp; Web Designing | Code: 303302 | Based on Official Syllabus + PYQs 2014–2025</div>
+
+<script>
+const D={
+u1:{
+ mcq:[
+  {q:"Who is known as father of WWW?",o:["John T. Thomson","Dennis Ritchie","Tim Berners-Lee","None of them"],a:2,e:"Tim Berners-Lee invented the World Wide Web in 1989 at CERN.",p:"2014"},
+  {q:"Primary protocol used to distribute info on the web is:",o:["TCP/IP","FTP","HTTP","Telnet"],a:2,e:"HTTP (HyperText Transfer Protocol) is the main protocol of the World Wide Web.",p:"2014"},
+  {q:"Internet is defined as:",o:["A single network","A vast collection of different networks","Interconnection of LANs only","None"],a:1,e:"Internet = global network of millions of interconnected networks using TCP/IP.",p:"2020"},
+  {q:"To join Internet, a computer connects to an:",o:["Internet Architecture Board","Internet Society","Internet Service Provider (ISP)","None"],a:2,e:"ISP provides the gateway connection to the Internet for home/office users.",p:"2020"},
+  {q:"IPv6 addresses have a size of:",o:["32 bits","64 bits","128 bits","265 bits"],a:2,e:"IPv6 = 128-bit addressing; IPv4 = 32-bit. IPv6 supports far more addresses.",p:"2017,2019"},
+  {q:"Most widely used Internet Protocol version is:",o:["IPv1","IPv6","IPv2","IPv4"],a:3,e:"IPv4 (32-bit) is still the most widely deployed IP protocol globally.",p:"2018"},
+  {q:"Internet uses ___ switching technology:",o:["Packet","Circuit","Telephone","Telex"],a:0,e:"Internet breaks data into packets; each packet travels independently (packet switching).",p:"2019"},
+  {q:"Web pages are uniquely defined using:",o:["IP addresses","URL","Domain","File name"],a:1,e:"URL (Uniform Resource Locator) is the unique address of each web page.",p:"2019"},
+  {q:"WWW is based on which model?",o:["Local-server","Client-server","3-tier","None"],a:1,e:"WWW follows Client-Server model — browser (client) requests, server responds.",p:"2019"},
+  {q:"Domain names are converted to:",o:["Binary string","Alphanumeric string","IP addresses","Hexadecimal string"],a:2,e:"DNS (Domain Name System) translates domain names (e.g. google.com) to IP addresses.",p:"2018"}
+ ],
+ q4:[
+  {q:"What is Internet? Define with its main features.",p:"2020, 2022",a:`<p><span class="kw">Internet</span> is a global network of millions of interconnected computers communicating using the <span class="kw">TCP/IP</span> protocol.</p><h4>Main Features:</h4><ul><li><span class="kw">Global Reach:</span> Connects billions of devices worldwide</li><li><span class="kw">Packet Switching:</span> Data broken into packets for transmission</li><li><span class="kw">Open Standards:</span> Uses TCP/IP, open to all networks</li><li><span class="kw">Services:</span> Email, WWW, FTP, Telnet, Video Conferencing</li><li><span class="kw">Decentralized:</span> No single controlling authority</li><li><span class="kw">24x7 Access:</span> Always available from anywhere in the world</li></ul>`},
+  {q:"What is TCP/IP? Explain its full form and main features.",p:"2022",a:`<p><span class="kw">TCP/IP</span> = <span class="kw">Transmission Control Protocol / Internet Protocol</span> — the foundational protocol suite of the Internet.</p><h4>TCP (Transport Layer):</h4><ul><li>Ensures <span class="kw">reliable, ordered</span> delivery of data</li><li>Breaks data into segments; reassembles at destination</li><li>Uses <span class="kw">acknowledgements &amp; retransmission</span> for reliability</li><li>3-Way Handshake: SYN → SYN-ACK → ACK</li></ul><h4>IP (Network Layer):</h4><ul><li>Handles <span class="kw">addressing &amp; routing</span> of packets</li><li>IPv4 = 32-bit; IPv6 = 128-bit</li><li>Best-effort delivery (unreliable — TCP adds reliability)</li></ul>`},
+  {q:"What is a Web Server? Give examples.",p:"2022",a:`<p>A <span class="kw">Web Server</span> is a computer/program that stores web content (HTML, images, CSS) and delivers it to browsers using the <span class="kw">HTTP/HTTPS</span> protocol.</p><h4>Key Functions:</h4><ul><li>Accepts HTTP requests from browsers (clients)</li><li>Processes and sends HTML responses</li><li>Runs 24x7 to serve web pages</li></ul><h4>Examples:</h4><ul><li><span class="kw">Apache HTTP Server</span> — most popular, open-source</li><li><span class="kw">Nginx</span> — fast &amp; lightweight</li><li><span class="kw">Microsoft IIS</span> — for Windows</li><li><span class="kw">Apache Tomcat</span> — for JSP/Java apps</li></ul>`},
+  {q:"What is Domain? Explain Domain Registration.",p:"2022",a:`<p>A <span class="kw">Domain</span> is a human-readable name for an IP address (e.g., www.google.com). <span class="kw">DNS</span> translates it to an IP address.</p><h4>Domain Types:</h4><ul><li><span class="kw">.com</span> — Commercial, <span class="kw">.edu</span> — Education</li><li><span class="kw">.gov</span> — Government, <span class="kw">.in</span> — India (country code)</li></ul><h4>Domain Registration:</h4><p>Process of reserving a domain name through a <span class="kw">Domain Registrar</span> (GoDaddy, Namecheap). Pay yearly fee → own the domain name → configure DNS to point to your server.</p>`},
+  {q:"What is Private IP Address? What is Loopback address?",p:"2020, 2022",a:`<p>A <span class="kw">Private IP Address</span> is an IP used within a private network (LAN), NOT directly accessible from the Internet.</p><h4>Private IP Ranges:</h4><ul><li><span class="kw">10.0.0.0 – 10.255.255.255</span> (Class A)</li><li><span class="kw">172.16.0.0 – 172.31.255.255</span> (Class B)</li><li><span class="kw">192.168.0.0 – 192.168.255.255</span> (Class C — most common)</li></ul><p><span class="kw">Loopback / Look-back address:</span> 127.0.0.1 — refers to the local machine itself. Used for testing network software without an actual network connection.</p>`}
+ ],
+ q12:[
+  {q:"Explain TCP/IP protocol and its layers/services in detail. (MOST REPEATED ★★★)",p:"2017, 2018, 2019, 2020",a:`<h4>Introduction:</h4><p>TCP/IP (Transmission Control Protocol/Internet Protocol) is the backbone protocol suite of the Internet, defining how data is transmitted across networks.</p><h4>TCP/IP Layers (4 Layers — Top to Bottom):</h4><ul><li><span class="kw">1. Application Layer:</span> Provides services to applications. Protocols: HTTP (web), FTP (files), SMTP (email), DNS (name resolution), Telnet (remote login)</li><li><span class="kw">2. Transport Layer:</span> End-to-end communication. TCP = reliable, UDP = fast but unreliable. Uses port numbers.</li><li><span class="kw">3. Internet (Network) Layer:</span> Logical addressing and routing. Protocols: IP (addressing), ICMP (error messages), ARP (IP→MAC)</li><li><span class="kw">4. Network Access Layer:</span> Physical transmission. Protocols: Ethernet, Wi-Fi (802.11), PPP</li></ul><h4>TCP Features:</h4><ul><li>Connection-oriented (establishes connection first)</li><li>Reliable — guarantees delivery with acknowledgements</li><li>Flow control and congestion control</li><li>3-Way Handshake: SYN → SYN-ACK → ACK</li><li>Sequencing: data reassembled in correct order</li></ul><h4>TCP/IP Services:</h4><ul><li><span class="kw">WWW:</span> Web browsing via HTTP/HTTPS</li><li><span class="kw">Email:</span> SMTP (send), POP3/IMAP (receive)</li><li><span class="kw">FTP:</span> File Transfer Protocol — transfers files between systems</li><li><span class="kw">Telnet:</span> Remote login to another computer</li><li><span class="kw">DNS:</span> Domain Name System — converts domain names to IPs</li><li><span class="kw">DHCP:</span> Automatically assigns IP addresses to devices</li></ul><h4>Conclusion:</h4><p>TCP/IP is the most important protocol suite. It makes the Internet work by providing reliable, layered, universal communication between computers worldwide.</p>`},
+  {q:"Explain Domain Registration and working of Electronic Mail in detail.",p:"2022",a:`<h4>Introduction:</h4><p>Domain registration and email are two fundamental Internet services that form the backbone of online identity and communication.</p><h4>Domain Registration:</h4><ul><li>Domain = human-readable name for an IP address</li><li>Managed globally by <span class="kw">ICANN</span> (Internet Corporation for Assigned Names and Numbers)</li><li>Registered through <span class="kw">Domain Registrars</span> (GoDaddy, Namecheap, BigRock)</li><li>Steps: Choose name → Check availability → Register → Pay yearly fee → Configure DNS records</li><li><span class="kw">DNS</span> translates domain name to IP (like a phonebook)</li></ul><h4>Types of Domain Extensions:</h4><ul><li>Generic TLD: .com, .org, .net, .edu, .gov</li><li>Country Code TLD: .in (India), .uk (UK), .us (USA)</li></ul><h4>Working of Electronic Mail (Email):</h4><ul><li><span class="kw">Step 1 — Composition:</span> User writes email in Mail User Agent (Gmail, Outlook)</li><li><span class="kw">Step 2 — Sending (SMTP):</span> Simple Mail Transfer Protocol sends email from client to sender's mail server</li><li><span class="kw">Step 3 — DNS MX Lookup:</span> Sender's server looks up recipient's mail server using MX record</li><li><span class="kw">Step 4 — Delivery:</span> Email transmitted to recipient's mail server via Internet</li><li><span class="kw">Step 5 — Retrieval:</span> POP3 (downloads mail) or IMAP (keeps on server) retrieves email</li></ul><h4>Email Path:</h4><p>Sender → SMTP → Sender's Mail Server → Internet → Recipient's Mail Server → POP3/IMAP → Recipient's Inbox</p><h4>Conclusion:</h4><p>Domain registration gives websites a unique identity, and email enables fast, reliable, global communication — both are essential pillars of the Internet.</p>`}
+ ]
+},
+u2:{
+ mcq:[
+  {q:"Which tag displays an image on a web page?",o:["&lt;image&gt;","&lt;IMG&gt;","&lt;SRC&gt;","None"],a:1,e:"&lt;img src='file.jpg'&gt; is the correct HTML tag. SRC is an attribute, not a tag.",p:"2014,2024,2025"},
+  {q:"&lt;b&gt; makes text bold. What is the other bold tag?",o:["&lt;strong&gt;","&lt;dar&gt;","&lt;black&gt;","&lt;emp&gt;"],a:0,e:"&lt;strong&gt; also makes text bold AND carries semantic importance meaning.",p:"2017"},
+  {q:"Tags not shown on page are written in which section?",o:["&lt;html&gt;","&lt;head&gt;","&lt;title&gt;","&lt;body&gt;"],a:1,e:"The &lt;head&gt; section contains meta-data, CSS links, scripts — not displayed visually.",p:"2017"},
+  {q:"Which tag inserts a horizontal line on web page?",o:["&lt;hr&gt;","&lt;line&gt;","&lt;line direction='horizontal'&gt;","&lt;tr&gt;"],a:0,e:"&lt;hr&gt; (Horizontal Rule) inserts a horizontal dividing line across the page.",p:"2017"},
+  {q:"First tag in any HTML document should be:",o:["&lt;head&gt;","&lt;title&gt;","&lt;html&gt;","&lt;document&gt;"],a:2,e:"&lt;html&gt; is the root/parent element wrapping the entire HTML document.",p:"2017"},
+  {q:"Which tag adds a row in a table?",o:["&lt;td&gt;","&lt;cr&gt;","&lt;th&gt;","&lt;tr&gt;"],a:3,e:"&lt;tr&gt; = Table Row. Contains &lt;td&gt; (data) or &lt;th&gt; (header) cells.",p:"2017"},
+  {q:"How to make a bulleted (unordered) list?",o:["&lt;list&gt;","&lt;nl&gt;","&lt;ul&gt;","&lt;ol&gt;"],a:2,e:"&lt;ul&gt; = Unordered List (bullets). Each item uses &lt;li&gt; tag.",p:"2017,2024"},
+  {q:"Main function of a browser is to:",o:["Compile HTML","Interpret HTML","Decompile HTML","Interpret CGI"],a:1,e:"Browser interprets (renders) HTML code and displays it as a visual web page.",p:"2018"},
+  {q:"ALIGN in &lt;IMG SRC='img.gif' ALIGN='middle'&gt; is:",o:["A tag","The head","The body","An attribute"],a:3,e:"ALIGN is an attribute of the &lt;IMG&gt; tag — attributes provide extra info about tags.",p:"2018"},
+  {q:"HTML tags for table header cells are:",o:["&lt;head&gt;","&lt;ttop&gt;","&lt;th&gt;","&lt;td&gt;"],a:2,e:"&lt;th&gt; = Table Header — cells appear bold and centered by default.",p:"2018"},
+  {q:"CSS property that changes space between lines:",o:["text-spacing","line-height","letter-spacing","word-spacing"],a:1,e:"line-height controls vertical space between lines of text in CSS.",p:"2024,2025"},
+  {q:"URL stands for:",o:["Universal Resource Locator","Uniform Resource Locator","Unified Resource Link","User Related Location"],a:1,e:"URL = Uniform Resource Locator — the unique address/path of a web resource.",p:"2024,2025"}
+ ],
+ q4:[
+  {q:"Explain any four text formatting tags in HTML with examples.",p:"2018, 2019",a:`<p>HTML text formatting tags change how text appears on the web page:</p><ul><li><span class="kw">&lt;b&gt;</span> — <strong>Bold text</strong> | &lt;strong&gt; — Bold with semantic emphasis</li><li><span class="kw">&lt;i&gt;</span> — <em>Italic text</em> | &lt;em&gt; — Italic with emphasis</li><li><span class="kw">&lt;u&gt;</span> — Underlined text</li><li><span class="kw">&lt;sup&gt;</span> — Superscript: x² (E=mc²) | &lt;sub&gt; — Subscript: H₂O</li><li><span class="kw">&lt;font size="5" color="red" face="Arial"&gt;</span> — Font size, color, face</li><li><span class="kw">&lt;h1&gt; to &lt;h6&gt;</span> — Heading tags (h1 largest)</li><li><span class="kw">&lt;center&gt;</span> — Centers text | &lt;pre&gt; — Preformatted text</li></ul><h4>Example:</h4><code>&lt;b&gt;Bold&lt;/b&gt; &lt;i&gt;Italic&lt;/i&gt; &lt;u&gt;Underline&lt;/u&gt; x&lt;sup&gt;2&lt;/sup&gt;</code>`},
+  {q:"Describe various kinds of lists used in HTML with examples.",p:"2022",a:`<p>HTML has <span class="kw">3 types</span> of lists:</p><h4>1. Unordered List (&lt;ul&gt;) — Bullets:</h4><code>&lt;ul type="disc"&gt;
+  &lt;li&gt;Apple&lt;/li&gt;
+  &lt;li&gt;Mango&lt;/li&gt;
+&lt;/ul&gt;</code><h4>2. Ordered List (&lt;ol&gt;) — Numbers:</h4><code>&lt;ol type="1"&gt;  &lt;!-- types: 1,A,a,I,i --&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ol&gt;</code><h4>3. Definition List (&lt;dl&gt;) — Terms &amp; Definitions:</h4><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+&lt;/dl&gt;</code>`},
+  {q:"Explain how tables are used in HTML. Describe all table tags and attributes.",p:"2018, 2019, 2022",a:`<p>HTML tables display data in <span class="kw">rows and columns</span>.</p><h4>Main Tags:</h4><ul><li><span class="kw">&lt;table&gt;</span> — Defines the table</li><li><span class="kw">&lt;tr&gt;</span> — Table Row</li><li><span class="kw">&lt;th&gt;</span> — Table Header (bold, centered)</li><li><span class="kw">&lt;td&gt;</span> — Table Data (regular cell)</li></ul><h4>Table Attributes:</h4><ul><li><span class="kw">border</span> — Border width; <span class="kw">cellpadding</span> — space inside cells</li><li><span class="kw">cellspacing</span> — space between cells; <span class="kw">width, height, bgcolor, align</span></li><li><span class="kw">colspan</span> — merge columns; <span class="kw">rowspan</span> — merge rows</li></ul><code>&lt;table border="1" cellpadding="5" width="50%"&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Rahul&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Priya&lt;/td&gt;&lt;td&gt;92&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code>`},
+  {q:"How are frames created? What is a frameset? Write a program.",p:"2020, 2014",a:`<p><span class="kw">Frames</span> divide the browser window into multiple sections, each showing a different HTML page.</p><h4>Key Tags:</h4><ul><li><span class="kw">&lt;frameset&gt;</span> — Replaces &lt;body&gt;; defines frame layout</li><li><span class="kw">&lt;frame src=""&gt;</span> — Defines each frame's content</li><li><span class="kw">cols</span> — vertical split; <span class="kw">rows</span> — horizontal split</li></ul><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;frameset cols="50%,50%"&gt;
+  &lt;frame src="left.html" name="leftframe"&gt;
+  &lt;frame src="right.html" name="rightframe"&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;</code><p>Using percentage: <code>cols="30%,70%"</code> or rows: <code>rows="40%,60%"</code></p>`},
+  {q:"How to create links in HTML? Explain all types with examples.",p:"2022",a:`<p>Links are created using the <span class="kw">&lt;a&gt; (anchor)</span> tag with <span class="kw">href</span> attribute.</p><h4>1. External Link:</h4><code>&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;</code><h4>2. Internal Page Link (anchor):</h4><code>&lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
+&lt;h2 id="section1"&gt;Section 1 Here&lt;/h2&gt;</code><h4>3. Open in New Tab:</h4><code>&lt;a href="page.html" target="_blank"&gt;New Tab&lt;/a&gt;</code><h4>4. Email Link:</h4><code>&lt;a href="mailto:name@gmail.com"&gt;Send Email&lt;/a&gt;</code>`}
+ ],
+ q12:[
+  {q:"What is HTML? Explain structure of HTML document in detail.",p:"2020, 2024, 2025",a:`<h4>Introduction:</h4><p>HTML stands for <span class="kw">HyperText Markup Language</span>. It is the standard language for creating web pages. HTML uses <span class="kw">tags</span> (in &lt; &gt;) to structure content displayed in a browser.</p><h4>Features of HTML:</h4><ul><li>Markup language (not a programming language)</li><li>Browser reads and renders HTML as web pages</li><li>Tags come in pairs: &lt;tag&gt; opening and &lt;/tag&gt; closing</li><li>Not case-sensitive (lowercase recommended)</li><li>Supports text, images, links, tables, forms, multimedia</li></ul><h4>Structure of HTML Document:</h4><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+  &lt;/head&gt;
+  &lt;body bgcolor="white"&gt;
+    &lt;h1&gt;Welcome to AKU Patna&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+    &lt;a href="page2.html"&gt;Go to Page 2&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code><h4>Parts Explained:</h4><ul><li><span class="kw">&lt;!DOCTYPE html&gt;</span> — Declaration; tells browser it is HTML5</li><li><span class="kw">&lt;html&gt;</span> — Root element; wraps the entire document</li><li><span class="kw">&lt;head&gt;</span> — Contains meta-data, title, CSS links (NOT visible on page)</li><li><span class="kw">&lt;title&gt;</span> — Text shown in browser tab/title bar</li><li><span class="kw">&lt;body&gt;</span> — Contains all visible page content</li><li><span class="kw">&lt;h1&gt;..&lt;h6&gt;</span> — Headings; &lt;p&gt; = Paragraph; &lt;br&gt; = Line break</li></ul><h4>Roles of HTML, CSS &amp; JavaScript:</h4><ul><li><span class="kw">HTML</span> — Structure/skeleton of the page</li><li><span class="kw">CSS</span> — Style/appearance (colors, fonts, layout)</li><li><span class="kw">JavaScript</span> — Behavior/interactivity (dynamic content)</li></ul><h4>Conclusion:</h4><p>HTML is the foundation of every web page. Every element you see on the web is defined by HTML tags. It is easy to learn and forms the base for all web development technologies.</p>`},
+  {q:"What is HTML Form? Explain all form elements with a complete registration form example.",p:"2018",a:`<h4>Introduction:</h4><p>An HTML <span class="kw">form</span> collects user input. Data is sent to a server using &lt;form&gt; tag with <span class="kw">action</span> (URL) and <span class="kw">method</span> (GET/POST) attributes.</p><h4>Form Elements:</h4><ul><li><span class="kw">&lt;input type="text"&gt;</span> — Single-line text field</li><li><span class="kw">&lt;input type="password"&gt;</span> — Masked password field</li><li><span class="kw">&lt;input type="radio"&gt;</span> — Radio button (one choice)</li><li><span class="kw">&lt;input type="checkbox"&gt;</span> — Checkbox (multiple choices)</li><li><span class="kw">&lt;input type="submit"&gt;</span> — Submit button</li><li><span class="kw">&lt;input type="reset"&gt;</span> — Clears the form</li><li><span class="kw">&lt;textarea&gt;</span> — Multi-line text box</li><li><span class="kw">&lt;select&gt; + &lt;option&gt;</span> — Dropdown menu</li><li><span class="kw">&lt;label&gt;</span> — Describes an input field</li></ul><h4>Complete Registration Form:</h4><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;Student Registration&lt;/h2&gt;
+&lt;form action="register.jsp" method="POST"&gt;
+  Name: &lt;input type="text" name="name"&gt;&lt;br&gt;&lt;br&gt;
+  Email: &lt;input type="text" name="email"&gt;&lt;br&gt;&lt;br&gt;
+  Password: &lt;input type="password" name="pwd"&gt;&lt;br&gt;&lt;br&gt;
+  Gender:
+  &lt;input type="radio" name="g" value="M"&gt; Male
+  &lt;input type="radio" name="g" value="F"&gt; Female&lt;br&gt;&lt;br&gt;
+  Hobbies:
+  &lt;input type="checkbox" value="read"&gt; Reading
+  &lt;input type="checkbox" value="code"&gt; Coding&lt;br&gt;&lt;br&gt;
+  City: &lt;select name="city"&gt;
+    &lt;option&gt;Patna&lt;/option&gt;
+    &lt;option&gt;Delhi&lt;/option&gt;
+  &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit" value="Register"&gt;
+  &lt;input type="reset" value="Clear"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code><h4>Conclusion:</h4><p>HTML forms are essential for web interactivity. They enable user input collection for login, registration, search, and data entry applications.</p>`}
+ ]
+},
+u3:{
+ mcq:[
+  {q:"Top-level object in JavaScript hierarchy is:",o:["Window object","Document object","Button object","None"],a:0,e:"window is the top-level (global) object in JS. All others (document, location) are its properties.",p:"2014"},
+  {q:"Method that joins two or more arrays:",o:["join()","add()","concat()","None"],a:2,e:"concat() merges arrays: [1,2].concat([3,4]) → [1,2,3,4]",p:"2014"},
+  {q:"Method that moves window to specified position:",o:["moveBy()","moveTo()","moveForm()","None"],a:1,e:"moveTo(x,y) moves window to exact screen coordinates; moveBy() moves relatively.",p:"2014"},
+  {q:"Method that removes focus from current window/element:",o:["blur()","alert()","focus()","None"],a:0,e:"blur() removes focus; focus() sets focus. Important: blur() ≠ alert()!",p:"2014"},
+  {q:"Default scripting language in HTML is:",o:["JavaScript","Perl","EcmaScript","VBScript"],a:0,e:"JavaScript is the default client-side scripting language for HTML pages.",p:"2018"},
+  {q:"JavaScript code can be called by using:",o:["RMI","Triggering Event","Preprocessor","Function/Method"],a:1,e:"JavaScript is event-driven — it runs when events like click, submit, change occur.",p:"2019"},
+  {q:"Correct JS syntax to write 'Hello World' on page:",o:["System.out.println(...)","println(...)","document.write('Hello World')","response.write(...)"],a:2,e:"document.write() outputs HTML/text directly on the web page.",p:"2020"},
+  {q:"'this' keyword in JavaScript refers to:",o:["Current object","Previous object","A variable","None"],a:0,e:"'this' refers to the object that calls the current method/function.",p:"2020"},
+  {q:"JavaScript is placed inside which HTML element?",o:["&lt;js&gt;","&lt;scripting&gt;","&lt;script&gt;","&lt;javascript&gt;"],a:2,e:"JavaScript code goes inside &lt;script&gt; tags in HTML. Can be in &lt;head&gt; or &lt;body&gt;.",p:"2020"},
+  {q:"Key advantage of JavaScript in web development:",o:["Server-side DB management","Client-side interactivity","OS level programming","Hardware development"],a:1,e:"JS provides client-side interactivity and responsiveness without server round-trips.",p:"2024,2025"}
+ ],
+ q4:[
+  {q:"Write a JavaScript program to check whether a number is Prime or not.",p:"2014",a:`<p>A <span class="kw">prime number</span> is divisible only by 1 and itself (e.g., 2,3,5,7,11).</p><code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+  var n = parseInt(prompt("Enter a number:"));
+  var isPrime = true;
+  if(n &lt;= 1) isPrime = false;
+  for(var i = 2; i &lt;= Math.sqrt(n); i++){
+    if(n % i == 0){
+      isPrime = false;
+      break;
+    }
+  }
+  if(isPrime)
+    document.write(n + " is a PRIME number");
+  else
+    document.write(n + " is NOT a prime number");
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>`},
+  {q:"Write a JavaScript program to display Fibonacci series.",p:"2018",a:`<p><span class="kw">Fibonacci:</span> Each number = sum of previous two: 0, 1, 1, 2, 3, 5, 8, 13...</p><code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+  var n = parseInt(prompt("How many terms?"));
+  var a=0, b=1, c;
+  document.write("Fibonacci: " + a + ", " + b);
+  for(var i=2; i&lt;n; i++){
+    c = a + b;
+    document.write(", " + c);
+    a = b;
+    b = c;
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>`},
+  {q:"Write a JavaScript program to check Odd/Even number.",p:"2019",a:`<code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+  var n = parseInt(prompt("Enter a number:"));
+  if(n % 2 == 0)
+    document.write(n + " is an EVEN number");
+  else
+    document.write(n + " is an ODD number");
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>`},
+  {q:"Write a JavaScript program to find Factorial of a number.",p:"2022",a:`<p>Factorial of n = n × (n-1) × ... × 2 × 1. E.g. 5! = 120</p><code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+  var n = parseInt(prompt("Enter a number:"));
+  var fact = 1;
+  if(n &lt; 0)
+    document.write("No factorial for negative numbers");
+  else{
+    for(var i=1; i&lt;=n; i++){
+      fact = fact * i;
+    }
+    document.write("Factorial of "+n+" = "+fact);
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>`},
+  {q:"What are advantages of JavaScript? How to insert JS in HTML?",p:"2017, 2018",a:`<h4>Advantages of JavaScript:</h4><ul><li><span class="kw">Client-side:</span> Runs in browser — reduces server load</li><li><span class="kw">Fast:</span> No server trip for basic operations</li><li><span class="kw">Interactive:</span> Dynamic content, animations, popups</li><li><span class="kw">Form Validation:</span> Validates input before sending to server</li><li><span class="kw">Platform independent:</span> Runs on all browsers/OS</li><li><span class="kw">Easy to learn:</span> Simple syntax, no compilation</li></ul><h4>3 Ways to Insert JavaScript in HTML:</h4><h4>1. Internal (&lt;script&gt; in &lt;head&gt; or &lt;body&gt;):</h4><code>&lt;script&gt;
+  alert("Hello AKU!");
+&lt;/script&gt;</code><h4>2. External (.js file):</h4><code>&lt;script src="myScript.js"&gt;&lt;/script&gt;</code><h4>3. Inline:</h4><code>&lt;button onclick="alert('Hi!')"&gt;Click&lt;/button&gt;</code>`},
+  {q:"Declare and access elements of array in JavaScript with syntax.",p:"2019",a:`<p>An <span class="kw">array</span> stores multiple values in a single variable. Index starts from 0.</p><h4>Declaring Array:</h4><code>var marks = [85, 90, 75, 88, 92];</code><h4>Accessing Elements:</h4><code>document.write(marks[0]);  // 85 (first element)
+document.write(marks[4]);  // 92 (last element)</code><h4>Array Methods:</h4><ul><li><span class="kw">concat()</span> — joins arrays | <span class="kw">sort()</span> — sorts array</li><li><span class="kw">push()</span> — adds to end | <span class="kw">pop()</span> — removes from end</li><li><span class="kw">join()</span> — joins into string | <span class="kw">length</span> — number of elements</li></ul><h4>Loop through array:</h4><code>for(var i=0; i&lt;marks.length; i++){
+  document.write(marks[i] + " ");
+}</code>`}
+ ],
+ q12:[
+  {q:"Write a JavaScript program for a Calculator. (★ PYQ 2014, 2019)",p:"2014",a:`<h4>Introduction:</h4><p>A JavaScript calculator performs basic arithmetic: addition, subtraction, multiplication, division.</p><code>&lt;html&gt;
+&lt;head&gt;&lt;title&gt;JS Calculator&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;Simple Calculator&lt;/h2&gt;
+&lt;script&gt;
+function calculate(){
+  var n1 = parseFloat(document.getElementById("n1").value);
+  var n2 = parseFloat(document.getElementById("n2").value);
+  var op = document.getElementById("op").value;
+  var result;
+  if(op == "+") result = n1 + n2;
+  else if(op == "-") result = n1 - n2;
+  else if(op == "*") result = n1 * n2;
+  else if(op == "/"){
+    if(n2 == 0) result = "Error: Cannot divide by zero!";
+    else result = n1 / n2;
+  }
+  document.getElementById("res").innerHTML = 
+    "&lt;b&gt;Result = " + result + "&lt;/b&gt;";
+}
+&lt;/script&gt;
+
+Number 1: &lt;input type="text" id="n1"&gt;&lt;br&gt;&lt;br&gt;
+Number 2: &lt;input type="text" id="n2"&gt;&lt;br&gt;&lt;br&gt;
+Operator: &lt;select id="op"&gt;
+  &lt;option value="+"&gt;+ (Add)&lt;/option&gt;
+  &lt;option value="-"&gt;- (Subtract)&lt;/option&gt;
+  &lt;option value="*"&gt;* (Multiply)&lt;/option&gt;
+  &lt;option value="/"&gt;/ (Divide)&lt;/option&gt;
+&lt;/select&gt;&lt;br&gt;&lt;br&gt;
+&lt;button onclick="calculate()"&gt;Calculate&lt;/button&gt;
+&lt;p id="res"&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code><h4>Conclusion:</h4><p>This calculator uses getElementById() to get input values, parseFloat() to convert to numbers, and innerHTML to display results.</p>`},
+  {q:"What is JavaScript? Explain advantages, disadvantages, data types and operators.",p:"2017, 2020, 2022",a:`<h4>Introduction:</h4><p>JavaScript is a <span class="kw">lightweight, interpreted, client-side scripting language</span> developed by Brendan Eich at Netscape in 1995. It makes web pages interactive and dynamic.</p><h4>Features:</h4><ul><li>Interpreted — no compilation needed</li><li>Object-based scripting language</li><li>Case-sensitive | Loosely typed (no need to declare type)</li><li>Event-driven programming model</li></ul><h4>Advantages:</h4><ul><li><span class="kw">Client-side:</span> Runs in browser; reduces server load</li><li><span class="kw">Speed:</span> Fast — no server requests for basic tasks</li><li><span class="kw">Interactivity:</span> Animations, real-time validation, popups</li><li><span class="kw">Form Validation:</span> Validates before sending to server</li><li><span class="kw">Easy to learn:</span> C-like syntax; no compilation</li><li><span class="kw">Platform independent:</span> Runs on all browsers and OS</li><li><span class="kw">DOM Manipulation:</span> Can change HTML elements dynamically</li></ul><h4>Disadvantages:</h4><ul><li>Client-side code is visible (security risk)</li><li>Cannot access database directly</li><li>Browser compatibility issues</li><li>Cannot read/write files on user's computer</li></ul><h4>Data Types in JavaScript:</h4><code>var name = "AKU";       // String
+var age = 20;           // Number
+var pass = true;        // Boolean
+var x = null;           // Null
+var y;                  // Undefined
+var arr = [1,2,3];      // Array (Object)
+var obj = {a:1, b:2};  // Object</code><h4>Operators:</h4><ul><li><span class="kw">Arithmetic:</span> +, -, *, /, %, ++, --</li><li><span class="kw">Comparison:</span> ==, !=, &gt;, &lt;, &gt;=, &lt;=, === (strict)</li><li><span class="kw">Logical:</span> &amp;&amp; (AND), || (OR), ! (NOT)</li><li><span class="kw">Assignment:</span> =, +=, -=, *=, /=</li><li><span class="kw">Ternary:</span> condition ? value1 : value2</li></ul><code>var a=10, b=3;
+document.write(a+b);       // 13
+document.write(a&gt;b);       // true
+var max=(a&gt;b)?a:b;         // 10
+document.write("Hi"+"AKU"); // HiAKU</code><h4>Conclusion:</h4><p>JavaScript is the most popular client-side scripting language. It powers the interactive web and is essential for modern web development.</p>`},
+  {q:"Explain any two JS standard library functions. Write JS for form validation (Name, Mobile, Age).",p:"2019",a:`<h4>Standard Library Functions:</h4><ul><li><span class="kw">parseInt(str)</span> — converts string to integer: parseInt("42") → 42</li><li><span class="kw">parseFloat(str)</span> — to float: parseFloat("3.14") → 3.14</li><li><span class="kw">isNaN(x)</span> — true if x is Not a Number: isNaN("abc") → true</li><li><span class="kw">Math.sqrt(n)</span> — square root; Math.abs() — absolute value</li><li><span class="kw">String.length</span> — length of string</li></ul><h4>Form Validation Program:</h4><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;Registration Form&lt;/h2&gt;
+&lt;script&gt;
+function validate(){
+  var name = document.getElementById("n").value;
+  var mobile = document.getElementById("m").value;
+  var age = document.getElementById("a").value;
+  if(name == ""){
+    alert("Name cannot be empty!"); return false;
+  }
+  if(mobile.length != 10 || isNaN(mobile)){
+    alert("Mobile must be 10 digits!"); return false;
+  }
+  if(isNaN(age) || isNaN(age)){
+    alert("Age must be a number!"); return false;
+  }
+  alert("Form submitted successfully!");
+  return true;
+}
+&lt;/script&gt;
+Name: &lt;input type="text" id="n"&gt;&lt;br&gt;
+Mobile: &lt;input type="text" id="m"&gt;&lt;br&gt;
+Age: &lt;input type="text" id="a"&gt;&lt;br&gt;
+&lt;button onclick="validate()"&gt;Submit&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>`}
+ ]
+},
+u4:{
+ mcq:[
+  {q:"To provide a callback interface in XML parsing:",o:["DOM","SAX","Both DOM and SAX","None"],a:1,e:"SAX (Simple API for XML) = event-based/callback parsing. DOM loads whole tree in memory.",p:"2014"},
+  {q:"An XML document must have:",o:["One root element","One child element only","Elements in lowercase only","Attributes in quotes only"],a:0,e:"XML rule: exactly ONE root element must wrap all other elements.",p:"2020"},
+  {q:"A dynamic web page:",o:["Is same every time displayed","Generated on demand by program/browser request","Both (i) and (ii)","None"],a:1,e:"Dynamic pages are generated at request time using server tech like JSP, PHP, ASP.",p:"2019"},
+  {q:"SGML is parent language of:",o:["HTML only","XML only","Both HTML and XML","None"],a:2,e:"SGML (1986) is the parent. HTML and XML are both derived/simplified subsets of SGML.",p:"Syllabus"}
+ ],
+ q4:[
+  {q:"What is XML Schema (XSD)? Explain.",p:"2014",a:`<p>An <span class="kw">XML Schema</span> (XSD = XML Schema Definition) defines the structure, allowed elements, data types, and rules for an XML document — like a blueprint/validator.</p><h4>Purpose:</h4><ul><li>Defines which elements and attributes are allowed</li><li>Specifies data types (string, integer, date)</li><li>Validates XML documents for correctness</li><li>Makes data exchange between systems reliable</li></ul><h4>Example Schema:</h4><code>&lt;xs:element name="student"&gt;
+  &lt;xs:complexType&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="name" type="xs:string"/&gt;
+      &lt;xs:element name="age" type="xs:integer"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;</code><p><span class="kw">DTD</span> (Document Type Definition) is older method; <span class="kw">XSD</span> is the modern, more powerful approach.</p>`},
+  {q:"What is the difference between XML and HTML?",p:"2018",a:`<table style="width:100%;border-collapse:collapse;font-size:11px"><tr style="background:#0d1b2a;color:#fff"><th style="padding:6px">Feature</th><th style="padding:6px">XML</th><th style="padding:6px">HTML</th></tr><tr><td style="padding:5px;border:1px solid #ddd">Full Form</td><td style="padding:5px;border:1px solid #ddd">eXtensible Markup Language</td><td style="padding:5px;border:1px solid #ddd">HyperText Markup Language</td></tr><tr style="background:#f8f9fa"><td style="padding:5px;border:1px solid #ddd">Purpose</td><td style="padding:5px;border:1px solid #ddd">Store &amp; transport data</td><td style="padding:5px;border:1px solid #ddd">Display data in browser</td></tr><tr><td style="padding:5px;border:1px solid #ddd">Tags</td><td style="padding:5px;border:1px solid #ddd">User-defined (custom)</td><td style="padding:5px;border:1px solid #ddd">Predefined standard tags</td></tr><tr style="background:#f8f9fa"><td style="padding:5px;border:1px solid #ddd">Case Sensitive</td><td style="padding:5px;border:1px solid #ddd">YES — &lt;Name&gt; ≠ &lt;name&gt;</td><td style="padding:5px;border:1px solid #ddd">NO — not case-sensitive</td></tr><tr><td style="padding:5px;border:1px solid #ddd">Closing Tags</td><td style="padding:5px;border:1px solid #ddd">Mandatory always</td><td style="padding:5px;border:1px solid #ddd">Some optional (e.g. &lt;br&gt;)</td></tr><tr style="background:#f8f9fa"><td style="padding:5px;border:1px solid #ddd">Root Element</td><td style="padding:5px;border:1px solid #ddd">Must have one root</td><td style="padding:5px;border:1px solid #ddd">Has &lt;html&gt; as root</td></tr><tr><td style="padding:5px;border:1px solid #ddd">Formatting</td><td style="padding:5px;border:1px solid #ddd">No default formatting</td><td style="padding:5px;border:1px solid #ddd">Built-in display formatting</td></tr></table>`},
+  {q:"What is SGML? Explain difference between SGML and XML.",p:"2019, 2024",a:`<p><span class="kw">SGML</span> (Standard Generalized Markup Language) is the parent meta-language from which both HTML and XML are derived. Developed in 1986 by ISO.</p><h4>SGML Features:</h4><ul><li>Very powerful and complex</li><li>Allows user-defined markup languages</li><li>Too complex for web browsers</li><li>Used for large document management (aerospace, publishing)</li></ul><h4>SGML vs XML:</h4><ul><li>XML is a simplified, strict subset of SGML</li><li>XML is much easier to learn and use than SGML</li><li>XML suitable for web; SGML for large document systems</li><li>XML must be well-formed (strict rules); SGML is more flexible</li><li>SGML allows tag omission; XML does not allow it</li><li>SGML is processed by specialized SGML parsers; XML by any XML parser</li></ul>`}
+ ],
+ q12:[
+  {q:"Explain SGML, XML and their differences. Write XML document structure for 5 books in a bookstore.",p:"2018, 2019, 2024, 2025",a:`<h4>Introduction:</h4><p>XML (eXtensible Markup Language) is a flexible, self-describing markup language for storing, transporting, and structuring data. Unlike HTML, XML tags are user-defined.</p><h4>Rules for Well-Formed XML:</h4><ul><li>Must have exactly ONE root element</li><li>All tags must be properly closed: &lt;name&gt;...&lt;/name&gt;</li><li>Tags are CASE-SENSITIVE: &lt;Name&gt; ≠ &lt;name&gt;</li><li>Attribute values must be in quotes: id="1"</li><li>Tags must be properly nested (no overlap)</li></ul><h4>XML Document Structure — Bookstore (5 books):</h4><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;bookstore&gt;
+
+  &lt;book id="1"&gt;
+    &lt;title&gt;Java Programming&lt;/title&gt;
+    &lt;author&gt;James Gosling&lt;/author&gt;
+    &lt;price&gt;450&lt;/price&gt;
+    &lt;year&gt;2020&lt;/year&gt;
+  &lt;/book&gt;
+
+  &lt;book id="2"&gt;
+    &lt;title&gt;HTML and CSS Design&lt;/title&gt;
+    &lt;author&gt;Jon Duckett&lt;/author&gt;
+    &lt;price&gt;380&lt;/price&gt;
+    &lt;year&gt;2019&lt;/year&gt;
+  &lt;/book&gt;
+
+  &lt;book id="3"&gt;
+    &lt;title&gt;JavaScript: The Good Parts&lt;/title&gt;
+    &lt;author&gt;Douglas Crockford&lt;/author&gt;
+    &lt;price&gt;320&lt;/price&gt;
+    &lt;year&gt;2018&lt;/year&gt;
+  &lt;/book&gt;
+
+  &lt;book id="4"&gt;
+    &lt;title&gt;Introduction to Algorithms&lt;/title&gt;
+    &lt;author&gt;Cormen et al.&lt;/author&gt;
+    &lt;price&gt;650&lt;/price&gt;
+    &lt;year&gt;2021&lt;/year&gt;
+  &lt;/book&gt;
+
+  &lt;book id="5"&gt;
+    &lt;title&gt;Web Designing with JSP&lt;/title&gt;
+    &lt;author&gt;Ivan Bay Ross&lt;/author&gt;
+    &lt;price&gt;290&lt;/price&gt;
+    &lt;year&gt;2017&lt;/year&gt;
+  &lt;/book&gt;
+
+&lt;/bookstore&gt;</code><h4>Parts Explained:</h4><ul><li><span class="kw">&lt;?xml version="1.0"?&gt;</span> — Prolog/declaration (optional but recommended)</li><li><span class="kw">&lt;bookstore&gt;</span> — Root element (ONE and only)</li><li><span class="kw">&lt;book id="1"&gt;</span> — Child element with attribute id</li><li><span class="kw">&lt;title&gt;, &lt;author&gt;, &lt;price&gt;</span> — Leaf elements with data</li></ul><h4>SGML vs XML vs HTML (Quick Summary):</h4><ul><li>SGML (1986) — Parent; complex; for large document systems</li><li>HTML (1991) — From SGML; for displaying data in browsers</li><li>XML (1998) — From SGML; simplified; for storing/transporting data</li></ul><h4>XML Parsers:</h4><ul><li><span class="kw">DOM Parser:</span> Loads entire XML into memory as a tree; allows random access</li><li><span class="kw">SAX Parser:</span> Event-based; reads document sequentially; memory efficient; provides callback interface</li></ul><h4>Conclusion:</h4><p>XML is a platform-independent, self-describing language ideal for data exchange between different systems. Its strict syntax ensures reliability and consistency.</p>`}
+ ]
+},
+u5:{
+ mcq:[
+  {q:"JSP stands for:",o:["JavaScript Pages","JavaServer Protocols","JavaServer Pages","Java System Programs"],a:2,e:"JSP = JavaServer Pages — server-side technology to create dynamic HTML using Java.",p:"2025"},
+  {q:"Which of the following is a server-side technology?",o:["HTML","JSP","JavaScript","CSS"],a:1,e:"JSP runs on the server. HTML, CSS, JavaScript run on the client (browser).",p:"2018"},
+  {q:"Which is NOT a valid attribute of page directive?",o:["language","extend","export","import"],a:2,e:"Export is NOT valid. Valid attributes: language, import, session, errorPage, extends, buffer, contentType.",p:"2019"},
+  {q:"JSP element to directly output expression value:",o:["&lt;%!...%&gt;","&lt;%...%&gt;","&lt;%=...%&gt;","&lt;%@...%&gt;"],a:2,e:"&lt;%=expression%&gt; is JSP expression element — evaluates and outputs value directly.",p:"2025"}
+ ],
+ q4:[
+  {q:"What are standard actions available in JSP? Explain each.",p:"2017, 2020",a:`<p>JSP <span class="kw">Standard Actions</span> are XML tags that control JSP engine behavior at runtime:</p><ul><li><span class="kw">&lt;jsp:include page="file.jsp"&gt;</span> — Dynamically includes another page's output</li><li><span class="kw">&lt;jsp:forward page="page.jsp"&gt;</span> — Forwards request to another resource</li><li><span class="kw">&lt;jsp:param name="x" value="y"&gt;</span> — Adds parameter to include/forward</li><li><span class="kw">&lt;jsp:useBean id="b" class="MyBean" scope="session"&gt;</span> — Creates/locates a JavaBean</li><li><span class="kw">&lt;jsp:setProperty name="b" property="name" value="Rahul"&gt;</span> — Sets bean property</li><li><span class="kw">&lt;jsp:getProperty name="b" property="name"&gt;</span> — Gets and outputs bean property</li><li><span class="kw">&lt;jsp:plugin&gt;</span> — Embeds Java Applet in browser</li></ul>`},
+  {q:"What are JSP scripting elements? Explain all four with examples.",p:"2019, 2020",a:`<p>JSP <span class="kw">Scripting Elements</span> allow embedding Java code in JSP pages:</p><h4>1. Scriptlet — &lt;% ... %&gt;</h4><p>Contains Java statements executed on each request.</p><code>&lt;%
+  int x = 10;
+  out.println("Value is: " + x);
+%&gt;</code><h4>2. Expression — &lt;%= ... %&gt;</h4><p>Evaluates and outputs value directly (NO semicolon inside).</p><code>Hello, &lt;%= request.getParameter("name") %&gt;</code><h4>3. Declaration — &lt;%! ... %&gt;</h4><p>Declares variables/methods at class level (outside _jspService()).</p><code>&lt;%! int count = 0;
+String greet(String n){ return "Hi "+n; } %&gt;</code><h4>4. Comment — &lt;%-- ... --%&gt;</h4><p>JSP comment (NOT sent to browser, unlike HTML &lt;!-- --&gt;).</p><code>&lt;%-- This comment is not visible in page source --%&gt;</code>`},
+  {q:"What are life-cycle methods of JSP? Explain each.",p:"2020",a:`<p>JSP has a defined <span class="kw">life cycle</span> managed by the web container (Apache Tomcat):</p><ul><li><span class="kw">1. Translation:</span> JSP page (.jsp) is converted to a Servlet (.java file) by container</li><li><span class="kw">2. Compilation:</span> The generated Java file is compiled to a .class (bytecode) file</li><li><span class="kw">3. jspInit():</span> Called ONCE when JSP is first loaded/initialized. Used for one-time setup (like servlet init())</li><li><span class="kw">4. _jspService(request, response):</span> Called for EVERY client request. Contains the main JSP logic.</li><li><span class="kw">5. jspDestroy():</span> Called ONCE when JSP is removed from service/memory. Used for cleanup.</li></ul><p><strong>Order:</strong> Translate → Compile → jspInit() → _jspService() [repeated per request] → jspDestroy()</p>`},
+  {q:"What is Page Directive? What is Include Directive? Explain with examples.",p:"2018, 2022",a:`<p>JSP <span class="kw">Directives</span> give instructions to the JSP container at translation time. Syntax: <code>&lt;%@ directive attribute="value" %&gt;</code></p><h4>1. Page Directive:</h4><p>Applies settings to the entire JSP page.</p><code>&lt;%@ page language="java"
+         contentType="text/html; charset=UTF-8"
+         import="java.util.*, java.sql.*"
+         session="true"
+         errorPage="error.jsp"
+         isErrorPage="false"
+         buffer="8kb" %&gt;</code><h4>Key Page Directive Attributes:</h4><ul><li><span class="kw">language</span> — scripting language (default: java)</li><li><span class="kw">import</span> — Java classes to import</li><li><span class="kw">session</span> — true/false for session tracking</li><li><span class="kw">errorPage</span> — redirect page on error</li><li><span class="kw">contentType</span> — MIME type of response</li></ul><h4>2. Include Directive:</h4><p>Statically includes another file at <span class="kw">translation time</span> (compile-time inclusion).</p><code>&lt;%@ include file="header.html" %&gt;
+  &lt;!-- Page content here --&gt;
+&lt;%@ include file="footer.html" %&gt;</code><p><strong>Difference:</strong> Include directive = static (translation time); &lt;jsp:include&gt; action = dynamic (request time).</p>`}
+ ],
+ q12:[
+  {q:"Explain JSP actions in detail with syntax and examples. (★ MOST REPEATED)",p:"2014, 2018",a:`<h4>Introduction:</h4><p>JSP Actions are special XML-based tags that control JSP engine behavior at runtime. They perform tasks like including files, forwarding requests, and working with JavaBeans.</p><h4>1. &lt;jsp:include&gt; — Dynamic Include</h4><p>Includes output of another page at request time (dynamic — page can change each request).</p><code>&lt;jsp:include page="header.jsp"&gt;
+  &lt;jsp:param name="user" value="Rahul"/&gt;
+&lt;/jsp:include&gt;</code><h4>2. &lt;jsp:forward&gt; — Forward Request</h4><p>Forwards the request/response to another JSP, HTML page, or servlet.</p><code>&lt;jsp:forward page="welcome.jsp"&gt;
+  &lt;jsp:param name="msg" value="Login OK"/&gt;
+&lt;/jsp:forward&gt;</code><h4>3. &lt;jsp:useBean&gt; — Use JavaBean</h4><p>Creates or locates an instance of a JavaBean.</p><code>&lt;jsp:useBean id="student" 
+  class="com.StudentBean" 
+  scope="session"/&gt;</code><h4>4. &lt;jsp:setProperty&gt; — Set Bean Property</h4><p>Sets a property value in a JavaBean.</p><code>&lt;jsp:setProperty name="student" 
+  property="name" 
+  value="Rahul Kumar"/&gt;</code><h4>5. &lt;jsp:getProperty&gt; — Get Bean Property</h4><p>Gets and outputs a property from a JavaBean.</p><code>Student Name: &lt;jsp:getProperty 
+  name="student" 
+  property="name"/&gt;</code><h4>6. &lt;jsp:param&gt; — Pass Parameters</h4><p>Sends parameters with include or forward actions.</p><code>&lt;jsp:param name="rollno" value="BCA101"/&gt;</code><h4>7. &lt;jsp:plugin&gt; — Java Plugin</h4><p>Embeds Java Applet in the browser using appropriate browser tag (&lt;object&gt; or &lt;embed&gt;).</p><h4>Conclusion:</h4><p>JSP actions provide powerful runtime functionality cleanly through XML-style tags. They make JSP pages more maintainable than embedding raw Java scriptlets.</p>`},
+  {q:"What is JSP? Explain advantages. Write HTML + JSP code for registration form.",p:"2017, 2018, 2020",a:`<h4>Introduction:</h4><p>JSP (JavaServer Pages) is a server-side technology that allows embedding Java code within HTML pages to generate dynamic web content. JSP pages are compiled into Servlets by the web container.</p><h4>Advantages of JSP:</h4><ul><li><span class="kw">Dynamic Content:</span> Generates different HTML based on user or data</li><li><span class="kw">Full Java Power:</span> Access all Java APIs, JDBC, JavaBeans</li><li><span class="kw">Platform Independent:</span> Runs on any server with JVM (Write Once, Run Anywhere)</li><li><span class="kw">Separation of Concerns:</span> Supports MVC — JSP for View, Servlet for Controller</li><li><span class="kw">Session Management:</span> Built-in session, request, response objects</li><li><span class="kw">Database Access:</span> Can use JDBC to connect to databases</li><li><span class="kw">Reusable Components:</span> JavaBeans and Tag Libraries</li><li><span class="kw">Better than Servlet:</span> Easier to write HTML with Java than pure Servlet</li></ul><h4>Registration Form — HTML Page (form.html):</h4><code>&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Registration&lt;/title&gt;&lt;/head&gt;
+&lt;body bgcolor="lightblue"&gt;
+&lt;h2 align="center"&gt;Student Registration&lt;/h2&gt;
+&lt;form action="register.jsp" method="POST"&gt;
+  &lt;table align="center"&gt;
+    &lt;tr&gt;&lt;td&gt;First Name:&lt;/td&gt;
+        &lt;td&gt;&lt;input type="text" name="fname"&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Last Name:&lt;/td&gt;
+        &lt;td&gt;&lt;input type="text" name="lname"&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Username:&lt;/td&gt;
+        &lt;td&gt;&lt;input type="text" name="uname"&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Password:&lt;/td&gt;
+        &lt;td&gt;&lt;input type="password" name="pwd"&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td colspan="2" align="center"&gt;
+        &lt;input type="submit" value="Register"&gt;
+    &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code><h4>JSP Page (register.jsp):</h4><code>&lt;%@ page language="java" contentType="text/html" %&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Registration Result&lt;/title&gt;&lt;/head&gt;
+&lt;body bgcolor="lightyellow"&gt;
+&lt;h2 align="center"&gt;Registration Successful!&lt;/h2&gt;
+&lt;%
+  String fname = request.getParameter("fname");
+  String lname = request.getParameter("lname");
+  String uname = request.getParameter("uname");
+%&gt;
+&lt;table align="center" border="1" cellpadding="8"&gt;
+  &lt;tr&gt;&lt;th&gt;Field&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;First Name&lt;/td&gt;&lt;td&gt;&lt;%= fname %&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Last Name&lt;/td&gt;&lt;td&gt;&lt;%= lname %&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Username&lt;/td&gt;&lt;td&gt;&lt;%= uname %&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td colspan="2" align="center"&gt;
+    Welcome, &lt;%= fname %&gt;! Registration complete.
+  &lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code><h4>Conclusion:</h4><p>JSP combines Java's power with HTML's simplicity to create dynamic, data-driven web applications. It is widely used in enterprise web development with frameworks like Spring MVC.</p>`}
+ ]
+}
+};
+
+const REP=[
+  {q:"Explain TCP/IP and its layers/services",u:"Unit 1",c:7,y:"2017,2018,2019,2020,2022,2024,2025"},
+  {q:"JSP Actions in detail (&lt;jsp:include&gt;, &lt;jsp:forward&gt; etc.)",u:"Unit 5",c:6,y:"2014,2017,2018,2019,2020,2022"},
+  {q:"JavaScript advantages and disadvantages",u:"Unit 3",c:6,y:"2017,2018,2020,2022,2024,2025"},
+  {q:"HTML structure / What is HTML",u:"Unit 2",c:5,y:"2018,2019,2020,2024,2025"},
+  {q:"Page Directive in JSP",u:"Unit 5",c:5,y:"2014,2018,2019,2022,2025"},
+  {q:"JavaScript programs (Prime/Factorial/Fibonacci/Odd-Even)",u:"Unit 3",c:5,y:"2014,2018,2019,2020,2022"},
+  {q:"SGML vs XML, XML document structure",u:"Unit 4",c:4,y:"2018,2019,2022,2024,2025"},
+  {q:"HTML Tables (all tags and attributes)",u:"Unit 2",c:4,y:"2018,2019,2020,2022"},
+  {q:"HTML Form elements with example",u:"Unit 2",c:4,y:"2018,2019,2020,2022"},
+  {q:"JSP Scripting Elements (scriptlet, expression, declaration)",u:"Unit 5",c:4,y:"2019,2020,2022,2025"},
+  {q:"What is JSP? Advantages of JSP",u:"Unit 5",c:4,y:"2017,2020,2022,2025"},
+  {q:"JavaScript Calculator program",u:"Unit 3",c:3,y:"2014,2019,2022"},
+  {q:"Domain Registration and Email working",u:"Unit 1",c:3,y:"2022,2024,2025"},
+  {q:"JavaScript operators and expressions",u:"Unit 3",c:3,y:"2020,2022,2024"},
+];
+
+const CHEAT=[
+  {t:"Important Full Forms",i:["HTML = HyperText Markup Language","HTTP = HyperText Transfer Protocol","FTP = File Transfer Protocol","TCP = Transmission Control Protocol","IP = Internet Protocol","URL = Uniform Resource Locator","JSP = JavaServer Pages","XML = eXtensible Markup Language","SGML = Standard Generalized Markup Language","ISP = Internet Service Provider","DNS = Domain Name System","MIME = Multipurpose Internet Mail Extensions","WWW = World Wide Web"]},
+  {t:"HTML Tags Quick Reference",i:["&lt;html&gt; — Root element","&lt;head&gt; — Meta info (not shown)","&lt;body&gt; — Visible content","&lt;h1&gt;..&lt;h6&gt; — Headings","&lt;p&gt; — Paragraph; &lt;br&gt; — Line break","&lt;b&gt; &lt;i&gt; &lt;u&gt; — Bold, Italic, Underline","&lt;img src=''&gt; — Image (NOT &lt;image&gt;!)","&lt;a href=''&gt; — Hyperlink","&lt;table&gt;&lt;tr&gt;&lt;th&gt;&lt;td&gt; — Tables","&lt;ul&gt;&lt;ol&gt;&lt;li&gt; — Lists","&lt;form&gt;&lt;input&gt;&lt;select&gt; — Forms","&lt;hr&gt; — Horizontal line","&lt;frameset&gt;&lt;frame&gt; — Frames","&lt;script&gt; — JavaScript placement"]},
+  {t:"TCP/IP Layers (Top to Bottom)",i:["4. Application Layer","→ HTTP, FTP, SMTP, DNS, Telnet","3. Transport Layer","→ TCP (reliable), UDP (fast)","2. Internet/Network Layer","→ IP, ICMP, ARP","1. Network Access Layer","→ Ethernet, Wi-Fi, PPP"]},
+  {t:"JSP Scripting Elements",i:["&lt;% code %&gt; — Scriptlet (Java code)","&lt;%= expr %&gt; — Expression (outputs value)","&lt;%! decl %&gt; — Declaration (class-level)","&lt;%@ page ... %&gt; — Page directive","&lt;%@ include file='' %&gt; — Include","&lt;%-- comment --%&gt; — JSP comment","NOT valid: &lt;%@export%&gt; &lt;%@extend%&gt;"]},
+  {t:"JavaScript Key Points",i:["Top object = window","document.write() = print on page","alert() = popup box","prompt() = input dialog","typeof = checks data type","NaN = Not a Number","concat() joins arrays","sort() sorts array","blur() removes focus","moveTo() moves window to position","'this' = current object","Default scripting lang in HTML = JS"]},
+  {t:"Memory Tricks 🧠",i:["SGML → HTML + XML (parent of both)","TCP = Reliable, UDP = Fast","DOM = Tree, SAX = Events/Callback","JSP lifecycle: T-C-I-S-D (Translate→Compile→Init→Service→Destroy)","HTML = Display, XML = Data storage","Client-side = JS, Server-side = JSP","URL = Uniform (NOT Universal!)","IPv4 = 32 bits, IPv6 = 128 bits","blur() removes focus (NOT focus()!)","Export = NOT a page directive attribute"]},
+  {t:"Common Exam Mistakes ⚠️",i:["Wrong: &lt;image&gt; Correct: &lt;img&gt;","Wrong: Universal Correct: Uniform Resource Locator","Wrong: 32 bits for IPv6 Correct: 128 bits","Wrong: join() for arrays Correct: concat()","Wrong: moveby() Correct: moveTo() for absolute","Wrong: JSP runs on client Correct: JSP is server-side","Wrong: HTML is case-sensitive Correct: XML is case-sensitive","Wrong: Export is valid page directive Correct: NOT valid","Father of WWW = Tim Berners-Lee (NOT Dennis Ritchie)"]},
+  {t:"Important Answers (Quick)",i:["Father of WWW = Tim Berners-Lee","Web protocol = HTTP","IPv4 = 32 bits, IPv6 = 128 bits","Internet = packet switching","JSP = JavaServer Pages","Default scripting = JavaScript","Window = top-level JS object","'this' = current object in JS","blur() = removes focus","concat() = joins arrays","DOM = provides tree interface","SAX = provides callback interface"]},
+];
+
+/* ── KBC GAME ENGINE ── */
+const KBC={};
+
+function mkMCQ(arr,pid){
+  KBC[pid]={q:arr,cur:0,score:0,ans:new Array(arr.length).fill(null),sel:new Array(arr.length).fill(null)};
+  return `<div class="kbc-arena" id="ka_${pid}">${kbcRender(pid,0)}</div>`;
+}
+
+function kbcRender(pid,idx){
+  const st=KBC[pid],m=st.q[idx],n=st.q.length;
+  const AB=['A','B','C','D'];
+  const dots=st.q.map((_,i)=>{
+    const c=i===idx?'kbc-dot cur':st.ans[i]===true?'kbc-dot ok':st.ans[i]===false?'kbc-dot ng':'kbc-dot';
+    return '<div class="'+c+'"></div>';
+  }).join('');
+  const opts=m.o.map((o,j)=>`<div class="kbc-ow" id="kow_${pid}_${j}" onclick="kbcPick('${pid}',${j})"><div class="kbc-oi"><span class="kbc-ol">${AB[j]}</span><span class="kbc-ot">${o}</span></div></div>`).join('');
+  const nextLbl=idx===n-1?'&#127942; Finish':'Next &rarr;';
+  return `<div class="kbc-hdr">
+    <div><div class="kbc-counter">Question ${idx+1} of ${n}</div><div class="kbc-dots">${dots}</div></div>
+    <div><div class="kbc-score">&#11088; ${st.score}/${n}</div><div class="kbc-pyq">PYQ ${m.p}</div></div>
+  </div>
+  <div class="kbc-qbox"><span class="kbc-qnum">Q${idx+1}</span><div class="kbc-qt">${m.q}</div></div>
+  <div class="kbc-grid" id="kg_${pid}">${opts}</div>
+  <div class="kbc-exp" id="ke_${pid}">&#128161; Correct: <b>${AB[m.a]}</b> &mdash; ${m.e}</div>
+  <div class="kbc-nav">
+    <button class="kbc-pbtn" onclick="kbcGo('${pid}',${idx-1})" ${idx===0?'disabled':''}>&#8592; Prev</button>
+    <button class="kbc-nbtn" id="kn_${pid}" onclick="kbcGo('${pid}',${idx+1})">${nextLbl}</button>
+  </div>`;
+}
+
+function kbcPick(pid,sel){
+  const st=KBC[pid];
+  if(st.ans[st.cur]!==null)return;
+  const m=st.q[st.cur];
+  document.querySelectorAll('#kg_'+pid+' .kbc-ow').forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  document.getElementById('kow_'+pid+'_'+sel).classList.add('sel');
+  setTimeout(function(){
+    const cor=m.a;
+    document.getElementById('kow_'+pid+'_'+cor).classList.remove('sel');
+    document.getElementById('kow_'+pid+'_'+cor).classList.add('cor');
+    if(sel!==cor){
+      document.getElementById('kow_'+pid+'_'+sel).classList.remove('sel');
+      document.getElementById('kow_'+pid+'_'+sel).classList.add('wrg');
+      st.ans[st.cur]=false;
+    }else{
+      st.score++;
+      st.ans[st.cur]=true;
+    }
+    st.sel[st.cur]=sel;
+    document.getElementById('ke_'+pid).style.display='block';
+    document.getElementById('kn_'+pid).style.display='inline-block';
+    prog();
+  },1100);
+}
+
+function kbcGo(pid,idx){
+  const st=KBC[pid],n=st.q.length;
+  if(idx>=n){
+    const pct=Math.round(st.score/n*100);
+    const grade=pct>=80?'&#127942; Excellent!':pct>=60?'&#128077; Good Job!':'&#128218; Keep Studying!';
+    const dotsr=st.ans.map(function(a){return '<div class="kbc-dot '+(a===true?'ok':a===false?'ng':'')+'"></div>';}).join('');
+    document.getElementById('ka_'+pid).innerHTML='<div class="kbc-finish"><div style="color:rgba(255,255,255,.5);font-size:12px;margin-bottom:6px">Unit Score</div><div class="kbc-big">'+st.score+'/'+n+'</div><div class="kbc-grade">'+grade+'</div><div class="kbc-pct">'+pct+'% correct</div><div class="kbc-dots" style="justify-content:center;margin-bottom:22px">'+dotsr+'</div><button class="kbc-replay" onclick="kbcRestart(\''+pid+'\')">&#128260; Play Again</button></div>';
+    return;
+  }
+  if(idx<0)return;
+  st.cur=idx;
+  document.getElementById('ka_'+pid).innerHTML=kbcRender(pid,idx);
+  if(st.ans[idx]!==null){
+    const m=st.q[idx];
+    document.querySelectorAll('#kg_'+pid+' .kbc-ow').forEach(o=>{o.onclick=null;o.style.cursor='default';});
+    document.getElementById('kow_'+pid+'_'+m.a).classList.add('cor');
+    if(st.sel[idx]!==m.a)document.getElementById('kow_'+pid+'_'+st.sel[idx]).classList.add('wrg');
+    document.getElementById('ke_'+pid).style.display='block';
+    document.getElementById('kn_'+pid).style.display='inline-block';
+  }
+}
+
+function kbcRestart(pid){
+  const st=KBC[pid];
+  st.cur=0;st.score=0;
+  st.ans=new Array(st.q.length).fill(null);
+  st.sel=new Array(st.q.length).fill(null);
+  document.getElementById('ka_'+pid).innerHTML=kbcRender(pid,0);
+}
+
+function mkQ(arr){
+  return arr.map((q,i)=>`<div class="ac"><div class="ah" onclick="tog(this)"><span class="aq">Q${i+1}. ${q.q}</span><span class="pyb" style="margin-left:6px">PYQ: ${q.p}</span><span class="at">+</span></div><div class="ab">${q.a}</div></div>`).join('');
+}
+
+
+function tog(h){
+  const b=h.nextElementSibling;
+  b.classList.toggle('open');
+  h.classList.toggle('open');
+  prog();
+}
+
+function tab(btn,id){
+  const s=btn.closest('.unit,.spec');
+  s.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));
+  s.querySelectorAll('.tpane').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const p=document.getElementById(id);
+  if(p)p.classList.add('on');
+}
+
+function show(id,btn){
+  document.querySelectorAll('.unit,.spec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
+  const s=document.getElementById(id);
+  if(s)s.classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function prog(){
+  const d=document.querySelectorAll('.opt.ok,.opt.ng,.ab.open').length;
+  const t=document.querySelectorAll('.mcqh').length+document.querySelectorAll('.ah').length;
+  const p=Math.min(100,Math.round(d/t*100));
+  document.getElementById('pf').style.width=p+'%';
+  document.getElementById('pt').textContent='Progress: '+p+'% complete';
+}
+
+window.onload=function(){
+  ['u1','u2','u3','u4','u5'].forEach(u=>{
+    document.getElementById(u+'m').innerHTML=mkMCQ(D[u].mcq,u+'m');
+    document.getElementById(u+'4').innerHTML=mkQ(D[u].q4);
+    document.getElementById(u+'12').innerHTML=mkQ(D[u].q12);
+  });
+  document.getElementById('rtb').innerHTML=REP.map(r=>`<tr><td>${r.q} <span class="vtag">VVI</span></td><td>${r.u}</td><td><span class="rcnt">${r.c}x</span></td><td style="font-size:10px;color:#666">${r.y}</td></tr>`).join('');
+  document.getElementById('vvi').innerHTML=[D.u1.q12[0],D.u3.q12[1],D.u5.q12[0]].map((q,i)=>`<div class="ac"><div class="ah open" onclick="tog(this)" style="background:#fff8e7"><span class="aq">⭐ VVI Q${i+1}. ${['TCP/IP — Most Repeated (7x)','JavaScript — Advantages, Operators, Data Types','JSP Actions — Detailed'][i]}</span><span class="at" style="transform:rotate(45deg)">+</span></div><div class="ab open">${q.a}</div></div>`).join('');
+  document.getElementById('cg').innerHTML=CHEAT.map(c=>`<div class="cbox"><h4>${c.t}</h4><ul>${c.i.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+};
+</script>
+</body>
+</html>

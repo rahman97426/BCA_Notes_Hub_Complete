@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA-304 Software Engineering | AKU Patna</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#010a1a;--gold:#ffd700;--orange:#ff8c00;--green:#00c853;--red:#d50000;--kbc-blue:#0a1f5e;--kbc-lite:#1a4a9e}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0e1a;color:#e8f4fd;line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#010a1a,#0d2137,#1a3a5c);padding:40px 20px 25px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(255,165,0,.08),transparent 65%);pointer-events:none}
+.gold-badge{display:inline-block;background:linear-gradient(135deg,#ffd700,#ff8c00);color:#000;font-weight:800;font-size:.72rem;padding:5px 16px;border-radius:20px;letter-spacing:1.5px;margin-bottom:12px}
+.hero h1{font-size:clamp(1.5rem,5vw,2.8rem);font-weight:900;color:#fff;text-shadow:0 0 30px rgba(255,165,0,.4);margin-bottom:6px}
+.hero h2{font-size:.95rem;color:#aac4e0;letter-spacing:2px;margin-bottom:18px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.pill{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.4);color:#ffd700;padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600}
+.prog-wrap{background:rgba(255,255,255,.1);border-radius:10px;height:5px;max-width:500px;margin:0 auto}
+.prog-fill{background:linear-gradient(90deg,#ffd700,#ff6600);height:100%;border-radius:10px;width:0;transition:width 1s ease}
+
+/* ── STICKY NAV ── */
+.sticky-nav{position:sticky;top:0;z-index:200;background:#010a1a;border-bottom:1px solid rgba(255,165,0,.2);padding:7px 12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.nav-btn{background:transparent;border:1px solid rgba(255,165,0,.25);color:#aac4e0;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s;white-space:nowrap}
+.nav-btn:hover,.nav-btn.active{background:rgba(255,165,0,.15);color:#ffd700;border-color:#ffd700}
+
+/* ── SECTION / UNIT HEADER ── */
+.section{padding:25px 14px;max-width:1050px;margin:0 auto;scroll-margin-top:55px}
+.unit-header{background:linear-gradient(135deg,#0d2137,#1a3a5c);border:1px solid rgba(255,165,0,.3);border-radius:12px;padding:18px 22px;margin-bottom:16px}
+.unit-header h3{font-size:1.15rem;color:#ffd700;margin-bottom:4px}
+.unit-header p{color:#aac4e0;font-size:.85rem}
+
+/* ── TABS ── */
+.tab-bar{display:flex;gap:4px;margin-bottom:18px;background:rgba(255,255,255,.05);border-radius:8px;padding:4px}
+.tab-btn{flex:1;padding:9px 4px;border:none;background:transparent;color:#aac4e0;cursor:pointer;border-radius:6px;font-weight:600;font-size:.82rem;transition:all .2s}
+.tab-btn.active{background:linear-gradient(135deg,#ff6600,#ffd700);color:#000}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* ════════════════════════════════════
+   KBC GAME ARENA — FULL REDESIGN
+   ════════════════════════════════════ */
+.kbc-wrap{position:relative;border-radius:14px;overflow:hidden;background:#000;min-height:520px}
+
+/* Animated background curtain */
+.kbc-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,#0a1f6e 0%,#040d30 40%,#000 100%);overflow:hidden;z-index:0}
+.kbc-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(30,100,255,.18) 0%,transparent 40%),
+    repeating-linear-gradient(90deg,transparent 0,transparent 60px,rgba(50,120,255,.04) 61px,transparent 62px);
+  animation:curtain 4s ease-in-out infinite alternate;
+}
+.kbc-bg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 110%,rgba(255,120,0,.12) 0%,transparent 55%);
+  animation:glow-pulse 3s ease-in-out infinite alternate;
+}
+@keyframes curtain{0%{opacity:.7;transform:scaleX(1)}100%{opacity:1;transform:scaleX(1.02)}}
+@keyframes glow-pulse{0%{opacity:.5}100%{opacity:1}}
+
+/* Floating light particles */
+.kbc-particles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.kbc-particles span{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:float-up linear infinite;opacity:0}
+@keyframes float-up{0%{transform:translateY(100%);opacity:0}10%{opacity:.6}90%{opacity:.3}100%{transform:translateY(-20px);opacity:0}}
+
+/* Top gold line */
+.kbc-topline{position:relative;z-index:10;height:3px;background:linear-gradient(90deg,transparent,#ff8c00,#ffd700,#ff8c00,transparent)}
+
+/* KBC Logo */
+.kbc-logo-wrap{position:relative;z-index:10;text-align:center;padding:14px 0 6px}
+.kbc-logo{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1a6bc4,#0a3a8a,#040d30);border:3px solid #4488dd;box-shadow:0 0 25px rgba(50,150,255,.6),inset 0 0 20px rgba(0,0,50,.5);animation:logo-spin-glow 4s ease-in-out infinite alternate;position:relative;overflow:hidden}
+.kbc-logo::before{content:'';position:absolute;top:5%;left:5%;right:5%;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.25),transparent);border-radius:50%;pointer-events:none}
+.kbc-logo-text{font-size:1.5rem;font-weight:900;color:#fff;font-style:italic;letter-spacing:-1px;text-shadow:0 0 12px rgba(100,180,255,.8);position:relative;z-index:2}
+@keyframes logo-spin-glow{0%{box-shadow:0 0 20px rgba(50,150,255,.5),inset 0 0 15px rgba(0,0,50,.5)}100%{box-shadow:0 0 40px rgba(100,180,255,.9),0 0 60px rgba(50,100,200,.4),inset 0 0 25px rgba(0,0,80,.6)}}
+
+/* Lifelines */
+.kbc-lifelines{position:relative;z-index:10;display:flex;justify-content:center;gap:10px;padding:6px 15px 8px}
+.lifeline{width:44px;height:44px;border-radius:50%;border:2px solid rgba(100,160,255,.5);background:radial-gradient(circle at 40% 35%,#1a3a7e,#0a1f4e);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#aac4e0;font-weight:700;transition:all .25s;position:relative;overflow:hidden;flex-direction:column;gap:1px}
+.lifeline .ll-icon{font-size:1.1rem;line-height:1}
+.lifeline .ll-text{font-size:.55rem;color:#88aadd}
+.lifeline:not(.used):hover{border-color:#ffd700;box-shadow:0 0 15px rgba(255,200,0,.5);transform:scale(1.1)}
+.lifeline:not(.used):hover .ll-icon{animation:bounce .4s ease}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.lifeline.used{opacity:.35;cursor:default;position:relative}
+.lifeline.used::after{content:'✕';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#cc0000;font-weight:900;text-shadow:0 0 6px #ff0000}
+.lifeline.active-ll{border-color:#ffd700;box-shadow:0 0 20px rgba(255,200,0,.7);animation:ll-active .3s ease}
+@keyframes ll-active{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+/* Won amount */
+.kbc-won{position:relative;z-index:10;text-align:center;font-size:.78rem;color:#ffd700;font-weight:700;margin-bottom:10px;letter-spacing:.5px;text-shadow:0 0 10px rgba(255,200,0,.4)}
+
+/* Question box — KBC oval */
+.kbc-qbox-wrap{position:relative;z-index:10;padding:0 20px 14px}
+.kbc-qbox{
+  background:linear-gradient(180deg,#0e2d7a 0%,#0a1f5e 50%,#071544 100%);
+  border-radius:50px;
+  padding:16px 30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(30,80,200,.6),inset 0 1px 0 rgba(100,160,255,.3);
+  border:2px solid rgba(80,130,220,.6);
+}
+.kbc-qbox::before{content:'';position:absolute;top:3px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(100,180,255,.6),transparent);border-radius:50%}
+.kbc-qbox::after{content:'';position:absolute;bottom:3px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(60,120,200,.4),transparent);border-radius:50%}
+.kbc-q-num{font-size:.7rem;color:#88aaee;font-weight:700;margin-bottom:4px;letter-spacing:1px}
+.kbc-q-text{font-size:.92rem;font-weight:700;color:#fff;line-height:1.45;text-shadow:0 1px 4px rgba(0,0,100,.5)}
+
+/* KBC Options — real oval style */
+.kbc-opts-grid{position:relative;z-index:10;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 18px}
+.kbc-opt{
+  position:relative;
+  background:linear-gradient(180deg,#0e2d7a 0%,#091a55 50%,#060f3a 100%);
+  border-radius:50px;
+  padding:11px 18px;
+  cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+  border:2px solid rgba(80,130,220,.55);
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,80,.5),inset 0 1px 0 rgba(100,160,255,.2);
+}
+/* Inner shine */
+.kbc-opt::before{content:'';position:absolute;top:4px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,rgba(120,180,255,.4),transparent);border-radius:50%;pointer-events:none;transition:opacity .2s}
+/* Bottom shadow line */
+.kbc-opt::after{content:'';position:absolute;bottom:4px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(50,100,180,.3),transparent);border-radius:50%;pointer-events:none}
+
+/* HOVER — golden shimmer like real KBC */
+.kbc-opt:not(.locked):not(.disabled):hover{
+  background:linear-gradient(180deg,#7a5500 0%,#9a6b00 30%,#c48800 55%,#7a4a00 100%);
+  border-color:rgba(255,210,50,.9);
+  box-shadow:0 0 25px rgba(255,165,0,.7),0 0 50px rgba(255,100,0,.3),inset 0 1px 0 rgba(255,240,100,.4);
+  transform:scale(1.035);
+}
+.kbc-opt:not(.locked):not(.disabled):hover .opt-letter{background:linear-gradient(135deg,#c68000,#ffcc00,#c68000);color:#000;box-shadow:0 0 12px rgba(255,180,0,.6)}
+.kbc-opt:not(.locked):not(.disabled):hover .opt-txt{color:#fff;text-shadow:0 0 8px rgba(255,220,100,.5)}
+
+/* CLICKED / LOCK-IN — orange pulse */
+.kbc-opt.locked{
+  background:linear-gradient(180deg,#8a4400 0%,#b05800 40%,#e07000 60%,#8a3800 100%);
+  border-color:rgba(255,150,0,.9);
+  box-shadow:0 0 30px rgba(255,120,0,.8),0 0 60px rgba(255,80,0,.4),inset 0 1px 0 rgba(255,200,100,.3);
+  animation:lock-pulse 1.1s ease-in-out;
+  cursor:default;
+}
+@keyframes lock-pulse{
+  0%{transform:scale(1)}
+  20%{transform:scale(1.05);box-shadow:0 0 40px rgba(255,140,0,1),0 0 80px rgba(255,80,0,.5)}
+  60%{transform:scale(1.03)}
+  100%{transform:scale(1)}
+}
+.kbc-opt.locked .opt-letter{background:linear-gradient(135deg,#d06000,#ffaa00,#d06000);color:#000}
+
+/* CORRECT — green */
+.kbc-opt.correct-kbc{
+  background:linear-gradient(180deg,#004d20 0%,#006b2d 40%,#00a844 60%,#004520 100%);
+  border-color:rgba(0,220,80,.9);
+  box-shadow:0 0 30px rgba(0,200,80,.8),0 0 60px rgba(0,150,50,.4),inset 0 1px 0 rgba(100,255,150,.3);
+  animation:correct-flash .6s ease;
+  cursor:default;
+}
+@keyframes correct-flash{0%,100%{opacity:1}30%{opacity:.5}60%{opacity:1;transform:scale(1.04)}80%{transform:scale(1)}}
+/* WRONG — red */
+.kbc-opt.wrong-kbc{
+  background:linear-gradient(180deg,#5a0000 0%,#7a0000 40%,#bb0000 60%,#4a0000 100%);
+  border-color:rgba(220,0,0,.9);
+  box-shadow:0 0 25px rgba(200,0,0,.7),inset 0 1px 0 rgba(255,100,100,.2);
+  animation:shake .4s ease;
+  cursor:default;
+}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.kbc-opt.disabled{cursor:default;pointer-events:none}
+
+.opt-letter{
+  width:28px;height:28px;min-width:28px;border-radius:50%;
+  background:linear-gradient(135deg,#1a4a9e,#2a6add,#0e2860);
+  border:1.5px solid rgba(120,170,255,.6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:900;color:#88ccff;
+  transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,0,80,.4),inset 0 1px 0 rgba(150,200,255,.2);
+}
+.opt-txt{color:#c8deff;font-size:.82rem;font-weight:600;transition:color .2s}
+
+/* Status bar */
+.kbc-status-bar{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:8px 22px 14px;font-size:.75rem}
+.kbc-score-tag{color:#ffd700;font-weight:700}
+.kbc-pyq{background:rgba(200,0,0,.2);border:1px solid #dd4444;color:#ff8888;padding:2px 8px;border-radius:10px;font-size:.68rem;font-weight:700}
+.kbc-dots-row{display:flex;gap:4px}
+.kbc-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);transition:all .3s}
+.kbc-dot.done-c{background:#00c853}
+.kbc-dot.done-w{background:#d50000}
+.kbc-dot.current{background:#ffd700;animation:dot-pulse 1s ease-in-out infinite}
+@keyframes dot-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+
+/* NAV buttons */
+.kbc-navrow{position:relative;z-index:10;display:flex;gap:10px;justify-content:center;padding:0 18px 18px}
+.kbc-navbtn{padding:8px 22px;border-radius:25px;border:none;cursor:pointer;font-weight:700;font-size:.82rem;transition:all .2s}
+.kbc-prev{background:rgba(255,255,255,.08);color:#aac4e0;border:1px solid rgba(255,255,255,.15)}
+.kbc-prev:hover:not(:disabled){background:rgba(255,255,255,.15);color:#fff}
+.kbc-prev:disabled{opacity:.3;cursor:default}
+.kbc-next{background:linear-gradient(135deg,#c68000,#ffcc00,#c68000);color:#000;display:none}
+.kbc-next.show{display:inline-block;animation:next-appear .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes next-appear{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+.kbc-next:hover{transform:scale(1.06);box-shadow:0 0 20px rgba(255,180,0,.5)}
+
+/* Explanation box */
+.kbc-exp{position:relative;z-index:10;margin:0 18px 12px;background:rgba(0,180,60,.12);border:1px solid rgba(0,200,60,.4);border-radius:10px;padding:10px 15px;color:#88ddaa;font-size:.8rem;display:none;animation:exp-slide .4s ease}
+@keyframes exp-slide{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.kbc-exp.show{display:block}
+
+/* 50:50 elimination overlay */
+.opt-eliminated{opacity:.18;pointer-events:none}
+.opt-eliminated .opt-txt{text-decoration:line-through}
+
+/* FINISH SCREEN */
+.kbc-finish{position:relative;z-index:10;text-align:center;padding:30px 20px;animation:finish-in .8s cubic-bezier(.34,1.56,.64,1)}
+@keyframes finish-in{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+.finish-trophy{font-size:4rem;animation:trophy-spin 1s ease-in-out infinite alternate;display:inline-block}
+@keyframes trophy-spin{0%{transform:rotate(-10deg) scale(1)}100%{transform:rotate(10deg) scale(1.1)}}
+.finish-score-big{font-size:2.5rem;font-weight:900;color:#ffd700;text-shadow:0 0 30px rgba(255,200,0,.8);margin:10px 0}
+.finish-pct{font-size:1.2rem;color:#ffaa44;font-weight:700}
+.finish-grade{font-size:1rem;color:#aac4e0;margin:8px 0 20px}
+.btn-replay{background:linear-gradient(135deg,#c68000,#ffcc00);color:#000;padding:12px 30px;border-radius:30px;border:none;cursor:pointer;font-weight:800;font-size:.95rem;transition:all .2s;animation:pulse-btn 2s ease-in-out infinite}
+@keyframes pulse-btn{0%,100%{box-shadow:0 0 10px rgba(255,180,0,.3)}50%{box-shadow:0 0 25px rgba(255,180,0,.7)}}
+.btn-replay:hover{transform:scale(1.08)}
+
+/* Money ladder */
+.kbc-money-ladder{position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:2px;pointer-events:none}
+.ml-item{font-size:.58rem;color:#88aacc;text-align:right;padding:1px 4px;border-radius:3px;transition:all .3s;white-space:nowrap}
+.ml-item.current-level{background:rgba(255,200,0,.2);color:#ffd700;font-weight:700;border-left:2px solid #ffd700}
+.ml-item.passed{color:#00c853;font-weight:600}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border-radius:10px;overflow:hidden}
+.acc-header{background:linear-gradient(135deg,#0d2137,#1a3a5c);padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-left:4px solid #1565c0;transition:background .2s}
+.acc-header:hover{background:linear-gradient(135deg,#132f50,#224870)}
+.acc-title{color:#e8f4fd;font-weight:600;font-size:.86rem;flex:1}
+.acc-meta{display:flex;gap:6px;align-items:center}
+.pyq-red{background:rgba(213,0,0,.2);border:1px solid #d50000;color:#ff6b6b;padding:2px 7px;border-radius:10px;font-size:.68rem;font-weight:700;white-space:nowrap}
+.vvi-star{color:#ffd700;font-size:.85rem}
+.acc-arrow{color:#ffd700;transition:transform .3s;font-size:1rem;margin-left:8px}
+.acc-item.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{display:none;background:#fff;color:#1a1a2e;padding:18px}
+.acc-item.open .acc-body{display:block}
+.notebook{background-image:repeating-linear-gradient(transparent,transparent 27px,#c5cae9 27px,#c5cae9 28px);background-size:100% 28px;padding:8px 14px;border-left:4px solid #1565c0;line-height:28px;font-size:.86rem;color:#1a1a2e}
+.notebook h4{color:#0d47a1;font-weight:700;font-size:.87rem;margin-bottom:2px;line-height:1.4}
+.notebook p{margin-bottom:6px}
+.notebook ul{padding-left:18px;margin-bottom:6px}
+.notebook li{margin-bottom:2px}
+.nb-key{font-weight:700;color:#0d47a1}
+.code-box{background:#1e1e2e;color:#a9b7c6;font-family:monospace;padding:8px 12px;border-radius:6px;font-size:.78rem;margin:6px 0;line-height:1.5}
+
+/* ── MOST REPEATED ── */
+.mr-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.mr-table th{background:linear-gradient(135deg,#0d2137,#1a3a5c);color:#ffd700;padding:10px;text-align:left;font-weight:700}
+.mr-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.05);color:#e8f4fd}
+.mr-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.mr-count{color:#ff6b6b;font-weight:800}
+.vvi-gold{color:#ffd700;font-weight:700}
+
+/* ── CHEAT SHEET ── */
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.cheat-box{background:linear-gradient(135deg,#0d2137,#0a1929);border:1px solid rgba(255,165,0,.2);border-radius:10px;padding:16px;transition:border-color .2s}
+.cheat-box:hover{border-color:rgba(255,165,0,.5)}
+.cheat-box h4{color:#ffd700;margin-bottom:8px;font-size:.9rem;border-bottom:1px solid rgba(255,165,0,.2);padding-bottom:5px}
+.cheat-box ul{list-style:none;padding:0}
+.cheat-box li{color:#c8d8e8;font-size:.8rem;padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.cheat-box li::before{content:'▸ ';color:#ff6600}
+.cheat-box .formula{background:rgba(0,0,0,.3);padding:3px 7px;border-radius:4px;font-family:monospace;color:#ffd700;font-size:.78rem;margin:2px 0;display:block}
+
+/* Responsive */
+@media(max-width:600px){
+  .kbc-opts-grid{grid-template-columns:1fr;gap:7px}
+  .opt-txt{font-size:.78rem}
+  .kbc-logo{width:60px;height:60px}
+  .kbc-logo-text{font-size:1.1rem}
+  .kbc-money-ladder{display:none}
+  .tab-btn{font-size:.72rem;padding:7px 2px}
+  .kbc-qbox{padding:12px 20px;border-radius:30px}
+  .kbc-q-text{font-size:.83rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="gold-badge">AKU Patna — BCA Sem III</div>
+  <h1>Software Engineering</h1>
+  <h2>Paper Code: BCA-304 &nbsp;|&nbsp; KBC Edition</h2>
+  <div class="pills">
+    <span class="pill">📅 PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</span>
+    <span class="pill">📝 Marks: 60</span>
+    <span class="pill">⏰ 3 Hours</span>
+    <span class="pill">📚 5 Units</span>
+  </div>
+  <div class="prog-wrap"><div class="prog-fill" id="mainProg"></div></div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <button class="nav-btn active" onclick="goTo('u1',this)">U1</button>
+  <button class="nav-btn" onclick="goTo('u2',this)">U2</button>
+  <button class="nav-btn" onclick="goTo('u3',this)">U3</button>
+  <button class="nav-btn" onclick="goTo('u4',this)">U4</button>
+  <button class="nav-btn" onclick="goTo('u5',this)">U5</button>
+  <button class="nav-btn" onclick="goTo('mostrep',this)">Most Repeated</button>
+  <button class="nav-btn" onclick="goTo('cheatsheet',this)">Cheat Sheet</button>
+</nav>
+
+<!-- ═══ UNIT 1 ═══ -->
+<div class="section" id="u1">
+  <div class="unit-header">
+    <h3>Unit 1 — Introduction to SE &amp; Life Cycle Models</h3>
+    <p>SE Definition, Software Crisis, Waterfall, Prototype, Spiral | PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</p>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'u1-mcq')">🎮 MCQ (KBC)</button>
+    <button class="tab-btn" onclick="switchTab(this,'u1-4m')">📝 4-Mark</button>
+    <button class="tab-btn" onclick="switchTab(this,'u1-12m')">📖 12-Mark</button>
+  </div>
+  <div class="tab-content active" id="u1-mcq"></div>
+  <div class="tab-content" id="u1-4m"></div>
+  <div class="tab-content" id="u1-12m"></div>
+</div>
+
+<!-- ═══ UNIT 2 ═══ -->
+<div class="section" id="u2">
+  <div class="unit-header">
+    <h3>Unit 2 — Software Project Management &amp; SRS</h3>
+    <p>LOC, FP, COCOMO, Halstead, Putnam, SRS | PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</p>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'u2-mcq')">🎮 MCQ (KBC)</button>
+    <button class="tab-btn" onclick="switchTab(this,'u2-4m')">📝 4-Mark</button>
+    <button class="tab-btn" onclick="switchTab(this,'u2-12m')">📖 12-Mark</button>
+  </div>
+  <div class="tab-content active" id="u2-mcq"></div>
+  <div class="tab-content" id="u2-4m"></div>
+  <div class="tab-content" id="u2-12m"></div>
+</div>
+
+<!-- ═══ UNIT 3 ═══ -->
+<div class="section" id="u3">
+  <div class="unit-header">
+    <h3>Unit 3 — Software Design</h3>
+    <p>FOD, DFD, Coupling, OOD, Structure Charts | PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</p>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'u3-mcq')">🎮 MCQ (KBC)</button>
+    <button class="tab-btn" onclick="switchTab(this,'u3-4m')">📝 4-Mark</button>
+    <button class="tab-btn" onclick="switchTab(this,'u3-12m')">📖 12-Mark</button>
+  </div>
+  <div class="tab-content active" id="u3-mcq"></div>
+  <div class="tab-content" id="u3-4m"></div>
+  <div class="tab-content" id="u3-12m"></div>
+</div>
+
+<!-- ═══ UNIT 4 ═══ -->
+<div class="section" id="u4">
+  <div class="unit-header">
+    <h3>Unit 4 — Testing, Debugging &amp; Reliability</h3>
+    <p>White Box, Black Box, Unit Testing, Debugging, Musa's Model | PYQ: 2014,2017,2018,2019,2020,2022,2024,2025</p>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'u4-mcq')">🎮 MCQ (KBC)</button>
+    <button class="tab-btn" onclick="switchTab(this,'u4-4m')">📝 4-Mark</button>
+    <button class="tab-btn" onclick="switchTab(this,'u4-12m')">📖 12-Mark</button>
+  </div>
+  <div class="tab-content active" id="u4-mcq"></div>
+  <div class="tab-content" id="u4-4m"></div>
+  <div class="tab-content" id="u4-12m"></div>
+</div>
+
+<!-- ═══ UNIT 5 ═══ -->
+<div class="section" id="u5">
+  <div class="unit-header">
+    <h3>Unit 5 — Quality Assurance &amp; Maintenance</h3>
+    <p>ISO 9000, SEI CMM, Maintenance, Reverse Engineering, V&amp;V | PYQ: 2018,2019,2020,2022,2024,2025</p>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'u5-mcq')">🎮 MCQ (KBC)</button>
+    <button class="tab-btn" onclick="switchTab(this,'u5-4m')">📝 4-Mark</button>
+    <button class="tab-btn" onclick="switchTab(this,'u5-12m')">📖 12-Mark</button>
+  </div>
+  <div class="tab-content active" id="u5-mcq"></div>
+  <div class="tab-content" id="u5-4m"></div>
+  <div class="tab-content" id="u5-12m"></div>
+</div>
+
+<!-- ═══ MOST REPEATED ═══ -->
+<div class="section" id="mostrep">
+  <div class="unit-header"><h3>⭐ Most Repeated PYQ Topics</h3><p>Sorted by frequency — 2014 to 2025</p></div>
+  <div style="overflow-x:auto">
+  <table class="mr-table">
+    <tr><th>Topic</th><th>Unit</th><th>Times</th><th>PYQ Years</th></tr>
+    <tr><td><span class="vvi-gold">★ Waterfall Model</span></td><td>U1</td><td><span class="mr-count">8×</span></td><td>2014,2017,2018,2019,2020,2022,2024,2025</td></tr>
+    <tr><td><span class="vvi-gold">★ Software Maintenance</span></td><td>U5</td><td><span class="mr-count">6×</span></td><td>2018,2019,2020,2022,2024,2025</td></tr>
+    <tr><td><span class="vvi-gold">★ SRS Document</span></td><td>U2</td><td><span class="mr-count">6×</span></td><td>2014,2018,2019,2020,2024,2025</td></tr>
+    <tr><td><span class="vvi-gold">★ Spiral Model</span></td><td>U1</td><td><span class="mr-count">5×</span></td><td>2014,2017,2019,2020,2022</td></tr>
+    <tr><td>SQA</td><td>U4</td><td><span class="mr-count">4×</span></td><td>2020,2022,2024,2025</td></tr>
+    <tr><td>Black Box Testing</td><td>U4</td><td><span class="mr-count">4×</span></td><td>2014,2017,2019,2022</td></tr>
+    <tr><td>COCOMO Model</td><td>U2</td><td><span class="mr-count">4×</span></td><td>2017,2019,2022,2024</td></tr>
+    <tr><td>ISO 9000 vs CMM</td><td>U5</td><td><span class="mr-count">4×</span></td><td>2018,2022,2024,2025</td></tr>
+    <tr><td>DFD</td><td>U3</td><td><span class="mr-count">4×</span></td><td>2014,2018,2019,2022</td></tr>
+    <tr><td>Coupling Types</td><td>U3</td><td><span class="mr-count">3×</span></td><td>2018,2020,2024</td></tr>
+    <tr><td>White Box Testing</td><td>U4</td><td><span class="mr-count">3×</span></td><td>2018,2020,2024</td></tr>
+    <tr><td>Software Crisis</td><td>U1</td><td><span class="mr-count">3×</span></td><td>2017,2018,2022</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ═══ CHEAT SHEET ═══ -->
+<div class="section" id="cheatsheet">
+  <div class="unit-header"><h3>🚀 Last Minute Cheat Sheet</h3><p>Quick revision — formulas, tricks, differences, one-liners</p></div>
+  <div class="cheat-grid">
+    <div class="cheat-box">
+      <h4>📋 Full Forms</h4>
+      <ul>
+        <li>SE = Software Engineering</li><li>SRS = Software Requirements Specification</li>
+        <li>COCOMO = Constructive Cost Model</li><li>LOC = Lines of Code</li>
+        <li>FP = Function Points</li><li>DFD = Data Flow Diagram</li>
+        <li>OOD = Object Oriented Design</li><li>SQA = Software Quality Assurance</li>
+        <li>CMM = Capability Maturity Model</li><li>V&amp;V = Verification &amp; Validation</li>
+        <li>CI = Continuous Integration</li><li>SLIM = Software LIfecycle Model</li>
+      </ul>
+    </div>
+    <div class="cheat-box">
+      <h4>🔢 Key Formulas</h4>
+      <span class="formula">COCOMO: E = a × (KLOC)^b</span>
+      <span class="formula">Organic:       a=2.4, b=1.05</span>
+      <span class="formula">Semi-detached: a=3.0, b=1.12</span>
+      <span class="formula">Embedded:      a=3.6, b=1.20</span>
+      <span class="formula">Musa: λ(τ) = f × K × [N − μ(τ)]</span>
+      <span class="formula">Halstead: n=n1+n2, N=N1+N2</span>
+      <ul><li>n1=distinct operators</li><li>n2=distinct operands</li><li>N1=total operators</li><li>N2=total operands</li></ul>
+    </div>
+    <div class="cheat-box">
+      <h4>🧠 Memory Tricks</h4>
+      <ul>
+        <li>Waterfall = water flows DOWN (no going back)</li>
+        <li>Spiral = RISK at every loop</li>
+        <li>Coupling worst→best: <b>CC3SD</b></li>
+        <li>SRS chars: <b>CCCCVM</b> (Correct,Consistent,Complete,Concise,Verifiable,Modifiable)</li>
+        <li>CMM 5 levels: <b>I R D M O</b></li>
+        <li>Maintenance: <b>CAPP</b> (Corrective,Adaptive,Perfective,Preventive)</li>
+        <li>OOD pillars: <b>APIE</b> (Abstraction,Polymorphism,Inheritance,Encapsulation)</li>
+        <li>DFD: P=round, Flow=arrow, Store=║, Entity=□</li>
+      </ul>
+    </div>
+    <div class="cheat-box">
+      <h4>⚠️ Common Mistakes</h4>
+      <ul>
+        <li>Waterfall = NO iteration (rigid)</li>
+        <li>Prototype = NOT the final product</li>
+        <li>White Box = internal code view</li>
+        <li>Black Box = external user view</li>
+        <li>ISO 9000 = quality SYSTEM standard</li>
+        <li>CMM Level 1 = chaotic (bad!)</li>
+        <li>Verification = "Building it right"</li>
+        <li>Validation = "Building the right thing"</li>
+        <li>DFD Level 0 = Context Diagram</li>
+        <li>Error→Fault→Defect→Failure (order!)</li>
+      </ul>
+    </div>
+    <div class="cheat-box">
+      <h4>📊 Models Comparison</h4>
+      <ul>
+        <li><b>Waterfall:</b> Sequential, rigid, clear requirements</li>
+        <li><b>Prototype:</b> Iterative, unclear requirements</li>
+        <li><b>Spiral:</b> Risk-driven, 4 quadrants, large projects</li>
+        <li><b>FOD:</b> Function-based, top-down, DFDs</li>
+        <li><b>OOD:</b> Object-based, reusable, APIE</li>
+        <li><b>LOC:</b> Simple, language-dependent</li>
+        <li><b>FP:</b> Functional, language-independent</li>
+        <li><b>COCOMO Organic:</b> Small team, simple</li>
+        <li><b>COCOMO Embedded:</b> Real-time, complex</li>
+        <li><b>ISO vs CMM:</b> Standard vs 5-level model</li>
+      </ul>
+    </div>
+    <div class="cheat-box">
+      <h4>⚡ Quick One-Liners</h4>
+      <ul>
+        <li>SE = systematic, disciplined, quantifiable</li>
+        <li>Software crisis = 1960s project failures</li>
+        <li>Spiral = 4 quadrants: Plan, Risk, Dev, Eval</li>
+        <li>Conceptual=WHAT; Technical=HOW</li>
+        <li>Content coupling = worst; Data = best</li>
+        <li>Statement &lt; Branch &lt; Path coverage</li>
+        <li>Unit test by developer; System test by tester</li>
+        <li>Corrective = fix bugs; Adaptive = new env</li>
+        <li>Perfective = new features; Preventive = future</li>
+        <li>Reverse = code→design→requirements</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:25px;color:#444;font-size:.75rem">
+  BCA-304 Software Engineering | AKU Patna | PYQ 2014–2025
+</div>
+
+<script>
+// ════════════ DATA ════════════
+const DATA = {
+u1:{
+  mcqs:[
+    {q:"According to IEEE, Software Engineering is the application of a ___ approach to the development of software.",o:["Creative, Unplanned","Systematic, Disciplined, Quantifiable","Random, Flexible","Artistic, Intuitive"],a:1,e:"IEEE defines SE using 3 pillars: Systematic, Disciplined, Quantifiable.",p:"2019,2022"},
+    {q:"The Waterfall Model was proposed by:",o:["Barry Boehm","Winston W. Royce","Roger Pressman","Ian Sommerville"],a:1,e:"Winston Royce proposed the Waterfall Model in 1970.",p:"2014,2017"},
+    {q:"Which model is best when requirements are NOT clearly known at the start?",o:["Waterfall Model","Spiral Model","Prototype Model","V-Model"],a:2,e:"Prototype model: build working sample first when requirements are unclear.",p:"2017,2020,2022"},
+    {q:"The Software Crisis occurred in which period?",o:["1950s","1960s–1970s","1980s","1990s"],a:1,e:"Software Crisis happened in 1960s–70s due to massive project failures.",p:"2018"},
+    {q:"The Spiral Model uses ___ as its driving force.",o:["Cost","Risk Analysis","Time","User Feedback"],a:1,e:"Spiral is risk-driven — risk analysis performed at every cycle/loop.",p:"2014,2017,2019"},
+    {q:"How many phases does the Waterfall Model have?",o:["4","5","6","7"],a:2,e:"Waterfall has 6 phases: Requirements, Design, Implementation, Testing, Deployment, Maintenance.",p:"2014,2018,2022"},
+    {q:"In the Spiral Model, the 4 quadrants are Planning, Risk Analysis, Development, and:",o:["Testing","Evaluation","Deployment","Review"],a:1,e:"4th quadrant is Evaluation — customer reviews the product built in that cycle.",p:"2019,2020"},
+    {q:"Which model has NO going back to previous phases?",o:["Prototype","Spiral","Waterfall","Agile"],a:2,e:"Waterfall is strictly linear — once a phase is done, you cannot go back.",p:"2014,2017,2018"},
+    {q:"SE is needed primarily because of:",o:["To make software cheap","To handle software complexity and crisis","To eliminate programmers","To speed up hardware"],a:1,e:"SE was born to manage increasing software complexity and frequent project failures.",p:"2018,2022"},
+    {q:"Waterfall Model is also called:",o:["Spiral Model","Classic Life Cycle Model","Prototype Model","Agile Model"],a:1,e:"Waterfall = Classic Life Cycle = Linear Sequential Model.",p:"2014,2017,2019,2020"}
+  ],
+  q4:[
+    {q:"What is Software Engineering? Explain its need.",p:"2019,2022",v:false,a:`<div class="notebook"><h4>Definition</h4><p>SE is the application of a <span class="nb-key">systematic, disciplined, quantifiable</span> approach to software development, operation, and maintenance. (IEEE Definition)</p><h4>3 Pillars</h4><ul><li><span class="nb-key">Systematic</span> — follows a defined process</li><li><span class="nb-key">Disciplined</span> — follows standards and rules</li><li><span class="nb-key">Quantifiable</span> — can be measured</li></ul><h4>Why Needed</h4><ul><li>Software became very large and complex</li><li>Projects were failing — over budget, delayed</li><li>Software Crisis of 1960s–70s showed urgent need</li><li>Needed to produce quality software on time within budget</li></ul></div>`},
+    {q:"What is Software Crisis? What are its causes?",p:"2017,2018,2022",v:false,a:`<div class="notebook"><h4>Software Crisis</h4><p>In the <span class="nb-key">1960s–70s</span>, large software projects consistently failed — over budget, late, and not working. This is called the <span class="nb-key">Software Crisis</span>.</p><h4>Causes</h4><ul><li>No formal methods for software development</li><li>Increasing complexity of systems</li><li>Poor project management and planning</li><li>Lack of documentation and standards</li></ul><h4>Effect</h4><ul><li>Led to birth of Software Engineering as a discipline</li></ul></div>`},
+    {q:"Compare Waterfall, Prototype, and Spiral Models.",p:"2014,2017,2020,2022",v:true,a:`<div class="notebook"><p><span class="nb-key">Waterfall:</span> Sequential phases, rigid, no going back, clear requirements needed</p><p><span class="nb-key">Prototype:</span> Build sample first, iterative, for unclear requirements</p><p><span class="nb-key">Spiral:</span> Risk-driven, 4 quadrants per loop, large/risky projects</p><h4>Key Points</h4><ul><li>Flexibility: Spiral &gt; Prototype &gt; Waterfall</li><li>Risk handling: Spiral (best), Waterfall (none)</li><li>Cost: Spiral (high), Waterfall (low)</li></ul></div>`},
+    {q:"Write a short note on Layered Technology in SE.",p:"2019,2022",v:false,a:`<div class="notebook"><h4>4 Layers (bottom to top)</h4><ul><li><span class="nb-key">Quality Focus</span> — foundation, commitment to quality</li><li><span class="nb-key">Process</span> — framework defining tasks and workflow</li><li><span class="nb-key">Methods</span> — technical how-to (analysis, design, testing)</li><li><span class="nb-key">Tools</span> — automated support for methods (CASE tools)</li></ul><p>Quality focus is the base on which all other layers rest.</p></div>`}
+  ],
+  q12:[
+    {q:"Explain the Waterfall Model in detail — phases, advantages, and disadvantages.",p:"2014,2017,2018,2019,2020,2022,2024,2025",v:true,a:`<div class="notebook"><h4>Introduction</h4><p>The <span class="nb-key">Waterfall Model</span> is the oldest SDLC model, proposed by <span class="nb-key">Winston W. Royce in 1970</span>. It is linear and sequential.</p><h4>Definition</h4><p>Classic life cycle model where software development progresses through defined phases in top-down manner, with NO overlapping or iteration.</p><h4>6 Phases</h4><ul><li><span class="nb-key">1. Requirements</span> — gather all needs, document in SRS</li><li><span class="nb-key">2. System Design</span> — architecture, HLD, LLD, database</li><li><span class="nb-key">3. Implementation</span> — actual coding</li><li><span class="nb-key">4. Testing</span> — unit, integration, system testing</li><li><span class="nb-key">5. Deployment</span> — release to customer</li><li><span class="nb-key">6. Maintenance</span> — bug fixes, updates</li></ul><h4>Diagram</h4><div class="code-box">Requirements → Design → Implementation → Testing → Deployment → Maintenance (linear, no going back)</div><h4>Advantages</h4><ul><li>Simple and easy to understand</li><li>Well-defined phases with clear deliverables</li><li>Good documentation at every phase</li><li>Works for small projects with clear requirements</li></ul><h4>Disadvantages</h4><ul><li>No flexibility — cannot go back</li><li>Not for unclear/changing requirements</li><li>Customer sees final product only at end</li><li>Testing happens late — bugs found very late</li></ul><h4>Conclusion</h4><p>Best for small projects with <span class="nb-key">well-defined, stable requirements</span>. Most asked topic in AKU PYQ — appeared in all 8 years.</p></div>`},
+    {q:"Explain the Spiral Model with diagram, advantages and disadvantages.",p:"2014,2017,2019,2020,2022",v:true,a:`<div class="notebook"><h4>Introduction</h4><p>The <span class="nb-key">Spiral Model</span> was proposed by <span class="nb-key">Barry Boehm in 1988</span>. It combines Waterfall and Prototype models. It is <span class="nb-key">risk-driven</span>.</p><h4>4 Quadrants per Spiral</h4><ul><li><span class="nb-key">Q1 Planning</span> — objectives, constraints</li><li><span class="nb-key">Q2 Risk Analysis</span> — identify risks, build prototype</li><li><span class="nb-key">Q3 Development</span> — actual development and testing</li><li><span class="nb-key">Q4 Evaluation</span> — customer evaluates, gives feedback</li></ul><h4>Diagram</h4><div class="code-box">PLANNING ↗ RISK ANALYSIS ↘ DEVELOPMENT ↙ EVALUATION ↖ (spiral expands outward)</div><h4>Advantages</h4><ul><li>Strong risk management at every cycle</li><li>Flexible — handles requirement changes</li><li>Customer involved at every stage</li></ul><h4>Disadvantages</h4><ul><li>Expensive and complex</li><li>Needs risk assessment expertise</li><li>Not for small projects</li></ul><h4>Conclusion</h4><p>Best for <span class="nb-key">large, high-risk projects</span>. Key feature: <span class="nb-key">risk analysis at every loop</span>.</p></div>`},
+    {q:"What is the Prototype Model? Explain its phases and when it is used.",p:"2017,2020,2022",v:false,a:`<div class="notebook"><h4>Definition</h4><p>The Prototype Model builds a working sample (prototype) first to understand unclear requirements through customer feedback.</p><h4>Phases</h4><ul><li>Gather initial requirements → Build prototype → Customer evaluates → Refine requirements → Repeat → Build final system</li></ul><h4>When to Use</h4><ul><li>Requirements are unclear or changing</li><li>User is unsure of what they want</li><li>UI-heavy applications</li></ul><h4>Pros &amp; Cons</h4><ul><li>Pro: User sees working model early</li><li>Pro: Reduces misunderstanding</li><li>Con: Prototype may be mistaken for final product</li></ul></div>`}
+  ]
+},
+u2:{
+  mcqs:[
+    {q:"COCOMO stands for:",o:["Complete Cost Model","Constructive Cost Model","Cooperative Cost Model","Comparative Cost Model"],a:1,e:"COCOMO = Constructive Cost Model, developed by Barry Boehm 1981.",p:"2017,2019,2022,2024"},
+    {q:"COCOMO Organic mode constants are:",o:["a=3.6, b=1.20","a=3.0, b=1.12","a=2.4, b=1.05","a=2.0, b=1.00"],a:2,e:"Organic: a=2.4, b=1.05 — small team, simple familiar project.",p:"2019,2022"},
+    {q:"LOC stands for:",o:["Level of Coding","Lines of Code","Load of Computation","Level of Complexity"],a:1,e:"LOC = Lines of Code — counts source code lines, simplest size metric.",p:"2017,2019"},
+    {q:"SRS characteristics include all EXCEPT:",o:["Correct and Unambiguous","Consistent and Complete","Verifiable and Modifiable","Expensive and Complex"],a:3,e:"SRS must be Correct, Unambiguous, Complete, Consistent, Verifiable, Modifiable.",p:"2014,2018,2019,2020"},
+    {q:"Function Points were developed by:",o:["Barry Boehm","Alan Albrecht","Halstead","Putnam"],a:1,e:"Function Points developed by Alan Albrecht at IBM in 1979.",p:"2017,2019"},
+    {q:"Delphi Technique is used for:",o:["Database design","Cost estimation using expert opinion","Testing software","Writing SRS"],a:1,e:"Delphi = expert-based estimation method using anonymous consensus.",p:"2018,2020"},
+    {q:"Halstead's Software Science measures complexity using:",o:["Lines of code only","Number of operators and operands","Number of modules","Number of test cases"],a:1,e:"Halstead: n1(distinct operators), n2(distinct operands), N1+N2 total.",p:"2017,2022"},
+    {q:"Putnam's SLIM model is used for:",o:["Size estimation","Staffing level estimation","Quality measurement","Testing"],a:1,e:"Putnam's SLIM estimates staffing levels and development time for large projects.",p:"2018,2020"},
+    {q:"IEEE 830 defines standard for:",o:["Software Testing","SRS document structure","Coding standards","Software Maintenance"],a:1,e:"IEEE 830 defines recommended practices for SRS documents.",p:"2018,2020,2024"},
+    {q:"'System shall be fast' is a ___ requirement.",o:["Functional","Non-Functional","Constraint","Business"],a:1,e:"'Fast' (performance) is Non-Functional — HOW WELL system performs.",p:"2019,2022"}
+  ],
+  q4:[
+    {q:"Differentiate between LOC and Function Points.",p:"2017,2019,2022",v:false,a:`<div class="notebook"><h4>LOC (Lines of Code)</h4><ul><li>Counts number of source code lines</li><li>Language-dependent</li><li>Cannot be used before coding begins</li></ul><h4>Function Points (FP)</h4><ul><li>Measures size based on functionality</li><li>Language-independent</li><li>Can be used before coding — better for planning</li></ul><p><span class="nb-key">Key:</span> LOC counts code; FP counts functionality.</p></div>`},
+    {q:"What are the characteristics of a good SRS document?",p:"2014,2018,2019,2020,2024,2025",v:true,a:`<div class="notebook"><h4>8 Key Characteristics</h4><ul><li><span class="nb-key">Correct</span> — every requirement is accurate</li><li><span class="nb-key">Unambiguous</span> — only one interpretation</li><li><span class="nb-key">Complete</span> — all requirements included</li><li><span class="nb-key">Consistent</span> — no contradictions</li><li><span class="nb-key">Verifiable</span> — can be tested</li><li><span class="nb-key">Modifiable</span> — easy to update</li><li><span class="nb-key">Traceable</span> — linked to source</li><li><span class="nb-key">Ranked</span> — priorities assigned</li></ul></div>`},
+    {q:"Write a short note on the Delphi Technique.",p:"2018,2020",v:false,a:`<div class="notebook"><h4>Delphi Technique</h4><p>An <span class="nb-key">expert-based estimation method</span>.</p><ul><li>Group of experts assembled anonymously</li><li>Each gives independent estimate</li><li>Results shown to all — experts revise</li><li>Repeat until consensus reached</li></ul><p><span class="nb-key">Advantage:</span> No single expert dominates. Reduces bias.</p></div>`},
+    {q:"Differentiate Functional and Non-Functional Requirements.",p:"2019,2022,2024",v:false,a:`<div class="notebook"><h4>Functional: WHAT system does</h4><ul><li>"User must login with username/password"</li><li>"Generate monthly reports"</li></ul><h4>Non-Functional: HOW WELL it performs</h4><ul><li>Performance: "respond under 2 seconds"</li><li>Security: "encrypt all passwords"</li><li>Reliability, Scalability, Portability</li></ul></div>`}
+  ],
+  q12:[
+    {q:"Explain COCOMO model in detail — three modes, formulas, levels, and example.",p:"2017,2019,2022,2024",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">COCOMO (Constructive Cost Model)</span> by <span class="nb-key">Barry Boehm (1981)</span> estimates effort, cost, and schedule.</p><h4>Formula</h4><div class="code-box">Effort (E) = a × (KLOC)^b  [Man-Months]
+Time   (T) = c × (E)^d     [Months]
+Staff  (S) = E / T          [Persons]</div><h4>3 Modes</h4><ul><li><span class="nb-key">Organic (a=2.4, b=1.05)</span> — small team, simple project. E.g. payroll system</li><li><span class="nb-key">Semi-Detached (a=3.0, b=1.12)</span> — medium complexity. E.g. DBMS</li><li><span class="nb-key">Embedded (a=3.6, b=1.20)</span> — real-time, complex. E.g. air traffic control</li></ul><h4>Example</h4><div class="code-box">50 KLOC, Organic: E = 2.4 × (50)^1.05 ≈ 145 Man-Months</div><h4>Advantages &amp; Disadvantages</h4><ul><li>Advantage: Easy to use, well-documented</li><li>Disadvantage: LOC hard to estimate before coding</li></ul><h4>Conclusion</h4><p>For exams: <span class="nb-key">Organic(2.4,1.05), Semi(3.0,1.12), Embedded(3.6,1.20)</span></p></div>`},
+    {q:"Explain SRS — purpose, 8 characteristics, and IEEE 830 structure.",p:"2014,2018,2019,2020,2024,2025",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">SRS</span> is a complete description of what software must do — the foundation document.</p><h4>Purpose</h4><ul><li>Contract between customer and developer</li><li>Basis for project planning and cost estimation</li><li>Reference for test case design</li></ul><h4>8 Characteristics</h4><ul><li>Correct, Unambiguous, Complete, Consistent, Verifiable, Modifiable, Traceable, Ranked</li></ul><h4>IEEE 830 Structure</h4><div class="code-box">Section 1: Introduction (Purpose, Scope, Definitions)
+Section 2: Overall Description (product, users, constraints)
+Section 3: Specific Requirements (Functional + Non-Functional)</div><h4>Conclusion</h4><p>Good SRS saves time and money — appeared in PYQ <span class="nb-key">6 times</span>.</p></div>`}
+  ]
+},
+u3:{
+  mcqs:[
+    {q:"DFD at Level 0 is called:",o:["Detailed DFD","Context Diagram","Structure Chart","System Chart"],a:1,e:"DFD Level 0 = Context Diagram — whole system as ONE process.",p:"2014,2018,2019"},
+    {q:"In a DFD, a Process is shown as:",o:["Rectangle","Arrow","Rounded Rectangle","Parallel Lines"],a:2,e:"Process in DFD = rounded rectangle or circle.",p:"2018,2019"},
+    {q:"Which coupling is considered the WORST?",o:["Data Coupling","Stamp Coupling","Common Coupling","Content Coupling"],a:3,e:"Content Coupling is worst — one module directly accesses another's internal data.",p:"2018,2020,2024"},
+    {q:"Hiding internal details, showing only necessary info =",o:["Inheritance","Polymorphism","Encapsulation","Abstraction"],a:3,e:"Encapsulation = hiding implementation; Abstraction = hiding complexity.",p:"2018,2020"},
+    {q:"Which design approach works from Main module DOWN to sub-modules?",o:["Bottom-Up","Hybrid","Top-Down","Object-Oriented"],a:2,e:"Top-Down design decomposes from highest-level module downward.",p:"2017,2019"},
+    {q:"DFD Level 1 is created by:",o:["Adding more entities","Exploding Level 0 into sub-processes","Combining Level 2 diagrams","New context diagram"],a:1,e:"Level 1 DFD = exploding single Level 0 process into sub-processes.",p:"2018,2019,2022"},
+    {q:"Sharing a global variable between modules =",o:["Content Coupling","Common Coupling","Control Coupling","Data Coupling"],a:1,e:"Common Coupling = modules share a global variable.",p:"2018,2020,2024"},
+    {q:"FOD uses ___ to represent program structure.",o:["Class Diagrams","DFD and Structure Charts","ER Diagrams","Flowcharts"],a:1,e:"FOD uses DFDs for analysis and Structure Charts for design.",p:"2018,2019"},
+    {q:"OOD approach identifies:",o:["Functions and data","Objects and their interactions","Modules and links","Data flows"],a:1,e:"OOD identifies objects, their attributes, methods, and interactions.",p:"2020,2022"},
+    {q:"Child class using parent class methods is called:",o:["Polymorphism","Encapsulation","Inheritance","Abstraction"],a:2,e:"Inheritance = child class inherits properties and methods from parent.",p:"2018,2020"}
+  ],
+  q4:[
+    {q:"What are DFDs? Explain the 4 components.",p:"2014,2018,2019,2022",v:true,a:`<div class="notebook"><h4>DFD = Data Flow Diagram</h4><p>Graphical representation of how data flows through a system.</p><h4>4 Components</h4><ul><li><span class="nb-key">Process</span> — Rounded rectangle. Transforms data.</li><li><span class="nb-key">Data Flow</span> — Arrow (→). Data moving between components.</li><li><span class="nb-key">Data Store</span> — Parallel lines (═). Where data is stored.</li><li><span class="nb-key">External Entity</span> — Rectangle. Outside the system.</li></ul><h4>Levels</h4><ul><li>Level 0 = Context Diagram (whole system as 1 process)</li><li>Level 1 = Major sub-processes</li><li>Level 2 = Further detail</li></ul></div>`},
+    {q:"Explain the types of coupling with examples.",p:"2018,2020,2024",v:true,a:`<div class="notebook"><p>Coupling = how much one module depends on another. <span class="nb-key">Low coupling is desirable.</span></p><h4>Types (Worst → Best)</h4><ul><li><span class="nb-key">Content (WORST)</span> — one module accesses internal data of another</li><li><span class="nb-key">Common</span> — share a global variable</li><li><span class="nb-key">Control</span> — passes flag to control another module</li><li><span class="nb-key">Stamp</span> — passes whole data structure, only part needed</li><li><span class="nb-key">Data (BEST)</span> — shares only simple data parameters</li></ul><p>Trick: <span class="nb-key">CC3SD</span></p></div>`},
+    {q:"Compare Function Oriented Design (FOD) and Object Oriented Design (OOD).",p:"2018,2020,2022",v:false,a:`<div class="notebook"><h4>FOD</h4><ul><li>System = functions. Data and functions SEPARATE.</li><li>Uses DFDs + Structure Charts. Top-down.</li><li>Hard to reuse — tied to specific data.</li></ul><h4>OOD</h4><ul><li>System = objects. Data and functions TOGETHER (encapsulation).</li><li>Key: APIE (Abstraction, Polymorphism, Inheritance, Encapsulation)</li><li>Highly reusable through inheritance.</li></ul></div>`},
+    {q:"What is Conceptual Design vs Technical Design?",p:"2017,2019",v:false,a:`<div class="notebook"><h4>Conceptual Design (HLD)</h4><p>Answers <span class="nb-key">WHAT</span> the system will do. Architecture, hardware/software split.</p><h4>Technical Design (LLD)</h4><p>Answers <span class="nb-key">HOW</span> the system will be built. Algorithms, data structures, DB schema.</p></div>`}
+  ],
+  q12:[
+    {q:"Explain Function Oriented Design — DFDs, Structure Charts, Transform and Transaction Analysis.",p:"2014,2018,2019,2022",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">FOD</span> decomposes system into interacting functions using DFDs and Structure Charts.</p><h4>Steps in FOD</h4><ul><li>Step 1: Context Diagram (Level 0)</li><li>Step 2: Refine to Level 1 &amp; 2 DFDs</li><li>Step 3: Identify Transform/Transaction Centers</li><li>Step 4: Map DFD to Structure Chart</li><li>Step 5: Refine Structure Chart</li></ul><h4>DFD</h4><div class="code-box">Level 0: [User] → (System) → [Report]
+Level 1: (Validate)→(Process)→(Store)→(Report)</div><h4>Structure Charts</h4><p>Hierarchical — Main Module → Sub-modules. Shows function call hierarchy.</p><h4>Transform Analysis</h4><p>Linear DFD flow → identify central transform → build chart around it.</p><h4>Transaction Analysis</h4><p>One input → multiple outputs (menu). Transaction center dispatches to action paths.</p><h4>Conclusion</h4><p>FOD effective for data processing apps. DFDs appeared in PYQ <span class="nb-key">4 times</span>.</p></div>`},
+    {q:"Explain Object Oriented Design with APIE — Abstraction, Encapsulation, Inheritance, Polymorphism.",p:"2018,2020,2022",v:false,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">OOD</span> models system as collection of objects with data (attributes) and behavior (methods).</p><h4>4 Pillars (APIE)</h4><ul><li><span class="nb-key">Abstraction</span> — shows only essential features, hides complexity</li><li><span class="nb-key">Encapsulation</span> — bundles data and methods, restricts direct access</li><li><span class="nb-key">Inheritance</span> — child class inherits from parent. Code reuse.</li><li><span class="nb-key">Polymorphism</span> — same method works differently for different objects</li></ul><h4>Key Concepts</h4><ul><li>Class: Blueprint | Object: Instance | Method: Function in class</li></ul><h4>Conclusion</h4><p>OOD is preferred for modern software. Main advantage: reusability through inheritance.</p></div>`}
+  ]
+},
+u4:{
+  mcqs:[
+    {q:"White Box Testing is also known as:",o:["Black Box Testing","Glass Box / Structural Testing","System Testing","Acceptance Testing"],a:1,e:"White Box = Glass Box = Structural Testing — tests internal code structure.",p:"2018,2020,2024"},
+    {q:"Which technique divides inputs into groups expecting same behavior?",o:["Boundary Value Analysis","Statement Coverage","Equivalence Partitioning","Path Coverage"],a:2,e:"Equivalence Partitioning: divides inputs into groups, test one value per group.",p:"2014,2017,2019,2022"},
+    {q:"Correct order of the Error-Fault-Failure chain:",o:["Failure→Fault→Error","Error→Fault/Bug→Failure","Bug→Error→Failure","Fault→Error→Bug"],a:1,e:"Human Error → Fault in code → Failure when executed.",p:"2020,2022"},
+    {q:"Unit Testing is performed by:",o:["End Users","System Testers","Developers","Project Manager"],a:2,e:"Unit Testing done by developers — tests individual modules/functions.",p:"2018,2020"},
+    {q:"Black Box Testing focuses on:",o:["Internal code logic","External behavior and output","Code coverage","Path coverage"],a:1,e:"Black Box = external behavior — input/output without seeing source code.",p:"2014,2017,2019,2022"},
+    {q:"Musa's Basic Model is related to:",o:["Cost Estimation","Software Reliability","Testing Coverage","SRS Quality"],a:1,e:"Musa's: λ(τ) = f × K × [N − μ(τ)] — software failure rate formula.",p:"2020,2022"},
+    {q:"Which testing tests the complete integrated system against requirements?",o:["Unit Testing","Integration Testing","System Testing","Acceptance Testing"],a:2,e:"System Testing = entire system verified against specified requirements.",p:"2018,2019"},
+    {q:"Path Coverage is also called:",o:["Statement Coverage","Branch Coverage","Basis Path Coverage","Decision Coverage"],a:2,e:"Basis Path Coverage ensures all independent code paths execute at least once.",p:"2018,2020,2024"},
+    {q:"Software Quality Assurance (SQA) is:",o:["Just testing bugs","Planned systematic approach to ensure quality throughout development","Writing good code","User acceptance testing"],a:1,e:"SQA = planned process applied to ALL development phases, not just testing.",p:"2020,2022,2024,2025"},
+    {q:"BVA tests values at:",o:["Middle of ranges","Boundaries and just outside","Random positions","Only valid inputs"],a:1,e:"BVA tests at min, max, and just inside/outside boundaries.",p:"2017,2019,2022"}
+  ],
+  q4:[
+    {q:"Differentiate White Box and Black Box Testing.",p:"2014,2017,2018,2019,2020,2022,2024",v:true,a:`<div class="notebook"><h4>White Box (Glass Box)</h4><ul><li>Tests INTERNAL code structure — tester knows source code</li><li>Techniques: Statement, Branch, Path Coverage</li><li>Done by: Developers | Used in: Unit testing</li></ul><h4>Black Box (Behavioral)</h4><ul><li>Tests EXTERNAL behavior — tester does NOT know code</li><li>Techniques: Equivalence Partitioning, BVA</li><li>Done by: Independent testers | Used in: System testing</li></ul><p><span class="nb-key">Key:</span> White Box = internal view; Black Box = external/user view</p></div>`},
+    {q:"Explain the 5 steps of Debugging.",p:"2020,2022",v:false,a:`<div class="notebook"><ul><li><span class="nb-key">Step 1: Reproduce</span> — consistently reproduce the error</li><li><span class="nb-key">Step 2: Locate</span> — find WHERE in code the bug exists</li><li><span class="nb-key">Step 3: Root Cause</span> — understand WHY it happened</li><li><span class="nb-key">Step 4: Fix</span> — make the code correction</li><li><span class="nb-key">Step 5: Test Fix</span> — verify fix works, no regression</li></ul></div>`},
+    {q:"What is SQA? What are its objectives?",p:"2020,2022,2024,2025",v:true,a:`<div class="notebook"><h4>SQA = Software Quality Assurance</h4><p>Planned, systematic activities to ensure quality throughout ALL development phases.</p><h4>Objectives</h4><ul><li>Ensure quality in ALL phases (not just testing)</li><li>Detect defects early</li><li>Ensure compliance with standards (ISO, CMM)</li><li>Improve the software development process</li></ul><h4>SQA Activities</h4><ul><li>Reviews, audits, process monitoring, standards implementation</li></ul></div>`},
+    {q:"Explain Error, Fault, Defect, Bug, and Failure.",p:"2019,2020,2022",v:false,a:`<div class="notebook"><ul><li><span class="nb-key">Error</span> — mistake made by a HUMAN</li><li><span class="nb-key">Fault/Bug/Defect</span> — error in the CODE itself</li><li><span class="nb-key">Failure</span> — system produces wrong output during execution</li></ul><div class="code-box">Human Error → Fault in Code → Failure during Execution</div></div>`}
+  ],
+  q12:[
+    {q:"Explain Black Box Testing — Equivalence Partitioning and BVA with examples.",p:"2014,2017,2019,2022",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">Black Box Testing</span> tests external behavior without source code knowledge.</p><h4>Technique 1: Equivalence Partitioning (EP)</h4><p>Divide inputs into groups where all values expected to behave same.</p><div class="code-box">Age field (valid: 18-60)
+Valid Partition:   18-60  → test with 30
+Invalid Partition: &lt;18   → test with 10
+Invalid Partition: &gt;60   → test with 70</div><h4>Technique 2: Boundary Value Analysis (BVA)</h4><p>Test at boundaries where bugs most frequently occur.</p><div class="code-box">Age 18-60: Test 17, 18, 19, 59, 60, 61
+(just below min, min, just above, just below max, max, just above)</div><h4>Advantages</h4><ul><li>No programming knowledge needed</li><li>Tests from user perspective</li><li>Finds missing functionality</li></ul><h4>Conclusion</h4><p>EP reduces test cases; BVA catches boundary errors. Together = comprehensive coverage.</p></div>`},
+    {q:"Explain White Box Testing — Statement, Branch, and Path Coverage.",p:"2018,2020,2024",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">White Box Testing</span> — tester knows source code, designs tests based on code structure.</p><h4>1. Statement Coverage</h4><p>Every statement executes at least once.</p><h4>2. Branch Coverage</h4><p>Every true/false branch of every decision executes at least once.</p><h4>3. Path Coverage (Basis Path)</h4><p>Every independent path through code executes at least once.</p><div class="code-box">Cyclomatic Complexity: V(G) = E - N + 2P
+(minimum test cases needed)
+Statement Coverage &lt; Branch Coverage &lt; Path Coverage</div><h4>Advantages</h4><ul><li>Thorough testing of code logic</li><li>Finds hidden errors in code</li></ul><h4>Conclusion</h4><p>For exams: remember <span class="nb-key">Statement &lt; Branch &lt; Path</span> in thoroughness.</p></div>`}
+  ]
+},
+u5:{
+  mcqs:[
+    {q:"SEI CMM has how many levels?",o:["3","4","5","6"],a:2,e:"SEI CMM = 5 levels: Initial, Repeatable, Defined, Managed, Optimizing.",p:"2018,2022,2024,2025"},
+    {q:"ISO 9000 is a standard for:",o:["Software Testing","Project Management","Quality Management Systems","Security Standards"],a:2,e:"ISO 9000 = international standard for Quality Management Systems.",p:"2018,2022,2024,2025"},
+    {q:"Which maintenance type fixes bugs AFTER delivery?",o:["Adaptive","Perfective","Preventive","Corrective"],a:3,e:"Corrective maintenance = fixing bugs/defects found after delivery.",p:"2018,2019,2020,2022,2024,2025"},
+    {q:"Reverse Engineering means:",o:["Building from scratch","Understanding existing software from its code","Testing existing software","Rewriting in new language"],a:1,e:"Reverse Engineering: code → design → requirements (opposite of normal).",p:"2024,2025"},
+    {q:"CMM Level 5 is called:",o:["Defined","Managed","Optimizing","Repeatable"],a:2,e:"CMM Level 5 = Optimizing — continuous process improvement.",p:"2018,2024,2025"},
+    {q:"V&V stands for:",o:["Value and Validation","Verification and Validation","Version and Vulnerability","Validate and Verify"],a:1,e:"V&V = Verification (building it right) + Validation (building right thing).",p:"2017,2020"},
+    {q:"Which maintenance type adapts to new OS/hardware?",o:["Corrective","Perfective","Preventive","Adaptive"],a:3,e:"Adaptive maintenance = adapting software to new environment.",p:"2018,2019,2020,2022"},
+    {q:"'Building the right product' corresponds to:",o:["Verification","Validation","Testing","Debugging"],a:1,e:"Validation = 'Are we building the RIGHT product?' — meets actual user needs.",p:"2017,2020"},
+    {q:"CMM Level 1 means the process is:",o:["Well-defined","Repeatable","Chaotic and unpredictable","Optimized"],a:2,e:"CMM Level 1 = Initial/Chaotic — hero-dependent, unpredictable.",p:"2018,2024,2025"},
+    {q:"CI in SE stands for:",o:["Code Integration","Continuous Integration","Complete Implementation","Code Inspection"],a:1,e:"CI = Continuous Integration — frequent automated code integration and testing.",p:"2025"}
+  ],
+  q4:[
+    {q:"Explain the 4 types of Software Maintenance.",p:"2018,2019,2020,2022,2024,2025",v:true,a:`<div class="notebook"><p>Maintenance = modifying software after delivery. Takes <span class="nb-key">60–80%</span> of total software cost.</p><ul><li><span class="nb-key">1. Corrective</span> — fixing bugs after delivery ("cure the disease")</li><li><span class="nb-key">2. Adaptive</span> — new OS/hardware/laws ("adapt to change")</li><li><span class="nb-key">3. Perfective</span> — adding new features (~50% of all maintenance)</li><li><span class="nb-key">4. Preventive</span> — preventing future problems</li></ul><p>Trick: <span class="nb-key">CAPP</span></p></div>`},
+    {q:"Compare ISO 9000 and SEI CMM.",p:"2018,2022,2024,2025",v:true,a:`<div class="notebook"><h4>ISO 9000</h4><ul><li>International quality standard | Any industry</li><li>Binary: certified or not</li><li>"Document what you do, do what you document"</li></ul><h4>SEI CMM</h4><ul><li>Software-specific process model | 5 maturity levels</li><li>Level 1(Chaos)→2(Repeatable)→3(Defined)→4(Managed)→5(Optimizing)</li></ul><p><span class="nb-key">Key diff:</span> ISO = pass/fail standard; CMM = 5-level maturity model</p></div>`},
+    {q:"What is Reverse Engineering? When is it used?",p:"2024,2025",v:false,a:`<div class="notebook"><h4>Reverse Engineering</h4><p>Analyzing existing code to understand design and requirements.</p><div class="code-box">Normal:  Requirements → Design → Code
+Reverse: Code → Design → Requirements</div><h4>When Used</h4><ul><li>Source code exists but no documentation</li><li>Understanding legacy systems</li><li>Software migration and security analysis</li></ul></div>`},
+    {q:"Explain Verification and Validation (V&V).",p:"2017,2020",v:false,a:`<div class="notebook"><h4>Verification</h4><p><span class="nb-key">"Are we building the product RIGHT?"</span></p><ul><li>Checks product built per specifications</li><li>Done DURING development (reviews, walkthroughs)</li></ul><h4>Validation</h4><p><span class="nb-key">"Are we building the RIGHT product?"</span></p><ul><li>Checks if product meets actual user needs</li><li>Done at END (system testing, acceptance testing)</li></ul></div>`}
+  ],
+  q12:[
+    {q:"Explain SEI CMM — 5 levels, characteristics, and comparison with ISO 9000.",p:"2018,2022,2024,2025",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">SEI CMM</span> by Carnegie Mellon University provides a framework for assessing and improving software processes through 5 maturity levels.</p><h4>5 Levels</h4><ul><li><span class="nb-key">Level 1 — Initial:</span> Chaotic, hero-dependent, unpredictable</li><li><span class="nb-key">Level 2 — Repeatable:</span> Basic project management, repeatable successes</li><li><span class="nb-key">Level 3 — Defined:</span> Standard processes documented organization-wide</li><li><span class="nb-key">Level 4 — Managed:</span> Quantitative control, statistical methods</li><li><span class="nb-key">Level 5 — Optimizing:</span> Continuous improvement, innovation</li></ul><h4>ISO 9000 vs CMM</h4><div class="code-box">ISO: Any industry | Standard | Binary (certified/not)
+CMM: Software only | Model | 5 levels of maturity</div><h4>Conclusion</h4><p>CMM guides from Level 1 chaos to Level 5 excellence. Indian IT giants (TCS, Infosys) target CMMI Level 5.</p></div>`},
+    {q:"Explain Software Maintenance — 4 types, process, and cost estimation.",p:"2018,2019,2020,2022,2024,2025",v:true,a:`<div class="notebook"><h4>Introduction</h4><p><span class="nb-key">Software Maintenance</span> = all modifications after delivery. Takes <span class="nb-key">60–80%</span> of total software lifecycle cost.</p><h4>4 Types (CAPP)</h4><ul><li><span class="nb-key">Corrective (~21%)</span> — fix bugs after delivery</li><li><span class="nb-key">Adaptive (~25%)</span> — new OS, hardware, laws</li><li><span class="nb-key">Perfective (~50%)</span> — new features at user request (LARGEST)</li><li><span class="nb-key">Preventive (~4%)</span> — prevent future failures</li></ul><h4>Maintenance Process</h4><div class="code-box">Problem ID → Analysis → Design → Implement → Test → Deliver → Document</div><h4>Cost Factors</h4><ul><li>Team stability | Code quality | Documentation quality | System age</li></ul><h4>Conclusion</h4><p>Write maintainable, well-documented code from start. Maintenance appeared in PYQ <span class="nb-key">6 times</span>.</p></div>`}
+  ]
+}
+};
+
+// Money ladder values
+const MONEY = ['₹100','₹200','₹300','₹500','₹1,000','₹2,000','₹4,000','₹8,000','₹16,000','₹32,000'];
+
+// ════════════ KBC STATE ════════════
+const KBC = {};
+
+function buildParticles(){
+  const units=['u1','u2','u3','u4','u5'];
+  units.forEach(u=>{
+    const el=document.querySelector(`#${u}-mcq .kbc-particles`);
+    if(!el) return;
+    for(let i=0;i<12;i++){
+      const s=document.createElement('span');
+      s.style.cssText=`left:${Math.random()*100}%;animation-duration:${3+Math.random()*4}s;animation-delay:${Math.random()*5}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;opacity:0`;
+      el.appendChild(s);
+    }
+  });
+}
+
+function initKBC(uid, mcqs){
+  KBC[uid]={cur:0,score:0,answered:false,results:[],fiftyUsed:false,eliminated:[]};
+  renderKBC(uid,mcqs);
+}
+
+function renderKBC(uid,mcqs){
+  const el=document.getElementById(uid+'-mcq');
+  if(!el||!mcqs) return;
+  const st=KBC[uid];
+  if(st.cur>=mcqs.length){showFinish(uid,mcqs);return;}
+  const q=mcqs[st.cur];
+  const lv=st.cur;
+
+  const dots=mcqs.map((_,i)=>{
+    let c='kbc-dot';
+    if(i<st.cur) c+=st.results[i]?' done-c':' done-w';
+    else if(i===st.cur) c+=' current';
+    return `<div class="${c}"></div>`;
+  }).join('');
+
+  const ladder=MONEY.slice().reverse().map((m,i)=>{
+    const idx=MONEY.length-1-i;
+    let c='ml-item';
+    if(idx<st.cur) c+=' passed';
+    else if(idx===st.cur) c+=' current-level';
+    return `<div class="${c}">${m}</div>`;
+  }).join('');
+
+  el.innerHTML=`
+<div class="kbc-wrap">
+  <div class="kbc-bg"></div>
+  <div class="kbc-particles"></div>
+  <div class="kbc-topline"></div>
+
+  <div class="kbc-logo-wrap">
+    <div class="kbc-logo"><span class="kbc-logo-text">KBC</span></div>
+  </div>
+
+  <div class="kbc-lifelines">
+    <div class="lifeline${st.fiftyUsed?' used':''}" id="${uid}-ll5050" onclick="use5050('${uid}')" title="50:50">
+      <div class="ll-icon">½</div><div class="ll-text">50:50</div>
+    </div>
+    <div class="lifeline used" title="Phone a Friend">
+      <div class="ll-icon">📞</div><div class="ll-text">Phone</div>
+    </div>
+    <div class="lifeline used" title="Ask the Audience">
+      <div class="ll-icon">👥</div><div class="ll-text">Audience</div>
+    </div>
+    <div class="lifeline used" title="Flip the Question">
+      <div class="ll-icon">🔄</div><div class="ll-text">Flip</div>
+    </div>
+    <div class="lifeline used" title="Double Dip">
+      <div class="ll-icon">2️⃣</div><div class="ll-text">Double</div>
+    </div>
+  </div>
+  <div class="kbc-won">Won: ${MONEY[Math.min(st.score,MONEY.length-1)]} &nbsp;|&nbsp; Score: ${st.score}/${mcqs.length}</div>
+
+  <div class="kbc-qbox-wrap">
+    <div class="kbc-qbox">
+      <div class="kbc-q-num">Question ${st.cur+1} of ${mcqs.length} &nbsp;|&nbsp; <span style="color:#ff9944">PYQ ${q.p}</span></div>
+      <div class="kbc-q-text">${q.q}</div>
+    </div>
+  </div>
+
+  <div class="kbc-opts-grid" id="${uid}-opts">
+    ${q.o.map((opt,i)=>{
+      const elim=st.eliminated.includes(i);
+      return `<div class="kbc-opt${elim?' opt-eliminated disabled':''}" id="${uid}-opt-${i}" onclick="selectOpt('${uid}',${i},${q.a})">
+        <div class="opt-letter">${['A','B','C','D'][i]}</div>
+        <div class="opt-txt">${opt}</div>
+      </div>`;
+    }).join('')}
+  </div>
+
+  <div class="kbc-exp" id="${uid}-exp">✅ ${q.e}</div>
+
+  <div class="kbc-status-bar">
+    <div class="kbc-dots-row">${dots}</div>
+    <span class="kbc-score-tag">Score: ${st.score}/${mcqs.length}</span>
+  </div>
+
+  <div class="kbc-navrow">
+    <button class="kbc-navbtn kbc-prev" onclick="prevQ('${uid}')" ${st.cur===0?'disabled':''}>← Prev</button>
+    <button class="kbc-navbtn kbc-next" id="${uid}-next" onclick="nextQ('${uid}')">Next →</button>
+  </div>
+
+  <div class="kbc-money-ladder">${ladder}</div>
+</div>`;
+  st.answered=false;
+  buildParticles();
+}
+
+function selectOpt(uid,chosen,correct){
+  if(KBC[uid].answered) return;
+  KBC[uid].answered=true;
+  const opts=document.querySelectorAll(`#${uid}-opts .kbc-opt`);
+  // Disable all
+  opts.forEach(o=>o.classList.add('disabled'));
+  // Lock-in animation on chosen
+  opts[chosen].classList.add('locked');
+
+  setTimeout(()=>{
+    // Reveal
+    if(chosen===correct){
+      opts[chosen].classList.remove('locked');
+      opts[chosen].classList.add('correct-kbc');
+      KBC[uid].score++;
+      KBC[uid].results[KBC[uid].cur]=true;
+    } else {
+      opts[chosen].classList.remove('locked');
+      opts[chosen].classList.add('wrong-kbc');
+      opts[correct].classList.add('correct-kbc');
+      KBC[uid].results[KBC[uid].cur]=false;
+    }
+    const exp=document.getElementById(uid+'-exp');
+    if(exp) exp.classList.add('show');
+    const nxt=document.getElementById(uid+'-next');
+    if(nxt){
+      nxt.classList.add('show');
+      if(KBC[uid].cur>=DATA[uid].mcqs.length-1) nxt.textContent='🏆 Finish';
+    }
+    updateProgress();
+  },1100);
+}
+
+function use5050(uid){
+  const st=KBC[uid];
+  if(st.fiftyUsed||st.answered) return;
+  st.fiftyUsed=true;
+  const q=DATA[uid].mcqs[st.cur];
+  const wrong=[];
+  for(let i=0;i<4;i++) if(i!==q.a) wrong.push(i);
+  // Remove 2 wrong options
+  const toElim=[wrong[Math.floor(Math.random()*wrong.length)]];
+  const rem=wrong.filter(w=>w!==toElim[0]);
+  toElim.push(rem[Math.floor(Math.random()*rem.length)]);
+  st.eliminated=toElim;
+  // Animate
+  toElim.forEach(i=>{
+    const o=document.getElementById(`${uid}-opt-${i}`);
+    if(o){
+      o.style.transition='all .4s ease';
+      o.style.opacity='0';
+      setTimeout(()=>{ o.classList.add('opt-eliminated','disabled'); o.style.opacity='1'; },400);
+    }
+  });
+  document.getElementById(`${uid}-ll5050`).classList.add('used');
+}
+
+function nextQ(uid){
+  const mcqs=DATA[uid].mcqs;
+  if(KBC[uid].cur<mcqs.length-1){KBC[uid].cur++;KBC[uid].eliminated=[];renderKBC(uid,mcqs);}
+  else showFinish(uid,mcqs);
+}
+
+function prevQ(uid){
+  if(KBC[uid].cur>0){KBC[uid].cur--;KBC[uid].eliminated=[];renderKBC(uid,DATA[uid].mcqs);}
+}
+
+function showFinish(uid,mcqs){
+  const st=KBC[uid];
+  const pct=Math.round(st.score/mcqs.length*100);
+  const g=pct>=90?'🏆':pct>=70?'🎯':pct>=50?'👍':'📚';
+  const msg=pct>=90?'Outstanding! You are Exam Ready!':pct>=70?'Great work! Almost there!':pct>=50?'Good effort! Keep practicing!':'Keep studying hard!';
+  const prize=MONEY[Math.min(st.score,MONEY.length-1)];
+  document.getElementById(uid+'-mcq').innerHTML=`
+<div class="kbc-wrap" style="min-height:380px">
+  <div class="kbc-bg"></div>
+  <div class="kbc-topline"></div>
+  <div class="kbc-logo-wrap"><div class="kbc-logo"><span class="kbc-logo-text">KBC</span></div></div>
+  <div class="kbc-finish">
+    <div class="finish-trophy">${g}</div>
+    <div class="finish-score-big">${st.score} / ${mcqs.length}</div>
+    <div class="finish-pct">${pct}% — Winnings: ${prize}</div>
+    <div class="finish-grade">${msg}</div>
+    <button class="btn-replay" onclick="restartKBC('${uid}')">▶ Play Again</button>
+  </div>
+</div>`;
+}
+
+function restartKBC(uid){
+  KBC[uid]={cur:0,score:0,answered:false,results:[],fiftyUsed:false,eliminated:[]};
+  renderKBC(uid,DATA[uid].mcqs);
+}
+
+// ════════════ ACCORDION ════════════
+function renderAcc(cid,items){
+  const el=document.getElementById(cid);
+  if(!el) return;
+  el.innerHTML=items.map((item,i)=>`
+<div class="acc-item" id="ai-${cid}-${i}">
+  <div class="acc-header" onclick="toggleAcc('ai-${cid}-${i}')">
+    <div class="acc-title">${item.q}</div>
+    <div class="acc-meta">
+      ${item.v?'<span class="vvi-star">★VVI</span>':''}
+      <span class="pyq-red">PYQ ${item.p}</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+  </div>
+  <div class="acc-body">${item.a}</div>
+</div>`).join('');
+}
+
+function toggleAcc(id){document.getElementById(id).classList.toggle('open')}
+
+// ════════════ TABS ════════════
+function switchTab(btn,tid){
+  const sec=btn.closest('.section');
+  sec.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  sec.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(tid).classList.add('active');
+}
+
+// ════════════ NAV ════════════
+function goTo(id,btn){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function updateProgress(){
+  const t=5,done=Object.keys(KBC).filter(k=>KBC[k].results.length>0).length;
+  document.getElementById('mainProg').style.width=(done/t*100)+'%';
+}
+
+// ════════════ INIT ════════════
+window.onload=()=>{
+  ['u1','u2','u3','u4','u5'].forEach(u=>{
+    initKBC(u,DATA[u].mcqs);
+    renderAcc(u+'-4m',DATA[u].q4);
+    renderAcc(u+'-12m',DATA[u].q12);
+  });
+  setTimeout(()=>document.getElementById('mainProg').style.width='4%',400);
+};
+</script>
+</body>
+</html>

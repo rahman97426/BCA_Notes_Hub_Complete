@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BCA-301 OOP C++ | AKU Patna KBC Study Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#05103a;--gold:#ffd700;--ora:#ff6600;--arena:#020c1e;--dark:#050d1f;--card:#0d1b3e;--ok:#00c853;--bad:#d50000;--w:#f0f4ff;--m:#8899bb;--bd:rgba(255,140,0,.3);box-sizing:border-box;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#060e28;color:var(--w);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.65;min-height:100%}
+/* Animations */
+@keyframes ray-pulse{0%,100%{opacity:.65}50%{opacity:1}}
+@keyframes q-appear{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+@keyframes opt-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes opt-bounce{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes dot-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.45)}}
+@keyframes tblink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes shine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes logo-glow{0%,100%{box-shadow:0 0 18px rgba(40,120,255,.4),0 0 35px rgba(40,120,255,.15)}50%{box-shadow:0 0 30px rgba(80,160,255,.75),0 0 60px rgba(40,120,255,.3)}}
+@keyframes exp-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+/* Progress */
+#pb{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--ora),var(--gold));width:0;z-index:500;transition:width .25s;box-shadow:0 0 8px var(--ora)}
+/* Hero */
+.hero{background:linear-gradient(135deg,#05103a 0%,#0a1f5c 50%,#0d2875 100%);padding:3.5rem 1.5rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(255,180,0,.1) 0%,transparent 65%);pointer-events:none}
+.gbadge{display:inline-block;padding:.3rem 1.1rem;background:linear-gradient(90deg,#b8860b,var(--gold),#b8860b);border-radius:100px;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:#000;margin-bottom:1.2rem}
+.hero h1{font-size:clamp(1.6rem,4vw,2.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.6rem;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+.hero-s{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1.5rem}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2rem}
+.pill{padding:.28rem .85rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,215,0,.3);border-radius:100px;font-size:.78rem;color:var(--gold)}
+.hero-bar{height:4px;background:linear-gradient(90deg,var(--ora),var(--gold),var(--ora));width:100%;border-radius:4px;box-shadow:0 0 12px rgba(255,200,0,.5)}
+/* Nav */
+nav{position:sticky;top:0;z-index:200;background:rgba(5,16,58,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,215,0,.15);padding:0 .75rem;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.nb{padding:.7rem .85rem;background:transparent;border:none;border-bottom:3px solid transparent;color:var(--m);cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:600;white-space:nowrap;transition:all .2s;letter-spacing:.03em}
+.nb:hover,.nb.act{color:var(--gold);border-bottom-color:var(--gold)}
+/* Main */
+.main{max-width:1080px;margin:0 auto;padding:2rem 1.25rem}
+/* Unit */
+.usec{margin-bottom:2.5rem}
+.uhd{padding:1rem 1.4rem;background:linear-gradient(90deg,rgba(10,30,90,.9),rgba(13,30,70,.7));border:1px solid rgba(255,215,0,.2);border-radius:10px 10px 0 0;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.ubadge{width:2.3rem;height:2.3rem;background:linear-gradient(135deg,var(--ora),var(--gold));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.95rem;flex-shrink:0}
+.utitle{font-size:1.05rem;font-weight:700;color:#fff}
+.utopics{font-size:.74rem;color:var(--m);padding:.5rem 1.4rem;background:rgba(0,0,0,.2);border-left:1px solid rgba(255,215,0,.15);border-right:1px solid rgba(255,215,0,.15)}
+/* Tabs */
+.tbar{display:flex;border-left:1px solid rgba(255,215,0,.15);border-right:1px solid rgba(255,215,0,.15);background:rgba(0,0,0,.3)}
+.tbtn{flex:1;padding:.65rem .4rem;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--m);cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;transition:all .2s}
+.tbtn:hover,.tbtn.act{color:var(--ora);border-bottom-color:var(--ora);background:rgba(255,102,0,.06)}
+.tpane{display:none;border:1px solid rgba(255,215,0,.15);border-top:none;border-radius:0 0 10px 10px;padding:1.4rem}
+.tpane.act{display:block}
+/* KBC Arena */
+.kbc-arena{background:var(--arena);border-radius:12px;overflow:hidden;position:relative;border:1px solid rgba(60,110,200,.35)}
+.kbc-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% -5%,rgba(20,60,190,.32) 0%,transparent 55%),radial-gradient(ellipse at 15% 60%,rgba(10,30,100,.18) 0%,transparent 45%),radial-gradient(ellipse at 85% 60%,rgba(10,30,100,.18) 0%,transparent 45%);pointer-events:none}
+.kbc-rays{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.kbc-rays::before{content:'';position:absolute;inset:0;background:linear-gradient(172deg,rgba(30,90,210,.18) 0%,transparent 45%) 4% 0/13% 100% no-repeat,linear-gradient(170deg,rgba(30,90,210,.12) 0%,transparent 45%) 22% 0/9% 100% no-repeat,linear-gradient(168deg,rgba(30,90,210,.15) 0%,transparent 45%) 40% 0/11% 100% no-repeat,linear-gradient(170deg,rgba(30,90,210,.12) 0%,transparent 45%) 60% 0/9% 100% no-repeat,linear-gradient(172deg,rgba(30,90,210,.16) 0%,transparent 45%) 77% 0/12% 100% no-repeat;animation:ray-pulse 3.5s ease-in-out infinite}
+.kbc-in{position:relative;z-index:1;padding:1.2rem 1.1rem 1rem}
+/* Logo */
+.kbc-logo-row{display:flex;justify-content:center;margin-bottom:.65rem}
+.kbc-logo{width:72px;height:72px;background:radial-gradient(circle at 45% 35%,#1848a8,#071838);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:900;font-style:italic;color:#60b0ff;text-shadow:0 0 15px rgba(80,160,255,.9);border:3px solid rgba(80,140,220,.45);animation:logo-glow 3s ease-in-out infinite;position:relative}
+.kbc-logo::after{content:'';position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(100,170,255,.2)}
+/* Lifelines */
+.kbc-lf-row{display:flex;justify-content:center;gap:.6rem;margin-bottom:.6rem}
+.kbc-lf{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(40,80,170,.9),rgba(5,15,55,.95));border:2px solid rgba(80,140,220,.45);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;color:#90c8ff;cursor:pointer;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1);user-select:none;transition:all .2s}
+.kbc-lf:hover:not(.lf-used){background:radial-gradient(circle at 38% 32%,rgba(60,120,220,.9),rgba(15,35,100,.95));box-shadow:0 0 18px rgba(80,150,255,.5);transform:scale(1.12)}
+.kbc-lf.lf-used{opacity:.55;cursor:default;pointer-events:none}
+.kbc-lf.lf-used::after{content:'✕';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(140,0,0,.75);border-radius:50%;color:#ff5555;font-size:1.1rem;font-weight:900}
+/* Status */
+.kbc-status{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem;padding:.4rem .6rem;background:rgba(0,0,0,.35);border-radius:7px;border:1px solid rgba(255,255,255,.06)}
+.kbc-qnum{font-size:.78rem;color:rgba(200,220,255,.8);font-weight:600}
+.kdots{display:flex;gap:.3rem}
+.dot{width:.58rem;height:.58rem;border-radius:50%;background:rgba(255,255,255,.12);transition:all .3s}
+.dot.dok{background:var(--ok);box-shadow:0 0 6px var(--ok)}
+.dot.dbad{background:var(--bad);box-shadow:0 0 5px var(--bad)}
+.dot.dcur{background:var(--gold);box-shadow:0 0 9px var(--gold);animation:dot-pulse 1s ease infinite}
+.kscore{font-size:.82rem;font-weight:700;color:var(--gold)}
+.ktimer{font-family:'Courier New',monospace;font-size:.9rem;font-weight:700;color:#7cc8f8;letter-spacing:.04em;min-width:3.2rem;text-align:right}
+.ktimer.warn{color:#ff9900;animation:tblink .7s infinite}
+.ktimer.danger{color:#ff2222;animation:tblink .35s infinite}
+.kprize{text-align:center;font-size:.75rem;color:var(--gold);font-weight:700;letter-spacing:.06em;margin-bottom:.55rem;text-shadow:0 0 10px rgba(255,215,0,.4)}
+/* Question Box */
+.kbc-qbox{background:linear-gradient(to bottom,rgba(14,40,112,.95),rgba(7,22,72,.98),rgba(14,40,112,.95));border:1.5px solid rgba(75,140,225,.65);border-radius:50px;padding:1rem 1.6rem;text-align:center;margin-bottom:1rem;position:relative;animation:q-appear .45s ease;box-shadow:0 4px 22px rgba(0,0,30,.75),inset 0 1px 0 rgba(255,255,255,.07)}
+.kbc-qbox::after{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(140,195,255,.35),transparent)}
+.kqtext{font-size:.94rem;font-weight:600;color:#e5f2ff;line-height:1.55}
+.pyqb{display:inline-block;padding:.1rem .42rem;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.28);border-radius:100px;font-size:.65rem;color:var(--gold);font-weight:700;margin-left:.35rem;vertical-align:middle}
+/* Options */
+.kbc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.85rem}
+@media(max-width:500px){.kbc-grid{grid-template-columns:1fr}}
+.kopt{background:linear-gradient(to bottom,rgba(22,60,135,.92),rgba(9,30,88,.97),rgba(18,54,124,.92));border:1.5px solid rgba(72,138,218,.62);border-radius:40px;padding:.68rem .95rem .68rem .7rem;display:flex;align-items:center;gap:.58rem;cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s,transform .12s;box-shadow:0 3px 12px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07),inset 0 -1px 0 rgba(0,0,0,.25);user-select:none;position:relative;overflow:hidden}
+.kopt::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.04) 50%,transparent 60%);pointer-events:none}
+.kopt:hover:not(.locked):not(.dis){background:linear-gradient(to bottom,#c27a06 0%,#f0b010 50%,#c27a06 100%);border-color:#f5d048;box-shadow:0 0 24px rgba(240,165,15,.45),0 4px 16px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18);transform:scale(1.028)}
+.kopt.locked{background:linear-gradient(to bottom,#bf7406 0%,#e8a815 50%,#bf7406 100%);border-color:#f0d040;box-shadow:0 0 30px rgba(240,165,15,.55),inset 0 1px 0 rgba(255,255,255,.15);pointer-events:none}
+.kopt.rok{background:linear-gradient(to bottom,#0a5818 0%,#16b035 50%,#0a5818 100%);border-color:#38d060;box-shadow:0 0 30px rgba(25,195,55,.5),inset 0 1px 0 rgba(255,255,255,.15);pointer-events:none;animation:opt-bounce .4s ease}
+.kopt.rbad{background:linear-gradient(to bottom,#550808 0%,#b01c1c 50%,#550808 100%);border-color:#dc3838;box-shadow:0 0 25px rgba(190,25,25,.45);pointer-events:none}
+.kopt.dis{opacity:.18;pointer-events:none;filter:saturate(0)}
+.ocircle{width:1.95rem;height:1.95rem;border-radius:50%;background:linear-gradient(to bottom,rgba(100,165,255,.3),rgba(50,105,205,.2));border:1px solid rgba(100,165,255,.45);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;color:#a8d5ff;flex-shrink:0;transition:all .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.kopt:hover:not(.dis) .ocircle,.kopt.locked .ocircle{background:linear-gradient(to bottom,rgba(255,205,60,.4),rgba(205,145,20,.3));border-color:rgba(255,210,50,.55);color:#fff8d0}
+.kopt.rok .ocircle{background:linear-gradient(to bottom,rgba(55,215,95,.4),rgba(25,150,55,.3));border-color:rgba(55,215,95,.55);color:#a0ffbc}
+.kopt.rbad .ocircle{background:linear-gradient(to bottom,rgba(215,55,55,.4),rgba(150,25,25,.3));border-color:rgba(215,55,55,.55);color:#ffa8a8}
+.otext{font-size:.88rem;color:#d5e8ff;font-weight:500;line-height:1.3}
+.kopt:hover:not(.dis) .otext,.kopt.locked .otext{color:#fff9d5;font-weight:600}
+.kopt.rok .otext{color:#c8ffd8;font-weight:600}
+.kopt.rbad .otext{color:#ffb8b8}
+/* Explanation */
+.kexp{display:none;padding:.72rem 1rem;background:rgba(0,50,15,.6);border:1px solid rgba(45,175,75,.32);border-radius:8px;font-size:.84rem;color:#a5e8be;margin-bottom:.8rem;line-height:1.52;animation:exp-in .3s ease}
+.kexp.show{display:block}
+/* Nav buttons */
+.knav{display:flex;justify-content:space-between;align-items:center}
+.kbtn{padding:.48rem 1.3rem;border-radius:22px;border:none;cursor:pointer;font-family:inherit;font-size:.84rem;font-weight:700;transition:all .2s}
+.kprev{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.8)}
+.kprev:hover{background:rgba(255,255,255,.18)}
+.knext{background:linear-gradient(90deg,#b87208,#f0b020,#d49012,#f0b020,#b87208);background-size:250% 100%;background-position:100% 0;color:#000;box-shadow:0 4px 14px rgba(240,160,20,.3);display:none;animation:shine 2.5s linear infinite}
+.knext.show{display:inline-block}
+.knext:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(240,165,20,.55)}
+/* Finish */
+.kfinish{display:none;text-align:center;padding:1.8rem 1rem;animation:q-appear .4s ease}
+.kfinish.show{display:block}
+.kfinish h3{font-size:1.7rem;color:var(--gold);margin-bottom:.3rem;text-shadow:0 0 20px rgba(255,200,0,.5)}
+.kfinish .grade{font-size:3.2rem;margin:.4rem 0}
+.kfinish .smsg{color:rgba(200,220,255,.75);margin-bottom:1rem;font-size:.9rem}
+.playagain{padding:.6rem 1.7rem;background:linear-gradient(90deg,#b87208,#f0b020,#b87208);border:none;border-radius:22px;color:#000;font-weight:700;font-size:.9rem;cursor:pointer;box-shadow:0 4px 14px rgba(240,160,20,.4);transition:all .2s;font-family:inherit}
+.playagain:hover{transform:scale(1.06);box-shadow:0 6px 22px rgba(240,160,20,.6)}
+/* Accordion */
+.acc{border:1px solid rgba(255,215,0,.15);border-radius:8px;margin-bottom:.75rem;overflow:hidden}
+.acchd{padding:.85rem 1.1rem;background:rgba(10,30,90,.6);cursor:pointer;display:flex;align-items:flex-start;gap:.65rem;transition:background .2s}
+.acchd:hover{background:rgba(10,30,90,.9)}
+.am{padding:.12rem .45rem;border-radius:5px;font-size:.68rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.m4{background:rgba(30,80,200,.25);color:#7aa4ff;border:1px solid rgba(80,130,255,.3)}
+.m12{background:rgba(120,30,200,.25);color:#c39aff;border:1px solid rgba(160,80,255,.3)}
+.accq{font-size:.88rem;font-weight:600;flex:1;color:#dde8ff}
+.apyq{padding:.1rem .4rem;background:rgba(213,0,0,.15);border:1px solid rgba(213,0,0,.4);border-radius:100px;font-size:.66rem;color:#ff8888;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.achv{color:var(--m);transition:transform .3s;flex-shrink:0;margin-top:.15rem}
+.acc.open .achv{transform:rotate(180deg)}
+.accbody{display:none;padding:1.1rem;border-top:1px solid rgba(255,215,0,.1);background:rgba(5,13,31,.8);font-size:.87rem;line-height:1.72}
+.acc.open .accbody{display:block}
+.accbody h4{color:var(--ora);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin:.7rem 0 .35rem}
+.accbody h4:first-child{margin-top:0}
+.accbody p{margin-bottom:.55rem;color:#c8d8f0}
+.accbody ul{padding-left:1.2rem;margin-bottom:.55rem}
+.accbody li{margin-bottom:.25rem;color:#c8d8f0}
+.accbody strong{color:#fff}
+.accbody code{font-family:'Courier New',monospace;background:rgba(0,0,0,.5);padding:.1rem .3rem;border-radius:4px;font-size:.8rem;color:#79d4ff}
+.accbody pre{font-family:'Courier New',monospace;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--ora);border-radius:6px;padding:.9rem 1rem;overflow-x:auto;font-size:.78rem;line-height:1.5;margin:.6rem 0;color:#c8f0ff;white-space:pre}
+/* Most Repeated */
+.reptable{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:1rem}
+.reptable thead tr{background:linear-gradient(90deg,#05103a,#0a1f5c)}
+.reptable th{padding:.7rem 1rem;text-align:left;color:var(--gold);font-weight:700;font-size:.82rem}
+.reptable td{padding:.65rem 1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.reptable tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.reptable tr:hover td{background:rgba(255,215,0,.04)}
+.repn{font-weight:800;color:#ff4444;font-size:1rem}
+.vvistar{color:var(--gold);font-size:.8rem}
+/* Cheat Sheet */
+.csgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1rem}
+.csbox{background:rgba(10,25,70,.8);border:1px solid rgba(255,215,0,.2);border-radius:10px;padding:1.1rem}
+.csbox h4{color:var(--gold);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,215,0,.2)}
+.csbox ul{list-style:none}
+.csbox li{font-size:.82rem;color:#b0c4de;margin-bottom:.3rem;padding-left:.85rem;position:relative}
+.csbox li::before{content:'→';position:absolute;left:0;color:var(--ora)}
+/* Section header */
+.sechd{padding:1rem 1.5rem;background:linear-gradient(135deg,#05103a,#0d1b55);border:1px solid rgba(255,215,0,.2);border-radius:10px;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.secicon{width:2rem;height:2rem;background:linear-gradient(135deg,var(--ora),var(--gold));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.sectitle{font-size:1.1rem;font-weight:700;color:#fff}
+.secsub{font-size:.8rem;color:var(--m)}
+/* Scroll top */
+#stbtn{position:fixed;bottom:1.25rem;right:1.25rem;width:2.4rem;height:2.4rem;background:linear-gradient(135deg,var(--ora),var(--gold));border:none;border-radius:50%;cursor:pointer;color:#000;font-size:1.1rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:300;box-shadow:0 4px 15px rgba(255,150,0,.4)}
+#stbtn.show{opacity:1}
+@media(max-width:640px){.main{padding:1.5rem .85rem}.tpane{padding:1rem}.uhd{padding:.9rem 1rem}.utitle{font-size:1rem}}
+@media print{nav,#pb,#stbtn{display:none!important}.accbody,.tpane{display:block!important}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+<nav id="mainnav">
+  <button class="nb act" data-target="u1">U1</button>
+  <button class="nb" data-target="u2">U2</button>
+  <button class="nb" data-target="u3">U3</button>
+  <button class="nb" data-target="u4">U4</button>
+  <button class="nb" data-target="u5">U5</button>
+  <button class="nb" data-target="vvi">⭐ Most Repeated</button>
+  <button class="nb" data-target="cheatsheet">📋 Cheat Sheet</button>
+</nav>
+<section class="hero">
+  <div class="gbadge">AKU PATNA — BCA SEM III</div>
+  <h1>Object-Oriented Programming<br>Using C++</h1>
+  <p class="hero-s">Complete KBC-Style Study Guide · Syllabus + PYQs 2014–2024</p>
+  <div class="pills">
+    <span class="pill">📅 PYQ: 2014–2024</span>
+    <span class="pill">📊 60 Marks</span>
+    <span class="pill">⏱ 3 Hrs</span>
+    <span class="pill">📚 5 Units</span>
+    <span class="pill">Code: BCA-301</span>
+  </div>
+  <div class="hero-bar"></div>
+</section>
+<div class="main" id="maindiv"></div>
+<button id="stbtn" aria-label="Scroll to top">↑</button>
+<script>
+// ═══════════════════════════════════════════
+//  CONTENT DATA
+// ═══════════════════════════════════════════
+const DATA=[
+{id:1,name:"Introduction to Programming Paradigms",
+ topics:"Class & Object · OOP Characteristics · Data Hiding · Encapsulation · Data Security · Class vs Struct · Private & Public Members",
+ mcqs:[
+  {q:"Which access specifier is used in a class definition by default?",opts:["Public","Protected","Private","Friend"],ans:2,exp:"Class members are PRIVATE by default. Struct members are PUBLIC. This is the primary syntax difference.",pyq:"2014, 2019"},
+  {q:"The OOP characteristic that hides internal data from outside world is:",opts:["Abstraction","Encapsulation","Inheritance","Polymorphism"],ans:1,exp:"ENCAPSULATION hides data by bundling data+methods. Data Hiding makes members private — inaccessible from outside.",pyq:"2018"},
+  {q:"An object is an ___ of a class.",opts:["Definition","Function","Instance","Structure"],ans:2,exp:"Object is an INSTANCE of a class. Class is the blueprint; object is the actual real-world entity created from it.",pyq:"2020"},
+  {q:"By default, members of a struct are:",opts:["Private","Protected","Public","Friend"],ans:2,exp:"STRUCT members are PUBLIC by default. CLASS members are PRIVATE. This is the main difference in default access.",pyq:"2018"},
+  {q:"Data hiding in OOP is achieved by declaring data members as:",opts:["public","protected","static","private"],ans:3,exp:"PRIVATE members cannot be accessed from outside the class — only through public methods. This is data hiding.",pyq:"2014"}
+ ],
+ short:[
+  {q:"Explain the characteristics of OOP.",pyq:"2017, 2018, 2019 ★★★",marks:4,ans:"<h4>Definition</h4><p>OOP organizes programs around <strong>objects</strong> rather than procedures.</p><h4>Key Characteristics</h4><ul><li><strong>Encapsulation:</strong> Binding data + methods in one unit. Hides internal details.</li><li><strong>Data Hiding:</strong> Private members are inaccessible from outside. Protects data.</li><li><strong>Data Security:</strong> Prevents unauthorized access via access specifiers.</li><li><strong>Abstraction:</strong> Shows only necessary details, hides complexity.</li><li><strong>Inheritance:</strong> Derived class gets properties of base class. Code reuse.</li><li><strong>Polymorphism:</strong> Same name, different behavior in different contexts.</li></ul>"},
+  {q:"What is the difference between a class and a structure?",pyq:"2018, 2020 ★★",marks:4,ans:"<h4>Key Differences</h4><ul><li><strong>Default Access:</strong> Class = private | Struct = public</li><li><strong>Default Inheritance:</strong> Class = private | Struct = public</li><li><strong>Usage:</strong> Class for full OOP; Struct for simple data grouping</li></ul><pre>struct S { int x; };  // x is public by default\nclass C { int x; };   // x is private by default</pre>"},
+  {q:"What are private and public members of a class?",pyq:"2014",marks:4,ans:"<h4>Private Members</h4><p>Accessible <strong>only within the same class</strong>. Cannot be accessed from outside. Default in class.</p><h4>Public Members</h4><p>Accessible from <strong>anywhere</strong> in the program. Provide the interface to users.</p><pre>class Box {\n  private:\n    int length;\n  public:\n    void set(int l){ length=l; }\n    int get(){ return length; }\n};</pre>"}
+ ],
+ long:[
+  {q:"Explain the Object-Oriented Programming paradigm with all its essential features.",pyq:"★★★★★ EVERY YEAR: 2014-2024",marks:12,ans:"<h4>Introduction</h4><p>OOP organizes software around <strong>objects</strong> rather than functions. C++ fully supports all OOP features.</p><h4>1. Class and Object</h4><p>Class is blueprint. Object is instance with its own data and methods.</p><h4>2. Encapsulation</h4><p>Binding data + methods in one unit. Access specifiers control visibility. Promotes data security.</p><h4>3. Data Abstraction</h4><p>Hiding internal implementation. User sees only interface. E.g., use cout without knowing its code.</p><h4>4. Data Hiding</h4><p>Private members inaccessible from outside. Protects data integrity.</p><h4>5. Inheritance</h4><p>Derived class acquires properties of base class. Promotes code reusability.</p><h4>6. Polymorphism</h4><p>Same name, different behavior. Compile-time: overloading. Runtime: virtual functions.</p><h4>7. Message Passing</h4><p>Objects communicate by calling member functions.</p><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass Student {\n  private:\n    int roll; string name;\n  public:\n    Student(int r,string n){roll=r;name=n;}\n    void display(){cout&lt;&lt;roll&lt;&lt;\" \"&lt;&lt;name&lt;&lt;endl;}\n};\nint main(){\n    Student s1(101,\"Sana\");\n    s1.display();\n    return 0;\n}</pre><h4>Conclusion</h4><p>OOP makes software development more manageable, reusable, and secure through its powerful features.</p>"},
+  {q:"Explain the concept of class and object. How does an object differ from a variable?",pyq:"PYQ 2018, 2020",marks:12,ans:"<h4>Introduction</h4><p>Class and Object are the two fundamental building blocks of C++ OOP.</p><h4>Class</h4><p>A user-defined data type that groups data members and member functions. Blueprint for objects.</p><pre>class Car {\n  public:\n    string model;\n    int speed;\n    void show(){cout&lt;&lt;model&lt;&lt;\" \"&lt;&lt;speed;}\n};</pre><h4>Object</h4><p>An instance of a class. Memory allocated when object is created, not when class is defined.</p><pre>Car c1;            // Object created\nc1.model=\"Swift\"; // Access member\nc1.speed=120;\nc1.show();         // Call method</pre><h4>Object vs Variable</h4><ul><li>Variable: stores simple data | Object: stores data AND functions</li><li>Variable: predefined type | Object: user-defined class type</li><li>Objects support encapsulation; variables do not</li></ul><h4>Conclusion</h4><p>Class defines structure; object is the real entity. Objects are variables of class type with extra capabilities.</p>"}
+ ]
+},
+{id:2,name:"Basics of C++",
+ topics:"Structure of C++ Programs · Constructors · Destructors · cin/cout · Friend Functions · this Pointer · new/delete · Static Members · Inline Functions",
+ mcqs:[
+  {q:"cout stands for:",opts:["Class Output","Character Output","Console Output","Call Output"],ans:2,exp:"cout = Console OUTput. Object of ostream class. Similarly cin = Console INput (istream class).",pyq:"2018"},
+  {q:"If a programmer does not provide a destructor, then ___ creates an empty one.",opts:["Linker","Compiler","Preprocessor","OS"],ans:1,exp:"COMPILER automatically generates a default constructor and destructor if not explicitly defined.",pyq:"2014"},
+  {q:"Which of the following is NOT a member of a class?",opts:["Static function","Friend function","Const function","Virtual function"],ans:1,exp:"FRIEND function is declared inside class but is NOT a member. It can access private data without being a member.",pyq:"2014"},
+  {q:"Which of the following cannot be declared static?",opts:["Class","Object","Functions","Data members"],ans:0,exp:"A CLASS itself cannot be declared static. Objects, data members, and member functions can all be declared static.",pyq:"2018"},
+  {q:"The 'this' pointer refers to:",opts:["Base class object","Derived class object","Current object","Static object"],ans:2,exp:"'this' is a constant pointer that holds address of the CURRENT OBJECT. Available in all non-static member functions.",pyq:"2022"}
+ ],
+ short:[
+  {q:"What is a constructor? Explain its characteristics.",pyq:"★★★★★ 2017,2018,2019,2020,2021",marks:4,ans:"<h4>Definition</h4><p>A <strong>constructor</strong> is a special member function automatically called when an object is created. Same name as class, no return type.</p><h4>Characteristics</h4><ul><li>Same name as the class</li><li>No return type (not even void)</li><li>Called automatically when object is created</li><li>Can be overloaded (multiple constructors allowed)</li><li>Cannot be declared virtual</li><li>If not defined, compiler provides default</li></ul><h4>Types</h4><ul><li><strong>Default:</strong> No parameters</li><li><strong>Parameterized:</strong> Takes arguments</li><li><strong>Copy:</strong> Takes reference to same class object</li></ul>"},
+  {q:"What is a destructor? How does it differ from constructor?",pyq:"2014, 2018, 2022, 2024",marks:4,ans:"<h4>Definition</h4><p>A <strong>destructor</strong> is called automatically when object is destroyed. Performs cleanup (freeing memory).</p><h4>Syntax</h4><pre>~ClassName() { // cleanup code }</pre><h4>Constructor vs Destructor</h4><ul><li>Constructor: called on creation | Destructor: on destruction</li><li>Constructor: can have parameters | Destructor: no parameters</li><li>Constructor: can be overloaded | Destructor: cannot (only one)</li><li>Destructors called in REVERSE order of constructors</li></ul>"},
+  {q:"What is a friend function? Why is it needed?",pyq:"★★★ 2014,2019,2021,2022,2024",marks:4,ans:"<h4>Definition</h4><p>A <strong>friend function</strong> is NOT a member of a class but is declared inside with keyword <code>friend</code>. It can access private and protected members.</p><h4>Why Needed</h4><ul><li>Access private data of two different classes simultaneously</li><li>Used for operator overloading (especially &lt;&lt; and &gt;&gt;)</li><li>Provides access without making data public</li></ul><pre>class Box {\n  private: int length;\n  public:\n    friend int area(Box b);\n};\nint area(Box b){ return b.length*2; }</pre>"}
+ ],
+ long:[
+  {q:"Write a C++ program demonstrating all types of constructors and destructor.",pyq:"★★★★★ 2017,2018,2019,2020,2021,2024",marks:12,ans:"<h4>Introduction</h4><p>C++ has 3 constructor types: Default, Parameterized, Copy. Destructor performs cleanup on object destruction.</p><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass Student {\n    int roll; float marks;\npublic:\n    // Default Constructor\n    Student(){roll=0;marks=0.0;\n        cout&lt;&lt;\"Default called\\n\";}\n    // Parameterized Constructor\n    Student(int r,float m){roll=r;marks=m;\n        cout&lt;&lt;\"Param: Roll=\"&lt;&lt;r&lt;&lt;\"\\n\";}\n    // Copy Constructor\n    Student(const Student &s){roll=s.roll;marks=s.marks;\n        cout&lt;&lt;\"Copy called\\n\";}\n    void display(){\n        cout&lt;&lt;\"Roll:\"&lt;&lt;roll&lt;&lt;\" Marks:\"&lt;&lt;marks&lt;&lt;\"\\n\";}\n    // Destructor\n    ~Student(){\n        cout&lt;&lt;\"Destructor for \"&lt;&lt;roll&lt;&lt;\"\\n\";}\n};\nint main(){\n    Student s1;             // Default\n    Student s2(101,95.5f);  // Parameterized\n    Student s3(s2);         // Copy\n    s2.display();\n    s3.display();\n    return 0;\n}</pre><h4>Conclusion</h4><p>Constructors initialize objects. Copy constructor creates a copy. Destructor cleans up when object is destroyed.</p>"},
+  {q:"Explain friend function with a complete C++ program.",pyq:"★★★ 2019,2021,2022,2024",marks:12,ans:"<h4>Introduction</h4><p>Friend function allows selective access to private data without making it public.</p><h4>Characteristics</h4><ul><li>Declared inside class with <code>friend</code> keyword, defined outside</li><li>NOT a class member — no <code>this</code> pointer</li><li>Can access private and protected members of the class</li></ul><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass Rectangle {\n    float length,width;\npublic:\n    Rectangle(float l,float w){length=l;width=w;}\n    friend float area(Rectangle r);\n    friend ostream&amp; operator&lt;&lt;(ostream&amp; o,Rectangle r);\n};\nfloat area(Rectangle r){\n    return r.length*r.width;\n}\nostream&amp; operator&lt;&lt;(ostream&amp; o,Rectangle r){\n    o&lt;&lt;r.length&lt;&lt;\"x\"&lt;&lt;r.width;\n    return o;\n}\nint main(){\n    Rectangle r1(5.0,3.0);\n    cout&lt;&lt;\"Size: \"&lt;&lt;r1&lt;&lt;\"\\n\";\n    cout&lt;&lt;\"Area: \"&lt;&lt;area(r1)&lt;&lt;\"\\n\";\n    return 0;\n}</pre><h4>Conclusion</h4><p>Friend functions are essential for operator overloading and controlled access to private data.</p>"}
+ ]
+},
+{id:3,name:"Operator Overloading",
+ topics:"Operator Functions · Binary & Unary Operators · Friend Functions for Operators · Stream Operators · Type Conversion",
+ mcqs:[
+  {q:"What is the use of the function call operator ()?",opts:["Overloading the method","Overloading the objects","Overloading the parameters","None of the above"],ans:1,exp:"Function call operator () overloads objects, allowing objects to be used like callable functions (functors).",pyq:"2014"},
+  {q:"How many arguments for binary operator overloaded as a MEMBER function?",opts:["0","1","2","3"],ans:1,exp:"As MEMBER function: binary operator needs 1 arg ('this' is left operand). As FRIEND function: needs 2 args.",pyq:"2017"},
+  {q:"Which operator CANNOT be overloaded in C++?",opts:["+ (plus)","== (equal)",":: (scope resolution)","[] (subscript)"],ans:2,exp:"Cannot overload: :: . .* ?: sizeof. Scope resolution, member access, ternary (?:), and sizeof CANNOT be overloaded.",pyq:"Not verified"},
+  {q:"For overloading stream operators (<< and >>), we MUST use:",opts:["Member function","Static function","Friend function","Virtual function"],ans:2,exp:"Stream operators MUST be friend functions because left operand is cin/cout (not a class object). Must return stream reference.",pyq:"2014,2017,2018"},
+  {q:"Hiding complexity from users is called:",opts:["Abstraction","Encapsulation","Data hiding","Composition"],ans:0,exp:"ABSTRACTION = hiding complexity. ENCAPSULATION = binding data+methods. DATA HIDING = restricting member access.",pyq:"2018"}
+ ],
+ short:[
+  {q:"What is an operator function? Describe its syntax.",pyq:"2014, 2022",marks:4,ans:"<h4>Definition</h4><p>An <strong>operator function</strong> defines the behavior of an operator for user-defined types. Uses <code>operator</code> keyword.</p><h4>Syntax (Member Function)</h4><pre>return_type operator op(argument){\n    // function body\n}</pre><h4>Example</h4><pre>class Complex{\n    float real,imag;\npublic:\n    Complex operator+(const Complex &c){\n        return Complex(real+c.real,imag+c.imag);\n    }\n};</pre>"},
+  {q:"Write syntax for overloading >> and << operators with friend function.",pyq:"★★★ 2014,2017,2018",marks:4,ans:"<h4>Insertion (&lt;&lt;) — for output</h4><pre>friend ostream&amp; operator&lt;&lt;(ostream &out,const Complex &c){\n    out&lt;&lt;c.real&lt;&lt;\"+\"&lt;&lt;c.imag&lt;&lt;\"i\";\n    return out; // Must return stream ref\n}</pre><h4>Extraction (&gt;&gt;) — for input</h4><pre>friend istream&amp; operator&gt;&gt;(istream &in,Complex &c){\n    in&gt;&gt;c.real&gt;&gt;c.imag;\n    return in; // Must return stream ref\n}</pre><p><strong>Note:</strong> MUST be friend functions and MUST return stream reference for chaining.</p>"},
+  {q:"What is a copy constructor? When is it called?",pyq:"2017,2019,2021,2024",marks:4,ans:"<h4>Definition</h4><p>A <strong>copy constructor</strong> creates a new object as a copy of an existing object of the same class.</p><h4>Syntax</h4><pre>ClassName(const ClassName &obj){ // note: reference!\n    // copy data members\n}</pre><h4>When Called</h4><ul><li>Object initialized with another: <code>Student s2=s1;</code></li><li>Object passed by value to function</li><li>Object returned by value from function</li></ul><p><strong>IMPORTANT:</strong> Parameter MUST be by reference — else infinite recursion!</p>"}
+ ],
+ long:[
+  {q:"What is operator overloading? Explain type conversion from basic type to class type and class type to basic type.",pyq:"★★★★ 2014,2018,2022",marks:12,ans:"<h4>Introduction</h4><p>Operator overloading gives special meaning to existing operators for user-defined types.</p><h4>Restrictions</h4><ul><li>Cannot create new operators</li><li>Cannot change precedence or associativity</li><li>Cannot overload: <code>:: . .* ?: sizeof</code></li></ul><h4>Basic Type to Class Type (Constructor)</h4><pre>class Distance{\n    int meters;\npublic:\n    Distance(int m){meters=m;} // Conversion constructor\n    void show(){cout&lt;&lt;meters&lt;&lt;\"m\";}\n};\nint main(){\n    Distance d=5; // int auto-converted to Distance\n    d.show();     // 5m\n}</pre><h4>Class Type to Basic Type (Cast Operator)</h4><pre>class Distance{\n    int meters;\npublic:\n    Distance(int m){meters=m;}\n    operator int(){return meters;} // Conversion fn\n};\nint main(){\n    Distance d(10);\n    int x=d;  // Distance auto-converted to int\n    cout&lt;&lt;x;  // 10\n}</pre><h4>Conclusion</h4><p>Operator overloading makes code intuitive. Type conversion enables seamless interaction between built-in and user-defined types.</p>"},
+  {q:"Write a C++ program to overload +, - and * operators for a Complex number class.",pyq:"PYQ 2018,2022",marks:12,ans:"<h4>Introduction</h4><p>Overloading arithmetic operators allows complex number arithmetic to look natural, just like built-in types.</p><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass Complex{\n    float real,imag;\npublic:\n    Complex(){real=imag=0;}\n    Complex(float r,float i){real=r;imag=i;}\n    Complex operator+(Complex c){\n        return Complex(real+c.real,imag+c.imag);\n    }\n    Complex operator-(Complex c){\n        return Complex(real-c.real,imag-c.imag);\n    }\n    Complex operator*(Complex c){\n        return Complex(real*c.real-imag*c.imag,\n                      real*c.imag+imag*c.real);\n    }\n    void display(){\n        cout&lt;&lt;real&lt;&lt;\"+\"&lt;&lt;imag&lt;&lt;\"i\\n\";\n    }\n};\nint main(){\n    Complex c1(3.0,4.0),c2(1.5,2.5);\n    cout&lt;&lt;\"Sum: \";\n    (c1+c2).display();\n    cout&lt;&lt;\"Diff: \";\n    (c1-c2).display();\n    cout&lt;&lt;\"Prod: \";\n    (c1*c2).display();\n    return 0;\n}</pre><h4>Conclusion</h4><p>Overloaded operators make complex number arithmetic natural and readable.</p>"}
+ ]
+},
+{id:4,name:"Inheritance",
+ topics:"Base & Derived Classes · Protected Members · Constructor/Destructor Order · Public/Private/Protected Inheritance · Abstract Classes · Virtual Functions · Dynamic Binding",
+ mcqs:[
+  {q:"Base class pointer CANNOT point to derived class. (True/False)",opts:["True","False"],ans:1,exp:"FALSE — Base class pointer CAN point to derived class object. This is the foundation of runtime polymorphism.",pyq:"2014"},
+  {q:"Which mechanism allows an object to acquire properties of another object?",opts:["Encapsulation","Abstraction","Inheritance","Polymorphism"],ans:2,exp:"INHERITANCE — derived class acquires data and functions of base class. Key OOP mechanism for code reuse.",pyq:"2018"},
+  {q:"What does a derived class NOT inherit from base class?",opts:["Friends","Operator=() members","Constructors & destructors","All of the above"],ans:3,exp:"Derived class does NOT inherit: friends, operator=(), and constructors/destructors from base class.",pyq:"2014"},
+  {q:"To defer implementation of functions to derived classes, use:",opts:["An interface","An abstract class","A friend class","A static class"],ans:1,exp:"ABSTRACT CLASS uses pure virtual functions (=0) to force derived classes to implement them.",pyq:"2018"},
+  {q:"A virtual function enables:",opts:["Compile-time polymorphism","Runtime polymorphism","Static binding","Data hiding"],ans:1,exp:"Virtual function enables RUNTIME POLYMORPHISM. Correct derived function called via base pointer at runtime.",pyq:"2017,2019"}
+ ],
+ short:[
+  {q:"What is abstract class? What is its benefit?",pyq:"★★★★ 2017,2018,2019,2022,2024",marks:4,ans:"<h4>Definition</h4><p>An <strong>abstract class</strong> contains at least one <strong>pure virtual function</strong> (declared with =0). Objects of abstract class CANNOT be created.</p><h4>Syntax</h4><pre>virtual void draw() = 0; // Pure virtual function</pre><h4>Benefits</h4><ul><li>Provides a common interface for all derived classes</li><li>Forces derived classes to implement specific methods</li><li>Achieves 100% runtime polymorphism</li></ul><pre>class Shape{ // Abstract\npublic:\n    virtual void area()=0;\n};\nclass Circle:public Shape{\npublic:\n    void area(){cout&lt;&lt;\"pi*r*r\";}\n};</pre>"},
+  {q:"What is a virtual function? Why is it needed?",pyq:"★★★ 2017,2019,2020,2021,2022",marks:4,ans:"<h4>Definition</h4><p>Declared with <code>virtual</code> keyword. Enables <strong>runtime polymorphism</strong> — correct derived function called via base pointer.</p><h4>Why Needed</h4><p>Without virtual: base pointer always calls base function (static binding). With virtual: correct derived function called at runtime.</p><pre>class Base{\npublic:\n    virtual void show(){cout&lt;&lt;\"Base\";}\n};\nclass Derived:public Base{\npublic:\n    void show(){cout&lt;&lt;\"Derived\";}\n};\nint main(){\n    Base *p=new Derived();\n    p-&gt;show(); // prints \"Derived\"!\n}</pre>"},
+  {q:"Explain visibility of base class members with different access specifiers in derived class.",pyq:"2018, 2022",marks:4,ans:"<h4>Inheritance Visibility Table</h4><table style='width:100%;border-collapse:collapse;font-size:.82rem'><tr style='background:rgba(255,215,0,.1)'><th style='padding:.35rem .5rem;border:1px solid rgba(255,255,255,.15)'>Base Member</th><th style='padding:.35rem .5rem;border:1px solid rgba(255,255,255,.15)'>Public Inh.</th><th style='padding:.35rem .5rem;border:1px solid rgba(255,255,255,.15)'>Private Inh.</th><th style='padding:.35rem .5rem;border:1px solid rgba(255,255,255,.15)'>Protected Inh.</th></tr><tr><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1)'>Public</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#4dff88'>Public</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#ff7070'>Private</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#ffd700'>Protected</td></tr><tr style='background:rgba(255,255,255,.03)'><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1)'>Protected</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#ffd700'>Protected</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#ff7070'>Private</td><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:#ffd700'>Protected</td></tr><tr><td style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1)'>Private</td><td colspan='3' style='padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,100,100,.8);text-align:center'>NOT Inherited (inaccessible)</td></tr></table>"}
+ ],
+ long:[
+  {q:"Explain different types of inheritance in C++ with diagrams and programs.",pyq:"★★★★★ 2014,2017,2018,2021,2022,2024",marks:12,ans:"<h4>Introduction</h4><p>Inheritance allows derived class to acquire properties of base class. Syntax: <code>class Derived : access Base { };</code></p><h4>1. Single Inheritance (A → B)</h4><pre>class Animal{public: void eat(){cout&lt;&lt;\"Eat\";}};\nclass Dog:public Animal{void bark(){cout&lt;&lt;\"Bark\";}};</pre><h4>2. Multiple Inheritance (A,B → C)</h4><pre>class C:public A,public B{...};</pre><h4>3. Multilevel Inheritance (A→B→C)</h4><pre>class Animal{};\nclass Dog:public Animal{};\nclass Poodle:public Dog{};</pre><h4>4. Hierarchical Inheritance (A→B,C,D)</h4><pre>class B:public A{};\nclass C:public A{};\nclass D:public A{};</pre><h4>5. Hybrid + Diamond Problem</h4><p>Diamond problem: D inherits B and C, both inherit A → 2 copies of A.</p><p><strong>Solution: Virtual Base Class</strong></p><pre>class B:virtual public A{};\nclass C:virtual public A{};\nclass D:public B,public C{}; // ONE copy of A</pre><h4>Conclusion</h4><p>Inheritance is the most powerful OOP feature. Use virtual base class to solve diamond problem.</p>"},
+  {q:"Discuss virtual functions and dynamic binding with complete C++ program.",pyq:"★★★ 2018,2021,2022",marks:12,ans:"<h4>Introduction</h4><p>Virtual functions enable <strong>runtime polymorphism</strong> — calling correct derived function through base pointer.</p><h4>Rules</h4><ul><li>Declared with <code>virtual</code> keyword in base class</li><li>Overridden in derived class (same prototype)</li><li>Called through base class pointer/reference</li><li>Always use virtual destructor when using inheritance!</li></ul><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass Shape{\npublic:\n    virtual void area(){cout&lt;&lt;\"Shape\\n\";}\n    virtual ~Shape(){}\n};\nclass Circle:public Shape{\npublic:\n    void area(){cout&lt;&lt;\"Circle: pi*r*r\\n\";}\n};\nclass Rect:public Shape{\npublic:\n    void area(){cout&lt;&lt;\"Rect: l*b\\n\";}\n};\nint main(){\n    Shape *p;\n    Circle c; Rect r;\n    p=&amp;c; p-&gt;area(); // Circle (dynamic binding)\n    p=&amp;r; p-&gt;area(); // Rect (dynamic binding)\n    return 0;\n}</pre><h4>Conclusion</h4><p>Virtual functions + base pointers = runtime polymorphism. Always use virtual destructor.</p>"}
+ ]
+},
+{id:5,name:"Advanced Topics — Templates, Exception Handling, File Handling",
+ topics:"Multiple Inheritance · Virtual Base Classes · Pointers to Members · Function Templates · Class Templates · Exception Handling · File Handling",
+ mcqs:[
+  {q:"The generic type in a template function:",opts:["Must be T","Can be T","Cannot be T for your functions","Cannot be T"],ans:1,exp:"Generic type CAN be named anything (T, U, TYPE, etc.) — T is just a popular convention.",pyq:"2018"},
+  {q:"Which is used to implement C++ interfaces?",opts:["Absolute variables","Abstract classes","Constant variables","None of the above"],ans:1,exp:"C++ has no 'interface' keyword. Interfaces are implemented using abstract classes with all pure virtual functions.",pyq:"2019"},
+  {q:"What are the three keywords for Exception Handling?",opts:["try and error","try, catch and throw","catch and handle","error and handler"],ans:1,exp:"try: code that may throw. throw: signals exception. catch: handles exception. These 3 form C++ exception handling.",pyq:"2017"},
+  {q:"Namespace is used to:",opts:["Group classes, objects and functions","Mark start of program","Separate classes and objects","None of above"],ans:0,exp:"Namespace groups related identifiers to avoid naming conflicts. 'using namespace std;' is the most common use.",pyq:"2019"},
+  {q:"Scope resolution operator (::) is used to:",opts:["Create objects","Define members externally","Declare classes","None of above"],ans:1,exp:":: defines class members outside class. Syntax: void ClassName::funcName(){ } — required for external definition.",pyq:"2019"}
+ ],
+ short:[
+  {q:"What are templates? Explain need. Write syntax for function template.",pyq:"★★★★ 2014,2017,2018,2019",marks:4,ans:"<h4>Definition</h4><p><strong>Templates</strong> allow writing generic functions/classes that work with ANY data type.</p><h4>Need</h4><ul><li>Write code once, use with any type</li><li>Avoids code duplication</li><li>Type-safe generic programming</li></ul><h4>Function Template Syntax</h4><pre>template &lt;class T&gt;  // or typename T\nT funcName(T a,T b){\n    // use T as data type\n}\n// Example:\ntemplate &lt;class T&gt;\nT maxVal(T a,T b){ return (a&gt;b)?a:b; }\n// maxVal(3,7) = 7 | maxVal(3.2,5.1) = 5.1</pre>"},
+  {q:"Discuss exception handling with try, catch, throw keywords.",pyq:"★★★ 2014,2017,2018,2022",marks:4,ans:"<h4>Definition</h4><p><strong>Exception handling</strong> manages runtime errors using <code>try</code>, <code>throw</code>, <code>catch</code>.</p><ul><li><strong>try:</strong> Code that may throw exception</li><li><strong>throw:</strong> Signals (throws) an exception</li><li><strong>catch:</strong> Catches and handles exception</li></ul><pre>try{\n    if(den==0) throw \"Division by zero!\";\n    cout&lt;&lt;num/den;\n}\ncatch(const char* msg){\n    cout&lt;&lt;\"Error: \"&lt;&lt;msg;\n}\ncatch(...){ // Catches ALL exceptions\n    cout&lt;&lt;\"Unknown error\";\n}</pre>"},
+  {q:"What are the types of file access? Explain file stream classes.",pyq:"★★★ 2017,2021,2022",marks:4,ans:"<h4>Types of File Access</h4><ul><li><strong>Sequential:</strong> Read/write from start to end. For text files, logs.</li><li><strong>Random:</strong> Jump to any position using seekg()/seekp(). For databases.</li></ul><h4>File Stream Classes</h4><ul><li><code>ifstream</code> — Input (reading from file)</li><li><code>ofstream</code> — Output (writing to file)</li><li><code>fstream</code> — Both input and output</li></ul><p>Key functions: <code>seekg()</code> <code>seekp()</code> <code>tellg()</code> <code>tellp()</code></p>"}
+ ],
+ long:[
+  {q:"What are templates? Explain function template and class template with complete examples.",pyq:"★★★★ 2014,2017,2018,2019",marks:12,ans:"<h4>Introduction</h4><p>Templates enable GENERIC PROGRAMMING — write once, use with any data type.</p><h4>Function Template</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\ntemplate &lt;typename T&gt;\nT findMin(T a,T b){\n    return (a&lt;b)?a:b;\n}\nint main(){\n    cout&lt;&lt;findMin(3,7)&lt;&lt;endl;        // 3\n    cout&lt;&lt;findMin(3.14,2.71)&lt;&lt;endl;  // 2.71\n    cout&lt;&lt;findMin('z','a')&lt;&lt;endl;    // a\n}</pre><h4>Class Template</h4><pre>template &lt;class T&gt;\nclass Stack{\n    T data[100]; int top;\npublic:\n    Stack(){top=-1;}\n    void push(T val){data[++top]=val;}\n    T pop(){return data[top--];}\n    bool isEmpty(){return top==-1;}\n};\nint main(){\n    Stack&lt;int&gt; s;\n    s.push(10); s.push(20);\n    cout&lt;&lt;s.pop(); // 20\n}</pre><h4>Advantages</h4><ul><li>Write once, use with any type</li><li>Type-safe at compile time</li><li>STL (Standard Template Library) is built using templates</li></ul><h4>Conclusion</h4><p>Templates are C++'s most powerful feature. They form the foundation of generic programming and the entire STL.</p>"},
+  {q:"Define exception handling. Write a C++ program using try, catch, throw with constructor and destructor.",pyq:"★★★ 2014,2017,2018,2022",marks:12,ans:"<h4>Introduction</h4><p>Exception handling separates error code from normal code, making programs more robust.</p><h4>Flow</h4><ul><li>Code in try block executes normally</li><li>On error, throw is executed</li><li>Control jumps to matching catch block</li><li>Destructors called during stack unwinding</li></ul><h4>Program</h4><pre>#include&lt;iostream&gt;\nusing namespace std;\nclass BankAccount{\n    float balance;\npublic:\n    BankAccount(float b){\n        if(b&lt;0) throw \"Negative balance!\";\n        balance=b;\n        cout&lt;&lt;\"Account opened: \"&lt;&lt;b&lt;&lt;\"\\n\";\n    }\n    void withdraw(float amt){\n        if(amt&gt;balance) throw amt;\n        balance-=amt;\n        cout&lt;&lt;\"Withdrawn: \"&lt;&lt;amt&lt;&lt;\"\\n\";\n    }\n    ~BankAccount(){\n        cout&lt;&lt;\"Account closed. Balance:\"&lt;&lt;balance&lt;&lt;\"\\n\";\n    }\n};\nint main(){\n    try{\n        BankAccount acc(1000);\n        acc.withdraw(500);\n        acc.withdraw(800); // Throws!\n    }\n    catch(const char* msg){\n        cout&lt;&lt;\"Error: \"&lt;&lt;msg&lt;&lt;\"\\n\";\n    }\n    catch(float amt){\n        cout&lt;&lt;\"Insufficient! Need:\"&lt;&lt;amt&lt;&lt;\"\\n\";\n    }\n    return 0;\n}</pre><h4>Conclusion</h4><p>Exception handling with constructors/destructors ensures proper cleanup. Use multiple catch blocks for different error types.</p>"}
+ ]
+}
+];
+
+const REPEATED=[
+ ["Constructor & Destructor","U2","8+","Every Year 2014-2024","★ VVI"],
+ ["Types of Inheritance","U4","7","2014,2017,2018,2021,2022,2024","★ VVI"],
+ ["OOP Features / Paradigm","U1","7","Every Year 2014-2024","★ VVI"],
+ ["Virtual Functions & Dynamic Binding","U4","6","2017,2018,2019,2021,2022,2024","★ VVI"],
+ ["Operator Overloading + Conversion","U3","6","2014,2017,2018,2019,2022,2024","★ VVI"],
+ ["Templates (Function + Class)","U5","5","2014,2017,2018,2019,2024","★ VVI"],
+ ["Exception Handling","U5","5","2014,2017,2018,2022,2024","★ VVI"],
+ ["Abstract Class + Pure Virtual","U4","5","2017,2018,2019,2022,2024","★ VVI"],
+ ["Friend Function Program","U2","5","2014,2019,2021,2022,2024","★ VVI"],
+ ["File Handling","U5","4","2017,2021,2022,2024",""],
+ ["Copy Constructor","U3","4","2017,2019,2021,2024",""],
+ ["Class vs Structure","U1","3","2018,2020,2022",""],
+ ["Static Data Members","U2","3","2019,2020,2022",""],
+ ["Inline Functions","U2","3","2017,2020,2021",""],
+ ["this Pointer","U2","2","2020,2022",""]
+];
+
+const CHEATSHEET=[
+ {title:"📌 Full Forms",items:["OOP = Object Oriented Programming","cout = Console OUTput","cin = Console INput","STL = Standard Template Library","VBT = Virtual Base Table","VFT = Virtual Function Table"]},
+ {title:"🔑 Key Definitions",items:["Class = Blueprint for objects","Object = Instance of class","Encapsulation = Data + Methods in one unit","Polymorphism = Same name, different behavior","Inheritance = Child gets parent's properties","Abstraction = Hide complexity, show interface"]},
+ {title:"🧠 Memory Tricks",items:["5 OOP Features: EAIPM (Encapsulation,Abstraction,Inheritance,Polymorphism,Messaging)","5 Inheritance Types: SM-MHH (Single,Multiple,Multilevel,Hierarchical,Hybrid)","Cannot Overload 5: :: . .* ?: sizeof","Exception: TTC = Try, Throw, Catch","File streams: IOF = ifstream, ofstream, fstream","Constructor types: DPC = Default, Parameterized, Copy"]},
+ {title:"🚫 Cannot Overload",items:[":: (scope resolution)","· (dot / member access)",".* (member pointer)","?: (ternary operator)","sizeof operator","These 5 CANNOT be overloaded — remember!"]},
+ {title:"⚡ Quick Syntax",items:["Pure virtual: virtual void f() = 0;","Template: template &lt;class T&gt;","Friend: friend return_type func();","Static define: int ClassName::var = 0;","Virtual destr: virtual ~ClassName();","New/Delete: int *p = new int; delete p;"]},
+ {title:"📊 Key Differences",items:["Class vs Struct: Private vs Public default","Constructor vs Destructor: Create vs Destroy","Overload vs Override: Same class vs Derived","Static vs Dynamic binding: Compile vs Runtime","Abstract vs Concrete: Cannot vs Can instantiate"]},
+ {title:"⚠️ Common Mistakes",items:["Destructor: Forgetting ~ symbol","Copy ctor: Forgetting & — causes infinite recursion!","Pure virtual: Forgetting = 0 at end","Static member: Not defining outside class","Stream ops: Must return stream & reference","Virtual destructor: Must use in inheritance!"]},
+ {title:"🏆 Last Minute Points",items:["Q1 & Q2 = Compulsory (12+12 marks)","Attempt 5 out of 7 total questions","Base pointer CAN point to derived object","Derived class does NOT inherit constructor","Friend function is NOT a class member","Abstract class object CANNOT be created","Default class access = PRIVATE","Default struct access = PUBLIC"]}
+];
+
+// ═══════════════════════════════════════════
+//  KBC GAME STATE
+// ═══════════════════════════════════════════
+const KBC = {};
+
+function kbcInit(uid){
+  KBC[uid]={cur:0,score:0,ans:Array(DATA[uid-1].mcqs.length).fill(null),used50:false,usedFlip:false,timer:null,t:30};
+  kbcRender(uid);
+}
+
+function kbcRender(uid){
+  const u=DATA[uid-1];
+  const st=KBC[uid];
+  const q=u.mcqs[st.cur];
+  const n=u.mcqs.length;
+  const isLast=st.cur===n-1;
+  const answered=st.ans[st.cur];
+  const prizes=['Rs.500','Rs.1,000','Rs.2,000','Rs.5,000','Rs.10,000'];
+
+  // Update status
+  const qnumEl=document.getElementById('kqnum'+uid);
+  if(qnumEl) qnumEl.textContent='Q '+(st.cur+1)+' / '+n;
+  const scoreEl=document.getElementById('kscore'+uid);
+  if(scoreEl) scoreEl.textContent='Score: '+st.score;
+  const prizeEl=document.getElementById('kprize'+uid);
+  if(prizeEl) prizeEl.textContent='🏆 '+prizes[Math.min(st.cur,prizes.length-1)];
+
+  // Dots
+  for(let i=0;i<n;i++){
+    const d=document.getElementById('kdot'+uid+'_'+i);
+    if(!d) continue;
+    d.className='dot';
+    if(i===st.cur) d.classList.add('dcur');
+    else if(st.ans[i]!==null){
+      const a=st.ans[i];
+      d.classList.add((a===-2||(a>=0&&a===u.mcqs[i].ans))?'dok':'dbad');
+    }
+  }
+
+  // Question
+  const qbox=document.getElementById('kqbox'+uid);
+  if(qbox){
+    const pyqHtml=q.pyq?'<span class="pyqb">★ '+q.pyq+'</span>':'';
+    qbox.innerHTML='<div class="kqtext">'+q.q+pyqHtml+'</div>';
+    qbox.style.display='';
+  }
+
+  // Options
+  const grid=document.getElementById('kgrid'+uid);
+  if(grid){
+    grid.style.display='';
+    grid.innerHTML='';
+    const labels=['A','B','C','D'];
+    q.opts.forEach(function(opt,i){
+      var cls='kopt';
+      if(answered!==null&&answered!==-2){
+        if(i===q.ans) cls+=' rok';
+        else if(i===answered&&answered!==q.ans) cls+=' rbad';
+      }
+      var btn=document.createElement('div');
+      btn.className=cls;
+      btn.setAttribute('data-uid',uid);
+      btn.setAttribute('data-idx',i);
+      btn.innerHTML='<div class="ocircle">'+labels[i]+'</div><span class="otext">'+opt+'</span>';
+      grid.appendChild(btn);
+    });
+    // Re-apply 50:50 disable
+    if(st.used50&&answered===null){
+      var opts=grid.querySelectorAll('.kopt');
+      var rm=0;
+      for(var i=0;i<opts.length&&rm<2;i++){
+        if(i!==q.ans){opts[i].classList.add('dis');rm++;}
+      }
+    }
+  }
+
+  // Explanation
+  const expEl=document.getElementById('kexp'+uid);
+  if(expEl){
+    if(answered!==null&&answered!==-2){
+      expEl.innerHTML='<strong>'+(answered===q.ans?'✅ Correct!':'❌ Wrong!')+'</strong> '+q.exp;
+      expEl.className='kexp show';
+    } else if(answered===-2){
+      expEl.innerHTML='<strong>↩️ Flipped!</strong> Correct answer: <strong>'+['A','B','C','D'][q.ans]+'</strong> — '+q.opts[q.ans];
+      expEl.className='kexp show';
+    } else {
+      expEl.innerHTML='';
+      expEl.className='kexp';
+    }
+  }
+
+  // Next button
+  const nextBtn=document.getElementById('knext'+uid);
+  if(nextBtn){
+    if(answered!==null){
+      nextBtn.className='kbtn knext show';
+      nextBtn.textContent=isLast?'🏆 Finish':'Next →';
+    } else {
+      nextBtn.className='kbtn knext';
+    }
+  }
+
+  // Finish
+  const fin=document.getElementById('kfin'+uid);
+  if(fin) fin.className='kfinish';
+
+  // Timer
+  if(answered===null) kbcStartTimer(uid);
+}
+
+function kbcStartTimer(uid){
+  const st=KBC[uid];
+  clearInterval(st.timer);
+  st.t=30;
+  kbcUpdateTimer(uid);
+  st.timer=setInterval(function(){
+    st.t--;
+    kbcUpdateTimer(uid);
+    if(st.t<=0){
+      clearInterval(st.timer);
+      if(KBC[uid].ans[KBC[uid].cur]===null){
+        KBC[uid].ans[KBC[uid].cur]=-1;
+        kbcRender(uid);
+      }
+    }
+  },1000);
+}
+
+function kbcUpdateTimer(uid){
+  const el=document.getElementById('ktimer'+uid);
+  if(!el) return;
+  const s=Math.max(0,KBC[uid].t);
+  el.textContent='00:'+String(s).padStart(2,'0');
+  el.className='ktimer';
+  if(s<=5) el.classList.add('danger');
+  else if(s<=10) el.classList.add('warn');
+}
+
+function kbcClick(uid,idx){
+  const st=KBC[uid];
+  if(st.ans[st.cur]!==null) return;
+  clearInterval(st.timer);
+  // Lock-in effect
+  const opts=document.querySelectorAll('#kgrid'+uid+' .kopt');
+  if(opts[idx]) opts[idx].classList.add('locked');
+  st.ans[st.cur]=idx;
+  if(idx===DATA[uid-1].mcqs[st.cur].ans) st.score++;
+  setTimeout(function(){ kbcRender(uid); },1200);
+}
+
+function kbcNext(uid){
+  const st=KBC[uid];
+  clearInterval(st.timer);
+  const n=DATA[uid-1].mcqs.length;
+  if(st.cur<n-1){ st.cur++; kbcRender(uid); }
+  else { kbcFinish(uid); }
+}
+
+function kbcPrev(uid){
+  const st=KBC[uid];
+  clearInterval(st.timer);
+  if(st.cur>0){ st.cur--; kbcRender(uid); }
+}
+
+function kbcFinish(uid){
+  const u=DATA[uid-1];
+  const st=KBC[uid];
+  clearInterval(st.timer);
+  const n=u.mcqs.length;
+  const pct=Math.round((st.score/n)*100);
+  const grade=pct>=80?'🏆':pct>=60?'🥈':pct>=40?'📚':'💪';
+  const msg=pct>=80?'Excellent! Expert level!':pct>=60?'Good Job!':pct>=40?'Keep Practising!':'Need more revision!';
+  const dotHtml=st.ans.map(function(a,i){
+    var c=a===-2||a===u.mcqs[i].ans?'dok':'dbad';
+    return '<div class="dot '+c+'"></div>';
+  }).join('');
+
+  // Hide game elements
+  var els=['kqbox','kgrid','kexp'];
+  els.forEach(function(id){
+    var el=document.getElementById(id+uid);
+    if(el) el.style.display='none';
+  });
+  var statusEl=document.getElementById('kstatus'+uid);
+  if(statusEl) statusEl.style.display='none';
+  var prizeEl=document.getElementById('kprize'+uid);
+  if(prizeEl) prizeEl.style.display='none';
+  var nav=document.getElementById('knav'+uid);
+  if(nav) nav.style.display='none';
+
+  var fin=document.getElementById('kfin'+uid);
+  if(fin){
+    fin.innerHTML='<div class="grade">'+grade+'</div><h3>'+st.score+' / '+n+'</h3><p class="smsg">Score: '+pct+'% — '+msg+'</p><div class="kdots" style="justify-content:center;margin:.75rem 0">'+dotHtml+'</div><button class="playagain" onclick="kbcRestart('+uid+')">🔄 Play Again</button>';
+    fin.className='kfinish show';
+  }
+}
+
+function kbcRestart(uid){
+  const n=DATA[uid-1].mcqs.length;
+  clearInterval(KBC[uid].timer);
+  KBC[uid]={cur:0,score:0,ans:Array(n).fill(null),used50:false,usedFlip:false,timer:null,t:30};
+
+  // Show all elements again
+  var els=['kqbox','kgrid','kexp'];
+  els.forEach(function(id){
+    var el=document.getElementById(id+uid);
+    if(el) el.style.display='';
+  });
+  var statusEl=document.getElementById('kstatus'+uid);
+  if(statusEl) statusEl.style.display='';
+  var prizeEl=document.getElementById('kprize'+uid);
+  if(prizeEl) prizeEl.style.display='';
+  var nav=document.getElementById('knav'+uid);
+  if(nav) nav.style.display='';
+
+  // Re-enable lifelines
+  var ll50=document.getElementById('kll50_'+uid);
+  if(ll50) ll50.className='kbc-lf';
+  var llflip=document.getElementById('kllflip_'+uid);
+  if(llflip) llflip.className='kbc-lf';
+
+  kbcRender(uid);
+}
+
+function use50(uid){
+  const st=KBC[uid];
+  if(st.ans[st.cur]!==null||st.used50) return;
+  st.used50=true;
+  var ll=document.getElementById('kll50_'+uid);
+  if(ll) ll.className='kbc-lf lf-used';
+  var q=DATA[uid-1].mcqs[st.cur];
+  var opts=document.querySelectorAll('#kgrid'+uid+' .kopt');
+  var rm=0;
+  for(var i=0;i<opts.length&&rm<2;i++){
+    if(i!==q.ans){opts[i].classList.add('dis');rm++;}
+  }
+}
+
+function useFlip(uid){
+  const st=KBC[uid];
+  if(st.ans[st.cur]!==null||st.usedFlip) return;
+  st.usedFlip=true;
+  clearInterval(st.timer);
+  var ll=document.getElementById('kllflip_'+uid);
+  if(ll) ll.className='kbc-lf lf-used';
+  st.ans[st.cur]=-2;
+  kbcRender(uid);
+}
+
+// ═══════════════════════════════════════════
+//  PAGE RENDERING
+// ═══════════════════════════════════════════
+function buildKBC(u){
+  var n=u.mcqs.length;
+  var dots='';
+  for(var i=0;i<n;i++) dots+='<div class="dot" id="kdot'+u.id+'_'+i+'"></div>';
+  return '<div class="kbc-arena" id="kbc'+u.id+'">'
+    +'<div class="kbc-bg"></div>'
+    +'<div class="kbc-rays"></div>'
+    +'<div class="kbc-in">'
+    +'<div class="kbc-logo-row"><div class="kbc-logo">KBC</div></div>'
+    +'<div class="kbc-lf-row">'
+    +'<button class="kbc-lf" id="kll50_'+u.id+'" onclick="use50('+u.id+')" title="50:50 — Remove 2 wrong options">50:50</button>'
+    +'<div class="kbc-lf lf-used" title="Phone a Friend">📞</div>'
+    +'<div class="kbc-lf lf-used" title="Ask Audience">👥</div>'
+    +'<button class="kbc-lf" id="kllflip_'+u.id+'" onclick="useFlip('+u.id+')" title="Flip — Skip question">↩️</button>'
+    +'<div class="kbc-lf lf-used" title="Double Dip">2×</div>'
+    +'</div>'
+    +'<div class="kprize" id="kprize'+u.id+'">🏆 Rs.500</div>'
+    +'<div class="kbc-status" id="kstatus'+u.id+'">'
+    +'<span class="kbc-qnum" id="kqnum'+u.id+'">Q 1 / '+n+'</span>'
+    +'<div class="kdots">'+dots+'</div>'
+    +'<span class="kscore" id="kscore'+u.id+'">Score: 0</span>'
+    +'<span class="ktimer" id="ktimer'+u.id+'">00:30</span>'
+    +'</div>'
+    +'<div class="kbc-qbox" id="kqbox'+u.id+'"><div class="kqtext">Loading...</div></div>'
+    +'<div class="kbc-grid" id="kgrid'+u.id+'"></div>'
+    +'<div class="kexp" id="kexp'+u.id+'"></div>'
+    +'<div class="kfinish" id="kfin'+u.id+'"></div>'
+    +'<div class="knav" id="knav'+u.id+'">'
+    +'<button class="kbtn kprev" onclick="kbcPrev('+u.id+')">← Prev</button>'
+    +'<button class="kbtn knext" id="knext'+u.id+'" onclick="kbcNext('+u.id+')">Next →</button>'
+    +'</div>'
+    +'</div></div>';
+}
+
+function buildAccordion(items,prefix,uid){
+  var html='';
+  items.forEach(function(item,i){
+    var mcls=item.marks===4?'m4':'m12';
+    var mlbl=item.marks===4?'4 Marks':'12 Marks';
+    var id=prefix+'_'+uid+'_'+i;
+    html+='<div class="acc" id="acc_'+id+'">'
+      +'<div class="acchd" onclick="toggleAcc(\'acc_'+id+'\')">'
+      +'<span class="am '+mcls+'">'+mlbl+'</span>'
+      +'<span class="accq">'+item.q+'</span>'
+      +'<span class="apyq">'+item.pyq+'</span>'
+      +'<span class="achv">▼</span>'
+      +'</div>'
+      +'<div class="accbody">'+item.ans+'</div>'
+      +'</div>';
+  });
+  return html;
+}
+
+function renderPage(){
+  var main=document.getElementById('maindiv');
+  var html='';
+
+  // Units
+  DATA.forEach(function(u){
+    var uid=u.id;
+    html+='<div class="usec" id="u'+uid+'">'
+      +'<div class="uhd"><div class="ubadge">'+uid+'</div><div class="utitle">Unit '+uid+': '+u.name+'</div></div>'
+      +'<div class="utopics">'+u.topics+'</div>'
+      +'<div class="tbar">'
+      +'<button class="tbtn act" data-pane="kbc_pane_'+uid+'">🎯 KBC MCQ Game</button>'
+      +'<button class="tbtn" data-pane="short_pane_'+uid+'">📝 4-Mark Q&amp;A</button>'
+      +'<button class="tbtn" data-pane="long_pane_'+uid+'">📖 12-Mark Q&amp;A</button>'
+      +'</div>'
+      +'<div class="tpane act" id="kbc_pane_'+uid+'">'+buildKBC(u)+'</div>'
+      +'<div class="tpane" id="short_pane_'+uid+'">'+buildAccordion(u.short,'sh',uid)+'</div>'
+      +'<div class="tpane" id="long_pane_'+uid+'">'+buildAccordion(u.long,'lg',uid)+'</div>'
+      +'</div>';
+  });
+
+  // Most Repeated
+  html+='<div class="usec" id="vvi">'
+    +'<div class="sechd"><div class="secicon">⭐</div><div><div class="sectitle">Most Repeated Questions</div><div class="secsub">PYQ Analysis 2014–2024</div></div></div>'
+    +'<div style="overflow-x:auto"><table class="reptable"><thead><tr><th>#</th><th>Topic</th><th>Unit</th><th>Repeated</th><th>PYQ Years</th><th>VVI</th></tr></thead><tbody>';
+  REPEATED.forEach(function(row,i){
+    html+='<tr><td style="color:var(--m)">'+(i+1)+'</td><td><strong>'+row[0]+'</strong></td>'
+      +'<td style="color:var(--ora)">'+row[1]+'</td>'
+      +'<td><span class="repn">'+row[2]+'×</span></td>'
+      +'<td style="font-size:.78rem;color:var(--m)">'+row[3]+'</td>'
+      +'<td><span class="vvistar">'+row[4]+'</span></td></tr>';
+  });
+  html+='</tbody></table></div></div>';
+
+  // Cheat Sheet
+  html+='<div class="usec" id="cheatsheet">'
+    +'<div class="sechd"><div class="secicon">📋</div><div><div class="sectitle">Last Minute Cheat Sheet</div><div class="secsub">One-liners · Tricks · Mistakes · Syntax</div></div></div>'
+    +'<div class="csgrid">';
+  CHEATSHEET.forEach(function(box){
+    html+='<div class="csbox"><h4>'+box.title+'</h4><ul>';
+    box.items.forEach(function(item){ html+='<li>'+item+'</li>'; });
+    html+='</ul></div>';
+  });
+  html+='</div></div>';
+
+  html+='<div style="text-align:center;padding:2rem;color:var(--m);font-size:.82rem;border-top:1px solid rgba(255,255,255,.07);margin-top:2rem">Made with ❤️ for AKU BCA Students · PYQs 2014–2024 · <span style="color:var(--gold)">Study smart. Score high! 🎯</span></div>';
+
+  main.innerHTML=html;
+
+  // Init KBC games
+  DATA.forEach(function(u){ kbcInit(u.id); });
+
+  // Tab click handlers
+  document.querySelectorAll('.tbtn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var paneId=btn.getAttribute('data-pane');
+      var usec=btn.closest('.usec');
+      usec.querySelectorAll('.tbtn').forEach(function(b){ b.classList.remove('act'); });
+      usec.querySelectorAll('.tpane').forEach(function(p){ p.classList.remove('act'); });
+      btn.classList.add('act');
+      var pane=document.getElementById(paneId);
+      if(pane) pane.classList.add('act');
+    });
+  });
+
+  // Option click handler (event delegation)
+  document.getElementById('maindiv').addEventListener('click',function(e){
+    var opt=e.target.closest('.kopt');
+    if(!opt) return;
+    var uid=parseInt(opt.getAttribute('data-uid'));
+    var idx=parseInt(opt.getAttribute('data-idx'));
+    if(!isNaN(uid)&&!isNaN(idx)) kbcClick(uid,idx);
+  });
+}
+
+// ═══════════════════════════════════════════
+//  NAV & SCROLL
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',function(){
+  renderPage();
+
+  // Nav buttons
+  document.querySelectorAll('.nb').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var target=btn.getAttribute('data-target');
+      var el=document.getElementById(target);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      document.querySelectorAll('.nb').forEach(function(b){ b.classList.remove('act'); });
+      btn.classList.add('act');
+    });
+  });
+
+  // Scroll top button
+  document.getElementById('stbtn').addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  // Progress bar + scroll-top visibility
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var pct=h>0?(window.scrollY/h)*100:0;
+    document.getElementById('pb').style.width=pct+'%';
+    var stbtn=document.getElementById('stbtn');
+    if(window.scrollY>400) stbtn.classList.add('show');
+    else stbtn.classList.remove('show');
+  });
+});
+
+// Global toggleAcc for accordion
+function toggleAcc(id){
+  var el=document.getElementById(id);
+  if(el) el.classList.toggle('open');
+}
+</script>
+</body>
+</html>

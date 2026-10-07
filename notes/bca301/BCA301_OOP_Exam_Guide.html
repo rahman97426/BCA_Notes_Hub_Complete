@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BCA-301 | OOP Using C++ | AKU Patna</title>
+<style>
+:root{
+  --bg:#08091a;--bg2:#0c0e24;--bg3:#12152e;--card:#0f1232;
+  --a1:#00d4ff;--a2:#7c3aed;--gold:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --txt:#e2e8f0;--muted:#64748b;--bdr:#1b2348;
+  --u1c:#7c3aed;--u2c:#f59e0b;--u3c:#10b981;--u4c:#e11d48;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,sans-serif;line-height:1.6}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--a2);border-radius:2px}
+
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--a2),var(--a1),var(--gr));z-index:9999;transition:width .2s;width:0}
+
+nav{position:sticky;top:0;z-index:998;background:rgba(8,9,26,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);padding:9px 14px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.nbrand{color:var(--a1);font-weight:700;font-size:13px;margin-right:6px;white-space:nowrap}
+nav a{color:var(--muted);text-decoration:none;padding:4px 11px;border-radius:20px;font-size:12px;border:1px solid var(--bdr);transition:all .2s;white-space:nowrap}
+nav a:hover,nav a.on{background:var(--a2);color:#fff;border-color:var(--a2)}
+
+.hero{background:linear-gradient(135deg,#060919,#0c052a,#060f20);padding:46px 16px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.13),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-size:clamp(1.5rem,5vw,2.6rem);background:linear-gradient(90deg,var(--a1) 30%,var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:7px}
+.hero .sub{color:var(--gold);font-size:clamp(.85rem,2.5vw,1.05rem);margin-bottom:5px}
+.hero .info{color:var(--muted);font-size:.82rem;margin-bottom:16px}
+.tags{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.tag{padding:4px 13px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(124,58,237,.14);border:1px solid rgba(124,58,237,.35);color:var(--a1)}
+
+.wrap{max-width:1050px;margin:0 auto;padding:28px 14px}
+
+/* Unit card */
+.unit{margin-bottom:44px;border-radius:14px;overflow:hidden;border:1px solid var(--bdr)}
+.uhdr{padding:18px 22px;display:flex;gap:13px;align-items:center}
+.unum{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:700;flex-shrink:0}
+.utitle{font-size:1.1rem;font-weight:700;color:var(--a1)}
+.usub{font-size:.78rem;color:var(--muted);margin-top:2px}
+.chips{background:var(--bg2);padding:10px 14px;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid var(--bdr)}
+.chip{font-size:11px;padding:3px 9px;border-radius:9px;border:1px solid var(--bdr);color:var(--a1);background:rgba(0,212,255,.04)}
+
+.tabs{background:var(--bg3)}
+.tab-bar{display:flex;background:var(--bg2);border-top:1px solid var(--bdr)}
+.tb{flex:1;padding:11px 6px;background:none;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tb.on{color:var(--a1);border-bottom-color:var(--a1);background:rgba(0,212,255,.04)}
+.tb:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.02)}
+.tp{display:none;padding:18px}
+.tp.on{display:block}
+
+/* =========== KBC MCQ =========== */
+.mcq-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px;margin-bottom:15px;position:relative;overflow:hidden}
+.mcq-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(124,58,237,.07),transparent 55%);pointer-events:none}
+.pyq{display:inline-block;padding:2px 10px;border-radius:12px;font-size:10px;font-weight:700;background:rgba(245,158,11,.13);border:1px solid rgba(245,158,11,.35);color:var(--gold);margin-bottom:9px}
+.mcq-q{font-size:14px;font-weight:600;margin-bottom:15px;line-height:1.65}
+
+.kbc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.kbc-btn{display:flex;align-items:center;gap:10px;padding:12px 13px;border-radius:10px;cursor:pointer;background:linear-gradient(135deg,rgba(27,35,72,.9),rgba(15,18,50,.95));border:1.5px solid var(--bdr);color:var(--txt);font-size:13px;text-align:left;transition:transform .18s,border-color .18s,box-shadow .18s,background .2s,opacity .3s;position:relative;overflow:hidden;width:100%}
+.kbc-btn:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.035),transparent);transform:translateX(-100%);transition:transform .45s}
+.kbc-btn:hover:not(.locked):after{transform:translateX(100%)}
+.kbc-btn:hover:not(.locked){transform:translateY(-2px) scale(1.01);border-color:var(--a1);box-shadow:0 0 18px rgba(0,212,255,.22)}
+.kbc-lbl{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;background:rgba(124,58,237,.28);color:var(--a1);border:1px solid rgba(124,58,237,.45);transition:all .3s}
+.kbc-txt{flex:1;line-height:1.4}
+
+/* KBC states */
+.kbc-btn.checking{animation:kbc-pulse .5s ease-in-out infinite;border-color:var(--gold);box-shadow:0 0 22px rgba(245,158,11,.32)}
+.kbc-btn.checking .kbc-lbl{background:rgba(245,158,11,.28);color:var(--gold);border-color:var(--gold)}
+.kbc-btn.correct{background:linear-gradient(135deg,rgba(16,185,129,.22),rgba(5,150,105,.12));border-color:var(--gr);box-shadow:0 0 26px rgba(16,185,129,.38);animation:kbc-correct .42s ease}
+.kbc-btn.correct .kbc-lbl{background:rgba(16,185,129,.38);color:#fff;border-color:var(--gr)}
+.kbc-btn.wrong{background:linear-gradient(135deg,rgba(239,68,68,.2),rgba(185,28,28,.1));border-color:var(--rd);box-shadow:0 0 22px rgba(239,68,68,.3);animation:kbc-shake .38s ease}
+.kbc-btn.wrong .kbc-lbl{background:rgba(239,68,68,.3);color:#fff;border-color:var(--rd)}
+.kbc-btn.dim{opacity:.28;pointer-events:none}
+.kbc-btn.locked{pointer-events:none}
+
+@keyframes kbc-pulse{0%,100%{box-shadow:0 0 10px rgba(245,158,11,.2)}50%{box-shadow:0 0 30px rgba(245,158,11,.6);transform:scale(1.015)}}
+@keyframes kbc-correct{0%{transform:scale(1)}40%{transform:scale(1.045)}70%{transform:scale(.97)}100%{transform:scale(1)}}
+@keyframes kbc-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+.kbc-bar{display:none;height:3px;margin:9px 0 2px;border-radius:2px;overflow:hidden;background:var(--bdr)}
+.kbc-bar.show{display:block}
+.kbc-bar-fill{height:100%;background:linear-gradient(90deg,var(--a2),var(--gold),var(--a1));background-size:200%;animation:kbc-bar-anim .5s linear infinite}
+@keyframes kbc-bar-anim{0%{background-position:100%}100%{background-position:-100%}}
+.kbc-status{display:none;text-align:center;font-size:11px;color:var(--gold);padding:3px;font-weight:600;letter-spacing:.4px}
+.kbc-status.show{display:block}
+.kbc-exp{display:none;margin-top:13px;padding:11px 14px;border-radius:8px;font-size:13px;line-height:1.65;background:rgba(0,212,255,.06);border-left:3px solid var(--a1)}
+.kbc-exp.show{display:block;animation:fade-up .32s ease}
+@keyframes fade-up{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+
+/* Answer cards */
+.ac{background:var(--card);border:1px solid var(--bdr);border-radius:11px;margin-bottom:11px;overflow:hidden}
+.ac-hdr{padding:13px 17px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:9px;transition:background .18s}
+.ac-hdr:hover{background:rgba(255,255,255,.025)}
+.ac-q{font-size:13.5px;font-weight:600;color:var(--a1);flex:1}
+.ac-arr{color:var(--a2);font-size:15px;transition:transform .3s;flex-shrink:0;margin-top:2px}
+.ac-arr.open{transform:rotate(180deg)}
+.ac-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 17px}
+.ac-body.open{max-height:4000px;padding:0 17px 18px}
+.ac-txt{font-size:13px;color:#94a3b8;line-height:1.8}
+.ac-txt strong{color:var(--txt)}
+.ac-txt code{display:block;background:#0a0d17;color:#c9d1d9;padding:11px 13px;border-radius:7px;border:1px solid #252d4a;font-family:'Courier New',Courier,monospace;font-size:12px;margin:8px 0;overflow-x:auto;white-space:pre;line-height:1.55}
+.pt{display:block;background:rgba(124,58,237,.07);border-left:2px solid var(--a2);padding:5px 10px;border-radius:0 5px 5px 0;margin:3px 0;font-size:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:rgba(124,58,237,.18);padding:7px 8px;border:1px solid var(--bdr);text-align:left}
+.tbl td{padding:5px 8px;border:1px solid var(--bdr)}
+
+/* Hot + Cheat */
+.stitle{text-align:center;margin:38px 0 16px}
+.stitle h2{display:inline-block;padding:9px 26px;background:var(--card);border:1px solid var(--bdr);border-radius:9px;font-size:1.15rem}
+.hot{background:linear-gradient(135deg,#160900,#251200);border:1px solid rgba(245,158,11,.38);border-radius:13px;padding:20px}
+.hot h2{color:var(--gold);margin-bottom:13px;font-size:1.05rem}
+.hq{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,158,11,.1);align-items:flex-start}
+.hq:last-child{border:none}
+.hr{width:25px;height:25px;background:var(--gold);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.ht{font-size:13px;font-weight:600}
+.hy{font-size:11px;color:var(--muted);margin-top:1px}
+.cheat{background:linear-gradient(135deg,#091508,#0b1d0b);border:1px solid rgba(16,185,129,.28);border-radius:13px;padding:20px;margin-top:18px}
+.cheat h2{color:var(--gr);margin-bottom:13px;font-size:1.05rem}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px}
+.cc{background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.18);padding:13px;border-radius:9px}
+.cc h4{color:var(--gr);margin-bottom:7px;font-size:12.5px}
+.cc code{display:block;background:#0a0d17;color:#c9d1d9;padding:7px 9px;border-radius:5px;font-family:monospace;font-size:11px;margin:4px 0;border:1px solid #252d4a;overflow-x:auto;white-space:pre}
+.ci{font-size:11.5px;color:var(--muted);display:block;padding:2px 0 2px 7px;border-left:2px solid var(--gr);margin:2px 0}
+
+@media(max-width:560px){.kbc-grid{grid-template-columns:1fr}.hero h1{font-size:1.4rem}nav a{font-size:10.5px;padding:3px 8px}.cgrid{grid-template-columns:1fr}}
+@media print{nav,#pbar{display:none}body{background:#fff;color:#000}.tp{display:block!important}.ac-body{max-height:none!important;padding:0 17px 18px!important}}
+</style>
+</head>
+<body>
+<div id="pbar"></div>
+
+<nav>
+  <span class="nbrand">💻 OOP C++</span>
+  <a href="#u1">Unit 1</a><a href="#u2">Unit 2</a>
+  <a href="#u3">Unit 3</a><a href="#u4">Unit 4</a>
+  <a href="#hotq">🔥 Hot Q</a><a href="#cheat">📝 Cheat</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div style="font-size:2.4rem;margin-bottom:7px">💻</div>
+    <h1>Object Oriented Programming Using C++</h1>
+    <p class="sub">BCA-301 / Code: 303301 — Semester III</p>
+    <p class="info">Aryabhatta Knowledge University (AKU), Patna &nbsp;·&nbsp; Full Marks: 60 &nbsp;·&nbsp; Time: 3 Hrs</p>
+    <div class="tags">
+      <span class="tag">📚 4 Units</span>
+      <span class="tag">🎯 PYQs 2014–2024</span>
+      <span class="tag">🎮 KBC MCQs</span>
+      <span class="tag">📋 4 & 12 Mark Answers</span>
+      <span class="tag">📝 Cheat Sheet</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════ UNIT 1 ══════════════ -->
+<div class="unit" id="u1">
+  <div class="uhdr" style="background:linear-gradient(135deg,#100628,#0c0e24)">
+    <div class="unum" style="background:var(--u1c)">1</div>
+    <div><div class="utitle">Introduction to Programming Paradigms & Basics of C++</div>
+    <div class="usub">OOP Concepts · Classes & Objects · Constructors · Destructors · Friend Functions · Static Members · this Pointer</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">OOP vs POP</span><span class="chip">Class & Object</span><span class="chip">Encapsulation</span>
+    <span class="chip">Abstraction</span><span class="chip">Data Hiding</span><span class="chip">Constructor</span>
+    <span class="chip">Destructor</span><span class="chip">Friend Function</span><span class="chip">Inline Function</span>
+    <span class="chip">Static Members</span><span class="chip">this Pointer</span><span class="chip">new / delete</span>
+  </div>
+  <div class="tabs">
+    <div class="tab-bar">
+      <button class="tb on" onclick="stab(this,'t1m')">🎯 MCQ Solved</button>
+      <button class="tb" onclick="stab(this,'t14')">📝 4-Mark</button>
+      <button class="tb" onclick="stab(this,'t1l')">📋 12-Mark</button>
+    </div>
+    <div class="tp on" id="t1m"></div>
+
+    <div class="tp" id="t14">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What is OOP? What are its main features?</div><span class="pyq">📅 2017·2018·2019·2020·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>OOP (Object Oriented Programming)</strong> organises software design around <strong>objects</strong> rather than functions.<br><br>
+        <span class="pt">1. <strong>Encapsulation:</strong> Binding data + functions inside a class. Data protected from outside.</span>
+        <span class="pt">2. <strong>Abstraction:</strong> Hide complexity; show only essential features (ATM example).</span>
+        <span class="pt">3. <strong>Inheritance:</strong> Derived class gets properties of base class. Promotes code reuse.</span>
+        <span class="pt">4. <strong>Polymorphism:</strong> One name, many forms — function overloading, virtual functions.</span>
+        <span class="pt">5. <strong>Data Hiding:</strong> Private/protected access specifiers restrict unauthorised access.</span>
+        <span class="pt">6. <strong>Message Passing:</strong> Objects communicate by calling member functions: obj.show();</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain characteristics of Constructor and Destructor.</div><span class="pyq">📅 2014·2017·2018·2019·2020·2021</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Constructor Characteristics:</strong>
+        <span class="pt">• Same name as class, <strong>no return type</strong></span>
+        <span class="pt">• Called automatically on object creation</span>
+        <span class="pt">• Can be overloaded (Default, Parameterized, Copy)</span>
+        <span class="pt">• Cannot be virtual</span><br>
+        <strong>Destructor Characteristics:</strong>
+        <span class="pt">• Same name with <strong>~ prefix</strong>: ~ClassName()</span>
+        <span class="pt">• No return type, no parameters</span>
+        <span class="pt">• Cannot be overloaded — only ONE destructor per class</span>
+        <span class="pt">• Called automatically when object goes out of scope</span>
+<code>class Demo {
+public:
+    Demo()  { cout &lt;&lt; "Constructor called\n"; }
+    ~Demo() { cout &lt;&lt; "Destructor called\n"; }
+};
+int main() { Demo d; }  // Both called automatically</code>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What is a Friend Function? Why is it required?</div><span class="pyq">📅 2017·2021·2022·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        A <strong>friend function</strong> is NOT a member of a class but can access its private and protected members.<br><br>
+        <strong>Why required?</strong>
+        <span class="pt">• To access private members of two different classes simultaneously</span>
+        <span class="pt">• Essential for overloading &lt;&lt; and &gt;&gt; stream operators</span>
+        <span class="pt">• Share data between classes without inheritance</span>
+<code>class Demo {
+    int x = 10;          // private
+public:
+    friend void show(Demo d);   // declaration
+};
+void show(Demo d) { cout &lt;&lt; d.x; }  // accesses private x
+int main() { Demo d; show(d); }  // Output: 10</code>
+        <strong>Note:</strong> Declared inside class with <code>friend</code>; defined outside like a normal function.
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Differentiate between OOP and Procedure-Oriented Programming (POP).</div><span class="pyq">📅 2019·2020·2021·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <table class="tbl">
+          <tr><th>OOP</th><th>POP</th></tr>
+          <tr><td>Divided into <strong>objects</strong></td><td>Divided into <strong>functions</strong></td></tr>
+          <tr><td>Data-driven (data is primary)</td><td>Function-driven</td></tr>
+          <tr><td>Data hiding via private/protected</td><td>No data hiding — global data accessible everywhere</td></tr>
+          <tr><td>Code reuse via <strong>inheritance</strong></td><td>Limited code reusability</td></tr>
+          <tr><td>C++, Java, Python</td><td>C, Pascal, Fortran</td></tr>
+        </table>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What are inline functions? What is a static data member?</div><span class="pyq">📅 2017·2019·2020</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Inline Function:</strong> Replaces function call with actual code at compile time — eliminates call overhead.
+<code>inline int sq(int x) { return x*x; }
+// Compiler replaces sq(5) with 5*5 directly</code>
+        <strong>Static Data Member:</strong> Shared by ALL objects of a class — only one copy exists.
+<code>class Student {
+    static int count;   // shared across all objects
+public:
+    Student() { count++; }
+    static void show() { cout &lt;&lt; count; }
+};
+int Student::count = 0;  // must initialize outside</code>
+        <span class="pt">Static member: memory efficient, retains value throughout program</span>
+      </div></div></div>
+    </div><!-- t14 -->
+
+    <div class="tp" id="t1l">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain OOP features in detail. How is C++ different from C? Write a class program.</div><span class="pyq">📅 2019·2020·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Introduction:</strong> OOP models real-world entities as objects with attributes and behaviours.<br><br>
+        <span class="pt"><strong>1. Encapsulation:</strong> Data + methods inside class. Access only through public interface. Like a medicine capsule — content hidden.</span>
+        <span class="pt"><strong>2. Abstraction:</strong> Show only necessary features, hide implementation. ATM: use without knowing internal bank software.</span>
+        <span class="pt"><strong>3. Inheritance:</strong> Child class inherits from parent. Reuse without rewriting. Types: Single, Multiple, Multilevel, Hierarchical, Hybrid.</span>
+        <span class="pt"><strong>4. Polymorphism:</strong> One name, many forms. Compile-time: overloading. Runtime: virtual functions.</span>
+        <span class="pt"><strong>5. Data Hiding:</strong> private / protected stop unauthorised access.</span>
+        <span class="pt"><strong>6. Message Passing:</strong> obj.display() — objects talk to each other via functions.</span><br>
+        <strong>C vs C++ Key Differences:</strong>
+        <table class="tbl">
+          <tr><th>C</th><th>C++</th></tr>
+          <tr><td>Procedure-oriented</td><td>Object-oriented</td></tr>
+          <tr><td>No class / object</td><td>Supports class and object</td></tr>
+          <tr><td>No function overloading</td><td>Function overloading supported</td></tr>
+          <tr><td>printf() / scanf()</td><td>cout / cin</td></tr>
+          <tr><td>No exception handling</td><td>try / catch / throw</td></tr>
+        </table><br>
+        <strong>Complete C++ Class Program:</strong>
+<code>#include&lt;iostream&gt;
+using namespace std;
+class Student {
+    string name;   // private by default
+    int marks;
+public:
+    Student(string n, int m) { name=n; marks=m; }  // parameterized constructor
+    void display() {
+        cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; ", Marks: " &lt;&lt; marks &lt;&lt; endl;
+    }
+    ~Student() { cout &lt;&lt; "Object destroyed\n"; }
+};
+int main() {
+    Student s("Zoha", 85);
+    s.display();   // Name: Zoha, Marks: 85
+    return 0;      // Destructor auto-called here
+}</code>
+        <strong>Conclusion:</strong> OOP makes programs more organised, secure, reusable and maintainable.
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain all types of Constructors with programs. Write copy constructor example.</div><span class="pyq">📅 2014·2018·2019·2021·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>1. Default Constructor:</strong>
+<code>class Box {
+public:
+    Box() { cout &lt;&lt; "Default constructor\n"; }
+};</code>
+        <strong>2. Parameterized Constructor:</strong>
+<code>class Distance {
+    int feet, inches;
+public:
+    Distance(int f, int i) { feet=f; inches=i; }
+    void show() { cout &lt;&lt; feet &lt;&lt; "ft " &lt;&lt; inches &lt;&lt; "in\n"; }
+};
+int main() { Distance d(5,10); d.show(); }  // 5ft 10in</code>
+        <strong>3. Copy Constructor:</strong>
+<code>class Box {
+    int len;
+public:
+    Box(int l) { len=l; }
+    Box(Box &b) { len=b.len; }   // copy constructor
+    void show() { cout &lt;&lt; len; }
+};
+int main() {
+    Box b1(10);
+    Box b2(b1);   // copy constructor called
+    b2.show();    // 10
+}</code>
+        <strong>Conclusion:</strong> Default initialises, Parameterized sets values, Copy clones an object. Destructor always cleans up memory.
+      </div></div></div>
+    </div><!-- t1l -->
+  </div>
+</div><!-- unit 1 -->
+
+<!-- ══════════════ UNIT 2 ══════════════ -->
+<div class="unit" id="u2">
+  <div class="uhdr" style="background:linear-gradient(135deg,#19100000,#0c0e24);background:linear-gradient(135deg,#19100a,#0c0e24)">
+    <div class="unum" style="background:var(--u2c);color:#000">2</div>
+    <div><div class="utitle">Operator Overloading</div>
+    <div class="usub">Fundamentals · Operator Functions · Unary &amp; Binary Operators · Stream Operators · Type Conversion</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Operator Overloading</span><span class="chip">Operator Function</span>
+    <span class="chip">Unary Operators</span><span class="chip">Binary Operators</span>
+    <span class="chip">Friend Operator</span><span class="chip">Stream &lt;&lt; &gt;&gt;</span>
+    <span class="chip">Type Conversion</span><span class="chip">Restrictions</span>
+  </div>
+  <div class="tabs">
+    <div class="tab-bar">
+      <button class="tb on" onclick="stab(this,'t2m')">🎯 MCQ Solved</button>
+      <button class="tb" onclick="stab(this,'t24')">📝 4-Mark</button>
+      <button class="tb" onclick="stab(this,'t2l')">📋 12-Mark</button>
+    </div>
+    <div class="tp on" id="t2m"></div>
+    <div class="tp" id="t24">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What is an operator function? Describe its syntax.</div><span class="pyq">📅 2014</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        An <strong>operator function</strong> redefines how an operator works with user-defined types. Uses keyword <code>operator</code>.<br><br>
+        <strong>Syntax (member function):</strong>
+<code>ReturnType operator symbol (parameters) {
+    // body
+}</code>
+        <strong>Example:</strong>
+<code>class Complex {
+    int r, i;
+public:
+    Complex(int a,int b){r=a;i=b;}
+    Complex operator+(Complex c) {         // + overloaded
+        return Complex(r+c.r, i+c.i);
+    }
+    void show(){cout&lt;&lt;r&lt;&lt;"+i"&lt;&lt;i;}
+};</code>
+        <span class="pt">• Cannot change precedence/associativity</span>
+        <span class="pt">• Cannot create new operators</span>
+        <span class="pt">• At least one operand must be user-defined type</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Write syntax for overloading &lt;&lt; and &gt;&gt; with friend function.</div><span class="pyq">📅 2014·2018</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        Stream operators MUST be friend functions because the left operand is cout/cin (stream object), not the class object.<br><br>
+<code>class Distance {
+    int m;
+public:
+    Distance(int x=0){m=x;}
+    friend ostream& operator&lt;&lt;(ostream& os, Distance& d) {
+        os &lt;&lt; d.m &lt;&lt; "m"; return os;
+    }
+    friend istream& operator&gt;&gt;(istream& is, Distance& d) {
+        is &gt;&gt; d.m; return is;
+    }
+};
+int main() {
+    Distance d;
+    cin &gt;&gt; d;    // uses operator>>
+    cout &lt;&lt; d;   // uses operator<<
+}</code>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What are the restrictions on operator overloading?</div><span class="pyq">📅 2018</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <span class="pt">1. Cannot overload: <strong>:: . .* ?: sizeof typeid</strong></span>
+        <span class="pt">2. Cannot change <strong>precedence or associativity</strong></span>
+        <span class="pt">3. Cannot change <strong>arity</strong> (number of operands)</span>
+        <span class="pt">4. Cannot create <strong>new operators</strong> (e.g., ** for power)</span>
+        <span class="pt">5. At least one operand must be a <strong>user-defined type</strong></span>
+        <span class="pt">6. <strong>=, (), [], -&gt;</strong> can ONLY be overloaded as member functions</span>
+        <span class="pt">7. <strong>= (assignment)</strong> is NOT inherited by derived classes</span>
+      </div></div></div>
+    </div><!-- t24 -->
+
+    <div class="tp" id="t2l">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain operator overloading. Type conversion: basic→class and class→basic with examples.</div><span class="pyq">📅 2014·2018·2019·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Operator Overloading</strong> gives additional meaning to operators for user-defined types.<br><br>
+        <strong>Binary + overloading — Complex Numbers:</strong>
+<code>#include&lt;iostream&gt;
+using namespace std;
+class Complex {
+    float r, i;
+public:
+    Complex(float a=0,float b=0){r=a;i=b;}
+    Complex operator+(Complex c){ return Complex(r+c.r,i+c.i); }
+    Complex operator-(Complex c){ return Complex(r-c.r,i-c.i); }
+    Complex operator*(Complex c){ return Complex(r*c.r-i*c.i,r*c.i+i*c.r); }
+    void show(){ cout&lt;&lt;r&lt;&lt;"+i"&lt;&lt;i&lt;&lt;endl; }
+};
+int main(){
+    Complex c1(3,4),c2(1,2);
+    (c1+c2).show();  // 4+i6
+    (c1-c2).show();  // 2+i2
+    (c1*c2).show();  // -5+i10
+}</code>
+        <strong>Type Conversion 1 — Basic to Class (Conversion Constructor):</strong>
+<code>class Distance {
+    int m;
+public:
+    Distance(int x){m=x;}   // Conversion constructor
+    void show(){ cout&lt;&lt;m&lt;&lt;"m\n"; }
+};
+int main(){
+    Distance d = 50;  // int auto-converted to Distance
+    d.show();         // 50m
+}</code>
+        <strong>Type Conversion 2 — Class to Basic (Conversion Operator):</strong>
+<code>class Distance {
+    int m;
+public:
+    Distance(int x){m=x;}
+    operator int(){ return m; }  // Class→int
+};
+int main(){
+    Distance d(100);
+    int x = d;   // Object auto-converted to int
+    cout&lt;&lt;x;    // 100
+}</code>
+        <strong>Conclusion:</strong> Operator overloading + type conversion makes user-defined types behave like built-in types.
+      </div></div></div>
+    </div><!-- t2l -->
+  </div>
+</div><!-- unit 2 -->
+
+<!-- ══════════════ UNIT 3 ══════════════ -->
+<div class="unit" id="u3">
+  <div class="uhdr" style="background:linear-gradient(135deg,#0a180a,#0c0e24)">
+    <div class="unum" style="background:var(--u3c);color:#000">3</div>
+    <div><div class="utitle">Inheritance</div>
+    <div class="usub">Base/Derived · Access Specifiers · Types of Inheritance · Virtual Functions · Abstract Classes · Dynamic Binding</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Single</span><span class="chip">Multiple</span><span class="chip">Multilevel</span>
+    <span class="chip">Hierarchical</span><span class="chip">Hybrid</span><span class="chip">Virtual Functions</span>
+    <span class="chip">Pure Virtual = 0</span><span class="chip">Abstract Class</span><span class="chip">Dynamic Binding</span><span class="chip">Virtual Destructor</span>
+  </div>
+  <div class="tabs">
+    <div class="tab-bar">
+      <button class="tb on" onclick="stab(this,'t3m')">🎯 MCQ Solved</button>
+      <button class="tb" onclick="stab(this,'t34')">📝 4-Mark</button>
+      <button class="tb" onclick="stab(this,'t3l')">📋 12-Mark</button>
+    </div>
+    <div class="tp on" id="t3m"></div>
+    <div class="tp" id="t34">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What is abstract class? What is its benefit?</div><span class="pyq">📅 2017·2018·2019·2022·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        An <strong>abstract class</strong> has at least one <strong>pure virtual function (= 0)</strong>. Objects CANNOT be created.<br><br>
+<code>class Shape {
+public:
+    virtual void draw() = 0;  // pure virtual → abstract class
+};
+class Circle : public Shape {
+public:
+    void draw() { cout &lt;&lt; "Drawing Circle"; }  // MUST implement
+};</code>
+        <strong>Benefits:</strong>
+        <span class="pt">• Provides common interface for all derived classes</span>
+        <span class="pt">• Forces derived classes to implement pure virtual functions</span>
+        <span class="pt">• Achieves runtime polymorphism</span>
+        <span class="pt">• Better program design and organisation</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain access specifiers and their visibility in inheritance.</div><span class="pyq">📅 2018·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <table class="tbl">
+          <tr><th>Base Member</th><th>Public Inherit</th><th>Private Inherit</th><th>Protected Inherit</th></tr>
+          <tr><td>Public</td><td>Public</td><td>Private</td><td>Protected</td></tr>
+          <tr><td>Protected</td><td>Protected</td><td>Private</td><td>Protected</td></tr>
+          <tr><td>Private</td><td>❌ Not Inherited</td><td>❌ Not Inherited</td><td>❌ Not Inherited</td></tr>
+        </table><br>
+        <span class="pt">• Private members NEVER accessible in derived class</span>
+        <span class="pt">• Protected: accessible inside derived, not outside</span>
+        <span class="pt">• Default inheritance: class→private, struct→public</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Why are virtual functions needed? Explain pure virtual functions.</div><span class="pyq">📅 2017·2019·2020·2021</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Without virtual:</strong> base pointer always calls base class function (wrong).<br>
+        <strong>With virtual:</strong> calls derived class function at runtime (correct = runtime polymorphism).<br><br>
+<code>class Base {
+public:
+    virtual void show() { cout &lt;&lt; "Base\n"; }
+};
+class Derived : public Base {
+public:
+    void show() { cout &lt;&lt; "Derived\n"; }
+};
+int main() {
+    Base* p = new Derived();
+    p-&gt;show();   // Prints "Derived"  ← runtime polymorphism!
+}</code>
+        <span class="pt"><strong>Pure Virtual:</strong> virtual void f() = 0;  → no body in base, forces derived to implement</span>
+        <span class="pt">A class with even ONE pure virtual function becomes abstract</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What is a virtual destructor? Why is it needed?</div><span class="pyq">📅 2021·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Problem:</strong> Without virtual destructor, deleting derived object via base pointer only calls base destructor → memory leak!<br><br>
+<code>class Base {
+public:
+    virtual ~Base() { cout &lt;&lt; "Base destroyed\n"; }  // virtual!
+};
+class Derived : public Base {
+public:
+    ~Derived() { cout &lt;&lt; "Derived destroyed\n"; }
+};
+int main() {
+    Base* p = new Derived();
+    delete p;
+    // Output: Derived destroyed → Base destroyed  (correct order)
+}</code>
+        <span class="pt"><strong>Rule:</strong> If a class has any virtual function, ALWAYS make destructor virtual</span>
+      </div></div></div>
+    </div><!-- t34 -->
+
+    <div class="tp" id="t3l">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain all types of inheritance with block diagram and C++ example for each.</div><span class="pyq">📅 2014·2017·2018·2021·2022·2024 — Most Repeated!</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Inheritance</strong> = deriving a new class from an existing class. Promotes code reuse.<br><br>
+        <strong>1. Single Inheritance</strong> — One derived from one base:
+<code>class Animal { public: void eat(){cout&lt;&lt;"Eating\n";} };
+class Dog : public Animal { public: void bark(){cout&lt;&lt;"Bark!\n";} };
+int main(){ Dog d; d.eat(); d.bark(); }</code>
+        <strong>2. Multiple Inheritance</strong> — One derived from multiple bases:
+<code>class A { public: void fa(){cout&lt;&lt;"A\n";} };
+class B { public: void fb(){cout&lt;&lt;"B\n";} };
+class C : public A, public B { };
+int main(){ C obj; obj.fa(); obj.fb(); }</code>
+        <strong>3. Multilevel Inheritance</strong> — Chain A→B→C:
+<code>class A { public: void fa(){cout&lt;&lt;"A\n";} };
+class B : public A { public: void fb(){cout&lt;&lt;"B\n";} };
+class C : public B { public: void fc(){cout&lt;&lt;"C\n";} };
+// C can access fa(), fb(), fc()</code>
+        <strong>4. Hierarchical</strong> — Multiple derived from one base:
+<code>class Shape { };
+class Circle : public Shape { };   // all inherit Shape
+class Square : public Shape { };
+class Triangle : public Shape { };</code>
+        <strong>5. Hybrid Inheritance</strong> — Mix of types; uses virtual to solve diamond:
+<code>class A { public: int x; };
+class B : virtual public A { };   // virtual keyword solves diamond
+class C : virtual public A { };
+class D : public B, public C { };
+int main(){ D obj; obj.x=10; cout&lt;&lt;obj.x; }  // No ambiguity!</code>
+        <strong>Conclusion:</strong> Inheritance is the core of OOP. Virtual base class solves the diamond problem in hybrid inheritance.
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Write a program showing constructors in inherited classes and virtual functions with dynamic binding.</div><span class="pyq">📅 2022·2024</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Constructors in Inherited Classes:</strong>
+<code>#include&lt;iostream&gt;
+using namespace std;
+class Base {
+public:
+    Base(int x){ cout&lt;&lt;"Base constructor: "&lt;&lt;x&lt;&lt;endl; }
+    ~Base(){ cout&lt;&lt;"Base destructor\n"; }
+};
+class Derived : public Base {
+public:
+    Derived(int x,int y) : Base(x) {   // calls base constructor
+        cout&lt;&lt;"Derived constructor: "&lt;&lt;y&lt;&lt;endl;
+    }
+    ~Derived(){ cout&lt;&lt;"Derived destructor\n"; }
+};
+int main(){
+    Derived d(10,20);
+    // Base constructor: 10
+    // Derived constructor: 20
+    // Derived destructor   ← reversed on exit
+    // Base destructor
+}</code>
+        <strong>Dynamic Binding with Virtual Functions:</strong>
+<code>class Shape {
+public:
+    virtual void area()=0;  // pure virtual
+};
+class Circle : public Shape {
+    float r;
+public:
+    Circle(float x){r=x;}
+    void area(){ cout&lt;&lt;"Circle area: "&lt;&lt;3.14f*r*r&lt;&lt;endl; }
+};
+class Rect : public Shape {
+    float l,b;
+public:
+    Rect(float x,float y){l=x;b=y;}
+    void area(){ cout&lt;&lt;"Rect area: "&lt;&lt;l*b&lt;&lt;endl; }
+};
+int main(){
+    Shape* p;
+    Circle c(5); Rect r(4,6);
+    p=&c; p-&gt;area();   // Circle area: 78.5
+    p=&r; p-&gt;area();   // Rect area: 24
+}</code>
+      </div></div></div>
+    </div><!-- t3l -->
+  </div>
+</div><!-- unit 3 -->
+
+<!-- ══════════════ UNIT 4 ══════════════ -->
+<div class="unit" id="u4">
+  <div class="uhdr" style="background:linear-gradient(135deg,#180a0e,#0c0e24)">
+    <div class="unum" style="background:var(--u4c)">4</div>
+    <div><div class="utitle">Advanced Topics</div>
+    <div class="usub">Multiple Inheritance · Virtual Base Class · Templates · Exception Handling · File Handling</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Multiple Inheritance</span><span class="chip">Virtual Base Class</span>
+    <span class="chip">this Pointer</span><span class="chip">Function Templates</span>
+    <span class="chip">Class Templates</span><span class="chip">try-catch-throw</span>
+    <span class="chip">File Handling</span><span class="chip">seekg / tellg</span><span class="chip">fstream</span>
+  </div>
+  <div class="tabs">
+    <div class="tab-bar">
+      <button class="tb on" onclick="stab(this,'t4m')">🎯 MCQ Solved</button>
+      <button class="tb" onclick="stab(this,'t44')">📝 4-Mark</button>
+      <button class="tb" onclick="stab(this,'t4l')">📋 12-Mark</button>
+    </div>
+    <div class="tp on" id="t4m"></div>
+    <div class="tp" id="t44">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain exception handling with try, catch, throw.</div><span class="pyq">📅 2014·2017·2018·2021·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Exception Handling</strong> handles runtime errors without crashing the program.<br><br>
+        <span class="pt"><strong>try:</strong> Code that might throw an exception</span>
+        <span class="pt"><strong>throw:</strong> Generates (throws) an exception</span>
+        <span class="pt"><strong>catch:</strong> Catches and handles the exception</span>
+<code>int divide(int a, int b){
+    if(b==0) throw "Division by zero!";
+    return a/b;
+}
+int main(){
+    try{
+        cout &lt;&lt; divide(10,2) &lt;&lt; endl;  // 5
+        cout &lt;&lt; divide(10,0) &lt;&lt; endl;  // throws!
+    }
+    catch(const char* msg){
+        cout &lt;&lt; "Error: " &lt;&lt; msg;
+    }
+    cout &lt;&lt; "Program continues\n";
+}</code>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Write syntax of function template with example.</div><span class="pyq">📅 2017·2019·2021</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        A <strong>function template</strong> is one generic function that works for any data type.<br><br>
+<code>template &lt;class T&gt;
+T findMax(T a, T b){ return (a&gt;b) ? a : b; }
+
+int main(){
+    cout &lt;&lt; findMax(10, 20);     // int → 20
+    cout &lt;&lt; findMax(3.5f, 2.1f);// float → 3.5
+    cout &lt;&lt; findMax('A', 'Z');  // char → Z
+}</code>
+        <span class="pt">Write once, use for any data type. No code duplication.</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain virtual base class — how it solves diamond problem.</div><span class="pyq">📅 2020·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Diamond Problem:</strong> Two parents inherit same grandparent → derived gets two copies → ambiguity.<br><br>
+<code>class A { public: int x; A(){x=10;} };
+class B : virtual public A { };  // virtual solves it
+class C : virtual public A { };  // virtual here too
+class D : public B, public C { };
+int main(){
+    D obj;
+    cout &lt;&lt; obj.x;  // 10 — No ambiguity, only ONE copy of A
+}</code>
+        <span class="pt"><strong>Key:</strong> Write <code>virtual</code> in B and C (not in D)</span>
+        <span class="pt">This ensures ONE shared copy of grandparent A in D's memory</span>
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. What are file access types? Write sequential file access example.</div><span class="pyq">📅 2017·2022</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <span class="pt"><strong>Sequential Access:</strong> Read/Write in order, start to end</span>
+        <span class="pt"><strong>Random Access:</strong> Jump to any position using seekg()/seekp()</span>
+        <span class="pt"><strong>File modes:</strong> ios::in · ios::out · ios::app · ios::ate · ios::binary</span>
+<code>#include&lt;fstream&gt;
+int main(){
+    // WRITE
+    ofstream fout("data.txt");
+    fout &lt;&lt; "Name: Zoha\nRoll: 101\n";
+    fout.close();
+    // READ
+    ifstream fin("data.txt");
+    string line;
+    while(getline(fin,line)) cout&lt;&lt;line&lt;&lt;endl;
+    fin.close();
+}</code>
+      </div></div></div>
+    </div><!-- t44 -->
+
+    <div class="tp" id="t4l">
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Explain templates. Write C++ program to find minimum of int, char, float using template.</div><span class="pyq">📅 2014·2017·2019·2021</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Need for Templates:</strong>
+        <span class="pt">• Write code once, use for multiple data types — no duplication</span>
+        <span class="pt">• Type-safe: compiler checks at compile time</span>
+        <span class="pt">• Foundation of C++ STL (Standard Template Library)</span><br>
+        <strong>Function Template Program — Find Minimum:</strong>
+<code>#include&lt;iostream&gt;
+using namespace std;
+template &lt;class T&gt;
+T findMin(T a, T b){ return (a&lt;b) ? a : b; }
+int main(){
+    cout&lt;&lt;"Min int:   "&lt;&lt;findMin(10,20)    &lt;&lt;endl;  // 10
+    cout&lt;&lt;"Min float: "&lt;&lt;findMin(3.5f,2.1f)&lt;&lt;endl;  // 2.1
+    cout&lt;&lt;"Min char:  "&lt;&lt;findMin('A','Z')  &lt;&lt;endl;  // A
+}</code>
+        <strong>Class Template Example:</strong>
+<code>template &lt;class T&gt;
+class Stack {
+    T arr[10]; int top;
+public:
+    Stack(){top=-1;}
+    void push(T x){arr[++top]=x;}
+    T pop(){return arr[top--];}
+};
+int main(){
+    Stack&lt;int&gt; s1;   s1.push(5);   cout&lt;&lt;s1.pop();  // 5
+    Stack&lt;float&gt; s2; s2.push(3.14f); cout&lt;&lt;s2.pop(); // 3.14
+}</code>
+        <strong>Conclusion:</strong> Templates enable generic programming — write once, use everywhere.
+      </div></div></div>
+
+      <div class="ac"><div class="ac-hdr" onclick="tog(this)">
+        <div><div class="ac-q">Q. Define exception handling. Write program using try-catch-throw with constructor &amp; destructor. Explain file operations.</div><span class="pyq">📅 2014·2017·2018·2021</span></div><div class="ac-arr">▼</div>
+      </div><div class="ac-body"><div class="ac-txt">
+        <strong>Exception with Constructor/Destructor (Key: Stack Unwinding):</strong>
+<code>#include&lt;iostream&gt;
+using namespace std;
+class Resource {
+public:
+    Resource(){ cout&lt;&lt;"Constructor: Resource acquired\n"; }
+    ~Resource(){ cout&lt;&lt;"Destructor: Resource released\n"; }
+};
+void riskyFunc(){
+    Resource r;          // Constructor called
+    throw "Error!";      // Exception — destructor STILL called!
+}
+int main(){
+    try{ riskyFunc(); }
+    catch(const char* e){ cout&lt;&lt;"Caught: "&lt;&lt;e&lt;&lt;endl; }
+}
+// Output:
+// Constructor: Resource acquired
+// Destructor: Resource released   ← stack unwinding guarantees this!
+// Caught: Error!</code>
+        <strong>Random Access File Operations:</strong>
+<code>#include&lt;fstream&gt;
+int main(){
+    fstream f("data.txt", ios::in|ios::out|ios::binary);
+    f.seekg(0, ios::end);          // go to end
+    long size = f.tellg();         // get file size
+    cout&lt;&lt;"Size: "&lt;&lt;size&lt;&lt;" bytes\n";
+    f.seekg(5, ios::beg);          // jump to byte 5
+    char ch; f.get(ch);
+    cout&lt;&lt;"Byte at 5: "&lt;&lt;ch&lt;&lt;endl;
+    f.close();
+}</code>
+        <span class="pt">seekg(n,ios::beg/cur/end) — move READ pointer</span>
+        <span class="pt">seekp(n,...) — move WRITE pointer</span>
+        <span class="pt">tellg() — current read position &nbsp;·&nbsp; tellp() — current write position</span>
+      </div></div></div>
+    </div><!-- t4l -->
+  </div>
+</div><!-- unit 4 -->
+
+<!-- HOT QUESTIONS -->
+<div class="stitle" id="hotq"><h2>🔥 Most Repeated Questions (2014–2024)</h2></div>
+<div class="hot">
+  <h2>🔥 AKU PYQ — Top 10 Must-Prepare Questions</h2>
+  <div class="hq"><div class="hr">1</div><div><div class="ht">Constructor &amp; Destructor — types, characteristics, programs</div><div class="hy">📅 2014·2017·2018·2019·2020·2021·2024 — 7 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">2</div><div><div class="ht">Types of Inheritance with block diagram and example for each</div><div class="hy">📅 2014·2017·2018·2021·2022·2024 — 6 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">3</div><div><div class="ht">Exception Handling — try, catch, throw with program</div><div class="hy">📅 2014·2017·2018·2019·2021·2022 — 6 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">4</div><div><div class="ht">Abstract Class — definition, benefit, pure virtual function</div><div class="hy">📅 2017·2018·2019·2021·2022·2024 — 6 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">5</div><div><div class="ht">OOP Features — Encapsulation, Abstraction, Inheritance, Polymorphism</div><div class="hy">📅 2017·2018·2019·2020·2024 — 5 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">6</div><div><div class="ht">Operator Overloading — restrictions, programs (+, -, *, complex class)</div><div class="hy">📅 2014·2018·2019·2020·2022 — 5 times! ⭐⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">7</div><div><div class="ht">Friend Function — definition, why needed, program</div><div class="hy">📅 2014·2018·2021·2022·2024 — 5 times! ⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">8</div><div><div class="ht">Virtual Functions &amp; Dynamic Binding with example</div><div class="hy">📅 2017·2018·2019·2021·2022 — 5 times! ⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">9</div><div><div class="ht">Templates — function template &amp; class template programs</div><div class="hy">📅 2014·2017·2019·2021 — 4 times! ⭐⭐</div></div></div>
+  <div class="hq"><div class="hr">10</div><div><div class="ht">File Handling — operations, random access, seekg/tellg</div><div class="hy">📅 2017·2021·2022·2024 — 4 times! ⭐⭐</div></div></div>
+</div>
+
+<!-- CHEAT SHEET -->
+<div class="stitle" id="cheat"><h2>📝 Last Minute Cheat Sheet</h2></div>
+<div class="cheat">
+  <h2>📝 Quick Revision — OOP Using C++</h2>
+  <div class="cgrid">
+    <div class="cc"><h4>🏗️ Class Syntax</h4>
+<code>class Name {
+  private:     // DEFAULT
+    int x;
+  public:
+    void show();
+  protected:
+    int y;
+};</code>
+      <span class="ci">class default → Private</span>
+      <span class="ci">struct default → Public</span>
+    </div>
+    <div class="cc"><h4>🔨 3 Constructor Types</h4>
+<code>Name(){}           // Default
+Name(int x){}      // Parameterized
+Name(Name& n){}    // Copy</code>
+      <span class="ci">No return type, same name as class</span>
+    </div>
+    <div class="cc"><h4>🗑️ Destructor</h4>
+<code>~Name() { /* cleanup */ }</code>
+      <span class="ci">~ tilde prefix, no parameters</span>
+      <span class="ci">Only ONE destructor per class</span>
+      <span class="ci">Make virtual if class has virtual functions</span>
+    </div>
+    <div class="cc"><h4>⚡ Operator Overloading</h4>
+<code>// Member (binary: 1 arg)
+T operator+(T o){}
+// Friend (binary: 2 args)
+friend T operator+(T a,T b){}
+// Stream (MUST be friend)
+friend ostream& operator<<
+  (ostream& os, T& o){}</code>
+    </div>
+    <div class="cc"><h4>🧬 Inheritance Syntax</h4>
+<code>class D:public B{};       // single
+class D:public A,public B{};// multiple
+class B:virtual public A{};// diamond fix</code>
+      <span class="ci">Private members → NEVER inherited</span>
+    </div>
+    <div class="cc"><h4>🎭 Virtual &amp; Pure Virtual</h4>
+<code>virtual void f(){}   // can override
+virtual void f()=0;  // MUST override
+// class with =0 → abstract class
+// cannot create object of abstract!</code>
+    </div>
+    <div class="cc"><h4>📦 Templates</h4>
+<code>template &lt;class T&gt;
+T func(T a, T b){ return a; }
+
+template &lt;class T&gt;
+class Box { T item; };</code>
+    </div>
+    <div class="cc"><h4>⚠️ Exception Handling</h4>
+<code>try {
+  if(err) throw value;
+}
+catch(type var){ /*handle*/ }
+catch(...){ /*catch all*/ }</code>
+      <span class="ci">Destructor ALWAYS called → stack unwinding</span>
+      <span class="ci">C++ has NO 'finally' block (that's Java!)</span>
+    </div>
+    <div class="cc"><h4>📁 File Classes</h4>
+<code>ofstream fout("f.txt");   // write
+ifstream fin("f.txt");    // read
+fstream f("f.txt",ios::in|ios::out);
+f.seekg(n, ios::beg);
+long p = f.tellg();</code>
+    </div>
+    <div class="cc"><h4>🚫 Cannot Overload</h4>
+      <span class="ci">::  Scope resolution</span>
+      <span class="ci">.   Dot / member access</span>
+      <span class="ci">.*  Pointer to member</span>
+      <span class="ci">?:  Ternary operator</span>
+      <span class="ci">sizeof  Size operator</span>
+    </div>
+    <div class="cc"><h4>🧠 Memory Tricks</h4>
+      <span class="ci">OOP = EAIPD (Encap · Abstract · Inherit · Poly · Data hiding)</span>
+      <span class="ci">5 Inheritance types = S-Mu-Ml-H-Hy</span>
+      <span class="ci">Constructor = Birthday 🎂 · Destructor = Death 💀</span>
+      <span class="ci">Virtual = Late binding · Normal = Early binding</span>
+    </div>
+    <div class="cc"><h4>⚠️ Common Exam Mistakes</h4>
+      <span class="ci">❌ Destructor with return type</span>
+      <span class="ci">❌ Multiple destructors in one class</span>
+      <span class="ci">❌ Creating object of abstract class</span>
+      <span class="ci">❌ Forgetting & in copy constructor param</span>
+      <span class="ci">❌ Overloading = as friend function</span>
+      <span class="ci">❌ Forgetting virtual in diamond pattern</span>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:28px 14px;color:var(--muted);font-size:12.5px">
+  <p>📚 AKU Patna &nbsp;·&nbsp; BCA-301 &nbsp;·&nbsp; Code: 303301 &nbsp;·&nbsp; OOP Using C++</p>
+  <p style="margin-top:4px;color:var(--a2)">Based on official syllabus + PYQs 2014–2024 &nbsp;·&nbsp; All the best! 🌟</p>
+</div>
+</div><!-- wrap -->
+
+<script>
+// ═══════════════════════════════════════════════
+// KBC MCQ DATA  (q, opts[], ans index, exp, year)
+// ═══════════════════════════════════════════════
+const D = {
+ t1m:[
+  {q:'Which access specifier is used in a C++ class by <b>default</b>?',
+   o:['Protected','Public','Private','Friend'],a:2,
+   e:'✅ <b>Private</b> is default in a C++ class — members hidden unless declared public. In struct, default is public.',y:'2014 · 2019'},
+  {q:'Which of the following is <b>NOT a member</b> of a class?',
+   o:['Static function','Friend function','Const function','Virtual function'],a:1,
+   e:'✅ <b>Friend function</b> is NOT a class member — it is external but granted access to private/protected members.',y:'2014'},
+  {q:'Hiding the <b>complexity</b> of implementation is known as?',
+   o:['Abstraction','Encapsulation','Data Hiding','Composition'],a:0,
+   e:'✅ <b>Abstraction</b> = showing only essential features, hiding complexity. Example: using ATM without knowing bank software.',y:'2018'},
+  {q:'Mechanism that allows object to <b>acquire properties</b> of another?',
+   o:['Encapsulation','Abstraction','Inheritance','Polymorphism'],a:2,
+   e:'✅ <b>Inheritance</b> allows derived class to acquire properties and behaviours of a base class.',y:'2018'},
+  {q:'<b>cout</b> stands for?',
+   o:['Class output','Character output','Console output','Call output'],a:2,
+   e:'✅ <b>cout</b> = Console Output — uses insertion operator (&lt;&lt;) to display output on screen.',y:'2018'},
+  {q:'Operator used to <b>define class members externally</b> (outside the class)?',
+   o:[':','::','#','None of these'],a:1,
+   e:'✅ <b>::</b> (Scope Resolution Operator) — defines member functions outside class. Syntax: void ClassName::func(){}',y:'2019'},
+  {q:'If programmer does not provide a destructor, _____ creates an empty one.',
+   o:['Programmer','Compiler','Linker','Operating System'],a:1,
+   e:'✅ <b>Compiler</b> automatically creates a default empty destructor if not explicitly defined.',y:'2014'},
+  {q:'Can <b>main()</b> function be made private?',
+   o:['Yes, always','Yes, if no classes','No, user-defined','No, never'],a:3,
+   e:'✅ <b>No, never</b>. main() is the program entry point called by OS — it can never be private.',y:'2018'},
+ ],
+ t2m:[
+  {q:'What is the use of the <b>function call operator ()</b> in overloading?',
+   o:['Overloading the method','Overloading the objects','Overloading parameters','None of the above'],a:1,
+   e:'✅ <b>Function call operator ()</b> makes objects callable like functions (functors). Used to "overload objects".',y:'2014'},
+  {q:'Which operator <b>CANNOT be overloaded</b> in C++?',
+   o:['+ (plus)','== (equality)',':: (scope resolution)','&lt;&lt; (stream)'],a:2,
+   e:'✅ <b>::</b> (scope resolution), . (dot), .* (pointer-to-member), ?: (ternary), sizeof CANNOT be overloaded.',y:'General'},
+  {q:'Binary operator overloaded as <b>member function</b> needs how many arguments?',
+   o:['0','1','2','3'],a:1,
+   e:'✅ <b>1 argument</b> (member func: calling object is 1st operand). As friend function: 2 arguments needed.',y:'2017'},
+  {q:'Which operator is <b>NOT inherited</b> by derived classes?',
+   o:['+ (plus)','= (assignment)','- (minus)','* (multiply)'],a:1,
+   e:'✅ <b>= (assignment operator)</b> is NOT inherited. Each derived class must define its own if needed.',y:'2014'},
+  {q:'Stream operators &lt;&lt; and &gt;&gt; must be overloaded as?',
+   o:['Member functions','Static functions','Friend functions','Virtual functions'],a:2,
+   e:'✅ <b>Friend functions</b> — because the left operand is cout/cin (stream object), not the class object.',y:'2014 · 2018'},
+ ],
+ t3m:[
+  {q:'Base class pointer <b>CANNOT</b> point to derived class — True or False?',
+   o:['True','False'],a:1,
+   e:'✅ <b>False</b>. Base class pointer CAN point to derived class object — this is how virtual functions/runtime polymorphism works.',y:'2014'},
+  {q:'What does derived class <b>NOT inherit</b> from base class?',
+   o:['Public members','Protected members','Constructor and destructor','Static members'],a:2,
+   e:'✅ <b>Constructors and destructors</b> are NOT inherited. Derived class defines its own (calls base via initializer list).',y:'2014'},
+  {q:'Adding a derived class requires <b>fundamental changes</b> to base class?',
+   o:['True','False'],a:1,
+   e:'✅ <b>False</b>. Key benefit of inheritance: add derived classes WITHOUT changing base class (Open/Closed Principle).',y:'2018'},
+  {q:'Which is used to implement <b>C++ interfaces</b>?',
+   o:['Absolute variables','Abstract classes','Constant variables','None of the above'],a:1,
+   e:'✅ <b>Abstract classes</b> (with pure virtual functions = 0) implement interfaces in C++.',y:'2019'},
+  {q:'<b>Default visibility</b> mode for members of a C++ class is?',
+   o:['Private','Public','Protected','Depends on compiler'],a:0,
+   e:'✅ <b>Private</b> is default for class. Public is default for struct — key difference between class and struct in C++.',y:'2019'},
+  {q:'What is the purpose of an <b>abstract class</b>?',
+   o:['Help with database','Provide data input','Provide security','Provide a base class for inheritance'],a:3,
+   e:'✅ Abstract class provides an <b>appropriate base class</b> from which other classes can inherit. Objects cannot be created.',y:'2019'},
+ ],
+ t4m:[
+  {q:'Pointers to member refer to which type of class members?',
+   o:['Static members','Non-static members','Whole class','None of the above'],a:1,
+   e:'✅ <b>Non-static members</b> — pointers to member are used to access non-static data members and member functions.',y:'2014'},
+  {q:'The <b>generic type</b> in a template function?',
+   o:['Must be T','Can be T','Cannot be T for user functions','Cannot be T at all'],a:1,
+   e:'✅ Template type <b>can be named T</b> but it is just a convention. Other names (Type, T1, DataType) are equally valid.',y:'2018'},
+  {q:'Function called <b>automatically when object is destroyed</b> is?',
+   o:['Constructor','Destructor','Destroyer','Terminator'],a:1,
+   e:'✅ <b>Destructor</b> is auto-called when object goes out of scope or is deleted. Uses ~ prefix.',y:'2018'},
+  {q:'The blocks used in <b>Exception Handling</b> in C++ are?',
+   o:['try and error','try, catch, throw','handle, catch, error','try, catch, finally'],a:1,
+   e:'✅ C++ uses <b>try, catch, throw</b>. Note: "finally" is Java/C# — it does NOT exist in standard C++!',y:'2017'},
+  {q:'What does a <b>class/function template</b> primarily do?',
+   o:['Replaces a string','Allows generic type at compile time','Deletes an object','None'],a:1,
+   e:'✅ Templates allow <b>generic programming</b> — same code works for different data types, resolved at compile time.',y:'2019'},
+ ]
+};
+
+const LABS = ['A','B','C','D'];
+
+// Render MCQs from data
+function renderMCQs(id){
+  const el = document.getElementById(id);
+  if(!el || el.dataset.done) return;
+  el.dataset.done='1';
+  el.innerHTML = D[id].map((m,i)=>`
+    <div class="mcq-card" id="mc${id}${i}">
+      <div class="pyq">📅 PYQ ${m.y}</div>
+      <div class="mcq-q">Q${i+1}. ${m.q}</div>
+      <div class="kbc-bar" id="bar${id}${i}"><div class="kbc-bar-fill"></div></div>
+      <div class="kbc-status" id="sts${id}${i}">🔒 Checking your answer...</div>
+      <div class="kbc-grid">
+        ${m.o.map((opt,oi)=>`
+          <button class="kbc-btn" onclick="kbc('${id}',${i},${oi},${m.a})">
+            <span class="kbc-lbl">${LABS[oi]||oi}</span>
+            <span class="kbc-txt">${opt}</span>
+          </button>`).join('')}
+      </div>
+      <div class="kbc-exp" id="ex${id}${i}">${m.e}</div>
+    </div>`).join('');
+}
+
+// KBC interaction
+function kbc(id,qi,chosen,correct){
+  const card = document.getElementById(`mc${id}${qi}`);
+  if(card.dataset.answered) return;
+  card.dataset.answered='1';
+  const btns = card.querySelectorAll('.kbc-btn');
+  const bar  = document.getElementById(`bar${id}${qi}`);
+  const sts  = document.getElementById(`sts${id}${qi}`);
+  const exp  = document.getElementById(`ex${id}${qi}`);
+
+  // Lock all options
+  btns.forEach(b=>b.classList.add('locked'));
+  // Start checking animation
+  btns[chosen].classList.add('checking');
+  bar.classList.add('show');
+  sts.classList.add('show');
+
+  setTimeout(()=>{
+    btns[chosen].classList.remove('checking');
+    bar.classList.remove('show');
+    sts.classList.remove('show');
+    if(chosen===correct){
+      btns[chosen].classList.add('correct');
+    } else {
+      btns[chosen].classList.add('wrong');
+      btns[correct].classList.add('correct');
+    }
+    btns.forEach((b,i)=>{ if(i!==chosen&&i!==correct) b.classList.add('dim'); });
+    exp.classList.add('show');
+  },530);
+}
+
+// Tab switch
+function stab(btn,id){
+  const tabs=btn.closest('.tabs');
+  tabs.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  tabs.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const panel=document.getElementById(id);
+  panel.classList.add('on');
+  if(id in D) renderMCQs(id);
+}
+
+// Accordion toggle
+function tog(hdr){
+  const body=hdr.nextElementSibling;
+  const arr=hdr.querySelector('.ac-arr');
+  const tab=hdr.closest('.tp');
+  const isOpen=body.classList.contains('open');
+  tab.querySelectorAll('.ac-body').forEach(b=>b.classList.remove('open'));
+  tab.querySelectorAll('.ac-arr').forEach(a=>a.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');arr.classList.add('open');}
+}
+
+// Progress bar + nav active
+window.addEventListener('scroll',()=>{
+  const pct=(scrollY/(document.body.scrollHeight-innerHeight))*100;
+  document.getElementById('pbar').style.width=pct+'%';
+  const ids=['u1','u2','u3','u4','hotq','cheat'];
+  let cur='';
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&scrollY>=el.offsetTop-130)cur=id;});
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.classList.remove('on');
+    if(a.getAttribute('href')==='#'+cur) a.classList.add('on');
+  });
+});
+
+// Smooth scroll
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+
+// Initial render (visible MCQ panels)
+['t1m','t2m','t3m','t4m'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el&&el.classList.contains('on')) renderMCQs(id);
+});
+</script>
+</body>
+</html>

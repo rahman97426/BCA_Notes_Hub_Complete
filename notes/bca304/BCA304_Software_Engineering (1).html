@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA-304 Software Engineering | AKU Patna</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#eef2ff;color:#1a1a2e;}
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0f2e 0%,#1a3a8f 55%,#0d1547 100%);padding:48px 20px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;top:-40%;left:-20%;width:140%;height:160%;background:radial-gradient(ellipse at 50% 40%,rgba(255,200,0,.09) 0%,transparent 65%);pointer-events:none;}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,#ffd700,#ffaa00);color:#0a0f2e;font-weight:900;font-size:.78rem;padding:5px 20px;border-radius:50px;letter-spacing:2px;margin-bottom:14px;text-transform:uppercase;position:relative;}
+.hero-title{font-size:clamp(1.7rem,5vw,2.9rem);font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:6px;text-shadow:0 2px 10px rgba(0,0,0,.4);position:relative;}
+.hero-sub{font-size:.93rem;color:#8eaadd;margin-bottom:18px;position:relative;}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px;position:relative;}
+.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.35);color:#ffd700;padding:5px 15px;border-radius:50px;font-size:.82rem;font-weight:700;}
+.hero-bar{height:4px;background:rgba(255,255,255,.1);}
+.hero-bar-fill{height:100%;background:linear-gradient(90deg,#ff6600,#ffd700,#ff6600);background-size:200%;animation:barShimmer 2.5s ease infinite;}
+@keyframes barShimmer{0%{background-position:0%}100%{background-position:200%}}
+/* NAV */
+.sticky-nav{position:sticky;top:0;z-index:200;background:#0a0f2e;padding:0 12px;display:flex;gap:2px;overflow-x:auto;box-shadow:0 2px 14px rgba(0,0,0,.5);}
+.sticky-nav::-webkit-scrollbar{height:2px;}
+.sticky-nav::-webkit-scrollbar-thumb{background:#ffd700;}
+.nbtn{background:none;border:none;color:#7a90c8;font-size:.82rem;font-weight:700;padding:13px 14px;cursor:pointer;white-space:nowrap;position:relative;letter-spacing:.5px;transition:color .2s;}
+.nbtn::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,#ff6600,#ffd700);border-radius:3px 3px 0 0;opacity:0;transition:opacity .2s;}
+.nbtn:hover,.nbtn.active{color:#ffd700;}
+.nbtn.active::after{opacity:1;}
+/* SECTION */
+.section{padding:36px 16px;max-width:1080px;margin:0 auto;}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.sec-title{font-size:1.35rem;font-weight:900;color:#0a0f2e;}
+.sec-title span{background:linear-gradient(135deg,#ff6600,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.u-badge{background:linear-gradient(135deg,#0a0f2e,#1a3a8f);color:#ffd700;padding:3px 12px;border-radius:50px;font-size:.78rem;font-weight:800;}
+.sec-desc{color:#6b7280;font-size:.88rem;margin-bottom:20px;margin-top:4px;}
+/* TABS */
+.tab-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.tbtn{padding:7px 18px;border-radius:50px;border:2px solid;font-weight:800;font-size:.82rem;cursor:pointer;transition:all .2s;letter-spacing:.3px;}
+.tbtn-mcq{border-color:#ff6600;color:#ff6600;background:#fff;}
+.tbtn-mcq.act{background:linear-gradient(135deg,#ff6600,#ffb800);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(255,102,0,.35);}
+.tbtn-4{border-color:#1a3a8f;color:#1a3a8f;background:#fff;}
+.tbtn-4.act{background:linear-gradient(135deg,#1a3a8f,#2d5fc4);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(26,58,143,.35);}
+.tbtn-12{border-color:#059669;color:#059669;background:#fff;}
+.tbtn-12.act{background:linear-gradient(135deg,#059669,#10b981);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(5,150,105,.35);}
+.tcontent{display:none;}
+.tcontent.act{display:block;}
+/* KBC ARENA */
+.kbc-wrap{background:#010a1a;border-radius:16px;padding:22px 18px;border:2px solid rgba(255,102,0,.4);position:relative;overflow:hidden;}
+.kbc-wrap::before{content:'';position:absolute;top:-40%;left:-30%;width:160%;height:180%;background:radial-gradient(ellipse at 50% 40%,rgba(255,140,0,.07) 0%,transparent 55%);pointer-events:none;}
+.kbc-gline{height:3px;background:linear-gradient(90deg,transparent,#ff6600,#ffd700,#ff6600,transparent);margin-bottom:18px;border-radius:2px;}
+.kbc-status{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.kbc-qnum{color:#8eaadd;font-size:.82rem;font-weight:700;}
+.kbc-dots{display:flex;gap:4px;flex-wrap:wrap;}
+.kbc-dot{width:11px;height:11px;border-radius:50%;background:#132035;transition:all .3s;flex-shrink:0;}
+.kbc-dot.cur{background:#ffd700;box-shadow:0 0 7px #ffd700;}
+.kbc-dot.ok{background:#00c853;}
+.kbc-dot.ng{background:#d50000;}
+.kbc-score{margin-left:auto;color:#ffd700;font-weight:800;font-size:.88rem;}
+.kbc-pyq-tag{background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;padding:2px 10px;border-radius:50px;font-size:.73rem;font-weight:800;}
+.kbc-qbox{background:#050d1f;border:2px solid rgba(255,102,0,.5);border-radius:12px;padding:18px;margin-bottom:18px;}
+.kbc-qtext{color:#fff;font-size:.98rem;font-weight:700;line-height:1.65;}
+.kbc-opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.kbc-opt{background:#050d1f;border:2px solid transparent;border-radius:50px;padding:11px 15px;cursor:pointer;display:flex;align-items:center;gap:11px;transition:all .22s;position:relative;}
+.kbc-opt-bg{position:absolute;inset:0;border-radius:48px;background:linear-gradient(135deg,#ff6600,#ffd700);opacity:.75;z-index:0;}
+.kbc-opt-inner{position:absolute;inset:2px;background:#050d1f;border-radius:46px;z-index:1;}
+.kbc-badge{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#ff6600,#ffd700);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.72rem;color:#0a0f2e;flex-shrink:0;position:relative;z-index:2;}
+.kbc-otext{color:#c8d8f0;font-size:.87rem;font-weight:600;position:relative;z-index:2;line-height:1.4;}
+.kbc-opt:hover:not(.locked){transform:scale(1.024);box-shadow:0 0 18px rgba(255,102,0,.28);}
+.kbc-opt.sel .kbc-otext{color:#fff;}
+.kbc-opt.sel .kbc-opt-bg{background:#ff6600;opacity:1;}
+.kbc-opt.sel .kbc-opt-inner{display:none;}
+.kbc-opt.ans-ok .kbc-opt-bg{background:#00c853 !important;opacity:1;}
+.kbc-opt.ans-ok .kbc-opt-inner{display:none;}
+.kbc-opt.ans-ok .kbc-otext{color:#fff !important;}
+.kbc-opt.ans-ng .kbc-opt-bg{background:#d50000 !important;opacity:1;}
+.kbc-opt.ans-ng .kbc-opt-inner{display:none;}
+.kbc-opt.ans-ng .kbc-otext{color:#fff !important;}
+.kbc-opt.locked{cursor:not-allowed;}
+.kbc-exp{background:rgba(0,200,83,.1);border:1px solid rgba(0,200,83,.35);border-radius:10px;padding:12px 15px;margin-top:15px;display:none;}
+.kbc-exp.show{display:block;}
+.kbc-exp p{color:#4ade80;font-size:.84rem;line-height:1.6;}
+.kbc-ctrl{display:flex;gap:10px;margin-top:15px;align-items:center;flex-wrap:wrap;}
+.kbc-game-area{}
+.kbc-finish{display:none;text-align:center;padding:28px 16px;}
+.kbc-finish.show{display:block;}
+.fin-score{font-size:3.2rem;font-weight:900;color:#ffd700;margin-bottom:6px;}
+.fin-grade{font-size:2.2rem;margin-bottom:12px;}
+.fin-txt{color:#8eaadd;font-size:.9rem;margin-bottom:20px;}
+.kbtn{padding:9px 22px;border-radius:50px;border:none;font-weight:800;cursor:pointer;font-size:.83rem;transition:all .2s;}
+.kbtn-prev{background:rgba(255,255,255,.08);color:#8eaadd;}
+.kbtn-prev:hover{background:rgba(255,255,255,.15);}
+.kbtn-next{background:linear-gradient(135deg,#ff6600,#ffd700);color:#0a0f2e;display:none;}
+.kbtn-next.show{display:inline-block;}
+.kbtn-fin{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;display:none;}
+.kbtn-fin.show{display:inline-block;}
+.kbtn-replay{background:linear-gradient(135deg,#ff6600,#ffd700);color:#0a0f2e;padding:12px 32px;font-size:.95rem;}
+/* ACCORDION */
+.acc-item{background:#fff;border-radius:12px;margin-bottom:11px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.acc-hdr{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;background:linear-gradient(135deg,#1a3a8f,#0d2568);transition:opacity .2s;}
+.acc-hdr.green-hdr{background:linear-gradient(135deg,#065f46,#059669);}
+.acc-hdr:hover{opacity:.93;}
+.acc-q{color:#fff;font-weight:700;font-size:.88rem;flex:1;line-height:1.5;}
+.acc-yr{background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;padding:2px 10px;border-radius:50px;font-size:.72rem;font-weight:800;white-space:nowrap;flex-shrink:0;}
+.acc-arr{color:#ffd700;font-size:1.15rem;transition:transform .3s;flex-shrink:0;}
+.acc-item.open .acc-arr{transform:rotate(180deg);}
+.acc-body{display:none;padding:18px;border-top:3px solid #1a3a8f;border-left:4px solid #ffd700;background:#fafbff;}
+.acc-item.open .acc-body{display:block;}
+.acc-body.green-body{border-top-color:#059669;border-left-color:#10b981;background:#f0fdf8;}
+.ans-intro{background:#eff6ff;border-left:4px solid #1a3a8f;padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:12px;color:#1e3a5f;font-size:.86rem;line-height:1.6;}
+.ans-intro.green-intro{background:#f0fdf8;border-left-color:#059669;color:#065f46;}
+.kterm{color:#1a3a8f;font-weight:800;}
+.kterm.green{color:#065f46;}
+.acc-body ul{margin-left:18px;margin-top:8px;margin-bottom:8px;}
+.acc-body ul li{margin-bottom:6px;color:#374151;font-size:.855rem;line-height:1.6;}
+.dbox{background:#f3f4f6;border:1px solid #d1d5db;border-radius:8px;padding:13px;font-family:'Courier New',monospace;font-size:.78rem;color:#374151;margin:12px 0;white-space:pre-wrap;line-height:1.6;}
+.concl{background:#f0fdf4;border-left:4px solid #059669;padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px;color:#065f46;font-size:.86rem;line-height:1.6;}
+.concl.blue-concl{background:#eff6ff;border-left-color:#1a3a8f;color:#1e3a5f;}
+.atbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:.82rem;}
+.atbl th{background:#1a3a8f;color:#fff;padding:7px 11px;text-align:left;}
+.atbl td{padding:7px 11px;border-bottom:1px solid #e5e7eb;color:#374151;}
+.atbl tr:nth-child(even) td{background:#f9fafb;}
+/* MOST REPEATED */
+.mr-wrap{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.09);}
+.mr-tbl{width:100%;border-collapse:collapse;}
+.mr-tbl th{background:linear-gradient(135deg,#0a0f2e,#1a3a8f);color:#ffd700;padding:13px 15px;text-align:left;font-size:.83rem;}
+.mr-tbl td{padding:11px 15px;border-bottom:1px solid #e5e7eb;font-size:.84rem;}
+.mr-tbl tr:hover td{background:#f5f7ff;}
+.mr-cnt{color:#b91c1c;font-weight:900;font-size:1.05rem;}
+.mr-vvi{color:#ca8a04;font-weight:900;font-size:.95rem;}
+.mr-yrs{color:#6b7280;font-size:.78rem;}
+.mr-ubadge{background:#1a3a8f;color:#fff;padding:2px 10px;border-radius:50px;font-size:.73rem;font-weight:800;}
+/* CHEAT SHEET */
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
+.cs-box{background:#fff;border-radius:12px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-top:4px solid #ffd700;}
+.cs-box:nth-child(2){border-top-color:#1a3a8f;}
+.cs-box:nth-child(3){border-top-color:#059669;}
+.cs-box:nth-child(4){border-top-color:#b91c1c;}
+.cs-box:nth-child(5){border-top-color:#7c3aed;}
+.cs-box:nth-child(6){border-top-color:#0891b2;}
+.cs-box:nth-child(7){border-top-color:#ff6600;}
+.cs-box:nth-child(8){border-top-color:#db2777;}
+.cs-btitle{font-weight:800;font-size:.93rem;color:#0a0f2e;margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.cs-box ul{list-style:none;}
+.cs-box li{padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:.8rem;color:#374151;line-height:1.5;}
+.cs-box li:last-child{border:none;}
+.cs-box li b{color:#0a0f2e;}
+/* FOOTER */
+.page-footer{background:#0a0f2e;color:#4a5568;text-align:center;padding:24px 16px;font-size:.8rem;margin-top:40px;}
+.page-footer span{color:#ffd700;}
+/* RESPONSIVE */
+@media(max-width:600px){
+  .kbc-opts{grid-template-columns:1fr;}
+  .kbc-opt{border-radius:12px;}
+  .kbc-opt-bg{border-radius:10px;}
+  .kbc-opt-inner{inset:2px;border-radius:8px;}
+  .hero-title{font-size:1.5rem;}
+  .cs-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">AKU PATNA &mdash; BCA SEM III</div>
+  <div class="hero-title">SOFTWARE ENGINEERING</div>
+  <div class="hero-sub">BCA-304 &bull; Complete PYQ-Based Study Guide &bull; Prepared with AKU PYQs 2014&ndash;2025</div>
+  <div class="hero-pills">
+    <div class="pill">📅 PYQs: 2014 | 2017 | 2018 | 2019 | 2020 | 2022 | 2024 | 2025</div>
+    <div class="pill">📝 Full Marks: 60</div>
+    <div class="pill">⏱ Time: 3 Hours</div>
+    <div class="pill">📚 5 Units</div>
+    <div class="pill">🎮 50 MCQs + Q&amp;A</div>
+  </div>
+  <div class="hero-bar"><div class="hero-bar-fill"></div></div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="mainNav">
+  <button class="nbtn active" onclick="scrollTo('u1')">U1</button>
+  <button class="nbtn" onclick="scrollTo('u2')">U2</button>
+  <button class="nbtn" onclick="scrollTo('u3')">U3</button>
+  <button class="nbtn" onclick="scrollTo('u4')">U4</button>
+  <button class="nbtn" onclick="scrollTo('u5')">U5</button>
+  <button class="nbtn" onclick="scrollTo('most-repeated')">⭐ Most Repeated</button>
+  <button class="nbtn" onclick="scrollTo('cheat-sheet')">📋 Cheat Sheet</button>
+</nav>
+
+<!-- UNIT SECTIONS will be rendered by JS -->
+<div id="u1" class="section"></div>
+<div id="u2" class="section"></div>
+<div id="u3" class="section"></div>
+<div id="u4" class="section"></div>
+<div id="u5" class="section"></div>
+
+<!-- MOST REPEATED -->
+<div id="most-repeated" class="section">
+  <div class="sec-hdr"><div class="sec-title">⭐ <span>Most Repeated Topics</span></div></div>
+  <div class="sec-desc">Sorted by frequency — topics appearing 4+ times marked ★VVI (Very Very Important)</div>
+  <div class="mr-wrap">
+    <table class="mr-tbl">
+      <thead><tr><th>Topic</th><th>Unit</th><th>Times Repeated</th><th>PYQ Years</th></tr></thead>
+      <tbody id="mrTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CHEAT SHEET -->
+<div id="cheat-sheet" class="section">
+  <div class="sec-hdr"><div class="sec-title">📋 <span>Quick Cheat Sheet</span></div></div>
+  <div class="sec-desc">8-box quick reference — study this the night before exam!</div>
+  <div class="cs-grid" id="csGrid"></div>
+</div>
+
+<div class="page-footer">BCA-304 Software Engineering | AKU Patna | <span>PYQ Years: 2014, 2017, 2018, 2019, 2020, 2022, 2024, 2025</span></div>
+
+<script>
+/* ==================== DATA ==================== */
+
+const UNITS = [
+  {
+    id:1, abbr:"U1", color:"#ff6600",
+    title:"Unit 1: Introduction to SE + Life Cycle Models",
+    subtitle:"Characteristics · Emergence · Metrics · Waterfall · Prototype · Spiral",
+    mcqs:[
+      {q:"What is the main concern of the software engineering area?",opts:["Hardware configuration","Software Production","Network Configuration","Software Reusability"],ans:1,exp:"SE's primary concern is producing reliable, efficient, cost-effective SOFTWARE — not hardware or network.",pyq:"2014"},
+      {q:"SDLC stands for?",opts:["System Development Life Cycle","Software Development Life Cycle","Software Design Life Cycle","System Design Life Cycle"],ans:1,exp:"SDLC = Software Development Life Cycle — framework defining all phases from planning to maintenance.",pyq:"2018"},
+      {q:"The Spiral model has two dimensions, namely ___ and ___.",opts:["Diagonal and Angular","Radial and Perpendicular","Radial and Angular","Diagonal and Perpendicular"],ans:2,exp:"Radial axis = cumulative cost spent; Angular axis = progress made through each iteration.",pyq:"2018"},
+      {q:"Requirements can be refined using which model?",opts:["Waterfall Model","Prototyping Model","Evolutionary Model","Spiral Model"],ans:1,exp:"The Prototype model refines unclear requirements by letting users test a working model and give feedback.",pyq:"2014"},
+      {q:"Waterfall model is NOT suitable for which type of project?",opts:["Small stable projects","Well-defined projects","Projects needing accommodating changes","Short-duration projects"],ans:2,exp:"Waterfall is rigid — once a phase is done, changes are very costly. Fails when requirements keep changing.",pyq:"2019"},
+      {q:"The most important feature of the Spiral model is?",opts:["Risk Management","Efficiency Management","Quality Management","Performance Management"],ans:0,exp:"Spiral model's key differentiator = explicit RISK ANALYSIS + MITIGATION at every iteration.",pyq:"2019"},
+      {q:"Which is the FIRST step in the Software Development Life Cycle?",opts:["Analysis","Design","Problem / Opportunity Identification","Development & Documentation"],ans:2,exp:"SDLC starts with identifying the problem or opportunity — before any analysis, design, or coding.",pyq:"2018"},
+      {q:"Which software life cycle model is BEST for large, complex, HIGH-RISK projects?",opts:["Waterfall Model","Prototype Model","Spiral Model","Big Bang Model"],ans:2,exp:"Spiral's iterative risk handling makes it ideal for large, complex, high-risk projects with uncertain requirements.",pyq:null},
+      {q:"The Prototype model is best used when?",opts:["Requirements are perfectly clear","Requirements are unclear or incomplete","Project size is very large","Team is highly experienced"],ans:1,exp:"Prototyping shines when requirements are fuzzy — users see and test the prototype to clarify what they need.",pyq:null},
+      {q:"Software differs from hardware because software:",opts:["Is manufactured in factories","Physically wears out with use","Does not deteriorate physically","Cannot be replicated"],ans:2,exp:"Hardware wears out physically; software does NOT wear out but may deteriorate due to modifications over time.",pyq:null}
+    ],
+    four:[
+      {q:"What is a Prototype? Under what circumstances is it beneficial to construct a Prototype?",pyq:"2014",h:`<div class='ans-intro'>A <b>Prototype</b> is a preliminary working model of the software built to validate requirements and get user feedback before full development.</div><b>When beneficial to build a prototype:</b><ul><li><b class='kterm'>Unclear Requirements:</b> When users cannot clearly define what they want, a prototype helps them visualize and articulate needs.</li><li><b class='kterm'>Complex UI Systems:</b> For applications where look-and-feel is critical (banking apps, dashboards), prototypes gather early design feedback.</li><li><b class='kterm'>High-Risk Projects:</b> Prototyping validates technical feasibility before committing full resources.</li><li><b class='kterm'>Innovative Systems:</b> When building something new with no precedent, prototypes reduce uncertainty.</li><li><b class='kterm'>Stakeholder Alignment:</b> When multiple stakeholders have conflicting ideas, a prototype provides a common reference point.</li></ul><div class='concl'>Prototyping reduces requirement mismatches, catches design flaws early, and significantly lowers costly rework in later stages.</div>`},
+      {q:"Distinguish between the Waterfall Model and the Spiral Model.",pyq:"Multiple PYQs",h:`<div class='ans-intro'>Both are Software Life Cycle models but differ fundamentally in approach, flexibility, and risk handling.</div><table class='atbl'><tr><th>Feature</th><th>Waterfall Model</th><th>Spiral Model</th></tr><tr><td>Approach</td><td>Linear, Sequential</td><td>Iterative, Risk-Driven</td></tr><tr><td>Risk Handling</td><td>Poor — risks found late</td><td>Excellent — at every iteration</td></tr><tr><td>Flexibility</td><td>Rigid — no going back</td><td>Very flexible</td></tr><tr><td>Customer Involvement</td><td>Start and end only</td><td>Active in each iteration</td></tr><tr><td>Documentation</td><td>Very high</td><td>Moderate</td></tr><tr><td>Best For</td><td>Small, stable projects</td><td>Large, complex projects</td></tr></table><div class='concl'>Waterfall suits stable, well-understood projects; Spiral suits complex, high-risk projects needing continuous refinement.</div>`},
+      {q:"What is a Process Model? Explain the Waterfall Model and its limitations.",pyq:"2017, 2020",h:`<div class='ans-intro'>A <b>Process Model</b> is a structured framework defining how software development activities are organized, sequenced, and managed.</div><b class='kterm'>Waterfall Model Phases:</b><ul><li><b>Requirements Gathering</b> → <b>System Design</b> → <b>Implementation</b> → <b>Testing</b> → <b>Deployment</b> → <b>Maintenance</b></li></ul><div class='dbox'>  [Requirements] → [System Design] → [Implementation]
+       ↓                                               ↓
+  [Maintenance] ←   [Deployment]  ←   [Testing]</div><b class='kterm'>Limitations of Waterfall:</b><ul><li><b>Rigid:</b> Going back to a previous phase is difficult and expensive</li><li><b>Late defect detection:</b> Bugs found only in testing phase — costly to fix</li><li><b>No early prototype:</b> Working software not visible until very late</li><li><b>Requirements assumed stable:</b> Fails when requirements change during development</li><li><b>High risk:</b> Project success known only at the end</li></ul><div class='concl'>Waterfall works for small, well-understood projects but fails for dynamic, large-scale systems.</div>`},
+      {q:"What is Software Prototyping? Give its advantages and disadvantages.",pyq:"2022",h:`<div class='ans-intro'><b>Software Prototyping</b> is the process of building a quick, preliminary version of software to validate requirements and design before full development.</div><b class='kterm'>Advantages:</b><ul><li>Early user feedback reduces misunderstandings</li><li>Helps clarify ambiguous requirements</li><li>Reduces project risk through early validation</li><li>Improves user satisfaction and engagement</li></ul><b class='kterm'>Disadvantages:</b><ul><li>Scope creep — users keep requesting more features</li><li>Budget overruns due to iterative nature</li><li>Prototype code may be poorly structured</li><li>Users may confuse the prototype for the final product</li></ul><div class='concl'>Prototyping is powerful when managed properly but can lead to scope creep and cost overruns if not controlled.</div>`},
+      {q:"Describe the characteristics of software that differentiate it from hardware.",pyq:"2019, 2020",h:`<div class='ans-intro'>Software has unique properties that fundamentally distinguish it from physical hardware products.</div><b class='kterm'>Key Characteristics:</b><ul><li><b>Developed, not manufactured:</b> Software is created through intellectual work, not assembled in factories</li><li><b>Does not wear out:</b> Software doesn't physically deteriorate with use (unlike hardware)</li><li><b>Custom-built:</b> Most software is built for specific needs, not off-the-shelf</li><li><b>Intangible:</b> Software cannot be seen or touched — it's logic, not physical matter</li><li><b>Can be copied easily:</b> Software can be duplicated at near-zero cost</li><li><b>Deteriorates differently:</b> Through modifications and patches, software may become complex and hard to maintain over time</li></ul><div class='concl'>Understanding these characteristics is key to applying correct engineering principles for software development and maintenance.</div>`}
+    ],
+    twelve:[
+      {q:"Explain the classical Waterfall model with activities undertaken during each phase. [★★★ Most Important]",pyq:"2018, 2020, 2024",h:`<div class='ans-intro green-intro'><b>Introduction:</b> The Waterfall Model (proposed by Winston Royce, 1970) is the oldest and simplest software life cycle model. It follows a linear, sequential approach where each phase must be fully completed before the next begins — like water flowing downward.</div><b class='kterm green'>Definition:</b> A Linear Sequential Model where progress flows steadily downward through phases, with minimal backward movement.<br><br><b class='kterm green'>Six Phases and Activities:</b><ul><li><b>1. Requirements Gathering & Analysis:</b> Collect all user requirements. Produce SRS (Software Requirements Specification) document. This phase is CRITICAL — errors here multiply downstream.</li><li><b>2. System Design:</b> Architects design system structure, data flow, algorithms, UI. Produces High-Level Design (HLD) and Low-Level Design (LLD) documents. Blueprint for developers.</li><li><b>3. Implementation (Coding):</b> Developers write actual code based on design documents. Produces working software modules. Most visible phase.</li><li><b>4. Testing & Integration:</b> QA team tests each module (Unit Testing), then integrated system (Integration Testing), then full system (System Testing). Detects and removes defects.</li><li><b>5. Deployment:</b> Tested software released to end users. Involves installation, data migration, user training.</li><li><b>6. Maintenance:</b> Ongoing support — bug fixes, performance improvements, feature updates. Often the longest and most expensive phase.</li></ul><div class='dbox'>Requirements → Design → Implementation → Testing → Deployment → Maintenance
+     ↓           ↓          ↓              ↓          ↓            ↓
+   (SRS)     (HLD/LLD)   (Code)       (Test Cases)  (Release)  (Support)</div><b class='kterm green'>Advantages:</b><ul><li>Simple and easy to understand</li><li>Well-defined phases with clear documentation</li><li>Works well for small projects with stable requirements</li></ul><b class='kterm green'>Disadvantages:</b><ul><li>Rigid — cannot easily accommodate changes</li><li>Late defect detection = high cost to fix</li><li>No working product until the end</li><li>High risk discovered too late</li></ul><div class='concl green-body'>Conclusion: Waterfall is best for small, well-understood projects with stable requirements. For large, complex systems, more flexible models like Spiral are preferred.</div>`},
+      {q:"Explain the Spiral model. How are risks handled in spiral mode of software development?",pyq:"2014, 2017, 2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> The Spiral Model (proposed by Barry Boehm, 1986) is an iterative, risk-driven approach. It combines the systematic aspects of Waterfall with the iterative nature of Prototyping. Most suitable for large, complex, high-risk software.</div><b class='kterm green'>Key Concept:</b> Each loop (iteration) of the spiral produces a more complete version of the software while explicitly addressing risks.<br><br><b class='kterm green'>Four Quadrants in Each Spiral Iteration:</b><ul><li><b>Quadrant 1 — Planning & Objectives:</b> Define objectives, constraints, and alternatives for this iteration. Identify what is to be delivered.</li><li><b>Quadrant 2 — Risk Analysis & Mitigation:</b> IDENTIFY all possible risks. Evaluate their impact. Develop strategies to MITIGATE or eliminate them. This is the heart of the spiral model.</li><li><b>Quadrant 3 — Development & Testing:</b> Build and verify the deliverable (could be prototype or actual software). Testing is performed within this quadrant.</li><li><b>Quadrant 4 — Planning for Next Iteration:</b> Review with stakeholders. Plan the next iteration based on feedback and remaining requirements.</li></ul><div class='dbox'>        Planning &       Risk Analysis
+        Objectives    ←→  & Mitigation
+             ↑                 ↓
+        Review &        Development
+        Next Plan   ←   & Testing
+        
+Start (center) → Spiral outward with each iteration</div><b class='kterm green'>Risk Handling Mechanism:</b><ul><li>Risks identified BEFORE each development cycle — not after</li><li>Risk assessment helps decide: continue, pivot, or stop the project</li><li>Prototyping used during risk analysis to evaluate feasibility</li><li>Higher-risk items addressed in early spirals; lower-risk items in later spirals</li></ul><b class='kterm green'>Advantages:</b><ul><li>Best risk management of all models</li><li>Flexible — accommodates changing requirements</li><li>Customer sees working software early</li></ul><b class='kterm green'>Disadvantages:</b><ul><li>Complex to manage</li><li>Expensive — requires expert risk analysts</li><li>Not suitable for small projects</li></ul><div class='concl'>Conclusion: The Spiral model's iterative risk management makes it ideal for large, complex projects where risks are high and requirements evolve.</div>`},
+      {q:"Compare and contrast the Waterfall, Prototype, and Spiral models with their advantages and disadvantages.",pyq:"2020, 2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software life cycle models provide a framework for software development. Each model suits different project types, and choosing the right model is critical for project success.</div><table class='atbl'><tr><th>Feature</th><th>Waterfall</th><th>Prototype</th><th>Spiral</th></tr><tr><td>Approach</td><td>Linear Sequential</td><td>Iterative Feedback</td><td>Iterative Risk-Driven</td></tr><tr><td>Requirement Stability</td><td>Must be fixed early</td><td>Can evolve</td><td>Can change significantly</td></tr><tr><td>Risk Handling</td><td>Poor (late detection)</td><td>Medium</td><td>Excellent (each iteration)</td></tr><tr><td>Customer Involvement</td><td>Start &amp; end only</td><td>Continuous</td><td>Each iteration</td></tr><tr><td>Documentation</td><td>Very thorough</td><td>Limited</td><td>Moderate</td></tr><tr><td>Project Size</td><td>Small to medium</td><td>Small to medium</td><td>Large &amp; complex</td></tr><tr><td>Time to First Release</td><td>Long (end of project)</td><td>Short (early prototype)</td><td>Medium</td></tr><tr><td>Cost Predictability</td><td>High</td><td>Low</td><td>Medium</td></tr><tr><td>Best Suited For</td><td>Well-understood needs</td><td>Unclear requirements</td><td>High-risk projects</td></tr></table><div class='dbox'>Waterfall:  Req → Design → Code → Test → Deploy
+Prototype:  Req → Proto → Feedback → Refine → Build
+Spiral:     [Plan → Risk → Build → Review] × N iterations</div><div class='concl'>Key Takeaway: No single model fits all projects. Waterfall for stability, Prototype for clarity, Spiral for risk — choose based on project requirements, size, and risk profile.</div>`},
+      {q:"Explain how both the Waterfall model and Prototyping model can be accommodated in the Spiral process model.",pyq:"2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> The Spiral model is a meta-model (model of models) that can incorporate elements of both Waterfall and Prototype models within its iterative cycles.</div><b class='kterm green'>How Waterfall is Embedded in Spiral:</b><ul><li>Within each spiral iteration, the development phase follows Waterfall-like sequential steps: Requirements → Design → Code → Test</li><li>The structured documentation and phase-by-phase progression of Waterfall is used inside each spiral loop</li><li>The Waterfall's discipline and rigor is maintained within each iteration</li></ul><b class='kterm green'>How Prototyping is Embedded in Spiral:</b><ul><li>During the Risk Analysis quadrant of early spirals, PROTOTYPES are built to validate feasibility and clarify requirements</li><li>These prototypes are shown to users to get feedback — exactly like the Prototype model</li><li>Each spiral produces an increasingly refined version, similar to prototype evolution</li></ul><div class='dbox'>Spiral Iteration 1: [Plan] → [Risk + PROTOTYPE to validate] → [Waterfall mini-cycle: Req→Design→Code→Test] → [Review]
+Spiral Iteration 2: [Plan] → [Risk + PROTOTYPE for risky parts] → [Waterfall mini-cycle] → [Review]
+Spiral Iteration N: [Plan] → [Risk Analysis] → [Final Development] → [Deployment]</div><div class='concl'>Conclusion: The Spiral model's genius is that it harnesses Waterfall's structure for development phases and Prototyping's feedback loop for risk validation — giving you the best of both worlds.</div>`}
+    ]
+  },
+  {
+    id:2, abbr:"U2", color:"#1a3a8f",
+    title:"Unit 2: Software Project Management + SRS",
+    subtitle:"LOC · FP · COCOMO · Delphi · Halstead · Putnam's Model · SRS",
+    mcqs:[
+      {q:"COCOMO stands for?",opts:["Constructive Cost Model","Constructive Code Model","Computing Cost Method","Calculated Output Model"],ans:0,exp:"COCOMO = COnstructive COst MOdel. Developed by Barry Boehm in 1981 to estimate software project cost and effort.",pyq:"2014"},
+      {q:"In size-oriented metrics, metrics are developed based on the:",opts:["Number of functions","Number of user inputs","Number of lines of code","Amount of memory usage"],ans:2,exp:"LOC (Lines of Code) = size-oriented metric. Counts actual lines of executable code to measure software size.",pyq:"2018"},
+      {q:"The final outcome of the requirement analysis and specification phase is?",opts:["The SRS document","Code","User manual","Design document"],ans:0,exp:"SRS (Software Requirements Specification) document is the FINAL outcome of requirement analysis — it defines WHAT the system must do.",pyq:"2018"},
+      {q:"SRS is also known as specification of?",opts:["White-box testing","Stress testing","Black-box testing","Integrated testing"],ans:2,exp:"SRS = Black-box specification because it specifies system behavior (inputs/outputs) WITHOUT internal implementation details.",pyq:"2014"},
+      {q:"Which is NOT a characteristic of a good SRS document?",opts:["Ambiguous","Traceable","Concise","Verifiable"],ans:0,exp:"A good SRS must be UNAMBIGUOUS (single interpretation). Ambiguity causes misunderstandings and implementation errors.",pyq:"2019"},
+      {q:"If every requirement can be checked by a cost-effective process, then SRS is?",opts:["Traceable","Modifiable","Complete","Verifiable"],ans:3,exp:"Verifiable = each requirement can be tested in a cost-effective way to confirm it has been met.",pyq:"2019"},
+      {q:"Which of these is a FUNCTIONAL requirement?",opts:["Maintainability","Portability","User login authentication","Reliability"],ans:2,exp:"Functional requirements specify WHAT the system does (login, calculate, store). Maintainability/Portability are non-functional.",pyq:"2018"},
+      {q:"COCOMO model was developed by?",opts:["Barry Boehm","Roger Pressman","Ian Sommerville","Tom DeMarco"],ans:0,exp:"Barry Boehm developed COCOMO in 1981 at TRW, based on analysis of 63 historical software projects.",pyq:null},
+      {q:"FP stands for?",opts:["Functional Program","Function Point","File Processing","Formal Protocol"],ans:1,exp:"FP = Function Point. Measures software size from a USER PERSPECTIVE (inputs, outputs, files, interfaces) — language independent.",pyq:null},
+      {q:"The Delphi technique is primarily used for?",opts:["Bug tracking","Cost estimation","Testing","Database design"],ans:1,exp:"Delphi technique = expert-based COST ESTIMATION method where experts give anonymous estimates, discuss, and iterate until consensus.",pyq:"2022"}
+    ],
+    four:[
+      {q:"List the important shortcomings of LOC (Lines of Code) as a software size metric.",pyq:"2014",h:`<div class='ans-intro'>LOC (Lines of Code) counts executable program lines. While widely used, it has several significant shortcomings.</div><b class='kterm'>Shortcomings of LOC:</b><ul><li><b>Language Dependent:</b> Same functionality in Java may need 50 lines; in Python, 10 lines. Makes cross-language comparison meaningless.</li><li><b>Counting ambiguity:</b> No universal standard — should comments, blank lines, data declarations be counted?</li><li><b>Penalizes good programming:</b> A skilled programmer writing efficient code in fewer lines gets a LOWER LOC count</li><li><b>Not available early:</b> LOC can only be measured AFTER coding — not useful for early project estimation</li><li><b>Poor quality indicator:</b> High LOC doesn't mean high quality — could mean poor design or redundant code</li><li><b>Not user-focused:</b> Users don't care about lines of code — they care about functionality</li></ul><div class='concl'>Despite its simplicity, LOC is a crude metric. Function Points (FP) is preferred as it's language-independent and measures user-visible functionality.</div>`},
+      {q:"Briefly explain the Delphi cost estimation technique.",pyq:"2022",h:`<div class='ans-intro'>The <b>Delphi Technique</b> is a structured, expert-based estimation method that prevents bias from dominant personalities by using anonymous rounds of estimation.</div><b class='kterm'>How Delphi Works:</b><ul><li><b>Step 1 — Select Experts:</b> Choose 3-10 subject matter experts for the estimation panel</li><li><b>Step 2 — Round 1 (Blind):</b> Each expert independently provides their cost/effort estimate without seeing others' opinions</li><li><b>Step 3 — Anonymize &amp; Share:</b> Coordinator compiles anonymous results and shares the summary (min, max, average) with all experts</li><li><b>Step 4 — Round 2 (Revise):</b> Experts revise their estimates based on group feedback — still independently</li><li><b>Step 5 — Repeat:</b> Continue until experts converge on a consensus estimate</li></ul><b class='kterm'>Advantages:</b> Reduces groupthink, independent thinking, well-documented.<br><b class='kterm'>Disadvantages:</b> Time-consuming (2-4 weeks), needs skilled facilitator.<div class='concl'>Delphi is most valuable for novel projects where historical data doesn't exist — expert judgment replaces mathematical models.</div>`},
+      {q:"How to estimate the size of a project? Explain LOC and FP metrics.",pyq:"2018",h:`<div class='ans-intro'>Software size estimation is the FIRST step in project planning — it determines effort, cost, and schedule. Two main metrics: LOC and Function Points.</div><b class='kterm'>1. LOC (Lines of Code):</b><ul><li>Counts physical lines of executable program code</li><li>Simple to measure; works well for mature technologies</li><li>Formula: Effort = a × (KLOC)^b (COCOMO)</li><li>Limitation: Language-dependent, available only after coding</li></ul><b class='kterm'>2. Function Point (FP) Metric:</b><ul><li>Measures software from USER perspective — counts: Inputs, Outputs, Interfaces, Internal files, External files</li><li>Language-independent — can estimate BEFORE coding</li><li>Formula: FP = Count × Complexity Weight</li></ul><div class='dbox'>LOC:  Easy to count, language-dependent, post-implementation
+FP:   User-focused, language-independent, pre-implementation</div><div class='concl'>FP is preferred for early estimation; LOC is useful for tracking productivity once code exists. Both have complementary roles.</div>`},
+      {q:"Describe the characteristics of a good SRS (Software Requirements Specification) document.",pyq:"2020",h:`<div class='ans-intro'>A good SRS is the foundation of all development. It must possess six key quality characteristics defined by IEEE 830.</div><b class='kterm'>Characteristics of a Good SRS:</b><ul><li><b>Correct:</b> Every requirement must accurately reflect genuine user needs — no gold-plating</li><li><b>Unambiguous:</b> Each requirement must have ONE clear interpretation — no vague terms like "fast" or "user-friendly"</li><li><b>Consistent:</b> No contradictions between requirements — all requirements must work together</li><li><b>Complete:</b> ALL requirements documented — functional, non-functional, constraints, and assumptions</li><li><b>Verifiable:</b> Each requirement testable by a cost-effective process (specific, measurable criteria)</li><li><b>Modifiable:</b> Structured for easy updates without losing consistency — use numbering, cross-references</li><li><b>Traceable:</b> Each requirement traced to its source (user, regulation) and downstream to design/test cases</li></ul><div class='concl'>A well-written SRS reduces development costs by 20-50% by preventing misunderstandings early. It is the contract between developers and clients.</div>`},
+      {q:"Define 'software requirements' and explain the difference between functional and non-functional requirements with examples.",pyq:"2024, 2025",h:`<div class='ans-intro'><b>Software Requirements</b> are descriptions of what a system should DO (functions) and HOW WELL it should do it (quality attributes). They define the expected behavior and constraints of the software.</div><b class='kterm'>Functional Requirements:</b><ul><li>Specify WHAT the system must DO — specific behaviors, functions, actions</li><li>Example 1: "The system shall allow users to log in using email and password"</li><li>Example 2: "The system shall calculate and display total invoice amount with tax"</li><li>Example 3: "The system shall send email notifications for order confirmation"</li></ul><b class='kterm'>Non-Functional Requirements:</b><ul><li>Specify HOW WELL the system performs — quality attributes, constraints</li><li>Performance: "System shall handle 1000 concurrent users with response time &lt;2 seconds"</li><li>Security: "All passwords shall be encrypted using AES-256"</li><li>Reliability: "System shall maintain 99.9% uptime"</li><li>Usability: "New users shall complete core tasks within 5 minutes without training"</li></ul><div class='concl'>Both types are essential: Functional = what it does; Non-functional = how well it does it. Neglecting non-functional requirements often causes catastrophic failures.</div>`}
+    ],
+    twelve:[
+      {q:"Elaborate in detail the parts of the SRS document with example. [★★★ Most Important]",pyq:"2018, 2019",h:`<div class='ans-intro green-intro'><b>Introduction:</b> The SRS (Software Requirements Specification) is the most critical document in software development. It acts as a contract between developers and clients, defining exactly what the system must do. IEEE 830 standard provides the structure.</div><b class='kterm green'>Structure of SRS (IEEE 830):</b><br><br><b>Section 1 — Introduction:</b><ul><li><b>1.1 Purpose:</b> States who will read the SRS and what it covers. Example: "This SRS describes the Online Banking System for retail customers."</li><li><b>1.2 Scope:</b> What the software will and will NOT do. Includes name, goals, boundaries.</li><li><b>1.3 Definitions/Acronyms:</b> Glossary of domain-specific terms for shared understanding.</li><li><b>1.4 References:</b> Other documents this SRS builds upon.</li><li><b>1.5 Overview:</b> Brief summary of the rest of the document.</li></ul><b>Section 2 — Overall Description:</b><ul><li><b>2.1 Product Perspective:</b> How system fits into larger enterprise context. Include context DFD (Level 0).</li><li><b>2.2 Product Functions:</b> High-level list of what system does (e.g., User Registration, Fund Transfer, Report Generation).</li><li><b>2.3 User Characteristics:</b> Description of end users — technical level, roles, constraints.</li><li><b>2.4 General Constraints:</b> Hardware limitations, regulatory requirements, interface to other systems.</li><li><b>2.5 Assumptions and Dependencies:</b> What is assumed true; what the system depends on.</li></ul><b>Section 3 — Specific Requirements (Most Detailed):</b><ul><li><b>3.1 Functional Requirements:</b> Each function described with: Input, Processing, Output. Example: FR-01: Login — Input: email+password → Validate → Output: Access token or error.</li><li><b>3.2 Non-Functional Requirements:</b> Performance, Security, Reliability, Usability, Portability, Maintainability.</li><li><b>3.3 Interface Requirements:</b> UI, Hardware, Software, Communication interfaces.</li></ul><div class='dbox'>SRS Structure:
+1. Introduction (Purpose, Scope, Definitions)
+2. Overall Description (Context, Functions, Users, Constraints)
+3. Specific Requirements
+   3.1 Functional (FR-01, FR-02 ... each with I/P/O)
+   3.2 Non-Functional (Performance, Security, Reliability)
+   3.3 Interfaces (UI, Hardware, Software)</div><b class='kterm green'>Characteristics of SRS:</b> Correct, Unambiguous, Complete, Consistent, Verifiable, Modifiable, Traceable.<div class='concl'>Conclusion: A comprehensive SRS prevents scope creep, resolves disputes, and forms the basis for testing. Every requirement in the SRS must eventually be verified in the test plan.</div>`},
+      {q:"What are the different categories of software development projects according to the COCOMO estimation model? Give examples for each.",pyq:"2014",h:`<div class='ans-intro green-intro'><b>Introduction:</b> COCOMO (COnstructive COst MOdel) by Barry Boehm (1981) provides mathematical formulas for estimating software development effort, cost, and schedule based on project size (KLOC).</div><b class='kterm green'>Basic COCOMO Formula:</b><br>Effort (person-months) = a × (KLOC)^b<br>Schedule (months) = c × (Effort)^d<br><br><b class='kterm green'>Three Project Categories:</b><table class='atbl'><tr><th>Category</th><th>Coefficient (a)</th><th>Exponent (b)</th><th>Characteristics</th><th>Example</th></tr><tr><td>Organic (Simple)</td><td>2.4</td><td>1.05</td><td>Small team, familiar technology, stable requirements</td><td>Payroll system, simple inventory</td></tr><tr><td>Semidetached (Medium)</td><td>3.0</td><td>1.12</td><td>Mix of experienced &amp; inexperienced, moderate complexity</td><td>Database management system, telecom billing</td></tr><tr><td>Embedded (Complex)</td><td>3.6</td><td>1.20</td><td>Real-time, tight constraints, unique requirements</td><td>Flight control software, medical devices</td></tr></table><b class='kterm green'>Worked Example (Semidetached, 50 KLOC):</b><div class='dbox'>Effort = 3.0 × (50)^1.12 = 3.0 × 56.7 = 170.1 person-months
+Schedule = 2.5 × (170.1)^0.38 ≈ 20.4 months
+Team Size = 170.1 / 20.4 ≈ 8-9 developers</div><b class='kterm green'>Advantages:</b><ul><li>Empirically validated against real projects</li><li>Consistent, reproducible estimates</li><li>Accounts for different project complexities</li></ul><b class='kterm green'>Limitations:</b><ul><li>Requires accurate KLOC estimate (garbage in = garbage out)</li><li>Less accurate for novel technologies</li><li>Static coefficients may not reflect modern development practices</li></ul><div class='concl'>Conclusion: COCOMO provides a quantitative basis for planning. Choose the right category (Organic/Semidetached/Embedded) based on team experience and project complexity.</div>`},
+      {q:"Define software requirements engineering. Discuss the difference between functional and non-functional requirements.",pyq:"2024, 2025",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software Requirements Engineering (SRE) is the systematic process of discovering, analyzing, documenting, validating, and managing the requirements of a software system. It bridges the gap between user needs and technical implementation.</div><b class='kterm green'>Activities in Requirements Engineering:</b><ul><li><b>Requirements Elicitation:</b> Gathering requirements through interviews, questionnaires, observation, workshops (JAD sessions)</li><li><b>Requirements Analysis:</b> Checking for completeness, consistency, conflicts, and feasibility</li><li><b>Requirements Specification:</b> Documenting in SRS document using formal or informal notation</li><li><b>Requirements Validation:</b> Reviewing with stakeholders to ensure correctness</li><li><b>Requirements Management:</b> Tracking changes, versioning, tracing throughout the project</li></ul><b class='kterm green'>Functional Requirements — Definition &amp; Examples:</b><ul><li>Describe WHAT the system must DO — specific functions, behaviors, data processing</li><li>Example: "The system shall allow users to register with name, email, and password"</li><li>Example: "System shall generate monthly sales reports in PDF format"</li><li>Example: "The ATM shall dispense cash in multiples of ₹100"</li><li>Test: Can you write a test case to verify it? If yes → functional</li></ul><b class='kterm green'>Non-Functional Requirements — Definition &amp; Examples:</b><ul><li>Describe HOW the system performs — quality attributes, constraints, standards</li><li><b>Performance:</b> "System shall respond to 95% of queries within 2 seconds under normal load"</li><li><b>Security:</b> "All sensitive data shall be encrypted using AES-256 encryption"</li><li><b>Reliability:</b> "System shall maintain 99.9% availability (max 8.7 hours downtime/year)"</li><li><b>Usability:</b> "New users shall complete registration without external help within 3 minutes"</li><li><b>Scalability:</b> "System shall support growth to 1 million users without architectural changes"</li><li><b>Portability:</b> "Application shall run on Windows, macOS, and Linux without modification"</li></ul><div class='dbox'>Comparison:
+Functional:     WHAT the system does (features, behavior)
+Non-Functional: HOW WELL it does it (performance, security, quality)
+
+Functional often drive test CASES; Non-functional drive ARCHITECTURE decisions</div><div class='concl'>Conclusion: Both types are critical for project success. Neglecting non-functional requirements often leads to systems that "work" but fail in production due to performance, security, or usability issues.</div>`},
+      {q:"Describe the software metrics used to measure software. Discuss LOC, Function Points, and Halstead's Software Science.",pyq:"2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software metrics provide quantitative measures of software processes and products. They enable objective measurement of quality, productivity, and complexity. "You cannot control what you cannot measure." — Tom DeMarco</div><b class='kterm green'>1. LOC (Lines of Code):</b><ul><li>Count of executable source code lines (excludes comments, blank lines)</li><li>Formula: Effort = a × (KLOC)^b in COCOMO</li><li>Advantage: Simple, easy to count</li><li>Disadvantage: Language-dependent, not available early, penalizes good programmers</li></ul><b class='kterm green'>2. Function Points (FP):</b><ul><li>Measures functionality from USER perspective</li><li>Counts 5 types: External Inputs, External Outputs, External Interfaces, Internal Files, External Files</li><li>Each weighted by complexity (Simple/Average/Complex)</li><li>Advantage: Language-independent, available at requirements stage</li></ul><div class='dbox'>FP = UFC × (0.65 + 0.01 × ΣFi)
+UFC = Unadjusted Function Count
+Fi = 14 general system characteristics</div><b class='kterm green'>3. Halstead's Software Science (1977):</b><ul><li>Measures program complexity using operators and operands</li><li>n1 = distinct operators (if, while, +, =...); N1 = total operator occurrences</li><li>n2 = distinct operands (variables, constants); N2 = total operand occurrences</li><li>Vocabulary η = n1 + n2; Length N = N1 + N2</li><li>Volume V = N × log₂(η) — represents information content</li><li>Advantage: Language-independent, computable from source code automatically</li><li>Disadvantage: Post-implementation, unclear correlation to actual effort</li></ul><div class='concl'>Conclusion: Each metric has its role — LOC for tracking productivity, FP for early estimation, Halstead for code complexity analysis. Using multiple metrics together gives the most complete picture of software quality.</div>`}
+    ]
+  },
+  {
+    id:3, abbr:"U3", color:"#059669",
+    title:"Unit 3: Software Design",
+    subtitle:"Classification · Function-Oriented Design · DFDs · Structured Design · OOD",
+    mcqs:[
+      {q:"The worst type of coupling is?",opts:["Data coupling","Control coupling","Stamp coupling","Content coupling"],ans:3,exp:"Content coupling (worst) = module directly modifies data or code of another module. Data coupling (best) = only simple data passed.",pyq:"2014,2019"},
+      {q:"Which tool is used for structured designing?",opts:["Program flowchart","Structure chart","Dataflow diagram","Module"],ans:1,exp:"Structure Chart shows hierarchical module relationships. It is the PRIMARY tool for structured (function-oriented) design.",pyq:"2018"},
+      {q:"The context diagram of a DFD is also known as?",opts:["Level 0 DFD","Level 1 DFD","Level 2 DFD","None of the above"],ans:0,exp:"Context Diagram = Level 0 DFD. Shows entire system as ONE process with all external entities. The broadest view.",pyq:"2019"},
+      {q:"DFD shows?",opts:["The flow of data","The processes","The areas where data is stored","All of the above"],ans:3,exp:"DFD shows ALL: data flows (arrows), processes (circles/ovals), data stores (parallel lines), and external entities (rectangles).",pyq:"2018"},
+      {q:"In a use case diagram, the stick person icon is used to represent?",opts:["Internal system","External system","Human user","None of the above"],ans:2,exp:"Stick person (Actor) in UML use case diagram = human user or external system that interacts with the software.",pyq:"2019"},
+      {q:"Top-Down Design starts with?",opts:["Low-level modules","High-level system overview","Individual functions","Database design"],ans:1,exp:"Top-Down = starts with the BIG PICTURE (whole system) and progressively breaks it into smaller modules. Uses decomposition.",pyq:null},
+      {q:"The process of hiding internal implementation details is called?",opts:["Encapsulation","Abstraction","Inheritance","Polymorphism"],ans:1,exp:"Abstraction = hiding complex implementation details and exposing only essential features to the user.",pyq:null},
+      {q:"Which of these is NOT a component of a DFD?",opts:["Process (oval)","Data Flow (arrow)","Data Store (parallel lines)","Decision Box (diamond)"],ans:3,exp:"Decision box (diamond) belongs to FLOWCHARTS, not DFDs. DFD uses: Process, Data Flow, Data Store, External Entity.",pyq:null},
+      {q:"Transform Analysis in structured design is used when?",opts:["Multiple transactions exist","Data flows in a clear input-transform-output path","Requirements are unclear","System is real-time"],ans:1,exp:"Transform Analysis applies when data flows linearly: Input → Central Transform → Output. Creates Afferent, Central, Efferent branches in structure chart.",pyq:null},
+      {q:"Object-Oriented Design (OOD) primarily uses which design notation?",opts:["DFD","UML (Unified Modeling Language)","Structure charts","E-R Diagrams"],ans:1,exp:"UML (Unified Modeling Language) is the STANDARD notation for OOD — includes Class Diagrams, Sequence Diagrams, Use Case Diagrams.",pyq:null}
+    ],
+    four:[
+      {q:"What do you mean by balancing a DFD? Illustrate with example.",pyq:"2014",h:`<div class='ans-intro'><b>Balancing a DFD</b> means ensuring that when you decompose a process from a higher-level DFD into a lower-level DFD, the data flows crossing the boundary remain the same.</div><b class='kterm'>Rule:</b> Every data flow entering or leaving a process at Level N must appear in the Level N+1 DFD that decomposes that process.<br><br><b class='kterm'>Example — Balancing:</b><div class='dbox'>Level 1 DFD (Process P1 — "Process Order"):
+  Input flows:  Customer_Order, Payment_Info
+  Output flows: Confirmation, Invoice
+
+Level 2 DFD (Exploding P1 into sub-processes):
+  Must show SAME inputs:  Customer_Order, Payment_Info entering
+  Must show SAME outputs: Confirmation, Invoice leaving
+
+✓ BALANCED: Same data flows cross boundary at both levels
+✗ UNBALANCED: If Level 2 shows extra/missing flows not in Level 1</div><b class='kterm'>Why important?</b><ul><li>Ensures consistency between DFD levels</li><li>Prevents data flows from mysteriously appearing or disappearing</li><li>Critical for system correctness verification</li></ul><div class='concl'>Balanced DFDs ensure that the hierarchical decomposition is complete and consistent — no data is lost or added without justification.</div>`},
+      {q:"What are the differences between Function-Oriented and Object-Oriented Design?",pyq:"2018, 2019",h:`<div class='ans-intro'>Two fundamental approaches to software design — Function-Oriented focuses on WHAT the system does; Object-Oriented focuses on WHAT ENTITIES the system manages.</div><table class='atbl'><tr><th>Feature</th><th>Function-Oriented (FOD)</th><th>Object-Oriented (OOD)</th></tr><tr><td>Basic Unit</td><td>Function/Procedure</td><td>Object (Data + Behavior)</td></tr><tr><td>Approach</td><td>Top-Down Decomposition</td><td>Bottom-Up Composition</td></tr><tr><td>Data Handling</td><td>Data &amp; functions separate; global data</td><td>Data encapsulated within objects</td></tr><tr><td>Focus</td><td>Operations &amp; functions</td><td>Real-world entities (objects)</td></tr><tr><td>Reusability</td><td>Limited</td><td>High (inheritance, composition)</td></tr><tr><td>Maintainability</td><td>Harder — global data changes affect many functions</td><td>Easier — changes localized in objects</td></tr><tr><td>Notation</td><td>DFD, Structure Charts</td><td>UML (Class, Sequence Diagrams)</td></tr><tr><td>Language</td><td>C, COBOL, Pascal</td><td>Java, C++, Python</td></tr></table><div class='concl'>FOD suits stable, computation-heavy systems; OOD excels in large, evolving systems requiring maintainability and reusability.</div>`},
+      {q:"Describe the concepts of Cohesion and Coupling with suitable examples.",pyq:"2022",h:`<div class='ans-intro'><b>Cohesion</b> and <b>Coupling</b> are two key design quality measures. GOAL: High Cohesion + Low Coupling = Good Design.</div><b class='kterm'>Cohesion (WANT HIGH):</b><ul><li>Degree to which elements within a MODULE belong together</li><li>High cohesion = module does ONE well-defined task</li><li><b>Example (High):</b> A "Calculate Tax" module that ONLY calculates tax — single responsibility</li><li><b>Example (Low):</b> A module that calculates tax, prints reports, AND sends emails — unrelated tasks lumped together</li></ul><b class='kterm'>Types (Low to High):</b> Coincidental → Logical → Temporal → Procedural → Communicational → Sequential → Functional (BEST)<br><br><b class='kterm'>Coupling (WANT LOW):</b><ul><li>Degree of INTERDEPENDENCE between modules</li><li>Low coupling = modules relatively independent, easy to change one without breaking others</li><li><b>Example (Best — Data):</b> Module A passes only a simple value to Module B</li><li><b>Example (Worst — Content):</b> Module A directly reads/modifies Module B's internal data</li></ul><b class='kterm'>Types (Best to Worst):</b> Data → Stamp → Control → Common → Content (WORST)<div class='concl'>Design principle: Maximize cohesion (single responsibility), minimize coupling (independence). This makes software easier to test, maintain, and reuse.</div>`},
+      {q:"Explain the design steps of Transform Analysis (Transform Mapping).",pyq:"2017, 2020",h:`<div class='ans-intro'><b>Transform Analysis (Transform Mapping)</b> is a structured design technique that converts a Data Flow Diagram (DFD) into a Structure Chart by identifying Input, Processing, and Output branches.</div><b class='kterm'>Steps of Transform Analysis:</b><ul><li><b>Step 1 — Review the DFD:</b> Examine the Level 1 or Level 2 DFD to understand data flow</li><li><b>Step 2 — Identify Boundaries:</b> Find where "logical input" ends and where "logical output" begins</li><li><b>Step 3 — Identify Three Branches:</b>Afferent branch (data coming IN), Central Transform (processing), Efferent branch (data going OUT)</li><li><b>Step 4 — Create Main Module:</b> Top-level controller module that calls afferent, central, and efferent sub-modules</li><li><b>Step 5 — Refine Structure Chart:</b> Decompose each branch into lower-level modules with data/control flows</li><li><b>Step 6 — Apply Design Heuristics:</b> Maximize cohesion, minimize coupling</li></ul><div class='dbox'>DFD:  [Input A] → [Input B] → [Transform C] → [Output D] → [Output E]
+
+Structure Chart:
+        [Main Controller]
+       /        |         \
+[Get Input] [Transform] [Put Output]
+    |              |           |
+[Get A][Get B]  [Do C]   [Do D][Do E]</div><div class='concl'>Transform Analysis works best for transaction-processing systems with clear input-process-output flow. For systems with multiple transaction types, Transaction Analysis is used instead.</div>`},
+      {q:"Explain the levels of DFD (Context Diagram, Level 1, Level 2) with example.",pyq:"2018, 2019",h:`<div class='ans-intro'>DFD (Data Flow Diagram) is created hierarchically. Each level provides more detail than the previous, while balancing with it. Context → Level 1 → Level 2 → ...</div><b class='kterm'>DFD Symbols:</b><ul><li>Oval/Circle = Process (transforms data)</li><li>Arrow = Data Flow (movement of data)</li><li>Rectangle = External Entity (source/sink)</li><li>Parallel lines = Data Store (repository)</li></ul><b class='kterm'>Level 0 (Context Diagram):</b><ul><li>Entire system = ONE process bubble</li><li>Shows all external entities and their data flows</li><li>Highest level of abstraction — "Black box" view</li></ul><b class='kterm'>Level 1 DFD:</b><ul><li>Expands the single process into main sub-processes</li><li>Shows major functions of the system</li><li>Shows data stores used</li></ul><b class='kterm'>Level 2 DFD:</b><ul><li>Further decomposes each Level 1 process</li><li>Provides detailed view of individual processes</li><li>Continue until processes are simple enough to implement</li></ul><div class='dbox'>Level 0: [Student] → [1.0 Library System] → [Books/Reports]
+Level 1: [Student] → [1.1 Issue Book] → [Book Store]
+                   → [1.2 Return Book] → [Fine Store]
+                   → [1.3 Search Book] → [Book Store]
+Level 2: [1.1 Issue Book] explodes into:
+         [1.1.1 Check Availability] → [1.1.2 Update Record] → [1.1.3 Print Slip]</div><div class='concl'>DFD hierarchy allows developers to manage system complexity — start with the big picture and progressively zoom in on each process.</div>`}
+    ],
+    twelve:[
+      {q:"Describe the concept of Software Design. Explain the difference between High-Level and Low-Level Design.",pyq:"2024, 2025",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software Design is the process of transforming requirements (from SRS) into a blueprint for building the software. It bridges the gap between WHAT the system must do (requirements) and HOW it will be built (implementation).</div><b class='kterm green'>Objectives of Software Design:</b><ul><li>Create a structure that satisfies all requirements</li><li>Minimize complexity and coupling</li><li>Maximize cohesion and reusability</li><li>Produce a maintainable, efficient system</li></ul><b class='kterm green'>High-Level Design (HLD) — Architectural Design:</b><ul><li>Also called: System Design, Architectural Design, Macro Design</li><li>Focus: WHAT components exist and HOW they interact</li><li>Audience: System architects, senior developers, clients</li><li>Content: System architecture, major modules, data flow, database schema (high level), technology stack choice</li><li>Notation: Block diagrams, Context DFDs, System architecture diagrams</li><li>Output: HLD document — blueprint at the system level</li><li>Example: "The system will have 3 layers: Presentation, Business Logic, Data Access. The database will be MySQL."</li></ul><b class='kterm green'>Low-Level Design (LLD) — Detailed Design:</b><ul><li>Also called: Detailed Design, Module Design, Micro Design</li><li>Focus: HOW each individual module/function is implemented internally</li><li>Audience: Individual developers and testers</li><li>Content: Detailed algorithms, data structures, module interfaces, function signatures, database tables (detailed), pseudo-code</li><li>Notation: Structure charts, class diagrams, flowcharts, E-R diagrams</li><li>Output: LLD document — blueprint at the module/function level</li><li>Example: "The Login module will: 1) Validate email format using regex, 2) Hash password with SHA-256, 3) Query users table, 4) Return JWT token or error code"</li></ul><div class='dbox'>HLD: [Presentation Layer] ← APIs → [Business Logic Layer] ← DB calls → [Data Layer]
+
+LLD (Login Function):
+  function login(email, password):
+    1. validate_email_format(email) → raise ValueError if invalid
+    2. hashed = SHA256(password)
+    3. user = db.query("SELECT * FROM users WHERE email=? AND pass=?", email, hashed)
+    4. if user: return generate_JWT(user.id)
+    5. else: raise AuthenticationError</div><table class='atbl'><tr><th>Feature</th><th>High-Level Design</th><th>Low-Level Design</th></tr><tr><td>Level</td><td>System/Architecture</td><td>Module/Function</td></tr><tr><td>Focus</td><td>What components, how they connect</td><td>How each component works internally</td></tr><tr><td>Language</td><td>Non-technical, architectural</td><td>Technical, algorithmic</td></tr><tr><td>Audience</td><td>Architects, managers, clients</td><td>Developers, testers</td></tr></table><div class='concl'>Conclusion: HLD gives the big picture; LLD provides the implementation details. Both are essential — HLD ensures the right architecture; LLD ensures correct implementation.</div>`},
+      {q:"Describe the concepts of Cohesion and Coupling in detail. State the differences with suitable examples.",pyq:"2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Cohesion and Coupling are the two most important design quality metrics in Function-Oriented Design. The golden rule: MAXIMIZE COHESION, MINIMIZE COUPLING. These two properties determine how maintainable and modifiable software is.</div><b class='kterm green'>COHESION (Want: HIGH)</b><br>Definition: Degree to which elements WITHIN a module are functionally related to each other.<br><br><b>Types of Cohesion (Worst to Best):</b><ul><li><b>1. Coincidental (WORST):</b> Elements grouped randomly with no logical relationship. Example: PrintReport(), CalculateTax(), SendEmail() in one module.</li><li><b>2. Logical:</b> Related activities grouped, but activated by external flag. Example: All input/output functions in one module selected by flag.</li><li><b>3. Temporal:</b> Elements executed at same time. Example: Initialization module that sets up all variables.</li><li><b>4. Procedural:</b> Elements executed in a specific order. Example: Validate → Format → Store.</li><li><b>5. Communicational:</b> Elements operate on same data. Example: All operations on a customer record.</li><li><b>6. Sequential:</b> Output of one element feeds next. Example: Read file → parse → validate → store.</li><li><b>7. Functional (BEST):</b> Single, well-defined function. Example: CalculateTax() does ONLY tax calculation.</li></ul><b class='kterm green'>COUPLING (Want: LOW)</b><br>Definition: Degree of INTERDEPENDENCE between modules.<br><br><b>Types of Coupling (Best to Worst):</b><ul><li><b>1. Data Coupling (BEST):</b> Only simple data (int, string) passed between modules. Example: Module A calls CalculateArea(radius) — only passes a number.</li><li><b>2. Stamp Coupling:</b> Data structure passed but only part used. Example: Passing entire CustomerRecord when only Name is needed.</li><li><b>3. Control Coupling:</b> One module controls behavior of another via flag. Example: ProcessOrder(flag) where flag = 1 means add, 2 means update.</li><li><b>4. Common Coupling:</b> Modules share global data. Example: All modules access a global variable 'currentUser'.</li><li><b>5. Content Coupling (WORST):</b> Module directly accesses/modifies internal data of another. Example: Module A directly reads Module B's local variables.</li></ul><div class='dbox'>Cohesion Levels (Low→High):
+Coincidental → Logical → Temporal → Procedural → Communicational → Sequential → Functional
+
+Coupling Levels (High→Low, i.e., GOOD→BAD):
+Data → Stamp → Control → Common → Content</div><b class='kterm green'>Why They Matter:</b><ul><li>High cohesion → easier to understand, test, and reuse each module</li><li>Low coupling → change one module without breaking others; easier maintenance</li></ul><div class='concl'>Conclusion: Every design decision should be evaluated against these two metrics. A module with high cohesion and low coupling is the goal of good software design — it's the foundation of the SOLID principles in OOP.</div>`},
+      {q:"Which symbols are used for designing DFDs? Explain with example. Explain synchronous and asynchronous dataflow.",pyq:"2018",h:`<div class='ans-intro green-intro'><b>Introduction:</b> A Data Flow Diagram (DFD) is a graphical representation of how data flows through a system. It shows what data is processed, stored, and transferred — without implementation details. DFDs are the primary tool in Structured Analysis.</div><b class='kterm green'>DFD Symbols (Gane-Sarson / DeMarco-Yourdon Notation):</b><ul><li><b>Process (Oval/Circle):</b> Transforms input data into output data. Named with a verb phrase (e.g., "Validate Order"). Has a unique number (1.0, 2.0). Represents a function the system performs.</li><li><b>Data Flow (Arrow):</b> Shows movement of data between processes, stores, and entities. Labeled with data name (e.g., "Customer_Order"). Direction shows flow direction.</li><li><b>Data Store (Parallel Lines):</b> Persistent storage of data (database table, file). Named as a noun (e.g., "D1: Customer Records"). Processes read from and write to stores.</li><li><b>External Entity (Rectangle):</b> Source or sink of data outside system boundary. Cannot be changed by the system. Examples: Customer, Bank, Supplier.</li></ul><div class='dbox'>DFD Example — Library System:
+
+[Student] → {Book Request} → (1.0 Issue Book) → {Issue Slip} → [Student]
+                                    ↓           ↑
+                              [D1: Book DB] [D2: Member DB]</div><b class='kterm green'>Synchronous vs Asynchronous Dataflow:</b><ul><li><b>Synchronous:</b> Data flows continuously; processes operate at same rate. Example: Real-time control system where sensor → controller → actuator in real-time. Shown as continuous arrows.</li><li><b>Asynchronous:</b> Processes operate independently; data stored in buffers/stores between them. Example: Order placed (stored in DB) → later processed by billing system. Shown as data store between processes.</li></ul><div class='concl'>Conclusion: DFDs are powerful for requirements analysis and system understanding. They communicate system behavior to non-technical stakeholders while providing a solid foundation for structured design.</div>`},
+      {q:"Explain Transform Mapping (Transform Analysis) in detail with an example.",pyq:"2020",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Transform Analysis is a key structured design strategy that maps a Data Flow Diagram (DFD) into a Structure Chart. It's used when data flows in a linear pipeline: Input → Central Processing → Output.</div><b class='kterm green'>When to Use Transform Analysis:</b><br>When the DFD has a clear afferent (input) stream, a central transform, and an efferent (output) stream — typical of batch processing systems.<br><br><b class='kterm green'>Six Steps of Transform Analysis:</b><ul><li><b>Step 1 — Review DFD:</b> Understand data flow from input to output</li><li><b>Step 2 — Identify Boundary: Afferent vs Efferent:</b> The afferent boundary separates "incoming data being prepared" from "data ready for main processing". The efferent boundary separates "processed data" from "data being formatted for output".</li><li><b>Step 3 — Identify Three Parts:</b>Afferent branch (reading and validating input) + Central Transform (core business logic) + Efferent branch (formatting and producing output)</li><li><b>Step 4 — Create Top-Level Structure Chart:</b> Main module calls Get_Input, Process_Data, Put_Output</li><li><b>Step 5 — Factor Each Branch:</b> Break each branch into sub-modules. Continue until each module has single function.</li><li><b>Step 6 — Apply Refinement:</b> Apply coupling/cohesion rules to improve design.</li></ul><div class='dbox'>DFD: [User] →{Raw Data}→ (Validate) →{Valid Data}→ (Calculate) →{Result}→ (Format) →{Report}→ [User]
+           Afferent Branch          Central Transform       Efferent Branch
+
+Structure Chart:
+                    [Main Controller]
+                   /        |         \
+           [Get_Input]  [Calculate]  [Put_Output]
+           /      \          |         /       \
+    [ReadData] [Validate]  [Compute] [Format]  [Print]</div><b class='kterm green'>Transaction Analysis:</b><br>Used when multiple different transactions are processed differently. A "transaction center" in the DFD routes to different action modules.<div class='concl'>Conclusion: Transform Analysis systematically converts a DFD into a modular Structure Chart. It ensures the design maintains the system's data flow logic while creating clean, independent modules.</div>`}
+    ]
+  },
+  {
+    id:4, abbr:"U4", color:"#7c3aed",
+    title:"Unit 4: Coding, Testing + Software Reliability",
+    subtitle:"Unit Testing · Black Box · White Box · Debugging · System Testing · Musa's Model",
+    mcqs:[
+      {q:"The main purpose of integration testing is to find?",opts:["Design errors","Analysis errors","Procedure errors","Interface errors"],ans:3,exp:"Integration testing finds INTERFACE errors — problems in communication, data passing, and interaction between modules.",pyq:"2014"},
+      {q:"When all modules are integrated and tested as a complete system, it is called?",opts:["Bottom-up testing","Big-bang testing","Top-down testing","Sandwich testing"],ans:1,exp:"Big-bang testing = integrate ALL modules at once and test together. Simple but hard to isolate which module caused which bug.",pyq:"2014"},
+      {q:"Black box testing is also called?",opts:["Functional testing","Structural testing","Glass-box testing","Statement coverage testing"],ans:0,exp:"Black-box = Functional/Behavioral testing. Tests WHAT the system does (inputs → outputs) without knowing internal code.",pyq:null},
+      {q:"White-box testing is primarily performed by?",opts:["Developers","End users","Business analysts","Project managers"],ans:0,exp:"White-box testing requires knowledge of internal code and algorithms — primarily done by DEVELOPERS who wrote the code.",pyq:null},
+      {q:"Which of these is a black-box testing technique?",opts:["Statement Coverage","Equivalence Partitioning","Path Coverage","Branch Coverage"],ans:1,exp:"Equivalence Partitioning = Black-box technique dividing inputs into valid/invalid partitions. Statement/Branch/Path coverage = White-box techniques.",pyq:"2022"},
+      {q:"Regression testing is performed?",opts:["Before coding begins","After requirements gathering","After bug fixes to ensure no new bugs introduced","Only at project end"],ans:2,exp:"Regression testing re-runs existing test cases after every bug fix or change to ensure the fix didn't break other working features.",pyq:"2014"},
+      {q:"Musa's Basic Model is used for?",opts:["Software reliability estimation","Cost estimation","Design validation","Requirement analysis"],ans:0,exp:"Musa's Basic Execution Time Model (1975) estimates software reliability — specifically the failure rate as a function of execution time.",pyq:"2014,2024"},
+      {q:"Which debugging strategy traces backward from the failure point to find the bug?",opts:["Brute Force","Backtracking","Forward Analysis","Static Analysis"],ans:1,exp:"Backtracking = trace program execution BACKWARD from the point of failure until the root cause is found.",pyq:null},
+      {q:"Static Code Analysis involves?",opts:["Executing the program with test inputs","Analyzing code WITHOUT executing it","Running performance benchmarks","Unit testing individual modules"],ans:1,exp:"Static Analysis = examining source code WITHOUT executing it to find bugs, security vulnerabilities, and coding standard violations.",pyq:null},
+      {q:"Statement coverage ensures?",opts:["Every executable statement is executed at least once","Every branch is tested","All paths through code are tested","Every loop is executed 10 times"],ans:0,exp:"Statement Coverage = simplest white-box criterion. Ensures each executable statement runs at least once during testing.",pyq:null}
+    ],
+    four:[
+      {q:"What is the difference between Black-box Testing and White-box Testing?",pyq:"2014, 2017, 2019",h:`<div class='ans-intro'>These two approaches to testing represent fundamentally different perspectives — external behavior vs internal structure.</div><table class='atbl'><tr><th>Feature</th><th>Black-box Testing</th><th>White-box Testing</th></tr><tr><td>Also called</td><td>Functional/Behavioral Testing</td><td>Structural/Glass-box Testing</td></tr><tr><td>Code knowledge</td><td>Not needed — treats as black box</td><td>Full knowledge of code needed</td></tr><tr><td>Focus</td><td>External behavior (I/O)</td><td>Internal logic, code structure</td></tr><tr><td>Performed by</td><td>Testers/QA team</td><td>Developers</td></tr><tr><td>Test basis</td><td>SRS/Requirements</td><td>Source code, design</td></tr><tr><td>Techniques</td><td>Equivalence Partitioning, BVA</td><td>Statement, Branch, Path coverage</td></tr><tr><td>When</td><td>System/Acceptance testing</td><td>Unit/Integration testing</td></tr></table><div class='concl'>Both are essential — White-box ensures code is correct internally; Black-box ensures requirements are met from user's perspective.</div>`},
+      {q:"What is regression testing? When is it done? Why is it necessary?",pyq:"2014",h:`<div class='ans-intro'><b>Regression Testing</b> is the process of re-executing existing test cases after any code change (bug fix, new feature, refactoring) to ensure the change did not inadvertently break previously working functionality.</div><b class='kterm'>When is it done?</b><ul><li>After fixing a bug — verify the fix works AND nothing else broke</li><li>After adding new features — ensure new code doesn't affect existing features</li><li>After code refactoring — verify behavior unchanged after code cleanup</li><li>After every release/build in CI/CD pipelines</li></ul><b class='kterm'>Why is it necessary?</b><ul><li>Software changes create unexpected ripple effects — a fix in Module A can break Module B</li><li>Prevents regression defects (bugs that reappear after being fixed)</li><li>Maintains software quality as codebase grows and changes</li><li>Automated regression suites run after every commit in modern DevOps</li></ul><div class='concl'>Regression testing is the safety net of software development — without it, every bug fix or change risks breaking something that previously worked.</div>`},
+      {q:"What are Test Oracles? Explain with examples.",pyq:"2017, 2020",h:`<div class='ans-intro'>A <b>Test Oracle</b> is a mechanism used to determine whether the output of a test execution is correct (pass/fail). It provides the EXPECTED result to compare against the ACTUAL result.</div><b class='kterm'>Types of Test Oracles:</b><ul><li><b>Specification Oracle:</b> Expected output derived from SRS/requirements documents. "According to requirement FR-05, login with valid credentials shall return HTTP 200 with auth token."</li><li><b>Existing System Oracle:</b> Old/previous version of the system used as reference. Compare new system output with legacy system output.</li><li><b>Statistical Oracle:</b> Uses statistical sampling to determine expected output range</li><li><b>Human Oracle:</b> A domain expert manually verifies whether output is correct</li><li><b>Pseudo Oracle:</b> Two different implementations run in parallel — same inputs, compare outputs</li></ul><b class='kterm'>The Oracle Problem:</b><ul><li>Difficult for complex systems where expected output is hard to pre-define</li><li>Example: How do you create an oracle for an AI-generated image? Or a search engine result?</li></ul><div class='concl'>Test Oracles are essential to automated testing — without them, you can run tests but cannot automatically determine pass/fail. The hardest problem in testing is often defining a reliable oracle.</div>`},
+      {q:"Explain Boundary Value Analysis (BVA). Give an example.",pyq:"2022",h:`<div class='ans-intro'><b>Boundary Value Analysis (BVA)</b> is a black-box test design technique based on the observation that ERRORS TEND TO CLUSTER AT THE BOUNDARIES of input domains rather than in the middle.</div><b class='kterm'>Why Boundaries are Important:</b><ul><li>Off-by-one errors (&gt; vs &gt;=) are extremely common in code</li><li>Boundary values expose: fence-post errors, loop termination errors, range check mistakes</li></ul><b class='kterm'>BVA Rules for Input Range [a, b]:</b><ul><li>Test: a-1 (just below minimum — invalid)</li><li>Test: a (minimum value — boundary)</li><li>Test: a+1 (just above minimum — valid)</li><li>Test: middle value (nominal)</li><li>Test: b-1 (just below maximum — valid)</li><li>Test: b (maximum value — boundary)</li><li>Test: b+1 (just above maximum — invalid)</li></ul><b class='kterm'>Example — Age input field (valid range: 18 to 60):</b><div class='dbox'>Test values: 17 (invalid), 18 (boundary), 19 (valid), 38 (nominal), 59 (valid), 60 (boundary), 61 (invalid)</div><div class='concl'>BVA complements Equivalence Partitioning. EP reduces test cases by grouping; BVA focuses on the critical boundary points where errors are most likely. Use both together for effective testing.</div>`},
+      {q:"What is Software Quality Assurance (SQA)? What activities does it include?",pyq:"2020",h:`<div class='ans-intro'><b>Software Quality Assurance (SQA)</b> is a systematic, planned set of activities designed to ensure that the software development process and software products conform to defined quality standards. SQA is proactive — it prevents defects rather than just finding them.</div><b class='kterm'>SQA Activities:</b><ul><li><b>Standards Application:</b> Define and enforce coding standards, design standards, documentation standards</li><li><b>Technical Reviews:</b> Formal inspections, walkthroughs, and peer reviews of requirements, design, code</li><li><b>Testing:</b> Multi-level testing strategy (unit, integration, system, acceptance)</li><li><b>Error Tracking:</b> Systematic tracking of all defects from discovery to resolution</li><li><b>Configuration Management:</b> Version control, change management, baseline management</li><li><b>Measurement &amp; Analysis:</b> Collecting and analyzing quality metrics (defect density, test coverage)</li><li><b>Process Audits:</b> Verifying that defined processes are being followed</li></ul><div class='concl'>SQA is built into every phase of the SDLC — not just at the end. Quality is built IN, not tested IN. This is the core principle of modern quality management.</div>`}
+    ],
+    twelve:[
+      {q:"Explain Integration Testing approaches in detail.",pyq:"2018",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Integration Testing is the phase of testing where individual software modules are combined and tested as a group. Its purpose is to expose defects in the INTERFACES and INTERACTION between integrated components.</div><b class='kterm green'>Why Integration Testing is Needed:</b><br>Unit tests verify modules in isolation, but when modules interact, new bugs emerge: data format mismatches, incorrect assumptions about shared data, wrong API calls, timing issues.<br><br><b class='kterm green'>Major Integration Testing Approaches:</b><ul><li><b>1. Big Bang Integration:</b><br>All modules integrated simultaneously and tested at once.<br>Advantage: Simple, quick to start.<br>Disadvantage: Very hard to isolate which interface caused which bug. High risk.<br>Best for: Very small systems.</li><li><b>2. Top-Down Integration:</b><br>Start from the TOP module (main control) and integrate downward, using STUBS for unimplemented lower modules.<br>Stub = simplified dummy replacement for lower module.<br>Advantage: Tests high-level logic early; can demo partial system to client.<br>Disadvantage: Low-level critical modules tested last; many stubs needed.</li><li><b>3. Bottom-Up Integration:</b><br>Start from LOWEST-level modules and integrate upward, using DRIVERS for unimplemented higher modules.<br>Driver = temporary program that calls the module being tested.<br>Advantage: Real modules tested early; no stub needed.<br>Disadvantage: High-level control logic tested late; no early partial demo.</li><li><b>4. Sandwich/Hybrid Integration:</b><br>Combines Top-Down and Bottom-Up simultaneously.<br>Top levels use stubs (top-down); bottom levels use drivers (bottom-up); meet in the middle.<br>Advantage: Balances both approaches; reduces overall stubs and drivers.</li></ul><div class='dbox'>Top-Down:    [Main] → [Module A] → [Module B]
+             Uses STUBS for B during A's testing
+
+Bottom-Up:   [Module C] → [Module B] → [Main]
+             Uses DRIVERS above C during C's testing
+
+Sandwich:    Top-Down from top + Bottom-Up from bottom → meet in middle</div><div class='concl'>Conclusion: Integration testing is often the most complex testing phase. Choose approach based on system structure — Top-Down for control-heavy systems, Bottom-Up for utility-heavy systems, Sandwich for large complex systems.</div>`},
+      {q:"Explain Black Box Testing methods and their advantages and disadvantages.",pyq:"2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Black-box testing (also called functional/behavioral testing) evaluates software behavior WITHOUT knowledge of internal code. Testers interact with the system as an end-user would — providing inputs and verifying outputs against requirements.</div><b class='kterm green'>Black-Box Testing Techniques:</b><ul><li><b>1. Equivalence Partitioning (EP):</b><br>Divides input domain into equivalence classes where all values in a class behave the same way.<br>Example: For age input [18-60]: Invalid low (&lt;18), Valid (18-60), Invalid high (&gt;60). Test one value from each partition.<br>Advantage: Reduces number of test cases dramatically.<br>Disadvantage: May miss boundary errors.</li><li><b>2. Boundary Value Analysis (BVA):</b><br>Tests values at and around the boundaries of equivalence classes.<br>Example: For [18-60]: Test 17, 18, 19, 59, 60, 61.<br>Advantage: Most errors occur at boundaries — high defect detection rate.<br>Disadvantage: Test case explosion for multiple inputs.</li><li><b>3. Decision Table Testing:</b><br>Tests combinations of conditions and their resulting actions.<br>Creates a table: rows = conditions, columns = test cases, cells = T/F/values.<br>Advantage: Covers all combinations of conditions; good for business rules.<br>Disadvantage: Table grows exponentially with number of conditions.</li><li><b>4. State Transition Testing:</b><br>Tests system behavior as it transitions between different states.<br>Example: ATM states: Idle → Card Inserted → PIN Entered → Authenticated → Transaction.<br>Advantage: Good for menu-driven systems, protocols, and event-driven software.</li><li><b>5. Cause-Effect Graphing:</b><br>Graphically identifies causes (inputs) and their effects (outputs) to derive test cases.</li></ul><b class='kterm green'>Advantages of Black-Box Testing:</b><ul><li>Tests from user's perspective — ensures requirements are met</li><li>No programming knowledge required — testers focus on functionality</li><li>Unbiased testing — testers don't know internal code, so no blind spots</li><li>Suitable for system and acceptance testing</li></ul><b class='kterm green'>Disadvantages:</b><ul><li>Cannot ensure all code paths are tested</li><li>Test cases can be redundant if not designed carefully</li><li>Not suitable for testing code-level logic (algorithms, data structures)</li></ul><div class='concl'>Conclusion: Black-box testing is essential for validating user requirements. It complements white-box testing — use both for comprehensive test coverage.</div>`},
+      {q:"Explain the importance of software testing in the software development process. Describe the different levels of software testing and the purpose of each.",pyq:"2024",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software testing is the process of evaluating a software application to find defects and verify that it meets requirements. It is NOT just about finding bugs — it builds confidence that software works correctly and is fit for release.</div><b class='kterm green'>Why Testing is Important:</b><ul><li>Cost of defects increases exponentially if found late: defect in requirements costs ₹1 to fix; in production costs ₹100-1000</li><li>Ensures reliability — software failures can be catastrophic (medical devices, aerospace, banking)</li><li>Validates that user requirements are met</li><li>Provides legal protection — documented testing demonstrates due diligence</li><li>Improves software design — testing reveals design flaws</li></ul><b class='kterm green'>Levels of Software Testing:</b><ul><li><b>1. Unit Testing:</b><br>Purpose: Test individual functions/methods/classes in isolation.<br>Who: Developers during coding.<br>Technique: White-box testing.<br>Goal: Verify each unit works correctly by itself.<br>Example: Test function calculateTax(amount) returns correct value for various inputs.</li><li><b>2. Integration Testing:</b><br>Purpose: Test how multiple modules work together — find interface defects.<br>Who: Developers/Test team after unit testing.<br>Approach: Top-Down, Bottom-Up, Big-Bang, Sandwich.<br>Goal: Verify modules interact correctly via their interfaces.</li><li><b>3. System Testing:</b><br>Purpose: Test the complete integrated system against requirements.<br>Who: Dedicated test team — black-box approach.<br>Types: Functional, Performance, Load, Stress, Security, Usability testing.<br>Goal: Verify entire system meets all functional and non-functional requirements.</li><li><b>4. Acceptance Testing:</b><br>Purpose: Verify system meets business requirements and is ready for deployment.<br>Who: Client/end users.<br>Types: User Acceptance Testing (UAT), Alpha testing, Beta testing.<br>Goal: Confirm the system is acceptable to the end user / client.</li></ul><div class='dbox'>Testing Pyramid:
+        [UAT / Acceptance]  ← Few, high value, expensive
+         [System Testing]   ← Moderate
+       [Integration Testing] ← More tests
+      [Unit Testing]         ← Many, fast, cheap (most tests here)
+
+Rule: More tests at lower levels, fewer at higher levels</div><div class='concl'>Conclusion: Testing at each level serves a distinct purpose — from verifying individual functions to validating the entire system meets user needs. A balanced testing strategy across all levels is essential for delivering reliable software.</div>`},
+      {q:"During the software testing process, why is reliability growth initially high but slows down later on? Explain Musa's Basic Model.",pyq:"2014",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software reliability is the probability that software will operate without failure for a specified period under specified conditions. Reliability GROWS as testing progresses because faults are found and removed — but this growth eventually slows down.</div><b class='kterm green'>Why Reliability Growth is Initially High:</b><ul><li>Early in testing: Many obvious, common bugs exist. Each bug found and fixed significantly improves reliability.</li><li>High-frequency bugs are found first: Bugs in commonly executed paths are encountered quickly.</li><li>Each bug removal in early testing has large impact: Removing a bug that caused 100 failures per day has massive reliability impact.</li></ul><b class='kterm green'>Why Reliability Growth Slows Later:</b><ul><li>Remaining bugs are rare, subtle, and occur only in edge cases</li><li>Each additional bug found and fixed has smaller reliability improvement (low-frequency bugs)</li><li>Diminishing returns — it takes exponentially more testing effort to find each additional bug</li><li>The software approaches asymptotic reliability — never quite perfect</li></ul><div class='dbox'>Reliability vs Testing Time:
+
+Reliability ↑
+      |     ___________...
+      |   /
+      |  /  
+      | /  (rapid growth early)
+      |/
+      +------------------------→ Testing Time
+      (slows as easy bugs are removed)</div><b class='kterm green'>Musa's Basic Execution Time Model (1975):</b><ul><li>Models failure rate based on EXECUTION TIME (CPU time), not calendar time</li><li>Formula: λ(τ) = f × K × [N - μ(τ)]</li><li>λ(τ) = failure intensity at execution time τ</li><li>f = linear execution frequency</li><li>K = fault exposure ratio (how quickly faults are encountered)</li><li>N = total number of faults at start of testing</li><li>μ(τ) = expected number of failures experienced by time τ</li><li>Interpretation: As faults are detected and removed [N - μ(τ)] decreases → failure rate decreases</li></ul><b class='kterm green'>How to use Musa's Model:</b><ul><li>Estimate N (initial fault count) from historical data or COCOMO</li><li>Track failures during testing to estimate μ(τ)</li><li>Predict when to stop testing (when failure rate meets target)</li><li>Estimate Mean Time To Failure (MTTF) for reliability certification</li></ul><div class='concl'>Conclusion: Software reliability growth modeling helps managers make data-driven decisions about when software is reliable enough to release. Musa's model provides a mathematical basis for these critical decisions.</div>`}
+    ]
+  },
+  {
+    id:5, abbr:"U5", color:"#b91c1c",
+    title:"Unit 5: Software Quality Assurance + Maintenance",
+    subtitle:"ISO 9000 · SEI CMM · Maintenance Process Models · Reverse Engineering · Maintenance Costs",
+    mcqs:[
+      {q:"ISO 9000 is a set of international standards for?",opts:["Software testing","Quality management","Project scheduling","Cost estimation"],ans:1,exp:"ISO 9000 = International standard for Quality Management Systems. Ensures consistent processes that reliably deliver quality products.",pyq:"2024,2025"},
+      {q:"SEI CMM has how many maturity levels?",opts:["3 levels","4 levels","5 levels","6 levels"],ans:2,exp:"SEI CMM has 5 levels: Initial → Repeatable → Defined → Managed → Optimizing. Level 5 is the highest maturity.",pyq:"2018"},
+      {q:"Which type of maintenance fixes bugs DISCOVERED AFTER software delivery?",opts:["Perfective maintenance","Adaptive maintenance","Corrective maintenance","Preventive maintenance"],ans:2,exp:"Corrective maintenance = fixing defects found by users after software is deployed. Most urgent type.",pyq:"2020"},
+      {q:"Change made to the system to REDUCE FUTURE SYSTEM FAILURE is called?",opts:["Corrective maintenance","Adaptive maintenance","Perfective maintenance","Preventive maintenance"],ans:3,exp:"Preventive maintenance = restructuring code, updating documentation to prevent future failures. Also called Software Re-engineering.",pyq:"2014"},
+      {q:"Reverse Engineering in software means?",opts:["Building software from scratch","Writing code backward","Analyzing existing software to recover its design","Removing software features"],ans:2,exp:"Reverse Engineering = analyzing existing software to understand design, requirements, or recover lost documentation. Used in legacy system maintenance.",pyq:"2024,2025"},
+      {q:"The HIGHEST level in SEI CMM is?",opts:["Level 3: Defined","Level 4: Managed","Level 5: Optimizing","Level 5: Controlled"],ans:2,exp:"CMM Level 5: Optimizing = continuous process improvement. Organization uses quantitative feedback to continuously improve processes.",pyq:"2018"},
+      {q:"Which type of maintenance adapts software to a new ENVIRONMENT?",opts:["Corrective","Adaptive","Perfective","Preventive"],ans:1,exp:"Adaptive maintenance = modifying software to run in a new environment (new OS, hardware, database, regulations).",pyq:"2020"},
+      {q:"SEI CMM was developed by?",opts:["Carnegie Mellon University / SEI","IEEE","ISO","Barry Boehm"],ans:0,exp:"SEI CMM (Software Engineering Institute Capability Maturity Model) developed at Carnegie Mellon University by Watts Humphrey.",pyq:null},
+      {q:"ISO 9000 primarily focuses on?",opts:["Technical coding standards","Processes and quality management procedures","Network configuration","Cost reduction"],ans:1,exp:"ISO 9000 focuses on PROCESSES — defining, documenting, and following quality management processes to consistently deliver quality.",pyq:null},
+      {q:"Which type of maintenance adds NEW FEATURES or IMPROVES PERFORMANCE?",opts:["Corrective","Adaptive","Perfective","Preventive"],ans:2,exp:"Perfective maintenance = adding new features, improving performance, enhancing usability. Accounts for ~65% of all maintenance work!",pyq:null}
+    ],
+    four:[
+      {q:"Explain the SEI CMM (Capability Maturity Model) levels.",pyq:"2018",h:`<div class='ans-intro'>SEI CMM (Software Engineering Institute Capability Maturity Model) defines 5 levels of software process maturity — from chaotic to continuously improving.</div><b class='kterm'>5 CMM Maturity Levels:</b><ul><li><b>Level 1 — Initial:</b> Unpredictable, chaotic processes. Success depends on individual heroics. No formal processes. Example: Startup with no defined procedures.</li><li><b>Level 2 — Repeatable:</b> Basic project management (schedule, cost, requirements). Projects succeed but based on past experience. Processes documented per project.</li><li><b>Level 3 — Defined:</b> Organizational standard processes documented and tailored for each project. Training programs exist. Most Indian IT companies are here.</li><li><b>Level 4 — Managed:</b> Quantitative management. Processes measured and controlled using statistics. Predictable performance.</li><li><b>Level 5 — Optimizing:</b> Continuous process improvement using quantitative feedback. Proactive defect prevention. Example: NASA, top-tier defense companies.</li></ul><div class='dbox'>Level 5: Optimizing  ← Continuous improvement
+Level 4: Managed     ← Quantitative management  
+Level 3: Defined     ← Standard processes
+Level 2: Repeatable  ← Project management
+Level 1: Initial     ← Chaotic (most organizations start here)</div><div class='concl'>Higher CMM levels = more predictable, efficient, and reliable software processes. Moving from Level 1 to Level 3 alone can reduce defect rates by 50-75%.</div>`},
+      {q:"What is software maintenance? What are the categories of software maintenance?",pyq:"2020",h:`<div class='ans-intro'><b>Software Maintenance</b> is the process of modifying a software system AFTER delivery to correct faults, improve performance, or adapt to a changed environment. It is typically the longest and most expensive phase of the software lifecycle.</div><b class='kterm'>4 Categories of Software Maintenance (Swanson's Classification):</b><ul><li><b>1. Corrective Maintenance (21%):</b> Fixing defects discovered after deployment. User reports a bug → investigate → fix → test → release patch. Most urgent.</li><li><b>2. Adaptive Maintenance (25%):</b> Modifying software to work in a new environment. Examples: New OS version, new database, new regulations (GDPR compliance), new hardware.</li><li><b>3. Perfective Maintenance (50% — LARGEST):</b> Adding new features or improving existing ones based on user requests. Also includes performance optimization, code cleanup, UI improvements.</li><li><b>4. Preventive Maintenance (4%):</b> Making changes to prevent future failures. Restructuring aging code, updating documentation, improving maintainability. Also called re-engineering.</li></ul><div class='concl'>Perfective maintenance accounts for ~50% of all maintenance work — most maintenance is actually enhancements, not bug fixes. This is why maintainability must be built into the original design.</div>`},
+      {q:"What is the significance of Reverse Engineering in software?",pyq:"2024, 2025",h:`<div class='ans-intro'><b>Reverse Engineering</b> in software is the process of analyzing an existing software system to identify its components, their relationships, and its design — essentially recovering design from implementation when documentation is lost or non-existent.</div><b class='kterm'>Significance and Uses:</b><ul><li><b>Legacy System Recovery:</b> Many old systems have lost documentation. Reverse engineering recovers design documents, helping maintenance teams understand the system.</li><li><b>Understanding Third-Party Software:</b> When integrating components where source is unavailable, RE helps understand interfaces and behavior.</li><li><b>Migration Aid:</b> Before migrating a legacy system to a new platform, RE helps create a complete picture of the current system.</li><li><b>Security Analysis:</b> Security researchers use RE to find vulnerabilities in software (especially malware analysis).</li><li><b>Re-engineering:</b> First step in software re-engineering — understand what exists before redesigning it.</li></ul><b class='kterm'>Typical RE Activities:</b> Redocumentation → Design Recovery → Process Recovery → Data Recovery<div class='concl'>Reverse Engineering is increasingly important as organizations struggle to maintain aging legacy systems that were never properly documented. It is the first step in modernizing legacy software.</div>`},
+      {q:"Discuss the concept of estimation of software maintenance costs.",pyq:"2022, 2024, 2025",h:`<div class='ans-intro'>Estimating maintenance costs is challenging because maintenance is ongoing and unpredictable. However, several models and factors help organizations plan maintenance budgets.</div><b class='kterm'>Maintenance Cost Factors (Boehm's Model):</b><ul><li><b>Application Type:</b> Standalone applications cost less to maintain than embedded real-time systems</li><li><b>Staff Stability:</b> High turnover → knowledge loss → higher maintenance cost</li><li><b>Code Lifetime:</b> Older code is harder and more expensive to maintain</li><li><b>External Environment:</b> Frequent regulatory changes (banking, healthcare) drive more maintenance</li><li><b>Code Quality:</b> Poorly designed code (high coupling, low cohesion) is far more expensive to maintain</li></ul><b class='kterm'>Maintenance Cost Estimation:</b><ul><li><b>Annual Change Traffic (ACT) method:</b> ACT = fraction of software changed per year. Maintenance Effort ∝ ACT × Size</li><li><b>Lehman's Laws:</b> Software must continually adapt or become progressively less useful over time</li><li><b>Rule of thumb:</b> Maintenance costs 40-80% of total lifecycle costs; often exceeds development cost</li></ul><div class='concl'>Proactive investment in code quality during development dramatically reduces maintenance costs. Well-structured, well-documented software with high cohesion and low coupling can cut maintenance costs by 30-50%.</div>`},
+      {q:"Why does software need maintenance? What are the main reasons?",pyq:"2022",h:`<div class='ans-intro'>Software maintenance is inevitable — no software system remains unchanged throughout its operational life. Understanding WHY maintenance is needed helps plan for it proactively.</div><b class='kterm'>Reasons Software Needs Maintenance:</b><ul><li><b>Bug Fixes:</b> Defects not caught during testing emerge during production use. Users encounter errors in real-world scenarios not covered by test cases.</li><li><b>Environmental Changes:</b> New operating systems, hardware upgrades, new regulations, third-party service changes require software adaptation.</li><li><b>User Requirements Evolution:</b> Business needs evolve — users request new features, improved usability, additional reports, new integrations.</li><li><b>Performance Degradation:</b> Data volume grows over time → queries slow down → performance tuning needed.</li><li><b>Security Updates:</b> New vulnerabilities discovered → security patches needed to prevent exploits.</li><li><b>Technology Upgrades:</b> Dependencies (libraries, frameworks, databases) release new versions requiring updates to maintain compatibility.</li><li><b>Software Entropy:</b> Code complexity increases with each change → periodic restructuring needed to maintain quality.</li></ul><div class='concl'>Software maintenance is not optional — it is the continuous effort required to keep software aligned with evolving needs, environments, and quality standards. Planning for maintenance from the start reduces its cost significantly.</div>`}
+    ],
+    twelve:[
+      {q:"Compare ISO 9000 and SEI CMM. How do they differ in their approach to software quality? [★★★ Most Important]",pyq:"2018, 2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Both ISO 9000 and SEI CMM are quality standards/frameworks, but they differ in origin, scope, focus, and implementation approach. Both aim to improve software quality but through different philosophies.</div><b class='kterm green'>ISO 9000:</b><ul><li><b>Full Name:</b> International Organization for Standardization Standard 9000</li><li><b>Origin:</b> ISO committee; originally for manufacturing; adapted for software</li><li><b>Nature:</b> International standard for Quality Management Systems (QMS)</li><li><b>Focus:</b> PROCESSES — defines MINIMUM requirements for quality management systems</li><li><b>Approach:</b> "Document what you do, do what you document, prove it" — emphasis on documentation and audit compliance</li><li><b>Certification:</b> Organizations are certified as ISO 9001 compliant by external auditors</li><li><b>Scope:</b> Any industry — manufacturing, services, healthcare, IT, education</li><li><b>Result:</b> Consistent processes that reliably produce the same quality output</li></ul><b class='kterm green'>SEI CMM (Capability Maturity Model):</b><ul><li><b>Full Name:</b> Software Engineering Institute Capability Maturity Model</li><li><b>Origin:</b> Developed by Watts Humphrey at Carnegie Mellon University for US Dept. of Defense (1991)</li><li><b>Nature:</b> Process improvement framework specifically for software development</li><li><b>Focus:</b> MATURITY LEVELS — assesses how mature/capable an organization's software processes are</li><li><b>Approach:</b> Staged improvement path from Level 1 (chaotic) to Level 5 (optimizing)</li><li><b>Assessment:</b> Organizations are assessed/rated on a 1-5 scale by SEI-certified assessors</li><li><b>Scope:</b> Software development organizations specifically</li><li><b>Result:</b> Progressively improving, predictable, high-quality software processes</li></ul><div class='dbox'>Comparison Table:
+Feature          | ISO 9000              | SEI CMM
+-----------------|-----------------------|------------------
+Origin           | International (ISO)   | Carnegie Mellon/SEI
+Focus            | Quality processes     | Process maturity
+Approach         | Minimum requirements  | Continuous improvement levels
+Assessment       | Pass/Fail Audit       | Level 1-5 Rating
+Scope            | Any industry          | Software organizations
+Flexibility      | More flexible         | Prescriptive (defined key process areas)
+Documentation    | Heavy emphasis        | Emphasizes process integration
+Cost             | Certification fees    | Assessment fees
+Result           | ISO 9001 Certificate  | CMM Level N Rating</div><b class='kterm green'>Key Difference:</b><br>ISO 9000 = "Are you following a quality management system?" (baseline)<br>SEI CMM = "How MATURE and EFFECTIVE are your software processes?" (growth path)<br><br>CMM goes BEYOND ISO 9000 — a CMM Level 3 organization typically satisfies ISO 9001 requirements.<div class='concl'>Conclusion: ISO 9000 provides a quality management baseline suitable for all industries. CMM provides a software-specific roadmap for continuous process improvement. Many organizations pursue ISO 9001 first, then CMM higher levels. They complement rather than compete with each other.</div>`},
+      {q:"Discuss in detail the Software Maintenance Process Models.",pyq:"2018, 2019",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software maintenance process models define how maintenance activities are organized and executed. Since maintenance is the longest software lifecycle phase (often 60-80% of total cost), structured models are essential for controlling it.</div><b class='kterm green'>Major Software Maintenance Process Models:</b><ul><li><b>1. Quick Fix Model:</b><br>The simplest and most common model. A bug is reported → developer fixes it as quickly as possible → fix deployed without formal analysis or planning.<br>Advantages: Fast response to critical bugs.<br>Disadvantages: Quick fixes can create new bugs; no long-term code quality improvement; technical debt accumulates.<br>Suitable for: Critical production outages requiring immediate fixes.</li><li><b>2. Iterative Enhancement Model:</b><br>Treats maintenance as a series of small releases/iterations. Each iteration: Understand → Modify → Test → Release.<br>Similar to Agile methodology for maintenance.<br>Advantages: Structured yet responsive; improvements release frequently.<br>Disadvantages: Requires good test infrastructure; coordination needed between releases.<br>Suitable for: Large systems with regular enhancement needs.</li><li><b>3. Full Reuse Model:</b><br>Focuses on identifying and reusing existing components during maintenance changes.<br>Before any change, check if existing components can be reused or adapted.<br>Advantages: Reduces redundant code; improves consistency; faster maintenance.<br>Disadvantages: Requires component repository and reuse infrastructure.</li><li><b>4. Boehm's Model:</b><br>Uses economic analysis to prioritize maintenance changes.<br>Each proposed change evaluated for: Expected benefit / Maintenance cost.<br>Changes with highest return on investment prioritized.<br>Advantages: Economic justification for maintenance decisions.<br>Disadvantages: Difficult to quantify all benefits accurately.</li></ul><div class='dbox'>Maintenance Process Flow (IEEE Standard 1219):
+1. Problem/Change Identification → 2. Analysis (impact, feasibility, cost)
+3. Design (how to implement change) → 4. Implementation (coding)
+5. System Testing → 6. Acceptance Testing → 7. Delivery
+8. Post-Delivery Support ↑→ (loops back to step 1)</div><b class='kterm green'>IEEE 1219 — Standard Maintenance Process:</b><ul><li>Problem Identification → Analysis → Design → Implementation → System Testing → Acceptance Testing → Delivery</li><li>Each step has defined inputs, outputs, controls, and required resources</li></ul><b class='kterm green'>Reverse Engineering and Re-engineering:</b><ul><li>When maintenance becomes too expensive, full RE-ENGINEERING may be needed</li><li>Reverse Engineer: Understand existing system → Re-engineer: Redesign and rebuild with modern architecture</li></ul><div class='concl'>Conclusion: No single maintenance model fits all situations. Critical bugs need Quick Fix; regular enhancements use Iterative; large legacy systems need Re-engineering. The key is having a defined, repeatable process rather than ad-hoc firefighting.</div>`},
+      {q:"Discuss the concept of Software Quality Assurance. Discuss one popular maintenance process model.",pyq:"2024, 2025",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Software Quality Assurance (SQA) is a systematic set of activities ensuring software products meet defined quality standards throughout the entire SDLC. It is proactive — prevents defects rather than finding them.</div><b class='kterm green'>SQA Framework:</b><ul><li><b>Standards:</b> IEEE, ISO standards define what SQA activities are required</li><li><b>Reviews and Audits:</b> Formal technical reviews of requirements, design, code; process audits</li><li><b>Testing Strategy:</b> Multi-level testing (unit, integration, system, acceptance)</li><li><b>Defect Tracking:</b> Systematic logging, tracking, and resolution of all defects</li><li><b>Configuration Management:</b> Version control, change control, baselines</li><li><b>SQA Plan:</b> Document describing how SQA will be performed for a project</li></ul><b class='kterm green'>SQA Activities per Phase:</b><ul><li><b>Requirements Phase:</b> Review SRS for correctness, completeness, ambiguity</li><li><b>Design Phase:</b> Design walkthroughs, architecture reviews</li><li><b>Coding Phase:</b> Code reviews, static analysis, coding standard compliance</li><li><b>Testing Phase:</b> Test plan review, test case adequacy assessment</li><li><b>Maintenance Phase:</b> Impact analysis before changes, regression testing</li></ul><b class='kterm green'>Popular Maintenance Process Model — IEEE 1219:</b><ul><li><b>Step 1 — Problem Identification:</b> User reports issue or enhancement request. Logged in change management system.</li><li><b>Step 2 — Analysis:</b> Feasibility analysis, impact analysis (what else could break?), cost estimation.</li><li><b>Step 3 — Design:</b> Design the change — modify architecture, design, database schema as needed.</li><li><b>Step 4 — Implementation:</b> Code the change following coding standards and SQA guidelines.</li><li><b>Step 5 — System Testing:</b> Test the change — unit test, integration test, regression test.</li><li><b>Step 6 — Acceptance Testing:</b> Client/user verifies the change meets their requirements.</li><li><b>Step 7 — Delivery:</b> Release new version. Update documentation. Close the change request.</li></ul><div class='dbox'>IEEE 1219 Maintenance Process:
+Problem Report → [Analysis] → [Design] → [Implement] → [System Test] → [Acceptance] → [Delivery]
+                    ↓                                        ↑
+              (If not feasible)                    (Regression Testing here)
+                    ↓
+            (Reject Change Request)</div><div class='concl'>Conclusion: SQA and structured maintenance processes together ensure software remains reliable, maintainable, and aligned with user needs throughout its operational life. The cost of SQA is always less than the cost of poor quality.</div>`},
+      {q:"With respect to Software Quality Assurance, discuss the estimation of maintenance costs.",pyq:"2022",h:`<div class='ans-intro green-intro'><b>Introduction:</b> Maintenance cost estimation is critical for project planning. Maintenance typically consumes 60-80% of total software lifecycle costs — often exceeding the original development cost. Accurate estimation helps organizations budget appropriately.</div><b class='kterm green'>Why Maintenance Costs Are High:</b><ul><li>Software entropy — code becomes complex and harder to understand over time</li><li>Original developers may have left (knowledge loss)</li><li>Poor original documentation makes understanding difficult</li><li>Changing requirements and environments require continuous adaptation</li><li>Testing costs for regression and integration testing</li></ul><b class='kterm green'>Cost Estimation Models for Maintenance:</b><ul><li><b>1. COCOMO Maintenance Model:</b><br>ACT (Annual Change Traffic) = fraction of software changed per year.<br>Maintenance Effort = SDE × ACT<br>SDE = Software Development Effort (original development effort)<br>Example: If development cost 100 person-months and ACT = 0.2 (20% changed per year), annual maintenance ≈ 20 person-months.</li><li><b>2. Boehm's Cost Factors:</b><br>Maintenance cost multiplied by factors:<br>Familiarity with software (higher cost if unfamiliar)<br>Code quality (poor code = higher maintenance cost)<br>Staff turnover (high turnover = higher cost)<br>External environment stability (unstable environment = higher cost)</li><li><b>3. Belady-Lehman Laws:</b><br>Law 1 (Continuing Change): Software must be continually adapted or it becomes less useful<br>Law 2 (Increasing Complexity): Software complexity increases with each change unless actively managed</li></ul><b class='kterm green'>Strategies to Reduce Maintenance Costs:</b><ul><li>Invest in code quality during development — reduces future maintenance cost 3-5×</li><li>Maintain documentation — reduces knowledge transfer cost</li><li>Use automated regression testing — reduces testing cost per change</li><li>Apply refactoring regularly — prevents complexity accumulation</li><li>Modular design (high cohesion, low coupling) — isolates change impact</li></ul><div class='dbox'>Maintenance Cost Distribution (typical):
+Corrective:  21%  (bug fixes)
+Adaptive:    25%  (environment changes)
+Perfective:  50%  (new features + improvements) ← LARGEST!
+Preventive:   4%  (code restructuring)
+
+Lifecycle Cost Distribution:
+Development: 20-40%
+Maintenance: 60-80%  ← Often exceeds development!</div><div class='concl'>Conclusion: Maintenance cost estimation must be part of every software project plan. Cutting corners on quality during development always results in dramatically higher maintenance costs. Investment in quality pays dividends throughout the software's operational life.</div>`}
+    ]
+  }
+];
+
+/* ==================== MOST REPEATED DATA ==================== */
+const MR_DATA = [
+  {topic:"Waterfall Model", unit:"U1", cnt:7, vvi:true, years:"2014, 2017, 2018, 2019, 2020, 2024, 2025"},
+  {topic:"Black Box vs White Box Testing", unit:"U4", cnt:6, vvi:true, years:"2014, 2017, 2018, 2019, 2022, 2024"},
+  {topic:"SRS Document (Structure & Characteristics)", unit:"U2", cnt:6, vvi:true, years:"2018, 2019, 2020, 2022, 2024, 2025"},
+  {topic:"COCOMO Model (Categories & Formula)", unit:"U2", cnt:5, vvi:true, years:"2014, 2018, 2020, 2022, 2025"},
+  {topic:"DFD (Levels, Symbols, Balancing)", unit:"U3", cnt:5, vvi:true, years:"2014, 2018, 2019, 2020, 2025"},
+  {topic:"Spiral Model (Risk Handling)", unit:"U1", cnt:5, vvi:true, years:"2014, 2017, 2019, 2020, 2022"},
+  {topic:"ISO 9000 vs SEI CMM", unit:"U5", cnt:4, vvi:false, years:"2018, 2022, 2024, 2025"},
+  {topic:"Software Maintenance (Categories & Models)", unit:"U5", cnt:4, vvi:false, years:"2018, 2019, 2022, 2024"},
+  {topic:"Prototype Model (When & Why)", unit:"U1", cnt:4, vvi:false, years:"2014, 2017, 2019, 2022"},
+  {topic:"LOC & Function Point Metrics", unit:"U2", cnt:4, vvi:false, years:"2014, 2018, 2020, 2022"},
+  {topic:"Coupling & Cohesion (Types & Differences)", unit:"U3", cnt:3, vvi:false, years:"2014, 2019, 2022"},
+  {topic:"Software Reliability / Musa's Basic Model", unit:"U4", cnt:3, vvi:false, years:"2014, 2020, 2024"},
+  {topic:"Functional vs Non-Functional Requirements", unit:"U2", cnt:3, vvi:false, years:"2019, 2024, 2025"},
+  {topic:"Transform Mapping / Transform Analysis", unit:"U3", cnt:2, vvi:false, years:"2017, 2020"},
+  {topic:"Software Design (High vs Low Level)", unit:"U3", cnt:2, vvi:false, years:"2024, 2025"}
+];
+
+/* ==================== CHEAT SHEET DATA ==================== */
+const CS_DATA = [
+  {
+    icon:"📋", title:"Full Forms",
+    items:[
+      "<b>SDLC</b> = Software Development Life Cycle",
+      "<b>COCOMO</b> = COnstructive COst MOdel",
+      "<b>SRS</b> = Software Requirements Specification",
+      "<b>DFD</b> = Data Flow Diagram",
+      "<b>LOC</b> = Lines Of Code",
+      "<b>FP</b> = Function Point",
+      "<b>CMM</b> = Capability Maturity Model",
+      "<b>SEI</b> = Software Engineering Institute",
+      "<b>MTTF</b> = Mean Time To Failure",
+      "<b>KLOC</b> = Kilo Lines Of Code (1000 LOC)",
+      "<b>HLD</b> = High Level Design",
+      "<b>LLD</b> = Low Level Design",
+      "<b>SQA</b> = Software Quality Assurance",
+      "<b>IEEE</b> = Institute of Electrical and Electronics Engineers"
+    ]
+  },
+  {
+    icon:"📖", title:"Key Definitions",
+    items:[
+      "<b>Software Engineering:</b> Systematic, disciplined, measurable approach to development, operation, maintenance of software",
+      "<b>Prototype:</b> Preliminary working model of software for user feedback",
+      "<b>Coupling:</b> Degree of interdependence between modules (WANT LOW)",
+      "<b>Cohesion:</b> Degree to which module elements belong together (WANT HIGH)",
+      "<b>Regression Testing:</b> Re-testing after changes to ensure no new bugs",
+      "<b>Reverse Engineering:</b> Analyzing existing software to recover design",
+      "<b>SRS:</b> Document specifying ALL requirements of a software system",
+      "<b>Maintenance:</b> Modifying software AFTER delivery",
+      "<b>CMM Level 5:</b> Optimizing — continuous improvement using data",
+      "<b>Black Box Testing:</b> Testing without knowledge of internal code"
+    ]
+  },
+  {
+    icon:"🧠", title:"Memory Tricks (Mnemonics)",
+    items:[
+      "<b>CMM Levels:</b> <b>I</b>ndia <b>R</b>eally <b>D</b>oes <b>M</b>ake <b>O</b>ptimal software → Initial, Repeatable, Defined, Managed, Optimizing",
+      "<b>Waterfall Phases:</b> <b>R</b>eal <b>D</b>evelopers <b>I</b>nvent <b>T</b>esting <b>D</b>uring <b>M</b>orning → Requirements, Design, Implementation, Testing, Deployment, Maintenance",
+      "<b>DFD Components:</b> <b>P</b>eople <b>D</b>ata <b>D</b>rive <b>E</b>verything → Process, Data Flow, Data Store, External Entity",
+      "<b>Coupling (worst to best):</b> <b>C</b>omplete <b>C</b>ontrol <b>S</b>tamp <b>D</b>ata → Content, Control, Stamp, Data",
+      "<b>SRS Characteristics:</b> <b>CU3CV</b> → Correct, Unambiguous, Complete, Consistent, Concise, Verifiable",
+      "<b>Maintenance Types:</b> <b>CAP P</b>lus → Corrective, Adaptive, Perfective, Preventive",
+      "<b>COCOMO Types:</b> <b>O</b>ne <b>S</b>mart <b>E</b>ngineer → Organic, Semidetached, Embedded"
+    ]
+  },
+  {
+    icon:"⚠️", title:"Common Exam Mistakes",
+    items:[
+      "❌ Content coupling = WORST (not data coupling). Data coupling = BEST",
+      "❌ Waterfall not suitable for 'changing requirements' NOT for 'small projects'",
+      "❌ SRS NOT characteristic = 'Ambiguous' (NOT 'Traceable')",
+      "❌ Spiral has 2 dimensions: RADIAL + ANGULAR (not diagonal/perpendicular)",
+      "❌ Decision box (diamond) is FLOWCHART symbol — NOT part of DFD",
+      "❌ LOC is language-DEPENDENT; Function Points are language-INDEPENDENT",
+      "❌ Corrective maintenance = fixes bugs AFTER delivery. During dev = debugging",
+      "❌ Integration testing finds INTERFACE errors (not design/analysis errors)",
+      "❌ COCOMO by Barry Boehm (NOT Roger Pressman or Ian Sommerville)",
+      "❌ Context diagram = Level 0 DFD (NOT Level 1)"
+    ]
+  },
+  {
+    icon:"🔄", title:"Models Quick Comparison",
+    items:[
+      "<b>Waterfall:</b> Linear, rigid, best for stable small projects, no risk mgmt",
+      "<b>Prototype:</b> Iterative feedback, best for unclear requirements, user-driven",
+      "<b>Spiral:</b> Risk-driven iterations, best for large complex projects, most expensive",
+      "<b>COCOMO Organic:</b> a=2.4, b=1.05 → small familiar teams",
+      "<b>COCOMO Semidetached:</b> a=3.0, b=1.12 → medium teams",
+      "<b>COCOMO Embedded:</b> a=3.6, b=1.20 → real-time, tight constraints",
+      "<b>LOC:</b> Language-dependent, post-implementation",
+      "<b>FP:</b> Language-independent, pre-implementation",
+      "<b>CMM vs ISO 9000:</b> CMM = maturity levels + improvement roadmap; ISO = pass/fail audit"
+    ]
+  },
+  {
+    icon:"↔️", title:"Key Differences",
+    items:[
+      "<b>Verification vs Validation:</b> Verification='Are we building it RIGHT?'; Validation='Are we building the RIGHT thing?'",
+      "<b>Error vs Fault vs Bug:</b> Error=human mistake in code; Fault=incorrect code segment; Bug=informal term for defect",
+      "<b>White Box vs Black Box:</b> WB=code visible+developers; BB=code hidden+testers",
+      "<b>Top-Down vs Bottom-Up:</b> TD=starts from main module; BU=starts from primitive modules",
+      "<b>HLD vs LLD:</b> HLD=system architecture; LLD=detailed module design",
+      "<b>Process Metric vs Product Metric:</b> PM=measures process quality; PM2=measures product quality",
+      "<b>Functional vs Non-Functional Req:</b> FR=what system does; NFR=how well it does it",
+      "<b>Static vs Dynamic Analysis:</b> Static=without execution; Dynamic=during execution"
+    ]
+  },
+  {
+    icon:"⚡", title:"Quick One-Line Answers",
+    items:[
+      "<b>Q: COCOMO stands for?</b> → COnstructive COst MOdel (by Barry Boehm, 1981)",
+      "<b>Q: Worst coupling?</b> → Content coupling",
+      "<b>Q: Best cohesion?</b> → Functional cohesion",
+      "<b>Q: Context diagram = ?</b> → Level 0 DFD",
+      "<b>Q: Main purpose of integration testing?</b> → Find interface errors",
+      "<b>Q: SRS also known as?</b> → Black-box specification",
+      "<b>Q: NOT a SRS characteristic?</b> → Ambiguous",
+      "<b>Q: CMM levels?</b> → 5 (Initial→Repeatable→Defined→Managed→Optimizing)",
+      "<b>Q: Spiral model dimensions?</b> → Radial and Angular",
+      "<b>Q: Most important Spiral feature?</b> → Risk Management"
+    ]
+  },
+  {
+    icon:"🎯", title:"Last Minute Points",
+    items:[
+      "★ Waterfall = 7 times repeated = MUST KNOW all 6 phases perfectly",
+      "★ Black/White box testing = 6 times = know types: EP, BVA, Statement/Branch/Path coverage",
+      "★ SRS = 6 times = know IEEE structure: Introduction + Overall Description + Specific Requirements",
+      "★ COCOMO formula: Effort = a × (KLOC)^b",
+      "★ Coupling (best→worst): Data → Stamp → Control → Common → Content",
+      "★ Cohesion (worst→best): Coincidental → Logical → Temporal → Procedural → Communicational → Sequential → Functional",
+      "★ CMM 5 levels = 5 marks easy — memorize the names in order",
+      "★ 4 types of maintenance: Corrective (21%), Adaptive (25%), Perfective (50%), Preventive (4%)",
+      "★ DFD has 4 components: Process, Data Flow, Data Store, External Entity",
+      "★ Spiral = 4 quadrants: Planning, Risk Analysis, Development, Review"
+    ]
+  }
+];
+
+/* ==================== GAME STATE ==================== */
+const GS = {};
+function initGS(uid){
+  GS[uid]={cur:0,score:0,ans:new Array(UNITS[uid-1].mcqs.length).fill(null),locked:false};
+}
+
+/* ==================== RENDER ENGINE ==================== */
+function renderUnits(){
+  UNITS.forEach(u=>{
+    const el = document.getElementById('u'+u.id);
+    el.innerHTML = `
+      <div class="sec-hdr">
+        <div class="u-badge">${u.abbr}</div>
+        <div class="sec-title"><span>${u.title}</span></div>
+      </div>
+      <div class="sec-desc">${u.subtitle}</div>
+      <div class="tab-bar">
+        <button class="tbtn tbtn-mcq act" onclick="switchTab(${u.id},'mcq',this)">🎮 MCQ (KBC Game)</button>
+        <button class="tbtn tbtn-4" onclick="switchTab(${u.id},'four',this)">📝 4-Mark Q&amp;A</button>
+        <button class="tbtn tbtn-12" onclick="switchTab(${u.id},'twelve',this)">📚 12-Mark Q&amp;A</button>
+      </div>
+      <div id="tc${u.id}_mcq" class="tcontent act">${buildKBC(u)}</div>
+      <div id="tc${u.id}_four" class="tcontent">${buildAcc(u,'four')}</div>
+      <div id="tc${u.id}_twelve" class="tcontent">${buildAcc(u,'twelve')}</div>
+    `;
+    initGS(u.id);
+    renderQ(u.id);
+  });
+}
+
+function switchTab(uid,tab,btn){
+  const tabs=['mcq','four','twelve'];
+  tabs.forEach(t=>{
+    const el=document.getElementById(`tc${uid}_${t}`);
+    if(el) el.classList.toggle('act', t===tab);
+  });
+  btn.closest('.tab-bar').querySelectorAll('.tbtn').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');
+}
+
+function buildKBC(u){
+  const mcqs=u.mcqs;
+  const dots=mcqs.map((_,i)=>`<div class="kbc-dot" id="dot${u.id}_${i}"></div>`).join('');
+  return `
+    <div class="kbc-wrap" id="kbc${u.id}">
+      <div class="kbc-gline"></div>
+      <div class="kbc-status">
+        <span class="kbc-qnum" id="qnum${u.id}">Question 1 of ${mcqs.length}</span>
+        <div class="kbc-dots">${dots}</div>
+        <span class="kbc-score" id="scr${u.id}">Score: 0</span>
+      </div>
+      <div class="kbc-game-area" id="ga${u.id}">
+        <div class="kbc-qbox" id="qbox${u.id}"><p class="kbc-qtext" id="qtext${u.id}"></p></div>
+        <div class="kbc-opts" id="opts${u.id}"></div>
+        <div class="kbc-exp" id="exp${u.id}"><p id="exptxt${u.id}"></p></div>
+        <div class="kbc-ctrl">
+          <button class="kbtn kbtn-prev" onclick="prevQ(${u.id})">◀ Prev</button>
+          <button class="kbtn kbtn-next" id="bnxt${u.id}" onclick="nextQ(${u.id})">Next ▶</button>
+          <button class="kbtn kbtn-fin" id="bfin${u.id}" onclick="finishQ(${u.id})">🏆 Finish</button>
+        </div>
+      </div>
+      <div class="kbc-finish" id="fin${u.id}">
+        <div class="fin-score" id="fsc${u.id}">0/10</div>
+        <div class="fin-grade" id="fgr${u.id}">⭐</div>
+        <div class="fin-txt">You answered <span id="fcorr${u.id}">0</span> questions correctly!</div>
+        <button class="kbtn kbtn-replay" onclick="replayKBC(${u.id})">🔄 Play Again</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderQ(uid){
+  const u=UNITS[uid-1]; const g=GS[uid]; const q=u.mcqs[g.cur];
+  const badges=['A','B','C','D'];
+  document.getElementById('qnum'+uid).textContent=`Question ${g.cur+1} of ${u.mcqs.length}`;
+  document.getElementById('qtext'+uid).textContent=q.q;
+  // PYQ tag inside qbox
+  const qbox=document.getElementById('qbox'+uid);
+  const existing=qbox.querySelector('.kbc-pyq-tag');
+  if(existing) existing.remove();
+  if(q.pyq){
+    const tag=document.createElement('span');
+    tag.className='kbc-pyq-tag';
+    tag.style.display='inline-block';
+    tag.style.marginTop='10px';
+    tag.textContent='📌 PYQ '+q.pyq;
+    qbox.appendChild(tag);
+  }
+  // Options
+  const optsEl=document.getElementById('opts'+uid);
+  optsEl.innerHTML=q.opts.map((o,i)=>`
+    <div class="kbc-opt ${g.ans[g.cur]!==null?'locked':''} ${getOptClass(uid,i)}" onclick="selectOpt(${uid},${i})" id="opt${uid}_${i}">
+      <div class="kbc-opt-bg"></div><div class="kbc-opt-inner"></div>
+      <div class="kbc-badge">${badges[i]}</div>
+      <div class="kbc-otext">${o}</div>
+    </div>
+  `).join('');
+  // Explanation
+  const expEl=document.getElementById('exp'+uid);
+  const expTxt=document.getElementById('exptxt'+uid);
+  if(g.ans[g.cur]!==null){
+    expTxt.textContent='✅ '+q.exp;
+    expEl.classList.add('show');
+  } else {
+    expEl.classList.remove('show');
+  }
+  // Buttons
+  const isLast=(g.cur===u.mcqs.length-1);
+  const answered=(g.ans[g.cur]!==null);
+  const nxt=document.getElementById('bnxt'+uid);
+  const fin=document.getElementById('bfin'+uid);
+  if(nxt) nxt.classList.toggle('show', answered && !isLast);
+  if(fin) fin.classList.toggle('show', answered && isLast);
+  // Dots
+  u.mcqs.forEach((_,i)=>{
+    const dot=document.getElementById('dot'+uid+'_'+i);
+    if(!dot) return;
+    dot.className='kbc-dot';
+    if(i===g.cur) dot.classList.add('cur');
+    else if(g.ans[i]==='ok') dot.classList.add('ok');
+    else if(g.ans[i]==='ng') dot.classList.add('ng');
+  });
+  document.getElementById('scr'+uid).textContent='Score: '+g.score*10;
+}
+
+function getOptClass(uid,i){
+  const g=GS[uid]; const u=UNITS[uid-1]; const q=u.mcqs[g.cur];
+  if(g.ans[g.cur]===null) return '';
+  if(i===q.ans) return 'ans-ok';
+  if(i===g.userSel) return 'ans-ng';
+  return '';
+}
+
+function selectOpt(uid,i){
+  const g=GS[uid]; const u=UNITS[uid-1]; const q=u.mcqs[g.cur];
+  if(g.locked || g.ans[g.cur]!==null) return;
+  g.locked=true; g.userSel=i;
+  // Lock-in visual (orange)
+  document.getElementById('opt'+uid+'_'+i).classList.add('sel');
+  setTimeout(()=>{
+    g.locked=false;
+    const correct=(i===q.ans);
+    g.ans[g.cur]=correct?'ok':'ng';
+    if(correct) g.score++;
+    renderQ(uid);
+  },1100);
+}
+
+function nextQ(uid){
+  const g=GS[uid]; const u=UNITS[uid-1];
+  if(g.cur<u.mcqs.length-1){ g.cur++; renderQ(uid); }
+}
+
+function prevQ(uid){
+  const g=GS[uid];
+  if(g.cur>0){ g.cur--; renderQ(uid); }
+}
+
+function finishQ(uid){
+  const g=GS[uid]; const u=UNITS[uid-1];
+  const correct=g.ans.filter(a=>a==='ok').length;
+  const total=u.mcqs.length;
+  const pct=(correct/total)*100;
+  let grade='🤔 Need More Practice!';
+  if(pct>=90) grade='🏆 Excellent!';
+  else if(pct>=70) grade='🥇 Great Job!';
+  else if(pct>=50) grade='👍 Good Effort!';
+  else if(pct>=30) grade='📚 Keep Studying!';
+  document.getElementById('ga'+uid).style.display='none';
+  const fin=document.getElementById('fin'+uid);
+  fin.classList.add('show');
+  document.getElementById('fsc'+uid).textContent=`${correct}/${total}`;
+  document.getElementById('fgr'+uid).textContent=grade;
+  document.getElementById('fcorr'+uid).textContent=correct;
+}
+
+function replayKBC(uid){
+  const u=UNITS[uid-1];
+  initGS(uid);
+  document.getElementById('ga'+uid).style.display='';
+  document.getElementById('fin'+uid).classList.remove('show');
+  renderQ(uid);
+}
+
+function buildAcc(u, type){
+  const questions = type==='four' ? u.four : u.twelve;
+  const isGreen = type==='twelve';
+  return questions.map((q,i)=>`
+    <div class="acc-item" id="acc${u.id}_${type}_${i}">
+      <div class="acc-hdr ${isGreen?'green-hdr':''}" onclick="toggleAcc(${u.id},'${type}',${i})">
+        <div class="acc-q">${type==='four'?'[4-Mark]':'[12-Mark]'} ${q.q}</div>
+        ${q.pyq?`<div class="acc-yr">📌 ${q.pyq}</div>`:''}
+        <div class="acc-arr">▼</div>
+      </div>
+      <div class="acc-body ${isGreen?'green-body':''}">${q.h}</div>
+    </div>
+  `).join('');
+}
+
+function toggleAcc(uid, type, idx){
+  const item=document.getElementById(`acc${uid}_${type}_${idx}`);
+  item.classList.toggle('open');
+}
+
+/* ==================== MOST REPEATED ==================== */
+function renderMR(){
+  const tbody=document.getElementById('mrTbody');
+  tbody.innerHTML=MR_DATA.map(r=>`
+    <tr>
+      <td><b>${r.topic}</b></td>
+      <td><span class="mr-ubadge">${r.unit}</span></td>
+      <td><span class="mr-cnt">${r.cnt}×</span> ${r.vvi?'<span class="mr-vvi">★VVI</span>':''}</td>
+      <td><span class="mr-yrs">${r.years}</span></td>
+    </tr>
+  `).join('');
+}
+
+/* ==================== CHEAT SHEET ==================== */
+function renderCS(){
+  const grid=document.getElementById('csGrid');
+  grid.innerHTML=CS_DATA.map(b=>`
+    <div class="cs-box">
+      <div class="cs-btitle">${b.icon} ${b.title}</div>
+      <ul>${b.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+/* ==================== NAV SCROLL ==================== */
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));
+  const map={'u1':0,'u2':1,'u3':2,'u4':3,'u5':4,'most-repeated':5,'cheat-sheet':6};
+  const idx=map[id];
+  const btns=document.querySelectorAll('.nbtn');
+  if(btns[idx]) btns[idx].classList.add('active');
+}
+
+/* ==================== INIT ==================== */
+document.addEventListener('DOMContentLoaded',()=>{
+  renderUnits();
+  renderMR();
+  renderCS();
+});
+
+/* NAV active on scroll */
+const sectionIds=['u1','u2','u3','u4','u5','most-repeated','cheat-sheet'];
+window.addEventListener('scroll',()=>{
+  const navMap={0:'u1',1:'u2',2:'u3',3:'u4',4:'u5',5:'most-repeated',6:'cheat-sheet'};
+  let cur=0;
+  sectionIds.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el && window.scrollY>=el.offsetTop-120) cur=i;
+  });
+  document.querySelectorAll('.nbtn').forEach((b,i)=>b.classList.toggle('active',i===cur));
+},{passive:true});
+</script>
+</body>
+</html>

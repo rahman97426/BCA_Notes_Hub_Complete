@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BCA-301 OOP using C++ (303301) | AKU Patna Exam Notes</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--ink:#1a1f2e;--muted:#5a6479;--line:#e2e6f0;--accent:#4338ca;--accent2:#7c3aed;--good:#16a34a;--bad:#dc2626;--gold:#f5b301;--code:#f1f3f9;--nav:rgba(255,255,255,.92)}
+:root[data-theme=dark]{--bg:#0d1120;--card:#161b2e;--ink:#e8ebf6;--muted:#9aa5c0;--line:#272e4a;--accent:#8e90ff;--accent2:#b794ff;--code:#0f1424;--nav:rgba(13,17,32,.92)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1120;--card:#161b2e;--ink:#e8ebf6;--muted:#9aa5c0;--line:#272e4a;--accent:#8e90ff;--accent2:#b794ff;--code:#0f1424;--nav:rgba(13,17,32,.92)}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace}
+code{background:var(--code);padding:1px 6px;border-radius:5px;font-size:.88em}
+#bar{position:fixed;top:0;left:0;right:0;height:4px;background:transparent;z-index:60}
+#bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--gold));transition:width .4s}
+.nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navin{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none}
+.navin::-webkit-scrollbar{display:none}
+.navin a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:600;font-size:.88rem;padding:6px 12px;border-radius:999px;transition:.2s}
+.navin a:hover{color:var(--ink);background:var(--code)}
+.navin a.active{background:var(--accent);color:#fff}
+.navin .sp{flex:1}
+.pct{font-size:.8rem;font-weight:700;color:var(--muted);white-space:nowrap}
+#theme{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:.9rem}
+.hero{background:linear-gradient(135deg,#1e1b4b,#4338ca 55%,#7c3aed);color:#fff;text-align:center;padding:56px 18px 48px}
+.hero .uni{letter-spacing:.14em;font-size:.82rem;font-weight:700;opacity:.9}
+.hero h1{margin:.5em auto .2em;font-size:clamp(1.6rem,4.6vw,2.7rem);line-height:1.2;max-width:850px}
+.hero .code{display:inline-block;margin:.4em 0 1em;padding:4px 16px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;font-weight:700}
+.facts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.fact{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 16px;font-size:.9rem}
+.fact b{display:block;font-size:1.1rem}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 14px 60px}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0 6px;color:var(--muted);font-size:.93rem}
+.unit,.extra{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:22px 0;box-shadow:0 6px 24px rgba(20,25,60,.06);scroll-margin-top:64px}
+.unum{display:inline-block;background:var(--accent);color:#fff;font-weight:800;letter-spacing:.1em;font-size:.78rem;padding:3px 12px;border-radius:999px}
+.uhead h2,.extra h2{margin:.35em 0 .5em;font-size:clamp(1.25rem,3vw,1.75rem);line-height:1.3}
+.extra h2 small,h3 small{font-weight:600;color:var(--muted);font-size:.6em}
+.topics{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.tl{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:4px}
+.chip{background:var(--code);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.84rem}
+.tabs{display:flex;gap:8px;margin:20px 0 14px;flex-wrap:wrap;border-bottom:2px solid var(--line);padding-bottom:10px}
+.tab{flex:1;min-width:150px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:700;font-size:.93rem;padding:10px 14px;border-radius:12px;cursor:pointer;transition:.2s}
+.tab:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(67,56,202,.3)}
+.panel{display:none;animation:fade .4s}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ptitle{display:none}
+h3{margin:1.2em 0 .6em;font-size:1.08rem}
+.hint{color:var(--muted);font-size:.88rem;margin:.2em 0 .8em}
+.ones{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.one{background:var(--code);border:1px solid var(--line);border-left:4px solid var(--accent2);border-radius:10px;padding:10px 14px;font-size:.93rem}
+.score{float:right;background:var(--accent);color:#fff;padding:2px 12px;border-radius:999px;font-size:.78rem!important}
+.yr{display:inline-block;background:#fff7d6;color:#7a5600;border:1px solid #f1d56a;font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;margin:2px 3px 2px 0;white-space:nowrap}
+.yr.practice{background:var(--code);color:var(--muted);border-color:var(--line)}
+:root[data-theme=dark] .yr{background:#3a3112;color:#ffd96a;border-color:#6b5a1d}
+.mcq{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0}
+.mq{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px;font-weight:600}
+.mqt{flex:1;min-width:200px}
+.qn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;font-size:.78rem;border-radius:8px;padding:3px 9px;white-space:nowrap}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:flex;gap:10px;align-items:center;text-align:left;font:inherit;font-size:.93rem;color:#fff;background:linear-gradient(180deg,#14206b,#0a1240);border:1.5px solid #5668d6;border-radius:999px;padding:9px 16px;cursor:pointer;transition:transform .15s,box-shadow .2s,border-color .2s}
+.opt .letter{color:var(--gold);font-weight:800}
+.opt:hover:not(:disabled){border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,179,1,.25),0 0 18px rgba(245,179,1,.55);transform:translateY(-1px)}
+.opt:disabled{cursor:default}
+.opt.locked{background:linear-gradient(180deg,#f5b301,#c98a00);border-color:#ffd24d;color:#1a1200;animation:pulse .5s infinite alternate}
+.opt.locked .letter{color:#1a1200}
+.opt.correct{background:linear-gradient(180deg,#22c55e,#15803d);border-color:#86efac;color:#fff;box-shadow:0 0 18px rgba(34,197,94,.7)}
+.opt.wrong{background:linear-gradient(180deg,#ef4444,#b91c1c);border-color:#fca5a5;color:#fff;animation:shake .4s}
+.opt.correct .letter,.opt.wrong .letter{color:#fff}
+.opt code{background:rgba(255,255,255,.18);color:inherit}
+@keyframes pulse{from{box-shadow:0 0 6px rgba(245,179,1,.4)}to{box-shadow:0 0 22px rgba(245,179,1,.95)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.lock{display:none;align-items:center;gap:10px;margin-top:10px;color:var(--muted);font-weight:600;font-size:.9rem}
+.mcq.locking .lock{display:flex}
+.spin{width:16px;height:16px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.exp{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--good);font-size:.92rem}
+.mcq.done .exp{display:block;animation:fade .4s}
+.mcq.done.bad .exp{border-left-color:var(--bad)}
+.tools{display:flex;gap:8px;margin-bottom:10px}
+.mini{font:inherit;font-size:.8rem;font-weight:700;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:5px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.mini:hover{border-color:var(--accent);color:var(--accent)}
+.acc{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;background:var(--bg);transition:box-shadow .2s}
+.acc.open{box-shadow:0 6px 20px rgba(20,25,60,.1)}
+.acc-head{width:100%;display:flex;gap:10px;align-items:center;text-align:left;font:inherit;font-weight:700;color:var(--ink);background:transparent;border:0;padding:13px 14px;cursor:pointer}
+.acc-head .qt{flex:1}
+.acc-head .yrs{display:flex;flex-wrap:wrap;justify-content:flex-end;max-width:42%}
+.chev{transition:transform .3s;color:var(--muted)}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.acc.open .acc-body{grid-template-rows:1fr}
+.acc-inner{overflow:hidden;min-height:0}
+.nb{position:relative;margin:0 12px 14px;background:#fff;color:#1c2333;border:1px solid #cfd6e6;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,#c9d8f0 27px,#c9d8f0 28px);background-position:0 8px}
+.nb .margin{position:absolute;left:46px;top:0;bottom:0;width:2px;background:#f0a3a3}
+.nbtxt{padding:8px 16px 8px 62px;line-height:28px}
+.nbtxt p{margin:0 0 0}
+.nbtxt ul{margin:0;padding-left:20px}
+.nbtxt li{margin:0}
+.nbtxt code{background:#eef1f8;color:#1c2333}
+.sec{margin-bottom:14px}
+.lbl{display:inline-block;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;background:#1c2333;color:#fff;padding:0 10px;border-radius:5px;line-height:22px;margin:3px 0}
+.codewrap{position:relative;margin:8px 0 14px;line-height:1.5}
+.codewrap pre{margin:0;background:#f1f3f9;color:#1c2333;border:1px solid #cdd3e3;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:.82rem;line-height:1.5}
+.codewrap pre code{background:none;padding:0;font-size:inherit}
+.copy{position:absolute;top:6px;right:6px;font:inherit;font-size:.7rem;font-weight:700;border:1px solid #b6bdd0;background:#fff;color:#333;border-radius:6px;padding:2px 9px;cursor:pointer;opacity:.85}
+.copy:hover{opacity:1}
+.diagram{background:#f1f3f9;border:1px solid #cdd3e3;border-radius:8px;padding:10px 14px;line-height:1.5;font-size:.85rem;overflow-x:auto;margin:8px 0}
+.tblwrap{overflow-x:auto;margin:8px 0 12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.4}
+th,td{border:1px solid #bfc7db;padding:6px 10px;text-align:left}
+th{background:#e8ecf7;color:#1c2333}
+.extra td,.extra th{border-color:var(--line)}
+.extra th{background:var(--code);color:var(--ink)}
+.nb td{color:#1c2333}
+.pyqalert{margin-top:22px;border:2px dashed var(--gold);border-radius:12px;padding:10px 16px;background:rgba(245,179,1,.08)}
+.pyqalert p{margin:.3em 0;font-size:.92rem}
+.freq{background:var(--good);color:#fff;padding:1px 10px;border-radius:999px;font-weight:700;font-size:.8rem}
+.topcard{display:flex;gap:12px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0;flex-wrap:wrap}
+.tq{flex:1;min-width:220px;font-weight:600}
+.printref{display:none}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+.ccard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.ccard h4{margin:0 0 8px;font-size:1rem}
+.ccard ul{padding-left:18px;margin:0}
+.ccard .codewrap pre{font-size:.72rem}
+.srcnote{color:var(--muted);font-size:.85rem;text-align:center;margin:30px 0 0}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media (max-width:640px){.opts{grid-template-columns:1fr}.unit,.extra{padding:14px}.nbtxt{padding-left:50px}.nb .margin{left:34px}.acc-head{flex-wrap:wrap}.acc-head .yrs{max-width:100%;justify-content:flex-start;order:3;width:100%}.opt{border-radius:16px}}
+@media print{
+ @page{size:A4;margin:13mm}
+ body{background:#fff;color:#000;font-size:11pt}
+ #bar,.nav,.tabs,.tools,.copy,.hint,.jump,.mini,.lock,#theme{display:none!important}
+ .hero{background:#fff!important;color:#000;border-bottom:2px solid #000;padding:10px 0}
+ .fact{background:#fff;border:1px solid #000;color:#000}
+ .unit,.extra{box-shadow:none;border:1px solid #000;break-inside:auto;page-break-before:always;opacity:1!important;transform:none!important}
+ .reveal{opacity:1!important;transform:none!important}
+ .panel{display:block!important;animation:none}
+ .ptitle{display:block;background:#000;color:#fff;padding:4px 10px;margin:16px 0 8px;font-size:11pt;break-after:avoid}
+ .acc-body{display:block!important}
+ .acc-inner{overflow:visible}
+ .acc{break-inside:auto}
+ .nb{box-shadow:none;border-color:#777}
+ .opts{grid-template-columns:1fr 1fr}
+ .opt,.opt.locked{background:#fff!important;color:#000!important;border:1px solid #777!important;box-shadow:none!important;animation:none!important}
+ .opt .letter{color:#000!important}
+ .opt.is-correct{font-weight:800;border:2px solid #000!important}
+ .opt.is-correct::after{content:" \2713"}
+ .exp{display:block!important;border:1px solid #777;border-left:4px solid #000}
+ .mcq{break-inside:avoid;background:#fff}
+ .qn,.unum,.score,.lbl{background:#000!important;color:#fff!important}
+ .yr{background:#fff!important;color:#000!important;border:1px solid #000!important}
+ .chev{display:none}
+ .printref{display:block;font-size:9pt;font-style:italic}
+ .codewrap pre{white-space:pre-wrap;break-inside:avoid;font-size:8.5pt}
+ .freq{background:#fff;color:#000;border:1px solid #000}
+ .pyqalert{border:1px solid #000;background:#fff}
+ .nb{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body>
+<div id="bar"><i></i></div>
+<nav class="nav"><div class="navin"><a href="#u1">Unit 1</a><a href="#u2">Unit 2</a><a href="#u3">Unit 3</a><a href="#u4">Unit 4</a><a href="#repeated">Repeated</a><a href="#top20">Top 20</a><a href="#programs">Programs</a><a href="#cheat">Cheat Sheet</a><span class="sp"></span><span class="pct" id="pct">0% done</span><button id="theme" type="button" title="Dark / Light">&#9788;&#9790;</button></div></nav>
+<header class="hero">
+ <div class="uni">ARYABHATTA KNOWLEDGE UNIVERSITY (AKU), PATNA</div>
+ <h1>BCA-301 &mdash; OBJECT ORIENTED PROGRAMMING USING C++</h1>
+ <div class="code">Code: 303301</div>
+ <div class="facts">
+  <div class="fact"><b>Semester III</b>BCA</div>
+  <div class="fact"><b>3 Hours</b>Time</div>
+  <div class="fact"><b>60</b>Full Marks</div>
+  <div class="fact"><b>5 of 7</b>Questions to attempt</div>
+  <div class="fact"><b>Q1 + Q2</b>Compulsory</div>
+  <div class="fact"><b>2 / 4 / 12</b>Marks pattern</div>
+ </div>
+</header>
+<main class="wrap">
+ <div class="note">Built from the uploaded syllabus and PYQ papers (2014, 2017, 2018, 2019, 2020, 2021, 2022, 2024). Year badges show where a topic was found. Other years are Not verified from uploaded material. No question is guaranteed.</div>
+ 
+<section class="unit reveal" id="u1" data-unit="u1">
+  <header class="uhead">
+    <div class="unum">UNIT 1</div>
+    <h2>Introduction to Programming Paradigms + Basics of C++</h2>
+    <div class="topics"><b class="tl">Topics Covered</b><span class="chip">Programming paradigms (procedural vs object-oriented)</span><span class="chip">Object, class, data hiding, encapsulation, abstraction</span><span class="chip">Structure of a C++ program, <code>cin</code> / <code>cout</code></span><span class="chip">Member functions (inside / outside class), scope resolution operator</span><span class="chip">Access specifiers: private, protected, public</span><span class="chip">Constructors, destructors, copy constructor, default arguments</span><span class="chip">Inline functions, static members, <code>this</code> pointer, friend function</span><span class="chip">Objects as function arguments, call by value / reference</span><span class="chip">Dynamic objects with <code>new</code> and <code>delete</code></span></div>
+  </header>
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" data-tab="mcq" type="button">&#127919; MCQ + One-Liner</button>
+    <button class="tab" role="tab" data-tab="four" type="button">&#9998; 4-Mark Questions</button>
+    <button class="tab" role="tab" data-tab="twelve" type="button">&#128211; 12-Mark Questions</button>
+  </div>
+  <div class="panel active" data-panel="mcq">
+    <h4 class="ptitle">Column 1: MCQ + One-Liner</h4>
+    <h3>One-Liner Definitions</h3>
+    <div class="ones"><div class="one"><b>Class</b>: user-defined data type (blueprint) that groups data and functions.</div><div class="one"><b>Object</b>: an instance (variable) of a class.</div><div class="one"><b>Data hiding</b>: keeping data <b>private</b> so outsiders cannot touch it directly.</div><div class="one"><b>Encapsulation</b>: <b>wrapping data and functions together</b> in one unit (class).</div><div class="one"><b>Abstraction</b>: showing only essential features and <b>hiding complexity</b>.</div><div class="one"><b>Message passing</b>: objects talk to each other by calling member functions.</div><div class="one"><b>Constructor</b>: special function with the <b>same name as class</b>, called automatically when an object is created.</div><div class="one"><b>Destructor</b>: special function with <code>~</code> before class name, called automatically when an object is destroyed.</div><div class="one"><b>Inline function</b>: body is substituted at the call place to save call overhead.</div><div class="one"><b>Friend function</b>: non-member function that can access private and protected members.</div><div class="one"><b>Static member</b>: one copy shared by all objects of the class.</div><div class="one"><b>Container class</b>: class that holds a collection of objects (example: vector).</div><div class="one"><b>Proxy class</b>: class that gives a limited interface to hide the real class.</div><div class="one"><b>Garbage collection</b>: automatic memory cleanup; <b>C++ does not have it</b>, programmer uses <code>delete</code>.</div></div>
+    <h3>MCQs with Answers + One-liner Explanation <small class="score" data-score="u1">Score 0 / 17</small></h3>
+    <p class="hint">Click an option. Like KBC, your answer is locked first, then the result shows.</p>
+    <div class="mcq" id="u1-mcq-0" data-ans="2"><div class="mq"><span class="qn">Q1</span><span class="mqt">Which access specifier is used in a class definition by default?</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Protected</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Public</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Private</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Friend</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Class members are private unless you write public or protected.</div></div><div class="mcq" id="u1-mcq-1" data-ans="1"><div class="mq"><span class="qn">Q2</span><span class="mqt">Which of the following is NOT a member of a class?</span><span class="yrs"><span class="yr">PYQ 2014</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Static function</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Friend function</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Const function</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Virtual function</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A friend function is declared inside the class but it is an outside (non-member) function.</div></div><div class="mcq" id="u1-mcq-2" data-ans="1"><div class="mq"><span class="qn">Q3</span><span class="mqt">Which symbol is used to define a member of a class externally?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">:</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">::</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">#</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> <code>::</code> is the scope resolution operator: <code>void A::show() { }</code>.</div></div><div class="mcq" id="u1-mcq-3" data-ans="1"><div class="mq"><span class="qn">Q4</span><span class="mqt">A function that is called automatically each time an object is destroyed is a:</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Constructor</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Destructor</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Destroyer</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Terminator</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Destructor (<code>~ClassName</code>) runs automatically at object destruction.</div></div><div class="mcq" id="u1-mcq-4" data-ans="0"><div class="mq"><span class="qn">Q5</span><span class="mqt">Hiding the complexity is known as:</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Abstraction</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Encapsulation</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Data hiding</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Composition</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> Abstraction shows only what is needed and hides the inside details.</div></div><div class="mcq" id="u1-mcq-5" data-ans="2"><div class="mq"><span class="qn">Q6</span><span class="mqt">How many types of constructor are there in C++?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">1</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">2</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">3</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">4</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Default, parameterized and copy constructor.</div></div><div class="mcq" id="u1-mcq-6" data-ans="2"><div class="mq"><span class="qn">Q7</span><span class="mqt"><code>cout</code> stands for:</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">class output</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">character output</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">console output</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">call output</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> <code>cout</code> is the console output stream object.</div></div><div class="mcq" id="u1-mcq-7" data-ans="1"><div class="mq"><span class="qn">Q8</span><span class="mqt">A class has only a parameterized constructor. We create an object with no arguments. What happens?</span><span class="yrs"><span class="yr">PYQ 2014</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Runs normally</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Compile-time error</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Run-time error</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Garbage value is taken</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> The compiler does not make a default constructor when you write any constructor, so the zero-argument call fails.</div></div><div class="mcq" id="u1-mcq-8" data-ans="1"><div class="mq"><span class="qn">Q9</span><span class="mqt">Unsigned integers in C++ are:</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Negative numbers</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Non-negative numbers</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Float numbers</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> <code>unsigned</code> stores only zero and positive values.</div></div><div class="mcq" id="u1-mcq-9" data-ans="0"><div class="mq"><span class="qn">Q10</span><span class="mqt">Which of the following correctly declares an array?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">int array[10];</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">int array;</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">array{10};</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">array array[10];</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> Syntax is <code>datatype name[size];</code>.</div></div><div class="mcq" id="u1-mcq-10" data-ans="2"><div class="mq"><span class="qn">Q11</span><span class="mqt">C++ was initially known as:</span><span class="yrs"><span class="yr">PYQ 2025 (implied from study material)</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">C++</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">C with objects</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">C with classes</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Object C</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Bjarne Stroustrup originally called it 'C with classes' before renaming to C++ in 1984.</div></div><div class="mcq" id="u1-mcq-11" data-ans="1"><div class="mq"><span class="qn">Q12</span><span class="mqt">Memory for data members is allocated when:</span><span class="yrs"><span class="yr">PYQ 2025 (class and objects study material)</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">A class is declared</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">An object is created</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">A function is called</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">A header is included</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A class is just a blueprint; memory is allocated only when an object is created.</div></div><div class="mcq" id="u1-mcq-12" data-ans="2"><div class="mq"><span class="qn">Q13</span><span class="mqt">Which access modifier makes members accessible everywhere (inside class, derived class, outside)?</span><span class="yrs"><span class="yr">PYQ 2025</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">private</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">protected</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">public</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">friend</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> public members can be accessed from anywhere in the program.</div></div><div class="mcq" id="u1-mcq-13" data-ans="2"><div class="mq"><span class="qn">Q14</span><span class="mqt">Which access modifier allows access inside the same class AND derived classes, but NOT outside?</span><span class="yrs"><span class="yr">PYQ 2025</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">public</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">private</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">protected</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">static</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> protected = same class + derived classes, not outside. private = same class only.</div></div><div class="mcq" id="u1-mcq-14" data-ans="2"><div class="mq"><span class="qn">Q15</span><span class="mqt">What is the smallest meaningful unit of a C++ program?</span><span class="yrs"><span class="yr">PYQ 2025</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Function</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Statement</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Token</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Variable</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> A token is the smallest unit: keywords, identifiers, constants, operators, punctuators.</div></div><div class="mcq" id="u1-mcq-15" data-ans="1"><div class="mq"><span class="qn">Q16</span><span class="mqt">A proxy class is used to:</span><span class="yrs"><span class="yr">PYQ 2025</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Overload operators</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Provide controlled access to another class</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Create virtual functions</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Handle exceptions</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A proxy class acts as a stand-in or interface that controls access to the real class.</div></div><div class="mcq" id="u1-mcq-16" data-ans="2"><div class="mq"><span class="qn">Q17</span><span class="mqt">What is an ambiguity in C++?</span><span class="yrs"><span class="yr">PYQ 2025</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">A syntax error</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">A run-time crash</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">When the compiler cannot decide which function to call</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">A missing semicolon</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Ambiguity arises mainly in multiple inheritance when two base classes have the same function name.</div></div>
+  </div>
+  <div class="panel" data-panel="four">
+    <h4 class="ptitle">Column 2: 4-Mark Short Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u1-four-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">What is the scope resolution operator? Give example.</span><span class="yrs"><span class="yr">PYQ 2017</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>The <b>scope resolution operator (::)</b> links a member with its class, or accesses a global variable hidden by a local one. It is used to define a member function outside the class.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>class A { public: void show(); };
+void A::show() { cout &lt;&lt; "Hello"; }</code></pre></div></div></div></div></div></div><div class="acc" id="u1-four-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">Explain inline functions.</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>An <b>inline function</b> is declared with the keyword <code>inline</code>. The compiler replaces the function call with the function body, so <b>function-call overhead is saved</b> and speed improves. Use it only for small functions.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>inline int square(int x) { return x * x; }</code></pre></div></div></div></div></div></div><div class="acc" id="u1-four-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">What is a static data member? Give its benefits.</span><span class="yrs"><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>static data member</b> is declared with <code>static</code>. Only <b>one copy</b> exists for all objects, and it is created before any object. It is defined outside the class: <code>int A::count = 0;</code>. Benefit: useful for <b>counting objects</b> and sharing common data.</p></div></div></div></div></div><div class="acc" id="u1-four-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What is the <code>this</code> pointer?</span><span class="yrs"><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><code>this</code> is an <b>implicit pointer</b> available in every non-static member function. It holds the <b>address of the object that called the function</b>. Use: to return the current object (<code>return *this;</code>) or to separate member and parameter names.</p></div></div></div></div></div><div class="acc" id="u1-four-4" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q5</span><span class="qt">Write a sample code to show the difference between C and C++.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>C is a <b>procedural</b> language (functions only). C++ is <b>object-oriented</b> (classes, objects, overloading, inheritance). Key difference: C++ groups data and functions into a class.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>// --- C style ---
+#include &lt;stdio.h&gt;
+void greet() { printf("Hello, C!\n"); }
+int main() { greet(); return 0; }
+
+// --- C++ style ---
+#include &lt;iostream&gt;
+using namespace std;
+class Greeter {
+public:
+    void greet() { cout &lt;&lt; "Hello, C++!" &lt;&lt; endl; }
+};
+int main() { Greeter g; g.greet(); return 0; }</code></pre></div></div></div></div></div></div><div class="acc" id="u1-four-5" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q6</span><span class="qt">Explain token in C++.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>token</b> is the <b>smallest unit of a C++ program</b> that is meaningful to the compiler. The compiler splits the source code into tokens before processing.</p><ul><li><b>Keywords</b>: reserved words like <code>int</code>, <code>class</code>, <code>for</code>, <code>return</code>, <code>virtual</code>.</li><li><b>Identifiers</b>: user-defined names like <code>roll</code>, <code>Student</code>, <code>show</code>.</li><li><b>Constants / Literals</b>: <code>10</code>, <code>3.14</code>, <code>'A'</code>, <code>true</code>, <code>"Hello"</code>.</li><li><b>Operators</b>: <code>+</code>, <code>-</code>, <code>*</code>, <code>&lt;&lt;</code>, <code>::</code>, <code>-&gt;</code>, <code>=</code>.</li><li><b>Punctuators / Separators</b>: <code>{</code>, <code>}</code>, <code>;</code>, <code>,</code>, <code>(</code>, <code>)</code>.</li></ul></div></div></div></div></div><div class="acc" id="u1-four-6" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q7</span><span class="qt">Define proxy classes.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>proxy class</b> is a class that acts as a <b>stand-in or interface</b> to another (real) class. It provides <b>limited or controlled access</b> to the real class and hides its implementation details.</p><ul><li>Also called a wrapper, surrogate, or representative class.</li><li>Use case: lazy initialisation — load the heavy object only when actually needed.</li><li>C++ <b>smart pointers</b> (<code>unique_ptr</code>, <code>shared_ptr</code>) are real-life proxy classes for raw pointers.</li><li>Advantage: hides complexity, controls access, saves memory until needed.</li></ul><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>class Image { public: void show() { cout &lt;&lt; "Showing image\n"; } };
+class ImageProxy {
+    Image* real;
+public:
+    ImageProxy() { real = nullptr; }
+    void show() {
+        if (!real) real = new Image();   // lazy load
+        real-&gt;show();
+    }
+};</code></pre></div></div></div></div></div></div><div class="acc" id="u1-four-7" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q8</span><span class="qt">What is ambiguity in C++? How is it resolved?</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Ambiguity</b> in C++ occurs when the compiler <b>cannot decide which function or member to call</b> because two or more candidates match equally.</p><ul><li><b>Multiple inheritance</b>: two base classes have the same function name <code>show()</code>. Calling <code>obj.show()</code> is ambiguous.</li><li><b>Resolution 1</b>: Use scope resolution operator: <code>obj.A::show();</code></li><li><b>Resolution 2</b>: Override the function in the derived class.</li><li><b>Resolution 3</b>: Use a <b>virtual base class</b> to avoid duplicate copies.</li><li><b>Function overloading ambiguity</b>: when implicit type conversion makes two overloaded functions equally good. Fix by using explicit casting.</li></ul></div></div></div></div></div>
+  </div>
+  <div class="panel" data-panel="twelve">
+    <h4 class="ptitle">Column 3: 12-Mark Long Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u1-twelve-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">Explain the object-oriented paradigm with its features. Differentiate between OOP and POP.</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Programming paradigm means a style of writing programs. C++ supports both procedural and object-oriented style.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>OOP</b> is a method of programming in which a program is built from <b>objects</b> that contain both data and functions.</p></div><div class="sec"><span class="lbl">Points: Features of OOP</span><ul><li><b>Class and Object</b>: class is blueprint, object is instance.</li><li><b>Encapsulation</b>: data and functions bound together.</li><li><b>Data hiding</b>: private data is protected from outside use.</li><li><b>Abstraction</b>: only necessary details are shown.</li><li><b>Inheritance</b>: new class acquires properties of an old class (reusability).</li><li><b>Polymorphism</b>: one name, many forms (overloading, virtual functions).</li><li><b>Dynamic binding</b>: function to run is decided at run time.</li><li><b>Message passing</b>: objects communicate through function calls.</li></ul><div class="tblwrap"><table><thead><tr><th>Point</th><th>POP</th><th>OOP</th></tr></thead><tbody><tr><td>Focus</td><td>Functions (procedures)</td><td>Objects (data)</td></tr><tr><td>Approach</td><td>Top-down</td><td>Bottom-up</td></tr><tr><td>Data security</td><td>Data is global, less safe</td><td>Data hiding gives high security</td></tr><tr><td>Reusability</td><td>Less</td><td>High (inheritance)</td></tr><tr><td>Overloading</td><td>Not possible</td><td>Possible</td></tr><tr><td>Examples</td><td>C, Pascal</td><td>C++, Java</td></tr></tbody></table></div></div><div class="sec"><span class="lbl">Example</span><p>A <code>Student</code> class holds roll number (data) and <code>show()</code> (function) together. Many student objects are made from it.</p></div><div class="sec"><span class="lbl">Conclusion</span><p>OOP is better for large programs because of security, reusability and easy maintenance.</p></div></div></div></div></div></div><div class="acc" id="u1-twelve-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">What is a constructor? Explain its types and characteristics. Write a program for the copy constructor.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>When an object is created it needs initial values. A constructor does this job automatically.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>constructor</b> is a special member function with the <b>same name as the class</b> that initialises an object.</p></div><div class="sec"><span class="lbl">Points: Characteristics and Types</span><ul><li>Same name as class, <b>no return type</b> (not even void).</li><li>Called <b>automatically</b> at object creation; normally in the <b>public</b> section.</li><li>Can be <b>overloaded</b> and can have <b>default arguments</b>; cannot be virtual or inherited.</li><li><b>Default constructor</b>: no arguments. <code>Student() { roll = 0; }</code></li><li><b>Parameterized constructor</b>: takes arguments. <code>Student(int r) { roll = r; }</code></li><li><b>Copy constructor</b>: makes an object from another object. <code>Student(const Student &amp;s) { roll = s.roll; }</code></li><li><b>Destructor</b> <code>~Student()</code>: no arguments, no return type, one per class. If not written, the <b>compiler creates an empty destructor</b>.</li><li>Copy constructor is called when an object is initialised from another, passed by value or returned by value. Write your own when the class has <b>pointers</b> (deep copy).</li><li>If only a parameterized constructor exists and an object is made with no arguments, it is a <b>compile-time error</b>.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Constructor, copy constructor and destructor together:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Distance {
+    int feet, inches;
+public:
+    Distance(int f = 0, int i = 0) {          // parameterized + default values
+        feet = f; inches = i;
+        cout &lt;&lt; "Constructor called\n";
+    }
+    Distance(const Distance &amp;d) {             // copy constructor
+        feet = d.feet; inches = d.inches;
+        cout &lt;&lt; "Copy constructor called\n";
+    }
+    void show() { cout &lt;&lt; feet &lt;&lt; " ft " &lt;&lt; inches &lt;&lt; " in\n"; }
+    ~Distance() { cout &lt;&lt; "Destructor called\n"; }
+};
+int main() {
+    Distance d1(5, 8);
+    Distance d2 = d1;
+    d1.show();
+    d2.show();
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Constructors and destructors manage object creation and cleanup safely.</p></div></div></div></div></div></div><div class="acc" id="u1-twelve-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">What is a friend function? Why is it required? Write a program.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Private members cannot be used outside the class, but sometimes an outside function needs them.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>friend function</b> is a <b>non-member function</b> declared inside the class with the keyword <code>friend</code>, which can access private and protected members.</p></div><div class="sec"><span class="lbl">Points</span><ul><li>Declared inside the class, defined outside <b>without</b> <code>::</code> and <b>without</b> <code>friend</code>.</li><li><b>Not called with object and dot</b>; objects are passed as arguments.</li><li>Can be a friend of more than one class (useful to work on two classes).</li><li>Needed for overloading <code>&lt;&lt;</code> and <code>&gt;&gt;</code>.</li><li>Demerit: breaks data hiding, so use carefully.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Friend function printing a private member:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Box {
+    int width;
+public:
+    Box(int w) { width = w; }
+    friend void printWidth(Box b);
+};
+void printWidth(Box b) { cout &lt;&lt; "Width = " &lt;&lt; b.width; }
+int main() { Box b(10); printWidth(b); return 0; }
+// Output: Width = 10</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Friend functions give controlled outside access to private data.</p></div></div></div></div></div></div><div class="acc" id="u1-twelve-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What is the significance of static data members and static member functions in C++?</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Normally each object of a class has its own separate copy of every data member. But sometimes we need data that is shared by ALL objects. Static members solve this.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>static data member</b> is a variable shared by all objects of the class (only ONE copy exists). A <b>static member function</b> is a function that can be called <b>without creating an object</b> and can only access static members.</p></div><div class="sec"><span class="lbl">Points: Static Data Member</span><ul><li>Declared with <code>static</code> inside the class and <b>defined outside</b>: <code>int A::count = 0;</code></li><li><b>Only ONE copy</b> regardless of how many objects are created.</li><li>Exists before any object is created and destroyed after all objects are destroyed.</li><li>Used for: counting objects, sharing common configuration, singleton pattern.</li><li><b>Static member function:</b> declared as <code>static void show()</code>, called as <code>ClassName::show()</code>.</li><li>Static function has <b>NO <code>this</code> pointer</b> — it does not belong to any single object.</li><li>A static function can <b>only access static data members</b>, not normal (instance) members.</li><li>Significance: saves memory, provides class-level (shared) state, accessible without an object.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Counting student objects automatically using static member:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Student {
+    int roll;
+    static int count;          // one shared copy
+public:
+    Student(int r) { roll = r; count++; }
+    ~Student()     { count--; }
+    static void showCount() {  // no object needed
+        cout &lt;&lt; "Total Students: " &lt;&lt; count &lt;&lt; endl;
+    }
+};
+int Student::count = 0;        // definition outside class
+int main() {
+    Student::showCount();      // 0
+    Student s1(1), s2(2);
+    Student::showCount();      // 2
+    {
+        Student s3(3);
+        Student::showCount();  // 3
+    }                          // s3 destroyed here
+    Student::showCount();      // 2
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Static members are essential for managing class-level shared state without using global variables.</p></div></div></div></div></div></div>
+  </div>
+  <div class="pyqalert"><b>PYQ ALERT</b><p><b>Asked in:</b> OOP vs POP (2017, 2019, 2020, 2021, 2022, 2024); Constructor / Destructor / Copy constructor (2014, 2017, 2018, 2019, 2020, 2021, 2022, 2024); Friend function (2014, 2018, 2020, 2021, 2022, 2024); Inline (2017, 2020, 2021); Static member (2019, 2020); Class vs structure (2018); new / delete (2018, 2021); this pointer (2022); Scope resolution (2017); Static data/member function significance (2025, 12-mark); C vs C++ code (2025, 4-mark); Token (2025, 2-mark); Proxy classes (2025, 2-mark); Ambiguity (2025, 2-mark); New and delete (2025, 2-mark); Access specifier (2025, 2-mark)</p><p><b>Frequency:</b> <span class="freq">High</span></p></div>
+</section>
+<section class="unit reveal" id="u2" data-unit="u2">
+  <header class="uhead">
+    <div class="unum">UNIT 2</div>
+    <h2>Operator Overloading</h2>
+    <div class="topics"><b class="tl">Topics Covered</b><span class="chip">Fundamentals and restrictions of operator overloading</span><span class="chip">Operator functions as class members vs friend functions</span><span class="chip">Overloading stream operators (<code>&lt;&lt;</code>, <code>&gt;&gt;</code>)</span><span class="chip">Binary and unary operators (prefix / postfix)</span><span class="chip">Converting between types (basic and class)</span></div>
+  </header>
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" data-tab="mcq" type="button">&#127919; MCQ + One-Liner</button>
+    <button class="tab" role="tab" data-tab="four" type="button">&#9998; 4-Mark Questions</button>
+    <button class="tab" role="tab" data-tab="twelve" type="button">&#128211; 12-Mark Questions</button>
+  </div>
+  <div class="panel active" data-panel="mcq">
+    <h4 class="ptitle">Column 1: MCQ + One-Liner</h4>
+    <h3>One-Liner Definitions</h3>
+    <div class="ones"><div class="one"><b>Operator overloading</b>: giving an existing operator an extra meaning for user-defined types.</div><div class="one"><b>Operator function</b>: function written with the keyword <b><code>operator</code></b> followed by the symbol.</div><div class="one"><b>Compile-time polymorphism</b>: operator overloading is decided at compile time.</div><div class="one"><b>Insertion operator</b> <code>&lt;&lt;</code>: sends data to output stream.</div><div class="one"><b>Extraction operator</b> <code>&gt;&gt;</code>: takes data from input stream.</div><div class="one"><b>Conversion function</b>: member function <code>operator type()</code> that converts class to basic type.</div><div class="one">Operators that <b>cannot be overloaded</b>: <code>::</code>, <code>.</code>, <code>.*</code>, <code>?:</code>, <code>sizeof</code>.</div></div>
+    <h3>MCQs with Answers + One-liner Explanation <small class="score" data-score="u2">Score 0 / 7</small></h3>
+    <p class="hint">Click an option. Like KBC, your answer is locked first, then the result shows.</p>
+    <div class="mcq" id="u2-mcq-0" data-ans="1"><div class="mq"><span class="qn">Q1</span><span class="mqt">Which keyword is used to overload an operator?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">overload</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">operator</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">friend</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">virtual</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Syntax: <code>return_type operator + (args)</code>.</div></div><div class="mcq" id="u2-mcq-1" data-ans="1"><div class="mq"><span class="qn">Q2</span><span class="mqt">A binary operator overloaded as a MEMBER function takes how many arguments?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Zero</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">One</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Two</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Three</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> The left operand is the calling object, so only the right operand is passed.</div></div><div class="mcq" id="u2-mcq-2" data-ans="1"><div class="mq"><span class="qn">Q3</span><span class="mqt">A binary operator overloaded as a FRIEND function takes how many arguments?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">One</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Two</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Three</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A friend has no <code>this</code>, so both operands are passed.</div></div><div class="mcq" id="u2-mcq-3" data-ans="2"><div class="mq"><span class="qn">Q4</span><span class="mqt">Which operator can NOT be overloaded?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">+</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">&lt;&lt;</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">::</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">[]</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Scope resolution <code>::</code> (also <code>.</code>, <code>.*</code>, <code>?:</code>, <code>sizeof</code>) cannot be overloaded.</div></div><div class="mcq" id="u2-mcq-4" data-ans="0"><div class="mq"><span class="qn">Q5</span><span class="mqt">Which kind of function is normally used to overload <code>&lt;&lt;</code> and <code>&gt;&gt;</code> for a class?</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Friend function</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Static function</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Inline function</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Virtual function</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> Left operand is <code>cout</code> / <code>cin</code>, not our object, so a friend (non-member) is used.</div></div><div class="mcq" id="u2-mcq-5" data-ans="1"><div class="mq"><span class="qn">Q6</span><span class="mqt">Operator overloading is a type of:</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Run-time polymorphism</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Compile-time polymorphism</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Inheritance</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Abstraction</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> The compiler decides which operator function to call.</div></div><div class="mcq" id="u2-mcq-6" data-ans="0"><div class="mq"><span class="qn">Q7</span><span class="mqt">How is the postfix <code>++</code> distinguished from prefix <code>++</code> in operator functions?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">By a dummy int argument</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">By a friend keyword</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">By a return type of void</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">By a static keyword</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> <code>operator++(int)</code> is postfix; <code>operator++()</code> is prefix.</div></div>
+  </div>
+  <div class="panel" data-panel="four">
+    <h4 class="ptitle">Column 2: 4-Mark Short Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u2-four-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">What is an operator function? Describe its syntax.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>An <b>operator function</b> defines the new meaning of an operator for a class. Syntax:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>return_type operator op (arguments) { /* body */ }
+// Example
+Complex operator+(Complex c);</code></pre></div></div></div></div></div></div><div class="acc" id="u2-four-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">Write syntax for overloading the extraction and insertion operators with a friend function.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>Both are friend functions defined outside the class. They <b>return the stream by reference</b> so chaining like <code>cout &lt;&lt; a &lt;&lt; b;</code> works.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>friend ostream&amp; operator&lt;&lt;(ostream &amp;out, const ClassName &amp;obj);
+friend istream&amp; operator&gt;&gt;(istream &amp;in, ClassName &amp;obj);</code></pre></div></div></div></div></div></div><div class="acc" id="u2-four-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">How many arguments are required for an overloaded binary operator?</span><span class="yrs"><span class="yr">PYQ 2017</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>As a <b>member function: one argument</b> (left operand is the calling object). As a <b>friend function: two arguments</b>. For a unary operator: member = <b>zero</b>, friend = <b>one</b>.</p></div></div></div></div></div><div class="acc" id="u2-four-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What are the restrictions on operator overloading?</span><span class="yrs"><span class="yr">PYQ 2018</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><ul><li>Only <b>existing operators</b> can be overloaded; new symbols cannot be created.</li><li><code>::</code>, <code>.</code>, <code>.*</code>, <code>?:</code>, <code>sizeof</code> <b>cannot</b> be overloaded.</li><li><b>Number of operands and precedence cannot change.</b></li><li>At least one operand must be a <b>user-defined type</b>.</li><li><code>=</code>, <code>()</code>, <code>[]</code>, <code>-&gt;</code> can be overloaded only as <b>member functions</b>.</li></ul></div></div></div></div></div>
+  </div>
+  <div class="panel" data-panel="twelve">
+    <h4 class="ptitle">Column 3: 12-Mark Long Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u2-twelve-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">What is operator overloading? Explain with restrictions. Write a C++ program to overload + (and -, *) for complex numbers.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Normal operators work only on built-in types. Operator overloading lets them work on objects also.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Operator overloading</b> means giving an operator an <b>additional meaning</b> for a user-defined type, without changing its original meaning.</p></div><div class="sec"><span class="lbl">Points</span><ul><li>Done with an <b>operator function</b>: <code>return_type operator op (args)</code>.</li><li>Member function: left operand is the calling object (<code>c3 = c1 + c2;</code> becomes <code>c1.operator+(c2)</code>).</li><li>Friend function: used when the left operand is not our object (example: <code>cout &lt;&lt; obj</code>).</li><li><b>Unary</b> operators: prefix is <code>operator++()</code>, postfix is <code>operator++(int)</code> (dummy int).</li><li>Restrictions: <code>::  .  .*  ?:  sizeof</code> cannot be overloaded; operand count and precedence cannot change; at least one operand must be a class type.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Complex numbers with <code>+</code>, <code>-</code>, <code>*</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Complex {
+    float re, im;
+public:
+    Complex(float r = 0, float i = 0) { re = r; im = i; }
+    Complex operator+(Complex c) { return Complex(re + c.re, im + c.im); }
+    Complex operator-(Complex c) { return Complex(re - c.re, im - c.im); }
+    Complex operator*(Complex c) {
+        return Complex(re * c.re - im * c.im, re * c.im + im * c.re);
+    }
+    friend ostream&amp; operator&lt;&lt;(ostream &amp;out, const Complex &amp;c);
+    friend istream&amp; operator&gt;&gt;(istream &amp;in, Complex &amp;c);
+};
+ostream&amp; operator&lt;&lt;(ostream &amp;out, const Complex &amp;c) {
+    out &lt;&lt; c.re &lt;&lt; " + " &lt;&lt; c.im &lt;&lt; "i";
+    return out;
+}
+istream&amp; operator&gt;&gt;(istream &amp;in, Complex &amp;c) {
+    in &gt;&gt; c.re &gt;&gt; c.im;
+    return in;
+}
+int main() {
+    Complex a(2, 3), b(4, 5);
+    cout &lt;&lt; "Sum  = " &lt;&lt; a + b &lt;&lt; endl;
+    cout &lt;&lt; "Diff = " &lt;&lt; a - b &lt;&lt; endl;
+    cout &lt;&lt; "Prod = " &lt;&lt; a * b &lt;&lt; endl;
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Operator overloading makes object code short, readable and natural. It is <b>compile-time polymorphism</b>.</p></div></div></div></div></div></div><div class="acc" id="u2-twelve-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">Explain the conversion of basic data type to class type and class type to basic type with example.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Compiler converts basic types automatically, but for classes we must tell it how.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Type conversion</b> means changing data from one type to another. For classes it is done by a <b>constructor</b> (basic to class) and a <b>conversion function</b> (class to basic).</p></div><div class="sec"><span class="lbl">Points</span><ul><li><b>Basic to Class</b>: use a <b>constructor with one argument</b>.</li><li><b>Class to Basic</b>: use a <b>conversion function</b> <code>operator type()</code>.</li><li>Conversion function rules: must be a member, <b>no return type</b>, <b>no arguments</b>.</li></ul></div><div class="sec"><span class="lbl">Example</span><p><code>Meter</code> class converting from and to <code>float</code>:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Meter {
+    float m;
+public:
+    Meter() { m = 0; }
+    Meter(float x) { m = x; }          // basic -&gt; class
+    operator float() { return m; }     // class -&gt; basic
+};
+int main() {
+    Meter a;
+    a = 5.5;            // float to Meter (constructor called)
+    float f = a;        // Meter to float (conversion function)
+    cout &lt;&lt; f;          // 5.5
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Constructors convert <b>to</b> class type; conversion functions convert <b>from</b> class type.</p></div></div></div></div></div></div>
+  </div>
+  <div class="pyqalert"><b>PYQ ALERT</b><p><b>Asked in:</b> 2014 (Q2a, Q2c, Q5), 2017 (Q4), 2018 (Q2b, Q4), 2019 (Q6), 2020 (Q1f), 2021 (Q1d, Q1i), 2022 (extractor Q1f, Q7). No direct question in the uploaded 2024 paper.; Overload '+' operator program (2025, Q2e)</p><p><b>Frequency:</b> <span class="freq">High</span></p></div>
+</section>
+<section class="unit reveal" id="u3" data-unit="u3">
+  <header class="uhead">
+    <div class="unum">UNIT 3</div>
+    <h2>Inheritance</h2>
+    <div class="topics"><b class="tl">Topics Covered</b><span class="chip">Base and derived classes</span><span class="chip">Constructors and destructors in derived classes</span><span class="chip">Public, private and protected inheritance</span><span class="chip">Types of inheritance and inheritance hierarchy</span><span class="chip">Abstract classes</span><span class="chip">Multiple inheritance, ambiguity and virtual base class (links with Unit 4)</span></div>
+  </header>
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" data-tab="mcq" type="button">&#127919; MCQ + One-Liner</button>
+    <button class="tab" role="tab" data-tab="four" type="button">&#9998; 4-Mark Questions</button>
+    <button class="tab" role="tab" data-tab="twelve" type="button">&#128211; 12-Mark Questions</button>
+  </div>
+  <div class="panel active" data-panel="mcq">
+    <h4 class="ptitle">Column 1: MCQ + One-Liner</h4>
+    <h3>One-Liner Definitions</h3>
+    <div class="ones"><div class="one"><b>Inheritance</b>: a new class (derived) <b>acquires properties</b> of an existing class (base).</div><div class="one"><b>Base class</b> (super / parent): the class being inherited from.</div><div class="one"><b>Derived class</b> (sub / child): the class that inherits.</div><div class="one"><b>Protected member</b>: accessible in the class and its derived classes, not outside.</div><div class="one"><b>Overriding</b>: derived class gives a new body to a base function with the <b>same signature</b>.</div><div class="one"><b>Abstract class</b>: class with at least one <b>pure virtual function</b>; its object cannot be created.</div><div class="one"><b>Virtual base class</b>: base inherited with <code>virtual</code> to avoid <b>duplicate copies</b> in multiple inheritance.</div></div>
+    <h3>MCQs with Answers + One-liner Explanation <small class="score" data-score="u3">Score 0 / 8</small></h3>
+    <p class="hint">Click an option. Like KBC, your answer is locked first, then the result shows.</p>
+    <div class="mcq" id="u3-mcq-0" data-ans="2"><div class="mq"><span class="qn">Q1</span><span class="mqt">Which is a mechanism by which one object acquires the properties of another?</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Encapsulation</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Abstraction</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Inheritance</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Polymorphism</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> Inheritance lets a derived class reuse the base class members.</div></div><div class="mcq" id="u3-mcq-1" data-ans="3"><div class="mq"><span class="qn">Q2</span><span class="mqt">What does a derived class NOT inherit from the base class?</span><span class="yrs"><span class="yr">PYQ 2014</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Friends</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Operator = () members</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Constructor and destructor</span></button><button class="opt is-correct" type="button" data-i="3"><span class="letter">D</span><span class="otxt">All of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: D.</b> Friends, assignment operator and constructors / destructors are not inherited.</div></div><div class="mcq" id="u3-mcq-2" data-ans="1"><div class="mq"><span class="qn">Q3</span><span class="mqt">Adding a derived class to a base class requires fundamental changes to the base class.</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">True</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">False</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> The base class stays unchanged; that is the benefit of inheritance.</div></div><div class="mcq" id="u3-mcq-3" data-ans="3"><div class="mq"><span class="qn">Q4</span><span class="mqt">What is the purpose of an abstract class?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">To help with database connectivity</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">To provide data input to other classes</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">To provide security to other classes</span></button><button class="opt is-correct" type="button" data-i="3"><span class="letter">D</span><span class="otxt">To provide an appropriate base class from which other classes can inherit</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: D.</b> An abstract class is a common base that derived classes complete.</div></div><div class="mcq" id="u3-mcq-4" data-ans="1"><div class="mq"><span class="qn">Q5</span><span class="mqt">You want common functions in a class and want to defer implementation of some functions to derived classes. You use:</span><span class="yrs"><span class="yr">PYQ 2018</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">An interface</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">An abstract class</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">A friend class</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">A static class</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Pure virtual functions make the class abstract and force derived classes to implement them.</div></div><div class="mcq" id="u3-mcq-5" data-ans="1"><div class="mq"><span class="qn">Q6</span><span class="mqt">State True or False: A base class pointer cannot point to a derived class object.</span><span class="yrs"><span class="yr">PYQ 2014</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">True</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">False</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A base pointer CAN point to a derived object. This is the base of virtual functions.</div></div><div class="mcq" id="u3-mcq-6" data-ans="2"><div class="mq"><span class="qn">Q7</span><span class="mqt">Default inheritance mode when you write <code>class B : A</code> (no keyword) is:</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">public</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">protected</span></button><button class="opt is-correct" type="button" data-i="2"><span class="letter">C</span><span class="otxt">private</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">friend</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: C.</b> For a <code>class</code>, the default is private (for a <code>struct</code> it is public).</div></div><div class="mcq" id="u3-mcq-7" data-ans="1"><div class="mq"><span class="qn">Q8</span><span class="mqt">Which feature removes the diamond (duplicate base copy) problem?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Friend function</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Virtual base class</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Static member</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">Inline function</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Declare the base as <code>virtual</code> in the intermediate classes.</div></div>
+  </div>
+  <div class="panel" data-panel="four">
+    <h4 class="ptitle">Column 2: 4-Mark Short Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u3-four-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">Explain the relationship between base class and derived class.</span><span class="yrs"><span class="yr">PYQ 2018</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>It is an <b>"is-a" relationship</b>. The derived class <b>gets all accessible members</b> of the base class and can add its own members or override base functions. The base class stays unchanged. Syntax: <code>class Derived : public Base { };</code></p></div></div></div></div></div><div class="acc" id="u3-four-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">What are super, base, parent and inherited classes?</span><span class="yrs"><span class="yr">PYQ 2020</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Super, base and parent</b> are different names for the <b>original class</b> that gives its properties. <b>Derived, child, sub and inherited class</b> are names for the <b>new class</b> that receives them. So Base = Super = Parent and Derived = Sub = Child.</p></div></div></div></div></div><div class="acc" id="u3-four-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">In what order are constructors and destructors called in inheritance?</span><span class="yrs"><span class="yr">PYQ 2024 (constructors in inherited classes)</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Constructors:</b> base class first, then derived class. <b>Destructors:</b> derived class first, then base class (reverse order). Arguments for a base constructor are passed with an <b>initialiser list</b>: <code>Derived(int a, int b) : Base(a) { }</code>.</p></div></div></div></div></div><div class="acc" id="u3-four-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What is function overriding?</span><span class="yrs"><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>When a derived class defines a function with the <b>same name, same arguments and same return type</b> as a base class function, the derived version <b>replaces</b> the base one for derived objects. With <code>virtual</code>, the correct version is chosen at run time.</p></div></div></div></div></div><div class="acc" id="u3-four-4" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q5</span><span class="qt">Explain the concepts of abstract classes and virtual base classes with suitable examples.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Abstract class</b>: contains at least one <b>pure virtual function</b> (<code>= 0</code>). Its object cannot be created. It forces derived classes to implement the function.</p><ul><li><b>Pure virtual function</b>: <code>virtual void draw() = 0;</code></li><li><b>Virtual base class</b>: base declared with <code>virtual</code> keyword in intermediate classes to avoid the <b>diamond problem</b> (duplicate copies in hybrid inheritance).</li><li>Both improve OOP design: abstract class gives a common interface; virtual base removes ambiguity.</li></ul><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>// Abstract class
+class Shape { public: virtual void draw() = 0; };   // can't create Shape object
+class Circle : public Shape { public: void draw() { cout &lt;&lt; "Circle\n"; } };
+
+// Virtual base class (diamond fix)
+class A { public: int x; };
+class B : virtual public A { };
+class C : virtual public A { };
+class D : public B, public C { };  // only ONE copy of A::x</code></pre></div></div></div></div></div></div>
+  </div>
+  <div class="panel" data-panel="twelve">
+    <h4 class="ptitle">Column 3: 12-Mark Long Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u3-twelve-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">What is inheritance? Describe various types of inheritance with example.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2024</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Writing the same code again and again wastes time. Inheritance gives <b>reusability</b>.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Inheritance</b> is the process of creating a new class (derived) from an existing class (base) so that the derived class acquires the base class properties.</p></div><div class="sec"><span class="lbl">Points: Types of Inheritance</span><ul><li><b>Single</b>: one base, one derived. <code>class B : public A {};</code></li><li><b>Multiple</b>: more than one base, one derived. <code>class C : public A, public B {};</code></li><li><b>Multilevel</b>: chain A to B to C. <code>class B : public A {}; class C : public B {};</code></li><li><b>Hierarchical</b>: one base, many derived. <code>class B : public A {}; class C : public A {};</code></li><li><b>Hybrid</b>: combination of two or more types (ambiguity can come; solved by virtual base class).</li></ul><pre class="diagram">Single:        A --&gt; B
+Multiple:      A --&gt; C &lt;-- B
+Multilevel:    A --&gt; B --&gt; C
+Hierarchical:  A --&gt; B
+               A --&gt; C
+Hybrid:        A --&gt; B --&gt; D
+               A --&gt; C --&gt; D</pre></div><div class="sec"><span class="lbl">Example (Multilevel)</span><p>An object of <code>Topper</code> can call <code>name()</code>, <code>roll()</code> and <code>rank()</code>.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>class Person  { public: void name() { cout &lt;&lt; "Person\n"; } };
+class Student : public Person  { public: void roll() { cout &lt;&lt; "Student\n"; } };
+class Topper  : public Student { public: void rank() { cout &lt;&lt; "Topper\n"; } };</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Inheritance gives code reuse, saves time and makes programs easy to extend.</p></div></div></div></div></div></div><div class="acc" id="u3-twelve-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">Explain the visibility of base class members for the access specifiers private, protected and public while creating the derived class.</span><span class="yrs"><span class="yr">PYQ 2018</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Access specifiers control who can use a member.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>private</b> = only same class; <b>protected</b> = same class and derived classes; <b>public</b> = everywhere.</p></div><div class="sec"><span class="lbl">Points</span><ul><li><b>Private members of base are never directly accessible</b> in the derived class (use public / protected functions).</li><li>Default inheritance mode for a <code>class</code> is <b>private</b>.</li><li>Public inheritance is the most common ("is-a" relation).</li></ul><div class="tblwrap"><table><thead><tr><th>Base member</th><th>Public inheritance</th><th>Protected inheritance</th><th>Private inheritance</th></tr></thead><tbody><tr><td>public</td><td>public</td><td>protected</td><td>private</td></tr><tr><td>protected</td><td>protected</td><td>protected</td><td>private</td></tr><tr><td>private</td><td>not accessible</td><td>not accessible</td><td>not accessible</td></tr></tbody></table></div></div><div class="sec"><span class="lbl">Example</span><p>With public inheritance, <code>y</code> is protected and <code>z</code> is public in <code>B</code>; <code>x</code> is not accessible.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>class A { private: int x; protected: int y; public: int z; };
+class B : public A { /* y protected, z public, x not accessible */ };</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Choose the inheritance mode to control how much of the base class is exposed.</p></div></div></div></div></div></div><div class="acc" id="u3-twelve-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">Discuss virtual base class with an example. Also explain ambiguity in multiple inheritance and how to resolve it.</span><span class="yrs"><span class="yr">PYQ 2020</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024 (ambiguity)</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>In hybrid inheritance, the final class may receive <b>two copies</b> of the same grand-base class. This is the <b>diamond problem</b> and causes ambiguity.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>virtual base class</b> is a base class declared with the keyword <code>virtual</code> in the derived classes so that <b>only one copy</b> reaches the final class.</p></div><div class="sec"><span class="lbl">Points: Ambiguity and how to resolve it</span><ul><li>If two base classes have a function with the same name, <code>obj.show()</code> is <b>ambiguous</b>.</li><li>Resolve 1: use the <b>scope resolution operator</b>, <code>obj.A::show();</code></li><li>Resolve 2: <b>override</b> the function in the derived class.</li><li>Resolve 3: use a <b>virtual base class</b> for the diamond case.</li></ul></div><div class="sec"><span class="lbl">Example</span><p>Without <code>virtual</code>, <code>d.x</code> gives an ambiguity error. With <code>virtual</code>, only one <code>x</code> exists.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class A { public: int x; };
+class B : virtual public A { };
+class C : virtual public A { };
+class D : public B, public C { };
+int main() {
+    D d;
+    d.x = 10;                 // no ambiguity, only one copy of x
+    cout &lt;&lt; d.x;
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Virtual base class removes duplication and ambiguity in hybrid inheritance.</p></div></div></div></div></div></div>
+  </div>
+  <div class="pyqalert"><b>PYQ ALERT</b><p><b>Asked in:</b> Types of inheritance (2014, 2017, 2018, 2021, 2024); Access specifier visibility (2018, 2022); Abstract class (2017, 2018, 2019, 2022, 2024); Base / derived relationship (2018, 2020); Virtual base class (2020, 2022); Ambiguity in multiple inheritance (2024); Constructors in inherited classes (2024); Single inheritance program (2024); Abstract class + virtual base class (2025, 4-mark); Types of inheritance (2025)</p><p><b>Frequency:</b> <span class="freq">High</span></p></div>
+</section>
+<section class="unit reveal" id="u4" data-unit="u4">
+  <header class="uhead">
+    <div class="unum">UNIT 4</div>
+    <h2>Advanced Topics (Multiple Inheritance, Virtual Base Class, Pointers to Classes / Members, Templates, Exception Handling, File Handling)</h2>
+    <div class="topics"><b class="tl">Topics Covered</b><span class="chip">Multiple inheritance and virtual base classes (see Unit 3)</span><span class="chip">Pointers to objects and pointers to class members</span><span class="chip">Virtual functions, dynamic binding, virtual destructors</span><span class="chip">Templates (function template, class template)</span><span class="chip">Exception handling (<code>try</code>, <code>catch</code>, <code>throw</code>)</span><span class="chip">File handling (streams, file modes, sequential and random access)</span></div>
+  </header>
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" data-tab="mcq" type="button">&#127919; MCQ + One-Liner</button>
+    <button class="tab" role="tab" data-tab="four" type="button">&#9998; 4-Mark Questions</button>
+    <button class="tab" role="tab" data-tab="twelve" type="button">&#128211; 12-Mark Questions</button>
+  </div>
+  <div class="panel active" data-panel="mcq">
+    <h4 class="ptitle">Column 1: MCQ + One-Liner</h4>
+    <h3>One-Liner Definitions</h3>
+    <div class="ones"><div class="one"><b>Pointer to object</b>: pointer that stores the address of an object; members are used with <code>-&gt;</code>.</div><div class="one"><b>Virtual function</b>: base function declared <code>virtual</code> so the <b>derived version runs</b> through a base pointer.</div><div class="one"><b>Pure virtual function</b>: virtual function with no body, written <code>= 0</code>.</div><div class="one"><b>Dynamic binding (late binding)</b>: function call decided <b>at run time</b>.</div><div class="one"><b>Virtual destructor</b>: makes the derived destructor also run when deleting through a base pointer.</div><div class="one"><b>Template</b>: blueprint that lets one function or class work with <b>any data type</b>.</div><div class="one"><b>Exception</b>: a run-time error (example: divide by zero).</div><div class="one"><b>Stream</b>: flow of data between the program and a device or file.</div><div class="one"><b>seekg() / tellg()</b>: <code>seekg</code> moves the read pointer; <code>tellg</code> gives its current position.</div></div>
+    <h3>MCQs with Answers + One-liner Explanation <small class="score" data-score="u4">Score 0 / 8</small></h3>
+    <p class="hint">Click an option. Like KBC, your answer is locked first, then the result shows.</p>
+    <div class="mcq" id="u4-mcq-0" data-ans="1"><div class="mq"><span class="qn">Q1</span><span class="mqt">Which of the following is referred to by pointers to members?</span><span class="yrs"><span class="yr">PYQ 2014</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Static members of class objects</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Non-static members of class objects</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Referring to whole class</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> A pointer to member points to a non-static member of class objects.</div></div><div class="mcq" id="u4-mcq-1" data-ans="1"><div class="mq"><span class="qn">Q2</span><span class="mqt">Which of the following is used to implement C++ interfaces?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Absolute variables</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Abstract classes</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Constant variables</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Abstract classes with pure virtual functions act as interfaces.</div></div><div class="mcq" id="u4-mcq-2" data-ans="0"><div class="mq"><span class="qn">Q3</span><span class="mqt">Identify the correct statement about namespace.</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Namespace is used to group classes, objects and functions</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Namespace marks the beginning of the program</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Namespace is used to separate the class, objects</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> A namespace groups names to avoid clashes.</div></div><div class="mcq" id="u4-mcq-3" data-ans="1"><div class="mq"><span class="qn">Q4</span><span class="mqt">Which is more efficient while calling functions with big data?</span><span class="yrs"><span class="yr">PYQ 2019</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">Call by value</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">Call by reference</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">Call by pointer</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">None of the above</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> Call by reference does not copy the data, so it is faster. (Option given in the 2019 paper.)</div></div><div class="mcq" id="u4-mcq-4" data-ans="0"><div class="mq"><span class="qn">Q5</span><span class="mqt">Which blocks are used in C++ exception handling?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt is-correct" type="button" data-i="0"><span class="letter">A</span><span class="otxt">try, catch, throw</span></button><button class="opt" type="button" data-i="1"><span class="letter">B</span><span class="otxt">if, else, switch</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">open, close, read</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">start, stop, end</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: A.</b> <code>try</code> watches, <code>throw</code> raises, <code>catch</code> handles.</div></div><div class="mcq" id="u4-mcq-5" data-ans="1"><div class="mq"><span class="qn">Q6</span><span class="mqt">Which keyword is used to define a generic function or class?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">generic</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">template</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">virtual</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">friend</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> <code>template &lt;class T&gt;</code> makes code work for any data type.</div></div><div class="mcq" id="u4-mcq-6" data-ans="1"><div class="mq"><span class="qn">Q7</span><span class="mqt">Which header file is needed for file handling?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">&lt;iostream&gt;</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">&lt;fstream&gt;</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">&lt;iomanip&gt;</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">&lt;cstring&gt;</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> <code>&lt;fstream&gt;</code> gives <code>ifstream</code>, <code>ofstream</code> and <code>fstream</code>.</div></div><div class="mcq" id="u4-mcq-7" data-ans="1"><div class="mq"><span class="qn">Q8</span><span class="mqt">Which function moves the read pointer in a file?</span><span class="yrs"><span class="yr practice">Practice</span></span></div><div class="opts"><button class="opt" type="button" data-i="0"><span class="letter">A</span><span class="otxt">tellg()</span></button><button class="opt is-correct" type="button" data-i="1"><span class="letter">B</span><span class="otxt">seekg()</span></button><button class="opt" type="button" data-i="2"><span class="letter">C</span><span class="otxt">flush()</span></button><button class="opt" type="button" data-i="3"><span class="letter">D</span><span class="otxt">close()</span></button></div><div class="lock"><span class="spin"></span>Locking your answer&hellip;</div><div class="exp"><b>Answer: B.</b> <code>seekg()</code> moves the get (read) pointer; <code>tellg()</code> only tells its position.</div></div>
+  </div>
+  <div class="panel" data-panel="four">
+    <h4 class="ptitle">Column 2: 4-Mark Short Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u4-four-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">Write the syntax of a function template.</span><span class="yrs"><span class="yr">PYQ 2017</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><code>T</code> is a placeholder type. The compiler creates the correct version when the function is called with <code>int</code>, <code>float</code>, <code>char</code> etc.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>template &lt;class T&gt;
+T function_name(T a, T b) { /* body */ }</code></pre></div></div></div></div></div></div><div class="acc" id="u4-four-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">What is a pure virtual function?</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2021</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>pure virtual function</b> has no definition in the base class: <code>virtual void area() = 0;</code>. A class with one or more pure virtual functions becomes an <b>abstract class</b>, and derived classes <b>must override</b> it.</p></div></div></div></div></div><div class="acc" id="u4-four-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">Write the file opening modes.</span><span class="yrs"><span class="yr">PYQ 2022 (ate vs out)</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><code>ios::in</code> (read), <code>ios::out</code> (write, erases old content), <code>ios::app</code> (append at end), <code>ios::ate</code> (open and go to end, writing allowed anywhere), <code>ios::trunc</code> (delete old content), <code>ios::binary</code> (binary mode). Combine using <code>|</code>.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>fstream f("a.txt", ios::in | ios::out);</code></pre></div></div></div></div></div></div><div class="acc" id="u4-four-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What are manipulators? Differentiate setw() and setfill().</span><span class="yrs"><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Manipulators</b> are functions used with <code>&lt;&lt;</code> to <b>format output</b> (example: <code>endl</code>, <code>setw</code>, <code>setprecision</code>). <code>setw(n)</code> sets the <b>field width</b> for the next output. <code>setfill(c)</code> sets the <b>filling character</b> for the empty space. Header: <code>&lt;iomanip&gt;</code>.</p></div></div></div></div></div><div class="acc" id="u4-four-4" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q5</span><span class="qt">What do you mean by exception handling?</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Exception handling</b> is a mechanism to detect and deal with <b>run-time errors</b> so the program does not crash. C++ uses three keywords:</p><ul><li><b>try</b>: encloses code that may cause an error.</li><li><b>throw</b>: raises (sends) the exception when an error occurs.</li><li><b>catch</b>: catches and handles the exception.</li><li><code>catch(...)</code> catches any type. Multiple <code>catch</code> blocks can follow one <code>try</code>.</li><li>Benefit: keeps error-handling code <b>separate</b> from normal code.</li></ul><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>try {
+    if (b == 0) throw "Division by zero!";
+    cout &lt;&lt; a / b;
+}
+catch (const char* e) { cout &lt;&lt; e; }</code></pre></div></div></div></div></div></div>
+  </div>
+  <div class="panel" data-panel="twelve">
+    <h4 class="ptitle">Column 3: 12-Mark Long Answers</h4>
+    <div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div>
+    <div class="acc" id="u4-twelve-0" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q1</span><span class="qt">What is a virtual function? Explain dynamic binding and abstract class with example.</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>When a base pointer points to a derived object, we want the <b>derived</b> function to run. Virtual functions do this.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>virtual function</b> is a member function of the base class declared with <code>virtual</code> and redefined in the derived class.</p></div><div class="sec"><span class="lbl">Points</span><ul><li>Steps: (1) declare <code>virtual</code> in base, (2) redefine in derived with same signature, (3) call through a <b>base class pointer</b>.</li><li><b>Dynamic binding</b>: call is resolved at <b>run time</b> using the real object type. Without <code>virtual</code>, <b>static binding</b> happens at compile time.</li><li><b>Abstract class</b>: has a pure virtual function (<code>= 0</code>); object cannot be created, pointers can.</li><li><b>Virtual destructor</b>: write <code>virtual ~Shape(){}</code> so <code>delete p;</code> also runs the derived destructor (no memory leak).</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Base pointer calling the derived function:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Shape {
+public:
+    virtual void draw() { cout &lt;&lt; "Drawing shape\n"; }
+    virtual ~Shape() { }
+};
+class Circle : public Shape {
+public:
+    void draw() { cout &lt;&lt; "Drawing circle\n"; }
+};
+int main() {
+    Shape *p;
+    Circle c;
+    p = &amp;c;
+    p-&gt;draw();     // Drawing circle (dynamic binding)
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Virtual functions give <b>run-time polymorphism</b>.</p></div></div></div></div></div></div><div class="acc" id="u4-twelve-1" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q2</span><span class="qt">Define exception handling. Explain the use of try, catch and throw with example.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Programs can fail at run time (divide by zero, file not found). We should handle these safely.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Exception handling</b> is a mechanism to detect and handle run-time errors so that the program does not crash.</p></div><div class="sec"><span class="lbl">Points: Keywords and Points</span><ul><li><b>try</b>: block that contains code that may cause an error.</li><li><b>throw</b>: sends (raises) the exception.</li><li><b>catch</b>: block that receives and handles the exception.</li><li>Many <code>catch</code> blocks can follow one <code>try</code>; <code>catch(...)</code> catches all types.</li><li>When an exception is thrown, objects made inside <code>try</code> are destroyed (<b>destructors are called</b>) before <code>catch</code> runs.</li><li><b>User-defined exception</b>: a class can be thrown. Needed when built-in types cannot describe the error (invalid age, low balance).</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Exception with constructor / destructor and a user-defined exception:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+class Test {
+public:
+    Test()  { cout &lt;&lt; "Constructor\n"; }
+    ~Test() { cout &lt;&lt; "Destructor\n"; }
+};
+class MyException {
+public:
+    string msg;
+    MyException(string m) { msg = m; }
+};
+int main() {
+    try {
+        Test t;
+        int a = 10, b = 0;
+        if (b == 0) throw "Division by zero";
+        cout &lt;&lt; a / b;
+    }
+    catch (const char *m) {
+        cout &lt;&lt; "Caught: " &lt;&lt; m &lt;&lt; endl;
+    }
+    try {
+        int age = 15;
+        if (age &lt; 18) throw MyException("Age must be 18 or more");
+    }
+    catch (MyException &amp;e) {
+        cout &lt;&lt; "User-defined exception: " &lt;&lt; e.msg &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Exception handling separates error handling from normal code and makes programs reliable.</p></div></div></div></div></div></div><div class="acc" id="u4-twelve-2" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q3</span><span class="qt">What are the types of file access? Explain file operations with a program.</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2020 (unformatted I/O)</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Data in variables is lost when the program ends. Files store data permanently.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>File handling</b> is reading from and writing to disk files using stream classes from <code>&lt;fstream&gt;</code>.</p></div><div class="sec"><span class="lbl">Points</span><ul><li>Stream classes: <b>ifstream</b> (input), <b>ofstream</b> (output), <b>fstream</b> (both).</li><li>Steps: create stream object, open file, read / write, <code>close()</code>.</li><li><b>Sequential access</b>: data read / written in order from the start (<code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>get()</code>, <code>put()</code>, <code>getline()</code>).</li><li><b>Random access</b>: any position reached directly: <code>seekg(pos)</code> / <code>seekp(pos)</code> move get / put pointer; <code>tellg()</code> / <code>tellp()</code> give the position.</li><li>Other functions: <code>eof()</code>, <code>fail()</code>, <code>good()</code>, <code>close()</code>.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Write, read and random access:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main() {
+    // Write
+    ofstream fout("student.txt");
+    fout &lt;&lt; "Aman 85" &lt;&lt; endl;
+    fout &lt;&lt; "Riya 90" &lt;&lt; endl;
+    fout.close();
+
+    // Read (sequential)
+    ifstream fin("student.txt");
+    string name; int marks;
+    while (fin &gt;&gt; name &gt;&gt; marks)
+        cout &lt;&lt; name &lt;&lt; " " &lt;&lt; marks &lt;&lt; endl;
+    fin.close();
+
+    // Random access
+    ifstream f("student.txt");
+    f.seekg(0, ios::end);              // go to end
+    long size = f.tellg();             // position = file size
+    cout &lt;&lt; "File size = " &lt;&lt; size &lt;&lt; " bytes" &lt;&lt; endl;
+    f.seekg(0, ios::beg);              // back to start
+    f.close();
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>File handling gives permanent storage and flexible access to data.</p></div></div></div></div></div></div><div class="acc" id="u4-twelve-3" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q4</span><span class="qt">What are templates? Explain the need and how a normal function becomes a template function.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2024 (generic classes)</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>A function like <code>max(int, int)</code> must be rewritten for <code>float</code>, <code>char</code> etc. Templates solve this.</p></div><div class="sec"><span class="lbl">Definition</span><p>A <b>template</b> lets us write <b>one generic function or class</b> that works for any data type.</p></div><div class="sec"><span class="lbl">Points</span><ul><li><b>Need</b>: removes code repetition, saves time, gives <b>type-safe generic programming</b>.</li><li><b>Normal to template</b>: write <code>template &lt;class T&gt;</code> before the function and replace the data type with <code>T</code>.</li><li>Normal: <code>int minimum(int a, int b) { return (a &lt; b) ? a : b; }</code></li><li>Template: <code>template &lt;class T&gt; T minimum(T a, T b) { return (a &lt; b) ? a : b; }</code></li><li><b>Class template</b> (generic class) works the same way for classes.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Function template and class template:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+template &lt;class T&gt;
+T minimum(T a, T b) { return (a &lt; b) ? a : b; }
+
+template &lt;class T&gt;
+class Box {
+    T v;
+public:
+    Box(T x) { v = x; }
+    T get() { return v; }
+};
+int main() {
+    cout &lt;&lt; minimum(10, 20) &lt;&lt; endl;        // int
+    cout &lt;&lt; minimum('a', 'z') &lt;&lt; endl;      // char
+    cout &lt;&lt; minimum(3.5f, 2.1f) &lt;&lt; endl;    // float
+    Box&lt;int&gt; b1(5);
+    Box&lt;float&gt; b2(2.5f);
+    cout &lt;&lt; b1.get() &lt;&lt; " " &lt;&lt; b2.get() &lt;&lt; endl;
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Templates give <b>code reuse for different data types</b>.</p></div></div></div></div></div></div><div class="acc" id="u4-twelve-4" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q5</span><span class="qt">What is the role of manipulators in C++? Write down the different manipulators with examples.</span><span class="yrs"><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>Displaying data clearly requires proper formatting. C++ provides a convenient tool called manipulators for this.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Manipulators</b> are special functions / objects used with <code>&lt;&lt;</code> and <code>&gt;&gt;</code> operators to <b>format the input and output</b> of a program. They are used as if they are data items in an output or input expression.</p></div><div class="sec"><span class="lbl">Points: Types of Manipulators</span><ul><li>Header file: <code>&lt;iomanip&gt;</code> for parameterised and <code>&lt;iostream&gt;</code> for non-parameterised manipulators.</li><li><b>endl</b>: inserts a newline character and flushes the buffer. <code>cout &lt;&lt; "Hi" &lt;&lt; endl;</code></li><li><b>setw(n)</b>: sets the <b>field width</b> for the NEXT output only. <code>cout &lt;&lt; setw(10) &lt;&lt; "Aman";</code></li><li><b>setprecision(n)</b>: sets the number of <b>decimal places</b>. <code>cout &lt;&lt; setprecision(2) &lt;&lt; 3.14159;</code> → <code>3.14</code></li><li><b>setfill(c)</b>: sets the <b>fill character</b> for empty spaces in setw. <code>cout &lt;&lt; setfill('*') &lt;&lt; setw(8) &lt;&lt; 42;</code> → <code>******42</code></li><li><b>left / right</b>: sets alignment of output inside the field. <code>cout &lt;&lt; left &lt;&lt; setw(10) &lt;&lt; "Hi";</code></li><li><b>hex / oct / dec</b>: prints integers in <b>hexadecimal / octal / decimal</b> base.</li><li><b>fixed</b>: prints floating numbers in <b>fixed notation</b> (not scientific). <code>cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; 3.14159;</code></li><li><b>scientific</b>: prints in <b>scientific notation</b>. <code>cout &lt;&lt; scientific &lt;&lt; 3.14159;</code> → <code>3.14e+00</code></li><li><b>boolalpha</b>: prints <code>bool</code> as <code>true</code> / <code>false</code> instead of <code>1</code> / <code>0</code>.</li><li><b>flush</b>: flushes the output buffer without a newline.</li><li><b>ws</b>: skips leading whitespace on input.</li></ul></div><div class="sec"><span class="lbl">Program</span><p>Demonstrating important manipulators together:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+int main() {
+    // setw and setfill
+    cout &lt;&lt; setfill('-') &lt;&lt; setw(20) &lt;&lt; "" &lt;&lt; endl;
+    cout &lt;&lt; setfill(' ') &lt;&lt; setw(10) &lt;&lt; left &lt;&lt; "Name"
+         &lt;&lt; setw(5) &lt;&lt; "Age" &lt;&lt; endl;
+    cout &lt;&lt; setfill('-') &lt;&lt; setw(20) &lt;&lt; "" &lt;&lt; endl;
+    cout &lt;&lt; setfill(' ') &lt;&lt; setw(10) &lt;&lt; left &lt;&lt; "Aman"
+         &lt;&lt; setw(5) &lt;&lt; 21 &lt;&lt; endl;
+
+    // setprecision + fixed
+    cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; 3.14159 &lt;&lt; endl;  // 3.14
+
+    // hex and oct
+    cout &lt;&lt; hex &lt;&lt; 255 &lt;&lt; endl;    // ff
+    cout &lt;&lt; oct &lt;&lt; 255 &lt;&lt; endl;    // 377
+    cout &lt;&lt; dec &lt;&lt; 255 &lt;&lt; endl;    // 255
+
+    // boolalpha
+    cout &lt;&lt; boolalpha &lt;&lt; true &lt;&lt; " " &lt;&lt; false &lt;&lt; endl;  // true false
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Manipulators make C++ I/O professional, readable and easy to format without changing the data itself.</p></div></div></div></div></div></div><div class="acc" id="u4-twelve-5" data-track="1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">Q6</span><span class="qt">Discuss the concepts of generalization and aggregation with examples.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="sec"><span class="lbl">Introduction</span><p>OOP models real-world relationships. Two fundamental relationships used in class design are generalization and aggregation.</p></div><div class="sec"><span class="lbl">Definition</span><p><b>Generalization</b> is an IS-A relationship (base to derived, implemented by inheritance). <b>Aggregation</b> is a HAS-A relationship (an object contains another object but both can exist independently).</p></div><div class="sec"><span class="lbl">Points: Generalization vs Aggregation</span><ul><li><b>Generalization (IS-A)</b>: a derived class IS-A type of the base class. Implemented by inheritance. Example: Dog IS-A Animal.</li><li><b>Aggregation (HAS-A, weak)</b>: one class USES another. If the outer class is deleted, the inner object still exists. Example: Department HAS-A Teacher (Teacher exists even if Department is deleted). Implemented with a pointer.</li><li><b>Composition (HAS-A, strong)</b>: the inner object CANNOT exist without the outer. Example: House HAS-A Room (Room does not exist without House). Implemented by value (not pointer).</li><li><b>Association</b>: a general relationship where two classes use each other (has-a but neither owns the other).</li><li>Generalization promotes <b>code reuse</b> through inheritance.</li><li>Aggregation promotes <b>code flexibility</b> (loose coupling).</li><li>Generalization uses <code>: public Base</code> syntax; aggregation uses a <b>pointer or reference</b> data member.</li></ul><pre class="diagram">Generalization:        Animal (base)
+                        |
+                      Dog (derived)  -- Dog IS-A Animal
+
+Aggregation (weak):   Department -----&gt; Teacher
+                      (Department HAS-A Teacher; Teacher exists without Department)
+
+Composition (strong): House []----&gt; Room
+                      (Room does not exist without House)</pre></div><div class="sec"><span class="lbl">Example</span><p>Generalization via inheritance and aggregation via pointer:</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Generalization (inheritance / IS-A)
+class Animal {
+public:
+    void eat() { cout &lt;&lt; "Animal eating\n"; }
+};
+class Dog : public Animal {    // Dog IS-A Animal
+public:
+    void bark() { cout &lt;&lt; "Dog barking\n"; }
+};
+
+// Aggregation (HAS-A, weak) — Teacher exists independently
+class Teacher {
+public:
+    string name;
+    Teacher(string n) { name = n; }
+};
+class Department {
+    Teacher* t;   // pointer = aggregation
+public:
+    Department(Teacher* tp) { t = tp; }
+    void show() { cout &lt;&lt; "Dept teacher: " &lt;&lt; t-&gt;name &lt;&lt; endl; }
+};
+
+int main() {
+    Dog d; d.eat(); d.bark();          // generalization
+    Teacher t("Rahul");
+    Department dept(&amp;t);
+    dept.show();                        // aggregation
+    return 0;
+}</code></pre></div></div><div class="sec"><span class="lbl">Conclusion</span><p>Generalization and aggregation are key OOP design concepts that model IS-A and HAS-A relationships for clean, reusable, and flexible code.</p></div></div></div></div></div></div>
+  </div>
+  <div class="pyqalert"><b>PYQ ALERT</b><p><b>Asked in:</b> Virtual functions (2017, 2019, 2020, 2021, 2022, 2024); Exception handling (2014, 2017, 2018, 2020, 2022); File handling (2017, 2020, 2021, 2022); Templates (2014, 2017, 2019, 2024); Pointers to members (2014); Manipulators (2021, 2022, 2024); Dynamic binding (2020, 2022); Manipulators role + types (2025, 12-mark); Generalization and aggregation (2025, 12-mark); User-defined exception scenarios (2022, 2025); Function template program (2025); Exception handling definition (2025, 4-mark); Static data/functions (2025, 12-mark Unit 1)</p><p><b>Frequency:</b> <span class="freq">High</span></p></div>
+</section>
+ 
+<section class="extra reveal" id="repeated"><h2>Most Repeated Questions <small>(All uploaded years)</small></h2><div class="tblwrap"><table><thead><tr><th>#</th><th>Question / Topic</th><th>Asked in (uploaded papers)</th></tr></thead><tbody><tr><td>1</td><td>Abstract class (what is it / explain / benefit)</td><td>2017, 2018, 2019, 2022, 2024</td></tr><tr><td>2</td><td>Types of inheritance</td><td>2014, 2017, 2018, 2021, 2024</td></tr><tr><td>3</td><td>Operator overloading (definition / program / restrictions)</td><td>2014, 2017, 2018, 2019, 2022 (short: 2020, 2021)</td></tr><tr><td>4</td><td>Constructor, types, characteristics</td><td>2014, 2017, 2018, 2019, 2020, 2022 (also 2021, 2024)</td></tr><tr><td>5</td><td>Friend function</td><td>2014, 2018, 2020, 2021, 2022, 2024</td></tr><tr><td>6</td><td>Virtual function / dynamic binding / virtual destructor</td><td>2017, 2019, 2020, 2021, 2022, 2024</td></tr><tr><td>7</td><td>OOP vs POP / features of OOP</td><td>2017, 2019, 2020, 2021, 2022, 2024</td></tr><tr><td>8</td><td>Exception handling (try, catch, throw)</td><td>2014, 2017, 2018, 2020, 2022</td></tr><tr><td>9</td><td>Copy constructor</td><td>2014, 2017, 2019, 2021</td></tr><tr><td>10</td><td>Templates (function / class / generic)</td><td>2014, 2017, 2019, 2024</td></tr><tr><td>11</td><td>File handling (sequential, random, operations)</td><td>2017, 2020, 2021, 2022</td></tr><tr><td>12</td><td>Inline function</td><td>2017, 2020, 2021</td></tr><tr><td>13</td><td>Function overloading</td><td>2014, 2019, 2020 (method overloading), 2022</td></tr><tr><td>14</td><td>Insertion / extraction operator with friend</td><td>2014, 2018</td></tr><tr><td>15</td><td>Virtual base class</td><td>2020, 2022</td></tr><tr><td>16</td><td>Polymorphism</td><td>2017, 2021, 2022</td></tr><tr><td>17</td><td>Access specifiers and visibility</td><td>2018, 2022</td></tr><tr><td>18</td><td>Manipulators</td><td>2021, 2022, 2024</td></tr><tr><td>19</td><td>Objects as function arguments</td><td>2020, 2021</td></tr><tr><td>20</td><td>Dynamic objects (new / delete)</td><td>2018, 2021</td></tr><tr><td>21</td><td>Data hiding / encapsulation</td><td>2022, 2024, 2025</td></tr><tr><td>22</td><td>Static data member and member functions</td><td>2019, 2020, 2025 (12-mark)</td></tr><tr><td>23</td><td>Manipulators (role + types)</td><td>2021, 2022, 2025 (12-mark)</td></tr><tr><td>24</td><td>User-defined exception</td><td>2022, 2025</td></tr><tr><td>25</td><td>Generalization and aggregation</td><td>2025</td></tr><tr><td>26</td><td>Token in C++</td><td>2025</td></tr><tr><td>27</td><td>Proxy classes</td><td>2025</td></tr><tr><td>28</td><td>Difference between C and C++ (code)</td><td>2020, 2025</td></tr><tr><td>29</td><td>Abstract class + Virtual base class (combined)</td><td>2025</td></tr></tbody></table></div></section>
+<section class="extra reveal" id="top20"><h2>Top 20 VVI Questions <small>(12 Marks + 4 Marks)</small></h2>
+<p class="hint">Part A: 12 marks (full answers are written in each unit's 12-Mark tab; tap to jump). Part B: 4 marks with full answers below.</p>
+<h3>Part A: 12 Marks (Q1 to Q10)</h3><div class="topcard"><span class="qn">1</span><div class="tq"><div>Explain the object-oriented paradigm with its features. Differentiate between OOP and POP.</div><div class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></div></div><button class="mini jump" type="button" data-unit="u1" data-idx="0">Open full answer &rarr;</button><div class="printref">Full answer: Unit 1, 12-Mark Q1</div></div><div class="topcard"><span class="qn">2</span><div class="tq"><div>What is a constructor? Explain its types and characteristics. Write a program for the copy constructor.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></div></div><button class="mini jump" type="button" data-unit="u1" data-idx="1">Open full answer &rarr;</button><div class="printref">Full answer: Unit 1, 12-Mark Q2</div></div><div class="topcard"><span class="qn">3</span><div class="tq"><div>What is a friend function? Why is it required? Write a program.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></div></div><button class="mini jump" type="button" data-unit="u1" data-idx="2">Open full answer &rarr;</button><div class="printref">Full answer: Unit 1, 12-Mark Q3</div></div><div class="topcard"><span class="qn">4</span><div class="tq"><div>What is operator overloading? Explain with restrictions. Write a C++ program to overload + (and -, *) for complex numbers.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u2" data-idx="0">Open full answer &rarr;</button><div class="printref">Full answer: Unit 2, 12-Mark Q1</div></div><div class="topcard"><span class="qn">5</span><div class="tq"><div>Explain the conversion of basic data type to class type and class type to basic type with example.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u2" data-idx="1">Open full answer &rarr;</button><div class="printref">Full answer: Unit 2, 12-Mark Q2</div></div><div class="topcard"><span class="qn">6</span><div class="tq"><div>What is inheritance? Describe various types of inheritance with example.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2024</span><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u3" data-idx="0">Open full answer &rarr;</button><div class="printref">Full answer: Unit 3, 12-Mark Q1</div></div><div class="topcard"><span class="qn">7</span><div class="tq"><div>Explain the visibility of base class members for the access specifiers private, protected and public while creating the derived class.</div><div class="yrs"><span class="yr">PYQ 2018</span><span class="yr">PYQ 2022</span></div></div><button class="mini jump" type="button" data-unit="u3" data-idx="1">Open full answer &rarr;</button><div class="printref">Full answer: Unit 3, 12-Mark Q2</div></div><div class="topcard"><span class="qn">8</span><div class="tq"><div>Discuss virtual base class with an example. Also explain ambiguity in multiple inheritance and how to resolve it.</div><div class="yrs"><span class="yr">PYQ 2020</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024 (ambiguity)</span></div></div><button class="mini jump" type="button" data-unit="u3" data-idx="2">Open full answer &rarr;</button><div class="printref">Full answer: Unit 3, 12-Mark Q3</div></div><div class="topcard"><span class="qn">9</span><div class="tq"><div>What is a virtual function? Explain dynamic binding and abstract class with example.</div><div class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></div></div><button class="mini jump" type="button" data-unit="u4" data-idx="0">Open full answer &rarr;</button><div class="printref">Full answer: Unit 4, 12-Mark Q1</div></div><div class="topcard"><span class="qn">10</span><div class="tq"><div>Define exception handling. Explain the use of try, catch and throw with example.</div><div class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2022</span></div></div><button class="mini jump" type="button" data-unit="u4" data-idx="1">Open full answer &rarr;</button><div class="printref">Full answer: Unit 4, 12-Mark Q2</div></div><div class="topcard"><span class="qn">11</span><div class="tq"><div>What is the significance of static data members and static member functions in C++?</div><div class="yrs"><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u1" data-idx="3">Open full answer &rarr;</button><div class="printref">Full answer: Unit 1, 12-Mark Q4</div></div><div class="topcard"><span class="qn">12</span><div class="tq"><div>What is the role of manipulators in C++? Write down the different manipulators with examples.</div><div class="yrs"><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u4" data-idx="4">Open full answer &rarr;</button><div class="printref">Full answer: Unit 4, 12-Mark Q5</div></div><div class="topcard"><span class="qn">13</span><div class="tq"><div>Discuss the concepts of generalization and aggregation with examples.</div><div class="yrs"><span class="yr">PYQ 2025</span></div></div><button class="mini jump" type="button" data-unit="u4" data-idx="5">Open full answer &rarr;</button><div class="printref">Full answer: Unit 4, 12-Mark Q6</div></div><h3>Part B: 4 Marks (Q11 to Q20)</h3><div class="acc" id="top4-0"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">11</span><span class="qt">Characteristics of a constructor and destructor.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><ul><li><b>Constructor:</b> same name as class; no return type; called automatically; usually public; can be overloaded; can have default arguments; cannot be inherited or virtual.</li><li><b>Destructor:</b> name is <code>~ClassName</code>; no arguments, no return value; <b>only one per class</b>; called automatically when object goes out of scope or is deleted; cannot be overloaded.</li></ul></div></div></div></div></div><div class="acc" id="top4-1"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">12</span><span class="qt">Briefly explain the copy constructor.</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2017</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2021</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>copy constructor</b> creates a new object as a <b>copy of an existing object</b> of the same class. Syntax: <code>ClassName(const ClassName &amp;obj)</code>. It is called when an object is initialised with another object, passed by value or returned by value. Its argument must be a <b>reference</b>, otherwise it would call itself endlessly. Write your own when the class has <b>pointer members</b> (deep copy).</p></div></div></div></div></div><div class="acc" id="top4-2"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">13</span><span class="qt">How to create and destroy objects dynamically?</span><span class="yrs"><span class="yr">PYQ 2018</span><span class="yr">PYQ 2021</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>Use the <b><code>new</code></b> operator to create and <b><code>delete</code></b> to destroy. C++ has no garbage collector, so forgetting <code>delete</code> causes a <b>memory leak</b>.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>Student *p = new Student(101);   // constructor runs
+p-&gt;show();
+delete p;                        // destructor runs, memory freed
+int *a = new int[5];  delete[] a;   // array form</code></pre></div></div></div></div></div></div><div class="acc" id="top4-3"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">14</span><span class="qt">Differentiate between call by value and call by reference.</span><span class="yrs"><span class="yr">PYQ 2019</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="tblwrap"><table><thead><tr><th>Call by value</th><th>Call by reference</th></tr></thead><tbody><tr><td>Copy of data is passed</td><td>Address / alias is passed</td></tr><tr><td>Original value does not change</td><td>Original value changes</td></tr><tr><td>Slower for big objects</td><td>Faster and efficient</td></tr><tr><td>void f(int a)</td><td>void f(int &amp;a)</td></tr></tbody></table></div></div></div></div></div></div><div class="acc" id="top4-4"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">15</span><span class="qt">What do you mean by encapsulation and how is it implemented in C++?</span><span class="yrs"><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Encapsulation</b> means binding data and the functions that use it into one unit. In C++ it is implemented using a <b>class</b>: data members are kept <b>private</b> and member functions are <b>public</b>, so data is reached only through those functions. This also gives data hiding and security.</p></div></div></div></div></div><div class="acc" id="top4-5"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">16</span><span class="qt">What is polymorphism? Briefly explain its types.</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Polymorphism</b> means "one name, many forms". <b>Compile-time (static):</b> function overloading and operator overloading. <b>Run-time (dynamic):</b> virtual functions with a base class pointer. Example: <code>add(int,int)</code> and <code>add(float,float)</code> share one name.</p></div></div></div></div></div><div class="acc" id="top4-6"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">17</span><span class="qt">How can ambiguity in multiple inheritance be resolved?</span><span class="yrs"><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><ul><li>Use the <b>scope resolution operator</b>, example <code>obj.A::show();</code></li><li><b>Override</b> the function in the derived class.</li><li>Use a <b>virtual base class</b> when the same grand-base class comes through two paths.</li></ul></div></div></div></div></div><div class="acc" id="top4-7"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">18</span><span class="qt">Explain the virtual destructor.</span><span class="yrs"><span class="yr">PYQ 2021</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>If a base pointer holds a derived object and the base destructor is <b>not virtual</b>, <code>delete p;</code> runs only the base destructor, which causes a <b>memory leak</b>. Declaring <code>virtual ~Base()</code> makes <code>delete p;</code> call the <b>derived destructor first, then the base</b>. Rule: any class with virtual functions should have a virtual destructor.</p></div></div></div></div></div><div class="acc" id="top4-8"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">19</span><span class="qt">Discuss the need for exception handling with try, catch and throw.</span><span class="yrs"><span class="yr">PYQ 2017</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>Without it, a run-time error such as divide by zero <b>stops the program abruptly</b>. With <code>try</code>, risky code is watched; <code>throw</code> raises the error; <code>catch</code> handles it and the program continues safely. It keeps <b>error code separate</b> from normal code and is cleaner than <code>if-else</code> checks everywhere.</p></div></div></div></div></div><div class="acc" id="top4-9"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">20</span><span class="qt">Write a sample code to show the difference between C and C++.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>C is a <b>procedural</b> language (functions only). C++ is <b>object-oriented</b> (adds classes, objects, overloading, inheritance). The key addition in C++ is the ability to group data and functions inside a <b>class</b>.</p><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>// C style
+#include &lt;stdio.h&gt;
+void greet() { printf("Hello, C!
+"); }
+int main() { greet(); return 0; }
+
+// C++ style
+#include &lt;iostream&gt;
+using namespace std;
+class Greeter {
+public:
+    void greet() { cout &lt;&lt; "Hello, C++!" &lt;&lt; endl; }
+};
+int main() { Greeter g; g.greet(); return 0; }</code></pre></div></div></div></div></div></div><div class="acc" id="top4-10"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">21</span><span class="qt">Explain token in C++.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>token</b> is the <b>smallest unit</b> of a C++ program that the compiler recognises. Types: <b>Keywords</b> (<code>int</code>, <code>class</code>), <b>Identifiers</b> (variable/function names), <b>Constants / Literals</b> (<code>10</code>, <code>'A'</code>), <b>Operators</b> (<code>+</code>, <code>::</code>), <b>Punctuators</b> (<code>;</code>, <code>{</code>, <code>}</code>).</p></div></div></div></div></div><div class="acc" id="top4-11"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">22</span><span class="qt">Define proxy classes.</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>A <b>proxy class</b> provides a <b>controlled interface</b> to another (real) class. It hides the real class and can add features like lazy loading. C++ smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>) are proxy classes for raw pointers.</p></div></div></div></div></div><div class="acc" id="top4-12"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">23</span><span class="qt">Discuss the role of manipulators in C++.</span><span class="yrs"><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p><b>Manipulators</b> format I/O by modifying stream state. Key ones: <code>endl</code> (newline + flush), <code>setw(n)</code> (field width), <code>setprecision(n)</code> (decimal places), <code>setfill(c)</code> (fill character), <code>left</code>/<code>right</code> (alignment), <code>hex</code>/<code>oct</code>/<code>dec</code> (number base), <code>fixed</code> (fixed notation), <code>boolalpha</code> (bool as true/false). Header: <code>&lt;iomanip&gt;</code> (parameterised) and <code>&lt;iostream&gt;</code> (non-parameterised).</p></div></div></div></div></div><div class="acc" id="top4-13"><button class="acc-head" type="button" aria-expanded="false"><span class="qn">24</span><span class="qt">What is an abstract class? What is its benefit?</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2018</span><span class="yr">PYQ 2019</span><span class="yr">PYQ 2022</span><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><p>An <b>abstract class</b> has at least one <b>pure virtual function</b> (<code>= 0</code>) and <b>cannot be instantiated</b>. Benefits: it gives a <b>common interface / base</b> for related classes, forces derived classes to implement required functions, and supports <b>run-time polymorphism</b>.</p></div></div></div></div></div></section>
+<section class="extra reveal" id="programs"><h2>Important C++ Programs</h2>
+<div class="tools"><button class="mini" data-act="expand" type="button">Expand all</button><button class="mini" data-act="collapse" type="button">Collapse all</button></div><div class="acc" id="prog-0"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 1 — Constructor / Destructor / Copy Constructor (default values)</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2018</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Distance {
+    int feet, inches;
+public:
+    Distance(int f = 0, int i = 0) {          // parameterized + default values
+        feet = f; inches = i;
+        cout &lt;&lt; "Constructor called\n";
+    }
+    Distance(const Distance &amp;d) {             // copy constructor
+        feet = d.feet; inches = d.inches;
+        cout &lt;&lt; "Copy constructor called\n";
+    }
+    void show() { cout &lt;&lt; feet &lt;&lt; " ft " &lt;&lt; inches &lt;&lt; " in\n"; }
+    ~Distance() { cout &lt;&lt; "Destructor called\n"; }
+};
+int main() {
+    Distance d1(5, 8);
+    Distance d2 = d1;
+    d1.show();
+    d2.show();
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-1"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 2 — Operator Overloading: +, -, *, &lt;&lt;, &gt;&gt; for Complex</span><span class="yrs"><span class="yr">PYQ 2018</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Complex {
+    float re, im;
+public:
+    Complex(float r = 0, float i = 0) { re = r; im = i; }
+    Complex operator+(Complex c) { return Complex(re + c.re, im + c.im); }
+    Complex operator-(Complex c) { return Complex(re - c.re, im - c.im); }
+    Complex operator*(Complex c) {
+        return Complex(re * c.re - im * c.im, re * c.im + im * c.re);
+    }
+    friend ostream&amp; operator&lt;&lt;(ostream &amp;out, const Complex &amp;c);
+    friend istream&amp; operator&gt;&gt;(istream &amp;in, Complex &amp;c);
+};
+ostream&amp; operator&lt;&lt;(ostream &amp;out, const Complex &amp;c) {
+    out &lt;&lt; c.re &lt;&lt; " + " &lt;&lt; c.im &lt;&lt; "i";
+    return out;
+}
+istream&amp; operator&gt;&gt;(istream &amp;in, Complex &amp;c) {
+    in &gt;&gt; c.re &gt;&gt; c.im;
+    return in;
+}
+int main() {
+    Complex a(2, 3), b(4, 5);
+    cout &lt;&lt; "Sum  = " &lt;&lt; a + b &lt;&lt; endl;
+    cout &lt;&lt; "Diff = " &lt;&lt; a - b &lt;&lt; endl;
+    cout &lt;&lt; "Prod = " &lt;&lt; a * b &lt;&lt; endl;
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-2"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 2B — Prefix and Postfix Decrement using Friend Function</span><span class="yrs"><span class="yr">PYQ 2019</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Counter {
+    int n;
+public:
+    Counter(int x = 0) { n = x; }
+    friend Counter operator--(Counter &amp;c);        // prefix  --c
+    friend Counter operator--(Counter &amp;c, int);   // postfix c--
+    void show() { cout &lt;&lt; n &lt;&lt; endl; }
+};
+Counter operator--(Counter &amp;c) { --c.n; return c; }
+Counter operator--(Counter &amp;c, int) { Counter t = c; c.n--; return t; }
+int main() {
+    Counter a(5), b(5);
+    --a; a.show();     // 4
+    b--; b.show();     // 4
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-3"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 3 — Inheritance: Constructors and Destructors in Derived Class</span><span class="yrs"><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+class Person {
+protected:
+    string name;
+public:
+    Person(string n) { name = n; cout &lt;&lt; "Person constructor\n"; }
+    ~Person() { cout &lt;&lt; "Person destructor\n"; }
+};
+class Student : public Person {
+    int roll;
+public:
+    Student(string n, int r) : Person(n) { roll = r; cout &lt;&lt; "Student constructor\n"; }
+    void show() { cout &lt;&lt; name &lt;&lt; " " &lt;&lt; roll &lt;&lt; endl; }
+    ~Student() { cout &lt;&lt; "Student destructor\n"; }
+};
+int main() {
+    Student s("Aman", 101);
+    s.show();
+    return 0;
+}
+// Order: Person ctor, Student ctor, show, Student dtor, Person dtor</code></pre></div></div></div></div></div></div><div class="acc" id="prog-4"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 3B — Multiple Inheritance: Classes X, Y, Z (string concatenation)</span><span class="yrs"><span class="yr">PYQ 2014</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+class X {
+protected:
+    char a[20];
+public:
+    X(const char *s) { strcpy(a, s); }
+    ~X() { cout &lt;&lt; "X destroyed\n"; }
+};
+class Y {
+protected:
+    char b[20];
+public:
+    Y(const char *s) { strcpy(b, s); }
+    ~Y() { cout &lt;&lt; "Y destroyed\n"; }
+};
+class Z : public X, public Y {
+    char c[40];
+public:
+    Z(const char *s1, const char *s2) : X(s1), Y(s2) {
+        strcpy(c, a);
+        strcat(c, b);
+    }
+    void show() { cout &lt;&lt; a &lt;&lt; endl &lt;&lt; b &lt;&lt; endl &lt;&lt; c &lt;&lt; endl; }
+    ~Z() { cout &lt;&lt; "Z destroyed\n"; }
+};
+int main() {
+    Z obj("Hello", "World");
+    obj.show();
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-5"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 4 — Templates (function and class)</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2019</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+template &lt;class T&gt;
+T minimum(T a, T b) { return (a &lt; b) ? a : b; }
+
+template &lt;class T&gt;
+class Box {
+    T v;
+public:
+    Box(T x) { v = x; }
+    T get() { return v; }
+};
+int main() {
+    cout &lt;&lt; minimum(10, 20) &lt;&lt; endl;        // int
+    cout &lt;&lt; minimum('a', 'z') &lt;&lt; endl;      // char
+    cout &lt;&lt; minimum(3.5f, 2.1f) &lt;&lt; endl;    // float
+    Box&lt;int&gt; b1(5);
+    Box&lt;float&gt; b2(2.5f);
+    cout &lt;&lt; b1.get() &lt;&lt; " " &lt;&lt; b2.get() &lt;&lt; endl;
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-6"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 5 — Exception Handling (constructor / destructor + user-defined exception)</span><span class="yrs"><span class="yr">PYQ 2014</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+class Test {
+public:
+    Test()  { cout &lt;&lt; "Constructor\n"; }
+    ~Test() { cout &lt;&lt; "Destructor\n"; }
+};
+class MyException {
+public:
+    string msg;
+    MyException(string m) { msg = m; }
+};
+int main() {
+    try {
+        Test t;
+        int a = 10, b = 0;
+        if (b == 0) throw "Division by zero";
+        cout &lt;&lt; a / b;
+    }
+    catch (const char *m) {
+        cout &lt;&lt; "Caught: " &lt;&lt; m &lt;&lt; endl;
+    }
+    try {
+        int age = 15;
+        if (age &lt; 18) throw MyException("Age must be 18 or more");
+    }
+    catch (MyException &amp;e) {
+        cout &lt;&lt; "User-defined exception: " &lt;&lt; e.msg &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-7"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 6 — File Handling (sequential + random access)</span><span class="yrs"><span class="yr">PYQ 2017</span><span class="yr">PYQ 2021</span><span class="yr">PYQ 2022</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main() {
+    // Write
+    ofstream fout("student.txt");
+    fout &lt;&lt; "Aman 85" &lt;&lt; endl;
+    fout &lt;&lt; "Riya 90" &lt;&lt; endl;
+    fout.close();
+
+    // Read (sequential)
+    ifstream fin("student.txt");
+    string name; int marks;
+    while (fin &gt;&gt; name &gt;&gt; marks)
+        cout &lt;&lt; name &lt;&lt; " " &lt;&lt; marks &lt;&lt; endl;
+    fin.close();
+
+    // Random access
+    ifstream f("student.txt");
+    f.seekg(0, ios::end);              // go to end
+    long size = f.tellg();             // position = file size
+    cout &lt;&lt; "File size = " &lt;&lt; size &lt;&lt; " bytes" &lt;&lt; endl;
+    f.seekg(0, ios::beg);              // back to start
+    f.close();
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-8"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 7 — Average Marks of 50 Students</span><span class="yrs"><span class="yr">PYQ 2024</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    const int N = 50;
+    float marks[N], sum = 0;
+    for (int i = 0; i &lt; N; i++) {
+        cout &lt;&lt; "Enter marks of student " &lt;&lt; i + 1 &lt;&lt; ": ";
+        cin &gt;&gt; marks[i];
+        sum += marks[i];
+    }
+    cout &lt;&lt; "Average marks = " &lt;&lt; sum / N &lt;&lt; endl;
+    return 0;
+}
+// Assumption: marks are out of 100, stored as float</code></pre></div></div></div></div></div></div><div class="acc" id="prog-9"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 8 — Static Data Member + Static Function (count objects)</span><span class="yrs"><span class="yr">PYQ 2019</span><span class="yr">PYQ 2020</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+class Student {
+    int roll;
+    static int count;
+public:
+    Student(int r) { roll = r; count++; }
+    ~Student()     { count--; }
+    static void showCount() {
+        cout &lt;&lt; "Total Students: " &lt;&lt; count &lt;&lt; endl;
+    }
+};
+int Student::count = 0;
+int main() {
+    Student::showCount();      // 0
+    Student s1(1), s2(2);
+    Student::showCount();      // 2
+    {
+        Student s3(3);
+        Student::showCount();  // 3
+    }
+    Student::showCount();      // 2
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-10"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 9 — User-Defined Exception (Bank Account / Insufficient Funds)</span><span class="yrs"><span class="yr">PYQ 2022</span><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+class InsufficientFunds {
+public:
+    double amount;
+    string msg;
+    InsufficientFunds(double a) {
+        amount = a;
+        msg = "Need Rs." + to_string((int)a) + " more!";
+    }
+};
+class BankAccount {
+    double balance;
+public:
+    BankAccount(double b) { balance = b; }
+    void withdraw(double a) {
+        if (a &gt; balance) throw InsufficientFunds(a - balance);
+        balance -= a;
+        cout &lt;&lt; "Withdrawn Rs." &lt;&lt; a
+             &lt;&lt; "  Balance: Rs." &lt;&lt; balance &lt;&lt; endl;
+    }
+};
+int main() {
+    try {
+        BankAccount acc(1000);
+        acc.withdraw(500);    // OK
+        acc.withdraw(700);    // throws
+    }
+    catch (InsufficientFunds &amp;e) {
+        cout &lt;&lt; "Error: " &lt;&lt; e.msg &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre></div></div></div></div></div></div><div class="acc" id="prog-11"><button class="acc-head" type="button" aria-expanded="false"><span class="qt">Program 10 — Function Template: Product of Two Values (int, float, char)</span><span class="yrs"><span class="yr">PYQ 2025</span></span><span class="chev">&#9662;</span></button><div class="acc-body"><div class="acc-inner"><div class="nb"><div class="margin"></div><div class="nbtxt"><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>#include &lt;iostream&gt;
+using namespace std;
+template &lt;class T&gt;
+T product(T a, T b) { return a * b; }
+int main() {
+    cout &lt;&lt; product(4, 5)        &lt;&lt; endl;   // 20   (int)
+    cout &lt;&lt; product(2.5f, 3.0f)  &lt;&lt; endl;   // 7.5  (float)
+    // Note: char multiplication gives ASCII product as int
+    cout &lt;&lt; (int)product('A', '') &lt;&lt; endl; // 130
+    return 0;
+}</code></pre></div></div></div></div></div></div></section>
+<section class="extra reveal" id="cheat"><h2>Last Minute Cheat Sheet</h2><div class="cgrid">
+<div class="ccard"><h4>One-liner Definitions</h4><ul><li><b>Class</b> = blueprint; <b>Object</b> = instance.</li><li><b>Encapsulation</b> = wrap data + functions; <b>Abstraction</b> = hide complexity; <b>Data hiding</b> = private data.</li><li><b>Inheritance</b> = reuse; <b>Polymorphism</b> = one name, many forms.</li><li><b>Constructor</b> = same name as class, no return type; <b>Destructor</b> = <code>~Name</code>.</li><li><b>Friend</b> = non-member with access to private data.</li><li><b>Static</b> = one shared copy; <b>this</b> = address of the calling object.</li><li><b>Virtual function</b> = run-time choice; <b>Pure virtual</b> = <code>= 0</code>; <b>Abstract class</b> = has a pure virtual function.</li><li><b>Template</b> = generic code for any type.</li><li><b>Exception</b> = run-time error handled with try / catch / throw.</li><li><b>Stream</b> = flow of data; <code>ifstream</code> read, <code>ofstream</code> write, <code>fstream</code> both.</li></ul></div>
+<div class="ccard"><h4>Important Syntax</h4><div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>class A { private: int x; public: A(int a){x=a;} ~A(){} };   // class
+void A::show() { }                                          // outside definition
+Complex operator+(Complex c);                               // operator function
+friend ostream&amp; operator&lt;&lt;(ostream&amp;, const A&amp;);             // insertion
+class B : public A { };                                     // single inheritance
+class C : public A, public B { };                           // multiple
+class D : virtual public A { };                             // virtual base
+virtual void f();    virtual void g() = 0;                  // virtual / pure virtual
+template &lt;class T&gt; T f(T a, T b) { }                        // template
+try { throw 10; } catch (int e) { }                         // exception
+ofstream fout("a.txt");  ifstream fin("a.txt");             // files
+Student *p = new Student(1);  delete p;                     // dynamic object</code></pre></div></div>
+<div class="ccard"><h4>Common Mistakes</h4><ul><li>Writing a <b>return type</b> for a constructor or destructor.</li><li>Forgetting the <b>semicolon after the class closing brace</b> <code>};</code></li><li>Defining a friend function with <code>A::</code> or the word <code>friend</code> outside the class.</li><li>Using a <b>base class pointer to call derived-only functions</b>.</li><li>Forgetting <code>virtual</code> in the base class, so the base function runs.</li><li>Trying to create an <b>object of an abstract class</b>.</li><li>Forgetting to <b>close the file</b> or to check that it opened.</li><li>Writing a <code>catch</code> with the wrong type, so the exception is not caught.</li><li>Creating an object with no arguments when only a parameterized constructor exists (compile error).</li><li>Passing the copy constructor argument <b>by value</b> instead of by reference.</li></ul></div>
+<div class="ccard"><h4>Memory Tricks</h4><ul><li><b>OOP features = "EAPI"</b>: Encapsulation, Abstraction, Polymorphism, Inheritance.</li><li><b>Access specifiers = "PPP"</b>: Private (class default), Protected, Public.</li><li><b>Constructor types = "DPC"</b>: Default, Parameterized, Copy.</li><li><b>Inheritance types = "SMMHH"</b>: Single, Multiple, Multilevel, Hierarchical, Hybrid.</li><li><b>Cannot overload</b>: Dot <code>.</code>, Scope <code>::</code>, Ternary <code>?:</code>, <code>sizeof</code>, Star-dot <code>.*</code>.</li><li><b>Exception = "TCT"</b>: Try, Catch, Throw.</li><li><b>Order rule</b>: Constructors go <b>Base to Derived</b>; Destructors go <b>Derived to Base</b>.</li><li><b>Binary operator arguments</b>: member = <b>1</b>, friend = <b>2</b> (friend has no <code>this</code>).</li><li><b>Private base members are never directly usable in derived; protected can be used in derived but not outside.</b></li></ul></div></div></section>
+<p class="srcnote">Source note: the 2017 first page is partly cut in the scan (Q2 marks) and the 2014 MCQs (f) and (g) have unclear options, so their answers are Not verified from uploaded material. Papers for 2015, 2016, 2023 and 2025 were not uploaded. MCQs marked Practice are made from the syllabus, not from a PYQ. No question here is guaranteed to come.</p>
+</main>
+<footer>BCA-301 OOP using C++ &bull; Exam notes &bull; Use the Print button of your browser for a print-ready copy</footer>
+<script>
+(function(){
+ var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var done={}, total=0, correct={};
+ $$('.mcq').forEach(function(){total++}); $$('.acc[data-track]').forEach(function(){total++});
+ function progress(){var n=Object.keys(done).length;var p=total?Math.round(n*100/total):0;$('#bar i').style.width=p+'%';$('#pct').textContent=p+'% done'}
+ function mark(id){if(!done[id]){done[id]=1;progress()}}
+ /* theme */
+ var root=document.documentElement;
+ $('#theme').addEventListener('click',function(){var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);root.setAttribute('data-theme',dark?'light':'dark')});
+ /* tabs */
+ function showTab(uid,tab){var u=document.getElementById(uid);$$('.tab',u).forEach(function(b){b.classList.toggle('active',b.dataset.tab===tab)});$$('.panel',u).forEach(function(p){p.classList.toggle('active',p.dataset.panel===tab)})}
+ $$('.tab').forEach(function(b){b.addEventListener('click',function(){showTab(b.closest('.unit').id,b.dataset.tab)})});
+ /* accordions */
+ function toggle(a,force){var open=force===undefined?!a.classList.contains('open'):force;a.classList.toggle('open',open);$('.acc-head',a).setAttribute('aria-expanded',open);if(open&&a.hasAttribute('data-track'))mark(a.id)}
+ $$('.acc-head').forEach(function(h){h.addEventListener('click',function(){toggle(h.parentNode)})});
+ $$('.mini[data-act]').forEach(function(b){b.addEventListener('click',function(){var host=b.closest('.panel')||b.closest('.extra');$$('.acc',host).forEach(function(a){toggle(a,b.dataset.act==='expand')})})});
+ $$('.jump').forEach(function(b){b.addEventListener('click',function(){var uid=b.dataset.unit;showTab(uid,'twelve');var a=document.getElementById(uid+'-twelve-'+b.dataset.idx);toggle(a,true);setTimeout(function(){a.scrollIntoView({behavior:'smooth',block:'start'})},60)})});
+ /* MCQ, KBC style */
+ $$('.mcq').forEach(function(m){
+  var ans=+m.dataset.ans, uid=m.id.split('-')[0];
+  $$('.opt',m).forEach(function(o){o.addEventListener('click',function(){
+   if(m.classList.contains('locking')||m.classList.contains('done'))return;
+   var pick=+o.dataset.i; o.classList.add('locked'); m.classList.add('locking'); $$('.opt',m).forEach(function(x){x.disabled=true});
+   setTimeout(function(){
+    m.classList.remove('locking'); o.classList.remove('locked'); m.classList.add('done');
+    $$('.opt',m)[ans].classList.add('correct');
+    if(pick!==ans){o.classList.add('wrong');m.classList.add('bad')}else{correct[uid]=(correct[uid]||0)+1}
+    var sc=$('[data-score="'+uid+'"]'); var n=$$('.mcq',document.getElementById(uid)).length; sc.textContent='Score '+(correct[uid]||0)+' / '+n;
+    mark(m.id);
+   },900);
+  })});
+ });
+ /* copy */
+ $$('.copy').forEach(function(b){b.addEventListener('click',function(){var t=$('code',b.parentNode).textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy';setTimeout(function(){b.textContent='Copy'},1500)})})});
+ /* reveal + nav highlight */
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in')}})},{threshold:.05});
+ $$('.reveal').forEach(function(s){io.observe(s)});
+ var links=$$('.navin a[href^="#"]');
+ var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+ $$('section[id]').forEach(function(s){so.observe(s)});
+ progress();
+})();
+</script>
+</body></html>
