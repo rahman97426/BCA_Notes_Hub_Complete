@@ -1,13 +1,13 @@
 /* ============================================================
-   BCA Notes Hub — JavaScript / Data
-   © 2026 Abdul Rahman — BCA Student Portal | The Ladder to 2028
+   BCA Notes Hub â€” JavaScript / Data
+   Â© 2026 Abdul Rahman â€” BCA Student Portal | The Ladder to 2028
    File: script.js
-   Add new notes: find the subject in SEMESTERS[] → push to notes[]
+   Add new notes: find the subject in SEMESTERS[] â†’ push to notes[]
 ============================================================ */
 
-      /* ══════════════════════════════════════════════════════
-       GA4 EVENT HELPER — safe wrapper, never throws
-    ══════════════════════════════════════════════════════ */
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       GA4 EVENT HELPER â€” safe wrapper, never throws
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function gae(name, params) {
         try {
           if (typeof gtag === "function") {
@@ -16,92 +16,92 @@
         } catch (e) { /* silent */ }
       }
 
-      /* ╔══════════════════════════════════════════════════════╗
-       ║  BCA NOTES DATA  —  Sem I to Sem VI                  ║
-       ║  To add a note: push into subject.notes[]             ║
-       ║  Format: { title, file, type:'html'|'pdf', desc }    ║
-       ╚══════════════════════════════════════════════════════╝ */
+      /* â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+       â•‘  BCA NOTES DATA  â€”  Sem I to Sem VI                  â•‘
+       â•‘  To add a note: push into subject.notes[]             â•‘
+       â•‘  Format: { title, file, type:'html'|'pdf', desc }    â•‘
+       â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
       const SEMESTERS = [
-        /* ─── SEMESTER I ──────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER I â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 1,
           label: "Semester I",
           short: "Sem I",
-          period: "Jul – Dec 2025",
+          period: "Jul â€“ Dec 2025",
           color: "#6366f1",
           gradient: "linear-gradient(135deg,#4f46e5,#7c3aed)",
           subjects: [
             {
               code: "BCA-101",
               name: "Communication Skills in English",
-              icon: "📝",
+              icon: "ðŸ“",
               desc: "Business letters, report writing, grammar, verbal communication",
               notes: [],
             },
             {
               code: "BCA-102",
               name: "Mathematics-I",
-              icon: "📐",
+              icon: "ðŸ“",
               desc: "Differential calculus, integral calculus, algebra, 2D geometry",
               notes: [],
             },
             {
               code: "BCA-103",
               name: "IT Fundamentals",
-              icon: "🖥️",
+              icon: "ðŸ–¥ï¸",
               desc: "Computer organization, OS basics, networks, binary systems",
               notes: [],
             },
             {
               code: "BCA-104",
               name: "Principles of Management",
-              icon: "📊",
+              icon: "ðŸ“Š",
               desc: "Planning, organizing, staffing, leadership, controlling",
               notes: [],
             },
             {
               code: "BCA-105",
               name: "Python Programming",
-              icon: "🐍",
+              icon: "ðŸ",
               desc: "Variables, loops, functions, file handling, OOP in Python",
               notes: [],
             },
           ],
         },
 
-        /* ─── SEMESTER II ─────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER II â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 2,
           label: "Semester II",
           short: "Sem II",
-          period: "Feb – Jun 2026",
+          period: "Feb â€“ Jun 2026",
           color: "#f43f5e",
           gradient: "linear-gradient(135deg,#e11d48,#f97316)",
           subjects: [
             {
               code: "BCA-201",
               name: "Business English",
-              icon: "📘",
+              icon: "ðŸ“˜",
               desc: "Letter writing, comprehension, grammar & business communication",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca201/BCA201_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "Complete notes · PYQs · VVI Questions · Exam answers · Exam strategy",
+                  desc: "Complete notes Â· PYQs Â· VVI Questions Â· Exam answers Â· Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca201/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-201 Business English official syllabus · AKU Patna",
+                  desc: "BCA-201 Business English official syllabus Â· AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca201/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-201 previous year exam questions · AKU Patna",
+                  desc: "BCA-201 previous year exam questions Â· AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -120,26 +120,26 @@
             {
               code: "BCA-202",
               name: "Numerical Techniques",
-              icon: "🔢",
+              icon: "ðŸ”¢",
               desc: "Newton-Raphson, Gauss elimination, interpolation, integration",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca202/BCA202_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "Complete notes · PYQs · VVI Questions · Exam answers · Exam strategy",
+                  desc: "Complete notes Â· PYQs Â· VVI Questions Â· Exam answers Â· Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca202/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-202 Numerical Techniques official syllabus · AKU Patna",
+                  desc: "BCA-202 Numerical Techniques official syllabus Â· AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca202/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-202 previous year exam questions · AKU Patna",
+                  desc: "BCA-202 previous year exam questions Â· AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -158,32 +158,32 @@
             {
               code: "BCA-203",
               name: "System Analysis & Design",
-              icon: "🗂️",
+              icon: "ðŸ—‚ï¸",
               desc: "SDLC models, DFD, ER diagrams, structured system design",
               notes: [
                 {
                   title: "Interactive Study Guide",
                   file: "notes/bca203/BCA203_Interactive_Study.html",
                   type: "html",
-                  desc: "All 7 units · Interactive Q&A · Countdown timer · PYQ mapped",
+                  desc: "All 7 units Â· Interactive Q&A Â· Countdown timer Â· PYQ mapped",
                 },
                 {
                   title: "Colorful Exam Guide",
                   file: "notes/bca203/BCA203_SAD_ColorfulExamGuide.html",
                   type: "html",
-                  desc: "Definitions · Short tricks · VVI answers · Exam strategy",
+                  desc: "Definitions Â· Short tricks Â· VVI answers Â· Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca203/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-203 System Analysis & Design official syllabus · AKU Patna",
+                  desc: "BCA-203 System Analysis & Design official syllabus Â· AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca203/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-203 previous year exam questions · AKU Patna",
+                  desc: "BCA-203 previous year exam questions Â· AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -202,32 +202,32 @@
             {
               code: "BCA-204",
               name: "Programming in C",
-              icon: "💻",
+              icon: "ðŸ’»",
               desc: "Pointers, structures, file handling, dynamic memory management",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca204/BCA204_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "All units · PYQ answers · Code examples · Exam strategy",
+                  desc: "All units Â· PYQ answers Â· Code examples Â· Exam strategy",
                 },
                 {
                   title: "VVI Interactive Exam Guide",
                   file: "notes/bca204/BCA204_VVI_ExamGuide.html",
                   type: "html",
-                  desc: "7 units · Top 30 VVI Qs · Programs · Crash sheet · Checklist",
+                  desc: "7 units Â· Top 30 VVI Qs Â· Programs Â· Crash sheet Â· Checklist",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca204/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-204 Programming in C official syllabus · AKU Patna",
+                  desc: "BCA-204 Programming in C official syllabus Â· AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca204/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-204 previous year exam questions · AKU Patna",
+                  desc: "BCA-204 previous year exam questions Â· AKU Patna",
                 },
                 {
                   title: "Cheatsheet",
@@ -240,38 +240,38 @@
             {
               code: "BCA-205",
               name: "Operating System & UNIX",
-              icon: "⚙️",
+              icon: "âš™ï¸",
               desc: "Process management, deadlock, memory management, shell scripting",
               notes: [
                 {
                   title: "OS & UNIX Complete Notes",
                   file: "notes/bca205/BCA205_Complete.html",
                   type: "html",
-                  desc: "Full PYQ answers · UNIX commands · OS theory · All units",
+                  desc: "Full PYQ answers Â· UNIX commands Â· OS theory Â· All units",
                 },
                 {
                   title: "OS & UNIX Updated Notes",
                   file: "notes/bca205/BCA205_Complete_v2.html",
                   type: "html",
-                  desc: "Updated version · Complete coverage · New PYQs included",
+                  desc: "Updated version Â· Complete coverage Â· New PYQs included",
                 },
                 {
                   title: "PYQ Solved Q&A",
                   file: "notes/bca205/BCA205_QA.html",
                   type: "html",
-                  desc: "Previous year questions with detailed answers · AKU Patna",
+                  desc: "Previous year questions with detailed answers Â· AKU Patna",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca205/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-205 Operating System & UNIX official syllabus · AKU Patna",
+                  desc: "BCA-205 Operating System & UNIX official syllabus Â· AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca205/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-205 previous year exam questions · AKU Patna",
+                  desc: "BCA-205 previous year exam questions Â· AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -290,19 +290,19 @@
           ],
         },
 
-        /* ─── SEMESTER III ────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER III â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 3,
           label: "Semester III",
           short: "Sem III",
-          period: "Jul – Dec 2026",
+          period: "Jul - Dec 2026",
           color: "#f59e0b",
           gradient: "linear-gradient(135deg,#d97706,#f59e0b)",
           subjects: [
             {
               code: "BCA-301",
               name: "Object Oriented Programming with C++",
-              icon: "🔵",
+              icon: "\u{1F535}",
               desc: "Classes, objects, inheritance, polymorphism, templates, STL",
               notes: [
                 {
@@ -364,7 +364,7 @@
             {
               code: "BCA-302",
               name: "INTERNET & WEB DESIGNING",
-              icon: "🌐",
+              icon: "\u{1F310}",
               desc: "Communication on the Internet, HTML, CSS, JavaScript, web design principles",
               notes: [
                 {
@@ -402,7 +402,7 @@
             {
               code: "BCA-303",
               name: "Java Programming",
-              icon: "☕",
+              icon: "\u2615",
               desc: "OOP in Java, applets, multithreading, exception handling",
               notes: [
                 {
@@ -434,7 +434,7 @@
             {
               code: "BCA-304",
               name: "SOFTWARE ENGINEERING",
-              icon: "🗂️",
+              icon: "\u{1F5C2}\uFE0F",
               desc: "Software Engineering, Software Design, Coding and Testing of Software, Software Quality Assurance",
               notes: [
                 {
@@ -491,141 +491,141 @@
           ],
         },
 
-        /* ─── SEMESTER IV ─────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER IV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 4,
           label: "Semester IV",
           short: "Sem IV",
-          period: "Jan – Jun 2027",
+          period: "Jan â€“ Jun 2027",
           color: "#10b981",
           gradient: "linear-gradient(135deg,#059669,#10b981)",
           subjects: [
             {
               code: "BCA-401",
               name: "Database Management System",
-              icon: "🗄️",
+              icon: "ðŸ—„ï¸",
               desc: "RDBMS concepts, SQL, normalization, ER modeling, transactions",
               notes: [],
             },
             {
               code: "BCA-402",
               name: "Computer Organization",
-              icon: "🔌",
+              icon: "ðŸ”Œ",
               desc: "CPU architecture, memory hierarchy, I/O organization, pipelining",
               notes: [],
             },
             {
               code: "BCA-403",
               name: "Design & Analysis of Algorithms",
-              icon: "📈",
+              icon: "ðŸ“ˆ",
               desc: "Time complexity, sorting, divide & conquer, greedy, DP",
               notes: [],
             },
             {
               code: "BCA-404",
               name: "Web Technology",
-              icon: "🌍",
+              icon: "ðŸŒ",
               desc: "HTML5, CSS3, JavaScript, PHP, XML, web services",
               notes: [],
             },
             {
               code: "BCA-405",
               name: "Computer Graphics",
-              icon: "🎨",
+              icon: "ðŸŽ¨",
               desc: "2D/3D transformations, rendering, multimedia, animation basics",
               notes: [],
             },
           ],
         },
 
-        /* ─── SEMESTER V ──────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER V â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 5,
           label: "Semester V",
           short: "Sem V",
-          period: "Jul – Dec 2027",
+          period: "Jul â€“ Dec 2027",
           color: "#06b6d4",
           gradient: "linear-gradient(135deg,#0284c7,#06b6d4)",
           subjects: [
             {
               code: "BCA-501",
               name: "Visual Basic .NET",
-              icon: "🟦",
+              icon: "ðŸŸ¦",
               desc: "Windows forms, ADO.NET, event handling, database connectivity",
               notes: [],
             },
             {
               code: "BCA-502",
               name: "Internet Technology",
-              icon: "📡",
+              icon: "ðŸ“¡",
               desc: "HTTP, FTP, email protocols, web security, cloud basics",
               notes: [],
             },
             {
               code: "BCA-503",
               name: "Computer Networks-II",
-              icon: "🔒",
+              icon: "ðŸ”’",
               desc: "Transport layer, network security, cryptography, firewalls",
               notes: [],
             },
             {
               code: "BCA-504",
               name: "Theory of Computation",
-              icon: "🧮",
+              icon: "ðŸ§®",
               desc: "Automata, formal languages, Turing machines, decidability",
               notes: [],
             },
             {
               code: "BCA-505",
               name: "Software Testing",
-              icon: "🧪",
+              icon: "ðŸ§ª",
               desc: "Testing types, test cases, defect management, automation basics",
               notes: [],
             },
           ],
         },
 
-        /* ─── SEMESTER VI ─────────────────────────────────── */
+        /* â”€â”€â”€ SEMESTER VI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         {
           num: 6,
           label: "Semester VI",
           short: "Sem VI",
-          period: "Jan – Jun 2028",
+          period: "Jan â€“ Jun 2028",
           color: "#8b5cf6",
           gradient: "linear-gradient(135deg,#7c3aed,#a855f7)",
           subjects: [
             {
               code: "BCA-601",
               name: "Cloud Computing",
-              icon: "☁️",
+              icon: "â˜ï¸",
               desc: "Cloud models, AWS/Azure basics, virtualization, deployment",
               notes: [],
             },
             {
               code: "BCA-602",
               name: "Artificial Intelligence",
-              icon: "🤖",
+              icon: "ðŸ¤–",
               desc: "Search algorithms, ML basics, neural networks, expert systems",
               notes: [],
             },
             {
               code: "BCA-603",
               name: "E-Commerce",
-              icon: "🛒",
+              icon: "ðŸ›’",
               desc: "E-business models, payment systems, digital marketing, security",
               notes: [],
             },
             {
               code: "BCA-604",
               name: "Cyber Security",
-              icon: "🛡️",
+              icon: "ðŸ›¡ï¸",
               desc: "Ethical hacking, OWASP, penetration testing, cyber laws",
               notes: [],
             },
             {
               code: "BCA-605",
               name: "Project Work",
-              icon: "🚀",
+              icon: "ðŸš€",
               desc: "Capstone project: Full stack + security + documentation",
               notes: [],
             },
@@ -633,13 +633,13 @@
         },
       ];
 
-      /* ─── STATE ─────────────────────────────────────────── */
-      let activeSem = 2; // default: show Sem II (has notes)
+      /* â”€â”€â”€ STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      let activeSem = 3; // default: show Sem III
       let searchHits = [];
       let curFile = "";
       let recent = JSON.parse(localStorage.getItem("hub_recent") || "[]");
 
-      /* ─── INIT ───────────────────────────────────────────── */
+      /* â”€â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       (function () {
         applyTheme();
         renderTabs();
@@ -647,9 +647,9 @@
         updateTotalLabel();
       })();
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        TABS
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function renderTabs() {
         const bar = document.getElementById("semTabs");
         bar.innerHTML = SEMESTERS.map((s) => {
@@ -672,9 +672,9 @@
         renderSem(num);
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        SEM VIEW
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function renderSem(num) {
         const s = SEMESTERS.find((x) => x.num === num);
         const main = document.getElementById("mainContent");
@@ -691,7 +691,7 @@
         const recentHtml = recent.length
           ? `
   <div class="recent-bar">
-    <span class="recent-label" style="color:${s.color}">🕐 Recent</span>
+    <span class="recent-label" style="color:${s.color}">ðŸ• Recent</span>
     <div class="recent-chips">
       ${recent
         .slice(0, 5)
@@ -699,7 +699,7 @@
           (r) => `
         <div class="rchip" style="--active-c:${s.color}"
           onclick="openReader('${esc(r.file)}','${r.type}','${esc(r.title)}','${esc(r.sub || "")}')">
-          ${r.type === "pdf" ? "📄" : "📖"} ${r.title}
+          ${r.type === "pdf" ? "ðŸ“„" : "ðŸ“–"} ${r.title}
         </div>`,
         )
         .join("")}
@@ -714,7 +714,7 @@
         <div class="sem-num-badge" style="background:${s.gradient}">0${s.num}</div>
         <div class="sem-title-block">
           <h2>${s.label}</h2>
-          <p>${s.period} · AKU Patna · ${s.subjects.length} Subjects</p>
+          <p>${s.period} Â· AKU Patna Â· ${s.subjects.length} Subjects</p>
         </div>
       </div>
       <div class="sem-meta">
@@ -739,10 +739,10 @@
           ? sub.notes
               .map(
                 (n) =>
-                  `<span class="note-chip available">${n.type === "pdf" ? "📄" : "📖"} ${n.title}</span>`,
+                  `<span class="note-chip available">${n.type === "pdf" ? "ðŸ“„" : "ðŸ“–"} ${n.title}</span>`,
               )
               .join("")
-          : `<span class="note-chip empty">📂 No notes yet</span>`;
+          : `<span class="note-chip empty">ðŸ“‚ No notes yet</span>`;
 
         return `
   <div class="sub-card${hasNotes ? "" : " no-notes"}"
@@ -764,15 +764,15 @@
           ? `<button class="open-btn" onclick="event.stopPropagation();openPanel(${JSON.stringify(sub).replace(/"/g, "&quot;")},'${color}')">
         Open <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i>
       </button>`
-          : `<span style="font-size:.72rem;color:var(--muted)">📁 Empty</span>`
+          : `<span style="font-size:.72rem;color:var(--muted)">ðŸ“ Empty</span>`
       }
     </div>
   </div>`;
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        NOTES PANEL
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function openPanel(sub, color) {
         gae("subject_open", { subject_code: sub.code, subject_name: sub.name });
         const hdr = document.getElementById("panelHeader");
@@ -788,7 +788,7 @@
         if (!sub.notes.length) {
           body.innerHTML = `
       <div class="panel-empty">
-        <div class="pe-icon">📂</div>
+        <div class="pe-icon">ðŸ“‚</div>
         <h3>No notes yet</h3>
         <p>Add files to <code>${sub.code}</code> in the DATA section of <code>notes_hub.html</code>.<br>
         See README.md for instructions.</p>
@@ -804,7 +804,7 @@
           ? `
       <div class="notes-section">
         <div class="notes-section-title" style="--pc:${color}">
-          <span class="dot"></span> 📖 HTML Notes <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${html.length}</span>
+          <span class="dot"></span> ðŸ“– HTML Notes <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${html.length}</span>
         </div>
         ${html.map((n) => noteRow(n, sub, color)).join("")}
       </div>`
@@ -815,7 +815,7 @@
           ? `
       <div class="notes-section">
         <div class="notes-section-title" style="--pc:${color}">
-          <span class="dot"></span> 📄 PDF Files <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${pdf.length}</span>
+          <span class="dot"></span> ðŸ“„ PDF Files <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${pdf.length}</span>
         </div>
         ${pdf.map((n) => noteRow(n, sub, color)).join("")}
       </div>`
@@ -832,14 +832,14 @@
         const isPdf = note.type === "pdf";
         return `
   <div class="note-row" style="--pc:${color}"
-    onclick="openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " — " + sub.name)}')">
-    <div class="note-row-icon" style="background:${color}18">${isPdf ? "📄" : "📖"}</div>
+    onclick="openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " â€” " + sub.name)}')">
+    <div class="note-row-icon" style="background:${color}18">${isPdf ? "ðŸ“„" : "ðŸ“–"}</div>
     <div class="note-row-info">
       <div class="note-row-title">${note.title}</div>
       <div class="note-row-desc">${note.desc || ""}</div>
     </div>
     <div class="note-row-actions">
-      <button class="nr-btn solid" onclick="event.stopPropagation();openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " — " + sub.name)}')">
+      <button class="nr-btn solid" onclick="event.stopPropagation();openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " â€” " + sub.name)}')">
         <i class="fa-solid fa-${isPdf ? "file-pdf" : "book-open"}"></i> Open
       </button>
       ${
@@ -857,9 +857,9 @@
         document.body.style.overflow = "";
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        ALL SYLLABUSES MODAL  (Semester II)
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function openSyllabusModal() {
         gae("syllabus_modal_open");
         const sem2 = SEMESTERS.find((s) => s.num === 2);
@@ -880,13 +880,13 @@
     <div class="syl-row-actions">
       ${syl
         ? `<button class="nr-btn solid" style="background:${color};border-color:${color}"
-              onclick="closeModal('syllabusModal');openReader('${esc(syl.file)}','pdf','${esc(sub.code)} Official Syllabus','${esc(sub.code)} — ${esc(sub.name)}')">
+              onclick="closeModal('syllabusModal');openReader('${esc(syl.file)}','pdf','${esc(sub.code)} Official Syllabus','${esc(sub.code)} â€” ${esc(sub.name)}')">
               <i class="fa-solid fa-file-pdf"></i> Open
             </button>
             <button class="nr-btn outline" onclick="forceDownload('${esc(syl.file)}')">
               <i class="fa-solid fa-download"></i> Save
             </button>`
-        : `<span style="font-size:.75rem;color:var(--muted)">📂 Not uploaded yet</span>`
+        : `<span style="font-size:.75rem;color:var(--muted)">ðŸ“‚ Not uploaded yet</span>`
       }
     </div>
   </div>`;
@@ -902,9 +902,9 @@
         document.body.style.overflow = "";
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        FORCE DOWNLOAD  (never opens reader)
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function forceDownload(file) {
         gae("file_download", { file_name: file.split("/").pop() });
         const a = document.createElement("a");
@@ -916,9 +916,9 @@
         setTimeout(() => document.body.removeChild(a), 200);
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        READER
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function openReader(file, type, title, sub) {
         gae("note_open", { file_name: file.split("/").pop(), file_type: type, note_title: title });
         curFile = file;
@@ -936,7 +936,7 @@
         const fallback = document.getElementById("pdfFallback");
 
         if (type === "pdf") {
-          // --- PDF: use <embed> — far more reliable than iframe ---
+          // --- PDF: use <embed> â€” far more reliable than iframe ---
           frame.style.display    = "none";
           frame.src              = "";
           fallback.style.display = "none";
@@ -950,7 +950,7 @@
             embed.style.flex    = "1";
             embed.src           = file + "?t=" + Date.now(); // cache-bust
           } else {
-            // Mobile / no PDF plugin → show friendly fallback panel
+            // Mobile / no PDF plugin â†’ show friendly fallback panel
             embed.style.display    = "none";
             embed.src              = "";
             fallback.style.display = "flex";
@@ -996,9 +996,9 @@
         a.click();
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        RECENT
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function saveRecent(item) {
         recent = recent.filter((r) => r.file !== item.file);
         recent.unshift(item);
@@ -1006,9 +1006,9 @@
         localStorage.setItem("hub_recent", JSON.stringify(recent));
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        SEARCH
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function openSearch() {
         document.getElementById("searchModal").classList.add("open");
         document.getElementById("searchResults").innerHTML = "";
@@ -1046,7 +1046,7 @@
               searchHits.push({
                 icon: sub.icon,
                 title: sub.name,
-                meta: `${sub.code} · ${s.label}`,
+                meta: `${sub.code} Â· ${s.label}`,
                 kind: "sub",
                 sem: s.num,
                 color: s.color,
@@ -1059,13 +1059,13 @@
                 (note.desc || "").toLowerCase().includes(lq)
               ) {
                 searchHits.push({
-                  icon: note.type === "pdf" ? "📄" : "📖",
+                  icon: note.type === "pdf" ? "ðŸ“„" : "ðŸ“–",
                   title: note.title,
-                  meta: `${sub.code} · ${s.label}`,
+                  meta: `${sub.code} Â· ${s.label}`,
                   kind: "note",
                   file: note.file,
                   type: note.type,
-                  noteSub: `${sub.code} — ${sub.name}`,
+                  noteSub: `${sub.code} â€” ${sub.name}`,
                   color: s.color,
                   sem: s.num,
                   sub,
@@ -1105,9 +1105,9 @@
         }
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        THEME
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function toggleTheme() {
         document.body.classList.toggle("light");
         const isLight = document.body.classList.contains("light");
@@ -1122,9 +1122,9 @@
         }
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        UTILS
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       function esc(s) {
         return String(s).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
       }
@@ -1172,10 +1172,10 @@
         document.getElementById("mobileSearchBtn").style.display = "flex";
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        1. SOURCE CODE PROTECTION
        Disables right-click, F12, Ctrl+U/S/Shift+I/J/C
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       (function protectContent() {
 
         document.addEventListener("contextmenu", function (e) {
@@ -1240,16 +1240,16 @@
 
       })();
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        2. ROBOT VERIFICATION  (first visit only)
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       (function initRobotCheck() {
         if (localStorage.getItem("hub_human_verified") === "true") {
           const overlay = document.getElementById("robotOverlay");
           if (overlay) overlay.remove();
           return;
         }
-        // Already visible — nothing extra needed
+        // Already visible â€” nothing extra needed
       })();
 
       function onRobotCheck() {
@@ -1264,9 +1264,9 @@
         const prog = document.getElementById("robotProgress");
         prog.classList.add("show");
 
-        // After animation completes → show verified
+        // After animation completes â†’ show verified
         setTimeout(() => {
-          document.getElementById("robotTxt").textContent = "✓ Verified! Welcome!";
+          document.getElementById("robotTxt").textContent = "âœ“ Verified! Welcome!";
           document.getElementById("robotTxt").style.color = "#10b981";
         }, 1500);
 
@@ -1281,53 +1281,53 @@
         }, 2200);
       }
 
-      /* ══════════════════════════════════════════════════════
+      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        3. AI CHATBOT
-    ══════════════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
       let chatbotOpen = false;
       let chatInitialized = false;
 
       const CHAT_KB = [
         { k: ["hello","hi","hey","helo","hii","salam","assalam"],
-          r: "Hi! 👋 I'm Rahman AI. Ask me about BCA notes, subjects, syllabus or exam tips!" },
+          r: "Hi! ðŸ‘‹ I'm Rahman AI. Ask me about BCA notes, subjects, syllabus or exam tips!" },
         { k: ["bca-201","201","business english","english","letter"],
-          r: "📘 BCA-201 Business English: Letter writing, grammar, comprehension.\nNotes, PYQ, Syllabus & Cheatsheet available!" },
+          r: "ðŸ“˜ BCA-201 Business English: Letter writing, grammar, comprehension.\nNotes, PYQ, Syllabus & Cheatsheet available!" },
         { k: ["bca-202","202","numerical","techniques","newton","gauss"],
-          r: "🔢 BCA-202 Numerical Techniques: Newton-Raphson, Gauss Elimination, Simpson's Rule.\nComplete Exam Guide + PYQ + Cheatsheet available!" },
+          r: "ðŸ”¢ BCA-202 Numerical Techniques: Newton-Raphson, Gauss Elimination, Simpson's Rule.\nComplete Exam Guide + PYQ + Cheatsheet available!" },
         { k: ["bca-203","203","system analysis","sad","sdlc","dfd","er diagram"],
-          r: "🗂️ BCA-203 SAD: SDLC, DFD, ER Diagrams, System Design.\nInteractive Study Guide + Colorful Exam Guide + Syllabus!" },
+          r: "ðŸ—‚ï¸ BCA-203 SAD: SDLC, DFD, ER Diagrams, System Design.\nInteractive Study Guide + Colorful Exam Guide + Syllabus!" },
         { k: ["bca-204","204","c programming","programming in c","pointers","structures","c lang"],
-          r: "💻 BCA-204 C Programming: Pointers, Structures, File Handling.\n2 HTML Guides + VVI Exam Guide + PYQ + Cheatsheet!" },
+          r: "ðŸ’» BCA-204 C Programming: Pointers, Structures, File Handling.\n2 HTML Guides + VVI Exam Guide + PYQ + Cheatsheet!" },
         { k: ["bca-205","205","operating system","unix","os","shell","linux","deadlock"],
-          r: "⚙️ BCA-205 OS & UNIX: Process Management, Deadlock, Shell Scripting.\n3 Complete HTML Guides + PYQ + Cheatsheet!" },
+          r: "âš™ï¸ BCA-205 OS & UNIX: Process Management, Deadlock, Shell Scripting.\n3 Complete HTML Guides + PYQ + Cheatsheet!" },
         { k: ["syllabus","sylabus","curriculum","course content"],
-          r: "📕 Click 'All Syllabuses' button on Semester II page to view all 5 subject syllabuses in one place!" },
+          r: "ðŸ“• Click 'All Syllabuses' button on Semester II page to view all 5 subject syllabuses in one place!" },
         { k: ["pyq","previous year","past paper","old paper","question paper"],
-          r: "🔥 PYQ papers available for all 5 Sem II subjects!\nOpen any subject card → look in PDF Files section." },
+          r: "ðŸ”¥ PYQ papers available for all 5 Sem II subjects!\nOpen any subject card â†’ look in PDF Files section." },
         { k: ["cheatsheet","cheat sheet","cheat","quick revision"],
-          r: "📝 Cheatsheets available for ALL 5 Semester II subjects!\nOpen any subject panel and find it in PDF Files." },
+          r: "ðŸ“ Cheatsheets available for ALL 5 Semester II subjects!\nOpen any subject panel and find it in PDF Files." },
         { k: ["exam","tip","tips","prepare","study","how to study","revision","revise"],
-          r: "⭐ Exam Tips:\n1️⃣ Start with Cheatsheets\n2️⃣ Solve all PYQs\n3️⃣ Focus on VVI questions\n4️⃣ Practice C programs\n5️⃣ Revise formulas daily\n6️⃣ Study 5-6 hrs/day!" },
+          r: "â­ Exam Tips:\n1ï¸âƒ£ Start with Cheatsheets\n2ï¸âƒ£ Solve all PYQs\n3ï¸âƒ£ Focus on VVI questions\n4ï¸âƒ£ Practice C programs\n5ï¸âƒ£ Revise formulas daily\n6ï¸âƒ£ Study 5-6 hrs/day!" },
         { k: ["note","notes","material","study material"],
-          r: "📖 Notes available under Semester II tab!\nClick any subject card to view HTML notes, PDFs, PYQs & Cheatsheets." },
+          r: "ðŸ“– Notes available under Semester II tab!\nClick any subject card to view HTML notes, PDFs, PYQs & Cheatsheets." },
         { k: ["download","save","pdf","kaise download"],
-          r: "📥 Click the ↓ download icon next to any PDF to save it directly.\nThe Open button opens it inside the reader." },
+          r: "ðŸ“¥ Click the â†“ download icon next to any PDF to save it directly.\nThe Open button opens it inside the reader." },
         { k: ["search","find","dhundh","look for"],
-          r: "🔍 Press the / key or click the search bar to search across all subjects, notes, and topics instantly!" },
+          r: "ðŸ” Press the / key or click the search bar to search across all subjects, notes, and topics instantly!" },
         { k: ["semester","sem 1","sem 2","sem i","sem ii","all sem"],
-          r: "📚 Notes Hub covers Semester I to VI!\nCurrently Semester II has the most notes. More being added soon!" },
+          r: "ðŸ“š Notes Hub covers Semester I to VI!\nCurrently Semester II has the most notes. More being added soon!" },
         { k: ["theme","dark","light","mode","appearance"],
-          r: "🌙 Click the moon/sun icon in the top-right header to toggle between dark and light theme!" },
+          r: "ðŸŒ™ Click the moon/sun icon in the top-right header to toggle between dark and light theme!" },
         { k: ["aku","patna","iibm","college","university","aryabhatta"],
-          r: "📍 University: AKU Patna (Aryabhatta Knowledge University)\nCollege: IIBM · Semester II exams: 2026" },
+          r: "ðŸ“ University: AKU Patna (Aryabhatta Knowledge University)\nCollege: IIBM Â· Semester II exams: 2026" },
         { k: ["who are you","what are you","chatbot","rahman ai","assistant"],
-          r: "I'm Rahman AI Assistant 🤖 — a smart study helper for BCA students!\nI can guide you through notes, subjects, syllabus & exam prep." },
+          r: "I'm Rahman AI Assistant ðŸ¤– â€” a smart study helper for BCA students!\nI can guide you through notes, subjects, syllabus & exam prep." },
         { k: ["thank","thanks","shukriya","thank you","bahut acha"],
-          r: "You're welcome! 😊 Best of luck with your BCA exams!\nYou've got this, Abdul! 💪🚀" },
+          r: "You're welcome! ðŸ˜Š Best of luck with your BCA exams!\nYou've got this, Abdul! ðŸ’ªðŸš€" },
         { k: ["bye","goodbye","ok bye","later","alvida"],
-          r: "Goodbye! 👋 Study hard & ace your BCA exams!\nCome back anytime you need help! 🚀" },
+          r: "Goodbye! ðŸ‘‹ Study hard & ace your BCA exams!\nCome back anytime you need help! ðŸš€" },
         { k: ["help","kya","menu","options","what can you do"],
-          r: "I can help with:\n📘 BCA subject info (201–205)\n📖 Finding notes & PDFs\n📕 Syllabus queries\n🔥 PYQ papers\n⭐ Exam tips\n📥 Download help\n🔍 Search tips\n\nJust type your question!" },
+          r: "I can help with:\nðŸ“˜ BCA subject info (201â€“205)\nðŸ“– Finding notes & PDFs\nðŸ“• Syllabus queries\nðŸ”¥ PYQ papers\nâ­ Exam tips\nðŸ“¥ Download help\nðŸ” Search tips\n\nJust type your question!" },
       ];
 
       function getBotReply(msg) {
@@ -1335,7 +1335,7 @@
         for (const entry of CHAT_KB) {
           if (entry.k.some(k => m.includes(k))) return entry.r;
         }
-        return "🤔 I'm not sure about that.\nTry asking about BCA subjects, notes, syllabus, PYQs or exam tips!\nType 'help' to see all I can do.";
+        return "ðŸ¤” I'm not sure about that.\nTry asking about BCA subjects, notes, syllabus, PYQs or exam tips!\nType 'help' to see all I can do.";
       }
 
       function toggleChatbot() {
@@ -1348,7 +1348,7 @@
 
         if (chatbotOpen && !chatInitialized) {
           chatInitialized = true;
-          appendBotMsg("Hi! 👋 I'm **Rahman AI Assistant**.\nI'm here to help you with BCA notes, subjects, syllabus and exam tips.\n\nType 'help' to see what I can do!");
+          appendBotMsg("Hi! ðŸ‘‹ I'm **Rahman AI Assistant**.\nI'm here to help you with BCA notes, subjects, syllabus and exam tips.\n\nType 'help' to see what I can do!");
         }
         if (chatbotOpen) {
           setTimeout(() => document.getElementById("chatbotInput").focus(), 200);
@@ -1400,3 +1400,4 @@
           appendBotMsg(getBotReply(msg));
         }, delay);
       }
+
