@@ -301,39 +301,193 @@
           subjects: [
             {
               code: "BCA-301",
-              name: "OOPs with C++",
+              name: "Object Oriented Programming with C++",
               icon: "🔵",
               desc: "Classes, objects, inheritance, polymorphism, templates, STL",
-              notes: [],
+              notes: [
+                {
+                  title: "BCA-301 OOP C++ Complete Notes",
+                  type: "html",
+                  file: "notes/bca301/BCA-301_OOP_CPP_Notes.html",
+                  desc: "Complete Object Oriented Programming with C++ notes"
+                },
+                {
+                  title: "BCA-301 OOP C++ Notes PDF",
+                  type: "pdf",
+                  file: "notes/bca301/BCA-301_OOP_CPP_Notes.pdf",
+                  desc: "BCA-301 Object Oriented Programming with C++ PDF notes"
+                },
+                {
+                  title: "BCA-301 OOP C++ Exam Guide",
+                  type: "html",
+                  file: "notes/bca301/BCA301_OOP_Exam_Guide.html",
+                  desc: "BCA-301 OOP C++ exam preparation guide"
+                },
+                {
+                  title: "BCA-301 OOP C++ Study Guide",
+                  type: "html",
+                  file: "notes/bca301/BCA301_OOP_Cpp.html",
+                  desc: "BCA-301 Object Oriented Programming with C++ study material"
+                },
+                {
+                  title: "BCA-301 OOP C++ Clean Notes",
+                  type: "pdf",
+                  file: "notes/bca301/BCA301_OOP_CPP_CleanNotes.pdf",
+                  desc: "Clean BCA-301 OOP C++ notes"
+                },
+                {
+                  title: "BCA-301 OOP C++ Clean Notes - 1",
+                  type: "pdf",
+                  file: "notes/bca301/BCA301_OOP_CPP_CleanNotes%20%281%29.pdf",
+                  desc: "Additional clean BCA-301 OOP C++ notes"
+                },
+                {
+                  title: "BCA-301 BW Exam Notes",
+                  type: "pdf",
+                  file: "notes/bca301/BCA301_BW_ExamNotes.pdf",
+                  desc: "BCA-301 exam notes"
+                },
+                {
+                  title: "BCA-301 Previous Year Questions",
+                  type: "pdf",
+                  file: "notes/bca301/pyq.pdf",
+                  desc: "BCA-301 previous year questions"
+                },
+                {
+                  title: "BCA-301 Official Syllabus",
+                  type: "pdf",
+                  file: "notes/bca301/syllabus.pdf",
+                  desc: "BCA-301 syllabus"
+                }
+              ],
             },
             {
               code: "BCA-302",
-              name: "Data Structures",
-              icon: "🌳",
-              desc: "Arrays, linked lists, stacks, queues, trees, graphs, hashing",
-              notes: [],
+              name: "INTERNET & WEB DESIGNING",
+              icon: "🌐",
+              desc: "Communication on the Internet, HTML, CSS, JavaScript, web design principles",
+              notes: [
+                {
+                  title: "BCA-302 Internet & Web Designing",
+                  type: "html",
+                  file: "notes/bca302/BCA302_Internet_WebDesigning.html",
+                  desc: "Complete Internet & Web Designing study guide"
+                },
+                {
+                  title: "BCA-302 Complete Notes",
+                  type: "pdf",
+                  file: "notes/bca302/BCA302_Complete.pdf",
+                  desc: "BCA-302 complete notes"
+                },
+                {
+                  title: "BCA-302 BW Exam Notes",
+                  type: "pdf",
+                  file: "notes/bca302/BCA302_BW_ExamNotes.pdf",
+                  desc: "BCA-302 exam preparation notes"
+                },
+                {
+                  title: "BCA-302 Previous Year Questions",
+                  type: "pdf",
+                  file: "notes/bca302/pyq.pdf",
+                  desc: "BCA-302 previous year questions"
+                },
+                {
+                  title: "BCA-302 Official Syllabus",
+                  type: "pdf",
+                  file: "notes/bca302/syllabus.pdf",
+                  desc: "BCA-302 syllabus"
+                }
+              ],
             },
             {
               code: "BCA-303",
               name: "Java Programming",
               icon: "☕",
               desc: "OOP in Java, applets, multithreading, exception handling",
-              notes: [],
+              notes: [
+                {
+                  title: "BCA-303 Java Programming Study Guide",
+                  type: "html",
+                  file: "notes/bca303/BCA-303%20Java%20Programming%20%E2%80%94%20AKU%20Patna%20Study%20Guide.html",
+                  desc: "BCA-303 Java Programming study guide"
+                },
+                {
+                  title: "BCA-303 BW Exam Notes",
+                  type: "pdf",
+                  file: "notes/bca303/BCA303_BW_ExamNotes.pdf",
+                  desc: "BCA-303 exam preparation notes"
+                },
+                {
+                  title: "BCA-303 Previous Year Questions",
+                  type: "pdf",
+                  file: "notes/bca303/pyq.pdf",
+                  desc: "BCA-303 previous year questions"
+                },
+                {
+                  title: "BCA-303 Official Syllabus",
+                  type: "pdf",
+                  file: "notes/bca303/syllabus.pdf",
+                  desc: "BCA-303 syllabus"
+                }
+              ],
             },
             {
               code: "BCA-304",
-              name: "Computer Networks-I",
-              icon: "🌐",
-              desc: "OSI model, TCP/IP, data link layer, network topologies",
-              notes: [],
+              name: "SOFTWARE ENGINEERING",
+              icon: "🗂️",
+              desc: "Software Engineering, Software Design, Coding and Testing of Software, Software Quality Assurance",
+              notes: [
+                {
+                  title: "BCA-304 Software Engineering",
+                  type: "html",
+                  file: "notes/bca304/BCA304_Software_Engineering.html",
+                  desc: "BCA-304 Software Engineering study notes"
+                },
+                {
+                  title: "BCA-304 Software Engineering Notes - 1",
+                  type: "html",
+                  file: "notes/bca304/BCA304_Software_Engineering%20(1).html",
+                  desc: "BCA-304 Software Engineering study notes"
+                },
+                {
+                  title: "BCA-304 Software Engineering Notes - 2",
+                  type: "html",
+                  file: "notes/bca304/BCA304_Software_Engineering%20(2).html",
+                  desc: "BCA-304 Software Engineering study notes"
+                },
+                {
+                  title: "BCA-304 Software Engineering PDF",
+                  type: "pdf",
+                  file: "notes/bca304/BCA304_Software_Engineering.pdf",
+                  desc: "BCA-304 Software Engineering PDF"
+                },
+                {
+                  title: "BCA-304 BW Exam Notes",
+                  type: "pdf",
+                  file: "notes/bca304/BCA304_BW_ExamNotes.pdf",
+                  desc: "BCA-304 exam preparation notes"
+                },
+                {
+                  title: "BCA-304 Complete Notes",
+                  type: "pdf",
+                  file: "notes/bca304/notes.pdf",
+                  desc: "BCA-304 complete notes"
+                },
+                {
+                  title: "BCA-304 Previous Year Questions",
+                  type: "pdf",
+                  file: "notes/bca304/pyq.pdf",
+                  desc: "BCA-304 previous year questions"
+                },
+                {
+                  title: "BCA-304 Official Syllabus",
+                  type: "pdf",
+                  file: "notes/bca304/syllabus.pdf",
+                  desc: "BCA-304 official syllabus"
+                }
+              ],
             },
-            {
-              code: "BCA-305",
-              name: "Software Engineering",
-              icon: "⚙️",
-              desc: "SDLC, agile, testing, project management, quality assurance",
-              notes: [],
-            },
+            
           ],
         },
 
