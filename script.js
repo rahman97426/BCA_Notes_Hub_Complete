@@ -1,12 +1,12 @@
 /* ============================================================
-   BCA Notes Hub ? JavaScript / Data
-   ? 2026 Abdul Rahman ? BCA Student Portal | The Ladder to 2028
+   BCA Notes Hub · JavaScript / Data
+   © 2026 Abdul Rahman · BCA Student Portal | The Ladder to 2028
    File: script.js
-   Add new notes: find the subject in SEMESTERS[] ? push to notes[]
+   Add new notes: find the subject in SEMESTERS[] → push to notes[]
 ============================================================ */
 
       /* ------------------------------------------------------
-       GA4 EVENT HELPER ? safe wrapper, never throws
+       GA4 EVENT HELPER · safe wrapper, never throws
     ------------------------------------------------------ */
       function gae(name, params) {
         try {
@@ -17,9 +17,9 @@
       }
 
       /* +------------------------------------------------------+
-       ?  BCA NOTES DATA  ?  Sem I to Sem VI                  ?
-       ?  To add a note: push into subject.notes[]             ?
-       ?  Format: { title, file, type:'html'|'pdf', desc }    ?
+       |  BCA NOTES DATA  |  Sem I to Sem VI                  |
+       |  To add a note: push into subject.notes[]             |
+       |  Format: { title, file, type:'html'|'pdf', desc }    |
        +------------------------------------------------------+ */
 
       const SEMESTERS = [
@@ -28,42 +28,42 @@
           num: 1,
           label: "Semester I",
           short: "Sem I",
-          period: "Jul ? Dec 2025",
+          period: "Jul \u2013 Dec 2025",
           color: "#6366f1",
           gradient: "linear-gradient(135deg,#4f46e5,#7c3aed)",
           subjects: [
             {
               code: "BCA-101",
               name: "Communication Skills in English",
-              icon: "??",
+              icon: "\u{1F4DD}",
               desc: "Business letters, report writing, grammar, verbal communication",
               notes: [],
             },
             {
               code: "BCA-102",
               name: "Mathematics-I",
-              icon: "??",
+              icon: "\u{1F4D0}",
               desc: "Differential calculus, integral calculus, algebra, 2D geometry",
               notes: [],
             },
             {
               code: "BCA-103",
               name: "IT Fundamentals",
-              icon: "???",
+              icon: "\u{1F4BB}",
               desc: "Computer organization, OS basics, networks, binary systems",
               notes: [],
             },
             {
               code: "BCA-104",
               name: "Principles of Management",
-              icon: "??",
+              icon: "\u{1F4CA}",
               desc: "Planning, organizing, staffing, leadership, controlling",
               notes: [],
             },
             {
               code: "BCA-105",
               name: "Python Programming",
-              icon: "??",
+              icon: "\u{1F40D}",
               desc: "Variables, loops, functions, file handling, OOP in Python",
               notes: [],
             },
@@ -75,33 +75,33 @@
           num: 2,
           label: "Semester II",
           short: "Sem II",
-          period: "Feb ? Jun 2026",
+          period: "Feb \u2013 Jun 2026",
           color: "#f43f5e",
           gradient: "linear-gradient(135deg,#e11d48,#f97316)",
           subjects: [
             {
               code: "BCA-201",
               name: "Business English",
-              icon: "??",
+              icon: "\u270D\uFE0F",
               desc: "Letter writing, comprehension, grammar & business communication",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca201/BCA201_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "Complete notes ? PYQs ? VVI Questions ? Exam answers ? Exam strategy",
+                  desc: "Complete notes \u00B7 PYQs \u00B7 VVI Questions \u00B7 Exam answers \u00B7 Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca201/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-201 Business English official syllabus ? AKU Patna",
+                  desc: "BCA-201 Business English official syllabus \u00B7 AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca201/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-201 previous year exam questions ? AKU Patna",
+                  desc: "BCA-201 previous year exam questions \u00B7 AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -120,26 +120,26 @@
             {
               code: "BCA-202",
               name: "Numerical Techniques",
-              icon: "??",
+              icon: "\u{1F522}",
               desc: "Newton-Raphson, Gauss elimination, interpolation, integration",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca202/BCA202_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "Complete notes ? PYQs ? VVI Questions ? Exam answers ? Exam strategy",
+                  desc: "Complete notes \u00B7 PYQs \u00B7 VVI Questions \u00B7 Exam answers \u00B7 Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca202/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-202 Numerical Techniques official syllabus ? AKU Patna",
+                  desc: "BCA-202 Numerical Techniques official syllabus \u00B7 AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca202/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-202 previous year exam questions ? AKU Patna",
+                  desc: "BCA-202 previous year exam questions \u00B7 AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -158,32 +158,32 @@
             {
               code: "BCA-203",
               name: "System Analysis & Design",
-              icon: "???",
+              icon: "\u{1F4CA}",
               desc: "SDLC models, DFD, ER diagrams, structured system design",
               notes: [
                 {
                   title: "Interactive Study Guide",
                   file: "notes/bca203/BCA203_Interactive_Study.html",
                   type: "html",
-                  desc: "All 7 units ? Interactive Q&A ? Countdown timer ? PYQ mapped",
+                  desc: "All 7 units \u00B7 Interactive Q&A \u00B7 Countdown timer \u00B7 PYQ mapped",
                 },
                 {
                   title: "Colorful Exam Guide",
                   file: "notes/bca203/BCA203_SAD_ColorfulExamGuide.html",
                   type: "html",
-                  desc: "Definitions ? Short tricks ? VVI answers ? Exam strategy",
+                  desc: "Definitions \u00B7 Short tricks \u00B7 VVI answers \u00B7 Exam strategy",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca203/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-203 System Analysis & Design official syllabus ? AKU Patna",
+                  desc: "BCA-203 System Analysis & Design official syllabus \u00B7 AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca203/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-203 previous year exam questions ? AKU Patna",
+                  desc: "BCA-203 previous year exam questions \u00B7 AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -202,32 +202,38 @@
             {
               code: "BCA-204",
               name: "Programming in C",
-              icon: "??",
+              icon: "\u{1F4BB}",
               desc: "Pointers, structures, file handling, dynamic memory management",
               notes: [
                 {
                   title: "Complete Exam Guide",
                   file: "notes/bca204/BCA204_Complete_Exam_Guide.html",
                   type: "html",
-                  desc: "All units ? PYQ answers ? Code examples ? Exam strategy",
+                  desc: "All units \u00B7 PYQ answers \u00B7 Code examples \u00B7 Exam strategy",
                 },
                 {
                   title: "VVI Interactive Exam Guide",
                   file: "notes/bca204/BCA204_VVI_ExamGuide.html",
                   type: "html",
-                  desc: "7 units ? Top 30 VVI Qs ? Programs ? Crash sheet ? Checklist",
+                  desc: "7 units \u00B7 Top 30 VVI Qs \u00B7 Programs \u00B7 Crash sheet \u00B7 Checklist",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca204/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-204 Programming in C official syllabus ? AKU Patna",
+                  desc: "BCA-204 Programming in C official syllabus \u00B7 AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca204/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-204 previous year exam questions ? AKU Patna",
+                  desc: "BCA-204 previous year exam questions \u00B7 AKU Patna",
+                },
+                {
+                  title: "Notes PDF",
+                  file: "notes/bca204/notes.pdf",
+                  type: "pdf",
+                  desc: "BCA-204 Programming in C PDF notes",
                 },
                 {
                   title: "Cheatsheet",
@@ -240,38 +246,38 @@
             {
               code: "BCA-205",
               name: "Operating System & UNIX",
-              icon: "??",
+              icon: "\u{1F5A5}\uFE0F",
               desc: "Process management, deadlock, memory management, shell scripting",
               notes: [
                 {
                   title: "OS & UNIX Complete Notes",
                   file: "notes/bca205/BCA205_Complete.html",
                   type: "html",
-                  desc: "Full PYQ answers ? UNIX commands ? OS theory ? All units",
+                  desc: "Full PYQ answers \u00B7 UNIX commands \u00B7 OS theory \u00B7 All units",
                 },
                 {
                   title: "OS & UNIX Updated Notes",
                   file: "notes/bca205/BCA205_Complete_v2.html",
                   type: "html",
-                  desc: "Updated version ? Complete coverage ? New PYQs included",
+                  desc: "Updated version \u00B7 Complete coverage \u00B7 New PYQs included",
                 },
                 {
                   title: "PYQ Solved Q&A",
                   file: "notes/bca205/BCA205_QA.html",
                   type: "html",
-                  desc: "Previous year questions with detailed answers ? AKU Patna",
+                  desc: "Previous year questions with detailed answers \u00B7 AKU Patna",
                 },
                 {
                   title: "Official Syllabus",
                   file: "notes/bca205/syllabus.pdf",
                   type: "pdf",
-                  desc: "BCA-205 Operating System & UNIX official syllabus ? AKU Patna",
+                  desc: "BCA-205 Operating System & UNIX official syllabus \u00B7 AKU Patna",
                 },
                 {
                   title: "Previous Year Questions",
                   file: "notes/bca205/pyq.pdf",
                   type: "pdf",
-                  desc: "BCA-205 previous year exam questions ? AKU Patna",
+                  desc: "BCA-205 previous year exam questions \u00B7 AKU Patna",
                 },
                 {
                   title: "Notes PDF",
@@ -295,7 +301,7 @@
           num: 3,
           label: "Semester III",
           short: "Sem III",
-          period: "Jul - Dec 2026",
+          period: "Jul \u2013 Dec 2026",
           color: "#f59e0b",
           gradient: "linear-gradient(135deg,#d97706,#f59e0b)",
           subjects: [
@@ -309,25 +315,25 @@
                   title: "BCA-301 OOP C++ Complete Notes",
                   type: "html",
                   file: "notes/bca301/BCA-301_OOP_CPP_Notes.html",
-                  desc: "Complete Object Oriented Programming with C++ notes"
-                },
-                {
-                  title: "BCA-301 OOP C++ Notes PDF",
-                  type: "pdf",
-                  file: "notes/bca301/BCA-301_OOP_CPP_Notes.pdf",
-                  desc: "BCA-301 Object Oriented Programming with C++ PDF notes"
+                  desc: "Complete Object Oriented Programming with C++ notes \u00B7 All units"
                 },
                 {
                   title: "BCA-301 OOP C++ Exam Guide",
                   type: "html",
                   file: "notes/bca301/BCA301_OOP_Exam_Guide.html",
-                  desc: "BCA-301 OOP C++ exam preparation guide"
+                  desc: "BCA-301 OOP C++ exam preparation guide \u00B7 VVI Questions"
                 },
                 {
                   title: "BCA-301 OOP C++ Study Guide",
                   type: "html",
                   file: "notes/bca301/BCA301_OOP_Cpp.html",
                   desc: "BCA-301 Object Oriented Programming with C++ study material"
+                },
+                {
+                  title: "BCA-301 OOP C++ Notes PDF",
+                  type: "pdf",
+                  file: "notes/bca301/BCA-301_OOP_CPP_Notes.pdf",
+                  desc: "BCA-301 Object Oriented Programming with C++ PDF notes"
                 },
                 {
                   title: "BCA-301 OOP C++ Clean Notes",
@@ -345,25 +351,37 @@
                   title: "BCA-301 BW Exam Notes",
                   type: "pdf",
                   file: "notes/bca301/BCA301_BW_ExamNotes.pdf",
-                  desc: "BCA-301 exam notes"
+                  desc: "BCA-301 exam notes \u00B7 Black & White print-ready"
+                },
+                {
+                  title: "College OOP Notes",
+                  type: "pdf",
+                  file: "notes/bca301/oops%20college%20notes.pdf",
+                  desc: "BCA-301 college OOP notes \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-301 Previous Year Questions",
                   type: "pdf",
                   file: "notes/bca301/pyq.pdf",
-                  desc: "BCA-301 previous year questions"
+                  desc: "BCA-301 previous year questions \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-301 Official Syllabus",
                   type: "pdf",
                   file: "notes/bca301/syllabus.pdf",
-                  desc: "BCA-301 syllabus"
+                  desc: "BCA-301 official syllabus \u00B7 AKU Patna"
+                },
+                {
+                  title: "\u25B6 C++ OOP \u2013 Recommended YouTube Resource",
+                  type: "youtube",
+                  file: "https://www.youtube.com/watch?v=8jLOx1hD3_o",
+                  desc: "C++ Programming Beginner to Advanced \u00B7 Classes, Inheritance, Polymorphism, Templates \u00B7 CodeWithHarry"
                 }
               ],
             },
             {
               code: "BCA-302",
-              name: "INTERNET & WEB DESIGNING",
+              name: "Internet & Web Designing",
               icon: "\u{1F310}",
               desc: "Communication on the Internet, HTML, CSS, JavaScript, web design principles",
               notes: [
@@ -371,7 +389,7 @@
                   title: "BCA-302 Internet & Web Designing",
                   type: "html",
                   file: "notes/bca302/BCA302_Internet_WebDesigning.html",
-                  desc: "Complete Internet & Web Designing study guide"
+                  desc: "Complete Internet & Web Designing study guide \u00B7 All units"
                 },
                 {
                   title: "BCA-302 Complete Notes",
@@ -383,19 +401,25 @@
                   title: "BCA-302 BW Exam Notes",
                   type: "pdf",
                   file: "notes/bca302/BCA302_BW_ExamNotes.pdf",
-                  desc: "BCA-302 exam preparation notes"
+                  desc: "BCA-302 exam preparation notes \u00B7 Black & White print-ready"
                 },
                 {
                   title: "BCA-302 Previous Year Questions",
                   type: "pdf",
                   file: "notes/bca302/pyq.pdf",
-                  desc: "BCA-302 previous year questions"
+                  desc: "BCA-302 previous year questions \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-302 Official Syllabus",
                   type: "pdf",
                   file: "notes/bca302/syllabus.pdf",
-                  desc: "BCA-302 syllabus"
+                  desc: "BCA-302 official syllabus \u00B7 AKU Patna"
+                },
+                {
+                  title: "\u25B6 Web Design \u2013 Recommended YouTube Resource",
+                  type: "youtube",
+                  file: "https://www.youtube.com/playlist?list=PLu0W_9lII9agiCUZYRsvtGTXdxkzPyItg",
+                  desc: "Sigma Web Development Course \u00B7 HTML, CSS, JavaScript \u00B7 Internet & Web Designing \u00B7 CodeWithHarry (Hindi)"
                 }
               ],
             },
@@ -409,51 +433,57 @@
                   title: "BCA-303 Java Programming Study Guide",
                   type: "html",
                   file: "notes/bca303/BCA-303%20Java%20Programming%20%E2%80%94%20AKU%20Patna%20Study%20Guide.html",
-                  desc: "BCA-303 Java Programming study guide"
+                  desc: "BCA-303 Java Programming complete study guide \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-303 BW Exam Notes",
                   type: "pdf",
                   file: "notes/bca303/BCA303_BW_ExamNotes.pdf",
-                  desc: "BCA-303 exam preparation notes"
+                  desc: "BCA-303 exam preparation notes \u00B7 Black & White print-ready"
                 },
                 {
                   title: "BCA-303 Previous Year Questions",
                   type: "pdf",
                   file: "notes/bca303/pyq.pdf",
-                  desc: "BCA-303 previous year questions"
+                  desc: "BCA-303 previous year questions \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-303 Official Syllabus",
                   type: "pdf",
                   file: "notes/bca303/syllabus.pdf",
-                  desc: "BCA-303 syllabus"
+                  desc: "BCA-303 official syllabus \u00B7 AKU Patna"
+                },
+                {
+                  title: "\u25B6 Java Programming \u2013 Recommended YouTube Resource",
+                  type: "youtube",
+                  file: "https://www.youtube.com/watch?v=NNLoi8QqzaY",
+                  desc: "Complete Java in One Video \u00B7 OOP, Threads, Exception Handling, Applets \u00B7 Hindi \u00B7 CodeWithHarry"
                 }
               ],
             },
             {
               code: "BCA-304",
-              name: "SOFTWARE ENGINEERING",
+              name: "Software Engineering",
               icon: "\u{1F5C2}\uFE0F",
-              desc: "Software Engineering, Software Design, Coding and Testing of Software, Software Quality Assurance",
+              desc: "SDLC models, software design, coding & testing, quality assurance",
               notes: [
                 {
                   title: "BCA-304 Software Engineering",
                   type: "html",
                   file: "notes/bca304/BCA304_Software_Engineering.html",
-                  desc: "BCA-304 Software Engineering study notes"
+                  desc: "BCA-304 Software Engineering study notes \u00B7 All units"
                 },
                 {
                   title: "BCA-304 Software Engineering Notes - 1",
                   type: "html",
                   file: "notes/bca304/BCA304_Software_Engineering%20(1).html",
-                  desc: "BCA-304 Software Engineering study notes"
+                  desc: "BCA-304 Software Engineering study notes \u00B7 Version 1"
                 },
                 {
                   title: "BCA-304 Software Engineering Notes - 2",
                   type: "html",
                   file: "notes/bca304/BCA304_Software_Engineering%20(2).html",
-                  desc: "BCA-304 Software Engineering study notes"
+                  desc: "BCA-304 Software Engineering study notes \u00B7 Version 2"
                 },
                 {
                   title: "BCA-304 Software Engineering PDF",
@@ -465,7 +495,7 @@
                   title: "BCA-304 BW Exam Notes",
                   type: "pdf",
                   file: "notes/bca304/BCA304_BW_ExamNotes.pdf",
-                  desc: "BCA-304 exam preparation notes"
+                  desc: "BCA-304 exam preparation notes \u00B7 Black & White print-ready"
                 },
                 {
                   title: "BCA-304 Complete Notes",
@@ -477,17 +507,23 @@
                   title: "BCA-304 Previous Year Questions",
                   type: "pdf",
                   file: "notes/bca304/pyq.pdf",
-                  desc: "BCA-304 previous year questions"
+                  desc: "BCA-304 previous year questions \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-304 Official Syllabus",
                   type: "pdf",
                   file: "notes/bca304/syllabus.pdf",
-                  desc: "BCA-304 official syllabus"
+                  desc: "BCA-304 official syllabus \u00B7 AKU Patna"
+                },
+                {
+                  title: "\u25B6 Software Engineering \u2013 Recommended YouTube Resource",
+                  type: "youtube",
+                  file: "https://www.youtube.com/playlist?list=PL_pbwdIyffslgxMVyXhnHiSn_EWTvx1G-",
+                  desc: "Software Engineering Full Course \u00B7 SDLC, SRS, Design, Testing, QA \u00B7 Knowledge Gate"
                 }
               ],
             },
-            
+
           ],
         },
 
@@ -496,42 +532,42 @@
           num: 4,
           label: "Semester IV",
           short: "Sem IV",
-          period: "Jan ? Jun 2027",
+          period: "Jan \u2013 Jun 2027",
           color: "#10b981",
           gradient: "linear-gradient(135deg,#059669,#10b981)",
           subjects: [
             {
               code: "BCA-401",
               name: "Database Management System",
-              icon: "???",
+              icon: "\u{1F5C4}\uFE0F",
               desc: "RDBMS concepts, SQL, normalization, ER modeling, transactions",
               notes: [],
             },
             {
               code: "BCA-402",
               name: "Computer Organization",
-              icon: "??",
+              icon: "\u2699\uFE0F",
               desc: "CPU architecture, memory hierarchy, I/O organization, pipelining",
               notes: [],
             },
             {
               code: "BCA-403",
               name: "Design & Analysis of Algorithms",
-              icon: "??",
+              icon: "\u26A1",
               desc: "Time complexity, sorting, divide & conquer, greedy, DP",
               notes: [],
             },
             {
               code: "BCA-404",
               name: "Web Technology",
-              icon: "??",
+              icon: "\u{1F310}",
               desc: "HTML5, CSS3, JavaScript, PHP, XML, web services",
               notes: [],
             },
             {
               code: "BCA-405",
               name: "Computer Graphics",
-              icon: "??",
+              icon: "\u{1F3A8}",
               desc: "2D/3D transformations, rendering, multimedia, animation basics",
               notes: [],
             },
@@ -543,42 +579,42 @@
           num: 5,
           label: "Semester V",
           short: "Sem V",
-          period: "Jul ? Dec 2027",
+          period: "Jul \u2013 Dec 2027",
           color: "#06b6d4",
           gradient: "linear-gradient(135deg,#0284c7,#06b6d4)",
           subjects: [
             {
               code: "BCA-501",
               name: "Visual Basic .NET",
-              icon: "??",
+              icon: "\u{1F4BB}",
               desc: "Windows forms, ADO.NET, event handling, database connectivity",
               notes: [],
             },
             {
               code: "BCA-502",
               name: "Internet Technology",
-              icon: "??",
+              icon: "\u{1F310}",
               desc: "HTTP, FTP, email protocols, web security, cloud basics",
               notes: [],
             },
             {
               code: "BCA-503",
               name: "Computer Networks-II",
-              icon: "??",
+              icon: "\u{1F517}",
               desc: "Transport layer, network security, cryptography, firewalls",
               notes: [],
             },
             {
               code: "BCA-504",
               name: "Theory of Computation",
-              icon: "??",
+              icon: "\u{1F916}",
               desc: "Automata, formal languages, Turing machines, decidability",
               notes: [],
             },
             {
               code: "BCA-505",
               name: "Software Testing",
-              icon: "??",
+              icon: "\u{1F50D}",
               desc: "Testing types, test cases, defect management, automation basics",
               notes: [],
             },
@@ -590,42 +626,42 @@
           num: 6,
           label: "Semester VI",
           short: "Sem VI",
-          period: "Jan ? Jun 2028",
+          period: "Jan \u2013 Jun 2028",
           color: "#8b5cf6",
           gradient: "linear-gradient(135deg,#7c3aed,#a855f7)",
           subjects: [
             {
               code: "BCA-601",
               name: "Cloud Computing",
-              icon: "??",
+              icon: "\u2601\uFE0F",
               desc: "Cloud models, AWS/Azure basics, virtualization, deployment",
               notes: [],
             },
             {
               code: "BCA-602",
               name: "Artificial Intelligence",
-              icon: "??",
+              icon: "\u{1F916}",
               desc: "Search algorithms, ML basics, neural networks, expert systems",
               notes: [],
             },
             {
               code: "BCA-603",
               name: "E-Commerce",
-              icon: "??",
+              icon: "\u{1F6D2}",
               desc: "E-business models, payment systems, digital marketing, security",
               notes: [],
             },
             {
               code: "BCA-604",
               name: "Cyber Security",
-              icon: "???",
+              icon: "\u{1F510}",
               desc: "Ethical hacking, OWASP, penetration testing, cyber laws",
               notes: [],
             },
             {
               code: "BCA-605",
               name: "Project Work",
-              icon: "??",
+              icon: "\u{1F4BC}",
               desc: "Capstone project: Full stack + security + documentation",
               notes: [],
             },
@@ -653,7 +689,8 @@
       function renderTabs() {
         const bar = document.getElementById("semTabs");
         bar.innerHTML = SEMESTERS.map((s) => {
-          const cnt = s.subjects.reduce((a, sub) => a + sub.notes.length, 0);
+          // Count non-youtube notes for the badge
+          const cnt = s.subjects.reduce((a, sub) => a + sub.notes.filter(n => n.type !== "youtube").length, 0);
           return `
     <button class="sem-tab${s.num === activeSem ? " active" : ""}"
       style="--sem-color:${s.color}"
@@ -679,19 +716,15 @@
         const s = SEMESTERS.find((x) => x.num === num);
         const main = document.getElementById("mainContent");
 
-        const totalNotes = s.subjects.reduce(
-          (a, sub) => a + sub.notes.length,
-          0,
-        );
-        const subsWithNotes = s.subjects.filter(
-          (sub) => sub.notes.length > 0,
-        ).length;
+        const realNotes = (sub) => sub.notes.filter(n => n.type !== "youtube");
+        const totalNotes = s.subjects.reduce((a, sub) => a + realNotes(sub).length, 0);
+        const subsWithNotes = s.subjects.filter((sub) => realNotes(sub).length > 0).length;
 
         // Recent bar
         const recentHtml = recent.length
           ? `
   <div class="recent-bar">
-    <span class="recent-label" style="color:${s.color}">?? Recent</span>
+    <span class="recent-label" style="color:${s.color}">\u{1F552} Recent</span>
     <div class="recent-chips">
       ${recent
         .slice(0, 5)
@@ -699,7 +732,7 @@
           (r) => `
         <div class="rchip" style="--active-c:${s.color}"
           onclick="openReader('${esc(r.file)}','${r.type}','${esc(r.title)}','${esc(r.sub || "")}')">
-          ${r.type === "pdf" ? "??" : "??"} ${r.title}
+          ${r.type === "pdf" ? "\u{1F4C4}" : r.type === "youtube" ? "\u25B6\uFE0F" : "\u{1F4D6}"} ${r.title}
         </div>`,
         )
         .join("")}
@@ -714,13 +747,15 @@
         <div class="sem-num-badge" style="background:${s.gradient}">0${s.num}</div>
         <div class="sem-title-block">
           <h2>${s.label}</h2>
-          <p>${s.period} · AKU Patna · ${s.subjects.length} Subjects</p>
+          <p>${s.period} \u00B7 AKU Patna \u00B7 ${s.subjects.length} Subjects</p>
         </div>
       </div>
       <div class="sem-meta">
         <div class="meta-chip"><i class="fa-solid fa-file-lines" style="color:${s.color}"></i>&nbsp;${totalNotes} Notes</div>
         <div class="meta-chip"><i class="fa-solid fa-book" style="color:${s.color}"></i>&nbsp;${subsWithNotes}/${s.subjects.length} Covered</div>
-        ${s.num === 2 ? `<button class="meta-chip syl-all-btn" onclick="openSyllabusModal()" style="border-color:${s.color};color:${s.color};cursor:pointer;"><i class="fa-solid fa-scroll"></i>&nbsp;All Syllabuses</button>` : ""}
+        ${s.num === 2 || s.num === 3
+          ? `<button class="meta-chip syl-all-btn" onclick="openSyllabusModal(${s.num})" style="border-color:${s.color};color:${s.color};cursor:pointer;"><i class="fa-solid fa-scroll"></i>&nbsp;All Syllabuses</button>`
+          : ""}
       </div>
     </div>
 
@@ -733,16 +768,18 @@
       }
 
       function subCard(sub, color, idx) {
-        const hasNotes = sub.notes.length > 0;
+        const realNotes = sub.notes.filter(n => n.type !== "youtube");
+        const hasNotes = realNotes.length > 0;
         const delay = idx * 0.06;
-        const chips = sub.notes.length
-          ? sub.notes
+        const chips = realNotes.length
+          ? realNotes
+              .slice(0, 4)
               .map(
                 (n) =>
-                  `<span class="note-chip available">${n.type === "pdf" ? "??" : "??"} ${n.title}</span>`,
+                  `<span class="note-chip available">${n.type === "pdf" ? "\u{1F4C4}" : "\u{1F4D6}"} ${n.title}</span>`,
               )
               .join("")
-          : `<span class="note-chip empty">?? No notes yet</span>`;
+          : `<span class="note-chip empty">\u{1F4EC} No notes yet</span>`;
 
         return `
   <div class="sub-card${hasNotes ? "" : " no-notes"}"
@@ -758,13 +795,13 @@
     <div class="sub-desc">${sub.desc}</div>
     <div class="sub-notes-row">${chips}</div>
     <div class="sub-footer">
-      <div class="notes-count">${hasNotes ? `<span>${sub.notes.length}</span> file${sub.notes.length > 1 ? "s" : ""} ready` : "Coming soon"}</div>
+      <div class="notes-count">${hasNotes ? `<span>${realNotes.length}</span> file${realNotes.length > 1 ? "s" : ""} ready` : "Coming soon"}</div>
       ${
         hasNotes
           ? `<button class="open-btn" onclick="event.stopPropagation();openPanel(${JSON.stringify(sub).replace(/"/g, "&quot;")},'${color}')">
         Open <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i>
       </button>`
-          : `<span style="font-size:.72rem;color:var(--muted)">?? Empty</span>`
+          : `<span style="font-size:.72rem;color:var(--muted)">\u{1F4EC} Coming Soon</span>`
       }
     </div>
   </div>`;
@@ -785,18 +822,21 @@
     <div class="panel-sub-name">${sub.icon} ${sub.name}</div>
     <div class="panel-sub-desc">${sub.desc}</div>`;
 
-        if (!sub.notes.length) {
+        const realNotes = sub.notes.filter(n => n.type !== "youtube");
+        const ytNotes = sub.notes.filter(n => n.type === "youtube");
+
+        if (!realNotes.length && !ytNotes.length) {
           body.innerHTML = `
       <div class="panel-empty">
-        <div class="pe-icon">??</div>
+        <div class="pe-icon">\u{1F4EC}</div>
         <h3>No notes yet</h3>
-        <p>Add files to <code>${sub.code}</code> in the DATA section of <code>notes_hub.html</code>.<br>
-        See README.md for instructions.</p>
+        <p>Notes for <code>${sub.code}</code> are being prepared.<br>
+        Check back soon!</p>
       </div>`;
         } else {
           // Group by type
-          const html = sub.notes.filter((n) => n.type === "html");
-          const pdf = sub.notes.filter((n) => n.type === "pdf");
+          const html = realNotes.filter((n) => n.type === "html");
+          const pdf = realNotes.filter((n) => n.type === "pdf");
 
           body.innerHTML = `
       ${
@@ -804,7 +844,7 @@
           ? `
       <div class="notes-section">
         <div class="notes-section-title" style="--pc:${color}">
-          <span class="dot"></span> ?? HTML Notes <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${html.length}</span>
+          <span class="dot"></span> \u{1F4D6} HTML Notes <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${html.length}</span>
         </div>
         ${html.map((n) => noteRow(n, sub, color)).join("")}
       </div>`
@@ -815,9 +855,20 @@
           ? `
       <div class="notes-section">
         <div class="notes-section-title" style="--pc:${color}">
-          <span class="dot"></span> ?? PDF Files <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${pdf.length}</span>
+          <span class="dot"></span> \u{1F4C4} PDF Files <span style="margin-left:auto;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:6px;font-size:.65rem">${pdf.length}</span>
         </div>
         ${pdf.map((n) => noteRow(n, sub, color)).join("")}
+      </div>`
+          : ""
+      }
+      ${
+        ytNotes.length
+          ? `
+      <div class="notes-section">
+        <div class="notes-section-title yt-section-title" style="--pc:#ff0000">
+          <span class="dot"></span> \u{1F4FA} YouTube Resources <span style="margin-left:auto;background:rgba(255,0,0,.12);padding:1px 7px;border-radius:6px;font-size:.65rem">${ytNotes.length}</span>
+        </div>
+        ${ytNotes.map((n) => ytRow(n, sub, color)).join("")}
       </div>`
           : ""
       }`;
@@ -832,14 +883,14 @@
         const isPdf = note.type === "pdf";
         return `
   <div class="note-row" style="--pc:${color}"
-    onclick="openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " ? " + sub.name)}')">
-    <div class="note-row-icon" style="background:${color}18">${isPdf ? "??" : "??"}</div>
+    onclick="openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " \u00B7 " + sub.name)}')">
+    <div class="note-row-icon" style="background:${color}18">${isPdf ? "\u{1F4C4}" : "\u{1F4D6}"}</div>
     <div class="note-row-info">
       <div class="note-row-title">${note.title}</div>
       <div class="note-row-desc">${note.desc || ""}</div>
     </div>
     <div class="note-row-actions">
-      <button class="nr-btn solid" onclick="event.stopPropagation();openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " ? " + sub.name)}')">
+      <button class="nr-btn solid" onclick="event.stopPropagation();openReader('${esc(note.file)}','${note.type}','${esc(note.title)}','${esc(sub.code + " \u00B7 " + sub.name)}')">
         <i class="fa-solid fa-${isPdf ? "file-pdf" : "book-open"}"></i> Open
       </button>
       ${
@@ -851,6 +902,23 @@
   </div>`;
       }
 
+      function ytRow(note, sub, color) {
+        return `
+  <div class="note-row yt-note-row" style="--pc:#ff0000">
+    <div class="note-row-icon yt-icon">\u{1F4FA}</div>
+    <div class="note-row-info">
+      <div class="note-row-title">${note.title}</div>
+      <div class="note-row-desc">${note.desc || ""}</div>
+    </div>
+    <div class="note-row-actions">
+      <a class="nr-btn yt-btn" href="${esc(note.file)}" target="_blank" rel="noopener noreferrer"
+        onclick="event.stopPropagation();gae('youtube_open',{subject_code:'${sub.code}',url:'${esc(note.file)}'})">
+        <i class="fa-brands fa-youtube"></i> Watch
+      </a>
+    </div>
+  </div>`;
+      }
+
       function closePanel() {
         document.getElementById("panelBackdrop").classList.remove("open");
         document.getElementById("notesPanel").classList.remove("open");
@@ -858,16 +926,21 @@
       }
 
       /* ------------------------------------------------------
-       ALL SYLLABUSES MODAL  (Semester II)
+       ALL SYLLABUSES MODAL  (Semester II & III)
     ------------------------------------------------------ */
-      function openSyllabusModal() {
-        gae("syllabus_modal_open");
-        const sem2 = SEMESTERS.find((s) => s.num === 2);
-        const color = sem2.color;
+      function openSyllabusModal(semNum) {
+        const targetSem = semNum || activeSem;
+        gae("syllabus_modal_open", { semester: targetSem });
+        const semData = SEMESTERS.find((s) => s.num === targetSem);
+        const color = semData.color;
+
+        // Update modal subtitle
+        const subEl = document.querySelector(".syl-modal-sub");
+        if (subEl) subEl.textContent = `${semData.label} \u00B7 AKU Patna \u00B7 2026`;
 
         // Build rows for each subject's syllabus note
-        const rows = sem2.subjects.map((sub) => {
-          const syl = sub.notes.find((n) => n.title === "Official Syllabus");
+        const rows = semData.subjects.map((sub) => {
+          const syl = sub.notes.find((n) => n.title === "Official Syllabus" || (n.title && n.title.includes("Syllabus") && n.type === "pdf"));
           return `
   <div class="syl-row">
     <div class="syl-row-left">
@@ -880,13 +953,13 @@
     <div class="syl-row-actions">
       ${syl
         ? `<button class="nr-btn solid" style="background:${color};border-color:${color}"
-              onclick="closeModal('syllabusModal');openReader('${esc(syl.file)}','pdf','${esc(sub.code)} Official Syllabus','${esc(sub.code)} ? ${esc(sub.name)}')">
+              onclick="closeModal('syllabusModal');openReader('${esc(syl.file)}','pdf','${esc(sub.code)} Official Syllabus','${esc(sub.code)} \u00B7 ${esc(sub.name)}')">
               <i class="fa-solid fa-file-pdf"></i> Open
             </button>
             <button class="nr-btn outline" onclick="forceDownload('${esc(syl.file)}')">
               <i class="fa-solid fa-download"></i> Save
             </button>`
-        : `<span style="font-size:.75rem;color:var(--muted)">?? Not uploaded yet</span>`
+        : `<span style="font-size:.75rem;color:var(--muted)">\u{1F4EC} Not uploaded yet</span>`
       }
     </div>
   </div>`;
@@ -920,6 +993,11 @@
        READER
     ------------------------------------------------------ */
       function openReader(file, type, title, sub) {
+        // YouTube links open in new tab, never in the reader
+        if (type === "youtube") {
+          window.open(file, "_blank", "noopener,noreferrer");
+          return;
+        }
         gae("note_open", { file_name: file.split("/").pop(), file_type: type, note_title: title });
         curFile = file;
 
@@ -936,7 +1014,7 @@
         const fallback = document.getElementById("pdfFallback");
 
         if (type === "pdf") {
-          // --- PDF: use <embed> ? far more reliable than iframe ---
+          // --- PDF: use <embed> — far more reliable than iframe ---
           frame.style.display    = "none";
           frame.src              = "";
           fallback.style.display = "none";
@@ -950,7 +1028,7 @@
             embed.style.flex    = "1";
             embed.src           = file + "?t=" + Date.now(); // cache-bust
           } else {
-            // Mobile / no PDF plugin ? show friendly fallback panel
+            // Mobile / no PDF plugin — show friendly fallback panel
             embed.style.display    = "none";
             embed.src              = "";
             fallback.style.display = "flex";
@@ -1046,7 +1124,7 @@
               searchHits.push({
                 icon: sub.icon,
                 title: sub.name,
-                meta: `${sub.code} ? ${s.label}`,
+                meta: `${sub.code} \u00B7 ${s.label}`,
                 kind: "sub",
                 sem: s.num,
                 color: s.color,
@@ -1059,13 +1137,13 @@
                 (note.desc || "").toLowerCase().includes(lq)
               ) {
                 searchHits.push({
-                  icon: note.type === "pdf" ? "??" : "??",
+                  icon: note.type === "pdf" ? "\u{1F4C4}" : note.type === "youtube" ? "\u{1F4FA}" : "\u{1F4D6}",
                   title: note.title,
-                  meta: `${sub.code} ? ${s.label}`,
+                  meta: `${sub.code} \u00B7 ${s.label}`,
                   kind: "note",
                   file: note.file,
                   type: note.type,
-                  noteSub: `${sub.code} ? ${sub.name}`,
+                  noteSub: `${sub.code} \u00B7 ${sub.name}`,
                   color: s.color,
                   sem: s.num,
                   sub,
@@ -1100,6 +1178,8 @@
           setTimeout(() => {
             if (h.sub.notes.length) openPanel(h.sub, h.color);
           }, 180);
+        } else if (h.type === "youtube") {
+          window.open(h.file, "_blank", "noopener,noreferrer");
         } else {
           openReader(h.file, h.type, h.title, h.noteSub);
         }
@@ -1132,7 +1212,7 @@
       function updateTotalLabel() {
         let total = 0;
         SEMESTERS.forEach((s) =>
-          s.subjects.forEach((sub) => (total += sub.notes.length)),
+          s.subjects.forEach((sub) => (total += sub.notes.filter(n => n.type !== "youtube").length)),
         );
         document.getElementById("totalNotesLabel").textContent =
           `${total} Notes Available`;
@@ -1249,7 +1329,7 @@
           if (overlay) overlay.remove();
           return;
         }
-        // Already visible ? nothing extra needed
+        // Already visible — nothing extra needed
       })();
 
       function onRobotCheck() {
@@ -1264,9 +1344,9 @@
         const prog = document.getElementById("robotProgress");
         prog.classList.add("show");
 
-        // After animation completes ? show verified
+        // After animation completes — show verified
         setTimeout(() => {
-          document.getElementById("robotTxt").textContent = "? Verified! Welcome!";
+          document.getElementById("robotTxt").textContent = "\u2705 Verified! Welcome!";
           document.getElementById("robotTxt").style.color = "#10b981";
         }, 1500);
 
@@ -1289,45 +1369,55 @@
 
       const CHAT_KB = [
         { k: ["hello","hi","hey","helo","hii","salam","assalam"],
-          r: "Hi! ?? I'm Rahman AI. Ask me about BCA notes, subjects, syllabus or exam tips!" },
+          r: "Hi! \u{1F44B} I'm Rahman AI. Ask me about BCA notes, subjects, syllabus or exam tips!" },
+        // Semester III subjects
+        { k: ["bca-301","301","oop","c++","cpp","object oriented","classes","inheritance","polymorphism"],
+          r: "\u{1F535} BCA-301 OOP with C++: Classes, Objects, Inheritance, Polymorphism, Templates.\n10 resources available \u2014 HTML guides, PDFs, PYQ, Syllabus & YouTube resource!" },
+        { k: ["bca-302","302","web designing","internet","html","css","javascript","web design"],
+          r: "\u{1F310} BCA-302 Internet & Web Designing: HTML, CSS, JavaScript, HTTP, Web Servers.\n6 resources \u2014 HTML guide, PDFs, PYQ, Syllabus & YouTube resource!" },
+        { k: ["bca-303","303","java","java programming","applet","thread","multithreading","exception"],
+          r: "\u2615 BCA-303 Java Programming: OOP in Java, Applets, Threads, Exception Handling.\n5 resources \u2014 Study Guide HTML, BW Notes, PYQ, Syllabus & YouTube resource!" },
+        { k: ["bca-304","304","software engineering","sdlc","srs","testing","software design","se"],
+          r: "\u{1F5C2}\uFE0F BCA-304 Software Engineering: SDLC, SRS, Design, Coding, Testing, QA.\n9 resources \u2014 3 HTML guides, PDFs, PYQ, Syllabus & YouTube resource!" },
+        // Semester II subjects
         { k: ["bca-201","201","business english","english","letter"],
-          r: "?? BCA-201 Business English: Letter writing, grammar, comprehension.\nNotes, PYQ, Syllabus & Cheatsheet available!" },
+          r: "\u270D\uFE0F BCA-201 Business English: Letter writing, grammar, comprehension.\nNotes, PYQ, Syllabus & Cheatsheet available!" },
         { k: ["bca-202","202","numerical","techniques","newton","gauss"],
-          r: "?? BCA-202 Numerical Techniques: Newton-Raphson, Gauss Elimination, Simpson's Rule.\nComplete Exam Guide + PYQ + Cheatsheet available!" },
+          r: "\u{1F522} BCA-202 Numerical Techniques: Newton-Raphson, Gauss Elimination, Simpson's Rule.\nComplete Exam Guide + PYQ + Cheatsheet available!" },
         { k: ["bca-203","203","system analysis","sad","sdlc","dfd","er diagram"],
-          r: "??? BCA-203 SAD: SDLC, DFD, ER Diagrams, System Design.\nInteractive Study Guide + Colorful Exam Guide + Syllabus!" },
+          r: "\u{1F4CA} BCA-203 SAD: SDLC, DFD, ER Diagrams, System Design.\nInteractive Study Guide + Colorful Exam Guide + Syllabus!" },
         { k: ["bca-204","204","c programming","programming in c","pointers","structures","c lang"],
-          r: "?? BCA-204 C Programming: Pointers, Structures, File Handling.\n2 HTML Guides + VVI Exam Guide + PYQ + Cheatsheet!" },
+          r: "\u{1F4BB} BCA-204 C Programming: Pointers, Structures, File Handling.\n2 HTML Guides + VVI Exam Guide + PYQ + Cheatsheet!" },
         { k: ["bca-205","205","operating system","unix","os","shell","linux","deadlock"],
-          r: "?? BCA-205 OS & UNIX: Process Management, Deadlock, Shell Scripting.\n3 Complete HTML Guides + PYQ + Cheatsheet!" },
+          r: "\u{1F5A5}\uFE0F BCA-205 OS & UNIX: Process Management, Deadlock, Shell Scripting.\n3 Complete HTML Guides + PYQ + Cheatsheet!" },
         { k: ["syllabus","sylabus","curriculum","course content"],
-          r: "?? Click 'All Syllabuses' button on Semester II page to view all 5 subject syllabuses in one place!" },
+          r: "\u{1F4D5} Click 'All Syllabuses' button on Semester III or Semester II page to view all subject syllabuses!" },
         { k: ["pyq","previous year","past paper","old paper","question paper"],
-          r: "?? PYQ papers available for all 5 Sem II subjects!\nOpen any subject card ? look in PDF Files section." },
-        { k: ["cheatsheet","cheat sheet","cheat","quick revision"],
-          r: "?? Cheatsheets available for ALL 5 Semester II subjects!\nOpen any subject panel and find it in PDF Files." },
+          r: "\u{1F4DC} PYQ papers available for all Sem III subjects!\nOpen any subject card \u2192 look in PDF Files section." },
+        { k: ["youtube","video","watch","course"],
+          r: "\u{1F4FA} YouTube Resources added for all 4 Sem III subjects!\nOpen any Sem III subject \u2192 scroll to YouTube Resources section." },
         { k: ["exam","tip","tips","prepare","study","how to study","revision","revise"],
-          r: "? Exam Tips:\n1?? Start with Cheatsheets\n2?? Solve all PYQs\n3?? Focus on VVI questions\n4?? Practice C programs\n5?? Revise formulas daily\n6?? Study 5-6 hrs/day!" },
+          r: "\u{1F3AF} Exam Tips:\n1\uFE0F\u20E3 Start with HTML Notes\n2\uFE0F\u20E3 Solve all PYQs\n3\uFE0F\u20E3 Watch YouTube resources\n4\uFE0F\u20E3 Focus on VVI questions\n5\uFE0F\u20E3 Read Syllabus first\n6\uFE0F\u20E3 Study 5-6 hrs/day!" },
         { k: ["note","notes","material","study material"],
-          r: "?? Notes available under Semester II tab!\nClick any subject card to view HTML notes, PDFs, PYQs & Cheatsheets." },
+          r: "\u{1F4DA} Notes available under Semester III tab!\nClick any subject card to view HTML notes, PDFs, PYQs & YouTube resources." },
         { k: ["download","save","pdf","kaise download"],
-          r: "?? Click the ? download icon next to any PDF to save it directly.\nThe Open button opens it inside the reader." },
+          r: "\u{1F4E5} Click the \u2193 download icon next to any PDF to save it directly.\nThe Open button opens it inside the reader." },
         { k: ["search","find","dhundh","look for"],
-          r: "?? Press the / key or click the search bar to search across all subjects, notes, and topics instantly!" },
-        { k: ["semester","sem 1","sem 2","sem i","sem ii","all sem"],
-          r: "?? Notes Hub covers Semester I to VI!\nCurrently Semester II has the most notes. More being added soon!" },
+          r: "\u{1F50D} Press the / key or click the search bar to search across all subjects, notes, and topics instantly!" },
+        { k: ["semester","sem 1","sem 2","sem 3","sem i","sem ii","sem iii","all sem"],
+          r: "\u{1F4DA} Notes Hub covers Semester I to VI!\nSemester III is the current default with notes for BCA-301, 302, 303 & 304." },
         { k: ["theme","dark","light","mode","appearance"],
-          r: "?? Click the moon/sun icon in the top-right header to toggle between dark and light theme!" },
+          r: "\u{1F319} Click the moon/sun icon in the top-right header to toggle between dark and light theme!" },
         { k: ["aku","patna","iibm","college","university","aryabhatta"],
-          r: "?? University: AKU Patna (Aryabhatta Knowledge University)\nCollege: IIBM ? Semester II exams: 2026" },
+          r: "\u{1F3EB} University: AKU Patna (Aryabhatta Knowledge University)\nCollege: IIBM \u00B7 Semester III: Jul\u2013Dec 2026" },
         { k: ["who are you","what are you","chatbot","rahman ai","assistant"],
-          r: "I'm Rahman AI Assistant ?? ? a smart study helper for BCA students!\nI can guide you through notes, subjects, syllabus & exam prep." },
+          r: "I'm Rahman AI Assistant \u{1F916} \u2014 a smart study helper for BCA students!\nI can guide you through notes, subjects, syllabus & exam prep." },
         { k: ["thank","thanks","shukriya","thank you","bahut acha"],
-          r: "You're welcome! ?? Best of luck with your BCA exams!\nYou've got this, Abdul! ????" },
+          r: "You're welcome! \u{1F603} Best of luck with your BCA exams!\nYou've got this! \u{1F4AA}\u{1F4AA}" },
         { k: ["bye","goodbye","ok bye","later","alvida"],
-          r: "Goodbye! ?? Study hard & ace your BCA exams!\nCome back anytime you need help! ??" },
+          r: "Goodbye! \u{1F44B} Study hard & ace your BCA exams!\nCome back anytime you need help! \u{1F4DA}" },
         { k: ["help","kya","menu","options","what can you do"],
-          r: "I can help with:\n?? BCA subject info (201?205)\n?? Finding notes & PDFs\n?? Syllabus queries\n?? PYQ papers\n? Exam tips\n?? Download help\n?? Search tips\n\nJust type your question!" },
+          r: "I can help with:\n\u{1F4DA} BCA subject info (301\u2013304 & 201\u2013205)\n\u{1F50D} Finding notes & PDFs\n\u{1F4D5} Syllabus queries\n\u{1F4DC} PYQ papers\n\u{1F4FA} YouTube resources\n\u{1F3AF} Exam tips\n\u{1F4E5} Download help\n\u{1F50D} Search tips\n\nJust type your question!" },
       ];
 
       function getBotReply(msg) {
@@ -1335,7 +1425,7 @@
         for (const entry of CHAT_KB) {
           if (entry.k.some(k => m.includes(k))) return entry.r;
         }
-        return "?? I'm not sure about that.\nTry asking about BCA subjects, notes, syllabus, PYQs or exam tips!\nType 'help' to see all I can do.";
+        return "\u{1F914} I'm not sure about that.\nTry asking about BCA subjects, notes, syllabus, PYQs or exam tips!\nType 'help' to see all I can do.";
       }
 
       function toggleChatbot() {
@@ -1348,7 +1438,7 @@
 
         if (chatbotOpen && !chatInitialized) {
           chatInitialized = true;
-          appendBotMsg("Hi! ?? I'm **Rahman AI Assistant**.\nI'm here to help you with BCA notes, subjects, syllabus and exam tips.\n\nType 'help' to see what I can do!");
+          appendBotMsg("Hi! \u{1F44B} I'm **Rahman AI Assistant**.\nI'm here to help you with BCA notes, subjects, syllabus and exam tips.\n\nType 'help' to see what I can do!");
         }
         if (chatbotOpen) {
           setTimeout(() => document.getElementById("chatbotInput").focus(), 200);

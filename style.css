@@ -2345,3 +2345,554 @@
         .page-h1   { font-size: 1.55rem; }
         .footer-legal-links { padding: 12px 16px 0; }
       }
+
+      /* ===============================================================
+         YOUTUBE RESOURCE ROWS  (added for BCA Notes Hub Sem III update)
+      =============================================================== */
+
+      .yt-section-title {
+        color: #ff3b30 !important;
+      }
+
+      .yt-note-row {
+        border-left: 3px solid rgba(255, 0, 0, 0.35) !important;
+      }
+
+      .yt-note-row:hover {
+        border-left-color: #ff0000 !important;
+        background: rgba(255, 0, 0, 0.04) !important;
+      }
+
+      .yt-icon {
+        background: rgba(255, 0, 0, 0.12) !important;
+        font-size: 1.2rem;
+      }
+
+      .yt-btn {
+        background: #ff0000 !important;
+        border-color: #ff0000 !important;
+        color: #fff !important;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        transition: background 0.2s, transform 0.15s;
+        white-space: nowrap;
+      }
+
+      .yt-btn:hover {
+        background: #cc0000 !important;
+        transform: translateY(-1px);
+      }
+
+      .yt-btn i {
+        font-size: 0.9rem;
+      }
+
+
+      /* ===============================================================
+         PREMIUM UI LAYER — BCA Notes Hub Enhancement
+         Added: Oct 2026 · Abdul Rahman
+      =============================================================== */
+
+      /* ---- ROOT: extra premium tokens ----------------------------- */
+      :root {
+        --card-hover-lift: -10px;
+        --card-radius-premium: 20px;
+        --glow-spread: 0 0 0 1px;
+        --transition-premium: 0.3s cubic-bezier(0.34, 1.28, 0.64, 1);
+        --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ---- CARD ENTRANCE ANIMATION -------------------------------- */
+      @keyframes cardSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes iconPop {
+        0%   { transform: scale(1); }
+        40%  { transform: scale(1.25) rotate(-8deg); }
+        70%  { transform: scale(0.95) rotate(4deg); }
+        100% { transform: scale(1.1) rotate(0deg); }
+      }
+
+      @keyframes shimmer {
+        0%   { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+      }
+
+      @keyframes glowPulse {
+        0%, 100% { opacity: 0.06; transform: scale(1); }
+        50%       { opacity: 0.14; transform: scale(1.4); }
+      }
+
+      @keyframes badgePop {
+        0%   { transform: scale(0.8); opacity: 0; }
+        60%  { transform: scale(1.08); }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      @keyframes tabUnderlineSlide {
+        from { transform: scaleX(0); opacity: 0; }
+        to   { transform: scaleX(1); opacity: 1; }
+      }
+
+      /* ---- SUBJECT CARDS ------------------------------------------ */
+      .sub-card {
+        border-radius: var(--card-radius-premium);
+        padding: 22px;
+        /* Entrance animation driven by animation-delay in JS */
+        animation: cardSlideUp 0.5s var(--transition-smooth) both;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        will-change: transform, box-shadow;
+      }
+
+      /* Shimmer highlight on hover */
+      .sub-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -70%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.06) 50%,
+          transparent 100%
+        );
+        transform: skewX(-15deg);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+
+      .sub-card:hover::after {
+        opacity: 1;
+        animation: shimmer 0.65s ease forwards;
+      }
+
+      .sub-card:hover {
+        transform: translateY(var(--card-hover-lift)) scale(1.012);
+        box-shadow:
+          0 28px 60px -12px rgba(0, 0, 0, 0.65),
+          0 0 0 1.5px var(--c, #6366f1),
+          0 0 24px -4px color-mix(in srgb, var(--c, #6366f1) 40%, transparent);
+        border-color: var(--c, #6366f1);
+      }
+
+      /* Animated top accent bar */
+      .sub-card::before {
+        height: 3px;
+        background: var(--c, #6366f1);
+        transition: height var(--transition-smooth);
+        border-radius: var(--card-radius-premium) var(--card-radius-premium) 0 0;
+      }
+
+      .sub-card:hover::before {
+        height: 4px;
+      }
+
+      /* Animated glow orb */
+      .sub-card-glow {
+        width: 140px;
+        height: 140px;
+        top: -50px;
+        right: -50px;
+        opacity: 0.07;
+        filter: blur(35px);
+        animation: glowPulse 4s ease-in-out infinite;
+        transition: opacity var(--transition-smooth);
+      }
+
+      .sub-card:hover .sub-card-glow {
+        opacity: 0.18;
+        animation-play-state: paused;
+      }
+
+      /* Icon pop on hover */
+      .sub-icon {
+        font-size: 2.2rem;
+        line-height: 1;
+        display: inline-block;
+        transition: transform var(--transition-premium);
+        filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--c, #6366f1) 50%, transparent));
+      }
+
+      .sub-card:hover .sub-icon {
+        animation: iconPop 0.45s var(--transition-premium) forwards;
+      }
+
+      /* Subject code badge */
+      .sub-code {
+        letter-spacing: 0.5px;
+        transition: background var(--transition-smooth), box-shadow var(--transition-smooth);
+      }
+
+      .sub-card:hover .sub-code {
+        background: color-mix(in srgb, var(--c, #6366f1) 18%, transparent);
+        box-shadow: 0 0 12px -4px var(--c, #6366f1);
+      }
+
+      /* Subject name */
+      .sub-name {
+        font-size: 1.08rem;
+        letter-spacing: -0.2px;
+        margin-bottom: 6px;
+      }
+
+      /* Footer bar */
+      .sub-footer {
+        border-top: 1px solid var(--border);
+        padding-top: 14px;
+        margin-top: 2px;
+      }
+
+      /* Open button — premium */
+      .open-btn {
+        padding: 7px 16px;
+        border-radius: 10px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          background var(--transition-smooth),
+          color var(--transition-smooth),
+          box-shadow var(--transition-smooth),
+          transform 0.15s ease;
+      }
+
+      .open-btn:hover {
+        background: var(--c, #6366f1);
+        color: #fff;
+        box-shadow: 0 4px 18px -4px var(--c, #6366f1);
+        transform: translateX(3px);
+      }
+
+      /* Note chips */
+      .note-chip.available {
+        transition: background var(--transition-smooth), box-shadow var(--transition-smooth);
+      }
+
+      .sub-card:hover .note-chip.available {
+        background: color-mix(in srgb, var(--c, #6366f1) 14%, transparent);
+        box-shadow: inset 0 0 0 1px var(--c, #6366f1);
+      }
+
+      /* ---- SEMESTER TABS — PREMIUM -------------------------------- */
+      .sem-tab {
+        border-radius: 6px 6px 0 0;
+        transition:
+          color var(--transition-smooth),
+          background var(--transition-smooth);
+        position: relative;
+      }
+
+      .sem-tab:hover {
+        color: var(--txt);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      /* Active underline with reveal animation */
+      .sem-tab::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        height: 2.5px;
+        background: var(--sem-color, #6366f1);
+        border-radius: 3px 3px 0 0;
+        transition:
+          left var(--transition-smooth),
+          right var(--transition-smooth);
+      }
+
+      .sem-tab.active {
+        color: var(--txt);
+        border-bottom-color: transparent; /* let ::after handle it */
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .sem-tab.active::after {
+        left: 8px;
+        right: 8px;
+        box-shadow: 0 0 8px var(--sem-color, #6366f1);
+      }
+
+      /* Sem dot pulse on active */
+      .sem-tab.active .sem-dot {
+        animation: glowPulse 2s ease-in-out infinite;
+      }
+
+      /* Note count badge pop */
+      .sem-tab.active .note-count {
+        animation: badgePop 0.35s var(--transition-premium) both;
+      }
+
+      /* ---- SEM HEADER BADGE --------------------------------------- */
+      .sem-num-badge {
+        border-radius: 16px;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.08),
+          0 8px 24px -4px rgba(0, 0, 0, 0.5);
+        transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+        animation: badgePop 0.4s var(--transition-premium) both;
+      }
+
+      /* ---- META CHIPS — PREMIUM ----------------------------------- */
+      .meta-chip {
+        border-radius: 12px;
+        padding: 7px 14px;
+        font-size: 0.79rem;
+        transition:
+          border-color var(--transition-smooth),
+          background var(--transition-smooth);
+      }
+
+      .syl-all-btn {
+        transition:
+          background var(--transition-smooth),
+          color var(--transition-smooth),
+          box-shadow var(--transition-smooth);
+      }
+
+      .syl-all-btn:hover {
+        background: currentColor !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px -4px currentColor;
+      }
+
+      /* ---- NOTES PANEL — PREMIUM ---------------------------------- */
+      .notes-panel {
+        border-radius: 22px 0 0 22px;
+        border-left: 1px solid var(--border2);
+      }
+
+      .panel-header {
+        background: linear-gradient(
+          160deg,
+          color-mix(in srgb, var(--pc, #6366f1) 12%, transparent) 0%,
+          transparent 70%
+        );
+        border-bottom: 1px solid var(--border);
+        padding: 22px 20px 18px;
+      }
+
+      .panel-header::before {
+        height: 4px;
+        background: linear-gradient(90deg, var(--pc, #6366f1), color-mix(in srgb, var(--pc, #6366f1) 50%, transparent));
+        box-shadow: 0 2px 12px var(--pc, #6366f1);
+      }
+
+      .panel-sub-code {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--pc, #6366f1);
+        margin-bottom: 6px;
+      }
+
+      .panel-sub-name {
+        font-size: 1.18rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        line-height: 1.25;
+      }
+
+      /* Note rows */
+      .note-row {
+        border-radius: 12px;
+        margin: 6px 0;
+        border: 1px solid transparent;
+        transition:
+          background var(--transition-smooth),
+          border-color var(--transition-smooth),
+          transform 0.2s ease;
+      }
+
+      .note-row:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateX(4px);
+      }
+
+      .note-row-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: transform var(--transition-premium);
+      }
+
+      .note-row:hover .note-row-icon {
+        transform: scale(1.15);
+      }
+
+      .note-row-title {
+        font-weight: 700;
+        font-size: 0.87rem;
+        letter-spacing: -0.1px;
+      }
+
+      /* Open / Download buttons */
+      .nr-btn.solid {
+        transition:
+          background var(--transition-smooth),
+          box-shadow var(--transition-smooth),
+          transform 0.15s;
+      }
+
+      .nr-btn.solid:hover {
+        box-shadow: 0 4px 16px -4px var(--pc, #6366f1);
+        transform: translateY(-1px);
+      }
+
+      /* Section titles in panel */
+      .notes-section-title {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 8px 14px 9px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        margin-bottom: 8px;
+        border: 1px solid var(--border);
+      }
+
+      /* ---- SEARCH BOX — PREMIUM ----------------------------------- */
+      .search-bar {
+        border-radius: 14px;
+        transition:
+          box-shadow var(--transition-smooth),
+          background var(--transition-smooth),
+          border-color var(--transition-smooth);
+      }
+
+      .search-bar:hover {
+        box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.35),
+                    0 4px 20px rgba(99, 102, 241, 0.1);
+      }
+
+      /* ---- RECENT BAR -------------------------------------------- */
+      .rchip {
+        border-radius: 10px;
+        transition:
+          background var(--transition-smooth),
+          transform 0.18s ease;
+      }
+
+      .rchip:hover {
+        transform: translateY(-2px);
+      }
+
+      /* ---- SUBJECTS GRID — responsive tweaks ---------------------- */
+      @media (max-width: 768px) {
+        .subjects-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .sub-card:hover {
+          transform: translateY(-6px) scale(1.01);
+        }
+      }
+
+      @media (min-width: 1400px) {
+        .subjects-grid {
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        }
+      }
+
+      /* ---- READER OVERLAY — subtle improvement -------------------- */
+      .reader-bar {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      /* ---- FOOTER SOCIAL BUTTONS ---------------------------------- */
+      .footer-social-btn {
+        transition:
+          transform var(--transition-premium),
+          box-shadow var(--transition-smooth),
+          background var(--transition-smooth);
+      }
+
+      .footer-social-btn:hover {
+        transform: translateY(-4px) scale(1.1);
+      }
+
+      /* ---- ICON BTN in header ------------------------------------- */
+      .icon-btn {
+        transition:
+          background var(--transition-smooth),
+          transform 0.15s ease;
+      }
+
+      .icon-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* ---- PANEL CLOSE button ------------------------------------ */
+      .panel-close {
+        transition:
+          background var(--transition-smooth),
+          transform var(--transition-premium);
+      }
+
+      .panel-close:hover {
+        transform: rotate(90deg) scale(1.15);
+      }
+
+      /* ---- CHATBOT FAB pulse ------------------------------------ */
+      .chatbot-fab-pulse {
+        animation: chatPulse 2.5s ease-in-out infinite;
+      }
+
+      @keyframes chatPulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50%       { transform: scale(1.6); opacity: 0; }
+      }
+
+      /* ---- LIGHT MODE card enhancement -------------------------- */
+      body.light .sub-card {
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+      }
+
+      body.light .sub-card:hover {
+        box-shadow:
+          0 20px 50px -10px rgba(0, 0, 0, 0.14),
+          0 0 0 1.5px var(--c, #6366f1);
+      }
+
+      /* ---- SCROLLBAR premium ------------------------------------ */
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.28);
+      }
+
+      /* ---- SEM HEADER — fade entrance --------------------------- */
+      .sem-header {
+        animation: cardSlideUp 0.4s var(--transition-smooth) both;
+      }
+
