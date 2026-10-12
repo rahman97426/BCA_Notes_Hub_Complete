@@ -4,7 +4,7 @@
    Version: 2.0 (Fixed — proper scope & fetch handler)
 ================================================================ */
 
-const CACHE  = 'bca-hub-v2';
+const CACHE  = 'bca-hub-v3';
 const ASSETS = [
   '/',
   '/index.html',
@@ -50,8 +50,9 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
 
-  /* Notes: network-first (cache on success for offline) */
-  if (url.pathname.startsWith('/notes/')) {
+  /* Notes + app shell (HTML/CSS/JS): network-first so updates show immediately */
+  const isShell = e.request.mode === 'navigate' || /\.(html|css|js)$/.test(url.pathname) || url.pathname === '/';
+  if (url.pathname.startsWith('/notes/') || isShell) {
     e.respondWith(
       fetch(e.request)
         .then(r => {
