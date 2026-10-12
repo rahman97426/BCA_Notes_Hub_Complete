@@ -354,10 +354,10 @@
                   desc: "BCA-301 exam notes \u00B7 Black & White print-ready"
                 },
                 {
-                  title: "College OOP Notes",
-                  type: "pdf",
-                  file: "notes/bca301/oops%20college%20notes.pdf",
-                  desc: "BCA-301 college OOP notes \u00B7 AKU Patna"
+                  // title: "College OOP Notes",
+                  // type: "pdf",
+                  // file: "notes/bca301/oops%20college%20notes.pdf",
+                  // desc: "BCA-301 college OOP notes \u00B7 AKU Patna"
                 },
                 {
                   title: "BCA-301 Previous Year Questions",
@@ -498,10 +498,10 @@
                   desc: "BCA-304 exam preparation notes \u00B7 Black & White print-ready"
                 },
                 {
-                  title: "BCA-304 Complete Notes",
-                  type: "pdf",
-                  file: "notes/bca304/notes.pdf",
-                  desc: "BCA-304 complete notes"
+                  // title: "BCA-304 Complete Notes",
+                  // type: "pdf",
+                  // file: "notes/bca304/notes.pdf",
+                  // desc: "BCA-304 complete notes"
                 },
                 {
                   title: "BCA-304 Previous Year Questions",
